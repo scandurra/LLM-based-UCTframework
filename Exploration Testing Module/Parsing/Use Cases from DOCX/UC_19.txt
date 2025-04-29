@@ -1,0 +1,9 @@
+UseCase : UC3.4.2: Elimina scheda censimento (parte di UC3.4: Azione su scheda censimento) (parte di UC3: Gestione schede censimento)
+Summary : Permette di eliminare dal portale una scheda censimento precedentemente caricata
+Actor : Regione, Sindaco, Fornitore
+Precondition : UC3.4
+Postcondition : L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine
+Base sequence : L’utente seleziona l’operazione di cancellazione : All’utente viene richiesta la conferma dell’eliminazione della scheda indicata : In caso di conferma l’utente visualizza un messaggio di conferma dell’operazione
+Branch sequence : In caso di annullamento l’eliminazione viene interrotta
+Exception sequence : no
+Note : no

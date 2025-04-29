@@ -1,0 +1,93 @@
+📝 PROMPT:
+Agisci come un test engineer esperto. Ti verrà fornito un caso d’uso in formato TXT con struttura formale.
+
+Il tuo compito è generare un elenco JSON di test case che verifichino il comportamento funzionale del sistema, con copertura di flusso base, alternative, eccezioni, e pre/postcondizioni.
+
+Esempio di Formato JSON (restituisci solo un array di oggetti):
+{
+  "test_case_id": "UC2_TC2",
+  "title": "Input incompleto",
+  "preconditions": "Utente autenticato",
+  "postconditions": "Nessuna modifica salvata",
+  "test_steps": [
+    { "step": "Lascia il campo 'email' vuoto", "expected": "Viene mostrato un messaggio di errore" }
+  ],
+  "test_type": "Negativo",
+  "priority": "Medium",
+  "use_case_id": "UC2"
+}
+
+Genera:
+- Almeno 4 test case per UC.
+- Sia test positivi che negativi.
+- `test_type` dev’essere "Positive" o "Negative".
+- Ogni `test_case_id` deve iniziare con l’ID del caso d’uso.
+
+Non spiegare nulla. Restituisci **solo** l’array JSON risultante. Non mettere "```json" all'inizio della risposta e "```" alla fine.
+Apri e chiudi correttamente le parentesi.
+
+Il seguente è il caso d’uso in formato TXT:
+
+Id: UC4.1
+Title: Gestione impianto (parte di UC4: Gestione modulo SAVE)
+Summary: Visualizza la sezione di gestione dell’impianto del modulo SAVE
+Actor: Regione, Sindaco, Fornitore, Progettista
+Precondition: L’utente è autenticato ed è a conoscenza che l’operazione ha avuto successo 
+Postcondition: no
+Base_sequence:
+1) L’utente naviga nella prima sezione dedicata agli impianti, su una barra orizzontale dedicata
+Branch_sequence: no
+Exception_sequence: no
+Note: no
+
+📥 RISPOSTA:
+[
+  {
+    "test_case_id": "UC4.1_TC1",
+    "title": "Visualizzazione sezione impianto",
+    "preconditions": "Utente autenticato e a conoscenza dell'operazione di successo",
+    "postconditions": "Sezione impianto visualizzata correttamente",
+    "test_steps": [
+      { "step": "L'utente naviga nella prima sezione dedicata agli impianti", "expected": "La sezione impianto viene visualizzata" }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC4.1"
+  },
+  {
+    "test_case_id": "UC4.1_TC2",
+    "title": "Utente non autenticato",
+    "preconditions": "Utente non autenticato",
+    "postconditions": "Accesso negato alla sezione impianto",
+    "test_steps": [
+      { "step": "L'utente tenta di navigare nella prima sezione dedicata agli impianti", "expected": "Viene mostrato un messaggio di accesso negato" }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC4.1"
+  },
+  {
+    "test_case_id": "UC4.1_TC3",
+    "title": "Utente senza permessi",
+    "preconditions": "Utente autenticato ma senza permessi per accedere alla sezione impianto",
+    "postconditions": "Accesso negato alla sezione impianto",
+    "test_steps": [
+      { "step": "L'utente tenta di navigare nella prima sezione dedicata agli impianti", "expected": "Viene mostrato un messaggio di accesso negato" }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC4.1"
+  },
+  {
+    "test_case_id": "UC4.1_TC4",
+    "title": "Navigazione corretta nella sezione impianto",
+    "preconditions": "Utente autenticato e a conoscenza dell'operazione di successo",
+    "postconditions": "Sezione impianto visualizzata correttamente",
+    "test_steps": [
+      { "step": "L'utente naviga nella prima sezione dedicata agli impianti", "expected": "La sezione impianto viene visualizzata con tutte le informazioni richieste" }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC4.1"
+  }
+]

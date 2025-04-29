@@ -1,0 +1,82 @@
+[
+  {
+    "test_case_id": "UC3.3_TC1",
+    "title": "Caricamento scheda censimento valido",
+    "preconditions": "Utente autenticato e visualizza la sezione relativa alle schede censimento",
+    "postconditions": "Scheda censimento caricata con successo",
+    "test_steps": [
+      {
+        "step": "Clicca sul tasto di caricamento",
+        "expected": "Viene aperta la finestra di caricamento"
+      },
+      {
+        "step": "Seleziona il file da caricare tramite drag-and-drop",
+        "expected": "Il file viene caricato correttamente"
+      },
+      {
+        "step": "Attende la fine del processo di caricamento",
+        "expected": "Viene mostrato un messaggio di operazione andata a buon fine"
+      }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC3.3"
+  },
+  {
+    "test_case_id": "UC3.3_TC2",
+    "title": "Caricamento scheda censimento con formato non supportato",
+    "preconditions": "Utente autenticato e visualizza la sezione relativa alle schede censimento",
+    "postconditions": "Nessuna modifica salvata",
+    "test_steps": [
+      {
+        "step": "Clicca sul tasto di caricamento",
+        "expected": "Viene aperta la finestra di caricamento"
+      },
+      {
+        "step": "Seleziona un file con formato non supportato tramite drag-and-drop",
+        "expected": "Viene mostrato un messaggio di errore per formato non supportato"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC3.3"
+  },
+  {
+    "test_case_id": "UC3.3_TC3",
+    "title": "Caricamento scheda censimento senza selezionare file",
+    "preconditions": "Utente autenticato e visualizza la sezione relativa alle schede censimento",
+    "postconditions": "Nessuna modifica salvata",
+    "test_steps": [
+      {
+        "step": "Clicca sul tasto di caricamento",
+        "expected": "Viene aperta la finestra di caricamento"
+      },
+      {
+        "step": "Non seleziona alcun file e tenta di procedere",
+        "expected": "Viene mostrato un messaggio di errore per mancanza di file"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC3.3"
+  },
+  {
+    "test_case_id": "UC3.3_TC4",
+    "title": "Caricamento scheda censimento con parametri non validi",
+    "preconditions": "Utente autenticato e visualizza la sezione relativa alle schede censimento",
+    "postconditions": "Nessuna modifica salvata",
+    "test_steps": [
+      {
+        "step": "Clicca sul tasto di caricamento",
+        "expected": "Viene aperta la finestra di caricamento"
+      },
+      {
+        "step": "Inserisci parametri non validi (ad es. nome vuoto)",
+        "expected": "Viene mostrato un messaggio di errore per parametri non validi"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC3.3"
+  }
+]

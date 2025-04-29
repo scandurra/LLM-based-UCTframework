@@ -1,0 +1,96 @@
+📝 PROMPT:
+Agisci come un test engineer esperto. Ti verrà fornito un caso d’uso in formato TXT con struttura formale.
+
+Il tuo compito è generare un elenco JSON di test case che verifichino il comportamento funzionale del sistema, con copertura di flusso base, alternative, eccezioni, e pre/postcondizioni.
+
+Esempio di Formato JSON (restituisci solo un array di oggetti):
+{
+  "test_case_id": "UC2_TC2",
+  "title": "Input incompleto",
+  "preconditions": "Utente autenticato",
+  "postconditions": "Nessuna modifica salvata",
+  "test_steps": [
+    { "step": "Lascia il campo 'email' vuoto", "expected": "Viene mostrato un messaggio di errore" }
+  ],
+  "test_type": "Negativo",
+  "priority": "Medium",
+  "use_case_id": "UC2"
+}
+
+Genera:
+- Almeno 4 test case per UC.
+- Sia test positivi che negativi.
+- `test_type` dev’essere "Positive" o "Negative".
+- Ogni `test_case_id` deve iniziare con l’ID del caso d’uso.
+
+Non spiegare nulla. Restituisci **solo** l’array JSON risultante. Non mettere "```json" all'inizio della risposta e "```" alla fine.
+Apri e chiudi correttamente le parentesi.
+
+Il seguente è il caso d’uso in formato TXT:
+
+Id: UC2.6
+Title: Analisi consumo comune per POD
+Summary: Permette di visualizzare un’analisi per comune dei consumi sulla base di alcuni parametri selezionati
+Actor: Comune, Fornitore
+Precondition: L’utente visualizza la sezione relativa alla dashboard
+Postcondition: L’utente visualizza le informazioni consultando i grafici
+Base_sequence:
+1) L’utente scorre nella pagina fino a visualizzare la sezione dedicata al consumo
+2) Selezionato il comune, è possibile eseguire un’analisi più puntuale andando a specificare POD, pannello elettrico, periodo e tipo di potenza analizzata
+Branch_sequence: no
+Exception_sequence: no
+Note: no
+
+📥 RISPOSTA:
+[
+  {
+    "test_case_id": "UC2.6_TC1",
+    "title": "Analisi consumo comune per POD con dati validi",
+    "preconditions": "Utente visualizza la sezione relativa alla dashboard",
+    "postconditions": "Utente visualizza le informazioni consultando i grafici",
+    "test_steps": [
+      { "step": "Seleziona un comune", "expected": "Vengono mostrate le opzioni per l'analisi" },
+      { "step": "Specifica POD, pannello elettrico, periodo e tipo di potenza analizzata", "expected": "Viene visualizzato il grafico con i dati dell'analisi" }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC2",
+    "title": "Analisi consumo comune per POD con dati mancanti",
+    "preconditions": "Utente visualizza la sezione relativa alla dashboard",
+    "postconditions": "Nessuna modifica salvata",
+    "test_steps": [
+      { "step": "Lascia vuoto il campo del comune", "expected": "Viene mostrato un messaggio di errore" }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC3",
+    "title": "Analisi consumo comune per POD con parametri non validi",
+    "preconditions": "Utente visualizza la sezione relativa alla dashboard",
+    "postconditions": "Nessuna modifica salvata",
+    "test_steps": [
+      { "step": "Inserisci un valore non valido per il periodo", "expected": "Viene mostrato un messaggio di errore" }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC4",
+    "title": "Analisi consumo comune per POD con selezione multipla",
+    "preconditions": "Utente visualizza la sezione relativa alla dashboard",
+    "postconditions": "Utente visualizza le informazioni consultando i grafici",
+    "test_steps": [
+      { "step": "Seleziona più comuni", "expected": "Vengono mostrate le opzioni per l'analisi per ciascun comune selezionato" },
+      { "step": "Specifica POD, pannello elettrico, periodo e tipo di potenza analizzata per ciascun comune", "expected": "Viene visualizzato il grafico con i dati dell'analisi per ciascun comune" }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC2.6"
+  }
+]

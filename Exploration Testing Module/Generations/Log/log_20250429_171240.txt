@@ -1,0 +1,125 @@
+📝 PROMPT:
+Sei un esperto di Quality Assurance. Il tuo compito è generare una suite di test case per ogni caso d’uso fornito in formato JSON.  
+Il formato di output deve essere **esclusivamente JSON**, strutturato come array di oggetti test case, seguendo la struttura di esempio qui sotto:
+
+{
+  "test_case_id": "UC1_TC1",
+  "title": "Valid Login Credentials",
+  "preconditions": "User is not authenticated and has access to PELL portal",
+  "postconditions": "User is redirected to Home page",
+  "test_steps": [
+    { "step": "Click on the 'Login' button", "expected": "Login form is displayed" },
+    { "step": "Enter valid email and password", "expected": "No error messages are displayed" },
+    { "step": "Confirm authentication process", "expected": "User is redirected to Home page" }
+  ],
+  "test_type": "Positive",
+  "priority": "High",
+  "use_case_id": "UC1"
+}
+
+Suggerimenti:
+- Genera **almeno 4-6 test case** per ogni UC.
+- Includi sia test **positivi** (successo) che **negativi** (errori, input errati, mancanze, etc).
+- Usa nomi univoci per `test_case_id` seguendo lo schema `UCx_TCy`.
+- Analizza la base_sequence, branch_sequence, exception_sequence, pre/postcondizioni.
+
+Restituisci solo un array JSON (non spiegare). Non mettere "```json" all'inizio del file e "```" alla fine.
+Apri e chiudi correttamente le parentesi.
+Il seguente è l'use case in formato JSON:
+
+[
+{
+  "Id": "UC4",
+  "Title": "Gestione modulo SAVE",
+  "Summary": "Apertura dell’interfaccia dedicata al modulo SAVE",
+  "Actor": ["Regione", "Sindaco", "Fornitore", "Progettista"],
+  "Precondition": "L’utente è autenticato ed è a conoscenza che l’operazione ha avuto successo",
+  "Postcondition": "",
+  "Base_sequence": ["L’utente naviga nella sezione relativa al modulo SAVE utilizzando il menù laterale di sinistra"],
+  "Branch_sequence": [],
+  "Exception_sequence": [],
+  "Note": "no"
+}
+]
+
+📥 RISPOSTA:
+[
+  {
+    "test_case_id": "UC4_TC1",
+    "title": "Apertura interfaccia modulo SAVE con successo",
+    "preconditions": "L’utente è autenticato ed è a conoscenza che l’operazione ha avuto successo",
+    "postconditions": "Interfaccia del modulo SAVE aperta correttamente",
+    "test_steps": [
+      { "step": "L’utente naviga nella sezione relativa al modulo SAVE utilizzando il menù laterale di sinistra", "expected": "Interfaccia del modulo SAVE visualizzata" },
+      { "step": "Verifica della presenza di tutti gli elementi dell’interfaccia", "expected": "Tutti gli elementi presenti e funzionanti" }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC4"
+  },
+  {
+    "test_case_id": "UC4_TC2",
+    "title": "Apertura interfaccia modulo SAVE senza autenticazione",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "Accesso negato all’interfaccia del modulo SAVE",
+    "test_steps": [
+      { "step": "Tentativo di accesso alla sezione relativa al modulo SAVE senza autenticazione", "expected": "Richiesta di autenticazione visualizzata" },
+      { "step": "Inserimento delle credenziali di autenticazione", "expected": "Accesso all’interfaccia del modulo SAVE con successo dopo l’autenticazione" }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC4"
+  },
+  {
+    "test_case_id": "UC4_TC3",
+    "title": "Apertura interfaccia modulo SAVE con permessi insufficienti",
+    "preconditions": "L’utente è autenticato ma non ha i permessi necessari per accedere al modulo SAVE",
+    "postconditions": "Accesso negato all’interfaccia del modulo SAVE",
+    "test_steps": [
+      { "step": "Tentativo di accesso alla sezione relativa al modulo SAVE con permessi insufficienti", "expected": "Messaggio di errore per permessi insufficienti visualizzato" },
+      { "step": "Verifica della presenza del messaggio di errore", "expected": "Messaggio di errore correttamente visualizzato" }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC4"
+  },
+  {
+    "test_case_id": "UC4_TC4",
+    "title": "Verifica della presenza di elementi obbligatori nell’interfaccia del modulo SAVE",
+    "preconditions": "L’utente è autenticato e ha accesso all’interfaccia del modulo SAVE",
+    "postconditions": "Tutti gli elementi obbligatori presenti nell’interfaccia del modulo SAVE",
+    "test_steps": [
+      { "step": "Verifica della presenza di ogni elemento obbligatorio", "expected": "Tutti gli elementi obbligatori presenti" },
+      { "step": "Tentativo di salvataggio senza compilare gli elementi obbligatori", "expected": "Messaggio di errore per campi obbligatori non compilati visualizzato" }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC4"
+  },
+  {
+    "test_case_id": "UC4_TC5",
+    "title": "Gestione di input errati nell’interfaccia del modulo SAVE",
+    "preconditions": "L’utente è autenticato e ha accesso all’interfaccia del modulo SAVE",
+    "postconditions": "Interfaccia del modulo SAVE gestisce correttamente gli input errati",
+    "test_steps": [
+      { "step": "Inserimento di dati non validi in un campo", "expected": "Messaggio di errore per dato non valido visualizzato" },
+      { "step": "Correzione dell’input errato e verifica della sua accettazione", "expected": "Dato corretto accettato senza errori" }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC4"
+  },
+  {
+    "test_case_id": "UC4_TC6",
+    "title": "Verifica della compatibilità dell’interfaccia del modulo SAVE con diversi browser",
+    "preconditions": "L’utente è autenticato e ha accesso all’interfaccia del modulo SAVE",
+    "postconditions": "Interfaccia del modulo SAVE funziona correttamente su diversi browser",
+    "test_steps": [
+      { "step": "Accesso all’interfaccia del modulo SAVE utilizzando un browser", "expected": "Interfaccia visualizzata e funzionante correttamente" },
+      { "step": "Ripetizione del test con diversi browser", "expected": "Interfaccia funziona correttamente su tutti i browser testati" }
+    ],
+    "test_type": "Positive",
+    "priority": "Low",
+    "use_case_id": "UC4"
+  }
+]

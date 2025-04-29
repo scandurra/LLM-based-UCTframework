@@ -1,0 +1,14 @@
+[
+{
+  "Id": "UC5",
+  "Title": "Selezione lingua",
+  "Summary": "Modifica della lingua utilizzata dal portale autenticato",
+  "Actor": ["Regione", "Sindaco", "Fornitore", "Progettista", "Cittadino"],
+  "Precondition": "L’utente è autenticato ed è a conoscenza che l’operazione ha avuto successo",
+  "Postcondition": "L’utente visualizza il portale con la lingua selezionata",
+  "Base_sequence": ["L’utente clicca sul proprio nome utente in alto a destra", "L’utente modifica la lingua selezionandola dal menù a tendina disponibile dal menù apparso con il punto 1", "L’utente, dopo il ricaricamento della pagina, visualizza il portale con la lingua selezionata"],
+  "Branch_sequence": [],
+  "Exception_sequence": [],
+  "Note": "no"
+}
+]

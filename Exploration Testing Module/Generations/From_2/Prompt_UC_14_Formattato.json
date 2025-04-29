@@ -1,0 +1,78 @@
+[
+  {
+    "test_case_id": "UC3.2.3_TC1",
+    "title": "Ricerca scheda censimento per tipo valido",
+    "preconditions": "Utente autenticato, parametri di ricerca disponibili",
+    "postconditions": "Risultati della ricerca visualizzati correttamente",
+    "test_steps": [
+      {
+        "step": "Inserisci un tipo di scheda censimento valido",
+        "expected": "Vengono mostrati i risultati della ricerca"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "I risultati della ricerca sono visualizzati come nello UC3.1"
+      }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC3.2.3"
+  },
+  {
+    "test_case_id": "UC3.2.3_TC2",
+    "title": "Ricerca scheda censimento per tipo non valido",
+    "preconditions": "Utente autenticato, parametri di ricerca disponibili",
+    "postconditions": "Nessun risultato della ricerca visualizzato",
+    "test_steps": [
+      {
+        "step": "Inserisci un tipo di scheda censimento non valido",
+        "expected": "Non vengono mostrati risultati della ricerca"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Viene mostrato un messaggio di errore o di nessun risultato trovato"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC3.2.3"
+  },
+  {
+    "test_case_id": "UC3.2.3_TC3",
+    "title": "Ricerca scheda censimento senza parametri di ricerca",
+    "preconditions": "Utente autenticato, nessun parametro di ricerca inserito",
+    "postconditions": "Nessun risultato della ricerca visualizzato",
+    "test_steps": [
+      {
+        "step": "Non inserisci alcun tipo di scheda censimento",
+        "expected": "Viene mostrato un messaggio di errore o richiesta di inserire parametri di ricerca"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Nessun risultato della ricerca è visualizzato"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC3.2.3"
+  },
+  {
+    "test_case_id": "UC3.2.3_TC4",
+    "title": "Ricerca scheda censimento con più parametri di ricerca",
+    "preconditions": "Utente autenticato, più parametri di ricerca disponibili",
+    "postconditions": "Risultati della ricerca visualizzati correttamente",
+    "test_steps": [
+      {
+        "step": "Inserisci più tipi di scheda censimento validi",
+        "expected": "Vengono mostrati i risultati della ricerca filtrati correttamente"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "I risultati della ricerca sono visualizzati come nello UC3.1, considerando tutti i parametri di ricerca"
+      }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC3.2.3"
+  }
+]

@@ -1,0 +1,9 @@
+UseCase : UC4.1.1: Aggiunta impianto (parte di UC4.1: Gestione impianto) (parte di UC4: Gestione modulo SAVE)
+Summary : Permette di aggiungere un nuovo impianto per il comune selezionato
+Actor : Progettista
+Precondition : UC4.1
+Postcondition : L’utente visualizza un messaggio di conferma
+Base sequence : L’utente clicca sul tasto dedicato all’aggiunta di un singolo impianto : L’utente inserisce il nome e seleziona il comune tra quelli disponibili : L’utente visualizza un messaggio di conferma
+Branch sequence : In caso di annullamento l’utente visualizza un messaggio di avvenuto annullamento
+Exception sequence : no
+Note : no

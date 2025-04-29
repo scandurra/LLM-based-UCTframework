@@ -1,0 +1,14 @@
+Id: UC2.4
+Title: Benchmarking KPI per comune
+Summary: Consente di analizzare i Key Performance Indicator dei comuni selezionati
+Actor: Regione, Sindaco, Fornitore, Cittadino
+Precondition: L’utente visualizza la sezione relativa alla dashboard
+Postcondition: L’utente visualizza il risultato della analisi su un grafico, in base ai comuni e al KPI su cui fare il confronto
+Base_sequence:
+1) L’utente seleziona i comuni desiderati dal menù a tendina, tramite ricerca e selezione
+2) L’utente seleziona il KPI desiderato
+3) L’utente conferma la richiesta cliccando sul pulsante
+4) L’utente visualizza il grafico con il confronto desiderato
+Branch_sequence: no
+Exception_sequence: no
+Note: no

@@ -1,0 +1,108 @@
+📝 PROMPT:
+Agisci come un test engineer esperto. Ti verrà fornito un caso d’uso in formato TXT con struttura formale.
+
+Il tuo compito è generare un elenco JSON di test case che verifichino il comportamento funzionale del sistema, con copertura di flusso base, alternative, eccezioni, e pre/postcondizioni.
+
+Esempio di Formato JSON (restituisci solo un array di oggetti):
+{
+  "test_case_id": "UC2_TC2",
+  "title": "Input incompleto",
+  "preconditions": "Utente autenticato",
+  "postconditions": "Nessuna modifica salvata",
+  "test_steps": [
+    { "step": "Lascia il campo 'email' vuoto", "expected": "Viene mostrato un messaggio di errore" }
+  ],
+  "test_type": "Negativo",
+  "priority": "Medium",
+  "use_case_id": "UC2"
+}
+
+Genera:
+- Almeno 4 test case per UC.
+- Sia test positivi che negativi.
+- `test_type` dev’essere "Positive" o "Negative".
+- Ogni `test_case_id` deve iniziare con l’ID del caso d’uso.
+
+Non spiegare nulla. Restituisci **solo** l’array JSON risultante. Non mettere "```json" all'inizio della risposta e "```" alla fine.
+Apri e chiudi correttamente le parentesi.
+
+Il seguente è il caso d’uso in formato TXT:
+
+Id: UC3.4.3.3
+Title: Modifica POD sezione anagrafica
+Summary: Permette di modificare i parametri anagrafici di un POD della scheda censimento
+Actor: Regione, Sindaco, Fornitore
+Precondition: L’utente visualizza le informazioni della scheda in fase di edit
+Postcondition: L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine
+Base_sequence:
+1) L’utente seleziona il POD per la modifica tramite il menù ad albero di sinistra
+2) L’utente seleziona il tab relativo ai dati di anagrafica
+3) L’utente visualizza i dati precedenti e può compilare il form con le informazioni desiderate
+4) L’utente applica le modifiche con l’apposito tasto
+5) In caso di conferma l’utente visualizza un messaggio di conferma dell’operazione
+Branch_sequence:
+1) In caso di dati non validi viene mostrato un messaggio di errore
+Exception_sequence: no
+Note: no
+
+📥 RISPOSTA:
+[
+  {
+    "test_case_id": "UC3.4.3.3_TC1",
+    "title": "Modifica POD sezione anagrafica con successo",
+    "preconditions": "L’utente visualizza le informazioni della scheda in fase di edit",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      { "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra", "expected": "Il POD viene selezionato correttamente" },
+      { "step": "Seleziona il tab relativo ai dati di anagrafica", "expected": "I dati di anagrafica vengono visualizzati" },
+      { "step": "Compila il form con le informazioni desiderate", "expected": "Il form viene compilato correttamente" },
+      { "step": "Applica le modifiche con l’apposito tasto", "expected": "Un messaggio di conferma dell’operazione viene visualizzato" }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC3.4.3.3"
+  },
+  {
+    "test_case_id": "UC3.4.3.3_TC2",
+    "title": "Modifica POD sezione anagrafica con dati non validi",
+    "preconditions": "L’utente visualizza le informazioni della scheda in fase di edit",
+    "postconditions": "Nessuna modifica salvata",
+    "test_steps": [
+      { "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra", "expected": "Il POD viene selezionato correttamente" },
+      { "step": "Seleziona il tab relativo ai dati di anagrafica", "expected": "I dati di anagrafica vengono visualizzati" },
+      { "step": "Compila il form con dati non validi", "expected": "Un messaggio di errore viene visualizzato" }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC3.4.3.3"
+  },
+  {
+    "test_case_id": "UC3.4.3.3_TC3",
+    "title": "Modifica POD sezione anagrafica senza compilare il form",
+    "preconditions": "L’utente visualizza le informazioni della scheda in fase di edit",
+    "postconditions": "Nessuna modifica salvata",
+    "test_steps": [
+      { "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra", "expected": "Il POD viene selezionato correttamente" },
+      { "step": "Seleziona il tab relativo ai dati di anagrafica", "expected": "I dati di anagrafica vengono visualizzati" },
+      { "step": "Non compili il form e applica le modifiche con l’apposito tasto", "expected": "Un messaggio di errore viene visualizzato" }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC3.4.3.3"
+  },
+  {
+    "test_case_id": "UC3.4.3.3_TC4",
+    "title": "Modifica POD sezione anagrafica con successo e poi annulla le modifiche",
+    "preconditions": "L’utente visualizza le informazioni della scheda in fase di edit",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine, ma le modifiche vengono annullate",
+    "test_steps": [
+      { "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra", "expected": "Il POD viene selezionato correttamente" },
+      { "step": "Seleziona il tab relativo ai dati di anagrafica", "expected": "I dati di anagrafica vengono visualizzati" },
+      { "step": "Compila il form con le informazioni desiderate", "expected": "Il form viene compilato correttamente" },
+      { "step": "Applica le modifiche con l’apposito tasto e poi annulla le modifiche", "expected": "Un messaggio di conferma dell’operazione viene visualizzato, ma le modifiche vengono annullate" }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC3.4.3.3"
+  }
+]

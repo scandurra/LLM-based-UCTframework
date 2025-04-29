@@ -1,0 +1,126 @@
+📝 PROMPT:
+Sei un esperto di Quality Assurance. Il tuo compito è generare una suite di test case per ogni caso d’uso fornito in formato JSON.  
+Il formato di output deve essere **esclusivamente JSON**, strutturato come array di oggetti test case, seguendo la struttura di esempio qui sotto:
+
+{
+  "test_case_id": "UC1_TC1",
+  "title": "Valid Login Credentials",
+  "preconditions": "User is not authenticated and has access to PELL portal",
+  "postconditions": "User is redirected to Home page",
+  "test_steps": [
+    { "step": "Click on the 'Login' button", "expected": "Login form is displayed" },
+    { "step": "Enter valid email and password", "expected": "No error messages are displayed" },
+    { "step": "Confirm authentication process", "expected": "User is redirected to Home page" }
+  ],
+  "test_type": "Positive",
+  "priority": "High",
+  "use_case_id": "UC1"
+}
+
+Suggerimenti:
+- Genera **almeno 4-6 test case** per ogni UC.
+- Includi sia test **positivi** (successo) che **negativi** (errori, input errati, mancanze, etc).
+- Usa nomi univoci per `test_case_id` seguendo lo schema `UCx_TCy`.
+- Analizza la base_sequence, branch_sequence, exception_sequence, pre/postcondizioni.
+
+Restituisci solo un array JSON (non spiegare). Non mettere "```json" all'inizio del file e "```" alla fine.
+Apri e chiudi correttamente le parentesi.
+Il seguente è l'use case in formato JSON:
+
+[
+{
+  "Id": "UC6",
+  "Title": "Logout utente",
+  "Summary": "De-autenticazione di un’utente registrato al sistema",
+  "Actor": ["Regione", "Sindaco", "Fornitore", "Progettista", "Cittadino"],
+  "Precondition": "L’utente è autenticato ed è a conoscenza che l’operazione ha avuto successo",
+  "Postcondition": "L’utente non è più autenticato ed è a conoscenza che l’operazione ha avuto successo",
+  "Base_sequence": ["L’utente clicca sul proprio nome utente in alto a destra", "L’utente inizia il processo di logout cliccando il tasto “Logout”", "L’utente visualizza un messaggio di operazione completata con successo"],
+  "Branch_sequence": [],
+  "Exception_sequence": [],
+  "Note": "no"
+}
+]
+
+📥 RISPOSTA:
+[
+  {
+    "test_case_id": "UC6_TC1",
+    "title": "Logout utente valido",
+    "preconditions": "L’utente è autenticato ed è a conoscenza che l’operazione ha avuto successo",
+    "postconditions": "L’utente non è più autenticato ed è a conoscenza che l’operazione ha avuto successo",
+    "test_steps": [
+      { "step": "L’utente clicca sul proprio nome utente in alto a destra", "expected": "Menu utente visibile" },
+      { "step": "L’utente inizia il processo di logout cliccando il tasto “Logout”", "expected": "Richiesta di conferma del logout visualizzata" },
+      { "step": "Confermare il logout", "expected": "Messaggio di operazione completata con successo visualizzato" }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC6"
+  },
+  {
+    "test_case_id": "UC6_TC2",
+    "title": "Logout utente non autenticato",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "Nessun cambiamento nello stato di autenticazione dell’utente",
+    "test_steps": [
+      { "step": "Tentare di cliccare sul proprio nome utente in alto a destra", "expected": "Menu utente non visibile" },
+      { "step": "Tentare di accedere alla pagina di logout", "expected": "Pagina di accesso richiesta" }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC6"
+  },
+  {
+    "test_case_id": "UC6_TC3",
+    "title": "Logout con dati di sessione scaduti",
+    "preconditions": "I dati di sessione dell’utente sono scaduti",
+    "postconditions": "L’utente non è più autenticato e viene reindirizzato alla pagina di accesso",
+    "test_steps": [
+      { "step": "Cliccare sul proprio nome utente in alto a destra dopo che i dati di sessione sono scaduti", "expected": "Pagina di accesso richiesta" },
+      { "step": "Tentare di accedere alla pagina di logout con sessione scaduta", "expected": "Richiesta di ri-autenticazione visualizzata" }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC6"
+  },
+  {
+    "test_case_id": "UC6_TC4",
+    "title": "Logout utente con più sessioni aperte",
+    "preconditions": "L’utente ha più sessioni aperte sullo stesso dispositivo o su dispositivi diversi",
+    "postconditions": "Tutte le sessioni dell’utente sono chiuse e l’utente non è più autenticato",
+    "test_steps": [
+      { "step": "Aprendo più sessioni con lo stesso account utente", "expected": "Tutte le sessioni visibili e attive" },
+      { "step": "Eseguire il logout da una delle sessioni", "expected": "Tutte le sessioni chiuse e l’utente non è più autenticato" }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC6"
+  },
+  {
+    "test_case_id": "UC6_TC5",
+    "title": "Logout con rete instabile",
+    "preconditions": "La connessione di rete dell’utente è instabile o interrotta durante il processo di logout",
+    "postconditions": "L’utente potrebbe rimanere autenticato o ricevere un messaggio di errore",
+    "test_steps": [
+      { "step": "Iniziare il processo di logout con connessione di rete stabile", "expected": "Richiesta di conferma del logout visualizzata" },
+      { "step": "Interrompere la connessione di rete durante il processo di logout", "expected": "Messaggio di errore o timeout visualizzato" }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC6"
+  },
+  {
+    "test_case_id": "UC6_TC6",
+    "title": "Logout utente con dati utente non validi",
+    "preconditions": "I dati dell’utente (ad esempio, nome utente o password) sono stati modificati esternamente durante la sessione",
+    "postconditions": "L’utente potrebbe non essere in grado di eseguire il logout correttamente",
+    "test_steps": [
+      { "step": "Modificare i dati dell’utente esternamente alla sessione attiva", "expected": "Dati utente non sincronizzati" },
+      { "step": "Tentare di eseguire il logout con i dati utente modificati", "expected": "Messaggio di errore o fallimento del logout visualizzato" }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC6"
+  }
+]

@@ -1,0 +1,120 @@
+[
+  {
+    "test_case_id": "UC3.1_TC1",
+    "title": "Visualizzazione schede censimento con successo",
+    "preconditions": "L’utente è autenticato e visualizza la sezione relativa alle schede censimento",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Accedere alla sezione schede censimento",
+        "expected": "La pagina delle schede censimento viene visualizzata"
+      },
+      {
+        "step": "Verificare la presenza di informazioni in forma tabellare e paginata",
+        "expected": "Le informazioni vengono visualizzate correttamente"
+      },
+      {
+        "step": "Scorrere lateralmente per visualizzare tutte le colonne",
+        "expected": "Tutte le colonne sono visualizzabili"
+      }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC2",
+    "title": "Visualizzazione schede censimento senza autenticazione",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "L’utente non può visualizzare le informazioni delle schede censimento",
+    "test_steps": [
+      {
+        "step": "Tentare di accedere alla sezione schede censimento senza autenticazione",
+        "expected": "Viene visualizzato un messaggio di errore di autenticazione"
+      },
+      {
+        "step": "Verificare la presenza di informazioni in forma tabellare e paginata",
+        "expected": "Le informazioni non vengono visualizzate"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC3",
+    "title": "Ordinamento colonne con successo",
+    "preconditions": "L’utente è autenticato e visualizza la sezione relativa alle schede censimento",
+    "postconditions": "Le colonne vengono ordinate correttamente",
+    "test_steps": [
+      {
+        "step": "Accedere alla sezione schede censimento",
+        "expected": "La pagina delle schede censimento viene visualizzata"
+      },
+      {
+        "step": "Cliccare sul nome di una colonna per ordinare",
+        "expected": "Le righe vengono ordinate correttamente in base alla colonna selezionata"
+      }
+    ],
+    "test_type": "Positive",
+    "priority": "Low",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC4",
+    "title": "Paginazione con successo",
+    "preconditions": "L’utente è autenticato e visualizza la sezione relativa alle schede censimento",
+    "postconditions": "Le informazioni vengono visualizzate correttamente in base alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Accedere alla sezione schede censimento",
+        "expected": "La pagina delle schede censimento viene visualizzata"
+      },
+      {
+        "step": "Selezionare una pagina diversa da quella predefinita",
+        "expected": "Le informazioni vengono aggiornate correttamente in base alla pagina selezionata"
+      }
+    ],
+    "test_type": "Positive",
+    "priority": "Medium",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC5",
+    "title": "Assenza di dati per la visualizzazione",
+    "preconditions": "L’utente è autenticato e visualizza la sezione relativa alle schede censimento, ma non ci sono dati disponibili",
+    "postconditions": "Viene visualizzato un messaggio informativo sull'assenza di dati",
+    "test_steps": [
+      {
+        "step": "Accedere alla sezione schede censimento",
+        "expected": "La pagina delle schede censimento viene visualizzata"
+      },
+      {
+        "step": "Verificare la presenza di un messaggio informativo sull'assenza di dati",
+        "expected": "Il messaggio viene visualizzato correttamente"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC6",
+    "title": "Errore di sistema durante la visualizzazione",
+    "preconditions": "L’utente è autenticato e tenta di visualizzare la sezione relativa alle schede censimento, ma si verifica un errore di sistema",
+    "postconditions": "Viene visualizzato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Tentare di accedere alla sezione schede censimento",
+        "expected": "Si verifica un errore di sistema"
+      },
+      {
+        "step": "Verificare la presenza di un messaggio di errore",
+        "expected": "Il messaggio di errore viene visualizzato correttamente"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "High",
+    "use_case_id": "UC3.1"
+  }
+]

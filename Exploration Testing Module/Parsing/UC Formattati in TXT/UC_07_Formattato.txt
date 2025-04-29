@@ -1,0 +1,11 @@
+Id: UC2.5
+Title: Visualizzazione grafici
+Summary: Permette di visualizzare informazioni di adozione della piattaforma e tecniche a livello statale
+Actor: Regione, Sindaco, Fornitore, Cittadino
+Precondition: L’utente visualizza la sezione relativa alla dashboard
+Postcondition: L’utente visualizza le informazioni consultando i grafici
+Base_sequence:
+1) L’utente scorre nella pagina fino a visualizzare le sezioni contrassegnate dai grafici che visualizzano i comuni aderenti per regione, punti luce per regione e distribuzione punti luce per tipo apparecchio
+Branch_sequence: no
+Exception_sequence: no
+Note: no

@@ -1,0 +1,74 @@
+[
+  {
+    "test_case_id": "UC3.4.3_TC1",
+    "title": "Modifica scheda censimento con successo",
+    "preconditions": "Utente autenticato, scheda censimento selezionata",
+    "postconditions": "Scheda censimento modificata con successo",
+    "test_steps": [
+      {
+        "step": "Seleziona l'operazione di modifica",
+        "expected": "Viene visualizzata la sezione di modifica"
+      },
+      {
+        "step": "Inserisci i nuovi dati",
+        "expected": "I dati vengono salvati correttamente"
+      }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC3.4.3"
+  },
+  {
+    "test_case_id": "UC3.4.3_TC2",
+    "title": "Modifica scheda censimento senza permessi",
+    "preconditions": "Utente non autenticato, scheda censimento selezionata",
+    "postconditions": "Viene visualizzato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Tenta di selezionare l'operazione di modifica",
+        "expected": "Viene visualizzato un messaggio di accesso negato"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC3.4.3"
+  },
+  {
+    "test_case_id": "UC3.4.3_TC3",
+    "title": "Modifica scheda censimento con dati invalidi",
+    "preconditions": "Utente autenticato, scheda censimento selezionata",
+    "postconditions": "Viene visualizzato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona l'operazione di modifica",
+        "expected": "Viene visualizzata la sezione di modifica"
+      },
+      {
+        "step": "Inserisci dati invalidi",
+        "expected": "Viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC3.4.3"
+  },
+  {
+    "test_case_id": "UC3.4.3_TC4",
+    "title": "Modifica scheda censimento con campi obbligatori vuoti",
+    "preconditions": "Utente autenticato, scheda censimento selezionata",
+    "postconditions": "Viene visualizzato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona l'operazione di modifica",
+        "expected": "Viene visualizzata la sezione di modifica"
+      },
+      {
+        "step": "Lascia vuoti i campi obbligatori",
+        "expected": "Viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC3.4.3"
+  }
+]

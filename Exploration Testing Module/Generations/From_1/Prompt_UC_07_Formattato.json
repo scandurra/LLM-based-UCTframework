@@ -1,0 +1,116 @@
+[
+  {
+    "test_case_id": "UC2.5_TC1",
+    "title": "Visualizzazione Grafici Validi",
+    "preconditions": "L’utente è nella sezione della dashboard e i dati sono disponibili",
+    "postconditions": "L’utente visualizza le informazioni consultando i grafici",
+    "test_steps": [
+      {
+        "step": "L’utente scorre nella pagina fino a visualizzare le sezioni contrassegnate dai grafici",
+        "expected": "I grafici sono visualizzati correttamente"
+      },
+      {
+        "step": "L’utente clicca su un grafico per visualizzare i dettagli",
+        "expected": "I dettagli del grafico sono visualizzati correttamente"
+      }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC2",
+    "title": "Visualizzazione Grafici con Dati Mancanti",
+    "preconditions": "L’utente è nella sezione della dashboard e alcuni dati sono mancanti",
+    "postconditions": "L’utente visualizza un messaggio di errore o di dati non disponibili",
+    "test_steps": [
+      {
+        "step": "L’utente scorre nella pagina fino a visualizzare le sezioni contrassegnate dai grafici",
+        "expected": "Un messaggio di errore o di dati non disponibili è visualizzato"
+      },
+      {
+        "step": "L’utente clicca su un grafico per visualizzare i dettagli",
+        "expected": "Un messaggio di errore o di dati non disponibili è visualizzato"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC3",
+    "title": "Visualizzazione Grafici con Formattazione Errata",
+    "preconditions": "L’utente è nella sezione della dashboard e i dati sono disponibili ma la formattazione è errata",
+    "postconditions": "L’utente visualizza un messaggio di errore o di formattazione non corretta",
+    "test_steps": [
+      {
+        "step": "L’utente scorre nella pagina fino a visualizzare le sezioni contrassegnate dai grafici",
+        "expected": "I grafici sono visualizzati con formattazione errata"
+      },
+      {
+        "step": "L’utente clicca su un grafico per visualizzare i dettagli",
+        "expected": "Un messaggio di errore o di formattazione non corretta è visualizzato"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC4",
+    "title": "Visualizzazione Grafici con Utente Non Autorizzato",
+    "preconditions": "L’utente non è autorizzato a visualizzare la sezione della dashboard",
+    "postconditions": "L’utente visualizza un messaggio di accesso negato",
+    "test_steps": [
+      {
+        "step": "L’utente tenta di accedere alla sezione della dashboard",
+        "expected": "Un messaggio di accesso negato è visualizzato"
+      },
+      {
+        "step": "L’utente clicca su un grafico per visualizzare i dettagli",
+        "expected": "Un messaggio di accesso negato è visualizzato"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "High",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC5",
+    "title": "Visualizzazione Grafici con Caricamento Lento",
+    "preconditions": "L’utente è nella sezione della dashboard e i dati sono disponibili ma il caricamento è lento",
+    "postconditions": "L’utente visualizza un messaggio di caricamento in corso",
+    "test_steps": [
+      {
+        "step": "L’utente scorre nella pagina fino a visualizzare le sezioni contrassegnate dai grafici",
+        "expected": "Un messaggio di caricamento in corso è visualizzato"
+      },
+      {
+        "step": "L’utente attende il completamento del caricamento",
+        "expected": "I grafici sono visualizzati correttamente dopo il caricamento"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC6",
+    "title": "Visualizzazione Grafici con Dati Aggiornati",
+    "preconditions": "L’utente è nella sezione della dashboard e i dati sono stati aggiornati di recente",
+    "postconditions": "L’utente visualizza le informazioni aggiornate consultando i grafici",
+    "test_steps": [
+      {
+        "step": "L’utente scorre nella pagina fino a visualizzare le sezioni contrassegnate dai grafici",
+        "expected": "I grafici sono visualizzati con dati aggiornati"
+      },
+      {
+        "step": "L’utente clicca su un grafico per visualizzare i dettagli",
+        "expected": "I dettagli del grafico sono visualizzati con dati aggiornati"
+      }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC2.5"
+  }
+]

@@ -1,0 +1,48 @@
+Agisci come un test engineer esperto. Ti verrà fornito un caso d’uso in formato TXT con struttura formale.
+
+Il tuo compito è generare un elenco JSON di test case che verifichino il comportamento funzionale del sistema, con copertura di flusso base, alternative, eccezioni, e pre/postcondizioni.
+
+Esempio di Formato JSON (restituisci solo un array di oggetti):
+{
+  "test_case_id": "UC2_TC2",
+  "title": "Input incompleto",
+  "preconditions": "Utente autenticato",
+  "postconditions": "Nessuna modifica salvata",
+  "test_steps": [
+    { "step": "Lascia il campo 'email' vuoto", "expected": "Viene mostrato un messaggio di errore" }
+  ],
+  "test_type": "Negativo",
+  "priority": "Medium",
+  "use_case_id": "UC2"
+}
+
+Genera:
+- Almeno 4 test case per UC.
+- Sia test positivi che negativi.
+- `test_type` dev’essere "Positive" o "Negative".
+- Ogni `test_case_id` deve iniziare con l’ID del caso d’uso.
+
+Non spiegare nulla. Restituisci **solo** l’array JSON risultante. Non mettere "```json" all'inizio della risposta e "```" alla fine.
+Apri e chiudi correttamente le parentesi.
+
+Il seguente è il caso d’uso in formato TXT:
+
+Id: UC3.4.3.10
+Title: Modifica LightSpotDevice sezione Dati apparecchio
+Summary: Permette di modificare la sezione dati apparecchio di un dispositivo punto luce, relativo ad un punto luce, relativo ad un pannello elettrico, relativo ad un POD, della scheda censimento
+Actor: Regione, Sindaco, Fornitore
+Precondition: L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine
+Postcondition: L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine
+Base_sequence:
+1) L’utente seleziona il POD per la modifica tramite il menù ad albero di sinistra
+2) L’utente espande la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD
+3) L’utente seleziona il pannello elettrico ed espande la visione ad albero del pannello selezionato per visionare i punti luce che appartengono al pannello elettrico
+4) L’utente seleziona il punto luce ed espande la visione ad albero del punto luce selezionato per visionare i dispositivi punti luce che appartengono al punto luce
+5) L’utente seleziona il tab relativo ai dati apparecchio
+6) L’utente visualizza i dati precedenti e può compilare il form con le informazioni desiderate
+7) L’utente applica le modifiche con l’apposito tasto
+8) In caso di conferma l’utente visualizza un messaggio di conferma dell’operazione
+Branch_sequence:
+1) In caso di dati non validi viene mostrato un messaggio di errore
+Exception_sequence: no
+Note: no

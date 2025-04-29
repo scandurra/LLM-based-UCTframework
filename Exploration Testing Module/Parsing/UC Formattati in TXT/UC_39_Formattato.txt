@@ -1,0 +1,15 @@
+Id: UC4.3
+Title: Nuova simulazione
+Summary: Permette all’utente di associare un determinato impianto riqualificato con una simulazione d’investimento per visualizzarne successivamente i risultati
+Actor: Progettista
+Precondition: L’utente visualizza un messaggio di conferma
+Postcondition: L’utente ha aggiunto l’associazione nel menu dedicato
+Base_sequence:
+1) L’utente naviga nella terza sezione dedicata alle analisi, su una barra orizzontale dedicata
+2) L’utente clicca sul tasto dedicato all’aggiunta di una singola analisi
+3) L’utente seleziona l’impianto e l’investimento da associare
+4) L’utente visualizza un messaggio di conferma
+Branch_sequence:
+1) In caso di annullamento l’utente visualizza un messaggio di avvenuto annullamento
+Exception_sequence: no
+Note: no

@@ -1,0 +1,62 @@
+[
+  {
+    "test_case_id": "UC3_TC1",
+    "title": "Accesso autorizzato",
+    "preconditions": "Utente autenticato e abilitato alla gestione delle schede censimento",
+    "postconditions": "Sezione relativa alle schede censimento visualizzata correttamente",
+    "test_steps": [
+      {
+        "step": "L'utente seleziona la voce di menù per la gestione delle schede censimento",
+        "expected": "La sezione relativa alle schede censimento viene visualizzata"
+      }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC2",
+    "title": "Accesso non autorizzato",
+    "preconditions": "Utente autenticato ma non abilitato alla gestione delle schede censimento",
+    "postconditions": "Messaggio di accesso negato visualizzato",
+    "test_steps": [
+      {
+        "step": "L'utente seleziona la voce di menù per la gestione delle schede censimento",
+        "expected": "Viene visualizzato un messaggio di accesso negato"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC3",
+    "title": "Navigazione corretta",
+    "preconditions": "Utente autenticato e abilitato alla gestione delle schede censimento",
+    "postconditions": "Sezione relativa alle schede censimento visualizzata correttamente dopo la navigazione",
+    "test_steps": [
+      {
+        "step": "L'utente naviga nella sezione relativa alle schede censimento utilizzando il menù laterale di sinistra",
+        "expected": "La sezione relativa alle schede censimento viene visualizzata correttamente"
+      }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC4",
+    "title": "Utente non autenticato",
+    "preconditions": "Utente non autenticato",
+    "postconditions": "Pagina di login visualizzata",
+    "test_steps": [
+      {
+        "step": "L'utente tenta di accedere alla sezione relativa alle schede censimento",
+        "expected": "Viene reindirizzato alla pagina di login"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "High",
+    "use_case_id": "UC3"
+  }
+]

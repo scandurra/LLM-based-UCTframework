@@ -1,0 +1,16 @@
+Id: UC3.3
+Title: Caricamento schede censimento
+Summary: Aggiunge una scheda censimento tra quelle salvate, caricando il file sul portale tramite l’apposita sezione
+Actor: Regione, Sindaco, Fornitore
+Precondition: L’utente visualizza la sezione relativa alle schede censimento
+Postcondition: L’utente può visualizzare le informazioni corrispondenti alla scheda censimento appena caricata
+Base_sequence:
+1) L’utente clicca sul tasto relativo al caricamento (upload) delle schede censimento
+2) Nella nuova finestra è possibile scegliere alcuni parametri come il nome, così come il formato di caricamento
+3) Si procede all’upload tramite drag-and-drop sulla apposita sezione mostrata
+4) La stessa sezione, con un click, consente la selezione del file tramite browser
+5) Viene mostrata una barra di caricamento
+6) Alla fine del processo viene mostrato un messaggio di operazione andata a buon fine
+Branch_sequence: no
+Exception_sequence: no
+Note: no

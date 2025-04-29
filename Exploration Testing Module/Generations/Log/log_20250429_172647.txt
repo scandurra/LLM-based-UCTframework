@@ -1,0 +1,125 @@
+📝 PROMPT:
+Sei un esperto di Quality Assurance. Il tuo compito è generare una suite di test case per ogni caso d’uso fornito in formato JSON.  
+Il formato di output deve essere **esclusivamente JSON**, strutturato come array di oggetti test case, seguendo la struttura di esempio qui sotto:
+
+{
+  "test_case_id": "UC1_TC1",
+  "title": "Valid Login Credentials",
+  "preconditions": "User is not authenticated and has access to PELL portal",
+  "postconditions": "User is redirected to Home page",
+  "test_steps": [
+    { "step": "Click on the 'Login' button", "expected": "Login form is displayed" },
+    { "step": "Enter valid email and password", "expected": "No error messages are displayed" },
+    { "step": "Confirm authentication process", "expected": "User is redirected to Home page" }
+  ],
+  "test_type": "Positive",
+  "priority": "High",
+  "use_case_id": "UC1"
+}
+
+Suggerimenti:
+- Genera **almeno 4-6 test case** per ogni UC.
+- Includi sia test **positivi** (successo) che **negativi** (errori, input errati, mancanze, etc).
+- Usa nomi univoci per `test_case_id` seguendo lo schema `UCx_TCy`.
+- Analizza la base_sequence, branch_sequence, exception_sequence, pre/postcondizioni.
+
+Restituisci solo un array JSON (non spiegare). Non mettere "```json" all'inizio del file e "```" alla fine.
+Apri e chiudi correttamente le parentesi.
+Il seguente è l'use case in formato JSON:
+
+[
+{
+  "Id": "UC5",
+  "Title": "Selezione lingua",
+  "Summary": "Modifica della lingua utilizzata dal portale autenticato",
+  "Actor": ["Regione", "Sindaco", "Fornitore", "Progettista", "Cittadino"],
+  "Precondition": "L’utente è autenticato ed è a conoscenza che l’operazione ha avuto successo",
+  "Postcondition": "L’utente visualizza il portale con la lingua selezionata",
+  "Base_sequence": ["L’utente clicca sul proprio nome utente in alto a destra", "L’utente modifica la lingua selezionandola dal menù a tendina disponibile dal menù apparso con il punto 1", "L’utente, dopo il ricaricamento della pagina, visualizza il portale con la lingua selezionata"],
+  "Branch_sequence": [],
+  "Exception_sequence": [],
+  "Note": "no"
+}
+]
+
+📥 RISPOSTA:
+[
+  {
+    "test_case_id": "UC5_TC1",
+    "title": "Selezione lingua valida",
+    "preconditions": "L’utente è autenticato",
+    "postconditions": "Il portale è visualizzato con la lingua selezionata",
+    "test_steps": [
+      { "step": "Cliccare sul proprio nome utente in alto a destra", "expected": "Menù di opzioni apparso" },
+      { "step": "Selezionare una lingua diversa da quella attuale dal menù a tendina", "expected": "Lingua selezionata è diversa da quella precedente" },
+      { "step": "Attendere il ricaricamento della pagina", "expected": "Portale visualizzato con la nuova lingua selezionata" }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC5"
+  },
+  {
+    "test_case_id": "UC5_TC2",
+    "title": "Selezione lingua non valida",
+    "preconditions": "L’utente è autenticato",
+    "postconditions": "Errore di selezione lingua visualizzato",
+    "test_steps": [
+      { "step": "Cliccare sul proprio nome utente in alto a destra", "expected": "Menù di opzioni apparso" },
+      { "step": "Inserire manualmente una lingua non supportata nel menù a tendina", "expected": "Errore di selezione lingua visualizzato" }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC5"
+  },
+  {
+    "test_case_id": "UC5_TC3",
+    "title": "Selezione lingua senza autenticazione",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "Schermata di accesso visualizzata",
+    "test_steps": [
+      { "step": "Tentare di accedere alla selezione della lingua", "expected": "Schermata di accesso visualizzata" }
+    ],
+    "test_type": "Negative",
+    "priority": "High",
+    "use_case_id": "UC5"
+  },
+  {
+    "test_case_id": "UC5_TC4",
+    "title": "Selezione lingua con più tentativi di accesso falliti",
+    "preconditions": "L’utente ha già tentato l’accesso più volte senza successo",
+    "postconditions": "Blocco dell’account visualizzato",
+    "test_steps": [
+      { "step": "Tentare più volte di accedere alla selezione della lingua con credenziali errate", "expected": "Blocco dell’account visualizzato" }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC5"
+  },
+  {
+    "test_case_id": "UC5_TC5",
+    "title": "Ritorno alla lingua predefinita",
+    "preconditions": "L’utente ha selezionato una lingua diversa da quella predefinita",
+    "postconditions": "Portale visualizzato con la lingua predefinita",
+    "test_steps": [
+      { "step": "Cliccare sul proprio nome utente in alto a destra", "expected": "Menù di opzioni apparso" },
+      { "step": "Selezionare la lingua predefinita dal menù a tendina", "expected": "Lingua selezionata è quella predefinita" },
+      { "step": "Attendere il ricaricamento della pagina", "expected": "Portale visualizzato con la lingua predefinita" }
+    ],
+    "test_type": "Positive",
+    "priority": "Low",
+    "use_case_id": "UC5"
+  },
+  {
+    "test_case_id": "UC5_TC6",
+    "title": "Selezione lingua con caratteri speciali",
+    "preconditions": "L’utente è autenticato",
+    "postconditions": "Errore di selezione lingua visualizzato",
+    "test_steps": [
+      { "step": "Cliccare sul proprio nome utente in alto a destra", "expected": "Menù di opzioni apparso" },
+      { "step": "Inserire manualmente una lingua con caratteri speciali nel menù a tendina", "expected": "Errore di selezione lingua visualizzato" }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC5"
+  }
+]

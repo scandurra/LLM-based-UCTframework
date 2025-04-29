@@ -1,0 +1,128 @@
+[
+  {
+    "test_case_id": "UC3.4.4_TC1",
+    "title": "Congela scheda censimento con successo",
+    "preconditions": "L’utente è autenticato e ha accesso al portale",
+    "postconditions": "La scheda censimento è congelata e lo stato visualizzato è 'non attivo'",
+    "test_steps": [
+      {
+        "step": "Seleziona l'operazione di congelamento",
+        "expected": "Richiesta di conferma del congelamento"
+      },
+      {
+        "step": "Conferma il congelamento della scheda",
+        "expected": "Messaggio di conferma dell'operazione andata a buon fine"
+      },
+      {
+        "step": "Verifica lo stato della scheda",
+        "expected": "Stato 'non attivo'"
+      }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC3.4.4"
+  },
+  {
+    "test_case_id": "UC3.4.4_TC2",
+    "title": "Congela scheda censimento con annullamento",
+    "preconditions": "L’utente è autenticato e ha accesso al portale",
+    "postconditions": "La scheda censimento non è congelata",
+    "test_steps": [
+      {
+        "step": "Seleziona l'operazione di congelamento",
+        "expected": "Richiesta di conferma del congelamento"
+      },
+      {
+        "step": "Annulla il congelamento della scheda",
+        "expected": "Congelamento interrotto"
+      },
+      {
+        "step": "Verifica lo stato della scheda",
+        "expected": "Stato non modificato"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC3.4.4"
+  },
+  {
+    "test_case_id": "UC3.4.4_TC3",
+    "title": "Congela scheda censimento senza autorizzazione",
+    "preconditions": "L’utente non è autenticato o non ha accesso al portale",
+    "postconditions": "La scheda censimento non è congelata",
+    "test_steps": [
+      {
+        "step": "Tenta di selezionare l'operazione di congelamento",
+        "expected": "Accesso negato"
+      },
+      {
+        "step": "Verifica lo stato della scheda",
+        "expected": "Stato non modificato"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "High",
+    "use_case_id": "UC3.4.4"
+  },
+  {
+    "test_case_id": "UC3.4.4_TC4",
+    "title": "Congela scheda censimento con dati non validi",
+    "preconditions": "L’utente è autenticato e ha accesso al portale",
+    "postconditions": "La scheda censimento non è congelata",
+    "test_steps": [
+      {
+        "step": "Seleziona l'operazione di congelamento con dati non validi",
+        "expected": "Errore di validazione"
+      },
+      {
+        "step": "Verifica lo stato della scheda",
+        "expected": "Stato non modificato"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC3.4.4"
+  },
+  {
+    "test_case_id": "UC3.4.4_TC5",
+    "title": "Congela scheda censimento con più tentativi di congelamento",
+    "preconditions": "L’utente è autenticato e ha accesso al portale",
+    "postconditions": "La scheda censimento è congelata dopo il primo tentativo",
+    "test_steps": [
+      {
+        "step": "Seleziona l'operazione di congelamento",
+        "expected": "Richiesta di conferma del congelamento"
+      },
+      {
+        "step": "Conferma il congelamento della scheda",
+        "expected": "Messaggio di conferma dell'operazione andata a buon fine"
+      },
+      {
+        "step": "Tenta di congelare nuovamente la scheda",
+        "expected": "Errore di congelamento già eseguito"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC3.4.4"
+  },
+  {
+    "test_case_id": "UC3.4.4_TC6",
+    "title": "Congela scheda censimento con stato già 'non attivo'",
+    "preconditions": "L’utente è autenticato e ha accesso al portale",
+    "postconditions": "La scheda censimento non è modificata",
+    "test_steps": [
+      {
+        "step": "Seleziona l'operazione di congelamento su una scheda già 'non attiva'",
+        "expected": "Errore di stato già 'non attivo'"
+      },
+      {
+        "step": "Verifica lo stato della scheda",
+        "expected": "Stato non modificato"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC3.4.4"
+  }
+]

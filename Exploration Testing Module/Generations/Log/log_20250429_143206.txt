@@ -1,0 +1,135 @@
+📝 PROMPT:
+Sei un esperto di Quality Assurance. Il tuo compito è generare una suite di test case per ogni caso d’uso fornito in formato JSON.  
+Il formato di output deve essere **esclusivamente JSON**, strutturato come array di oggetti test case, seguendo la struttura di esempio qui sotto:
+
+{
+  "test_case_id": "UC1_TC1",
+  "title": "Valid Login Credentials",
+  "preconditions": "User is not authenticated and has access to PELL portal",
+  "postconditions": "User is redirected to Home page",
+  "test_steps": [
+    { "step": "Click on the 'Login' button", "expected": "Login form is displayed" },
+    { "step": "Enter valid email and password", "expected": "No error messages are displayed" },
+    { "step": "Confirm authentication process", "expected": "User is redirected to Home page" }
+  ],
+  "test_type": "Positive",
+  "priority": "High",
+  "use_case_id": "UC1"
+}
+
+Suggerimenti:
+- Genera **almeno 4-6 test case** per ogni UC.
+- Includi sia test **positivi** (successo) che **negativi** (errori, input errati, mancanze, etc).
+- Usa nomi univoci per `test_case_id` seguendo lo schema `UCx_TCy`.
+- Analizza la base_sequence, branch_sequence, exception_sequence, pre/postcondizioni.
+
+Restituisci solo un array JSON (non spiegare). Non mettere "```json" all'inizio del file e "```" alla fine.
+Il seguente è l'use case in formato JSON:
+
+[
+{
+  "Id": "UC2.3",
+  "Title": "Visualizzazione tabella dati generali",
+  "Summary": "Permette di visualizzare informazioni illuminotecniche per comune",
+  "Actor": ["Regione", "Sindaco", "Fornitore", "Cittadino"],
+  "Precondition": "L’utente visualizza la sezione relativa alla dashboard",
+  "Postcondition": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+  "Base_sequence": [
+    "L’utente naviga nella sezione dashboard utilizzando il menù apposito",
+    "L’utente scorre nella pagina fino a visualizzare una sezione tabellare dedicata ai dati generali, dove i dati saranno presentati in forma tabellare",
+    "È possibile scorrere tra i comuni disponibili alla consultazione e censiti, tramite selettore della pagine in basso a destra",
+    "È possibile modificare gli elementi visualizzati per pagina, tramite selettore in basso a sinistra",
+    "È possibile ordinare per colonna di dati, cliccando sul nome della colonna"
+  ],
+  "Branch_sequence": [],
+  "Exception_sequence": [],
+  "Note": "no"
+}
+]
+
+📥 RISPOSTA:
+[
+  {
+    "test_case_id": "UC2.3_TC1",
+    "title": "Visualizzazione tabella dati generali con successo",
+    "preconditions": "L’utente è nella sezione dashboard e ha accesso alle informazioni illuminotecniche",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      { "step": "L’utente naviga nella sezione dashboard utilizzando il menù apposito", "expected": "La sezione dashboard è visualizzata" },
+      { "step": "L’utente scorre nella pagina fino a visualizzare una sezione tabellare dedicata ai dati generali", "expected": "La tabella dei dati generali è visualizzata" },
+      { "step": "L’utente seleziona un comune disponibile alla consultazione e censito tramite selettore della pagine in basso a destra", "expected": "Le informazioni del comune selezionato sono visualizzate" }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC2.3"
+  },
+  {
+    "test_case_id": "UC2.3_TC2",
+    "title": "Errore di visualizzazione tabella dati generali",
+    "preconditions": "L’utente è nella sezione dashboard e ha accesso alle informazioni illuminotecniche",
+    "postconditions": "L’utente riceve un messaggio di errore",
+    "test_steps": [
+      { "step": "L’utente naviga nella sezione dashboard utilizzando il menù apposito", "expected": "La sezione dashboard è visualizzata" },
+      { "step": "L’utente scorre nella pagina fino a visualizzare una sezione tabellare dedicata ai dati generali", "expected": "La tabella dei dati generali non è visualizzata" },
+      { "step": "L’utente verifica il messaggio di errore", "expected": "Il messaggio di errore è visualizzato" }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC2.3"
+  },
+  {
+    "test_case_id": "UC2.3_TC3",
+    "title": "Selezione comune non disponibile",
+    "preconditions": "L’utente è nella sezione dashboard e ha accesso alle informazioni illuminotecniche",
+    "postconditions": "L’utente riceve un messaggio di errore",
+    "test_steps": [
+      { "step": "L’utente naviga nella sezione dashboard utilizzando il menù apposito", "expected": "La sezione dashboard è visualizzata" },
+      { "step": "L’utente scorre nella pagina fino a visualizzare una sezione tabellare dedicata ai dati generali", "expected": "La tabella dei dati generali è visualizzata" },
+      { "step": "L’utente seleziona un comune non disponibile alla consultazione e censito tramite selettore della pagine in basso a destra", "expected": "Il messaggio di errore è visualizzato" }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC2.3"
+  },
+  {
+    "test_case_id": "UC2.3_TC4",
+    "title": "Modifica elementi visualizzati per pagina",
+    "preconditions": "L’utente è nella sezione dashboard e ha accesso alle informazioni illuminotecniche",
+    "postconditions": "Gli elementi visualizzati per pagina sono modificati",
+    "test_steps": [
+      { "step": "L’utente naviga nella sezione dashboard utilizzando il menù apposito", "expected": "La sezione dashboard è visualizzata" },
+      { "step": "L’utente scorre nella pagina fino a visualizzare una sezione tabellare dedicata ai dati generali", "expected": "La tabella dei dati generali è visualizzata" },
+      { "step": "L’utente modifica gli elementi visualizzati per pagina tramite selettore in basso a sinistra", "expected": "Gli elementi visualizzati per pagina sono modificati" }
+    ],
+    "test_type": "Positive",
+    "priority": "Medium",
+    "use_case_id": "UC2.3"
+  },
+  {
+    "test_case_id": "UC2.3_TC5",
+    "title": "Ordinamento per colonna di dati",
+    "preconditions": "L’utente è nella sezione dashboard e ha accesso alle informazioni illuminotecniche",
+    "postconditions": "I dati sono ordinati in base alla colonna selezionata",
+    "test_steps": [
+      { "step": "L’utente naviga nella sezione dashboard utilizzando il menù apposito", "expected": "La sezione dashboard è visualizzata" },
+      { "step": "L’utente scorre nella pagina fino a visualizzare una sezione tabellare dedicata ai dati generali", "expected": "La tabella dei dati generali è visualizzata" },
+      { "step": "L’utente ordina i dati per colonna di dati cliccando sul nome della colonna", "expected": "I dati sono ordinati in base alla colonna selezionata" }
+    ],
+    "test_type": "Positive",
+    "priority": "Medium",
+    "use_case_id": "UC2.3"
+  },
+  {
+    "test_case_id": "UC2.3_TC6",
+    "title": "Navigazione tra pagine",
+    "preconditions": "L’utente è nella sezione dashboard e ha accesso alle informazioni illuminotecniche",
+    "postconditions": "L’utente può navigare tra le pagine dei dati generali",
+    "test_steps": [
+      { "step": "L’utente naviga nella sezione dashboard utilizzando il menù apposito", "expected": "La sezione dashboard è visualizzata" },
+      { "step": "L’utente scorre nella pagina fino a visualizzare una sezione tabellare dedicata ai dati generali", "expected": "La tabella dei dati generali è visualizzata" },
+      { "step": "L’utente naviga tra le pagine dei dati generali utilizzando il selettore della pagine in basso a destra", "expected": "L’utente può navigare tra le pagine dei dati generali" }
+    ],
+    "test_type": "Positive",
+    "priority": "Low",
+    "use_case_id": "UC2.3"
+  }

@@ -1,0 +1,103 @@
+📝 PROMPT:
+Agisci come un test engineer esperto. Ti verrà fornito un caso d’uso in formato TXT con struttura formale.
+
+Il tuo compito è generare un elenco JSON di test case che verifichino il comportamento funzionale del sistema, con copertura di flusso base, alternative, eccezioni, e pre/postcondizioni.
+
+Esempio di Formato JSON (restituisci solo un array di oggetti):
+{
+  "test_case_id": "UC2_TC2",
+  "title": "Input incompleto",
+  "preconditions": "Utente autenticato",
+  "postconditions": "Nessuna modifica salvata",
+  "test_steps": [
+    { "step": "Lascia il campo 'email' vuoto", "expected": "Viene mostrato un messaggio di errore" }
+  ],
+  "test_type": "Negativo",
+  "priority": "Medium",
+  "use_case_id": "UC2"
+}
+
+Genera:
+- Almeno 4 test case per UC.
+- Sia test positivi che negativi.
+- `test_type` dev’essere "Positive" o "Negative".
+- Ogni `test_case_id` deve iniziare con l’ID del caso d’uso.
+
+Non spiegare nulla. Restituisci **solo** l’array JSON risultante. Non mettere "```json" all'inizio della risposta e "```" alla fine.
+Apri e chiudi correttamente le parentesi.
+
+Il seguente è il caso d’uso in formato TXT:
+
+Id: UC1
+Title: Login utente
+Summary: Autenticazione di un’utente registrato al sistema
+Actor: Regione, Sindaco, Fornitore, Progettista, Cittadino
+Precondition: L’utente non è autenticato
+Postcondition: L’utente è autenticato ed è a conoscenza che l’operazione ha avuto successo
+Base_sequence:
+1) L’utente inserisce le proprie credenziali all’interno del form
+2) L’utente inizia il processo di autenticazione cliccando il tasto “Login”
+3) L’utente visualizza un messaggio di operazione completata con successo
+Branch_sequence:
+1) All’utente è richiesto modificare la prima password di accesso
+2) L’utente inserisce la nuova password e conferma
+Exception_sequence:
+1) L’utente visualizza un messaggio di operazione completata con un errore relativo all’eccezione verificatasi (credenziali errate, mismatch della nuova password…)
+2) L’utente può ripartire dal punto 1 della base sequence
+Note: no
+
+📥 RISPOSTA:
+[
+  {
+    "test_case_id": "UC1_TC1",
+    "title": "Login con credenziali corrette",
+    "preconditions": "Utente non autenticato e con credenziali valide",
+    "postconditions": "Utente autenticato e visualizzazione di un messaggio di successo",
+    "test_steps": [
+      { "step": "Inserimento delle credenziali corrette", "expected": "Visualizzazione del messaggio di operazione completata con successo" },
+      { "step": "Clic sul tasto 'Login'", "expected": "Utente autenticato con successo" }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC2",
+    "title": "Login con credenziali errate",
+    "preconditions": "Utente non autenticato e con credenziali non valide",
+    "postconditions": "Utente non autenticato e visualizzazione di un messaggio di errore",
+    "test_steps": [
+      { "step": "Inserimento delle credenziali errate", "expected": "Visualizzazione del messaggio di operazione completata con un errore" },
+      { "step": "Clic sul tasto 'Login'", "expected": "Utente non autenticato e visualizzazione del messaggio di errore" }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC3",
+    "title": "Login con campo password vuoto",
+    "preconditions": "Utente non autenticato e con credenziali parzialmente valide",
+    "postconditions": "Utente non autenticato e visualizzazione di un messaggio di errore",
+    "test_steps": [
+      { "step": "Inserimento del campo username corretto e password vuoto", "expected": "Visualizzazione del messaggio di operazione completata con un errore" },
+      { "step": "Clic sul tasto 'Login'", "expected": "Utente non autenticato e visualizzazione del messaggio di errore" }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC4",
+    "title": "Modifica della prima password di accesso",
+    "preconditions": "Utente autenticato e con necessità di modificare la prima password di accesso",
+    "postconditions": "Password modificata con successo e visualizzazione di un messaggio di conferma",
+    "test_steps": [
+      { "step": "Inserimento della nuova password e conferma", "expected": "Visualizzazione del messaggio di operazione completata con successo" },
+      { "step": "Clic sul tasto 'Conferma'", "expected": "Password modificata con successo e visualizzazione del messaggio di conferma" }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC1"
+  }
+]

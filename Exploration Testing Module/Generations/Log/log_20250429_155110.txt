@@ -1,0 +1,126 @@
+📝 PROMPT:
+Sei un esperto di Quality Assurance. Il tuo compito è generare una suite di test case per ogni caso d’uso fornito in formato JSON.  
+Il formato di output deve essere **esclusivamente JSON**, strutturato come array di oggetti test case, seguendo la struttura di esempio qui sotto:
+
+{
+  "test_case_id": "UC1_TC1",
+  "title": "Valid Login Credentials",
+  "preconditions": "User is not authenticated and has access to PELL portal",
+  "postconditions": "User is redirected to Home page",
+  "test_steps": [
+    { "step": "Click on the 'Login' button", "expected": "Login form is displayed" },
+    { "step": "Enter valid email and password", "expected": "No error messages are displayed" },
+    { "step": "Confirm authentication process", "expected": "User is redirected to Home page" }
+  ],
+  "test_type": "Positive",
+  "priority": "High",
+  "use_case_id": "UC1"
+}
+
+Suggerimenti:
+- Genera **almeno 4-6 test case** per ogni UC.
+- Includi sia test **positivi** (successo) che **negativi** (errori, input errati, mancanze, etc).
+- Usa nomi univoci per `test_case_id` seguendo lo schema `UCx_TCy`.
+- Analizza la base_sequence, branch_sequence, exception_sequence, pre/postcondizioni.
+
+Restituisci solo un array JSON (non spiegare). Non mettere "```json" all'inizio del file e "```" alla fine.
+Apri e chiudi correttamente le parentesi.
+Il seguente è l'use case in formato JSON:
+
+[
+{
+  "Id": "UC2.6",
+  "Title": "Analisi consumo comune per POD",
+  "Summary": "Permette di visualizzare un’analisi per comune dei consumi sulla base di alcuni parametri selezionati",
+  "Actor": ["Comune", "Fornitore"],
+  "Precondition": "L’utente visualizza la sezione relativa alla dashboard",
+  "Postcondition": "L’utente visualizza le informazioni consultando i grafici",
+  "Base_sequence": ["L’utente scorre nella pagina fino a visualizzare la sezione dedicata al consumo", "Selezionato il comune, è possibile eseguire un’analisi più puntuale andando a specificare POD, pannello elettrico, periodo e tipo di potenza analizzata"],
+  "Branch_sequence": [],
+  "Exception_sequence": [],
+  "Note": "no"
+}
+]
+
+📥 RISPOSTA:
+[
+  {
+    "test_case_id": "UC2.6_TC1",
+    "title": "Visualizzazione Analisi Consumo Comune Validi",
+    "preconditions": "L’utente è nella sezione della dashboard e ha selezionato un comune valido",
+    "postconditions": "L’utente visualizza le informazioni di consumo relative al comune selezionato",
+    "test_steps": [
+      { "step": "Selezionare un comune valido dalla lista disponibile", "expected": "La pagina mostra i dati di consumo per il comune selezionato" },
+      { "step": "Specificare POD, pannello elettrico, periodo e tipo di potenza analizzata", "expected": "I grafici mostrano l'analisi dei consumi in base ai parametri selezionati" },
+      { "step": "Verificare la presenza di dati nei grafici", "expected": "I grafici contengono dati coerenti con i parametri di analisi selezionati" }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC2",
+    "title": "Selezione Comune Non Valido",
+    "preconditions": "L’utente è nella sezione della dashboard",
+    "postconditions": "L’utente riceve un messaggio di errore per comune non valido",
+    "test_steps": [
+      { "step": "Inserire un comune non valido", "expected": "Il sistema segnala un errore per comune non trovato" },
+      { "step": "Tentare di eseguire l'analisi con comune non valido", "expected": "Il sistema visualizza un messaggio di errore e non esegue l'analisi" }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC3",
+    "title": "Parametri di Analisi Non Validi",
+    "preconditions": "L’utente è nella sezione della dashboard e ha selezionato un comune valido",
+    "postconditions": "L’utente riceve un messaggio di errore per parametri non validi",
+    "test_steps": [
+      { "step": "Selezionare POD, pannello elettrico, periodo e tipo di potenza analizzata con valori non validi", "expected": "Il sistema segnala un errore per parametri non validi" },
+      { "step": "Tentare di eseguire l'analisi con parametri non validi", "expected": "Il sistema visualizza un messaggio di errore e non esegue l'analisi" }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC4",
+    "title": "Mancanza di Dati per l'Analisi",
+    "preconditions": "L’utente è nella sezione della dashboard e ha selezionato un comune valido",
+    "postconditions": "L’utente visualizza un messaggio informativo sulla mancanza di dati",
+    "test_steps": [
+      { "step": "Selezionare un comune e parametri di analisi per i quali non ci sono dati disponibili", "expected": "Il sistema avvisa dell'assenza di dati per l'analisi richiesta" },
+      { "step": "Tentare di visualizzare i grafici senza dati", "expected": "I grafici sono vuoti o mostrano un messaggio che indica la mancanza di dati" }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC5",
+    "title": "Caricamento Pagina con Dati di Default",
+    "preconditions": "L’utente accede alla sezione della dashboard senza avere selezionato un comune",
+    "postconditions": "La pagina si carica con dati di default o un messaggio di benvenuto",
+    "test_steps": [
+      { "step": "Accedere alla sezione della dashboard senza parametri", "expected": "La pagina si carica con un messaggio di benvenuto o dati di default" },
+      { "step": "Verificare la presenza di istruzioni per l'uso", "expected": "Sono presenti istruzioni su come utilizzare la funzione di analisi dei consumi" }
+    ],
+    "test_type": "Positive",
+    "priority": "Low",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC6",
+    "title": "Interazione Utente con Grafici",
+    "preconditions": "L’utente ha eseguito con successo l'analisi dei consumi per un comune",
+    "postconditions": "L’utente può interagire con i grafici per visualizzare informazioni più dettagliate",
+    "test_steps": [
+      { "step": "Selezionare un grafico di analisi dei consumi", "expected": "Il sistema consente di zoomare, ruotare o visualizzare dati puntuali nel grafico" },
+      { "step": "Interagire con il grafico (zoom, rotazione, etc.)", "expected": "L'interazione con il grafico fornisce informazioni più dettagliate sull'analisi dei consumi" }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC2.6"
+  }
+]

@@ -1,0 +1,140 @@
+[
+  {
+    "test_case_id": "UC3.4.5_TC1",
+    "title": "Visualizzazione dettaglio scheda censimento con dati validi",
+    "preconditions": "L’utente ha eseguito il login e ha accesso alle funzionalità di visualizzazione delle schede di censimento",
+    "postconditions": "L’utente visualizza le informazioni relative alla scheda censimento",
+    "test_steps": [
+      {
+        "step": "Selezionare l’operazione di dettaglio sulla scheda di censimento",
+        "expected": "Viene visualizzata una nuova pagina di dettaglio"
+      },
+      {
+        "step": "Verificare la presenza dei dati generali dell’area a cui si riferisce la scheda",
+        "expected": "Sono visualizzati i dati generali dell’area"
+      },
+      {
+        "step": "Navigare nella gerarchia dei POD e Aree Omogenee",
+        "expected": "La navigazione nella gerarchia funziona correttamente"
+      }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC3.4.5"
+  },
+  {
+    "test_case_id": "UC3.4.5_TC2",
+    "title": "Visualizzazione dettaglio scheda censimento con dati non validi",
+    "preconditions": "L’utente ha eseguito il login e ha accesso alle funzionalità di visualizzazione delle schede di censimento",
+    "postconditions": "L’utente riceve un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Selezionare l’operazione di dettaglio sulla scheda di censimento con dati non validi",
+        "expected": "Viene visualizzato un messaggio di errore"
+      },
+      {
+        "step": "Verificare la presenza dei dati generali dell’area a cui si riferisce la scheda",
+        "expected": "Non sono visualizzati i dati generali dell’area"
+      },
+      {
+        "step": "Navigare nella gerarchia dei POD e Aree Omogenee",
+        "expected": "La navigazione nella gerarchia non funziona a causa dei dati non validi"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC3.4.5"
+  },
+  {
+    "test_case_id": "UC3.4.5_TC3",
+    "title": "Visualizzazione dettaglio scheda censimento senza autorizzazione",
+    "preconditions": "L’utente non ha eseguito il login o non ha accesso alle funzionalità di visualizzazione delle schede di censimento",
+    "postconditions": "L’utente riceve un messaggio di acceso negato",
+    "test_steps": [
+      {
+        "step": "Tentare di selezionare l’operazione di dettaglio sulla scheda di censimento senza autorizzazione",
+        "expected": "Viene visualizzato un messaggio di acceso negato"
+      },
+      {
+        "step": "Verificare la presenza dei dati generali dell’area a cui si riferisce la scheda",
+        "expected": "Non sono visualizzati i dati generali dell’area"
+      },
+      {
+        "step": "Navigare nella gerarchia dei POD e Aree Omogenee",
+        "expected": "La navigazione nella gerarchia non è possibile senza autorizzazione"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "High",
+    "use_case_id": "UC3.4.5"
+  },
+  {
+    "test_case_id": "UC3.4.5_TC4",
+    "title": "Visualizzazione dettaglio scheda censimento con dati parzialmente validi",
+    "preconditions": "L’utente ha eseguito il login e ha accesso alle funzionalità di visualizzazione delle schede di censimento",
+    "postconditions": "L’utente visualizza le informazioni relative alla scheda censimento con alcuni dati mancanti",
+    "test_steps": [
+      {
+        "step": "Selezionare l’operazione di dettaglio sulla scheda di censimento con dati parzialmente validi",
+        "expected": "Viene visualizzata una nuova pagina di dettaglio con alcuni dati mancanti"
+      },
+      {
+        "step": "Verificare la presenza dei dati generali dell’area a cui si riferisce la scheda",
+        "expected": "Sono visualizzati solo alcuni dei dati generali dell’area"
+      },
+      {
+        "step": "Navigare nella gerarchia dei POD e Aree Omogenee",
+        "expected": "La navigazione nella gerarchia funziona parzialmente a causa dei dati mancanti"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC3.4.5"
+  },
+  {
+    "test_case_id": "UC3.4.5_TC5",
+    "title": "Visualizzazione dettaglio scheda censimento con dati troppo grandi",
+    "preconditions": "L’utente ha eseguito il login e ha accesso alle funzionalità di visualizzazione delle schede di censimento",
+    "postconditions": "L’utente riceve un messaggio di errore a causa della dimensione dei dati",
+    "test_steps": [
+      {
+        "step": "Selezionare l’operazione di dettaglio sulla scheda di censimento con dati troppo grandi",
+        "expected": "Viene visualizzato un messaggio di errore"
+      },
+      {
+        "step": "Verificare la presenza dei dati generali dell’area a cui si riferisce la scheda",
+        "expected": "Non sono visualizzati i dati generali dell’area"
+      },
+      {
+        "step": "Navigare nella gerarchia dei POD e Aree Omogenee",
+        "expected": "La navigazione nella gerarchia non funziona a causa della dimensione dei dati"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC3.4.5"
+  },
+  {
+    "test_case_id": "UC3.4.5_TC6",
+    "title": "Visualizzazione dettaglio scheda censimento con formato dei dati non supportato",
+    "preconditions": "L’utente ha eseguito il login e ha accesso alle funzionalità di visualizzazione delle schede di censimento",
+    "postconditions": "L’utente riceve un messaggio di errore a causa del formato dei dati non supportato",
+    "test_steps": [
+      {
+        "step": "Selezionare l’operazione di dettaglio sulla scheda di censimento con formato dei dati non supportato",
+        "expected": "Viene visualizzato un messaggio di errore"
+      },
+      {
+        "step": "Verificare la presenza dei dati generali dell’area a cui si riferisce la scheda",
+        "expected": "Non sono visualizzati i dati generali dell’area"
+      },
+      {
+        "step": "Navigare nella gerarchia dei POD e Aree Omogenee",
+        "expected": "La navigazione nella gerarchia non funziona a causa del formato dei dati non supportato"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC3.4.5"
+  }
+]

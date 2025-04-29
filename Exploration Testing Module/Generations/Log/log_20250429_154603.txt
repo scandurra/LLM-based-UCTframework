@@ -1,0 +1,130 @@
+📝 PROMPT:
+Sei un esperto di Quality Assurance. Il tuo compito è generare una suite di test case per ogni caso d’uso fornito in formato JSON.  
+Il formato di output deve essere **esclusivamente JSON**, strutturato come array di oggetti test case, seguendo la struttura di esempio qui sotto:
+
+{
+  "test_case_id": "UC1_TC1",
+  "title": "Valid Login Credentials",
+  "preconditions": "User is not authenticated and has access to PELL portal",
+  "postconditions": "User is redirected to Home page",
+  "test_steps": [
+    { "step": "Click on the 'Login' button", "expected": "Login form is displayed" },
+    { "step": "Enter valid email and password", "expected": "No error messages are displayed" },
+    { "step": "Confirm authentication process", "expected": "User is redirected to Home page" }
+  ],
+  "test_type": "Positive",
+  "priority": "High",
+  "use_case_id": "UC1"
+}
+
+Suggerimenti:
+- Genera **almeno 4-6 test case** per ogni UC.
+- Includi sia test **positivi** (successo) che **negativi** (errori, input errati, mancanze, etc).
+- Usa nomi univoci per `test_case_id` seguendo lo schema `UCx_TCy`.
+- Analizza la base_sequence, branch_sequence, exception_sequence, pre/postcondizioni.
+
+Restituisci solo un array JSON (non spiegare). Non mettere "```json" all'inizio del file e "```" alla fine.
+Apri e chiudi correttamente le parentesi.
+Il seguente è l'use case in formato JSON:
+
+[
+{
+  "Id": "UC2.4",
+  "Title": "Benchmarking KPI per comune",
+  "Summary": "Consente di analizzare i Key Performance Indicator dei comuni selezionati",
+  "Actor": ["Regione", "Sindaco", "Fornitore", "Cittadino"],
+  "Precondition": "L’utente visualizza la sezione relativa alla dashboard",
+  "Postcondition": "L’utente visualizza il risultato della analisi su un grafico, in base ai comuni e al KPI su cui fare il confronto",
+  "Base_sequence": [
+    "L’utente seleziona i comuni desiderati dal menù a tendina, tramite ricerca e selezione",
+    "L’utente seleziona il KPI desiderato",
+    "L’utente conferma la richiesta cliccando sul pulsante",
+    "L’utente visualizza il grafico con il confronto desiderato"
+  ],
+  "Branch_sequence": [],
+  "Exception_sequence": [],
+  "Note": "no"
+}
+]
+
+📥 RISPOSTA:
+[
+  {
+    "test_case_id": "UC2.4_TC1",
+    "title": "Selezione Comuni Validi",
+    "preconditions": "L’utente visualizza la sezione relativa alla dashboard",
+    "postconditions": "I comuni selezionati sono visualizzati correttamente",
+    "test_steps": [
+      { "step": "Selezionare due o più comuni dal menù a tendina", "expected": "I comuni selezionati sono visualizzati nella lista di selezione" },
+      { "step": "Verificare la presenza dei comuni selezionati nella lista", "expected": "Tutti i comuni selezionati sono presenti nella lista" }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC2",
+    "title": "Selezione KPI Validi",
+    "preconditions": "L’utente ha selezionato almeno un comune",
+    "postconditions": "Il KPI selezionato è visualizzato correttamente",
+    "test_steps": [
+      { "step": "Selezionare un KPI dal menù a tendina", "expected": "Il KPI selezionato è visualizzato nella lista di selezione" },
+      { "step": "Verificare la presenza del KPI selezionato nella lista", "expected": "Il KPI selezionato è presente nella lista" }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC3",
+    "title": "Conferma Richiesta",
+    "preconditions": "L’utente ha selezionato almeno un comune e un KPI",
+    "postconditions": "Il grafico con il confronto desiderato è visualizzato",
+    "test_steps": [
+      { "step": "Cliccare sul pulsante di conferma", "expected": "Il sistema inizia a caricare i dati per il grafico" },
+      { "step": "Verificare la presenza del grafico con il confronto desiderato", "expected": "Il grafico è visualizzato correttamente" }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC4",
+    "title": "Selezione Comuni Non Validi",
+    "preconditions": "L’utente visualizza la sezione relativa alla dashboard",
+    "postconditions": "Il sistema non consente di proseguire con la selezione",
+    "test_steps": [
+      { "step": "Selezionare un comune non valido dal menù a tendina", "expected": "Il sistema segnala un errore di selezione" },
+      { "step": "Verificare che il sistema non consenta di proseguire con la richiesta", "expected": "Il sistema non consente di cliccare sul pulsante di conferma" }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC5",
+    "title": "Selezione KPI Non Validi",
+    "preconditions": "L’utente ha selezionato almeno un comune",
+    "postconditions": "Il sistema non consente di proseguire con la richiesta",
+    "test_steps": [
+      { "step": "Selezionare un KPI non valido dal menù a tendina", "expected": "Il sistema segnala un errore di selezione" },
+      { "step": "Verificare che il sistema non consenta di proseguire con la richiesta", "expected": "Il sistema non consente di cliccare sul pulsante di conferma" }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC6",
+    "title": "Nessun Comune Selezionato",
+    "preconditions": "L’utente visualizza la sezione relativa alla dashboard",
+    "postconditions": "Il sistema non consente di proseguire con la richiesta",
+    "test_steps": [
+      { "step": "Non selezionare nessun comune dal menù a tendina", "expected": "Il sistema segnala un errore di selezione" },
+      { "step": "Verificare che il sistema non consenta di proseguire con la richiesta", "expected": "Il sistema non consente di cliccare sul pulsante di conferma" }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC2.4"
+  }
+]

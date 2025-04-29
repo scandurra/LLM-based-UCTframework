@@ -1,0 +1,93 @@
+📝 PROMPT:
+Agisci come un test engineer esperto. Ti verrà fornito un caso d’uso in formato TXT con struttura formale.
+
+Il tuo compito è generare un elenco JSON di test case che verifichino il comportamento funzionale del sistema, con copertura di flusso base, alternative, eccezioni, e pre/postcondizioni.
+
+Esempio di Formato JSON (restituisci solo un array di oggetti):
+{
+  "test_case_id": "UC2_TC2",
+  "title": "Input incompleto",
+  "preconditions": "Utente autenticato",
+  "postconditions": "Nessuna modifica salvata",
+  "test_steps": [
+    { "step": "Lascia il campo 'email' vuoto", "expected": "Viene mostrato un messaggio di errore" }
+  ],
+  "test_type": "Negativo",
+  "priority": "Medium",
+  "use_case_id": "UC2"
+}
+
+Genera:
+- Almeno 4 test case per UC.
+- Sia test positivi che negativi.
+- `test_type` dev’essere "Positive" o "Negative".
+- Ogni `test_case_id` deve iniziare con l’ID del caso d’uso.
+
+Non spiegare nulla. Restituisci **solo** l’array JSON risultante. Non mettere "```json" all'inizio della risposta e "```" alla fine.
+Apri e chiudi correttamente le parentesi.
+
+Il seguente è il caso d’uso in formato TXT:
+
+Id: UC3.4
+Title: Azione su scheda censimento
+Summary: Mostra all’utente una palette di operazioni possibili sulla scheda censimento
+Actor: Regione, Sindaco, Fornitore
+Precondition: L’utente visualizza la sezione relativa alle schede censimento
+Postcondition: no
+Base_sequence:
+1) L’utente clicca sul tasto delle azioni dedicato alla singola scheda censimento
+Branch_sequence: no
+Exception_sequence: no
+Note: no
+
+📥 RISPOSTA:
+[
+  {
+    "test_case_id": "UC3.4_TC1",
+    "title": "Visualizzazione palette di operazioni",
+    "preconditions": "Utente autenticato, sezione schede censimento visualizzata",
+    "postconditions": "Palette di operazioni visibile",
+    "test_steps": [
+      { "step": "Cliccare sul tasto delle azioni", "expected": "Viene mostrata la palette di operazioni" }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC2",
+    "title": "Azioni non disponibili per utente non autenticato",
+    "preconditions": "Utente non autenticato, sezione schede censimento visualizzata",
+    "postconditions": "Nessuna azione disponibile",
+    "test_steps": [
+      { "step": "Cliccare sul tasto delle azioni", "expected": "Non viene mostrata la palette di operazioni" }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC3",
+    "title": "Palette di operazioni vuota",
+    "preconditions": "Utente autenticato, sezione schede censimento visualizzata, nessuna azione disponibile",
+    "postconditions": "Nessuna azione disponibile",
+    "test_steps": [
+      { "step": "Cliccare sul tasto delle azioni", "expected": "Viene mostrata una palette di operazioni vuota" }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC4",
+    "title": "Selezione azione dalla palette",
+    "preconditions": "Utente autenticato, sezione schede censimento visualizzata, palette di operazioni visibile",
+    "postconditions": "Azione selezionata eseguita correttamente",
+    "test_steps": [
+      { "step": "Selezionare un'azione dalla palette", "expected": "L'azione selezionata viene eseguita" }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC3.4"
+  }
+]

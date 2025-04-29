@@ -1,0 +1,108 @@
+📝 PROMPT:
+Agisci come un test engineer esperto. Ti verrà fornito un caso d’uso in formato TXT con struttura formale.
+
+Il tuo compito è generare un elenco JSON di test case che verifichino il comportamento funzionale del sistema, con copertura di flusso base, alternative, eccezioni, e pre/postcondizioni.
+
+Esempio di Formato JSON (restituisci solo un array di oggetti):
+{
+  "test_case_id": "UC2_TC2",
+  "title": "Input incompleto",
+  "preconditions": "Utente autenticato",
+  "postconditions": "Nessuna modifica salvata",
+  "test_steps": [
+    { "step": "Lascia il campo 'email' vuoto", "expected": "Viene mostrato un messaggio di errore" }
+  ],
+  "test_type": "Negativo",
+  "priority": "Medium",
+  "use_case_id": "UC2"
+}
+
+Genera:
+- Almeno 4 test case per UC.
+- Sia test positivi che negativi.
+- `test_type` dev’essere "Positive" o "Negative".
+- Ogni `test_case_id` deve iniziare con l’ID del caso d’uso.
+
+Non spiegare nulla. Restituisci **solo** l’array JSON risultante. Non mettere "```json" all'inizio della risposta e "```" alla fine.
+Apri e chiudi correttamente le parentesi.
+
+Il seguente è il caso d’uso in formato TXT:
+
+Id: UC3.4.3.6
+Title: Modifica Elettric panel sezione Dati tecnici
+Summary: Permette di modificare la sezione dei dati tecnici di un pannello elettrico, relativo ad un POD, della scheda censimento
+Actor: Regione, Sindaco, Fornitore
+Precondition: L’utente visualizza le informazioni della scheda in fase di edit
+Postcondition: L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine
+Base_sequence:
+1) L’utente seleziona il POD per la modifica tramite il menù ad albero di sinistra
+2) L’utente espande la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD
+3) L’utente seleziona il pannello elettrico per la modifica
+4) L’utente seleziona il tab relativo ai dati tecnici
+5) L’utente visualizza i dati precedenti e può compilare il form con le informazioni desiderate
+6) L’utente applica le modifiche con l’apposito tasto
+7) In caso di conferma l’utente visualizza un messaggio di conferma dell’operazione
+Branch_sequence:
+1) In caso di dati non validi viene mostrato un messaggio di errore
+Exception_sequence: no
+Note: no
+
+📥 RISPOSTA:
+[
+  {
+    "test_case_id": "UC3.4.3.6_TC1",
+    "title": "Modifica dati tecnici pannello elettrico con successo",
+    "preconditions": "Utente autenticato, scheda in fase di edit",
+    "postconditions": "Messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      { "step": "Seleziona il POD per la modifica", "expected": "POD selezionato correttamente" },
+      { "step": "Espandi la visione ad albero del POD", "expected": "Pannelli elettrici visibili" },
+      { "step": "Seleziona il pannello elettrico per la modifica", "expected": "Pannello elettrico selezionato correttamente" },
+      { "step": "Compila il form con le informazioni desiderate", "expected": "Form compilato correttamente" },
+      { "step": "Applica le modifiche", "expected": "Messaggio di conferma dell’operazione andata a buon fine" }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC3.4.3.6"
+  },
+  {
+    "test_case_id": "UC3.4.3.6_TC2",
+    "title": "Modifica dati tecnici pannello elettrico con dati non validi",
+    "preconditions": "Utente autenticato, scheda in fase di edit",
+    "postconditions": "Messaggio di errore per dati non validi",
+    "test_steps": [
+      { "step": "Seleziona il POD per la modifica", "expected": "POD selezionato correttamente" },
+      { "step": "Espandi la visione ad albero del POD", "expected": "Pannelli elettrici visibili" },
+      { "step": "Seleziona il pannello elettrico per la modifica", "expected": "Pannello elettrico selezionato correttamente" },
+      { "step": "Compila il form con dati non validi", "expected": "Messaggio di errore per dati non validi" }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC3.4.3.6"
+  },
+  {
+    "test_case_id": "UC3.4.3.6_TC3",
+    "title": "Modifica dati tecnici pannello elettrico senza selezionare il POD",
+    "preconditions": "Utente autenticato, scheda in fase di edit",
+    "postconditions": "Messaggio di errore per POD non selezionato",
+    "test_steps": [
+      { "step": "Non selezionare il POD", "expected": "Pannelli elettrici non visibili" },
+      { "step": "Tenta di modificare i dati tecnici del pannello elettrico", "expected": "Messaggio di errore per POD non selezionato" }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC3.4.3.6"
+  },
+  {
+    "test_case_id": "UC3.4.3.6_TC4",
+    "title": "Modifica dati tecnici pannello elettrico con autorizzazione insufficiente",
+    "preconditions": "Utente non autenticato o senza autorizzazione sufficiente, scheda in fase di edit",
+    "postconditions": "Messaggio di errore per autorizzazione insufficiente",
+    "test_steps": [
+      { "step": "Tenta di accedere alla modifica dei dati tecnici del pannello elettrico", "expected": "Messaggio di errore per autorizzazione insufficiente" }
+    ],
+    "test_type": "Negative",
+    "priority": "High",
+    "use_case_id": "UC3.4.3.6"
+  }
+]

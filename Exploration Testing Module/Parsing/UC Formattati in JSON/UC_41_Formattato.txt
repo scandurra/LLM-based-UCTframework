@@ -1,0 +1,14 @@
+[
+{
+  "Id": "UC6",
+  "Title": "Logout utente",
+  "Summary": "De-autenticazione di un’utente registrato al sistema",
+  "Actor": ["Regione", "Sindaco", "Fornitore", "Progettista", "Cittadino"],
+  "Precondition": "L’utente è autenticato ed è a conoscenza che l’operazione ha avuto successo",
+  "Postcondition": "L’utente non è più autenticato ed è a conoscenza che l’operazione ha avuto successo",
+  "Base_sequence": ["L’utente clicca sul proprio nome utente in alto a destra", "L’utente inizia il processo di logout cliccando il tasto “Logout”", "L’utente visualizza un messaggio di operazione completata con successo"],
+  "Branch_sequence": [],
+  "Exception_sequence": [],
+  "Note": "no"
+}
+]

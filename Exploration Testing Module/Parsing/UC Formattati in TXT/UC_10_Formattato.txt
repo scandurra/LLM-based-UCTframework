@@ -1,0 +1,13 @@
+Id: UC3.1
+Title: Visualizzazione schede censimento
+Summary: Permette di visualizzare informazioni anagrafiche dell’entità scheda censimento, utilizzata per censire la rete di illuminazione pubblica
+Actor: Regione, Sindaco, Fornitore
+Precondition: L’utente visualizza la sezione relativa alle schede censimento
+Postcondition: L’utente visualizza le informazioni corrispondenti alla paginazione richiesta
+Base_sequence:
+1) L’utente visualizza le informazioni in forma tabellare e paginata
+2) È possibile scorrere lateralmente per visualizzare tutte le colonne
+3) Tutte le colonne visualizzabili consentono l’ordinamento con un click sul nome
+Branch_sequence: no
+Exception_sequence: no
+Note: no

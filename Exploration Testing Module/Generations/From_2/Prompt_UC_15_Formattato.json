@@ -1,0 +1,62 @@
+[
+  {
+    "test_case_id": "UC3.2.4_TC1",
+    "title": "Ricerca scheda censimento con parametri validi",
+    "preconditions": "Utente autenticato e visualizzazione delle informazioni corrispondenti alla paginazione richiesta",
+    "postconditions": "Visualizzazione delle informazioni corrispondenti alla paginazione richiesta dopo la ricerca",
+    "test_steps": [
+      {
+        "step": "Inserisci nome, stato e tipo validi come parametri di ricerca",
+        "expected": "Viene visualizzato il risultato della ricerca"
+      }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC3.2.4"
+  },
+  {
+    "test_case_id": "UC3.2.4_TC2",
+    "title": "Ricerca scheda censimento con parametri incompleti",
+    "preconditions": "Utente autenticato e visualizzazione delle informazioni corrispondenti alla paginazione richiesta",
+    "postconditions": "Nessuna modifica salvata",
+    "test_steps": [
+      {
+        "step": "Lascia il campo 'nome' vuoto",
+        "expected": "Viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC3.2.4"
+  },
+  {
+    "test_case_id": "UC3.2.4_TC3",
+    "title": "Ricerca scheda censimento con parametri non validi",
+    "preconditions": "Utente autenticato e visualizzazione delle informazioni corrispondenti alla paginazione richiesta",
+    "postconditions": "Nessuna modifica salvata",
+    "test_steps": [
+      {
+        "step": "Inserisci un valore non valido per lo stato",
+        "expected": "Viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC3.2.4"
+  },
+  {
+    "test_case_id": "UC3.2.4_TC4",
+    "title": "Ricerca scheda censimento senza parametri",
+    "preconditions": "Utente autenticato e visualizzazione delle informazioni corrispondenti alla paginazione richiesta",
+    "postconditions": "Nessuna modifica salvata",
+    "test_steps": [
+      {
+        "step": "Non inserisci nessun parametro di ricerca",
+        "expected": "Viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC3.2.4"
+  }
+]

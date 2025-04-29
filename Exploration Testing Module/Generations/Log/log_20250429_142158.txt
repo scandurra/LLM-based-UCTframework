@@ -1,0 +1,127 @@
+📝 PROMPT:
+Sei un esperto di Quality Assurance. Il tuo compito è generare una suite di test case per ogni caso d’uso fornito in formato JSON.  
+Il formato di output deve essere **esclusivamente JSON**, strutturato come array di oggetti test case, seguendo la struttura di esempio qui sotto:
+
+{
+  "test_case_id": "UC1_TC1",
+  "title": "Valid Login Credentials",
+  "preconditions": "User is not authenticated and has access to PELL portal",
+  "postconditions": "User is redirected to Home page",
+  "test_steps": [
+    { "step": "Click on the 'Login' button", "expected": "Login form is displayed" },
+    { "step": "Enter valid email and password", "expected": "No error messages are displayed" },
+    { "step": "Confirm authentication process", "expected": "User is redirected to Home page" }
+  ],
+  "test_type": "Positive",
+  "priority": "High",
+  "use_case_id": "UC1"
+}
+
+Suggerimenti:
+- Genera **almeno 4-6 test case** per ogni UC.
+- Includi sia test **positivi** (successo) che **negativi** (errori, input errati, mancanze, etc).
+- Usa nomi univoci per `test_case_id` seguendo lo schema `UCx_TCy`.
+- Analizza la base_sequence, branch_sequence, exception_sequence, pre/postcondizioni.
+
+Restituisci solo un array JSON (non spiegare). Non mettere "```json" all'inizio del file e "```" alla fine.
+Il seguente è l'use case in formato JSON:
+
+[
+{
+  "Id": "UC1",
+  "Title": "Login utente",
+  "Summary": "Autenticazione di un’utente registrato al sistema",
+  "Actor": ["Regione", "Sindaco", "Fornitore", "Progettista", "Cittadino"],
+  "Precondition": "L’utente non è autenticato",
+  "Postcondition": "L’utente è autenticato ed è a conoscenza che l’operazione ha avuto successo",
+  "Base_sequence": ["L’utente inserisce le proprie credenziali all’interno del form", "L’utente inizia il processo di autenticazione cliccando il tasto “Login”", "L’utente visualizza un messaggio di operazione completata con successo"],
+  "Branch_sequence": ["All’utente è richiesto modificare la prima password di accesso", "L’utente inserisce la nuova password e conferma"],
+  "Exception_sequence": ["L’utente visualizza un messaggio di operazione completata con un errore relativo all’eccezione verificatasi (credenziali errate, mismatch della nuova password…)", "L’utente può ripartire dal punto 1 della base sequence"],
+  "Note": "no"
+}
+]
+
+📥 RISPOSTA:
+[
+  {
+    "test_case_id": "UC1_TC1",
+    "title": "Valid Login Credentials",
+    "preconditions": "User is not authenticated and has access to PELL portal",
+    "postconditions": "User is redirected to Home page",
+    "test_steps": [
+      { "step": "Click on the 'Login' button", "expected": "Login form is displayed" },
+      { "step": "Enter valid email and password", "expected": "No error messages are displayed" },
+      { "step": "Confirm authentication process", "expected": "User is redirected to Home page" }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC2",
+    "title": "Invalid Login Credentials",
+    "preconditions": "User is not authenticated and has access to PELL portal",
+    "postconditions": "Error message is displayed",
+    "test_steps": [
+      { "step": "Click on the 'Login' button", "expected": "Login form is displayed" },
+      { "step": "Enter invalid email or password", "expected": "Error message is displayed" }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC3",
+    "title": "Empty Login Credentials",
+    "preconditions": "User is not authenticated and has access to PELL portal",
+    "postconditions": "Error message is displayed",
+    "test_steps": [
+      { "step": "Click on the 'Login' button", "expected": "Login form is displayed" },
+      { "step": "Leave email and password fields empty", "expected": "Error message is displayed" }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC4",
+    "title": "First Time Login with Password Change",
+    "preconditions": "User is not authenticated and has access to PELL portal",
+    "postconditions": "User is redirected to Home page after changing password",
+    "test_steps": [
+      { "step": "Click on the 'Login' button", "expected": "Login form is displayed" },
+      { "step": "Enter valid email and password for first time login", "expected": "Password change request is displayed" },
+      { "step": "Enter new password and confirm it", "expected": "User is redirected to Home page" }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC5",
+    "title": "Mismatched New Passwords",
+    "preconditions": "User is not authenticated and has access to PELL portal",
+    "postconditions": "Error message is displayed for mismatched passwords",
+    "test_steps": [
+      { "step": "Click on the 'Login' button", "expected": "Login form is displayed" },
+      { "step": "Enter valid email and password for first time login", "expected": "Password change request is displayed" },
+      { "step": "Enter new password and different confirmation password", "expected": "Error message is displayed for mismatched passwords" }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC6",
+    "title": "Consecutive Failed Logins",
+    "preconditions": "User is not authenticated and has access to PELL portal",
+    "postconditions": "Account lockout or additional security measures are triggered",
+    "test_steps": [
+      { "step": "Click on the 'Login' button", "expected": "Login form is displayed" },
+      { "step": "Enter invalid email or password multiple times", "expected": "Account lockout or additional security measures are triggered" }
+    ],
+    "test_type": "Negative",
+    "priority": "High",
+    "use_case_id": "UC1"
+  }
+]

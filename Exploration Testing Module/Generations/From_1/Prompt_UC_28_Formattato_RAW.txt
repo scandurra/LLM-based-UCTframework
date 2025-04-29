@@ -1,0 +1,88 @@
+[
+  {
+    "test_case_id": "UC3.4.3.8_TC1",
+    "title": "Modifica Elettric panel sezione Manutenzione con dati validi",
+    "preconditions": "L’utente è autenticato e ha accesso alla scheda censimento",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      { "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra", "expected": "Il POD è selezionato correttamente" },
+      { "step": "Espandi la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD", "expected": "I pannelli elettrici sono visualizzati correttamente" },
+      { "step": "Seleziona il pannello elettrico per la modifica", "expected": "Il pannello elettrico è selezionato correttamente" },
+      { "step": "Seleziona il tab relativo alle informazioni di manutenzione", "expected": "Le informazioni di manutenzione sono visualizzate correttamente" },
+      { "step": "Compila il form con le informazioni desiderate e applica le modifiche", "expected": "Un messaggio di conferma dell’operazione è visualizzato" }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC3.4.3.8"
+  },
+  {
+    "test_case_id": "UC3.4.3.8_TC2",
+    "title": "Modifica Elettric panel sezione Manutenzione con dati non validi",
+    "preconditions": "L’utente è autenticato e ha accesso alla scheda censimento",
+    "postconditions": "Un messaggio di errore è visualizzato",
+    "test_steps": [
+      { "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra", "expected": "Il POD è selezionato correttamente" },
+      { "step": "Espandi la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD", "expected": "I pannelli elettrici sono visualizzati correttamente" },
+      { "step": "Seleziona il pannello elettrico per la modifica", "expected": "Il pannello elettrico è selezionato correttamente" },
+      { "step": "Seleziona il tab relativo alle informazioni di manutenzione", "expected": "Le informazioni di manutenzione sono visualizzate correttamente" },
+      { "step": "Compila il form con dati non validi e applica le modifiche", "expected": "Un messaggio di errore è visualizzato" }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC3.4.3.8"
+  },
+  {
+    "test_case_id": "UC3.4.3.8_TC3",
+    "title": "Modifica Elettric panel sezione Manutenzione senza selezionare il POD",
+    "preconditions": "L’utente è autenticato e ha accesso alla scheda censimento",
+    "postconditions": "Un messaggio di errore è visualizzato",
+    "test_steps": [
+      { "step": "Non selezionare il POD per la modifica", "expected": "Un messaggio di errore è visualizzato" },
+      { "step": "Espandi la visione ad albero del POD non selezionato per visionare i pannelli elettrici che appartengono al POD", "expected": "I pannelli elettrici non sono visualizzati" },
+      { "step": "Seleziona il tab relativo alle informazioni di manutenzione", "expected": "Le informazioni di manutenzione non sono visualizzate" }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC3.4.3.8"
+  },
+  {
+    "test_case_id": "UC3.4.3.8_TC4",
+    "title": "Modifica Elettric panel sezione Manutenzione senza selezionare il pannello elettrico",
+    "preconditions": "L’utente è autenticato e ha accesso alla scheda censimento",
+    "postconditions": "Un messaggio di errore è visualizzato",
+    "test_steps": [
+      { "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra", "expected": "Il POD è selezionato correttamente" },
+      { "step": "Espandi la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD", "expected": "I pannelli elettrici sono visualizzati correttamente" },
+      { "step": "Non selezionare il pannello elettrico per la modifica", "expected": "Un messaggio di errore è visualizzato" }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC3.4.3.8"
+  },
+  {
+    "test_case_id": "UC3.4.3.8_TC5",
+    "title": "Modifica Elettric panel sezione Manutenzione con dati già esistenti",
+    "preconditions": "L’utente è autenticato e ha accesso alla scheda censimento",
+    "postconditions": "Un messaggio di conferma dell’operazione è visualizzato",
+    "test_steps": [
+      { "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra", "expected": "Il POD è selezionato correttamente" },
+      { "step": "Espandi la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD", "expected": "I pannelli elettrici sono visualizzati correttamente" },
+      { "step": "Seleziona il pannello elettrico per la modifica", "expected": "Il pannello elettrico è selezionato correttamente" },
+      { "step": "Compila il form con dati già esistenti e applica le modifiche", "expected": "Un messaggio di conferma dell’operazione è visualizzato" }
+    ],
+    "test_type": "Positive",
+    "priority": "Medium",
+    "use_case_id": "UC3.4.3.8"
+  },
+  {
+    "test_case_id": "UC3.4.3.8_TC6",
+    "title": "Modifica Elettric panel sezione Manutenzione con permessi di accesso insufficienti",
+    "preconditions": "L’utente non ha i permessi necessari per la modifica del pannello elettrico",
+    "postconditions": "Un messaggio di errore è visualizzato",
+    "test_steps": [
+      { "step": "Tentare di accedere al modulo di modifica senza avere i permessi necessari", "expected": "Un messaggio di errore è visualizzato" }
+    ],
+    "test_type": "Negative",
+    "priority": "High",
+    "use_case_id": "UC3.4.3.8"
+  }

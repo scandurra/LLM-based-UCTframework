@@ -1,0 +1,9 @@
+UseCase : UC3.4.3: Modifica scheda censimento (parte di UC3.4: Azione su scheda censimento) (parte di UC3: Gestione schede censimento)
+Summary : Mostra la sezione relativa alla modifica dei dati di una scheda censimento
+Actor : Regione, Sindaco, Fornitore
+Precondition : UC3.4
+Postcondition : L’utente visualizza le informazioni della scheda in fase di edit
+Base sequence : L’utente seleziona l’operazione di modifica
+Branch sequence : no
+Exception sequence : no
+Note : no

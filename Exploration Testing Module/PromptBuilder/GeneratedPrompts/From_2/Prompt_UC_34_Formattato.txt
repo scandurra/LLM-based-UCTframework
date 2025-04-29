@@ -1,0 +1,43 @@
+Agisci come un test engineer esperto. Ti verrà fornito un caso d’uso in formato TXT con struttura formale.
+
+Il tuo compito è generare un elenco JSON di test case che verifichino il comportamento funzionale del sistema, con copertura di flusso base, alternative, eccezioni, e pre/postcondizioni.
+
+Esempio di Formato JSON (restituisci solo un array di oggetti):
+{
+  "test_case_id": "UC2_TC2",
+  "title": "Input incompleto",
+  "preconditions": "Utente autenticato",
+  "postconditions": "Nessuna modifica salvata",
+  "test_steps": [
+    { "step": "Lascia il campo 'email' vuoto", "expected": "Viene mostrato un messaggio di errore" }
+  ],
+  "test_type": "Negativo",
+  "priority": "Medium",
+  "use_case_id": "UC2"
+}
+
+Genera:
+- Almeno 4 test case per UC.
+- Sia test positivi che negativi.
+- `test_type` dev’essere "Positive" o "Negative".
+- Ogni `test_case_id` deve iniziare con l’ID del caso d’uso.
+
+Non spiegare nulla. Restituisci **solo** l’array JSON risultante. Non mettere "```json" all'inizio della risposta e "```" alla fine.
+Apri e chiudi correttamente le parentesi.
+
+Il seguente è il caso d’uso in formato TXT:
+
+Id: UC3.4.5
+Title: Dettaglio scheda censimento
+Summary: Permette di visualizzare i dettaglio di una scheda censimento precedentemente caricata
+Actor: Regione, Sindaco, Fornitore
+Precondition: L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine
+Postcondition: L’utente visualizza le informazioni relative alla scheda censimento
+Base_sequence:
+1) L’utente seleziona l’operazione di dettaglio
+2) L’utente visualizza una nuova pagina di dettaglio dove non è possibile modificare le informazioni visualizzate
+3) Sulla sinistra è possibile navigare nella gerarchia dei POD e Aree Omogenee
+4) Sulla destra è possibile visualizzare dati generali dell’area a cui si riferisce la scheda
+Branch_sequence: no
+Exception_sequence: no
+Note: no

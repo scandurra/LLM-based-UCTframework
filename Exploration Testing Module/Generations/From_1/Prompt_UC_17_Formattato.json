@@ -1,0 +1,116 @@
+[
+  {
+    "test_case_id": "UC3.4_TC1",
+    "title": "Visualizzazione palette di operazioni sulla scheda censimento",
+    "preconditions": "L’utente visualizza la sezione relativa alle schede censimento e ha i permessi per eseguire azioni",
+    "postconditions": "La palette di operazioni è visibile e accessibile",
+    "test_steps": [
+      {
+        "step": "L’utente clicca sul tasto delle azioni dedicato alla singola scheda censimento",
+        "expected": "La palette di operazioni si apre mostrando le opzioni disponibili"
+      },
+      {
+        "step": "Verifica della visibilità e accessibilità della palette",
+        "expected": "Tutte le opzioni nella palette sono visibili e cliccabili"
+      }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC2",
+    "title": "Azioni non consentite senza permessi",
+    "preconditions": "L’utente visualizza la sezione relativa alle schede censimento ma non ha i permessi per eseguire azioni",
+    "postconditions": "La palette di operazioni non è accessibile o mostra un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "L’utente clicca sul tasto delle azioni dedicato alla singola scheda censimento",
+        "expected": "La palette di operazioni non si apre o mostra un messaggio di accesso negato"
+      },
+      {
+        "step": "Verifica del messaggio di errore",
+        "expected": "Il messaggio di errore è chiaro e indica la mancanza di permessi"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC3",
+    "title": "Selezione di operazioni valide dalla palette",
+    "preconditions": "L’utente visualizza la sezione relativa alle schede censimento e ha i permessi per eseguire azioni",
+    "postconditions": "L’operazione selezionata è eseguita correttamente",
+    "test_steps": [
+      {
+        "step": "L’utente clicca sul tasto delle azioni dedicato alla singola scheda censimento",
+        "expected": "La palette di operazioni si apre"
+      },
+      {
+        "step": "Selezione di un’operazione valida dalla palette",
+        "expected": "L’operazione è eseguita senza errori"
+      }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC4",
+    "title": "Selezione di operazioni non valide dalla palette",
+    "preconditions": "L’utente visualizza la sezione relativa alle schede censimento e ha i permessi per eseguire azioni",
+    "postconditions": "Viene mostrato un messaggio di errore per l’operazione non valida",
+    "test_steps": [
+      {
+        "step": "L’utente clicca sul tasto delle azioni dedicato alla singola scheda censimento",
+        "expected": "La palette di operazioni si apre"
+      },
+      {
+        "step": "Selezione di un’operazione non valida dalla palette",
+        "expected": "Viene mostrato un messaggio di errore indicando che l’operazione non è disponibile o non può essere eseguita"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC5",
+    "title": "Chiusura della palette di operazioni",
+    "preconditions": "L’utente ha aperto la palette di operazioni sulla scheda censimento",
+    "postconditions": "La palette di operazioni si chiude correttamente",
+    "test_steps": [
+      {
+        "step": "L’utente clicca fuori dalla palette di operazioni",
+        "expected": "La palette si chiude"
+      },
+      {
+        "step": "Verifica che la palette non sia più visibile",
+        "expected": "La palette non è più visibile dopo averla chiusa"
+      }
+    ],
+    "test_type": "Positive",
+    "priority": "Low",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC6",
+    "title": "Compatibilità con diversi dispositivi e browser",
+    "preconditions": "L’utente accede alla sezione delle schede censimento da diversi dispositivi e browser",
+    "postconditions": "La palette di operazioni è visibile e funziona correttamente su tutti i dispositivi e browser testati",
+    "test_steps": [
+      {
+        "step": "Accesso alla sezione delle schede censimento da un dispositivo mobile",
+        "expected": "La palette di operazioni si apre e funziona correttamente"
+      },
+      {
+        "step": "Accesso alla sezione delle schede censimento da un browser diverso",
+        "expected": "La palette di operazioni si apre e funziona correttamente senza problemi di rendering o funzionalità"
+      }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC3.4"
+  }
+]

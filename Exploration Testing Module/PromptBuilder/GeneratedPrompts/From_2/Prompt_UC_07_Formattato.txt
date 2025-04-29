@@ -1,0 +1,40 @@
+Agisci come un test engineer esperto. Ti verrà fornito un caso d’uso in formato TXT con struttura formale.
+
+Il tuo compito è generare un elenco JSON di test case che verifichino il comportamento funzionale del sistema, con copertura di flusso base, alternative, eccezioni, e pre/postcondizioni.
+
+Esempio di Formato JSON (restituisci solo un array di oggetti):
+{
+  "test_case_id": "UC2_TC2",
+  "title": "Input incompleto",
+  "preconditions": "Utente autenticato",
+  "postconditions": "Nessuna modifica salvata",
+  "test_steps": [
+    { "step": "Lascia il campo 'email' vuoto", "expected": "Viene mostrato un messaggio di errore" }
+  ],
+  "test_type": "Negativo",
+  "priority": "Medium",
+  "use_case_id": "UC2"
+}
+
+Genera:
+- Almeno 4 test case per UC.
+- Sia test positivi che negativi.
+- `test_type` dev’essere "Positive" o "Negative".
+- Ogni `test_case_id` deve iniziare con l’ID del caso d’uso.
+
+Non spiegare nulla. Restituisci **solo** l’array JSON risultante. Non mettere "```json" all'inizio della risposta e "```" alla fine.
+Apri e chiudi correttamente le parentesi.
+
+Il seguente è il caso d’uso in formato TXT:
+
+Id: UC2.5
+Title: Visualizzazione grafici
+Summary: Permette di visualizzare informazioni di adozione della piattaforma e tecniche a livello statale
+Actor: Regione, Sindaco, Fornitore, Cittadino
+Precondition: L’utente visualizza la sezione relativa alla dashboard
+Postcondition: L’utente visualizza le informazioni consultando i grafici
+Base_sequence:
+1) L’utente scorre nella pagina fino a visualizzare le sezioni contrassegnate dai grafici che visualizzano i comuni aderenti per regione, punti luce per regione e distribuzione punti luce per tipo apparecchio
+Branch_sequence: no
+Exception_sequence: no
+Note: no

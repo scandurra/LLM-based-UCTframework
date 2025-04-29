@@ -1,0 +1,9 @@
+UseCase : UC3.4: Azione su scheda censimento (parte di UC3: Gestione schede censimento)
+Summary : Mostra all’utente una palette di operazioni possibili sulla scheda censimento
+Actor : Regione, Sindaco, Fornitore
+Precondition : UC3
+Postcondition : no
+Base sequence : L’utente clicca sul tasto delle azioni dedicato alla singola scheda censimento
+Branch sequence : no
+Exception sequence : no
+Note : no

@@ -1,0 +1,9 @@
+UseCase : UC4.3: Nuova simulazione (parte di UC4: Gestione modulo SAVE)
+Summary : Permette all’utente di associare un determinato impianto riqualificato con una simulazione d’investimento per visualizzarne successivamente i risultati
+Actor : Progettista
+Precondition : UC4
+Postcondition : L’utente ha aggiunto l’associazione nel menu dedicato
+Base sequence : L’utente naviga nella terza sezione dedicata alle analisi, su una barra orizzontale dedicata : L’utente clicca sul tasto dedicato all’aggiunta di una singola analisi : L’utente seleziona l’impianto e l’investimento da associare : L’utente visualizza un messaggio di conferma
+Branch sequence : In caso di annullamento l’utente visualizza un messaggio di avvenuto annullamento
+Exception sequence : no
+Note : no

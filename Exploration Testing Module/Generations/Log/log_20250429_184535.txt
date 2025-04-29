@@ -1,0 +1,100 @@
+📝 PROMPT:
+Agisci come un test engineer esperto. Ti verrà fornito un caso d’uso in formato TXT con struttura formale.
+
+Il tuo compito è generare un elenco JSON di test case che verifichino il comportamento funzionale del sistema, con copertura di flusso base, alternative, eccezioni, e pre/postcondizioni.
+
+Esempio di Formato JSON (restituisci solo un array di oggetti):
+{
+  "test_case_id": "UC2_TC2",
+  "title": "Input incompleto",
+  "preconditions": "Utente autenticato",
+  "postconditions": "Nessuna modifica salvata",
+  "test_steps": [
+    { "step": "Lascia il campo 'email' vuoto", "expected": "Viene mostrato un messaggio di errore" }
+  ],
+  "test_type": "Negativo",
+  "priority": "Medium",
+  "use_case_id": "UC2"
+}
+
+Genera:
+- Almeno 4 test case per UC.
+- Sia test positivi che negativi.
+- `test_type` dev’essere "Positive" o "Negative".
+- Ogni `test_case_id` deve iniziare con l’ID del caso d’uso.
+
+Non spiegare nulla. Restituisci **solo** l’array JSON risultante. Non mettere "```json" all'inizio della risposta e "```" alla fine.
+Apri e chiudi correttamente le parentesi.
+
+Il seguente è il caso d’uso in formato TXT:
+
+Id: UC4.1.1
+Title: Aggiunta impianto
+Summary: Permette di aggiungere un nuovo impianto per il comune selezionato
+Actor: Progettista
+Precondition: L’utente visualizza la sezione relativa alla gestione degli impianti
+Postcondition: L’utente visualizza un messaggio di conferma
+Base_sequence:
+1) L’utente clicca sul tasto dedicato all’aggiunta di un singolo impianto
+2) L’utente inserisce il nome e seleziona il comune tra quelli disponibili
+3) L’utente visualizza un messaggio di conferma
+Branch_sequence:
+1) In caso di annullamento l’utente visualizza un messaggio di avvenuto annullamento
+Exception_sequence: no
+Note: no
+
+📥 RISPOSTA:
+[
+  {
+    "test_case_id": "UC4.1.1_TC1",
+    "title": "Aggiunta impianto valido",
+    "preconditions": "L’utente visualizza la sezione relativa alla gestione degli impianti",
+    "postconditions": "L’utente visualizza un messaggio di conferma",
+    "test_steps": [
+      { "step": "Clicca sul tasto dedicato all’aggiunta di un singolo impianto", "expected": "Viene visualizzato il form di inserimento" },
+      { "step": "Inserisci il nome e seleziona il comune tra quelli disponibili", "expected": "Viene visualizzato un messaggio di conferma" }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC4.1.1"
+  },
+  {
+    "test_case_id": "UC4.1.1_TC2",
+    "title": "Aggiunta impianto annullata",
+    "preconditions": "L’utente visualizza la sezione relativa alla gestione degli impianti",
+    "postconditions": "L’utente visualizza un messaggio di avvenuto annullamento",
+    "test_steps": [
+      { "step": "Clicca sul tasto dedicato all’aggiunta di un singolo impianto", "expected": "Viene visualizzato il form di inserimento" },
+      { "step": "Annulla l’inserimento", "expected": "Viene visualizzato un messaggio di avvenuto annullamento" }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC4.1.1"
+  },
+  {
+    "test_case_id": "UC4.1.1_TC3",
+    "title": "Aggiunta impianto con nome vuoto",
+    "preconditions": "L’utente visualizza la sezione relativa alla gestione degli impianti",
+    "postconditions": "Nessuna modifica salvata",
+    "test_steps": [
+      { "step": "Clicca sul tasto dedicato all’aggiunta di un singolo impianto", "expected": "Viene visualizzato il form di inserimento" },
+      { "step": "Lascia il campo 'nome' vuoto e seleziona il comune", "expected": "Viene mostrato un messaggio di errore" }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC4.1.1"
+  },
+  {
+    "test_case_id": "UC4.1.1_TC4",
+    "title": "Aggiunta impianto senza selezione comune",
+    "preconditions": "L’utente visualizza la sezione relativa alla gestione degli impianti",
+    "postconditions": "Nessuna modifica salvata",
+    "test_steps": [
+      { "step": "Clicca sul tasto dedicato all’aggiunta di un singolo impianto", "expected": "Viene visualizzato il form di inserimento" },
+      { "step": "Inserisci il nome e non seleziona il comune", "expected": "Viene mostrato un messaggio di errore" }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC4.1.1"
+  }
+]

@@ -1,0 +1,62 @@
+[
+  {
+    "test_case_id": "UC3.2_TC1",
+    "title": "Ricerca scheda censimento valida",
+    "preconditions": "Utente autenticato, sezione schede censimento visualizzata",
+    "postconditions": "Informazioni relative alla paginazione richiesta visualizzate",
+    "test_steps": [
+      {
+        "step": "Inserisci criteri di ricerca validi",
+        "expected": "Vengono mostrate le informazioni corrispondenti"
+      }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC3.2"
+  },
+  {
+    "test_case_id": "UC3.2_TC2",
+    "title": "Ricerca scheda censimento con criteri non validi",
+    "preconditions": "Utente autenticato, sezione schede censimento visualizzata",
+    "postconditions": "Nessun risultato trovato",
+    "test_steps": [
+      {
+        "step": "Inserisci criteri di ricerca non validi",
+        "expected": "Viene mostrato un messaggio di 'nessun risultato'"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC3.2"
+  },
+  {
+    "test_case_id": "UC3.2_TC3",
+    "title": "Ricerca scheda censimento senza criteri di ricerca",
+    "preconditions": "Utente autenticato, sezione schede censimento visualizzata",
+    "postconditions": "Tutte le informazioni relative alle schede censimento visualizzate",
+    "test_steps": [
+      {
+        "step": "Lascia vuota la barra di ricerca",
+        "expected": "Vengono mostrate tutte le informazioni"
+      }
+    ],
+    "test_type": "Positive",
+    "priority": "Low",
+    "use_case_id": "UC3.2"
+  },
+  {
+    "test_case_id": "UC3.2_TC4",
+    "title": "Ricerca scheda censimento con paginazione",
+    "preconditions": "Utente autenticato, sezione schede censimento visualizzata",
+    "postconditions": "Informazioni relative alla paginazione richiesta visualizzate",
+    "test_steps": [
+      {
+        "step": "Seleziona una pagina specifica",
+        "expected": "Vengono mostrate le informazioni corrispondenti alla pagina selezionata"
+      }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC3.2"
+  }
+]

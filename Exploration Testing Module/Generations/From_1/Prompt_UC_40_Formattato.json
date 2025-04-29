@@ -1,0 +1,116 @@
+[
+  {
+    "test_case_id": "UC5_TC1",
+    "title": "Selezione lingua valida",
+    "preconditions": "L’utente è autenticato",
+    "postconditions": "Il portale è visualizzato con la lingua selezionata",
+    "test_steps": [
+      {
+        "step": "Cliccare sul proprio nome utente in alto a destra",
+        "expected": "Menù di opzioni apparso"
+      },
+      {
+        "step": "Selezionare una lingua diversa da quella attuale dal menù a tendina",
+        "expected": "Lingua selezionata è diversa da quella precedente"
+      },
+      {
+        "step": "Attendere il ricaricamento della pagina",
+        "expected": "Portale visualizzato con la nuova lingua selezionata"
+      }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC5"
+  },
+  {
+    "test_case_id": "UC5_TC2",
+    "title": "Selezione lingua non valida",
+    "preconditions": "L’utente è autenticato",
+    "postconditions": "Errore di selezione lingua visualizzato",
+    "test_steps": [
+      {
+        "step": "Cliccare sul proprio nome utente in alto a destra",
+        "expected": "Menù di opzioni apparso"
+      },
+      {
+        "step": "Inserire manualmente una lingua non supportata nel menù a tendina",
+        "expected": "Errore di selezione lingua visualizzato"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC5"
+  },
+  {
+    "test_case_id": "UC5_TC3",
+    "title": "Selezione lingua senza autenticazione",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "Schermata di accesso visualizzata",
+    "test_steps": [
+      {
+        "step": "Tentare di accedere alla selezione della lingua",
+        "expected": "Schermata di accesso visualizzata"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "High",
+    "use_case_id": "UC5"
+  },
+  {
+    "test_case_id": "UC5_TC4",
+    "title": "Selezione lingua con più tentativi di accesso falliti",
+    "preconditions": "L’utente ha già tentato l’accesso più volte senza successo",
+    "postconditions": "Blocco dell’account visualizzato",
+    "test_steps": [
+      {
+        "step": "Tentare più volte di accedere alla selezione della lingua con credenziali errate",
+        "expected": "Blocco dell’account visualizzato"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC5"
+  },
+  {
+    "test_case_id": "UC5_TC5",
+    "title": "Ritorno alla lingua predefinita",
+    "preconditions": "L’utente ha selezionato una lingua diversa da quella predefinita",
+    "postconditions": "Portale visualizzato con la lingua predefinita",
+    "test_steps": [
+      {
+        "step": "Cliccare sul proprio nome utente in alto a destra",
+        "expected": "Menù di opzioni apparso"
+      },
+      {
+        "step": "Selezionare la lingua predefinita dal menù a tendina",
+        "expected": "Lingua selezionata è quella predefinita"
+      },
+      {
+        "step": "Attendere il ricaricamento della pagina",
+        "expected": "Portale visualizzato con la lingua predefinita"
+      }
+    ],
+    "test_type": "Positive",
+    "priority": "Low",
+    "use_case_id": "UC5"
+  },
+  {
+    "test_case_id": "UC5_TC6",
+    "title": "Selezione lingua con caratteri speciali",
+    "preconditions": "L’utente è autenticato",
+    "postconditions": "Errore di selezione lingua visualizzato",
+    "test_steps": [
+      {
+        "step": "Cliccare sul proprio nome utente in alto a destra",
+        "expected": "Menù di opzioni apparso"
+      },
+      {
+        "step": "Inserire manualmente una lingua con caratteri speciali nel menù a tendina",
+        "expected": "Errore di selezione lingua visualizzato"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC5"
+  }
+]

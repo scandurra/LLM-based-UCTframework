@@ -1,0 +1,126 @@
+[
+  {
+    "test_case_id": "UC3.4.3.11_TC1",
+    "title": "Modifica LightSource con dati validi",
+    "preconditions": "Utente autenticato e POD selezionato",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica",
+        "expected": "Viene visualizzato il menù ad albero del POD"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato",
+        "expected": "Vengono visualizzati i pannelli elettrici che appartengono al POD"
+      },
+      {
+        "step": "Seleziona il pannello elettrico ed espandi la visione ad albero del pannello selezionato",
+        "expected": "Vengono visualizzati i punti luce che appartengono al pannello elettrico"
+      },
+      {
+        "step": "Seleziona il punto luce ed espandi la visione ad albero del punto luce selezionato",
+        "expected": "Vengono visualizzati i dispositivi punti luce che appartengono al punto luce"
+      },
+      {
+        "step": "Seleziona il dispositivo punto luce ed espandi la visione ad albero del dispositivo punto luce selezionato",
+        "expected": "Vengono visualizzate le sorgenti di luce che appartengono al dispositivo punto luce"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati apparecchio e compila il form con informazioni valide",
+        "expected": "Le modifiche vengono applicate correttamente"
+      }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC3.4.3.11"
+  },
+  {
+    "test_case_id": "UC3.4.3.11_TC2",
+    "title": "Modifica LightSource con dati non validi",
+    "preconditions": "Utente autenticato e POD selezionato",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica",
+        "expected": "Viene visualizzato il menù ad albero del POD"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato",
+        "expected": "Vengono visualizzati i pannelli elettrici che appartengono al POD"
+      },
+      {
+        "step": "Seleziona il pannello elettrico ed espandi la visione ad albero del pannello selezionato",
+        "expected": "Vengono visualizzati i punti luce che appartengono al pannello elettrico"
+      },
+      {
+        "step": "Seleziona il punto luce ed espandi la visione ad albero del punto luce selezionato",
+        "expected": "Vengono visualizzati i dispositivi punti luce che appartengono al punto luce"
+      },
+      {
+        "step": "Seleziona il dispositivo punto luce ed espandi la visione ad albero del dispositivo punto luce selezionato",
+        "expected": "Vengono visualizzate le sorgenti di luce che appartengono al dispositivo punto luce"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati apparecchio e compila il form con informazioni non valide",
+        "expected": "Viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC3.4.3.11"
+  },
+  {
+    "test_case_id": "UC3.4.3.11_TC3",
+    "title": "Modifica LightSource senza selezionare il POD",
+    "preconditions": "Utente autenticato",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Non seleziona il POD per la modifica",
+        "expected": "Il menù ad albero del POD non viene visualizzato"
+      },
+      {
+        "step": "Tenta di espandere la visione ad albero del pannello elettrico",
+        "expected": "Viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC3.4.3.11"
+  },
+  {
+    "test_case_id": "UC3.4.3.11_TC4",
+    "title": "Modifica LightSource con dati parzialmente validi",
+    "preconditions": "Utente autenticato e POD selezionato",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica",
+        "expected": "Viene visualizzato il menù ad albero del POD"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato",
+        "expected": "Vengono visualizzati i pannelli elettrici che appartengono al POD"
+      },
+      {
+        "step": "Seleziona il pannello elettrico ed espandi la visione ad albero del pannello selezionato",
+        "expected": "Vengono visualizzati i punti luce che appartengono al pannello elettrico"
+      },
+      {
+        "step": "Seleziona il punto luce ed espandi la visione ad albero del punto luce selezionato",
+        "expected": "Vengono visualizzati i dispositivi punti luce che appartengono al punto luce"
+      },
+      {
+        "step": "Seleziona il dispositivo punto luce ed espandi la visione ad albero del dispositivo punto luce selezionato",
+        "expected": "Vengono visualizzate le sorgenti di luce che appartengono al dispositivo punto luce"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati apparecchio e compila il form con informazioni parzialmente valide",
+        "expected": "Viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC3.4.3.11"
+  }
+]

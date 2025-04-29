@@ -1,0 +1,93 @@
+📝 PROMPT:
+Agisci come un test engineer esperto. Ti verrà fornito un caso d’uso in formato TXT con struttura formale.
+
+Il tuo compito è generare un elenco JSON di test case che verifichino il comportamento funzionale del sistema, con copertura di flusso base, alternative, eccezioni, e pre/postcondizioni.
+
+Esempio di Formato JSON (restituisci solo un array di oggetti):
+{
+  "test_case_id": "UC2_TC2",
+  "title": "Input incompleto",
+  "preconditions": "Utente autenticato",
+  "postconditions": "Nessuna modifica salvata",
+  "test_steps": [
+    { "step": "Lascia il campo 'email' vuoto", "expected": "Viene mostrato un messaggio di errore" }
+  ],
+  "test_type": "Negativo",
+  "priority": "Medium",
+  "use_case_id": "UC2"
+}
+
+Genera:
+- Almeno 4 test case per UC.
+- Sia test positivi che negativi.
+- `test_type` dev’essere "Positive" o "Negative".
+- Ogni `test_case_id` deve iniziare con l’ID del caso d’uso.
+
+Non spiegare nulla. Restituisci **solo** l’array JSON risultante. Non mettere "```json" all'inizio della risposta e "```" alla fine.
+Apri e chiudi correttamente le parentesi.
+
+Il seguente è il caso d’uso in formato TXT:
+
+Id: UC3.2
+Title: Ricerca scheda censimento
+Summary: Permette la ricerca tra le schede censimento
+Actor: Regione, Sindaco, Fornitore
+Precondition: L’utente visualizza la sezione relativa alle schede censimento
+Postcondition: L’utente visualizza le informazioni corrispondenti alla paginazione richiesta
+Base_sequence:
+1) L’utente visualizza la barra di ricerca relativa alle schede censimento
+Branch_sequence: no
+Exception_sequence: no
+Note: no
+
+📥 RISPOSTA:
+[
+  {
+    "test_case_id": "UC3.2_TC1",
+    "title": "Ricerca scheda censimento valida",
+    "preconditions": "Utente autenticato, sezione schede censimento visualizzata",
+    "postconditions": "Informazioni relative alla paginazione richiesta visualizzate",
+    "test_steps": [
+      { "step": "Inserisci criteri di ricerca validi", "expected": "Vengono mostrate le informazioni corrispondenti" }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC3.2"
+  },
+  {
+    "test_case_id": "UC3.2_TC2",
+    "title": "Ricerca scheda censimento con criteri non validi",
+    "preconditions": "Utente autenticato, sezione schede censimento visualizzata",
+    "postconditions": "Nessun risultato trovato",
+    "test_steps": [
+      { "step": "Inserisci criteri di ricerca non validi", "expected": "Viene mostrato un messaggio di 'nessun risultato'" }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC3.2"
+  },
+  {
+    "test_case_id": "UC3.2_TC3",
+    "title": "Ricerca scheda censimento senza criteri di ricerca",
+    "preconditions": "Utente autenticato, sezione schede censimento visualizzata",
+    "postconditions": "Tutte le informazioni relative alle schede censimento visualizzate",
+    "test_steps": [
+      { "step": "Lascia vuota la barra di ricerca", "expected": "Vengono mostrate tutte le informazioni" }
+    ],
+    "test_type": "Positive",
+    "priority": "Low",
+    "use_case_id": "UC3.2"
+  },
+  {
+    "test_case_id": "UC3.2_TC4",
+    "title": "Ricerca scheda censimento con paginazione",
+    "preconditions": "Utente autenticato, sezione schede censimento visualizzata",
+    "postconditions": "Informazioni relative alla paginazione richiesta visualizzate",
+    "test_steps": [
+      { "step": "Seleziona una pagina specifica", "expected": "Vengono mostrate le informazioni corrispondenti alla pagina selezionata" }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC3.2"
+  }
+]

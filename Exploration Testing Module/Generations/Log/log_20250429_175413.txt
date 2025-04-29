@@ -1,0 +1,99 @@
+📝 PROMPT:
+Agisci come un test engineer esperto. Ti verrà fornito un caso d’uso in formato TXT con struttura formale.
+
+Il tuo compito è generare un elenco JSON di test case che verifichino il comportamento funzionale del sistema, con copertura di flusso base, alternative, eccezioni, e pre/postcondizioni.
+
+Esempio di Formato JSON (restituisci solo un array di oggetti):
+{
+  "test_case_id": "UC2_TC2",
+  "title": "Input incompleto",
+  "preconditions": "Utente autenticato",
+  "postconditions": "Nessuna modifica salvata",
+  "test_steps": [
+    { "step": "Lascia il campo 'email' vuoto", "expected": "Viene mostrato un messaggio di errore" }
+  ],
+  "test_type": "Negativo",
+  "priority": "Medium",
+  "use_case_id": "UC2"
+}
+
+Genera:
+- Almeno 4 test case per UC.
+- Sia test positivi che negativi.
+- `test_type` dev’essere "Positive" o "Negative".
+- Ogni `test_case_id` deve iniziare con l’ID del caso d’uso.
+
+Non spiegare nulla. Restituisci **solo** l’array JSON risultante. Non mettere "```json" all'inizio della risposta e "```" alla fine.
+Apri e chiudi correttamente le parentesi.
+
+Il seguente è il caso d’uso in formato TXT:
+
+Id: UC2.2
+Title: Ricerca impianti di illuminazione
+Summary: Ricerca per caratteristiche degli impianti di illuminazione
+Actor: Regione, Sindaco, Fornitore, Cittadino
+Precondition: L’utente visualizza la sezione relativa alla dashboard
+Postcondition: L’utente visualizza gli impianti di illuminazione che corrispondono ai criteri di ricerca
+Base_sequence:
+1) L’utente seleziona il comune di ricerca, così come i parametri tra quelli disponibili
+2) L’utente conferma la ricerca con il click
+3) L’utente visualizza sulla mappa la posizione dell’impianto d’illuminazione relativo al comune
+Branch_sequence: no
+Exception_sequence: no
+Note: no
+
+📥 RISPOSTA:
+[
+  {
+    "test_case_id": "UC2.2_TC1",
+    "title": "Ricerca impianti di illuminazione con parametri validi",
+    "preconditions": "Utente nella sezione dashboard",
+    "postconditions": "Impianti di illuminazione visualizzati sulla mappa",
+    "test_steps": [
+      { "step": "Seleziona comune e parametri di ricerca", "expected": "Risultati di ricerca visualizzati" },
+      { "step": "Conferma la ricerca", "expected": "Impianti di illuminazione mostrati sulla mappa" }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC2.2"
+  },
+  {
+    "test_case_id": "UC2.2_TC2",
+    "title": "Ricerca impianti di illuminazione senza selezionare comune",
+    "preconditions": "Utente nella sezione dashboard",
+    "postconditions": "Nessun impianto di illuminazione visualizzato",
+    "test_steps": [
+      { "step": "Lascia il campo del comune vuoto", "expected": "Viene mostrato un messaggio di errore" },
+      { "step": "Conferma la ricerca", "expected": "Nessun risultato visualizzato" }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC2.2"
+  },
+  {
+    "test_case_id": "UC2.2_TC3",
+    "title": "Ricerca impianti di illuminazione con parametri non validi",
+    "preconditions": "Utente nella sezione dashboard",
+    "postconditions": "Nessun impianto di illuminazione visualizzato",
+    "test_steps": [
+      { "step": "Inserisci parametri di ricerca non validi", "expected": "Viene mostrato un messaggio di errore" },
+      { "step": "Conferma la ricerca", "expected": "Nessun risultato visualizzato" }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC2.2"
+  },
+  {
+    "test_case_id": "UC2.2_TC4",
+    "title": "Ricerca impianti di illuminazione con comune non esistente",
+    "preconditions": "Utente nella sezione dashboard",
+    "postconditions": "Nessun impianto di illuminazione visualizzato",
+    "test_steps": [
+      { "step": "Seleziona un comune non esistente", "expected": "Viene mostrato un messaggio di errore" },
+      { "step": "Conferma la ricerca", "expected": "Nessun risultato visualizzato" }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC2.2"
+  }
+]

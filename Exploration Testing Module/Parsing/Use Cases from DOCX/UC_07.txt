@@ -1,0 +1,9 @@
+UseCase : UC2.5: Visualizzazione grafici (parte di UC2: Dashboard)
+Summary : Permette di visualizzare informazioni di adozione della piattaforma e tecniche a livello statale
+Actor : Regione, Sindaco, Fornitore, Cittadino
+Precondition : UC2
+Postcondition : L’utente visualizza le informazioni consultando i grafici
+Base sequence : L’utente scorre nella pagina fino a visualizzare le sezioni contrassegnate dai grafici che visualizzano i comuni aderenti per regione, punti luce per regione e distribuzione punti luce per tipo apparecchio
+Branch sequence : no
+Exception sequence : no
+Note : no

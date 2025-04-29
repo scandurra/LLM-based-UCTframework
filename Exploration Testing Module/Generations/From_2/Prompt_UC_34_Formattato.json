@@ -1,0 +1,70 @@
+[
+  {
+    "test_case_id": "UC3.4.5_TC1",
+    "title": "Visualizzazione dettaglio scheda censimento",
+    "preconditions": "L’utente ha eseguito l’operazione di caricamento della scheda censimento",
+    "postconditions": "L’utente visualizza le informazioni relative alla scheda censimento",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di dettaglio",
+        "expected": "Viene visualizzata una nuova pagina di dettaglio"
+      },
+      {
+        "step": "Verifica la presenza dei dati generali dell’area",
+        "expected": "Sono presenti i dati generali dell’area a cui si riferisce la scheda"
+      }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC3.4.5"
+  },
+  {
+    "test_case_id": "UC3.4.5_TC2",
+    "title": "Navigazione gerarchia POD e Aree Omogenee",
+    "preconditions": "L’utente è nella pagina di dettaglio della scheda censimento",
+    "postconditions": "L’utente visualizza la gerarchia dei POD e Aree Omogenee",
+    "test_steps": [
+      {
+        "step": "Seleziona un elemento della gerarchia",
+        "expected": "Viene visualizzato il dettaglio dell’elemento selezionato"
+      },
+      {
+        "step": "Verifica la possibilità di navigare tra gli elementi della gerarchia",
+        "expected": "È possibile navigare tra gli elementi della gerarchia"
+      }
+    ],
+    "test_type": "Positive",
+    "priority": "Medium",
+    "use_case_id": "UC3.4.5"
+  },
+  {
+    "test_case_id": "UC3.4.5_TC3",
+    "title": "Tentativo di modifica informazioni visualizzate",
+    "preconditions": "L’utente è nella pagina di dettaglio della scheda censimento",
+    "postconditions": "L’utente non può modificare le informazioni visualizzate",
+    "test_steps": [
+      {
+        "step": "Tenta di modificare un campo",
+        "expected": "Viene mostrato un messaggio di errore o il campo non è modificabile"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC3.4.5"
+  },
+  {
+    "test_case_id": "UC3.4.5_TC4",
+    "title": "Visualizzazione scheda censimento non caricata",
+    "preconditions": "L’utente non ha eseguito l’operazione di caricamento della scheda censimento",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di dettaglio",
+        "expected": "Viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "High",
+    "use_case_id": "UC3.4.5"
+  }
+]

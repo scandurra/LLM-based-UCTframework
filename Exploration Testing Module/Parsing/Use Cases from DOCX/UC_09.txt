@@ -1,0 +1,9 @@
+UseCase : UC3: Gestione schede censimento
+Summary : Apertura dell’interfaccia per la gestione delle schede censimento
+Actor : Regione, Sindaco, Fornitore
+Precondition : UC1
+Postcondition : L’utente visualizza la sezione relativa alle schede censimento
+Base sequence : L’utente naviga nella sezione relativa alle schede censimento utilizzando il menù laterale di sinistra
+Branch sequence : no
+Exception sequence : no
+Note : no

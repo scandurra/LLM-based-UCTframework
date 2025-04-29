@@ -1,0 +1,13 @@
+Id: UC3.2.4
+Title: Ricerca scheda censimento combinata
+Summary: Permette la ricerca tra le schede censimento in base ai parametri forniti
+Actor: Regione, Sindaco, Fornitore
+Precondition: L’utente visualizza le informazioni corrispondenti alla paginazione richiesta
+Postcondition: L’utente visualizza le informazioni corrispondenti alla paginazione richiesta
+Base_sequence:
+1) L’utente inserisce tra i parametri di ricerca nome, stato e tipo
+2) L’utente conferma la ricerca
+3) L’utente visualizza il risultato della ricerca come nello UC3.1
+Branch_sequence: no
+Exception_sequence: no
+Note: no

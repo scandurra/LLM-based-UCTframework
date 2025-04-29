@@ -1,0 +1,62 @@
+[
+  {
+    "test_case_id": "UC4.1_TC1",
+    "title": "Visualizzazione sezione impianto",
+    "preconditions": "Utente autenticato e a conoscenza dell'operazione di successo",
+    "postconditions": "Sezione impianto visualizzata correttamente",
+    "test_steps": [
+      {
+        "step": "L'utente naviga nella prima sezione dedicata agli impianti",
+        "expected": "La sezione impianto viene visualizzata"
+      }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC4.1"
+  },
+  {
+    "test_case_id": "UC4.1_TC2",
+    "title": "Utente non autenticato",
+    "preconditions": "Utente non autenticato",
+    "postconditions": "Accesso negato alla sezione impianto",
+    "test_steps": [
+      {
+        "step": "L'utente tenta di navigare nella prima sezione dedicata agli impianti",
+        "expected": "Viene mostrato un messaggio di accesso negato"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC4.1"
+  },
+  {
+    "test_case_id": "UC4.1_TC3",
+    "title": "Utente senza permessi",
+    "preconditions": "Utente autenticato ma senza permessi per accedere alla sezione impianto",
+    "postconditions": "Accesso negato alla sezione impianto",
+    "test_steps": [
+      {
+        "step": "L'utente tenta di navigare nella prima sezione dedicata agli impianti",
+        "expected": "Viene mostrato un messaggio di accesso negato"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC4.1"
+  },
+  {
+    "test_case_id": "UC4.1_TC4",
+    "title": "Navigazione corretta nella sezione impianto",
+    "preconditions": "Utente autenticato e a conoscenza dell'operazione di successo",
+    "postconditions": "Sezione impianto visualizzata correttamente",
+    "test_steps": [
+      {
+        "step": "L'utente naviga nella prima sezione dedicata agli impianti",
+        "expected": "La sezione impianto viene visualizzata con tutte le informazioni richieste"
+      }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC4.1"
+  }
+]

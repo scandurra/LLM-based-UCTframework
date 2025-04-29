@@ -1,0 +1,120 @@
+[
+  {
+    "test_case_id": "UC3.3_TC1",
+    "title": "Caricamento scheda censimento valido",
+    "preconditions": "L’utente visualizza la sezione relativa alle schede censimento",
+    "postconditions": "L’utente può visualizzare le informazioni corrispondenti alla scheda censimento appena caricata",
+    "test_steps": [
+      {
+        "step": "Cliccare sul tasto di caricamento delle schede censimento",
+        "expected": "Viene visualizzata la finestra per il caricamento"
+      },
+      {
+        "step": "Selezionare un file valido tramite drag-and-drop o browser",
+        "expected": "Il file viene caricato correttamente"
+      },
+      {
+        "step": "Attendere il completamento del caricamento",
+        "expected": "Viene visualizzato un messaggio di operazione andata a buon fine"
+      }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC3.3"
+  },
+  {
+    "test_case_id": "UC3.3_TC2",
+    "title": "Caricamento scheda censimento non valido - formato file errato",
+    "preconditions": "L’utente visualizza la sezione relativa alle schede censimento",
+    "postconditions": "Viene visualizzato un messaggio di errore per il caricamento della scheda censimento",
+    "test_steps": [
+      {
+        "step": "Cliccare sul tasto di caricamento delle schede censimento",
+        "expected": "Viene visualizzata la finestra per il caricamento"
+      },
+      {
+        "step": "Selezionare un file non valido (formato errato) tramite drag-and-drop o browser",
+        "expected": "Viene visualizzato un messaggio di errore per il formato del file"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC3.3"
+  },
+  {
+    "test_case_id": "UC3.3_TC3",
+    "title": "Caricamento scheda censimento - dimensione file eccedente il limite",
+    "preconditions": "L’utente visualizza la sezione relativa alle schede censimento",
+    "postconditions": "Viene visualizzato un messaggio di errore per la dimensione del file",
+    "test_steps": [
+      {
+        "step": "Cliccare sul tasto di caricamento delle schede censimento",
+        "expected": "Viene visualizzata la finestra per il caricamento"
+      },
+      {
+        "step": "Selezionare un file con dimensione superiore al limite consentito tramite drag-and-drop o browser",
+        "expected": "Viene visualizzato un messaggio di errore per la dimensione del file"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC3.3"
+  },
+  {
+    "test_case_id": "UC3.3_TC4",
+    "title": "Caricamento scheda censimento senza selezionare un file",
+    "preconditions": "L’utente visualizza la sezione relativa alle schede censimento",
+    "postconditions": "Viene visualizzato un messaggio di errore per la mancanza del file",
+    "test_steps": [
+      {
+        "step": "Cliccare sul tasto di caricamento delle schede censimento",
+        "expected": "Viene visualizzata la finestra per il caricamento"
+      },
+      {
+        "step": "Non selezionare alcun file e procedere con il caricamento",
+        "expected": "Viene visualizzato un messaggio di errore per la mancanza del file"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC3.3"
+  },
+  {
+    "test_case_id": "UC3.3_TC5",
+    "title": "Caricamento scheda censimento con nome già esistente",
+    "preconditions": "L’utente visualizza la sezione relativa alle schede censimento e esiste già una scheda con lo stesso nome",
+    "postconditions": "Viene visualizzato un messaggio di errore per il nome della scheda censimento",
+    "test_steps": [
+      {
+        "step": "Cliccare sul tasto di caricamento delle schede censimento",
+        "expected": "Viene visualizzata la finestra per il caricamento"
+      },
+      {
+        "step": "Selezionare un file valido e assegnargli un nome già esistente tramite drag-and-drop o browser",
+        "expected": "Viene visualizzato un messaggio di errore per il nome della scheda censimento"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC3.3"
+  },
+  {
+    "test_case_id": "UC3.3_TC6",
+    "title": "Caricamento scheda censimento con parametri non validi",
+    "preconditions": "L’utente visualizza la sezione relativa alle schede censimento",
+    "postconditions": "Viene visualizzato un messaggio di errore per i parametri della scheda censimento",
+    "test_steps": [
+      {
+        "step": "Cliccare sul tasto di caricamento delle schede censimento",
+        "expected": "Viene visualizzata la finestra per il caricamento"
+      },
+      {
+        "step": "Inserire parametri non validi per il caricamento (ad esempio, caratteri speciali nel nome)",
+        "expected": "Viene visualizzato un messaggio di errore per i parametri della scheda censimento"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC3.3"
+  }
+]

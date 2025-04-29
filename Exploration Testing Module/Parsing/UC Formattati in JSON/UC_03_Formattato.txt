@@ -1,0 +1,14 @@
+[
+{
+  "Id": "UC2.1",
+  "Title": "Download PDF",
+  "Summary": "Download del PDF relativo alle informazioni della dashboard",
+  "Actor": ["Regione", "Sindaco", "Fornitore"],
+  "Precondition": "L’utente visualizza la sezione relativa alla dashboard",
+  "Postcondition": "L’utente ha scaricato il file, può aprirlo dalla apposita sezione del browser utilizzato ed il file è ben formato",
+  "Base_sequence": ["L’utente inizia il processo di download cliccando sul tasto dedicato", "L’utente conferma la richiesta", "L’utente visualizza un messaggio di operazione completata con successo"],
+  "Branch_sequence": [],
+  "Exception_sequence": ["L’utente visualizza un messaggio di operazione completata con un errore relativo all’eccezione verificatasi", "L’utente può ripartire dal punto 2 della base sequence"],
+  "Note": "no"
+}
+]

@@ -1,0 +1,78 @@
+[
+  {
+    "test_case_id": "UC2.1_TC1",
+    "title": "Download PDF completato con successo",
+    "preconditions": "Utente visualizza la sezione relativa alla dashboard",
+    "postconditions": "File PDF scaricato e aperto correttamente",
+    "test_steps": [
+      {
+        "step": "Cliccare sul tasto di download",
+        "expected": "Richiesta di conferma del download"
+      },
+      {
+        "step": "Confermare la richiesta di download",
+        "expected": "Messaggio di operazione completata con successo"
+      }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC2",
+    "title": "Download PDF annullato",
+    "preconditions": "Utente visualizza la sezione relativa alla dashboard",
+    "postconditions": "Nessun file scaricato",
+    "test_steps": [
+      {
+        "step": "Cliccare sul tasto di download",
+        "expected": "Richiesta di conferma del download"
+      },
+      {
+        "step": "Annullare la richiesta di download",
+        "expected": "Nessuna operazione di download avviata"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC3",
+    "title": "Download PDF con errore",
+    "preconditions": "Utente visualizza la sezione relativa alla dashboard",
+    "postconditions": "Messaggio di errore visualizzato",
+    "test_steps": [
+      {
+        "step": "Cliccare sul tasto di download",
+        "expected": "Richiesta di conferma del download"
+      },
+      {
+        "step": "Confermare la richiesta di download con errore",
+        "expected": "Messaggio di operazione completata con un errore"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC4",
+    "title": "Download PDF ripetuto dopo errore",
+    "preconditions": "Utente visualizza la sezione relativa alla dashboard e ha già ricevuto un messaggio di errore",
+    "postconditions": "File PDF scaricato e aperto correttamente",
+    "test_steps": [
+      {
+        "step": "Cliccare nuovamente sul tasto di download",
+        "expected": "Richiesta di conferma del download"
+      },
+      {
+        "step": "Confermare la richiesta di download",
+        "expected": "Messaggio di operazione completata con successo"
+      }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC2.1"
+  }
+]

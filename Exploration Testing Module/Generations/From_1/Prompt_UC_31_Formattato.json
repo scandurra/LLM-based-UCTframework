@@ -1,0 +1,133 @@
+[
+  {
+    "test_case_id": "UC3.4.3.11_TC1",
+    "title": "Modifica LightSource sezione Dati sorgente luminosa con dati validi",
+    "preconditions": "L’utente è loggato e ha accesso alla scheda censimento",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Selezionare il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD è selezionato correttamente"
+      },
+      {
+        "step": "Espandere la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD",
+        "expected": "I pannelli elettrici sono visualizzati correttamente"
+      },
+      {
+        "step": "Selezionare il pannello elettrico ed espandere la visione ad albero del pannello selezionato per visionare i punti luce che appartengono al pannello elettrico",
+        "expected": "I punti luce sono visualizzati correttamente"
+      },
+      {
+        "step": "Selezionare il punto luce ed espandere la visione ad albero del punto luce selezionato per visionare i dispositivi punti luce che appartengono al punto luce",
+        "expected": "I dispositivi punti luce sono visualizzati correttamente"
+      },
+      {
+        "step": "Selezionare il dispositivo punto luce ed espandere la visione ad albero del dispositivo punto luce selezionato per visionare le sorgenti di luce che appartengono al dispositivo punto luce",
+        "expected": "Le sorgenti di luce sono visualizzate correttamente"
+      },
+      {
+        "step": "Selezionare il tab relativo ai dati apparecchio e compilare il form con informazioni valide",
+        "expected": "Il form è compilato correttamente senza errori"
+      },
+      {
+        "step": "Applicare le modifiche con l’apposito tasto",
+        "expected": "Un messaggio di conferma dell’operazione andata a buon fine è visualizzato"
+      }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC3.4.3.11"
+  },
+  {
+    "test_case_id": "UC3.4.3.11_TC2",
+    "title": "Modifica LightSource sezione Dati sorgente luminosa con dati non validi",
+    "preconditions": "L’utente è loggato e ha accesso alla scheda censimento",
+    "postconditions": "Un messaggio di errore è visualizzato",
+    "test_steps": [
+      {
+        "step": "Selezionare il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD è selezionato correttamente"
+      },
+      {
+        "step": "Espandere la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD",
+        "expected": "I pannelli elettrici sono visualizzati correttamente"
+      },
+      {
+        "step": "Selezionare il pannello elettrico ed espandere la visione ad albero del pannello selezionato per visionare i punti luce che appartengono al pannello elettrico",
+        "expected": "I punti luce sono visualizzati correttamente"
+      },
+      {
+        "step": "Selezionare il punto luce ed espandere la visione ad albero del punto luce selezionato per visionare i dispositivi punti luce che appartengono al punto luce",
+        "expected": "I dispositivi punti luce sono visualizzati correttamente"
+      },
+      {
+        "step": "Selezionare il dispositivo punto luce ed espandere la visione ad albero del dispositivo punto luce selezionato per visionare le sorgenti di luce che appartengono al dispositivo punto luce",
+        "expected": "Le sorgenti di luce sono visualizzate correttamente"
+      },
+      {
+        "step": "Selezionare il tab relativo ai dati apparecchio e compilare il form con informazioni non valide",
+        "expected": "Un messaggio di errore è visualizzato"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC3.4.3.11"
+  },
+  {
+    "test_case_id": "UC3.4.3.11_TC3",
+    "title": "Modifica LightSource sezione Dati sorgente luminosa senza selezionare il POD",
+    "preconditions": "L’utente è loggato e ha accesso alla scheda censimento",
+    "postconditions": "Un messaggio di errore è visualizzato",
+    "test_steps": [
+      {
+        "step": "Non selezionare il POD per la modifica",
+        "expected": "Un messaggio di errore è visualizzato"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC3.4.3.11"
+  },
+  {
+    "test_case_id": "UC3.4.3.11_TC4",
+    "title": "Modifica LightSource sezione Dati sorgente luminosa senza selezionare il pannello elettrico",
+    "preconditions": "L’utente è loggato e ha accesso alla scheda censimento, il POD è selezionato",
+    "postconditions": "Un messaggio di errore è visualizzato",
+    "test_steps": [
+      {
+        "step": "Selezionare il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD è selezionato correttamente"
+      },
+      {
+        "step": "Non selezionare il pannello elettrico",
+        "expected": "Un messaggio di errore è visualizzato"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC3.4.3.11"
+  },
+  {
+    "test_case_id": "UC3.4.3.11_TC5",
+    "title": "Modifica LightSource sezione Dati sorgente luminosa senza selezionare il punto luce",
+    "preconditions": "L’utente è loggato e ha accesso alla scheda censimento, il POD e il pannello elettrico sono selezionati",
+    "postconditions": "Un messaggio di errore è visualizzato",
+    "test_steps": [
+      {
+        "step": "Selezionare il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD è selezionato correttamente"
+      },
+      {
+        "step": "Selezionare il pannello elettrico ed espandere la visione ad albero del pannello selezionato per visionare i punti luce che appartengono al pannello elettrico",
+        "expected": "I punti luce sono visualizzati correttamente"
+      },
+      {
+        "step": "Non selezionare il punto luce",
+        "expected": "Un messaggio di errore è visualizzato"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC3.4.3.11"
+  }
+]

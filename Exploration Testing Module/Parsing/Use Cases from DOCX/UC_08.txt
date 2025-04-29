@@ -1,0 +1,9 @@
+UseCase : UC2.6: Analisi consumo comune per POD (parte di UC2: Dashboard)
+Summary : Permette di visualizzare un’analisi per comune dei consumi sulla base di alcuni parametri selezionati
+Actor : Comune, Fornitore
+Precondition : UC2
+Postcondition : L’utente visualizza le informazioni consultando i grafici
+Base sequence : L’utente scorre nella pagina fino a visualizzare la sezione dedicata al consumo : Selezionato il comune, è possibile eseguire un’analisi più puntuale andando a specificare POD, pannello elettrico, periodo e tipo di potenza analizzata
+Branch sequence : no
+Exception sequence : no
+Note : no

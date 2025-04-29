@@ -1,0 +1,140 @@
+[
+  {
+    "test_case_id": "UC3.2.3_TC1",
+    "title": "Ricerca scheda censimento per tipo valido",
+    "preconditions": "L’utente è autenticato e visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Inserire un tipo di scheda censimento valido",
+        "expected": "Nessun messaggio di errore"
+      },
+      {
+        "step": "Confermare la ricerca",
+        "expected": "Risultato della ricerca visualizzato"
+      },
+      {
+        "step": "Verificare il risultato della ricerca",
+        "expected": "Informazioni corrispondenti alla paginazione richiesta visualizzate"
+      }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC3.2.3"
+  },
+  {
+    "test_case_id": "UC3.2.3_TC2",
+    "title": "Ricerca scheda censimento per tipo non valido",
+    "preconditions": "L’utente è autenticato e visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Inserire un tipo di scheda censimento non valido",
+        "expected": "Messaggio di errore visualizzato"
+      },
+      {
+        "step": "Confermare la ricerca",
+        "expected": "Nessun risultato della ricerca visualizzato"
+      },
+      {
+        "step": "Verificare il messaggio di errore",
+        "expected": "Messaggio di errore corretto visualizzato"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC3.2.3"
+  },
+  {
+    "test_case_id": "UC3.2.3_TC3",
+    "title": "Ricerca scheda censimento senza tipo",
+    "preconditions": "L’utente è autenticato e visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Non inserire nessun tipo di scheda censimento",
+        "expected": "Messaggio di errore visualizzato"
+      },
+      {
+        "step": "Confermare la ricerca",
+        "expected": "Nessun risultato della ricerca visualizzato"
+      },
+      {
+        "step": "Verificare il messaggio di errore",
+        "expected": "Messaggio di errore corretto visualizzato"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC3.2.3"
+  },
+  {
+    "test_case_id": "UC3.2.3_TC4",
+    "title": "Ricerca scheda censimento con tipo vuoto",
+    "preconditions": "L’utente è autenticato e visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Inserire un tipo di scheda censimento vuoto",
+        "expected": "Messaggio di errore visualizzato"
+      },
+      {
+        "step": "Confermare la ricerca",
+        "expected": "Nessun risultato della ricerca visualizzato"
+      },
+      {
+        "step": "Verificare il messaggio di errore",
+        "expected": "Messaggio di errore corretto visualizzato"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC3.2.3"
+  },
+  {
+    "test_case_id": "UC3.2.3_TC5",
+    "title": "Ricerca scheda censimento con tipo troppo lungo",
+    "preconditions": "L’utente è autenticato e visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Inserire un tipo di scheda censimento troppo lungo",
+        "expected": "Messaggio di errore visualizzato"
+      },
+      {
+        "step": "Confermare la ricerca",
+        "expected": "Nessun risultato della ricerca visualizzato"
+      },
+      {
+        "step": "Verificare il messaggio di errore",
+        "expected": "Messaggio di errore corretto visualizzato"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC3.2.3"
+  },
+  {
+    "test_case_id": "UC3.2.3_TC6",
+    "title": "Ricerca scheda censimento con tipo contenente caratteri speciali",
+    "preconditions": "L’utente è autenticato e visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Inserire un tipo di scheda censimento contenente caratteri speciali",
+        "expected": "Messaggio di errore visualizzato"
+      },
+      {
+        "step": "Confermare la ricerca",
+        "expected": "Nessun risultato della ricerca visualizzato"
+      },
+      {
+        "step": "Verificare il messaggio di errore",
+        "expected": "Messaggio di errore corretto visualizzato"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC3.2.3"
+  }
+]

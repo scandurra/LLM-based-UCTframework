@@ -1,0 +1,9 @@
+UseCase : UC3.2: Ricerca scheda censimento (parte di UC3: Gestione schede censimento)
+Summary : Permette la ricerca tra le schede censimento
+Actor : Regione, Sindaco, Fornitore
+Precondition : UC3
+Postcondition : L’utente visualizza le informazioni corrispondenti alla paginazione richiesta
+Base sequence : L’utente visualizza la barra di ricerca relativa alle schede censimento
+Branch sequence : no
+Exception sequence : no
+Note : no

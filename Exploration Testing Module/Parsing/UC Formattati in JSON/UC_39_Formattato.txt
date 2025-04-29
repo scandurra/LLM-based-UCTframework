@@ -1,0 +1,21 @@
+[
+{
+  "Id": "UC4.3",
+  "Title": "Nuova simulazione",
+  "Summary": "Permette all’utente di associare un determinato impianto riqualificato con una simulazione d’investimento per visualizzarne successivamente i risultati",
+  "Actor": ["Progettista"],
+  "Precondition": "L’utente visualizza un messaggio di conferma",
+  "Postcondition": "L’utente ha aggiunto l’associazione nel menu dedicato",
+  "Base_sequence": [
+    "L’utente naviga nella terza sezione dedicata alle analisi, su una barra orizzontale dedicata",
+    "L’utente clicca sul tasto dedicato all’aggiunta di una singola analisi",
+    "L’utente seleziona l’impianto e l’investimento da associare",
+    "L’utente visualizza un messaggio di conferma"
+  ],
+  "Branch_sequence": [
+    "In caso di annullamento l’utente visualizza un messaggio di avvenuto annullamento"
+  ],
+  "Exception_sequence": [],
+  "Note": "no"
+}
+]

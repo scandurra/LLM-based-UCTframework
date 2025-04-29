@@ -1,0 +1,9 @@
+UseCase : UC6: Logout utente
+Summary : De-autenticazione di un’utente registrato al sistema
+Actor : Regione, Sindaco, Fornitore, Progettista, Cittadino
+Precondition : UC1
+Postcondition : L’utente è non è più autenticato ed è a conoscenza che l’operazione ha avuto successo
+Base sequence : L’utente clicca sul proprio nome utente in alto a destra : L’utente inizia il processo di logout cliccando il tasto “Logout” : L’utente visualizza un messaggio di operazione completata con successo
+Branch sequence : no
+Exception sequence : no
+Note : no

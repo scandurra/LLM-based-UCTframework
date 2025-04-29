@@ -1,0 +1,15 @@
+Id: UC4.2
+Title: Aggiunta nuovo investimento (parte di UC4: Gestione modulo SAVE)
+Summary: Permette di aggiungere un nuovo investimento tra quelli disponibili per l’utenza
+Actor: Progettista
+Precondition: L’utente è autenticato ed è a conoscenza che l’operazione ha avuto successo
+Postcondition: L’utente visualizza un messaggio di conferma
+Base_sequence:
+1) L’utente naviga nella seconda sezione dedicata agli investimenti, su una barra orizzontale dedicata
+2) L’utente clicca sul tasto dedicato all’aggiunta di un singolo investimento
+3) L’utente compila il form con i parametri richiesti
+4) L’utente visualizza un messaggio di conferma
+Branch_sequence:
+1) In caso di annullamento l’utente visualizza un messaggio di avvenuto annullamento
+Exception_sequence: no
+Note: no

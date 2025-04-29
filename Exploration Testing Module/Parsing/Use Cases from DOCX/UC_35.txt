@@ -1,0 +1,9 @@
+UseCase : UC4: Gestione modulo SAVE
+Summary : Apertura dell’interfaccia dedicata al modulo SAVE
+Actor : Regione, Sindaco, Fornitore, Progettista
+Precondition : UC1
+Postcondition : no
+Base sequence : L’utente naviga nella sezione relativa al modulo SAVE utilizzando il menù laterale di sinistra
+Branch sequence : no
+Exception sequence : no
+Note : no

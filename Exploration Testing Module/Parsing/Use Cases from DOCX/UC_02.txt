@@ -1,0 +1,9 @@
+UseCase : UC2: Dashboard
+Summary : Apertura della dashboard
+Actor : Regione, Sindaco, Fornitore, Progettista, Cittadino
+Precondition : UC1
+Postcondition : L’utente visualizza la sezione relativa alla dashboard
+Base sequence : L’utente naviga nella sezione relativa alla dashboard utilizzando il menù laterale di sinistra
+Branch sequence : no
+Exception sequence : no
+Note : no

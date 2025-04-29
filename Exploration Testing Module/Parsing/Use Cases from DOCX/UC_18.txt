@@ -1,0 +1,9 @@
+UseCase : UC3.4.1: Download scheda censimento (parte di UC3.4: Azione su scheda censimento) (parte di UC3: Gestione schede censimento)
+Summary : Permette di scaricare sul dispositivo un file che rappresenta le informazioni sulla scheda censimento selezionata
+Actor : Regione, Sindaco, Fornitore
+Precondition : UC3.4
+Postcondition : L’utente visualizza un messaggio di conferma e ottiene il file desiderato
+Base sequence : L’utente seleziona l’operazione di download : L’utente visualizza l’avanzamento del download richiesto all’interno del browser
+Branch sequence : no
+Exception sequence : no
+Note : no

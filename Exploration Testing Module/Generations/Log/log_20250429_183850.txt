@@ -1,0 +1,103 @@
+📝 PROMPT:
+Agisci come un test engineer esperto. Ti verrà fornito un caso d’uso in formato TXT con struttura formale.
+
+Il tuo compito è generare un elenco JSON di test case che verifichino il comportamento funzionale del sistema, con copertura di flusso base, alternative, eccezioni, e pre/postcondizioni.
+
+Esempio di Formato JSON (restituisci solo un array di oggetti):
+{
+  "test_case_id": "UC2_TC2",
+  "title": "Input incompleto",
+  "preconditions": "Utente autenticato",
+  "postconditions": "Nessuna modifica salvata",
+  "test_steps": [
+    { "step": "Lascia il campo 'email' vuoto", "expected": "Viene mostrato un messaggio di errore" }
+  ],
+  "test_type": "Negativo",
+  "priority": "Medium",
+  "use_case_id": "UC2"
+}
+
+Genera:
+- Almeno 4 test case per UC.
+- Sia test positivi che negativi.
+- `test_type` dev’essere "Positive" o "Negative".
+- Ogni `test_case_id` deve iniziare con l’ID del caso d’uso.
+
+Non spiegare nulla. Restituisci **solo** l’array JSON risultante. Non mettere "```json" all'inizio della risposta e "```" alla fine.
+Apri e chiudi correttamente le parentesi.
+
+Il seguente è il caso d’uso in formato TXT:
+
+Id: UC3.4.3.12
+Title: Modifica Zona omogenea sezione Dati zona omogenea
+Summary: Permette di modificare i dati di una zona omogenea della scheda censimento
+Actor: Regione, Sindaco, Fornitore
+Precondition: L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine
+Postcondition: L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine
+Base_sequence:
+1) L’utente seleziona la zona omogenea per la modifica tramite il menù ad albero di sinistra
+2) L’utente seleziona il tab relativo ai dati zona omogenea
+3) L’utente visualizza i dati precedenti e può compilare il form con le informazioni desiderate
+4) L’utente applica le modifiche con l’apposito tasto
+5) In caso di conferma l’utente visualizza un messaggio di conferma dell’operazione
+Branch_sequence:
+1) In caso di dati non validi viene mostrato un messaggio di errore
+Exception_sequence: no
+Note: no
+
+📥 RISPOSTA:
+[
+  {
+    "test_case_id": "UC3.4.3.12_TC1",
+    "title": "Modifica zona omogenea con successo",
+    "preconditions": "Utente autenticato e visualizzazione della scheda censimento",
+    "postconditions": "Messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      { "step": "Seleziona la zona omogenea per la modifica", "expected": "Visualizzazione dei dati precedenti" },
+      { "step": "Compila il form con le informazioni desiderate", "expected": "Dati validi" },
+      { "step": "Applica le modifiche", "expected": "Messaggio di conferma dell’operazione andata a buon fine" }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC3.4.3.12"
+  },
+  {
+    "test_case_id": "UC3.4.3.12_TC2",
+    "title": "Modifica zona omogenea con dati non validi",
+    "preconditions": "Utente autenticato e visualizzazione della scheda censimento",
+    "postconditions": "Nessuna modifica salvata",
+    "test_steps": [
+      { "step": "Seleziona la zona omogenea per la modifica", "expected": "Visualizzazione dei dati precedenti" },
+      { "step": "Compila il form con dati non validi", "expected": "Messaggio di errore" }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC3.4.3.12"
+  },
+  {
+    "test_case_id": "UC3.4.3.12_TC3",
+    "title": "Modifica zona omogenea senza compilare il form",
+    "preconditions": "Utente autenticato e visualizzazione della scheda censimento",
+    "postconditions": "Nessuna modifica salvata",
+    "test_steps": [
+      { "step": "Seleziona la zona omogenea per la modifica", "expected": "Visualizzazione dei dati precedenti" },
+      { "step": "Non compila il form e applica le modifiche", "expected": "Messaggio di errore" }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC3.4.3.12"
+  },
+  {
+    "test_case_id": "UC3.4.3.12_TC4",
+    "title": "Modifica zona omogenea con selezione tab non valida",
+    "preconditions": "Utente autenticato e visualizzazione della scheda censimento",
+    "postconditions": "Nessuna modifica salvata",
+    "test_steps": [
+      { "step": "Seleziona la zona omogenea per la modifica", "expected": "Visualizzazione dei dati precedenti" },
+      { "step": "Seleziona un tab non relativo ai dati zona omogenea", "expected": "Messaggio di errore" }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC3.4.3.12"
+  }
+]

@@ -1,0 +1,125 @@
+📝 PROMPT:
+Sei un esperto di Quality Assurance. Il tuo compito è generare una suite di test case per ogni caso d’uso fornito in formato JSON.  
+Il formato di output deve essere **esclusivamente JSON**, strutturato come array di oggetti test case, seguendo la struttura di esempio qui sotto:
+
+{
+  "test_case_id": "UC1_TC1",
+  "title": "Valid Login Credentials",
+  "preconditions": "User is not authenticated and has access to PELL portal",
+  "postconditions": "User is redirected to Home page",
+  "test_steps": [
+    { "step": "Click on the 'Login' button", "expected": "Login form is displayed" },
+    { "step": "Enter valid email and password", "expected": "No error messages are displayed" },
+    { "step": "Confirm authentication process", "expected": "User is redirected to Home page" }
+  ],
+  "test_type": "Positive",
+  "priority": "High",
+  "use_case_id": "UC1"
+}
+
+Suggerimenti:
+- Genera **almeno 4-6 test case** per ogni UC.
+- Includi sia test **positivi** (successo) che **negativi** (errori, input errati, mancanze, etc).
+- Usa nomi univoci per `test_case_id` seguendo lo schema `UCx_TCy`.
+- Analizza la base_sequence, branch_sequence, exception_sequence, pre/postcondizioni.
+
+Restituisci solo un array JSON (non spiegare). Non mettere "```json" all'inizio del file e "```" alla fine.
+Il seguente è l'use case in formato JSON:
+
+[
+{
+  "Id": "UC2.1",
+  "Title": "Download PDF",
+  "Summary": "Download del PDF relativo alle informazioni della dashboard",
+  "Actor": ["Regione", "Sindaco", "Fornitore"],
+  "Precondition": "L’utente visualizza la sezione relativa alla dashboard",
+  "Postcondition": "L’utente ha scaricato il file, può aprirlo dalla apposita sezione del browser utilizzato ed il file è ben formato",
+  "Base_sequence": ["L’utente inizia il processo di download cliccando sul tasto dedicato", "L’utente conferma la richiesta", "L’utente visualizza un messaggio di operazione completata con successo"],
+  "Branch_sequence": [],
+  "Exception_sequence": ["L’utente visualizza un messaggio di operazione completata con un errore relativo all’eccezione verificatasi", "L’utente può ripartire dal punto 2 della base sequence"],
+  "Note": "no"
+}
+]
+
+📥 RISPOSTA:
+[
+  {
+    "test_case_id": "UC2.1_TC1",
+    "title": "Download PDF con successo",
+    "preconditions": "Utente visualizza la sezione relativa alla dashboard e il file PDF è disponibile",
+    "postconditions": "Utente ha scaricato il file e può aprirlo",
+    "test_steps": [
+      { "step": "Cliccare sul tasto di download", "expected": "Richiesta di conferma del download" },
+      { "step": "Confermare la richiesta di download", "expected": "Messaggio di operazione completata con successo" },
+      { "step": "Verificare il file scaricato", "expected": "File è ben formato e può essere aperto" }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC2",
+    "title": "Download PDF senza permessi",
+    "preconditions": "Utente non autorizzato a visualizzare la sezione relativa alla dashboard",
+    "postconditions": "Utente non può scaricare il file",
+    "test_steps": [
+      { "step": "Cliccare sul tasto di download", "expected": "Messaggio di accesso negato" },
+      { "step": "Verificare la presenza del messaggio di errore", "expected": "Messaggio di errore è visualizzato" }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC3",
+    "title": "Download PDF con file non disponibile",
+    "preconditions": "Utente visualizza la sezione relativa alla dashboard ma il file PDF non è disponibile",
+    "postconditions": "Utente non può scaricare il file",
+    "test_steps": [
+      { "step": "Cliccare sul tasto di download", "expected": "Messaggio di errore relativo alla mancanza del file" },
+      { "step": "Verificare la presenza del messaggio di errore", "expected": "Messaggio di errore è visualizzato" }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC4",
+    "title": "Download PDF con conferma non valida",
+    "preconditions": "Utente visualizza la sezione relativa alla dashboard e il file PDF è disponibile",
+    "postconditions": "Utente non può scaricare il file",
+    "test_steps": [
+      { "step": "Cliccare sul tasto di download", "expected": "Richiesta di conferma del download" },
+      { "step": "Inserire dati di conferma non validi", "expected": "Messaggio di errore relativo alla conferma non valida" }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC5",
+    "title": "Download PDF con eccezione",
+    "preconditions": "Utente visualizza la sezione relativa alla dashboard e il file PDF è disponibile",
+    "postconditions": "Utente visualizza un messaggio di errore",
+    "test_steps": [
+      { "step": "Cliccare sul tasto di download", "expected": "Richiesta di conferma del download" },
+      { "step": "Simulare un'eccezione durante il download", "expected": "Messaggio di errore relativo all'eccezione verificatasi" }
+    ],
+    "test_type": "Negative",
+    "priority": "High",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC6",
+    "title": "Download PDF e ripartenza",
+    "preconditions": "Utente visualizza la sezione relativa alla dashboard e il file PDF è disponibile, utente ha già tentato di scaricare il file con successo parziale",
+    "postconditions": "Utente può ripartire dal punto 2 della base sequence",
+    "test_steps": [
+      { "step": "Cliccare sul tasto di download", "expected": "Richiesta di conferma del download" },
+      { "step": "Simulare un'eccezione durante il download e poi ripartire", "expected": "Utente può ripartire dal punto 2 della base sequence" }
+    ],
+    "test_type": "Positive",
+    "priority": "Medium",
+    "use_case_id": "UC2.1"
+  }
+]

@@ -1,0 +1,140 @@
+[
+  {
+    "test_case_id": "UC3.4.3_TC1",
+    "title": "Modifica scheda censimento con dati validi",
+    "preconditions": "L’utente è autenticato e ha accesso alla sezione di modifica della scheda censimento",
+    "postconditions": "L’utente visualizza le informazioni della scheda in fase di edit",
+    "test_steps": [
+      {
+        "step": "Selezionare l’operazione di modifica",
+        "expected": "La sezione di modifica della scheda censimento è visualizzata"
+      },
+      {
+        "step": "Inserire dati validi nella scheda censimento",
+        "expected": "Nessun messaggio di errore è visualizzato"
+      },
+      {
+        "step": "Confermare le modifiche",
+        "expected": "Un messaggio di conferma dell’operazione andata a buon fine è visualizzato"
+      }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC3.4.3"
+  },
+  {
+    "test_case_id": "UC3.4.3_TC2",
+    "title": "Modifica scheda censimento con dati non validi",
+    "preconditions": "L’utente è autenticato e ha accesso alla sezione di modifica della scheda censimento",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Selezionare l’operazione di modifica",
+        "expected": "La sezione di modifica della scheda censimento è visualizzata"
+      },
+      {
+        "step": "Inserire dati non validi nella scheda censimento",
+        "expected": "Un messaggio di errore è visualizzato"
+      },
+      {
+        "step": "Confermare le modifiche",
+        "expected": "Le modifiche non sono applicate e un messaggio di errore è visualizzato"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC3.4.3"
+  },
+  {
+    "test_case_id": "UC3.4.3_TC3",
+    "title": "Modifica scheda censimento senza autorizzazione",
+    "preconditions": "L’utente non è autenticato o non ha accesso alla sezione di modifica della scheda censimento",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Tentare di selezionare l’operazione di modifica senza autorizzazione",
+        "expected": "Un messaggio di errore è visualizzato"
+      },
+      {
+        "step": "Inserire dati validi nella scheda censimento",
+        "expected": "La sezione di modifica della scheda censimento non è accessibile"
+      },
+      {
+        "step": "Confermare le modifiche",
+        "expected": "Le modifiche non sono applicate e un messaggio di errore è visualizzato"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "High",
+    "use_case_id": "UC3.4.3"
+  },
+  {
+    "test_case_id": "UC3.4.3_TC4",
+    "title": "Modifica scheda censimento con dati parzialmente validi",
+    "preconditions": "L’utente è autenticato e ha accesso alla sezione di modifica della scheda censimento",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Selezionare l’operazione di modifica",
+        "expected": "La sezione di modifica della scheda censimento è visualizzata"
+      },
+      {
+        "step": "Inserire dati parzialmente validi nella scheda censimento",
+        "expected": "Un messaggio di errore è visualizzato per i campi non validi"
+      },
+      {
+        "step": "Confermare le modifiche",
+        "expected": "Le modifiche parziali sono applicate, ma un messaggio di errore è visualizzato per i campi non validi"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC3.4.3"
+  },
+  {
+    "test_case_id": "UC3.4.3_TC5",
+    "title": "Modifica scheda censimento con dati troppo lunghi",
+    "preconditions": "L’utente è autenticato e ha accesso alla sezione di modifica della scheda censimento",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Selezionare l’operazione di modifica",
+        "expected": "La sezione di modifica della scheda censimento è visualizzata"
+      },
+      {
+        "step": "Inserire dati troppo lunghi nella scheda censimento",
+        "expected": "Un messaggio di errore è visualizzato per i campi troppo lunghi"
+      },
+      {
+        "step": "Confermare le modifiche",
+        "expected": "Le modifiche non sono applicate e un messaggio di errore è visualizzato"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC3.4.3"
+  },
+  {
+    "test_case_id": "UC3.4.3_TC6",
+    "title": "Modifica scheda censimento con caratteri speciali",
+    "preconditions": "L’utente è autenticato e ha accesso alla sezione di modifica della scheda censimento",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Selezionare l’operazione di modifica",
+        "expected": "La sezione di modifica della scheda censimento è visualizzata"
+      },
+      {
+        "step": "Inserire caratteri speciali nella scheda censimento",
+        "expected": "Un messaggio di errore è visualizzato per i campi con caratteri speciali"
+      },
+      {
+        "step": "Confermare le modifiche",
+        "expected": "Le modifiche non sono applicate e un messaggio di errore è visualizzato"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC3.4.3"
+  }
+]

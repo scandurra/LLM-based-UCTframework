@@ -1,0 +1,15 @@
+Id: UC2.3
+Title: Visualizzazione tabella dati generali
+Summary: Permette di visualizzare informazioni illuminotecniche per comune
+Actor: Regione, Sindaco, Fornitore, Cittadino
+Precondition: L’utente visualizza la sezione relativa alla dashboard
+Postcondition: L’utente visualizza le informazioni corrispondenti alla paginazione richiesta
+Base_sequence:
+1) L’utente naviga nella sezione dashboard utilizzando il menù apposito
+2) L’utente scorre nella pagina fino a visualizzare una sezione tabellare dedicata ai dati generali, dove i dati saranno presentati in forma tabellare
+3) È possibile scorrere tra i comuni disponibili alla consultazione e censiti, tramite selettore della pagine in basso a destra
+4) È possibile modificare gli elementi visualizzati per pagina, tramite selettore in basso a sinistra
+5) È possibile ordinare per colonna di dati, cliccando sul nome della colonna
+Branch_sequence: no
+Exception_sequence: no
+Note: no

@@ -1,0 +1,78 @@
+[
+  {
+    "test_case_id": "UC4.1.1_TC1",
+    "title": "Aggiunta impianto valido",
+    "preconditions": "L’utente visualizza la sezione relativa alla gestione degli impianti",
+    "postconditions": "L’utente visualizza un messaggio di conferma",
+    "test_steps": [
+      {
+        "step": "Clicca sul tasto dedicato all’aggiunta di un singolo impianto",
+        "expected": "Viene visualizzato il form di inserimento"
+      },
+      {
+        "step": "Inserisci il nome e seleziona il comune tra quelli disponibili",
+        "expected": "Viene visualizzato un messaggio di conferma"
+      }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC4.1.1"
+  },
+  {
+    "test_case_id": "UC4.1.1_TC2",
+    "title": "Aggiunta impianto annullata",
+    "preconditions": "L’utente visualizza la sezione relativa alla gestione degli impianti",
+    "postconditions": "L’utente visualizza un messaggio di avvenuto annullamento",
+    "test_steps": [
+      {
+        "step": "Clicca sul tasto dedicato all’aggiunta di un singolo impianto",
+        "expected": "Viene visualizzato il form di inserimento"
+      },
+      {
+        "step": "Annulla l’inserimento",
+        "expected": "Viene visualizzato un messaggio di avvenuto annullamento"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC4.1.1"
+  },
+  {
+    "test_case_id": "UC4.1.1_TC3",
+    "title": "Aggiunta impianto con nome vuoto",
+    "preconditions": "L’utente visualizza la sezione relativa alla gestione degli impianti",
+    "postconditions": "Nessuna modifica salvata",
+    "test_steps": [
+      {
+        "step": "Clicca sul tasto dedicato all’aggiunta di un singolo impianto",
+        "expected": "Viene visualizzato il form di inserimento"
+      },
+      {
+        "step": "Lascia il campo 'nome' vuoto e seleziona il comune",
+        "expected": "Viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC4.1.1"
+  },
+  {
+    "test_case_id": "UC4.1.1_TC4",
+    "title": "Aggiunta impianto senza selezione comune",
+    "preconditions": "L’utente visualizza la sezione relativa alla gestione degli impianti",
+    "postconditions": "Nessuna modifica salvata",
+    "test_steps": [
+      {
+        "step": "Clicca sul tasto dedicato all’aggiunta di un singolo impianto",
+        "expected": "Viene visualizzato il form di inserimento"
+      },
+      {
+        "step": "Inserisci il nome e non seleziona il comune",
+        "expected": "Viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC4.1.1"
+  }
+]

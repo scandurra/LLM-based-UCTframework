@@ -1,0 +1,116 @@
+[
+  {
+    "test_case_id": "UC3.2_TC1",
+    "title": "Ricerca scheda censimento con parametri validi",
+    "preconditions": "L’utente visualizza la sezione relativa alle schede censimento e la barra di ricerca è visibile",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Inserire parametri di ricerca validi nella barra di ricerca",
+        "expected": "Nessun messaggio di errore è visualizzato"
+      },
+      {
+        "step": "Premere il pulsante di ricerca",
+        "expected": "Le informazioni corrispondenti alla paginazione richiesta sono visualizzate"
+      }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC3.2"
+  },
+  {
+    "test_case_id": "UC3.2_TC2",
+    "title": "Ricerca scheda censimento con parametri vuoti",
+    "preconditions": "L’utente visualizza la sezione relativa alle schede censimento e la barra di ricerca è visibile",
+    "postconditions": "L’utente visualizza un messaggio di errore per parametri mancanti",
+    "test_steps": [
+      {
+        "step": "Lasciare vuoti i parametri di ricerca nella barra di ricerca",
+        "expected": "Un messaggio di errore per parametri mancanti è visualizzato"
+      },
+      {
+        "step": "Premere il pulsante di ricerca",
+        "expected": "Nessuna informazione è visualizzata"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC3.2"
+  },
+  {
+    "test_case_id": "UC3.2_TC3",
+    "title": "Ricerca scheda censimento con parametri non validi",
+    "preconditions": "L’utente visualizza la sezione relativa alle schede censimento e la barra di ricerca è visibile",
+    "postconditions": "L’utente visualizza un messaggio di errore per parametri non validi",
+    "test_steps": [
+      {
+        "step": "Inserire parametri di ricerca non validi nella barra di ricerca",
+        "expected": "Un messaggio di errore per parametri non validi è visualizzato"
+      },
+      {
+        "step": "Premere il pulsante di ricerca",
+        "expected": "Nessuna informazione è visualizzata"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC3.2"
+  },
+  {
+    "test_case_id": "UC3.2_TC4",
+    "title": "Ricerca scheda censimento con più pagine di risultati",
+    "preconditions": "L’utente visualizza la sezione relativa alle schede censimento e la barra di ricerca è visibile",
+    "postconditions": "L’utente può navigare tra le pagine di risultati",
+    "test_steps": [
+      {
+        "step": "Inserire parametri di ricerca validi nella barra di ricerca",
+        "expected": "Nessun messaggio di errore è visualizzato"
+      },
+      {
+        "step": "Premere il pulsante di ricerca",
+        "expected": "Le informazioni corrispondenti alla prima pagina di risultati sono visualizzate"
+      },
+      {
+        "step": "Navigare alle successive pagine di risultati",
+        "expected": "Le informazioni delle successive pagine di risultati sono visualizzate correttamente"
+      }
+    ],
+    "test_type": "Positive",
+    "priority": "Low",
+    "use_case_id": "UC3.2"
+  },
+  {
+    "test_case_id": "UC3.2_TC5",
+    "title": "Ricerca scheda censimento senza risultati",
+    "preconditions": "L’utente visualizza la sezione relativa alle schede censimento e la barra di ricerca è visibile",
+    "postconditions": "L’utente visualizza un messaggio informativo per assenza di risultati",
+    "test_steps": [
+      {
+        "step": "Inserire parametri di ricerca validi ma senza corrispondenze nella barra di ricerca",
+        "expected": "Nessun messaggio di errore è visualizzato"
+      },
+      {
+        "step": "Premere il pulsante di ricerca",
+        "expected": "Un messaggio informativo per assenza di risultati è visualizzato"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC3.2"
+  },
+  {
+    "test_case_id": "UC3.2_TC6",
+    "title": "Ricerca scheda censimento con utente non autorizzato",
+    "preconditions": "L’utente non è autorizzato a visualizzare le schede censimento",
+    "postconditions": "L’utente visualizza un messaggio di accesso negato",
+    "test_steps": [
+      {
+        "step": "Tentare di accedere alla sezione delle schede censimento senza autorizzazione",
+        "expected": "Un messaggio di accesso negato è visualizzato"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "High",
+    "use_case_id": "UC3.2"
+  }
+]

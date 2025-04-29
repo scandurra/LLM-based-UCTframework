@@ -1,0 +1,14 @@
+[
+  {
+    "Id": "UC4.1",
+    "Title": "Gestione impianto",
+    "Summary": "Visualizza la sezione di gestione dell’impianto del modulo SAVE",
+    "Actor": ["Regione", "Sindaco", "Fornitore", "Progettista"],
+    "Precondition": "L’utente visualizza la sezione relativa alle schede censimento",
+    "Postcondition": "",
+    "Base_sequence": ["L’utente naviga nella prima sezione dedicata agli impianti, su una barra orizzontale dedicata"],
+    "Branch_sequence": [],
+    "Exception_sequence": [],
+    "Note": "no"
+  }
+]

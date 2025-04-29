@@ -1,0 +1,120 @@
+[
+  {
+    "test_case_id": "UC2.6_TC1",
+    "title": "Visualizzazione Analisi Consumo Comune Validi",
+    "preconditions": "L’utente è nella sezione della dashboard e ha selezionato un comune valido",
+    "postconditions": "L’utente visualizza le informazioni di consumo relative al comune selezionato",
+    "test_steps": [
+      {
+        "step": "Selezionare un comune valido dalla lista disponibile",
+        "expected": "La pagina mostra i dati di consumo per il comune selezionato"
+      },
+      {
+        "step": "Specificare POD, pannello elettrico, periodo e tipo di potenza analizzata",
+        "expected": "I grafici mostrano l'analisi dei consumi in base ai parametri selezionati"
+      },
+      {
+        "step": "Verificare la presenza di dati nei grafici",
+        "expected": "I grafici contengono dati coerenti con i parametri di analisi selezionati"
+      }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC2",
+    "title": "Selezione Comune Non Valido",
+    "preconditions": "L’utente è nella sezione della dashboard",
+    "postconditions": "L’utente riceve un messaggio di errore per comune non valido",
+    "test_steps": [
+      {
+        "step": "Inserire un comune non valido",
+        "expected": "Il sistema segnala un errore per comune non trovato"
+      },
+      {
+        "step": "Tentare di eseguire l'analisi con comune non valido",
+        "expected": "Il sistema visualizza un messaggio di errore e non esegue l'analisi"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC3",
+    "title": "Parametri di Analisi Non Validi",
+    "preconditions": "L’utente è nella sezione della dashboard e ha selezionato un comune valido",
+    "postconditions": "L’utente riceve un messaggio di errore per parametri non validi",
+    "test_steps": [
+      {
+        "step": "Selezionare POD, pannello elettrico, periodo e tipo di potenza analizzata con valori non validi",
+        "expected": "Il sistema segnala un errore per parametri non validi"
+      },
+      {
+        "step": "Tentare di eseguire l'analisi con parametri non validi",
+        "expected": "Il sistema visualizza un messaggio di errore e non esegue l'analisi"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC4",
+    "title": "Mancanza di Dati per l'Analisi",
+    "preconditions": "L’utente è nella sezione della dashboard e ha selezionato un comune valido",
+    "postconditions": "L’utente visualizza un messaggio informativo sulla mancanza di dati",
+    "test_steps": [
+      {
+        "step": "Selezionare un comune e parametri di analisi per i quali non ci sono dati disponibili",
+        "expected": "Il sistema avvisa dell'assenza di dati per l'analisi richiesta"
+      },
+      {
+        "step": "Tentare di visualizzare i grafici senza dati",
+        "expected": "I grafici sono vuoti o mostrano un messaggio che indica la mancanza di dati"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC5",
+    "title": "Caricamento Pagina con Dati di Default",
+    "preconditions": "L’utente accede alla sezione della dashboard senza avere selezionato un comune",
+    "postconditions": "La pagina si carica con dati di default o un messaggio di benvenuto",
+    "test_steps": [
+      {
+        "step": "Accedere alla sezione della dashboard senza parametri",
+        "expected": "La pagina si carica con un messaggio di benvenuto o dati di default"
+      },
+      {
+        "step": "Verificare la presenza di istruzioni per l'uso",
+        "expected": "Sono presenti istruzioni su come utilizzare la funzione di analisi dei consumi"
+      }
+    ],
+    "test_type": "Positive",
+    "priority": "Low",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC6",
+    "title": "Interazione Utente con Grafici",
+    "preconditions": "L’utente ha eseguito con successo l'analisi dei consumi per un comune",
+    "postconditions": "L’utente può interagire con i grafici per visualizzare informazioni più dettagliate",
+    "test_steps": [
+      {
+        "step": "Selezionare un grafico di analisi dei consumi",
+        "expected": "Il sistema consente di zoomare, ruotare o visualizzare dati puntuali nel grafico"
+      },
+      {
+        "step": "Interagire con il grafico (zoom, rotazione, etc.)",
+        "expected": "L'interazione con il grafico fornisce informazioni più dettagliate sull'analisi dei consumi"
+      }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC2.6"
+  }
+]

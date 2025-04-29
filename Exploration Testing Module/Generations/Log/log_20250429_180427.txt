@@ -1,0 +1,95 @@
+📝 PROMPT:
+Agisci come un test engineer esperto. Ti verrà fornito un caso d’uso in formato TXT con struttura formale.
+
+Il tuo compito è generare un elenco JSON di test case che verifichino il comportamento funzionale del sistema, con copertura di flusso base, alternative, eccezioni, e pre/postcondizioni.
+
+Esempio di Formato JSON (restituisci solo un array di oggetti):
+{
+  "test_case_id": "UC2_TC2",
+  "title": "Input incompleto",
+  "preconditions": "Utente autenticato",
+  "postconditions": "Nessuna modifica salvata",
+  "test_steps": [
+    { "step": "Lascia il campo 'email' vuoto", "expected": "Viene mostrato un messaggio di errore" }
+  ],
+  "test_type": "Negativo",
+  "priority": "Medium",
+  "use_case_id": "UC2"
+}
+
+Genera:
+- Almeno 4 test case per UC.
+- Sia test positivi che negativi.
+- `test_type` dev’essere "Positive" o "Negative".
+- Ogni `test_case_id` deve iniziare con l’ID del caso d’uso.
+
+Non spiegare nulla. Restituisci **solo** l’array JSON risultante. Non mettere "```json" all'inizio della risposta e "```" alla fine.
+Apri e chiudi correttamente le parentesi.
+
+Il seguente è il caso d’uso in formato TXT:
+
+Id: UC3.2.1
+Title: Ricerca scheda censimento per nome
+Summary: Permette la ricerca tra le schede censimento in base al nome
+Actor: Regione, Sindaco, Fornitore
+Precondition: L’utente visualizza le informazioni corrispondenti alla paginazione richiesta
+Postcondition: L’utente visualizza le informazioni corrispondenti alla paginazione richiesta
+Base_sequence:
+1) L’utente inserisce tra i parametri di ricerca il nome
+2) L’utente conferma la ricerca
+3) L’utente visualizza il risultato della ricerca come nello UC3.1
+Branch_sequence: no
+Exception_sequence: no
+Note: no
+
+📥 RISPOSTA:
+[
+  {
+    "test_case_id": "UC3.2.1_TC1",
+    "title": "Ricerca scheda censimento per nome valido",
+    "preconditions": "Utente autenticato, parametri di ricerca validi",
+    "postconditions": "Risultati della ricerca visualizzati correttamente",
+    "test_steps": [
+      { "step": "Inserisci un nome valido tra i parametri di ricerca", "expected": "Vengono mostrati i risultati della ricerca" }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC3.2.1"
+  },
+  {
+    "test_case_id": "UC3.2.1_TC2",
+    "title": "Ricerca scheda censimento per nome non esistente",
+    "preconditions": "Utente autenticato, parametri di ricerca validi",
+    "postconditions": "Nessun risultato visualizzato",
+    "test_steps": [
+      { "step": "Inserisci un nome non esistente tra i parametri di ricerca", "expected": "Viene mostrato un messaggio che indica l'assenza di risultati" }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC3.2.1"
+  },
+  {
+    "test_case_id": "UC3.2.1_TC3",
+    "title": "Ricerca scheda censimento con nome parziale",
+    "preconditions": "Utente autenticato, parametri di ricerca validi",
+    "postconditions": "Vengono mostrati i risultati della ricerca parziale",
+    "test_steps": [
+      { "step": "Inserisci un nome parziale tra i parametri di ricerca", "expected": "Vengono mostrati i risultati della ricerca che corrispondono al nome parziale" }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC3.2.1"
+  },
+  {
+    "test_case_id": "UC3.2.1_TC4",
+    "title": "Ricerca scheda censimento senza inserire il nome",
+    "preconditions": "Utente autenticato, parametri di ricerca vuoti",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      { "step": "Lascia vuoto il campo del nome tra i parametri di ricerca", "expected": "Viene mostrato un messaggio di errore che richiede l'inserimento del nome" }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC3.2.1"
+  }
+]

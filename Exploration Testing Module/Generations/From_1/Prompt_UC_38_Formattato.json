@@ -1,0 +1,140 @@
+[
+  {
+    "test_case_id": "UC4.2_TC1",
+    "title": "Aggiunta nuovo investimento con dati validi",
+    "preconditions": "L’utente visualizza la sezione relativa alle schede censimento e ha i permessi per aggiungere un nuovo investimento",
+    "postconditions": "L’utente visualizza un messaggio di conferma per l’aggiunta del nuovo investimento",
+    "test_steps": [
+      {
+        "step": "L’utente naviga nella seconda sezione dedicata agli investimenti",
+        "expected": "La sezione degli investimenti è visualizzata correttamente"
+      },
+      {
+        "step": "L’utente clicca sul tasto dedicato all’aggiunta di un singolo investimento",
+        "expected": "Il form per l’aggiunta del nuovo investimento è visualizzato"
+      },
+      {
+        "step": "L’utente compila il form con i parametri richiesti e dati validi",
+        "expected": "Nessun messaggio di errore è visualizzato"
+      },
+      {
+        "step": "L’utente conferma l’aggiunta del nuovo investimento",
+        "expected": "Un messaggio di conferma per l’aggiunta del nuovo investimento è visualizzato"
+      }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC4.2"
+  },
+  {
+    "test_case_id": "UC4.2_TC2",
+    "title": "Aggiunta nuovo investimento con annullamento",
+    "preconditions": "L’utente visualizza la sezione relativa alle schede censimento e ha i permessi per aggiungere un nuovo investimento",
+    "postconditions": "L’utente visualizza un messaggio di avvenuto annullamento",
+    "test_steps": [
+      {
+        "step": "L’utente naviga nella seconda sezione dedicata agli investimenti",
+        "expected": "La sezione degli investimenti è visualizzata correttamente"
+      },
+      {
+        "step": "L’utente clicca sul tasto dedicato all’aggiunta di un singolo investimento",
+        "expected": "Il form per l’aggiunta del nuovo investimento è visualizzato"
+      },
+      {
+        "step": "L’utente compila parzialmente il form e poi annulla",
+        "expected": "Un messaggio di avvenuto annullamento è visualizzato"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC4.2"
+  },
+  {
+    "test_case_id": "UC4.2_TC3",
+    "title": "Aggiunta nuovo investimento con dati invalidi",
+    "preconditions": "L’utente visualizza la sezione relativa alle schede censimento e ha i permessi per aggiungere un nuovo investimento",
+    "postconditions": "L’utente visualizza messaggi di errore per i dati invalidi",
+    "test_steps": [
+      {
+        "step": "L’utente naviga nella seconda sezione dedicata agli investimenti",
+        "expected": "La sezione degli investimenti è visualizzata correttamente"
+      },
+      {
+        "step": "L’utente clicca sul tasto dedicato all’aggiunta di un singolo investimento",
+        "expected": "Il form per l’aggiunta del nuovo investimento è visualizzato"
+      },
+      {
+        "step": "L’utente compila il form con dati invalidi (ad es. campo obbligatorio vuoto)",
+        "expected": "Messaggi di errore per i dati invalidi sono visualizzati"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "High",
+    "use_case_id": "UC4.2"
+  },
+  {
+    "test_case_id": "UC4.2_TC4",
+    "title": "Aggiunta nuovo investimento senza permessi",
+    "preconditions": "L’utente visualizza la sezione relativa alle schede censimento ma non ha i permessi per aggiungere un nuovo investimento",
+    "postconditions": "L’utente visualizza un messaggio di accesso negato",
+    "test_steps": [
+      {
+        "step": "L’utente naviga nella seconda sezione dedicata agli investimenti",
+        "expected": "La sezione degli investimenti è visualizzata correttamente"
+      },
+      {
+        "step": "L’utente tenta di cliccare sul tasto dedicato all’aggiunta di un singolo investimento senza permessi",
+        "expected": "Un messaggio di accesso negato è visualizzato"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC4.2"
+  },
+  {
+    "test_case_id": "UC4.2_TC5",
+    "title": "Aggiunta nuovo investimento con campi obbligatori mancanti",
+    "preconditions": "L’utente visualizza la sezione relativa alle schede censimento e ha i permessi per aggiungere un nuovo investimento",
+    "postconditions": "L’utente visualizza messaggi di errore per i campi obbligatori mancanti",
+    "test_steps": [
+      {
+        "step": "L’utente naviga nella seconda sezione dedicata agli investimenti",
+        "expected": "La sezione degli investimenti è visualizzata correttamente"
+      },
+      {
+        "step": "L’utente clicca sul tasto dedicato all’aggiunta di un singolo investimento",
+        "expected": "Il form per l’aggiunta del nuovo investimento è visualizzato"
+      },
+      {
+        "step": "L’utente compila il form lasciando vuoti campi obbligatori",
+        "expected": "Messaggi di errore per i campi obbligatori mancanti sono visualizzati"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "High",
+    "use_case_id": "UC4.2"
+  },
+  {
+    "test_case_id": "UC4.2_TC6",
+    "title": "Aggiunta nuovo investimento con dati duplicati",
+    "preconditions": "L’utente visualizza la sezione relativa alle schede censimento e ha i permessi per aggiungere un nuovo investimento",
+    "postconditions": "L’utente visualizza un messaggio di errore per dati duplicati",
+    "test_steps": [
+      {
+        "step": "L’utente naviga nella seconda sezione dedicata agli investimenti",
+        "expected": "La sezione degli investimenti è visualizzata correttamente"
+      },
+      {
+        "step": "L’utente clicca sul tasto dedicato all’aggiunta di un singolo investimento",
+        "expected": "Il form per l’aggiunta del nuovo investimento è visualizzato"
+      },
+      {
+        "step": "L’utente compila il form con dati che duplicano un investimento esistente",
+        "expected": "Un messaggio di errore per dati duplicati è visualizzato"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC4.2"
+  }
+]

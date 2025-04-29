@@ -1,0 +1,116 @@
+[
+  {
+    "test_case_id": "UC2_TC1",
+    "title": "Visualizzazione Dashboard Con Utente Autenticato",
+    "preconditions": "L’utente è autenticato ed è a conoscenza che l’operazione ha avuto successo",
+    "postconditions": "L’utente visualizza la sezione relativa alla dashboard",
+    "test_steps": [
+      {
+        "step": "Utente naviga nella sezione relativa alla dashboard",
+        "expected": "La dashboard è visualizzata correttamente"
+      },
+      {
+        "step": "Verifica della presenza di tutti gli elementi nella dashboard",
+        "expected": "Tutti gli elementi sono presenti e visibili"
+      }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC2",
+    "title": "Visualizzazione Dashboard Senza Autenticazione",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "L’utente non può visualizzare la sezione relativa alla dashboard",
+    "test_steps": [
+      {
+        "step": "Utente tenta di navigare nella sezione relativa alla dashboard senza essere autenticato",
+        "expected": "Viene visualizzato un messaggio di errore per mancata autenticazione"
+      },
+      {
+        "step": "Verifica che la dashboard non sia accessibile",
+        "expected": "La dashboard non è accessibile e l’utente viene reindirizzato alla pagina di login"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC3",
+    "title": "Visualizzazione Dashboard Con Utente Non Autorizzato",
+    "preconditions": "L’utente è autenticato ma non ha i permessi necessari per visualizzare la dashboard",
+    "postconditions": "L’utente non può visualizzare la sezione relativa alla dashboard",
+    "test_steps": [
+      {
+        "step": "Utente tenta di navigare nella sezione relativa alla dashboard senza avere i permessi necessari",
+        "expected": "Viene visualizzato un messaggio di errore per mancanza di autorizzazione"
+      },
+      {
+        "step": "Verifica che la dashboard non sia accessibile",
+        "expected": "La dashboard non è accessibile e l’utente viene reindirizzato alla pagina principale"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC4",
+    "title": "Dashboard Caricamento Dati",
+    "preconditions": "L’utente è autenticato e la dashboard richiede dati da caricare",
+    "postconditions": "I dati nella dashboard sono stati caricati correttamente",
+    "test_steps": [
+      {
+        "step": "Utente naviga nella sezione relativa alla dashboard",
+        "expected": "La dashboard inizia a caricare i dati"
+      },
+      {
+        "step": "Verifica che tutti i dati richiesti siano stati caricati correttamente",
+        "expected": "Tutti i dati sono presenti e visibili nella dashboard"
+      }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC5",
+    "title": "Errore Di Rete Durante Il Caricamento Della Dashboard",
+    "preconditions": "L’utente è autenticato e si verifica un errore di rete durante il caricamento della dashboard",
+    "postconditions": "Viene visualizzato un messaggio di errore per problema di connessione",
+    "test_steps": [
+      {
+        "step": "Utente naviga nella sezione relativa alla dashboard con una connessione internet instabile",
+        "expected": "Viene visualizzato un messaggio di errore per mancanza di connessione"
+      },
+      {
+        "step": "Verifica che la dashboard non sia accessibile a causa dell’errore di rete",
+        "expected": "La dashboard non è accessibile e l’utente viene invitato a riprovare"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC6",
+    "title": "Dashboard Con Dati Non Validi",
+    "preconditions": "L’utente è autenticato e la dashboard contiene dati non validi",
+    "postconditions": "Viene visualizzato un messaggio di errore per dati non validi",
+    "test_steps": [
+      {
+        "step": "Utente naviga nella sezione relativa alla dashboard con dati non validi",
+        "expected": "Viene visualizzato un messaggio di errore per dati non validi"
+      },
+      {
+        "step": "Verifica che la dashboard segnali l’errore e offra una soluzione alternativa",
+        "expected": "La dashboard segnala l’errore e offre una soluzione alternativa all’utente"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC2"
+  }
+]

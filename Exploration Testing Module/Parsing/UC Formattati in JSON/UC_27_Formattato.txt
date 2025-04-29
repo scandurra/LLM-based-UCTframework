@@ -1,0 +1,24 @@
+[
+  {
+    "Id": "UC3.4.3.7",
+    "Title": "Modifica Elettric panel sezione Dati operativi",
+    "Summary": "Permette di modificare la sezione dei dati operativi di un pannello elettrico, relativo ad un POD, della scheda censimento",
+    "Actor": ["Regione", "Sindaco", "Fornitore"],
+    "Precondition": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "Postcondition": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "Base_sequence": [
+      "L’utente seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+      "L’utente espande la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD",
+      "L’utente seleziona il pannello elettrico per la modifica",
+      "L’utente seleziona il tab relativo ai dati operativi",
+      "L’utente visualizza i dati precedenti e può compilare il form con le informazioni desiderate",
+      "L’utente applica le modifiche con l’apposito tasto",
+      "In caso di conferma l’utente visualizza un messaggio di conferma dell’operazione"
+    ],
+    "Branch_sequence": [
+      "In caso di dati non validi viene mostrato un messaggio di errore"
+    ],
+    "Exception_sequence": [],
+    "Note": "no"
+  }
+]

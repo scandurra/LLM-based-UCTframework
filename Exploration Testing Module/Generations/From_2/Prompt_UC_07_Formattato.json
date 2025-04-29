@@ -1,0 +1,62 @@
+[
+  {
+    "test_case_id": "UC2.5_TC1",
+    "title": "Visualizzazione grafici corretta",
+    "preconditions": "Utente nella sezione dashboard",
+    "postconditions": "Grafici visualizzati correttamente",
+    "test_steps": [
+      {
+        "step": "L'utente scorre fino alle sezioni dei grafici",
+        "expected": "I grafici sono visibili e corretti"
+      }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC2",
+    "title": "Assenza di dati",
+    "preconditions": "Utente nella sezione dashboard, assenza di dati",
+    "postconditions": "Messaggio di avviso per l'assenza di dati",
+    "test_steps": [
+      {
+        "step": "L'utente scorre fino alle sezioni dei grafici",
+        "expected": "Viene mostrato un messaggio di avviso"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC3",
+    "title": "Errore di visualizzazione",
+    "preconditions": "Utente nella sezione dashboard, problema tecnico",
+    "postconditions": "Messaggio di errore per problemi tecnici",
+    "test_steps": [
+      {
+        "step": "L'utente scorre fino alle sezioni dei grafici",
+        "expected": "Viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "High",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC4",
+    "title": "Interazione con i grafici",
+    "preconditions": "Utente nella sezione dashboard, grafici visibili",
+    "postconditions": "Informazioni dettagliate sui grafici",
+    "test_steps": [
+      {
+        "step": "L'utente interagisce con un grafico",
+        "expected": "Vengono mostrate informazioni dettagliate"
+      }
+    ],
+    "test_type": "Positive",
+    "priority": "Medium",
+    "use_case_id": "UC2.5"
+  }
+]

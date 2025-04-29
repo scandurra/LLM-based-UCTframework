@@ -1,0 +1,62 @@
+[
+  {
+    "test_case_id": "UC2.1_TC1",
+    "title": "Apertura dashboard utente autenticato",
+    "preconditions": "Utente autenticato",
+    "postconditions": "Dashboard visualizzata",
+    "test_steps": [
+      {
+        "step": "L'utente clicca sulla voce di menù 'Dashboard'",
+        "expected": "La dashboard viene visualizzata"
+      }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC2",
+    "title": "Apertura dashboard utente non autenticato",
+    "preconditions": "Utente non autenticato",
+    "postconditions": "Messaggio di errore visualizzato",
+    "test_steps": [
+      {
+        "step": "L'utente tenta di accedere alla dashboard senza essere autenticato",
+        "expected": "Viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC3",
+    "title": "Apertura dashboard con permessi insufficienti",
+    "preconditions": "Utente autenticato con permessi insufficienti",
+    "postconditions": "Messaggio di errore visualizzato",
+    "test_steps": [
+      {
+        "step": "L'utente tenta di accedere alla dashboard senza avere i permessi necessari",
+        "expected": "Viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC4",
+    "title": "Apertura dashboard con dati non validi",
+    "preconditions": "Utente autenticato con dati non validi",
+    "postconditions": "Messaggio di errore visualizzato",
+    "test_steps": [
+      {
+        "step": "L'utente tenta di accedere alla dashboard con dati non validi",
+        "expected": "Viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC2.1"
+  }
+]

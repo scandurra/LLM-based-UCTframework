@@ -1,0 +1,78 @@
+[
+  {
+    "test_case_id": "UC3.4.3.9_TC1",
+    "title": "Modifica LightSpot sezione Dati punto luce con dati validi",
+    "preconditions": "Utente autenticato e POD selezionato",
+    "postconditions": "Messaggio di conferma dell’operazione andata a buon fine visualizzato",
+    "test_steps": [
+      {
+        "step": "Seleziono il pannello elettrico ed espando la visione ad albero",
+        "expected": "Vengono visualizzati i punti luce che appartengono al pannello elettrico"
+      },
+      {
+        "step": "Seleziono il tab relativo ai dati punti luce e compilo il form con informazioni valide",
+        "expected": "Le modifiche vengono applicate correttamente"
+      },
+      {
+        "step": "Applico le modifiche con l’apposito tasto",
+        "expected": "Viene visualizzato un messaggio di conferma dell’operazione andata a buon fine"
+      }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC3.4.3.9"
+  },
+  {
+    "test_case_id": "UC3.4.3.9_TC2",
+    "title": "Modifica LightSpot sezione Dati punto luce con dati non validi",
+    "preconditions": "Utente autenticato e POD selezionato",
+    "postconditions": "Messaggio di errore visualizzato",
+    "test_steps": [
+      {
+        "step": "Seleziono il pannello elettrico ed espando la visione ad albero",
+        "expected": "Vengono visualizzati i punti luce che appartengono al pannello elettrico"
+      },
+      {
+        "step": "Seleziono il tab relativo ai dati punti luce e compilo il form con informazioni non valide",
+        "expected": "Viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC3.4.3.9"
+  },
+  {
+    "test_case_id": "UC3.4.3.9_TC3",
+    "title": "Modifica LightSpot sezione Dati punto luce senza selezionare il POD",
+    "preconditions": "Utente autenticato",
+    "postconditions": "Messaggio di errore visualizzato",
+    "test_steps": [
+      {
+        "step": "Non seleziono il POD e provo a modificare i dati del punto luce",
+        "expected": "Viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC3.4.3.9"
+  },
+  {
+    "test_case_id": "UC3.4.3.9_TC4",
+    "title": "Modifica LightSpot sezione Dati punto luce con dati parzialmente validi",
+    "preconditions": "Utente autenticato e POD selezionato",
+    "postconditions": "Messaggio di errore visualizzato",
+    "test_steps": [
+      {
+        "step": "Seleziono il pannello elettrico ed espando la visione ad albero",
+        "expected": "Vengono visualizzati i punti luce che appartengono al pannello elettrico"
+      },
+      {
+        "step": "Seleziono il tab relativo ai dati punti luce e compilo il form con informazioni parzialmente valide",
+        "expected": "Viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC3.4.3.9"
+  }
+]

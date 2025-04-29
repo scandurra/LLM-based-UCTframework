@@ -1,0 +1,11 @@
+Id: UC4
+Title: Gestione modulo SAVE
+Summary: Apertura dell’interfaccia dedicata al modulo SAVE
+Actor: Regione, Sindaco, Fornitore, Progettista
+Precondition: L’utente è autenticato ed è a conoscenza che l’operazione ha avuto successo
+Postcondition: no
+Base_sequence:
+1) L’utente naviga nella sezione relativa al modulo SAVE utilizzando il menù laterale di sinistra
+Branch_sequence: no
+Exception_sequence: no
+Note: no

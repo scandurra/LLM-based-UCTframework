@@ -1,0 +1,130 @@
+📝 PROMPT:
+Sei un esperto di Quality Assurance. Il tuo compito è generare una suite di test case per ogni caso d’uso fornito in formato JSON.  
+Il formato di output deve essere **esclusivamente JSON**, strutturato come array di oggetti test case, seguendo la struttura di esempio qui sotto:
+
+{
+  "test_case_id": "UC1_TC1",
+  "title": "Valid Login Credentials",
+  "preconditions": "User is not authenticated and has access to PELL portal",
+  "postconditions": "User is redirected to Home page",
+  "test_steps": [
+    { "step": "Click on the 'Login' button", "expected": "Login form is displayed" },
+    { "step": "Enter valid email and password", "expected": "No error messages are displayed" },
+    { "step": "Confirm authentication process", "expected": "User is redirected to Home page" }
+  ],
+  "test_type": "Positive",
+  "priority": "High",
+  "use_case_id": "UC1"
+}
+
+Suggerimenti:
+- Genera **almeno 4-6 test case** per ogni UC.
+- Includi sia test **positivi** (successo) che **negativi** (errori, input errati, mancanze, etc).
+- Usa nomi univoci per `test_case_id` seguendo lo schema `UCx_TCy`.
+- Analizza la base_sequence, branch_sequence, exception_sequence, pre/postcondizioni.
+
+Restituisci solo un array JSON (non spiegare). Non mettere "```json" all'inizio del file e "```" alla fine.
+Apri e chiudi correttamente le parentesi.
+Il seguente è l'use case in formato JSON:
+
+[
+{
+  "Id": "UC3.4.3.1",
+  "Title": "Modifica sezione Area",
+  "Summary": "Permette di modificare i parametri della sezione Area relativa ai dati generali della scheda censimento",
+  "Actor": ["Regione", "Sindaco", "Fornitore"],
+  "Precondition": "L’utente visualizza le informazioni della scheda in fase di edit",
+  "Postcondition": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+  "Base_sequence": ["L’utente entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra", "L’utente visualizza i dati precedenti e può compilare il form con le informazioni desiderate", "L’utente applica le modifiche con l’apposito tasto", "In caso di conferma l’utente visualizza un messaggio di conferma dell’operazione"],
+  "Branch_sequence": ["In caso di dati non validi viene mostrato un messaggio di errore"],
+  "Exception_sequence": [],
+  "Note": "no"
+}
+]
+
+📥 RISPOSTA:
+[
+  {
+    "test_case_id": "UC3.4.3.1_TC1",
+    "title": "Modifica sezione Area con dati validi",
+    "preconditions": "L’utente visualizza le informazioni della scheda in fase di edit",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      { "step": "L’utente entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra", "expected": "I dati precedenti sono visualizzati" },
+      { "step": "L’utente compila il form con le informazioni desiderate", "expected": "Il form è compilato correttamente" },
+      { "step": "L’utente applica le modifiche con l’apposito tasto", "expected": "Un messaggio di conferma dell’operazione è visualizzato" }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC3.4.3.1"
+  },
+  {
+    "test_case_id": "UC3.4.3.1_TC2",
+    "title": "Modifica sezione Area con dati non validi",
+    "preconditions": "L’utente visualizza le informazioni della scheda in fase di edit",
+    "postconditions": "Un messaggio di errore è visualizzato",
+    "test_steps": [
+      { "step": "L’utente entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra", "expected": "I dati precedenti sono visualizzati" },
+      { "step": "L’utente compila il form con informazioni non valide", "expected": "Il form contiene errori" },
+      { "step": "L’utente applica le modifiche con l’apposito tasto", "expected": "Un messaggio di errore è visualizzato" }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC3.4.3.1"
+  },
+  {
+    "test_case_id": "UC3.4.3.1_TC3",
+    "title": "Modifica sezione Area senza compilare il form",
+    "preconditions": "L’utente visualizza le informazioni della scheda in fase di edit",
+    "postconditions": "Un messaggio di errore è visualizzato",
+    "test_steps": [
+      { "step": "L’utente entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra", "expected": "I dati precedenti sono visualizzati" },
+      { "step": "L’utente non compila il form", "expected": "Il form è vuoto" },
+      { "step": "L’utente applica le modifiche con l’apposito tasto", "expected": "Un messaggio di errore è visualizzato" }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC3.4.3.1"
+  },
+  {
+    "test_case_id": "UC3.4.3.1_TC4",
+    "title": "Modifica sezione Area con dati parzialmente validi",
+    "preconditions": "L’utente visualizza le informazioni della scheda in fase di edit",
+    "postconditions": "Un messaggio di errore è visualizzato",
+    "test_steps": [
+      { "step": "L’utente entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra", "expected": "I dati precedenti sono visualizzati" },
+      { "step": "L’utente compila parzialmente il form con informazioni valide e non valide", "expected": "Il form contiene errori" },
+      { "step": "L’utente applica le modifiche con l’apposito tasto", "expected": "Un messaggio di errore è visualizzato" }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC3.4.3.1"
+  },
+  {
+    "test_case_id": "UC3.4.3.1_TC5",
+    "title": "Modifica sezione Area senza autorizzazione",
+    "preconditions": "L’utente non ha accesso alla scheda in fase di edit",
+    "postconditions": "Un messaggio di errore è visualizzato",
+    "test_steps": [
+      { "step": "L’utente tenta di entrare nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra", "expected": "Un messaggio di accesso negato è visualizzato" },
+      { "step": "L’utente non può compilare il form", "expected": "Il form non è accessibile" }
+    ],
+    "test_type": "Negative",
+    "priority": "High",
+    "use_case_id": "UC3.4.3.1"
+  },
+  {
+    "test_case_id": "UC3.4.3.1_TC6",
+    "title": "Modifica sezione Area con dati troppo lunghi",
+    "preconditions": "L’utente visualizza le informazioni della scheda in fase di edit",
+    "postconditions": "Un messaggio di errore è visualizzato",
+    "test_steps": [
+      { "step": "L’utente entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra", "expected": "I dati precedenti sono visualizzati" },
+      { "step": "L’utente compila il form con informazioni troppo lunghe", "expected": "Il form contiene errori" },
+      { "step": "L’utente applica le modifiche con l’apposito tasto", "expected": "Un messaggio di errore è visualizzato" }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC3.4.3.1"
+  }
+]

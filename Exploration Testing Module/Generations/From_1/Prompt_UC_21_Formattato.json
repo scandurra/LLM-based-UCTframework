@@ -1,0 +1,136 @@
+[
+  {
+    "test_case_id": "UC3.4.3.1_TC1",
+    "title": "Modifica sezione Area con dati validi",
+    "preconditions": "L’utente visualizza le informazioni della scheda in fase di edit",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "L’utente entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "I dati precedenti sono visualizzati"
+      },
+      {
+        "step": "L’utente compila il form con le informazioni desiderate",
+        "expected": "Il form è compilato correttamente"
+      },
+      {
+        "step": "L’utente applica le modifiche con l’apposito tasto",
+        "expected": "Un messaggio di conferma dell’operazione è visualizzato"
+      }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC3.4.3.1"
+  },
+  {
+    "test_case_id": "UC3.4.3.1_TC2",
+    "title": "Modifica sezione Area con dati non validi",
+    "preconditions": "L’utente visualizza le informazioni della scheda in fase di edit",
+    "postconditions": "Un messaggio di errore è visualizzato",
+    "test_steps": [
+      {
+        "step": "L’utente entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "I dati precedenti sono visualizzati"
+      },
+      {
+        "step": "L’utente compila il form con informazioni non valide",
+        "expected": "Il form contiene errori"
+      },
+      {
+        "step": "L’utente applica le modifiche con l’apposito tasto",
+        "expected": "Un messaggio di errore è visualizzato"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC3.4.3.1"
+  },
+  {
+    "test_case_id": "UC3.4.3.1_TC3",
+    "title": "Modifica sezione Area senza compilare il form",
+    "preconditions": "L’utente visualizza le informazioni della scheda in fase di edit",
+    "postconditions": "Un messaggio di errore è visualizzato",
+    "test_steps": [
+      {
+        "step": "L’utente entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "I dati precedenti sono visualizzati"
+      },
+      {
+        "step": "L’utente non compila il form",
+        "expected": "Il form è vuoto"
+      },
+      {
+        "step": "L’utente applica le modifiche con l’apposito tasto",
+        "expected": "Un messaggio di errore è visualizzato"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC3.4.3.1"
+  },
+  {
+    "test_case_id": "UC3.4.3.1_TC4",
+    "title": "Modifica sezione Area con dati parzialmente validi",
+    "preconditions": "L’utente visualizza le informazioni della scheda in fase di edit",
+    "postconditions": "Un messaggio di errore è visualizzato",
+    "test_steps": [
+      {
+        "step": "L’utente entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "I dati precedenti sono visualizzati"
+      },
+      {
+        "step": "L’utente compila parzialmente il form con informazioni valide e non valide",
+        "expected": "Il form contiene errori"
+      },
+      {
+        "step": "L’utente applica le modifiche con l’apposito tasto",
+        "expected": "Un messaggio di errore è visualizzato"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC3.4.3.1"
+  },
+  {
+    "test_case_id": "UC3.4.3.1_TC5",
+    "title": "Modifica sezione Area senza autorizzazione",
+    "preconditions": "L’utente non ha accesso alla scheda in fase di edit",
+    "postconditions": "Un messaggio di errore è visualizzato",
+    "test_steps": [
+      {
+        "step": "L’utente tenta di entrare nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "Un messaggio di accesso negato è visualizzato"
+      },
+      {
+        "step": "L’utente non può compilare il form",
+        "expected": "Il form non è accessibile"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "High",
+    "use_case_id": "UC3.4.3.1"
+  },
+  {
+    "test_case_id": "UC3.4.3.1_TC6",
+    "title": "Modifica sezione Area con dati troppo lunghi",
+    "preconditions": "L’utente visualizza le informazioni della scheda in fase di edit",
+    "postconditions": "Un messaggio di errore è visualizzato",
+    "test_steps": [
+      {
+        "step": "L’utente entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "I dati precedenti sono visualizzati"
+      },
+      {
+        "step": "L’utente compila il form con informazioni troppo lunghe",
+        "expected": "Il form contiene errori"
+      },
+      {
+        "step": "L’utente applica le modifiche con l’apposito tasto",
+        "expected": "Un messaggio di errore è visualizzato"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC3.4.3.1"
+  }
+]

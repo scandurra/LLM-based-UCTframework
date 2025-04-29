@@ -1,0 +1,136 @@
+[
+  {
+    "test_case_id": "UC1_TC1",
+    "title": "Valid Login Credentials",
+    "preconditions": "User is not authenticated and has access to PELL portal",
+    "postconditions": "User is redirected to Home page",
+    "test_steps": [
+      {
+        "step": "Click on the 'Login' button",
+        "expected": "Login form is displayed"
+      },
+      {
+        "step": "Enter valid email and password",
+        "expected": "No error messages are displayed"
+      },
+      {
+        "step": "Confirm authentication process",
+        "expected": "User is redirected to Home page"
+      }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC2",
+    "title": "Invalid Login Credentials",
+    "preconditions": "User is not authenticated and has access to PELL portal",
+    "postconditions": "Error message is displayed",
+    "test_steps": [
+      {
+        "step": "Click on the 'Login' button",
+        "expected": "Login form is displayed"
+      },
+      {
+        "step": "Enter invalid email or password",
+        "expected": "Error message is displayed"
+      },
+      {
+        "step": "Confirm authentication process",
+        "expected": "User is not redirected to Home page"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "High",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC3",
+    "title": "Empty Login Credentials",
+    "preconditions": "User is not authenticated and has access to PELL portal",
+    "postconditions": "Error message is displayed",
+    "test_steps": [
+      {
+        "step": "Click on the 'Login' button",
+        "expected": "Login form is displayed"
+      },
+      {
+        "step": "Leave email and password fields empty",
+        "expected": "Error message is displayed"
+      },
+      {
+        "step": "Confirm authentication process",
+        "expected": "User is not redirected to Home page"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC4",
+    "title": "Password Change",
+    "preconditions": "User is authenticated and has access to PELL portal",
+    "postconditions": "New password is saved",
+    "test_steps": [
+      {
+        "step": "Click on the 'Change Password' button",
+        "expected": "Password change form is displayed"
+      },
+      {
+        "step": "Enter new password and confirm",
+        "expected": "No error messages are displayed"
+      },
+      {
+        "step": "Save new password",
+        "expected": "New password is saved"
+      }
+    ],
+    "test_type": "Positive",
+    "priority": "Medium",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC5",
+    "title": "Mismatched New Password",
+    "preconditions": "User is authenticated and has access to PELL portal",
+    "postconditions": "Error message is displayed",
+    "test_steps": [
+      {
+        "step": "Click on the 'Change Password' button",
+        "expected": "Password change form is displayed"
+      },
+      {
+        "step": "Enter new password and mismatched confirmation",
+        "expected": "Error message is displayed"
+      },
+      {
+        "step": "Save new password",
+        "expected": "New password is not saved"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC6",
+    "title": "Multiple Login Attempts",
+    "preconditions": "User is not authenticated and has access to PELL portal",
+    "postconditions": "Account is locked or error message is displayed",
+    "test_steps": [
+      {
+        "step": "Enter invalid email or password multiple times",
+        "expected": "Error message is displayed"
+      },
+      {
+        "step": "Confirm authentication process multiple times",
+        "expected": "Account is locked or error message is displayed"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC1"
+  }
+]
