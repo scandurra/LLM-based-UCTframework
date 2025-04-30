@@ -1,0 +1,16 @@
+ollama:
+  model: "llama3.3:latest"
+  request_timeout: 120 # Seconds
+
+parser:
+  input_folder: "./input_files"
+
+prompt_builder:
+  template_file: "./prompts/playwright_template.txt"
+
+validator:
+  node_executable: "node" # Path to node if not in PATH
+  temp_script_path: "./output/temp_validation_script.js" # Temporary file for validation
+
+output:
+  save_path: "./output/generated_script.js" # Where to save the final script

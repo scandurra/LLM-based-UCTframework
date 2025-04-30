@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "test-code-generator"
+version = "0.1.0"
+description = ""
+authors = ["Simone Ronzoni <sronzoni99@gmail.com>"]
+readme = "README.md"
+packages = [
+    { include = "test_code_generator", from = "src" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+ollama = "^0.4.8"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

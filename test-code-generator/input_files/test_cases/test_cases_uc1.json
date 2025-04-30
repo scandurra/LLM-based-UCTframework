@@ -1,0 +1,140 @@
+[
+  {
+    "test_case_id": "UC1_TC1",
+    "title": "Valid Login Credentials",
+    "preconditions": "User is not authenticated and has access to PELL portal",
+    "postconditions": "User is redirected to Home page",
+    "test_steps": [
+      {
+        "step": "Click on the 'Login' button",
+        "expected": "Login form is displayed"
+      },
+      {
+        "step": "Enter valid email and password",
+        "expected": "No error messages are displayed"
+      },
+      {
+        "step": "Confirm authentication process",
+        "expected": "User is redirected to Home page"
+      }
+    ],
+    "test_type": "Positive",
+    "priority": "Hight",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC2",
+    "title": "Invalid Email",
+    "preconditions": "User is not authenticated and has access to PELL portal",
+    "postconditions": "User is not redirected to Home page",
+    "test_steps": [
+      {
+        "step": "Click on the 'Login' button",
+        "expected": "Login form is displayed"
+      },
+      {
+        "step": "Enter invalid email and valid password",
+        "expected": "Error message is displayed indicating invalid credentials"
+      },
+      {
+        "step": "Confirm authentication process",
+        "expected": "User is not redirected to Home page"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC3",
+    "title": "Invalid Password",
+    "preconditions": "User is not authenticated and has access to PELL portal",
+    "postconditions": "User is not redirected to Home page",
+    "test_steps": [
+      {
+        "step": "Click on the 'Login' button",
+        "expected": "Login form is displayed"
+      },
+      {
+        "step": "Enter valid email and invalid password",
+        "expected": "Error message is displayed indicating invalid credentials"
+      },
+      {
+        "step": "Confirm authentication process",
+        "expected": "User is not redirected to Home page"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC4",
+    "title": "Empty Email Field",
+    "preconditions": "User is not authenticated and has access to PELL portal",
+    "postconditions": "User is not redirected to Home page",
+    "test_steps": [
+      {
+        "step": "Click on the 'Login' button",
+        "expected": "Login form is displayed"
+      },
+      {
+        "step": "Leave email field empty and enter valid password",
+        "expected": "Error message is displayed indicating required field"
+      },
+      {
+        "step": "Confirm authentication process",
+        "expected": "User is not redirected to Home page"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Low",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC5",
+    "title": "Empty Password Field",
+    "preconditions": "User is not authenticated and has access to PELL portal",
+    "postconditions": "User is not redirected to Home page",
+    "test_steps": [
+      {
+        "step": "Click on the 'Login' button",
+        "expected": "Login form is displayed"
+      },
+      {
+        "step": "Enter valid email and leave empty password field",
+        "expected": "Error message is displayed indicating required field"
+      },
+      {
+        "step": "Confirm authentication process",
+        "expected": "User is not redirected to Home page"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Low",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC6",
+    "title": "SQL Injection Attempt",
+    "preconditions": "User is not authenticated and has access to PELL portal",
+    "postconditions": "User is not redirected to Home page",
+    "test_steps": [
+      {
+        "step": "Click on the 'Login' button",
+        "expected": "Login form is displayed"
+      },
+      {
+        "step": "Enter malicious input in email or password field",
+        "expected": "Error message is displayed indicating invalid credentials"
+      },
+      {
+        "step": "Confirm authentication process",
+        "expected": "User is not redirected to Home page and no SQL error occurs"
+      }
+    ],
+    "test_type": "Security",
+    "priority": "High",
+    "use_case_id": "UC1"
+  }
+]
