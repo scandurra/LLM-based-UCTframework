@@ -4,7 +4,7 @@
   "Title": "Elimina scheda censimento",
   "Summary": "Permette di eliminare dal portale una scheda censimento precedentemente caricata",
   "Actor": ["Regione", "Sindaco", "Fornitore"],
-  "Precondition": "L’utente visualizza un messaggio di conferma e ottiene il file desiderato",
+  "Precondition": "UC3.4",
   "Postcondition": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
   "Base_sequence": ["L’utente seleziona l’operazione di cancellazione", "All’utente viene richiesta la conferma dell’eliminazione della scheda indicata", "In caso di conferma l’utente visualizza un messaggio di conferma dell’operazione"],
   "Branch_sequence": ["In caso di annullamento l’eliminazione viene interrotta"],

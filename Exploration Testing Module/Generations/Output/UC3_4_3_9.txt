@@ -1,0 +1,93 @@
+[
+  {
+    "test_case_id": "UC3.4.3.9_TC1",
+    "title": "Modifica dati punto luce con successo",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      { "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra", "expected": "Il POD viene selezionato correttamente" },
+      { "step": "Espandi la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD", "expected": "I pannelli elettrici vengono visualizzati correttamente" },
+      { "step": "Seleziona il pannello elettrico ed espandi la visione ad albero del pannello selezionato per visionare i punti luce che appartengono al pannello elettrico", "expected": "I punti luce vengono visualizzati correttamente" },
+      { "step": "Seleziona il tab relativo ai dati punti luce", "expected": "Il tab dei dati punti luce viene visualizzato correttamente" },
+      { "step": "Compila il form con le informazioni desiderate e applica le modifiche con l’apposito tasto", "expected": "Un messaggio di conferma dell’operazione viene visualizzato" }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.9"
+  },
+  {
+    "test_case_id": "UC3.4.3.9_TC2",
+    "title": "Modifica dati punto luce con dati non validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      { "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra", "expected": "Il POD viene selezionato correttamente" },
+      { "step": "Espandi la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD", "expected": "I pannelli elettrici vengono visualizzati correttamente" },
+      { "step": "Seleziona il pannello elettrico ed espandi la visione ad albero del pannello selezionato per visionare i punti luce che appartengono al pannello elettrico", "expected": "I punti luce vengono visualizzati correttamente" },
+      { "step": "Seleziona il tab relativo ai dati punti luce", "expected": "Il tab dei dati punti luce viene visualizzato correttamente" },
+      { "step": "Compila il form con dati non validi e applica le modifiche con l’apposito tasto", "expected": "Un messaggio di errore viene visualizzato" }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.9"
+  },
+  {
+    "test_case_id": "UC3.4.3.9_TC3",
+    "title": "Modifica dati punto luce senza selezionare il POD",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      { "step": "Non selezionare il POD", "expected": "Il sistema non permette di proseguire" },
+      { "step": "Espandi la visione ad albero del pannello elettrico per visionare i punti luce che appartengono al pannello elettrico", "expected": "Il sistema non visualizza i punti luce" }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.9"
+  },
+  {
+    "test_case_id": "UC3.4.3.9_TC4",
+    "title": "Modifica dati punto luce senza selezionare il pannello elettrico",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      { "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra", "expected": "Il POD viene selezionato correttamente" },
+      { "step": "Non selezionare il pannello elettrico", "expected": "Il sistema non permette di proseguire" }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.9"
+  },
+  {
+    "test_case_id": "UC3.4.3.9_TC5",
+    "title": "Modifica dati punto luce con campi obbligatori vuoti",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      { "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra", "expected": "Il POD viene selezionato correttamente" },
+      { "step": "Espandi la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD", "expected": "I pannelli elettrici vengono visualizzati correttamente" },
+      { "step": "Seleziona il pannello elettrico ed espandi la visione ad albero del pannello selezionato per visionare i punti luce che appartengono al pannello elettrico", "expected": "I punti luce vengono visualizzati correttamente" },
+      { "step": "Seleziona il tab relativo ai dati punti luce", "expected": "Il tab dei dati punti luce viene visualizzato correttamente" },
+      { "step": "Lascia vuoti i campi obbligatori e applica le modifiche con l’apposito tasto", "expected": "Un messaggio di errore viene visualizzato" }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.9"
+  },
+  {
+    "test_case_id": "UC3.4.3.9_TC6",
+    "title": "Modifica dati punto luce con successo dopo avere annullato le modifiche",
+    "preconditions": "UC3.4.3",
+    "postconditions": "I dati vengono modificati con successo",
+    "test_steps": [
+      { "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra", "expected": "Il POD viene selezionato correttamente" },
+      { "step": "Espandi la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD", "expected": "I pannelli elettrici vengono visualizzati correttamente" },
+      { "step": "Seleziona il pannello elettrico ed espandi la visione ad albero del pannello selezionato per visionare i punti luce che appartengono al pannello elettrico", "expected": "I punti luce vengono visualizzati correttamente" },
+      { "step": "Seleziona il tab relativo ai dati punti luce", "expected": "Il tab dei dati punti luce viene visualizzato correttamente" },
+      { "step": "Compila il form con le informazioni desiderate e annulla le modifiche", "expected": "Le modifiche vengono annullate" },
+      { "step": "Seleziona nuovamente il tab relativo ai dati punti luce e compila il form con le informazioni desiderate", "expected": "Il form viene compilato correttamente" },
+      { "step": "Applica le modifiche con l’apposito tasto", "expected": "Un messaggio di conferma dell’operazione viene visualizzato" }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.9"
+  }

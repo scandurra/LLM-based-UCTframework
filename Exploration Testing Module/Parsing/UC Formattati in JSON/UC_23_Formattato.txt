@@ -4,7 +4,7 @@
   "Title": "Modifica POD sezione anagrafica",
   "Summary": "Permette di modificare i parametri anagrafici di un POD della scheda censimento",
   "Actor": ["Regione", "Sindaco", "Fornitore"],
-  "Precondition": "L’utente visualizza le informazioni della scheda in fase di edit",
+  "Precondition": "UC3.4.3",
   "Postcondition": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
   "Base_sequence": [
     "L’utente seleziona il POD per la modifica tramite il menù ad albero di sinistra",

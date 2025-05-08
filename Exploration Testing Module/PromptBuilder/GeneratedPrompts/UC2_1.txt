@@ -1,0 +1,45 @@
+You are a Quality Assurance expert. Your task is to generate a suite of test cases for each use case provided in JSON format.
+
+The output must be in **JSON only**, structured as an array of test case objects, following the example below:
+
+{
+  "test_case_id": "UC2_TC2",
+  "title": "Input incompleto",
+  "preconditions": "UC1",
+  "postconditions": "Nessuna modifica salvata",
+  "test_steps": [
+    { "step": "Lascia il campo 'email' vuoto", "expected": "Viene mostrato un messaggio di errore" }
+  ],
+  "test_type": "Negativo",
+  "priority": "Medium",
+  "use_case_id": "UC2"
+}
+
+Guidelines:
+- Generate **at least 4–6 test cases** per use case.
+- Include both **positive** (success) and **negative** (error, missing input, etc.) tests.
+- Use unique names for `test_case_id` following the format `UCx_TCy`.
+- Base your test cases on base_sequence, branch_sequence, exception_sequence, and pre/postconditions.
+
+Only return the JSON array. DO NOT explain anything.  
+DO NOT include "```json" or "```" markers.  
+Make sure brackets are correctly opened and closed.
+
+Note: Even though the structure is in English, all content inside the fields (titles, steps, etc.) must remain in **Italian**.
+
+The following is the use case in JSON format:
+
+[
+{
+  "Id": "UC2.1",
+  "Title": "Download PDF (parte di UC2: Dashboard)",
+  "Summary": "Download del PDF relativo alle informazioni della dashboard",
+  "Actor": ["Regione", "Sindaco", "Fornitore"],
+  "Precondition": "UC2",
+  "Postcondition": "L’utente ha scaricato il file, può aprirlo dalla apposita sezione del browser utilizzato ed il file è ben formato",
+  "Base_sequence": ["L’utente inizia il processo di download cliccando sul tasto dedicato", "L’utente conferma la richiesta", "L’utente visualizza un messaggio di operazione completata con successo"],
+  "Branch_sequence": [],
+  "Exception_sequence": ["L’utente visualizza un messaggio di operazione completata con un errore relativo all’eccezione verificatasi", "L’utente può ripartire dal punto 2 della base sequence"],
+  "Note": "no"
+}
+]

@@ -1,0 +1,122 @@
+📝 PROMPT:
+You are a Quality Assurance expert. Your task is to generate a suite of test cases for each use case provided in JSON format.
+
+The output must be in **JSON only**, structured as an array of test case objects, following the example below:
+
+{
+  "test_case_id": "UC2_TC2",
+  "title": "Input incompleto",
+  "preconditions": "UC1",
+  "postconditions": "Nessuna modifica salvata",
+  "test_steps": [
+    { "step": "Lascia il campo 'email' vuoto", "expected": "Viene mostrato un messaggio di errore" }
+  ],
+  "test_type": "Negativo",
+  "priority": "Medium",
+  "use_case_id": "UC2"
+}
+
+Guidelines:
+- Generate **at least 4–6 test cases** per use case.
+- Include both **positive** (success) and **negative** (error, missing input, etc.) tests.
+- Use unique names for `test_case_id` following the format `UCx_TCy`.
+- Base your test cases on base_sequence, branch_sequence, exception_sequence, and pre/postconditions.
+
+Only return the JSON array. DO NOT explain anything.  
+DO NOT include "```json" or "```" markers.  
+Make sure brackets are correctly opened and closed.
+
+Note: Even though the structure is in English, all content inside the fields (titles, steps, etc.) must remain in **Italian**.
+
+The following is the use case in JSON format:
+
+[
+{
+  "Id": "UC4",
+  "Title": "Gestione modulo SAVE",
+  "Summary": "Apertura dell’interfaccia dedicata al modulo SAVE",
+  "Actor": ["Regione", "Sindaco", "Fornitore", "Progettista"],
+  "Precondition": "UC1",
+  "Postcondition": "no",
+  "Base_sequence": ["L’utente naviga nella sezione relativa al modulo SAVE utilizzando il menù laterale di sinistra"],
+  "Branch_sequence": [],
+  "Exception_sequence": [],
+  "Note": "no"
+}
+]
+
+📥 RISPOSTA:
+[
+  {
+    "test_case_id": "UC4_TC1",
+    "title": "Apertura interfaccia modulo SAVE con successo",
+    "preconditions": "UC1",
+    "postconditions": "Interfaccia del modulo SAVE aperta",
+    "test_steps": [
+      { "step": "L’utente clicca sul menù laterale di sinistra e seleziona la sezione relativa al modulo SAVE", "expected": "Viene visualizzata l’interfaccia dedicata al modulo SAVE" }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alto",
+    "use_case_id": "UC4"
+  },
+  {
+    "test_case_id": "UC4_TC2",
+    "title": "Apertura interfaccia modulo SAVE senza autorizzazione",
+    "preconditions": "Utente non autenticato",
+    "postconditions": "Messaggio di errore per mancata autorizzazione",
+    "test_steps": [
+      { "step": "L’utente non autenticato tenta di accedere alla sezione relativa al modulo SAVE", "expected": "Viene visualizzato un messaggio di errore per mancata autorizzazione" }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alto",
+    "use_case_id": "UC4"
+  },
+  {
+    "test_case_id": "UC4_TC3",
+    "title": "Apertura interfaccia modulo SAVE con dati di input mancanti",
+    "preconditions": "UC1",
+    "postconditions": "Messaggio di errore per dati di input mancanti",
+    "test_steps": [
+      { "step": "L’utente inserisce dati di input parziali e tenta di accedere alla sezione relativa al modulo SAVE", "expected": "Viene visualizzato un messaggio di errore per dati di input mancanti" }
+    ],
+    "test_type": "Negativo",
+    "priority": "Medio",
+    "use_case_id": "UC4"
+  },
+  {
+    "test_case_id": "UC4_TC4",
+    "title": "Apertura interfaccia modulo SAVE con dati di input non validi",
+    "preconditions": "UC1",
+    "postconditions": "Messaggio di errore per dati di input non validi",
+    "test_steps": [
+      { "step": "L’utente inserisce dati di input non validi e tenta di accedere alla sezione relativa al modulo SAVE", "expected": "Viene visualizzato un messaggio di errore per dati di input non validi" }
+    ],
+    "test_type": "Negativo",
+    "priority": "Medio",
+    "use_case_id": "UC4"
+  },
+  {
+    "test_case_id": "UC4_TC5",
+    "title": "Apertura interfaccia modulo SAVE con rete non disponibile",
+    "preconditions": "UC1",
+    "postconditions": "Messaggio di errore per rete non disponibile",
+    "test_steps": [
+      { "step": "L’utente tenta di accedere alla sezione relativa al modulo SAVE senza connessione di rete", "expected": "Viene visualizzato un messaggio di errore per rete non disponibile" }
+    ],
+    "test_type": "Negativo",
+    "priority": "Basso",
+    "use_case_id": "UC4"
+  },
+  {
+    "test_case_id": "UC4_TC6",
+    "title": "Apertura interfaccia modulo SAVE con cache dati non aggiornata",
+    "preconditions": "UC1",
+    "postconditions": "Messaggio di errore per cache dati non aggiornata",
+    "test_steps": [
+      { "step": "L’utente tenta di accedere alla sezione relativa al modulo SAVE con cache dati non aggiornata", "expected": "Viene visualizzato un messaggio di errore per cache dati non aggiornata" }
+    ],
+    "test_type": "Negativo",
+    "priority": "Basso",
+    "use_case_id": "UC4"
+  }
+]

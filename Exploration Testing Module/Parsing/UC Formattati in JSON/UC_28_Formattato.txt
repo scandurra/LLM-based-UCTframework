@@ -4,7 +4,7 @@
   "Title": "Modifica Elettric panel sezione Manutenzione",
   "Summary": "Permette di modificare la sezione relativa alle informazioni di manutenzione di un pannello elettrico, relativo ad un POD, della scheda censimento",
   "Actor": ["Regione", "Sindaco", "Fornitore"],
-  "Precondition": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+  "Precondition": "UC3.4.3",
   "Postcondition": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
   "Base_sequence": [
     "L’utente seleziona il POD per la modifica tramite il menù ad albero di sinistra",
@@ -15,7 +15,9 @@
     "L’utente applica le modifiche con l’apposito tasto",
     "In caso di conferma l’utente visualizza un messaggio di conferma dell’operazione"
   ],
-  "Branch_sequence": ["In caso di dati non validi viene mostrato un messaggio di errore"],
+  "Branch_sequence": [
+    "In caso di dati non validi viene mostrato un messaggio di errore"
+  ],
   "Exception_sequence": [],
   "Note": "no"
 }

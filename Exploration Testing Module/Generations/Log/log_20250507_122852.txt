@@ -1,0 +1,130 @@
+📝 PROMPT:
+You are a Quality Assurance expert. Your task is to generate a suite of test cases for each use case provided in JSON format.
+
+The output must be in **JSON only**, structured as an array of test case objects, following the example below:
+
+{
+  "test_case_id": "UC2_TC2",
+  "title": "Input incompleto",
+  "preconditions": "UC1",
+  "postconditions": "Nessuna modifica salvata",
+  "test_steps": [
+    { "step": "Lascia il campo 'email' vuoto", "expected": "Viene mostrato un messaggio di errore" }
+  ],
+  "test_type": "Negativo",
+  "priority": "Medium",
+  "use_case_id": "UC2"
+}
+
+Guidelines:
+- Generate **at least 4–6 test cases** per use case.
+- Include both **positive** (success) and **negative** (error, missing input, etc.) tests.
+- Use unique names for `test_case_id` following the format `UCx_TCy`.
+- Base your test cases on base_sequence, branch_sequence, exception_sequence, and pre/postconditions.
+
+Only return the JSON array. DO NOT explain anything.  
+DO NOT include "```json" or "```" markers.  
+Make sure brackets are correctly opened and closed.
+
+Note: Even though the structure is in English, all content inside the fields (titles, steps, etc.) must remain in **Italian**.
+
+The following is the use case in JSON format:
+
+[
+{
+  "Id": "UC4.1.1",
+  "Title": "Aggiunta impianto",
+  "Summary": "Permette di aggiungere un nuovo impianto per il comune selezionato",
+  "Actor": ["Progettista"],
+  "Precondition": "UC4.1",
+  "Postcondition": "L’utente visualizza un messaggio di conferma",
+  "Base_sequence": ["L’utente clicca sul tasto dedicato all’aggiunta di un singolo impianto", "L’utente inserisce il nome e seleziona il comune tra quelli disponibili", "L’utente visualizza un messaggio di conferma"],
+  "Branch_sequence": ["In caso di annullamento l’utente visualizza un messaggio di avvenuto annullamento"],
+  "Exception_sequence": [],
+  "Note": "no"
+}
+]
+
+📥 RISPOSTA:
+[
+  {
+    "test_case_id": "UC4.1.1_TC1",
+    "title": "Aggiunta impianto con successo",
+    "preconditions": "UC4.1",
+    "postconditions": "L’utente visualizza un messaggio di conferma",
+    "test_steps": [
+      { "step": "L’utente clicca sul tasto dedicato all’aggiunta di un singolo impianto", "expected": "Viene visualizzata la maschera di inserimento dei dati" },
+      { "step": "L’utente inserisce il nome e seleziona il comune tra quelli disponibili", "expected": "I dati vengono accettati senza errori" },
+      { "step": "L’utente conferma l’inserimento", "expected": "Viene visualizzato un messaggio di conferma dell’avvenuta aggiunta" }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alto",
+    "use_case_id": "UC4.1.1"
+  },
+  {
+    "test_case_id": "UC4.1.1_TC2",
+    "title": "Aggiunta impianto con annullamento",
+    "preconditions": "UC4.1",
+    "postconditions": "L’utente visualizza un messaggio di avvenuto annullamento",
+    "test_steps": [
+      { "step": "L’utente clicca sul tasto dedicato all’aggiunta di un singolo impianto", "expected": "Viene visualizzata la maschera di inserimento dei dati" },
+      { "step": "L’utente inserisce il nome e seleziona il comune tra quelli disponibili", "expected": "I dati vengono accettati senza errori" },
+      { "step": "L’utente annulla l’inserimento", "expected": "Viene visualizzato un messaggio di avvenuto annullamento" }
+    ],
+    "test_type": "Negativo",
+    "priority": "Medio",
+    "use_case_id": "UC4.1.1"
+  },
+  {
+    "test_case_id": "UC4.1.1_TC3",
+    "title": "Aggiunta impianto con nome vuoto",
+    "preconditions": "UC4.1",
+    "postconditions": "Nessuna modifica salvata",
+    "test_steps": [
+      { "step": "L’utente clicca sul tasto dedicato all’aggiunta di un singolo impianto", "expected": "Viene visualizzata la maschera di inserimento dei dati" },
+      { "step": "L’utente lascia il campo 'nome' vuoto e seleziona il comune tra quelli disponibili", "expected": "Viene mostrato un messaggio di errore per il campo 'nome'" }
+    ],
+    "test_type": "Negativo",
+    "priority": "Basso",
+    "use_case_id": "UC4.1.1"
+  },
+  {
+    "test_case_id": "UC4.1.1_TC4",
+    "title": "Aggiunta impianto con comune non selezionato",
+    "preconditions": "UC4.1",
+    "postconditions": "Nessuna modifica salvata",
+    "test_steps": [
+      { "step": "L’utente clicca sul tasto dedicato all’aggiunta di un singolo impianto", "expected": "Viene visualizzata la maschera di inserimento dei dati" },
+      { "step": "L’utente inserisce il nome ma non seleziona il comune", "expected": "Viene mostrato un messaggio di errore per la mancata selezione del comune" }
+    ],
+    "test_type": "Negativo",
+    "priority": "Basso",
+    "use_case_id": "UC4.1.1"
+  },
+  {
+    "test_case_id": "UC4.1.1_TC5",
+    "title": "Aggiunta impianto con dati già esistenti",
+    "preconditions": "UC4.1",
+    "postconditions": "Nessuna modifica salvata",
+    "test_steps": [
+      { "step": "L’utente clicca sul tasto dedicato all’aggiunta di un singolo impianto", "expected": "Viene visualizzata la maschera di inserimento dei dati" },
+      { "step": "L’utente inserisce il nome e seleziona il comune già esistenti", "expected": "Viene mostrato un messaggio di errore per i dati già esistenti" }
+    ],
+    "test_type": "Negativo",
+    "priority": "Medio",
+    "use_case_id": "UC4.1.1"
+  },
+  {
+    "test_case_id": "UC4.1.1_TC6",
+    "title": "Aggiunta impianto con caratteri non validi",
+    "preconditions": "UC4.1",
+    "postconditions": "Nessuna modifica salvata",
+    "test_steps": [
+      { "step": "L’utente clicca sul tasto dedicato all’aggiunta di un singolo impianto", "expected": "Viene visualizzata la maschera di inserimento dei dati" },
+      { "step": "L’utente inserisce il nome con caratteri non validi e seleziona il comune tra quelli disponibili", "expected": "Viene mostrato un messaggio di errore per i caratteri non validi" }
+    ],
+    "test_type": "Negativo",
+    "priority": "Basso",
+    "use_case_id": "UC4.1.1"
+  }
+]

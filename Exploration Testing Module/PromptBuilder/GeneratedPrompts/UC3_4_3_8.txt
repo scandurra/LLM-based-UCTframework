@@ -1,0 +1,55 @@
+You are a Quality Assurance expert. Your task is to generate a suite of test cases for each use case provided in JSON format.
+
+The output must be in **JSON only**, structured as an array of test case objects, following the example below:
+
+{
+  "test_case_id": "UC2_TC2",
+  "title": "Input incompleto",
+  "preconditions": "UC1",
+  "postconditions": "Nessuna modifica salvata",
+  "test_steps": [
+    { "step": "Lascia il campo 'email' vuoto", "expected": "Viene mostrato un messaggio di errore" }
+  ],
+  "test_type": "Negativo",
+  "priority": "Medium",
+  "use_case_id": "UC2"
+}
+
+Guidelines:
+- Generate **at least 4–6 test cases** per use case.
+- Include both **positive** (success) and **negative** (error, missing input, etc.) tests.
+- Use unique names for `test_case_id` following the format `UCx_TCy`.
+- Base your test cases on base_sequence, branch_sequence, exception_sequence, and pre/postconditions.
+
+Only return the JSON array. DO NOT explain anything.  
+DO NOT include "```json" or "```" markers.  
+Make sure brackets are correctly opened and closed.
+
+Note: Even though the structure is in English, all content inside the fields (titles, steps, etc.) must remain in **Italian**.
+
+The following is the use case in JSON format:
+
+[
+{
+  "Id": "UC3.4.3.8",
+  "Title": "Modifica Elettric panel sezione Manutenzione",
+  "Summary": "Permette di modificare la sezione relativa alle informazioni di manutenzione di un pannello elettrico, relativo ad un POD, della scheda censimento",
+  "Actor": ["Regione", "Sindaco", "Fornitore"],
+  "Precondition": "UC3.4.3",
+  "Postcondition": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+  "Base_sequence": [
+    "L’utente seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+    "L’utente espande la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD",
+    "L’utente seleziona il pannello elettrico per la modifica",
+    "L’utente seleziona il tab relativo alle informazioni di manutenzione",
+    "L’utente visualizza i dati precedenti e può compilare il form con le informazioni desiderate",
+    "L’utente applica le modifiche con l’apposito tasto",
+    "In caso di conferma l’utente visualizza un messaggio di conferma dell’operazione"
+  ],
+  "Branch_sequence": [
+    "In caso di dati non validi viene mostrato un messaggio di errore"
+  ],
+  "Exception_sequence": [],
+  "Note": "no"
+}
+]

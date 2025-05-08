@@ -1,0 +1,92 @@
+[
+  {
+    "test_case_id": "UC3.4.5_TC1",
+    "title": "Visualizzazione dettagli scheda censimento",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente visualizza le informazioni relative alla scheda censimento",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di dettaglio",
+        "expected": "Viene visualizzata una nuova pagina di dettaglio"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.5"
+  },
+  {
+    "test_case_id": "UC3.4.5_TC2",
+    "title": "Navigazione gerarchia POD e Aree Omogenee",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente può navigare nella gerarchia dei POD e Aree Omogenee",
+    "test_steps": [
+      {
+        "step": "Clicca sulla gerarchia dei POD",
+        "expected": "Viene visualizzata la lista delle aree omogenee"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.5"
+  },
+  {
+    "test_case_id": "UC3.4.5_TC3",
+    "title": "Visualizzazione dati generali area",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente può visualizzare dati generali dell’area a cui si riferisce la scheda",
+    "test_steps": [
+      {
+        "step": "Seleziona un’area omogenea",
+        "expected": "Viene visualizzata la pagina con i dati generali dell’area"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.5"
+  },
+  {
+    "test_case_id": "UC3.4.5_TC4",
+    "title": "Tentativo di modifica informazioni visualizzate",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente non può modificare le informazioni visualizzate",
+    "test_steps": [
+      {
+        "step": "Tenta di modificare un campo di testo",
+        "expected": "Il campo di testo non è editabile"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.5"
+  },
+  {
+    "test_case_id": "UC3.4.5_TC5",
+    "title": "Selezione operazione di dettaglio non valida",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona un’operazione di dettaglio non valida",
+        "expected": "Viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.5"
+  },
+  {
+    "test_case_id": "UC3.4.5_TC6",
+    "title": "Assenza di dati generali area",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente visualizza un messaggio di assenza di dati",
+    "test_steps": [
+      {
+        "step": "Seleziona un’area omogenea senza dati",
+        "expected": "Viene visualizzato un messaggio di assenza di dati"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.5"
+  }
+]

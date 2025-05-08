@@ -4,17 +4,10 @@
   "Title": "Aggiunta nuovo investimento",
   "Summary": "Permette di aggiungere un nuovo investimento tra quelli disponibili per l’utenza",
   "Actor": ["Progettista"],
-  "Precondition": "L’utente visualizza la sezione relativa alle schede censimento",
+  "Precondition": "UC4",
   "Postcondition": "L’utente visualizza un messaggio di conferma",
-  "Base_sequence": [
-    "L’utente naviga nella seconda sezione dedicata agli investimenti, su una barra orizzontale dedicata",
-    "L’utente clicca sul tasto dedicato all’aggiunta di un singolo investimento",
-    "L’utente compila il form con i parametri richiesti",
-    "L’utente visualizza un messaggio di conferma"
-  ],
-  "Branch_sequence": [
-    "In caso di annullamento l’utente visualizza un messaggio di avvenuto annullamento"
-  ],
+  "Base_sequence": ["L’utente naviga nella seconda sezione dedicata agli investimenti, su una barra orizzontale dedicata", "L’utente clicca sul tasto dedicato all’aggiunta di un singolo investimento", "L’utente compila il form con i parametri richiesti", "L’utente visualizza un messaggio di conferma"],
+  "Branch_sequence": ["In caso di annullamento l’utente visualizza un messaggio di avvenuto annullamento"],
   "Exception_sequence": [],
   "Note": "no"
 }

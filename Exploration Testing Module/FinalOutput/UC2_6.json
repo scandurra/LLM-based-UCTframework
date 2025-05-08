@@ -1,0 +1,112 @@
+[
+  {
+    "test_case_id": "UC2.6_TC1",
+    "title": "Selezione comune valido",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza le informazioni consultando i grafici",
+    "test_steps": [
+      {
+        "step": "Selezionare un comune esistente",
+        "expected": "Viene visualizzato il menu di analisi dei consumi"
+      },
+      {
+        "step": "Specificare POD, pannello elettrico, periodo e tipo di potenza analizzata",
+        "expected": "Viene visualizzato il grafico con i dati di consumo"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alto",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC2",
+    "title": "Selezione comune non esistente",
+    "preconditions": "UC2",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Selezionare un comune non esistente",
+        "expected": "Viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Medio",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC3",
+    "title": "Selezione POD non valido",
+    "preconditions": "UC2",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Selezionare un comune esistente",
+        "expected": "Viene visualizzato il menu di analisi dei consumi"
+      },
+      {
+        "step": "Specificare un POD non valido",
+        "expected": "Viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Medio",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC4",
+    "title": "Selezione pannello elettrico non esistente",
+    "preconditions": "UC2",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Selezionare un comune esistente",
+        "expected": "Viene visualizzato il menu di analisi dei consumi"
+      },
+      {
+        "step": "Specificare un pannello elettrico non esistente",
+        "expected": "Viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Medio",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC5",
+    "title": "Periodo non valido",
+    "preconditions": "UC2",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Selezionare un comune esistente",
+        "expected": "Viene visualizzato il menu di analisi dei consumi"
+      },
+      {
+        "step": "Specificare un periodo non valido",
+        "expected": "Viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Medio",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC6",
+    "title": "Tipo di potenza analizzata non valido",
+    "preconditions": "UC2",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Selezionare un comune esistente",
+        "expected": "Viene visualizzato il menu di analisi dei consumi"
+      },
+      {
+        "step": "Specificare un tipo di potenza analizzata non valido",
+        "expected": "Viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Medio",
+    "use_case_id": "UC2.6"
+  }
+]

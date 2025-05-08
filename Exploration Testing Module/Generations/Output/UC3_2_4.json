@@ -1,0 +1,92 @@
+[
+  {
+    "test_case_id": "UC3.2.4_TC1",
+    "title": "Ricerca scheda censimento combinata con parametri validi",
+    "preconditions": "UC3.2",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "L’utente inserisce tra i parametri di ricerca nome, stato e tipo validi",
+        "expected": "Il sistema restituisce i risultati della ricerca"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alto",
+    "use_case_id": "UC3.2.4"
+  },
+  {
+    "test_case_id": "UC3.2.4_TC2",
+    "title": "Ricerca scheda censimento combinata con parametri parzialmente vuoti",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema restituisce un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "L’utente inserisce solo il nome e lo stato",
+        "expected": "Il sistema richiede di inserire anche il tipo"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Medio",
+    "use_case_id": "UC3.2.4"
+  },
+  {
+    "test_case_id": "UC3.2.4_TC3",
+    "title": "Ricerca scheda censimento combinata con parametri non validi",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema restituisce un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "L’utente inserisce un nome non esistente e uno stato non valido",
+        "expected": "Il sistema segnala l’errore e non restituisce risultati"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Basso",
+    "use_case_id": "UC3.2.4"
+  },
+  {
+    "test_case_id": "UC3.2.4_TC4",
+    "title": "Ricerca scheda censimento combinata senza parametri di ricerca",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema restituisce un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "L’utente non inserisce nessun parametro di ricerca",
+        "expected": "Il sistema richiede di inserire almeno un parametro"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Medio",
+    "use_case_id": "UC3.2.4"
+  },
+  {
+    "test_case_id": "UC3.2.4_TC5",
+    "title": "Ricerca scheda censimento combinata con parametri di ricerca molto lunghi",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema restituisce un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "L’utente inserisce una stringa di ricerca troppo lunga",
+        "expected": "Il sistema segnala l’errore e non restituisce risultati"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Basso",
+    "use_case_id": "UC3.2.4"
+  },
+  {
+    "test_case_id": "UC3.2.4_TC6",
+    "title": "Ricerca scheda censimento combinata con parametri di ricerca contenenti caratteri speciali",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema restituisce un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "L’utente inserisce una stringa di ricerca con caratteri speciali",
+        "expected": "Il sistema segnala l’errore e non restituisce risultati"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Basso",
+    "use_case_id": "UC3.2.4"
+  }
+]

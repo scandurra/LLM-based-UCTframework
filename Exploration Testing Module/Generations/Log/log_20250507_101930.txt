@@ -1,0 +1,122 @@
+📝 PROMPT:
+You are a Quality Assurance expert. Your task is to generate a suite of test cases for each use case provided in JSON format.
+
+The output must be in **JSON only**, structured as an array of test case objects, following the example below:
+
+{
+  "test_case_id": "UC2_TC2",
+  "title": "Input incompleto",
+  "preconditions": "UC1",
+  "postconditions": "Nessuna modifica salvata",
+  "test_steps": [
+    { "step": "Lascia il campo 'email' vuoto", "expected": "Viene mostrato un messaggio di errore" }
+  ],
+  "test_type": "Negativo",
+  "priority": "Medium",
+  "use_case_id": "UC2"
+}
+
+Guidelines:
+- Generate **at least 4–6 test cases** per use case.
+- Include both **positive** (success) and **negative** (error, missing input, etc.) tests.
+- Use unique names for `test_case_id` following the format `UCx_TCy`.
+- Base your test cases on base_sequence, branch_sequence, exception_sequence, and pre/postconditions.
+
+Only return the JSON array. DO NOT explain anything.  
+DO NOT include "```json" or "```" markers.  
+Make sure brackets are correctly opened and closed.
+
+Note: Even though the structure is in English, all content inside the fields (titles, steps, etc.) must remain in **Italian**.
+
+The following is the use case in JSON format:
+
+[
+{
+  "Id": "UC3.2.2",
+  "Title": "Ricerca scheda censimento per stato",
+  "Summary": "Permette la ricerca tra le schede censimento in base allo stato",
+  "Actor": ["Regione", "Sindaco", "Fornitore"],
+  "Precondition": "UC3.2",
+  "Postcondition": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+  "Base_sequence": ["L’utente inserisce tra i parametri di ricerca il stato", "L’utente conferma la ricerca", "L’utente visualizza il risultato della ricerca come nello UC3.1"],
+  "Branch_sequence": [],
+  "Exception_sequence": [],
+  "Note": "no"
+}
+]
+
+📥 RISPOSTA:
+[
+  {
+    "test_case_id": "UC3.2.2_TC1",
+    "title": "Ricerca scheda censimento per stato valido",
+    "preconditions": "UC3.2",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      { "step": "L’utente inserisce tra i parametri di ricerca lo stato 'Italia'", "expected": "Viene mostrato il risultato della ricerca" }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.2.2"
+  },
+  {
+    "test_case_id": "UC3.2.2_TC2",
+    "title": "Ricerca scheda censimento per stato non valido",
+    "preconditions": "UC3.2",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      { "step": "L’utente inserisce tra i parametri di ricerca lo stato 'Francia'", "expected": "Viene mostrato un messaggio di errore" }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.2.2"
+  },
+  {
+    "test_case_id": "UC3.2.2_TC3",
+    "title": "Ricerca scheda censimento senza stato",
+    "preconditions": "UC3.2",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      { "step": "L’utente non inserisce lo stato tra i parametri di ricerca", "expected": "Viene mostrato un messaggio di errore" }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.2.2"
+  },
+  {
+    "test_case_id": "UC3.2.2_TC4",
+    "title": "Ricerca scheda censimento per stato con caratteri speciali",
+    "preconditions": "UC3.2",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      { "step": "L’utente inserisce tra i parametri di ricerca lo stato 'It@lia'", "expected": "Viene mostrato un messaggio di errore" }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.2.2"
+  },
+  {
+    "test_case_id": "UC3.2.2_TC5",
+    "title": "Ricerca scheda censimento per stato con spazi vuoti",
+    "preconditions": "UC3.2",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      { "step": "L’utente inserisce tra i parametri di ricerca lo stato '  Italia  '", "expected": "Viene mostrato un messaggio di errore" }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.2.2"
+  },
+  {
+    "test_case_id": "UC3.2.2_TC6",
+    "title": "Ricerca scheda censimento per stato con lunghezza massima",
+    "preconditions": "UC3.2",
+    "postconditions": "Viene mostrato il risultato della ricerca",
+    "test_steps": [
+      { "step": "L’utente inserisce tra i parametri di ricerca lo stato 'Regione Autonoma della Sardegna'", "expected": "Viene mostrato il risultato della ricerca" }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC3.2.2"
+  }
+]

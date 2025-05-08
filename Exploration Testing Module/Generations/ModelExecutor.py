@@ -26,7 +26,7 @@ data = {
     "model": "llama3.3:latest",
     "prompt": prompt_text,
     "stream": False,
-    "temperature": 0.2,
+    "temperature": 0.3,
     "top_p": 1,
     "top_k": 0,
     "max_tokens": 4096,
@@ -63,7 +63,7 @@ if response.status_code == 200:
         print(f"🗒️  Log completo salvato in: {log_path}")
 
     except json.JSONDecodeError:
-        fallback_path = output_path.replace(".json", "_RAW.txt")
+        fallback_path = output_path.replace(".json", ".txt")
         with open(fallback_path, "w", encoding="utf-8") as f:
             f.write(result_text)
         print(f"⚠️ Output non valido JSON. Salvato testo grezzo in: {fallback_path}")

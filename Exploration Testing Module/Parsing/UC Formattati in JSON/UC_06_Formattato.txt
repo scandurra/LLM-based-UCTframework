@@ -4,14 +4,9 @@
   "Title": "Benchmarking KPI per comune",
   "Summary": "Consente di analizzare i Key Performance Indicator dei comuni selezionati",
   "Actor": ["Regione", "Sindaco", "Fornitore", "Cittadino"],
-  "Precondition": "L’utente visualizza la sezione relativa alla dashboard",
+  "Precondition": "UC2",
   "Postcondition": "L’utente visualizza il risultato della analisi su un grafico, in base ai comuni e al KPI su cui fare il confronto",
-  "Base_sequence": [
-    "L’utente seleziona i comuni desiderati dal menù a tendina, tramite ricerca e selezione",
-    "L’utente seleziona il KPI desiderato",
-    "L’utente conferma la richiesta cliccando sul pulsante",
-    "L’utente visualizza il grafico con il confronto desiderato"
-  ],
+  "Base_sequence": ["L’utente seleziona i comuni desiderati dal menù a tendina, tramite ricerca e selezione", "L’utente seleziona il KPI desiderato", "L’utente conferma la richiesta cliccando sul pulsante", "L’utente visualizza il grafico con il confronto desiderato"],
   "Branch_sequence": [],
   "Exception_sequence": [],
   "Note": "no"

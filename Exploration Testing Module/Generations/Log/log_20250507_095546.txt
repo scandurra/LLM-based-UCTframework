@@ -1,0 +1,128 @@
+📝 PROMPT:
+You are a Quality Assurance expert. Your task is to generate a suite of test cases for each use case provided in JSON format.
+
+The output must be in **JSON only**, structured as an array of test case objects, following the example below:
+
+{
+  "test_case_id": "UC2_TC2",
+  "title": "Input incompleto",
+  "preconditions": "UC1",
+  "postconditions": "Nessuna modifica salvata",
+  "test_steps": [
+    { "step": "Lascia il campo 'email' vuoto", "expected": "Viene mostrato un messaggio di errore" }
+  ],
+  "test_type": "Negativo",
+  "priority": "Medium",
+  "use_case_id": "UC2"
+}
+
+Guidelines:
+- Generate **at least 4–6 test cases** per use case.
+- Include both **positive** (success) and **negative** (error, missing input, etc.) tests.
+- Use unique names for `test_case_id` following the format `UCx_TCy`.
+- Base your test cases on base_sequence, branch_sequence, exception_sequence, and pre/postconditions.
+
+Only return the JSON array. DO NOT explain anything.  
+DO NOT include "```json" or "```" markers.  
+Make sure brackets are correctly opened and closed.
+
+Note: Even though the structure is in English, all content inside the fields (titles, steps, etc.) must remain in **Italian**.
+
+The following is the use case in JSON format:
+
+[
+{
+  "Id": "UC2.5",
+  "Title": "Visualizzazione grafici (parte di UC2: Dashboard)",
+  "Summary": "Permette di visualizzare informazioni di adozione della piattaforma e tecniche a livello statale",
+  "Actor": ["Regione", "Sindaco", "Fornitore", "Cittadino"],
+  "Precondition": "UC2",
+  "Postcondition": "L’utente visualizza le informazioni consultando i grafici",
+  "Base_sequence": ["L’utente scorre nella pagina fino a visualizzare le sezioni contrassegnate dai grafici che visualizzano i comuni aderenti per regione, punti luce per regione e distribuzione punti luce per tipo apparecchio"],
+  "Branch_sequence": [],
+  "Exception_sequence": [],
+  "Note": "no"
+}
+]
+
+📥 RISPOSTA:
+[
+  {
+    "test_case_id": "UC2.5_TC1",
+    "title": "Visualizzazione corretta dei grafici",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza le informazioni consultando i grafici",
+    "test_steps": [
+      { "step": "L’utente accede alla pagina di dashboard", "expected": "La pagina si carica correttamente" },
+      { "step": "L’utente scorre nella pagina fino a visualizzare le sezioni contrassegnate dai grafici", "expected": "I grafici vengono visualizzati correttamente" }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alto",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC2",
+    "title": "Assenza di dati per regione",
+    "preconditions": "UC2",
+    "postconditions": "Viene mostrato un messaggio di avviso per l’assenza di dati",
+    "test_steps": [
+      { "step": "L’utente accede alla pagina di dashboard", "expected": "La pagina si carica correttamente" },
+      { "step": "L’utente scorre nella pagina fino a visualizzare le sezioni contrassegnate dai grafici per una regione senza dati", "expected": "Viene mostrato un messaggio di avviso per l’assenza di dati" }
+    ],
+    "test_type": "Negativo",
+    "priority": "Medio",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC3",
+    "title": "Errore di caricamento dei grafici",
+    "preconditions": "UC2",
+    "postconditions": "Viene mostrato un messaggio di errore per il mancato caricamento dei grafici",
+    "test_steps": [
+      { "step": "L’utente accede alla pagina di dashboard", "expected": "La pagina si carica correttamente" },
+      { "step": "L’utente scorre nella pagina fino a visualizzare le sezioni contrassegnate dai grafici", "expected": "Viene mostrato un messaggio di errore per il mancato caricamento dei grafici" }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alto",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC4",
+    "title": "Visualizzazione dei dati per comuni aderenti",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza i dati sui comuni aderenti per regione",
+    "test_steps": [
+      { "step": "L’utente accede alla pagina di dashboard", "expected": "La pagina si carica correttamente" },
+      { "step": "L’utente scorre nella pagina fino a visualizzare le sezioni contrassegnate dai grafici dei comuni aderenti per regione", "expected": "I dati vengono visualizzati correttamente" }
+    ],
+    "test_type": "Positivo",
+    "priority": "Medio",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC5",
+    "title": "Visualizzazione dei dati per punti luce per regione",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza i dati sui punti luce per regione",
+    "test_steps": [
+      { "step": "L’utente accede alla pagina di dashboard", "expected": "La pagina si carica correttamente" },
+      { "step": "L’utente scorre nella pagina fino a visualizzare le sezioni contrassegnate dai grafici dei punti luce per regione", "expected": "I dati vengono visualizzati correttamente" }
+    ],
+    "test_type": "Positivo",
+    "priority": "Medio",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC6",
+    "title": "Visualizzazione dei dati per distribuzione punti luce per tipo apparecchio",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza i dati sulla distribuzione dei punti luce per tipo apparecchio",
+    "test_steps": [
+      { "step": "L’utente accede alla pagina di dashboard", "expected": "La pagina si carica correttamente" },
+      { "step": "L’utente scorre nella pagina fino a visualizzare le sezioni contrassegnate dai grafici della distribuzione dei punti luce per tipo apparecchio", "expected": "I dati vengono visualizzati correttamente" }
+    ],
+    "test_type": "Positivo",
+    "priority": "Basso",
+    "use_case_id": "UC2.5"
+  }
+]

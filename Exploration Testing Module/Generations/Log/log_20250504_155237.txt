@@ -1,0 +1,107 @@
+📝 PROMPT:
+base_prompt = f"""
+Act as a senior Test Engineer. You will receive a Use Case in formally structured TXT format.
+
+Your task is to generate a JSON array of test cases that verify the functional behavior of the system, covering base flow, alternatives, exceptions, and pre/postconditions.
+
+Example output format (return only an array of objects):
+{
+  "test_case_id": "UC2_TC2",
+  "title": "Input incompleto",
+  "preconditions": "UC1",
+  "postconditions": "Nessuna modifica salvata",
+  "test_steps": [
+    { "step": "Lascia il campo 'email' vuoto", "expected": "Viene mostrato un messaggio di errore" }
+  ],
+  "test_type": "Negativo",
+  "priority": "Medium",
+  "use_case_id": "UC2"
+}
+
+Instructions:
+- Generate at least 4 test cases per use case.
+- Include both **positive** and **negative** tests.
+- The `test_type` must be either "Positive" or "Negative".
+- Each `test_case_id` must begin with the Use Case ID.
+
+Do not explain anything. Return **only** the resulting JSON array.  
+DO NOT include any "```json" or "```" markers.  
+Ensure all brackets are properly opened and closed.
+
+Note: The field content (e.g., title, steps, etc.) must remain in **Italian**.
+
+The following is the use case in TXT format:
+"""
+
+Id: UC2.1  
+Title: Download PDF  
+Summary: Download del PDF relativo alle informazioni della dashboard  
+Actor: Regione, Sindaco, Fornitore  
+Precondition: UC2  
+Postcondition: L’utente ha scaricato il file, può aprirlo dalla apposita sezione del browser utilizzato ed il file è ben formato  
+Base_sequence:  
+1) L’utente inizia il processo di download cliccando sul tasto dedicato  
+2) L’utente conferma la richiesta  
+3) L’utente visualizza un messaggio di operazione completata con successo  
+Branch_sequence: no  
+Exception_sequence:  
+1) L’utente visualizza un messaggio di operazione completata con un errore relativo all’eccezione verificatasi  
+2) L’utente può ripartire dal punto 2 della base sequence  
+Note: no
+
+📥 RISPOSTA:
+[
+  {
+    "test_case_id": "UC2.1_TC1",
+    "title": "Download PDF riuscito",
+    "preconditions": "UC2",
+    "postconditions": "L’utente ha scaricato il file, può aprirlo dalla apposita sezione del browser utilizzato ed il file è ben formato",
+    "test_steps": [
+      { "step": "L’utente inizia il processo di download cliccando sul tasto dedicato", "expected": "Il sistema conferma la richiesta" },
+      { "step": "L’utente conferma la richiesta", "expected": "Il sistema visualizza un messaggio di operazione completata con successo" },
+      { "step": "L’utente apre il file scaricato", "expected": "Il file è ben formato e leggibile" }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC2",
+    "title": "Download PDF fallito - Errore durante il download",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di operazione completata con un errore relativo all’eccezione verificatasi",
+    "test_steps": [
+      { "step": "L’utente inizia il processo di download cliccando sul tasto dedicato", "expected": "Il sistema conferma la richiesta" },
+      { "step": "Il sistema riscontra un errore durante il download", "expected": "Il sistema visualizza un messaggio di operazione completata con un errore relativo all’eccezione verificatasi" }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC3",
+    "title": "Download PDF fallito - File non trovato",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di operazione completata con un errore relativo all’eccezione verificatasi",
+    "test_steps": [
+      { "step": "L’utente inizia il processo di download cliccando sul tasto dedicato", "expected": "Il sistema conferma la richiesta" },
+      { "step": "Il sistema non trova il file da scaricare", "expected": "Il sistema visualizza un messaggio di operazione completata con un errore relativo all’eccezione verificatasi" }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC4",
+    "title": "Download PDF ripetuto",
+    "preconditions": "UC2",
+    "postconditions": "L’utente ha scaricato il file, può aprirlo dalla apposita sezione del browser utilizzato ed il file è ben formato",
+    "test_steps": [
+      { "step": "L’utente inizia il processo di download cliccando sul tasto dedicato", "expected": "Il sistema conferma la richiesta" },
+      { "step": "L’utente ripete il processo di download", "expected": "Il sistema visualizza un messaggio di operazione completata con successo e il file è scaricato nuovamente" }
+    ],
+    "test_type": "Positive",
+    "priority": "Low",
+    "use_case_id": "UC2.1"
+  }
+]

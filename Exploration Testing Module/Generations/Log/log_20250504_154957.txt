@@ -1,0 +1,109 @@
+📝 PROMPT:
+base_prompt = f"""
+Act as a senior Test Engineer. You will receive a Use Case in formally structured TXT format.
+
+Your task is to generate a JSON array of test cases that verify the functional behavior of the system, covering base flow, alternatives, exceptions, and pre/postconditions.
+
+Example output format (return only an array of objects):
+{
+  "test_case_id": "UC2_TC2",
+  "title": "Input incompleto",
+  "preconditions": "UC1",
+  "postconditions": "Nessuna modifica salvata",
+  "test_steps": [
+    { "step": "Lascia il campo 'email' vuoto", "expected": "Viene mostrato un messaggio di errore" }
+  ],
+  "test_type": "Negativo",
+  "priority": "Medium",
+  "use_case_id": "UC2"
+}
+
+Instructions:
+- Generate at least 4 test cases per use case.
+- Include both **positive** and **negative** tests.
+- The `test_type` must be either "Positive" or "Negative".
+- Each `test_case_id` must begin with the Use Case ID.
+
+Do not explain anything. Return **only** the resulting JSON array.  
+DO NOT include any "```json" or "```" markers.  
+Ensure all brackets are properly opened and closed.
+
+Note: The field content (e.g., title, steps, etc.) must remain in **Italian**.
+
+The following is the use case in TXT format:
+"""
+
+Id: UC1  
+Title: Login utente  
+Summary: Autenticazione di un’utente registrato al sistema  
+Actor: Regione, Sindaco, Fornitore, Progettista, Cittadino  
+Precondition: L’utente non è autenticato  
+Postcondition: L’utente è autenticato ed è a conoscenza che l’operazione ha avuto successo  
+Base_sequence: 
+1) L’utente inserisce le proprie credenziali all’interno del form
+2) L’utente inizia il processo di autenticazione cliccando il tasto “Login”
+3) L’utente visualizza un messaggio di operazione completata con successo  
+Branch_sequence: 
+1) All’utente è richiesto modificare la prima password di accesso
+2) L’utente inserisce la nuova password e conferma  
+Exception_sequence: 
+1) L’utente visualizza un messaggio di operazione completata con un errore relativo all’eccezione verificatasi (credenziali errate, mismatch della nuova password…)
+2) L’utente può ripartire dal punto 1 della base sequence  
+Note: no
+
+📥 RISPOSTA:
+[
+  {
+    "test_case_id": "UC1_TC1",
+    "title": "Login utente corretto",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "L’utente è autenticato ed è a conoscenza che l’operazione ha avuto successo",
+    "test_steps": [
+      { "step": "L’utente inserisce le proprie credenziali all’interno del form", "expected": "Il sistema accetta le credenziali" },
+      { "step": "L’utente inizia il processo di autenticazione cliccando il tasto “Login”", "expected": "Il sistema avvia la procedura di login" },
+      { "step": "L’utente visualizza un messaggio di operazione completata con successo", "expected": "Il messaggio di successo viene visualizzato correttamente" }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC2",
+    "title": "Credenziali errate",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      { "step": "L’utente inserisce credenziali errate all’interno del form", "expected": "Il sistema rifiuta le credenziali" },
+      { "step": "L’utente inizia il processo di autenticazione cliccando il tasto “Login”", "expected": "Il sistema visualizza un messaggio di errore" }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC3",
+    "title": "Modifica password obbligatoria",
+    "preconditions": "L’utente non è autenticato e la sua password è scaduta",
+    "postconditions": "L’utente modifica la password e completa il login",
+    "test_steps": [
+      { "step": "All’utente è richiesto modificare la prima password di accesso", "expected": "Il sistema richiede la modifica della password" },
+      { "step": "L’utente inserisce la nuova password e conferma", "expected": "Il sistema accetta la nuova password" }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC4",
+    "title": "Mismacth della nuova password",
+    "preconditions": "L’utente non è autenticato e la sua password è scaduta",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      { "step": "All’utente è richiesto modificare la prima password di accesso", "expected": "Il sistema richiede la modifica della password" },
+      { "step": "L’utente inserisce una nuova password che non corrisponde alla conferma", "expected": "Il sistema visualizza un messaggio di errore per mismatch della password" }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC1"
+  }
+]

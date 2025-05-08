@@ -1,14 +1,14 @@
 [
-  {
-    "Id": "UC3.4.3",
-    "Title": "Modifica scheda censimento",
-    "Summary": "Mostra la sezione relativa alla modifica dei dati di una scheda censimento",
-    "Actor": ["Regione", "Sindaco", "Fornitore"],
-    "Precondition": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
-    "Postcondition": "L’utente visualizza le informazioni della scheda in fase di edit",
-    "Base_sequence": ["L’utente seleziona l’operazione di modifica"],
-    "Branch_sequence": [],
-    "Exception_sequence": [],
-    "Note": "no"
-  }
+{
+  "Id": "UC3.4.3",
+  "Title": "Modifica scheda censimento",
+  "Summary": "Mostra la sezione relativa alla modifica dei dati di una scheda censimento",
+  "Actor": ["Regione", "Sindaco", "Fornitore"],
+  "Precondition": "UC3.4",
+  "Postcondition": "L’utente visualizza le informazioni della scheda in fase di edit",
+  "Base_sequence": ["L’utente seleziona l’operazione di modifica"],
+  "Branch_sequence": [],
+  "Exception_sequence": [],
+  "Note": "no"
+}
 ]

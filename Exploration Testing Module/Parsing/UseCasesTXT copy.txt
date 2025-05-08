@@ -1,0 +1,500 @@
+Analisi Use Case del portale PELL 2.0
+Prof.ssa Patrizia Scandurra
+PhD Dr. Edoardo Scazzocchio – Nomos Consulting s.r.l.
+PhD Dr. Fabio Moretti – ENEA Research Lab.
+Dr. Salvatore Greco
+Dr. Riccardo Contessi
+A.A 2023/2024
+Use Case 1: Login
+Use case 2: Dashboard
+Use case 2.1: Download PDF
+Use case 2.2: Ricerca impianti di illuminazione
+Use case 2.3: Visualizzazione tabella dati generali
+Use case 2.4: Benchmarking KPI per commune
+Use case 2.5: Visualizzazione grafici
+Use case 2.6: Analisi consumo comune per POD
+Use case 3: Gestione schede censimento
+Use case 3.1: Visualizzazione schede censimento
+Use case 3.2: Ricerca per nome, stato e tipo scheda censimento
+Use case 3.2.1: Ricerca scheda censimento per nome
+Use case 3.2.2: Ricerca scheda censimento per stato
+Use case 3.2.3: Ricerca scheda censimento per tipo
+Use case 3.2.4: Ricerca scheda censimento combinata
+Use case 3.3: Caricamento scheda censimento
+Use case 3.4: Azione su scheda censimento (Download, elimina, modifica, congela)
+Use case 3.4.1: Download scheda censimento
+Use case 3.4.2: Elimina scheda censimento
+Use case 3.4.3: Modifica scheda censimento
+Use case 3.4.3.1: Modifica sezione Area (Dati generali)
+Use case 3.4.3.2: Modifica sezione PlSystemGeneralData (Dati generali)
+Use case 3.4.3.3: Modifica POD sezione anagrafica
+Use case 3.4.3.4: Modifica POD sezione consumi
+Use case 3.4.3.5: Modifica Elettric panel sezione Anagrafica
+Use case 3.4.3.6: Modifica Elettric panel sezione Dati tecnici
+Use case 3.4.3.7: Modifica Elettric panel sezione Dati operativi
+Use case 3.4.3.8: Modifica Elettric panel sezione Manutenzione
+Use case 3.4.3.9: Modifica LightSpot sezione Dati punto luce
+Use case 3.4.3.10: Modifica LightSpotDevice sezione Dati apparecchio
+Use case 3.4.3.11: Modifica LightSource sezione Dati sorgente luminosa
+Use case 3.4.3.12: Modifica Zona omogenea sezione Dati zona omogenea
+Use case 3.4.4: Congela scheda censimento
+Use case 3.4.5: Dettaglio scheda censimento
+Use case 4: Gestione Modulo SAVE
+Use case 4.1: Gestione impianto
+Use case 4.1.1: Aggiunta impianto
+Use case 4.2: Aggiunta nuovo investimento
+Use case 4.3: Nuova analisi
+Use case 5: Selezione lingua
+Use case 6: Logout utente
+
+
+UseCase : UC1: Login utente
+Summary : Autenticazione di un’utente registrato al sistema
+Actor : Regione, Sindaco, Fornitore, Progettista, Cittadino
+Precondition : L’utente non è autenticato
+Postcondition : L’utente è autenticato ed è a conoscenza che l’operazione ha avuto successo
+Base sequence : L’utente inserisce le proprie credenziali all’interno del form : L’utente inizia il processo di autenticazione cliccando il tasto “Login” : L’utente visualizza un messaggio di operazione completata con successo
+Branch sequence : All’utente è richiesto modificare la prima password di accesso : L’utente inserisce la nuova password e conferma
+Exception sequence : L’utente visualizza un messaggio di operazione completata con un errore relativo all’eccezione verificatasi (credenziali errate, mismatch della nuova password…) : L’utente può ripartire dal punto 1 della base sequence
+Note : no
+
+
+UseCase : UC2: Dashboard
+Summary : Apertura della dashboard
+Actor : Regione, Sindaco, Fornitore, Progettista, Cittadino
+Precondition : UC1
+Postcondition : L’utente visualizza la sezione relativa alla dashboard
+Base sequence : L’utente naviga nella sezione relativa alla dashboard utilizzando il menù laterale di sinistra
+Branch sequence : no
+Exception sequence : no
+Note : no
+
+
+UseCase : UC2.1: Download PDF (parte di UC2: Dashboard)
+Summary : Download del PDF relativo alle informazioni della dashboard
+Actor : Regione, Sindaco, Fornitore
+Precondition : UC2
+Postcondition : L’utente ha scaricato il file, può aprirlo dalla apposita sezione del browser utilizzato ed il file è ben formato
+Base sequence : L’utente inizia il processo di download cliccando sul tasto dedicato : L’utente conferma la richiesta : L’utente visualizza un messaggio di operazione completata con successo : no
+Branch sequence : no
+Exception sequence : L’utente visualizza un messaggio di operazione completata con un errore relativo all’eccezione verificatasi : L’utente può ripartire dal punto 2 della base sequence
+Note : no
+
+
+UseCase : UC2.2: Ricerca impianti di illuminazione (parte di UC2: Dashboard)
+Summary : Ricerca per caratteristiche degli impianti di illuminazione
+Actor : Regione, Sindaco, Fornitore, Cittadino
+Precondition : UC2
+Postcondition : L’utente visualizza gli impianti di illuminazione che corrispondono ai criteri di ricerca
+Base sequence : L’utente seleziona il comune di ricerca, così come i parametri tra quelli disponibili : L’utente conferma la ricerca con il click : L’utente visualizza sulla mappa la posizione dell’impianto d’illuminazione relativo al comune
+Branch sequence : no
+Exception sequence : no
+Note : no
+
+
+UseCase : UC2.3: Visualizzazione tabella dati generali (parte di UC2: Dashboard)
+Summary : Permette di visualizzare informazioni illuminotecniche per comune
+Actor : Regione, Sindaco, Fornitore, Cittadino
+Precondition : UC2
+Postcondition : L’utente visualizza le informazioni corrispondenti alla paginazione richiesta
+Base sequence : L’utente naviga nella sezione dashboard utilizzando il menù apposito : L’utente scorre nella pagina fino a visualizzare una sezione tabellare dedicata ai dati generali, dove i dati saranno presentati in forma tabellare : È possibile scorrere tra i comuni disponibili alla consultazione e censiti, tramite selettore della pagine in basso a destra : È possibile modificare gli elementi visualizzati per pagina, tramite selettore in basso a sinistra : È possibile ordinare per colonna di dati, cliccando sul nome della colonna : no
+Branch sequence : no
+Exception sequence : no
+Note : no
+
+
+UseCase : UC2.4: Benchmarking KPI per comune (parte di UC2: Dashboard)
+Summary : Consente di analizzare i Key Performance Indicator dei comuni selezionati
+Actor : Regione, Sindaco, Fornitore, Cittadino
+Precondition : UC2
+Postcondition : L’utente visualizza il risultato della analisi su un grafico, in base ai comuni e al KPI su cui fare il confronto
+Base sequence : L’utente seleziona i comuni desiderati dal menù a tendina, tramite ricerca e selezione : L’utente seleziona il KPI desiderato : L’utente conferma la richiesta cliccando sul pulsante : L’utente visualizza il grafico con il confronto desiderato : no
+Branch sequence : no
+Exception sequence : no
+Note : no
+
+
+UseCase : UC2.5: Visualizzazione grafici (parte di UC2: Dashboard)
+Summary : Permette di visualizzare informazioni di adozione della piattaforma e tecniche a livello statale
+Actor : Regione, Sindaco, Fornitore, Cittadino
+Precondition : UC2
+Postcondition : L’utente visualizza le informazioni consultando i grafici
+Base sequence : L’utente scorre nella pagina fino a visualizzare le sezioni contrassegnate dai grafici che visualizzano i comuni aderenti per regione, punti luce per regione e distribuzione punti luce per tipo apparecchio
+Branch sequence : no
+Exception sequence : no
+Note : no
+
+
+UseCase : UC2.6: Analisi consumo comune per POD (parte di UC2: Dashboard)
+Summary : Permette di visualizzare un’analisi per comune dei consumi sulla base di alcuni parametri selezionati
+Actor : Comune, Fornitore
+Precondition : UC2
+Postcondition : L’utente visualizza le informazioni consultando i grafici
+Base sequence : L’utente scorre nella pagina fino a visualizzare la sezione dedicata al consumo : Selezionato il comune, è possibile eseguire un’analisi più puntuale andando a specificare POD, pannello elettrico, periodo e tipo di potenza analizzata
+Branch sequence : no
+Exception sequence : no
+Note : no
+
+
+UseCase : UC3: Gestione schede censimento
+Summary : Apertura dell’interfaccia per la gestione delle schede censimento
+Actor : Regione, Sindaco, Fornitore
+Precondition : UC1
+Postcondition : L’utente visualizza la sezione relativa alle schede censimento
+Base sequence : L’utente naviga nella sezione relativa alle schede censimento utilizzando il menù laterale di sinistra
+Branch sequence : no
+Exception sequence : no
+Note : no
+
+
+UseCase : UC3.1: Visualizzazione schede censimento (parte di UC3: Gestione schede censimento)
+Summary : Permette di visualizzare informazioni anagrafiche dell’entità scheda censimento, utilizzata per censire la rete di illuminazione pubblica
+Actor : Regione, Sindaco, Fornitore
+Precondition : UC3
+Postcondition : L’utente visualizza le informazioni corrispondenti alla paginazione richiesta
+Base sequence : L’utente visualizza le informazioni in forma tabellare e paginata : È possibile scorrere lateralmente per visualizzare tutte le colonne : Tutte le colonne visualizzabili consentono l’ordinamento con un click sul nome
+Branch sequence : no
+Exception sequence : no
+Note : no
+
+
+UseCase : UC3.2: Ricerca scheda censimento (parte di UC3: Gestione schede censimento)
+Summary : Permette la ricerca tra le schede censimento
+Actor : Regione, Sindaco, Fornitore
+Precondition : UC3
+Postcondition : L’utente visualizza le informazioni corrispondenti alla paginazione richiesta
+Base sequence : L’utente visualizza la barra di ricerca relativa alle schede censimento
+Branch sequence : no
+Exception sequence : no
+Note : no
+
+
+UseCase : UC3.2.1: Ricerca scheda censimento per nome (parte di UC3.2: Ricerca scheda censimento) (parte di UC3: Gestione schede censimento)
+Summary : Permette la ricerca tra le schede censimento in base al nome
+Actor : Regione, Sindaco, Fornitore
+Precondition : UC3.2
+Postcondition : L’utente visualizza le informazioni corrispondenti alla paginazione richiesta
+Base sequence : L’utente inserisce tra i parametri di ricerca il nome : L’utente conferma la ricerca : L’utente visualizza il risultato della ricerca come nello UC3.1
+Branch sequence : no
+Exception sequence : no
+Note : no
+
+
+UseCase : UC3.2.2: Ricerca scheda censimento per stato (parte di UC3.2: Ricerca scheda censimento) (parte di UC3: Gestione schede censimento)
+Summary : Permette la ricerca tra le schede censimento in base allo stato
+Actor : Regione, Sindaco, Fornitore
+Precondition : UC3.2
+Postcondition : L’utente visualizza le informazioni corrispondenti alla paginazione richiesta
+Base sequence : L’utente inserisce tra i parametri di ricerca il stato : L’utente conferma la ricerca : L’utente visualizza il risultato della ricerca come nello UC3.1
+Branch sequence : no
+Exception sequence : no
+Note : no
+
+
+UseCase : UC3.2.3: Ricerca scheda censimento per tipo (parte di UC3.2: Ricerca scheda censimento) (parte di UC3: Gestione schede censimento)
+Summary : Permette la ricerca tra le schede censimento in base al tipo
+Actor : Regione, Sindaco, Fornitore
+Precondition : UC3.2
+Postcondition : L’utente visualizza le informazioni corrispondenti alla paginazione richiesta
+Base sequence : L’utente inserisce tra i parametri di ricerca il tipo : L’utente conferma la ricerca : L’utente visualizza il risultato della ricerca come nello UC3.1
+Branch sequence : no
+Exception sequence : no
+Note : no
+
+
+UseCase : UC3.2.4: Ricerca scheda censimento combinata (parte di UC3.2: Ricerca scheda censimento) (parte di UC3: Gestione schede censimento)
+Summary : Permette la ricerca tra le schede censimento in base ai parametri forniti
+Actor : Regione, Sindaco, Fornitore
+Precondition : UC3.2
+Postcondition : L’utente visualizza le informazioni corrispondenti alla paginazione richiesta
+Base sequence : L’utente inserisce tra i parametri di ricerca nome, stato e tipo : L’utente conferma la ricerca : L’utente visualizza il risultato della ricerca come nello UC3.1
+Branch sequence : no
+Exception sequence : no
+Note : no
+
+
+UseCase : UC3.3: Caricamento schede censimento (parte di UC3: Gestione schede censimento)
+Summary : Aggiunge una scheda censimento tra quelle salvate, caricando il file sul portale tramite l’apposita sezione
+Actor : Regione, Sindaco, Fornitore
+Precondition : UC3
+Postcondition : L’utente può visualizzare le informazioni corrispondenti alla scheda censimento appena caricata
+Base sequence : L’utente clicca sul tasto relativo al caricamento (upload) delle schede censimento : Nella nuova finestra è possibile scegliere alcuni parametri come il nome, così come il formato di caricamento : Si procede all’upload tramite drag-and-drop sulla apposita sezione mostrata. La stessa sezione, con un click, consente la selezione del file tramite browser : Viene mostrata una barra di caricamento : Alla fine del processo viene mostrato un messaggio di operazione andata a buon fine
+Branch sequence : no
+Exception sequence : no
+Note : no
+
+
+UseCase : UC3.4: Azione su scheda censimento (parte di UC3: Gestione schede censimento)
+Summary : Mostra all’utente una palette di operazioni possibili sulla scheda censimento
+Actor : Regione, Sindaco, Fornitore
+Precondition : UC3
+Postcondition : no
+Base sequence : L’utente clicca sul tasto delle azioni dedicato alla singola scheda censimento
+Branch sequence : no
+Exception sequence : no
+Note : no
+
+
+UseCase : UC3.4.1: Download scheda censimento (parte di UC3.4: Azione su scheda censimento) (parte di UC3: Gestione schede censimento)
+Summary : Permette di scaricare sul dispositivo un file che rappresenta le informazioni sulla scheda censimento selezionata
+Actor : Regione, Sindaco, Fornitore
+Precondition : UC3.4
+Postcondition : L’utente visualizza un messaggio di conferma e ottiene il file desiderato
+Base sequence : L’utente seleziona l’operazione di download : L’utente visualizza l’avanzamento del download richiesto all’interno del browser
+Branch sequence : no
+Exception sequence : no
+Note : no
+
+
+UseCase : UC3.4.2: Elimina scheda censimento (parte di UC3.4: Azione su scheda censimento) (parte di UC3: Gestione schede censimento)
+Summary : Permette di eliminare dal portale una scheda censimento precedentemente caricata
+Actor : Regione, Sindaco, Fornitore
+Precondition : UC3.4
+Postcondition : L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine
+Base sequence : L’utente seleziona l’operazione di cancellazione : All’utente viene richiesta la conferma dell’eliminazione della scheda indicata : In caso di conferma l’utente visualizza un messaggio di conferma dell’operazione
+Branch sequence : In caso di annullamento l’eliminazione viene interrotta
+Exception sequence : no
+Note : no
+
+
+UseCase : UC3.4.3: Modifica scheda censimento (parte di UC3.4: Azione su scheda censimento) (parte di UC3: Gestione schede censimento)
+Summary : Mostra la sezione relativa alla modifica dei dati di una scheda censimento
+Actor : Regione, Sindaco, Fornitore
+Precondition : UC3.4
+Postcondition : L’utente visualizza le informazioni della scheda in fase di edit
+Base sequence : L’utente seleziona l’operazione di modifica
+Branch sequence : no
+Exception sequence : no
+Note : no
+
+
+UseCase : UC3.4.3.1: Modifica sezione Area (parte di UC3.4.3 Modifica scheda censimento) (parte di UC3.4: Azione su scheda censimento) (parte di UC3: Gestione schede censimento)
+Summary : Permette di modificare i parametri della sezione Area relativa ai dati generali della scheda censimento
+Actor : Regione, Sindaco, Fornitore
+Precondition : UC3.4.3
+Postcondition : L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine
+Base sequence : L’utente entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra : L’utente visualizza i dati precedenti e può compilare il form con le informazioni desiderate : L’utente applica le modifiche con l’apposito tasto : In caso di conferma l’utente visualizza un messaggio di conferma dell’operazione
+Branch sequence : In caso di dati non validi viene mostrato un messaggio di errore
+Exception sequence : no
+Note : no
+
+
+UseCase : UC3.4.3.2: Modifica sezione PlSystemGeneralData (parte di UC3.4.3 Modifica scheda censimento) (parte di UC3.4: Azione su scheda censimento) (parte di UC3: Gestione schede censimento)
+Summary : Permette di modificare i parametri della sezione PlSystemGeneralData relativa ai dati generali della scheda censimento
+Actor : Regione, Sindaco, Fornitore
+Precondition : UC3.4.3
+Postcondition : L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine
+Base sequence : L’utente entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra : L’utente visualizza i dati precedenti e può compilare il form con le informazioni desiderate : L’utente applica le modifiche con l’apposito tasto : In caso di conferma l’utente visualizza un messaggio di conferma dell’operazione
+Branch sequence : In caso di dati non validi viene mostrato un messaggio di errore
+Exception sequence : no
+Note : no
+
+
+UseCase : UC3.4.3.3: Modifica POD sezione anagrafica (parte di UC3.4.3 Modifica scheda censimento) (parte di UC3.4: Azione su scheda censimento) (parte di UC3: Gestione schede censimento)
+Summary : Permette di modificare i parametri anagrafici di un POD della scheda censimento
+Actor : Regione, Sindaco, Fornitore
+Precondition : UC3.4.3
+Postcondition : L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine
+Base sequence : L’utente seleziona il POD per la modifica tramite il menù ad albero di sinistra : L’utente seleziona il tab relativo ai dati di anagrafica : L’utente visualizza i dati precedenti e può compilare il form con le informazioni desiderate : L’utente applica le modifiche con l’apposito tasto : In caso di conferma l’utente visualizza un messaggio di conferma dell’operazione
+Branch sequence : In caso di dati non validi viene mostrato un messaggio di errore
+Exception sequence : no
+Note : no
+
+
+UseCase : UC3.4.3.4: Modifica POD sezione consumi (parte di UC3.4.3 Modifica scheda censimento) (parte di UC3.4: Azione su scheda censimento) (parte di UC3: Gestione schede censimento)
+Summary : Permette di modificare i parametri di consumo di un POD della scheda censimento
+Actor : Regione, Sindaco, Fornitore
+Precondition : UC3.4.3
+Postcondition : L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine
+Base sequence : L’utente seleziona il POD per la modifica tramite il menù ad albero di sinistra : L’utente seleziona il tab relativo ai dati consumistici del POD : L’utente visualizza i dati precedenti e può compilare il form con le informazioni desiderate : L’utente applica le modifiche con l’apposito tasto : In caso di conferma l’utente visualizza un messaggio di conferma dell’operazione
+Branch sequence : In caso di dati non validi viene mostrato un messaggio di errore
+Exception sequence : no
+Note : no
+
+
+UseCase : UC3.4.3.5: Modifica Elettric panel sezione Anagrafica (parte di UC3.4.3 Modifica scheda censimento) (parte di UC3.4: Azione su scheda censimento) (parte di UC3: Gestione schede censimento)
+Summary : Permette di modificare la sezione di anagrafica di un pannello elettrico, relativo ad un POD, della scheda censimento
+Actor : Regione, Sindaco, Fornitore
+Precondition : UC3.4.3
+Postcondition : L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine
+Base sequence : L’utente seleziona il POD per la modifica tramite il menù ad albero di sinistra : L’utente espande la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD : L’utente seleziona il pannello elettrico per la modifica : L’utente seleziona il tab relativo ai dati di anagrafica : L’utente visualizza i dati precedenti e può compilare il form con le informazioni desiderate : L’utente applica le modifiche con l’apposito tasto : In caso di conferma l’utente visualizza un messaggio di conferma dell’operazione
+Branch sequence : In caso di dati non validi viene mostrato un messaggio di errore
+Exception sequence : no
+Note : no
+
+
+UseCase : UC3.4.3.6: Modifica Elettric panel sezione Dati tecnici (parte di UC3.4.3 Modifica scheda censimento) (parte di UC3.4: Azione su scheda censimento) (parte di UC3: Gestione schede censimento)
+Summary : Permette di modificare la sezione dei dati tecnici di un pannello elettrico, relativo ad un POD, della scheda censimento
+Actor : Regione, Sindaco, Fornitore
+Precondition : UC3.4.3
+Postcondition : L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine
+Base sequence : L’utente seleziona il POD per la modifica tramite il menù ad albero di sinistra : L’utente espande la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD : L’utente seleziona il pannello elettrico per la modifica : L’utente seleziona il tab relativo ai dati tecnici : L’utente visualizza i dati precedenti e può compilare il form con le informazioni desiderate : L’utente applica le modifiche con l’apposito tasto : In caso di conferma l’utente visualizza un messaggio di conferma dell’operazione
+Branch sequence : In caso di dati non validi viene mostrato un messaggio di errore
+Exception sequence : no
+Note : no
+
+
+UseCase : UC3.4.3.7: Modifica Elettric panel sezione Dati operativi (parte di UC3.4.3 Modifica scheda censimento) (parte di UC3.4: Azione su scheda censimento) (parte di UC3: Gestione schede censimento)
+Summary : Permette di modificare la sezione dei dati operativi di un pannello elettrico, relativo ad un POD, della scheda censimento
+Actor : Regione, Sindaco, Fornitore
+Precondition : UC3.4.3
+Postcondition : L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine
+Base sequence : L’utente seleziona il POD per la modifica tramite il menù ad albero di sinistra : L’utente espande la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD : L’utente seleziona il pannello elettrico per la modifica : L’utente seleziona il tab relativo ai dati operativi : L’utente visualizza i dati precedenti e può compilare il form con le informazioni desiderate : L’utente applica le modifiche con l’apposito tasto : In caso di conferma l’utente visualizza un messaggio di conferma dell’operazione
+Branch sequence : In caso di dati non validi viene mostrato un messaggio di errore
+Exception sequence : no
+Note : no
+
+
+UseCase : UC3.4.3.8: Modifica Elettric panel sezione Manutenzione (parte di UC3.4.3 Modifica scheda censimento) (parte di UC3.4: Azione su scheda censimento) (parte di UC3: Gestione schede censimento)
+Summary : Permette di modificare la sezione relativa alle informazioni di manutenzione di un pannello elettrico, relativo ad un POD, della scheda censimento
+Actor : Regione, Sindaco, Fornitore
+Precondition : UC3.4.3
+Postcondition : L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine
+Base sequence : L’utente seleziona il POD per la modifica tramite il menù ad albero di sinistra : L’utente espande la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD : L’utente seleziona il pannello elettrico per la modifica : L’utente seleziona il tab relativo alle informazioni di manutenzione : L’utente visualizza i dati precedenti e può compilare il form con le informazioni desiderate : L’utente applica le modifiche con l’apposito tasto : In caso di conferma l’utente visualizza un messaggio di conferma dell’operazione
+Branch sequence : In caso di dati non validi viene mostrato un messaggio di errore
+Exception sequence : no
+Note : no
+
+
+UseCase : UC3.4.3.9: Modifica LightSpot sezione Dati punto luce (parte di UC3.4.3 Modifica scheda censimento) (parte di UC3.4: Azione su scheda censimento) (parte di UC3: Gestione schede censimento)
+Summary : Permette di modificare la sezione dati punto luce di un punto luce, relativo ad un pannello elettrico, relativo ad un POD, della scheda censimento
+Actor : Regione, Sindaco, Fornitore
+Precondition : UC3.4.3
+Postcondition : L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine
+Base sequence : L’utente seleziona il POD per la modifica tramite il menù ad albero di sinistra : L’utente espande la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD : L’utente seleziona il pannello elettrico ed espande la visione ad albero del pannello selezionato per visionare i punti luce che appartengono al pannello elettrico : L’utente seleziona il tab relativo ai dati punti luce : L’utente visualizza i dati precedenti e può compilare il form con le informazioni desiderate : L’utente applica le modifiche con l’apposito tasto : In caso di conferma l’utente visualizza un messaggio di conferma dell’operazione
+Branch sequence : In caso di dati non validi viene mostrato un messaggio di errore
+Exception sequence : no
+Note : no
+
+
+UseCase : UC3.4.3.10: Modifica LightSpotDevice sezione Dati apparecchio (parte di UC3.4.3 Modifica scheda censimento) (parte di UC3.4: Azione su scheda censimento) (parte di UC3: Gestione schede censimento)
+Summary : Permette di modificare la sezione dati apparecchio di un dispositivo punto luce, relativo ad un punto luce, relativo ad un pannello elettrico, relativo ad un POD, della scheda censimento
+Actor : Regione, Sindaco, Fornitore
+Precondition : UC3.4.3
+Postcondition : L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine
+Base sequence : L’utente seleziona il POD per la modifica tramite il menù ad albero di sinistra : L’utente espande la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD : L’utente seleziona il pannello elettrico ed espande la visione ad albero del pannello selezionato per visionare i punti luce che appartengono al pannello elettrico : L’utente seleziona il punto luce ed espande la visione ad albero del punto luce selezionato per visionare i dispositivi punti luce che appartengono al punto luce : L’utente seleziona il tab relativo ai dati apparecchio : L’utente visualizza i dati precedenti e può compilare il form con le informazioni desiderate : L’utente applica le modifiche con l’apposito tasto : In caso di conferma l’utente visualizza un messaggio di conferma dell’operazione
+Branch sequence : In caso di dati non validi viene mostrato un messaggio di errore
+Exception sequence : no
+Note : no
+
+
+UseCase : UC3.4.3.11: Modifica LightSource sezione Dati sorgente luminosa (parte di UC3.4.3 Modifica scheda censimento) (parte di UC3.4: Azione su scheda censimento) (parte di UC3: Gestione schede censimento)
+Summary : Permette di modificare la sezione dati sorgente luminosa di una sorgente di luce, relativa ad un dispositivo punto luce, relativo ad un punto luce, relativo ad un pannello elettrico, relativo ad un POD, della scheda censimento
+Actor : Regione, Sindaco, Fornitore
+Precondition : UC3.4.3
+Postcondition : L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine
+Base sequence : L’utente seleziona il POD per la modifica tramite il menù ad albero di sinistra : L’utente espande la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD : L’utente seleziona il pannello elettrico ed espande la visione ad albero del pannello selezionato per visionare i punti luce che appartengono al pannello elettrico : L’utente seleziona il punto luce ed espande la visione ad albero del punto luce selezionato per visionare i dispositivi punti luce che appartengono al punto luce : L’utente seleziona il dispositivo punto luce ed espande la visione ad albero del dispositivo punto luce selezionato per visionare le sorgenti di luce che appartengono al dispositivo punto luce : L’utente seleziona il tab relativo ai dati apparecchio : L’utente visualizza i dati precedenti e può compilare il form con le informazioni desiderate : L’utente applica le modifiche con l’apposito tasto : In caso di conferma l’utente visualizza un messaggio di conferma dell’operazione
+Branch sequence : In caso di dati non validi viene mostrato un messaggio di errore
+Exception sequence : no
+Note : no
+
+
+UseCase : UC3.4.3.12: Modifica Zona omogenea sezione Dati zona omogenea (parte di UC3.4.3 Modifica scheda censimento) (parte di UC3.4: Azione su scheda censimento) (parte di UC3: Gestione schede censimento)
+Summary : Permette di modificare i dati di una zona omogenea della scheda censimento
+Actor : Regione, Sindaco, Fornitore
+Precondition : UC3.4.3
+Postcondition : L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine
+Base sequence : L’utente seleziona la zona omogenea per la modifica tramite il menù ad albero di sinistra : L’utente seleziona il tab relativo ai dati zona omogenea : L’utente visualizza i dati precedenti e può compilare il form con le informazioni desiderate : L’utente applica le modifiche con l’apposito tasto : In caso di conferma l’utente visualizza un messaggio di conferma dell’operazione
+Branch sequence : In caso di dati non validi viene mostrato un messaggio di errore
+Exception sequence : no
+Note : no
+
+
+UseCase : UC3.4.4: Congela scheda censimento (parte di UC3.4: Azione su scheda censimento) (parte di UC3: Gestione schede censimento)
+Summary : Permette di congelare dal portale una scheda censimento precedentemente caricata
+Actor : Regione, Sindaco, Fornitore
+Precondition : UC3.4
+Postcondition : L’utente non può più svolgere qualsiasi azione sulla scheda. Inoltre, lo stato visualizzato della scheda è come “non attivo”
+Base sequence : L’utente seleziona l’operazione di congelamento : All’utente viene richiesta la conferma del congelamento della scheda indicata : In caso di conferma l’utente visualizza un messaggio di conferma dell’operazione
+Branch sequence : In caso di annullamento il congelamento viene interrotto
+Exception sequence : no
+Note : no
+
+
+UseCase : UC3.4.5: Dettaglio scheda censimento (parte di UC3.4: Azione su scheda censimento) (parte di UC3: Gestione schede censimento)
+Summary : Permette di visualizzare i dettaglio di una scheda censimento precedentemente caricata
+Actor : Regione, Sindaco, Fornitore
+Precondition : UC3.4
+Postcondition : L’utente visualizza le informazioni relative alla scheda censimento
+Base sequence : L’utente seleziona l’operazione di dettaglio : L’utente visualizza una nuova pagina di dettaglio dove non è possibile modificare le informazioni visualizzate : Sulla sinistra e possibile navigare nella gerarchia dei POD e Aree Omogenee : Sulla destra è possibile visualizzare dati generali dell’area a cui si riferisce la scheda
+Branch sequence : no
+Exception sequence : no
+Note : no
+
+
+UseCase : UC4: Gestione modulo SAVE
+Summary : Apertura dell’interfaccia dedicata al modulo SAVE
+Actor : Regione, Sindaco, Fornitore, Progettista
+Precondition : UC1
+Postcondition : no
+Base sequence : L’utente naviga nella sezione relativa al modulo SAVE utilizzando il menù laterale di sinistra
+Branch sequence : no
+Exception sequence : no
+Note : no
+
+
+UseCase : UC4.1: Gestione impianto (parte di UC4: Gestione modulo SAVE)
+Summary : Visualizza la sezione di gestione dell’impianto del modulo SAVE
+Actor : Regione, Sindaco, Fornitore, Progettista
+Precondition : UC4
+Postcondition : no
+Base sequence : L’utente naviga nella prima sezione dedicata agli impianti, su una barra orizzontale dedicata
+Branch sequence : no
+Exception sequence : no
+Note : no
+
+
+UseCase : UC4.1.1: Aggiunta impianto (parte di UC4.1: Gestione impianto) (parte di UC4: Gestione modulo SAVE)
+Summary : Permette di aggiungere un nuovo impianto per il comune selezionato
+Actor : Progettista
+Precondition : UC4.1
+Postcondition : L’utente visualizza un messaggio di conferma
+Base sequence : L’utente clicca sul tasto dedicato all’aggiunta di un singolo impianto : L’utente inserisce il nome e seleziona il comune tra quelli disponibili : L’utente visualizza un messaggio di conferma
+Branch sequence : In caso di annullamento l’utente visualizza un messaggio di avvenuto annullamento
+Exception sequence : no
+Note : no
+
+
+UseCase : UC4.2: Aggiunta nuovo investimento (parte di UC4: Gestione modulo SAVE)
+Summary : Permette di aggiungere un nuovo investimento tra quelli disponibili per l’utenza
+Actor : Progettista
+Precondition : UC4
+Postcondition : L’utente visualizza un messaggio di conferma
+Base sequence : L’utente naviga nella seconda sezione dedicata agli investimenti, su una barra orizzontale dedicata : L’utente clicca sul tasto dedicato all’aggiunta di un singolo investimento : L’utente compila il form con i parametri richiesti : L’utente visualizza un messaggio di conferma
+Branch sequence : In caso di annullamento l’utente visualizza un messaggio di avvenuto annullamento
+Exception sequence : no
+Note : no
+
+
+UseCase : UC4.3: Nuova simulazione (parte di UC4: Gestione modulo SAVE)
+Summary : Permette all’utente di associare un determinato impianto riqualificato con una simulazione d’investimento per visualizzarne successivamente i risultati
+Actor : Progettista
+Precondition : UC4
+Postcondition : L’utente ha aggiunto l’associazione nel menu dedicato
+Base sequence : L’utente naviga nella terza sezione dedicata alle analisi, su una barra orizzontale dedicata : L’utente clicca sul tasto dedicato all’aggiunta di una singola analisi : L’utente seleziona l’impianto e l’investimento da associare : L’utente visualizza un messaggio di conferma
+Branch sequence : In caso di annullamento l’utente visualizza un messaggio di avvenuto annullamento
+Exception sequence : no
+Note : no
+
+
+UseCase : UC5: Selezione lingua
+Summary : Modifica della lingua utilizzata dal portale autenticato
+Actor : Regione, Sindaco, Fornitore, Progettista, Cittadino
+Precondition : UC1
+Postcondition : L’utente visualizza il portale con la lingua selezionata
+Base sequence : L’utente clicca sul proprio nome utente in alto a destra : L’utente modifica la lingua selezionandola dal menù a tendina disponibile dal menù apparso con il punto 1 : L’utente, dopo il ricaricamento della pagina, visualizza il portale con la lingua selezionata
+Branch sequence : no
+Exception sequence : no
+Note : no
+
+
+UseCase : UC6: Logout utente
+Summary : De-autenticazione di un’utente registrato al sistema
+Actor : Regione, Sindaco, Fornitore, Progettista, Cittadino
+Precondition : UC1
+Postcondition : L’utente è non è più autenticato ed è a conoscenza che l’operazione ha avuto successo
+Base sequence : L’utente clicca sul proprio nome utente in alto a destra : L’utente inizia il processo di logout cliccando il tasto “Logout” : L’utente visualizza un messaggio di operazione completata con successo
+Branch sequence : no
+Exception sequence : no
+Note : no
+

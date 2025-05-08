@@ -4,7 +4,7 @@
   "Title": "Analisi consumo comune per POD",
   "Summary": "Permette di visualizzare un’analisi per comune dei consumi sulla base di alcuni parametri selezionati",
   "Actor": ["Comune", "Fornitore"],
-  "Precondition": "L’utente visualizza la sezione relativa alla dashboard",
+  "Precondition": "UC2",
   "Postcondition": "L’utente visualizza le informazioni consultando i grafici",
   "Base_sequence": ["L’utente scorre nella pagina fino a visualizzare la sezione dedicata al consumo", "Selezionato il comune, è possibile eseguire un’analisi più puntuale andando a specificare POD, pannello elettrico, periodo e tipo di potenza analizzata"],
   "Branch_sequence": [],

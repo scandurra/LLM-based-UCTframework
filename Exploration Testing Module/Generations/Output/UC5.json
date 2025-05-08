@@ -1,0 +1,108 @@
+[
+  {
+    "test_case_id": "UC5_TC1",
+    "title": "Selezione lingua italiana",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza il portale con la lingua selezionata",
+    "test_steps": [
+      {
+        "step": "L’utente clicca sul proprio nome utente in alto a destra",
+        "expected": "Viene visualizzato un menù a tendina"
+      },
+      {
+        "step": "L’utente seleziona la lingua italiana dal menù a tendina",
+        "expected": "Il portale si ricarica con la lingua selezionata"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alto",
+    "use_case_id": "UC5"
+  },
+  {
+    "test_case_id": "UC5_TC2",
+    "title": "Selezione lingua inglese",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza il portale con la lingua selezionata",
+    "test_steps": [
+      {
+        "step": "L’utente clicca sul proprio nome utente in alto a destra",
+        "expected": "Viene visualizzato un menù a tendina"
+      },
+      {
+        "step": "L’utente seleziona la lingua inglese dal menù a tendina",
+        "expected": "Il portale si ricarica con la lingua selezionata"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alto",
+    "use_case_id": "UC5"
+  },
+  {
+    "test_case_id": "UC5_TC3",
+    "title": "Selezione lingua non supportata",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "L’utente clicca sul proprio nome utente in alto a destra",
+        "expected": "Viene visualizzato un menù a tendina"
+      },
+      {
+        "step": "L’utente seleziona una lingua non supportata dal menù a tendina",
+        "expected": "Viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Basso",
+    "use_case_id": "UC5"
+  },
+  {
+    "test_case_id": "UC5_TC4",
+    "title": "Selezione lingua senza cliccare sul nome utente",
+    "preconditions": "UC1",
+    "postconditions": "L’utente non visualizza il menù a tendina",
+    "test_steps": [
+      {
+        "step": "L’utente non clicca sul proprio nome utente in alto a destra",
+        "expected": "Il menù a tendina non viene visualizzato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Basso",
+    "use_case_id": "UC5"
+  },
+  {
+    "test_case_id": "UC5_TC5",
+    "title": "Selezione lingua con più clic sul nome utente",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza il menù a tendina solo al primo clic",
+    "test_steps": [
+      {
+        "step": "L’utente clicca più volte sul proprio nome utente in alto a destra",
+        "expected": "Il menù a tendina viene visualizzato solo al primo clic"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Basso",
+    "use_case_id": "UC5"
+  },
+  {
+    "test_case_id": "UC5_TC6",
+    "title": "Selezione lingua senza selezionare una opzione dal menù a tendina",
+    "preconditions": "UC1",
+    "postconditions": "L’utente non visualizza alcun cambiamento",
+    "test_steps": [
+      {
+        "step": "L’utente clicca sul proprio nome utente in alto a destra",
+        "expected": "Viene visualizzato un menù a tendina"
+      },
+      {
+        "step": "L’utente non seleziona alcuna opzione dal menù a tendina",
+        "expected": "Il portale non cambia lingua"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Basso",
+    "use_case_id": "UC5"
+  }
+]

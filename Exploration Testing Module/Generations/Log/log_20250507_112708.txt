@@ -1,0 +1,134 @@
+📝 PROMPT:
+You are a Quality Assurance expert. Your task is to generate a suite of test cases for each use case provided in JSON format.
+
+The output must be in **JSON only**, structured as an array of test case objects, following the example below:
+
+{
+  "test_case_id": "UC2_TC2",
+  "title": "Input incompleto",
+  "preconditions": "UC1",
+  "postconditions": "Nessuna modifica salvata",
+  "test_steps": [
+    { "step": "Lascia il campo 'email' vuoto", "expected": "Viene mostrato un messaggio di errore" }
+  ],
+  "test_type": "Negativo",
+  "priority": "Medium",
+  "use_case_id": "UC2"
+}
+
+Guidelines:
+- Generate **at least 4–6 test cases** per use case.
+- Include both **positive** (success) and **negative** (error, missing input, etc.) tests.
+- Use unique names for `test_case_id` following the format `UCx_TCy`.
+- Base your test cases on base_sequence, branch_sequence, exception_sequence, and pre/postconditions.
+
+Only return the JSON array. DO NOT explain anything.  
+DO NOT include "```json" or "```" markers.  
+Make sure brackets are correctly opened and closed.
+
+Note: Even though the structure is in English, all content inside the fields (titles, steps, etc.) must remain in **Italian**.
+
+The following is the use case in JSON format:
+
+[
+{
+  "Id": "UC3.4.3.2",
+  "Title": "Modifica sezione PlSystemGeneralData",
+  "Summary": "Permette di modificare i parametri della sezione PlSystemGeneralData relativa ai dati generali della scheda censimento",
+  "Actor": ["Regione", "Sindaco", "Fornitore"],
+  "Precondition": "UC3.4.3",
+  "Postcondition": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+  "Base_sequence": ["L’utente entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra", "L’utente visualizza i dati precedenti e può compilare il form con le informazioni desiderate", "L’utente applica le modifiche con l’apposito tasto", "In caso di conferma l’utente visualizza un messaggio di conferma dell’operazione"],
+  "Branch_sequence": ["In caso di dati non validi viene mostrato un messaggio di errore"],
+  "Exception_sequence": [],
+  "Note": "no"
+}
+]
+
+📥 RISPOSTA:
+[
+  {
+    "test_case_id": "UC3.4.3.2_TC1",
+    "title": "Modifica sezione PlSystemGeneralData con successo",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      { "step": "L’utente entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra", "expected": "La sezione si apre correttamente" },
+      { "step": "L’utente visualizza i dati precedenti e può compilare il form con le informazioni desiderate", "expected": "I dati precedenti sono visibili e il form è compilabile" },
+      { "step": "L’utente applica le modifiche con l’apposito tasto", "expected": "Le modifiche vengono applicate correttamente" },
+      { "step": "In caso di conferma l’utente visualizza un messaggio di conferma dell’operazione", "expected": "Il messaggio di conferma viene visualizzato" }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alto",
+    "use_case_id": "UC3.4.3.2"
+  },
+  {
+    "test_case_id": "UC3.4.3.2_TC2",
+    "title": "Modifica sezione PlSystemGeneralData con dati non validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      { "step": "L’utente entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra", "expected": "La sezione si apre correttamente" },
+      { "step": "L’utente visualizza i dati precedenti e può compilare il form con le informazioni desiderate", "expected": "I dati precedenti sono visibili e il form è compilabile" },
+      { "step": "L’utente applica le modifiche con l’apposito tasto senza compilare tutti i campi obbligatori", "expected": "Viene mostrato un messaggio di errore" }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alto",
+    "use_case_id": "UC3.4.3.2"
+  },
+  {
+    "test_case_id": "UC3.4.3.2_TC3",
+    "title": "Modifica sezione PlSystemGeneralData senza autorizzazione",
+    "preconditions": "Utente non autenticato o senza permessi di modifica",
+    "postconditions": "L’utente non può accedere alla sezione",
+    "test_steps": [
+      { "step": "L’utente tenta di entrare nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra senza essere autenticato", "expected": "L’accesso è negato" },
+      { "step": "L’utente tenta di compilare il form con le informazioni desiderate senza avere i permessi necessari", "expected": "Il form non è accessibile" }
+    ],
+    "test_type": "Negativo",
+    "priority": "Medio",
+    "use_case_id": "UC3.4.3.2"
+  },
+  {
+    "test_case_id": "UC3.4.3.2_TC4",
+    "title": "Modifica sezione PlSystemGeneralData con dati già esistenti",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di errore per dati duplicati",
+    "test_steps": [
+      { "step": "L’utente entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra", "expected": "La sezione si apre correttamente" },
+      { "step": "L’utente visualizza i dati precedenti e può compilare il form con le informazioni desiderate", "expected": "I dati precedenti sono visibili e il form è compilabile" },
+      { "step": "L’utente applica le modifiche con l’apposito tasto utilizzando dati già esistenti", "expected": "Viene mostrato un messaggio di errore per dati duplicati" }
+    ],
+    "test_type": "Negativo",
+    "priority": "Basso",
+    "use_case_id": "UC3.4.3.2"
+  },
+  {
+    "test_case_id": "UC3.4.3.2_TC5",
+    "title": "Modifica sezione PlSystemGeneralData con campo obbligatorio vuoto",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore per campo obbligatorio vuoto",
+    "test_steps": [
+      { "step": "L’utente entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra", "expected": "La sezione si apre correttamente" },
+      { "step": "L’utente visualizza i dati precedenti e può compilare il form con le informazioni desiderate", "expected": "I dati precedenti sono visibili e il form è compilabile" },
+      { "step": "L’utente applica le modifiche con l’apposito tasto lasciando un campo obbligatorio vuoto", "expected": "Viene mostrato un messaggio di errore per campo obbligatorio vuoto" }
+    ],
+    "test_type": "Negativo",
+    "priority": "Medio",
+    "use_case_id": "UC3.4.3.2"
+  },
+  {
+    "test_case_id": "UC3.4.3.2_TC6",
+    "title": "Modifica sezione PlSystemGeneralData con formato dati non corretto",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore per formato dati non corretto",
+    "test_steps": [
+      { "step": "L’utente entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra", "expected": "La sezione si apre correttamente" },
+      { "step": "L’utente visualizza i dati precedenti e può compilare il form con le informazioni desiderate", "expected": "I dati precedenti sono visibili e il form è compilabile" },
+      { "step": "L’utente applica le modifiche con l’apposito tasto utilizzando un formato dati non corretto", "expected": "Viene mostrato un messaggio di errore per formato dati non corretto" }
+    ],
+    "test_type": "Negativo",
+    "priority": "Basso",
+    "use_case_id": "UC3.4.3.2"
+  }
+]

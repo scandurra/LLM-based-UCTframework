@@ -1,0 +1,160 @@
+[
+  {
+    "test_case_id": "UC3.4.3.5_TC1",
+    "title": "Modifica elettric panel sezione Anagrafica con successo",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD viene selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD",
+        "expected": "La visione ad albero del POD si espande correttamente"
+      },
+      {
+        "step": "Seleziona il pannello elettrico per la modifica",
+        "expected": "Il pannello elettrico viene selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati di anagrafica",
+        "expected": "Il tab dei dati di anagrafica si apre correttamente"
+      },
+      {
+        "step": "Compila il form con le informazioni desiderate e applica le modifiche",
+        "expected": "Le modifiche vengono applicate con successo"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.5"
+  },
+  {
+    "test_case_id": "UC3.4.3.5_TC2",
+    "title": "Modifica elettric panel sezione Anagrafica con dati non validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD viene selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD",
+        "expected": "La visione ad albero del POD si espande correttamente"
+      },
+      {
+        "step": "Seleziona il pannello elettrico per la modifica",
+        "expected": "Il pannello elettrico viene selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati di anagrafica",
+        "expected": "Il tab dei dati di anagrafica si apre correttamente"
+      },
+      {
+        "step": "Compila il form con dati non validi e applica le modifiche",
+        "expected": "Viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.5"
+  },
+  {
+    "test_case_id": "UC3.4.3.5_TC3",
+    "title": "Modifica elettric panel sezione Anagrafica senza selezionare il POD",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Non selezionare il POD per la modifica",
+        "expected": "Il sistema non consente di procedere"
+      },
+      {
+        "step": "Tentare di espandere la visione ad albero del POD",
+        "expected": "Il sistema non consente di espandere la visione ad albero"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.5"
+  },
+  {
+    "test_case_id": "UC3.4.3.5_TC4",
+    "title": "Modifica elettric panel sezione Anagrafica senza selezionare il pannello elettrico",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD viene selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD",
+        "expected": "La visione ad albero del POD si espande correttamente"
+      },
+      {
+        "step": "Non selezionare il pannello elettrico per la modifica",
+        "expected": "Il sistema non consente di procedere"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.5"
+  },
+  {
+    "test_case_id": "UC3.4.3.5_TC5",
+    "title": "Modifica elettric panel sezione Anagrafica con dati già esistenti",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD viene selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD",
+        "expected": "La visione ad albero del POD si espande correttamente"
+      },
+      {
+        "step": "Seleziona il pannello elettrico per la modifica",
+        "expected": "Il pannello elettrico viene selezionato correttamente"
+      },
+      {
+        "step": "Compila il form con dati già esistenti e applica le modifiche",
+        "expected": "Viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.5"
+  },
+  {
+    "test_case_id": "UC3.4.3.5_TC6",
+    "title": "Modifica elettric panel sezione Anagrafica con successo",
+    "preconditions": "UC3.4.3",
+    "postconditions": "La modifica viene applicata correttamente",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD viene selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD",
+        "expected": "La visione ad albero del POD si espande correttamente"
+      },
+      {
+        "step": "Seleziona il pannello elettrico per la modifica",
+        "expected": "Il pannello elettrico viene selezionato correttamente"
+      },
+      {
+        "step": "Compila il form con dati validi e applica le modifiche",
+        "expected": "La modifica viene applicata correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.5"
+  }
+]

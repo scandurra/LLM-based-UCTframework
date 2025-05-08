@@ -1,0 +1,116 @@
+[
+  {
+    "test_case_id": "UC2.5_TC1",
+    "title": "Visualizzazione corretta dei grafici",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza le informazioni consultando i grafici",
+    "test_steps": [
+      {
+        "step": "L’utente accede alla pagina di dashboard",
+        "expected": "La pagina si carica correttamente"
+      },
+      {
+        "step": "L’utente scorre nella pagina fino a visualizzare le sezioni contrassegnate dai grafici",
+        "expected": "I grafici vengono visualizzati correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alto",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC2",
+    "title": "Assenza di dati per regione",
+    "preconditions": "UC2",
+    "postconditions": "Viene mostrato un messaggio di avviso per l’assenza di dati",
+    "test_steps": [
+      {
+        "step": "L’utente accede alla pagina di dashboard",
+        "expected": "La pagina si carica correttamente"
+      },
+      {
+        "step": "L’utente scorre nella pagina fino a visualizzare le sezioni contrassegnate dai grafici per una regione senza dati",
+        "expected": "Viene mostrato un messaggio di avviso per l’assenza di dati"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Medio",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC3",
+    "title": "Errore di caricamento dei grafici",
+    "preconditions": "UC2",
+    "postconditions": "Viene mostrato un messaggio di errore per il mancato caricamento dei grafici",
+    "test_steps": [
+      {
+        "step": "L’utente accede alla pagina di dashboard",
+        "expected": "La pagina si carica correttamente"
+      },
+      {
+        "step": "L’utente scorre nella pagina fino a visualizzare le sezioni contrassegnate dai grafici",
+        "expected": "Viene mostrato un messaggio di errore per il mancato caricamento dei grafici"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alto",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC4",
+    "title": "Visualizzazione dei dati per comuni aderenti",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza i dati sui comuni aderenti per regione",
+    "test_steps": [
+      {
+        "step": "L’utente accede alla pagina di dashboard",
+        "expected": "La pagina si carica correttamente"
+      },
+      {
+        "step": "L’utente scorre nella pagina fino a visualizzare le sezioni contrassegnate dai grafici dei comuni aderenti per regione",
+        "expected": "I dati vengono visualizzati correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Medio",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC5",
+    "title": "Visualizzazione dei dati per punti luce per regione",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza i dati sui punti luce per regione",
+    "test_steps": [
+      {
+        "step": "L’utente accede alla pagina di dashboard",
+        "expected": "La pagina si carica correttamente"
+      },
+      {
+        "step": "L’utente scorre nella pagina fino a visualizzare le sezioni contrassegnate dai grafici dei punti luce per regione",
+        "expected": "I dati vengono visualizzati correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Medio",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC6",
+    "title": "Visualizzazione dei dati per distribuzione punti luce per tipo apparecchio",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza i dati sulla distribuzione dei punti luce per tipo apparecchio",
+    "test_steps": [
+      {
+        "step": "L’utente accede alla pagina di dashboard",
+        "expected": "La pagina si carica correttamente"
+      },
+      {
+        "step": "L’utente scorre nella pagina fino a visualizzare le sezioni contrassegnate dai grafici della distribuzione dei punti luce per tipo apparecchio",
+        "expected": "I dati vengono visualizzati correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Basso",
+    "use_case_id": "UC2.5"
+  }
+]

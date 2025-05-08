@@ -1,14 +1,19 @@
 [
-  {
-    "Id": "UC3.4.5",
-    "Title": "Dettaglio scheda censimento",
-    "Summary": "Permette di visualizzare i dettaglio di una scheda censimento precedentemente caricata",
-    "Actor": ["Regione", "Sindaco", "Fornitore"],
-    "Precondition": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
-    "Postcondition": "L’utente visualizza le informazioni relative alla scheda censimento",
-    "Base_sequence": ["L’utente seleziona l’operazione di dettaglio", "L’utente visualizza una nuova pagina di dettaglio dove non è possibile modificare le informazioni visualizzate", "Sulla sinistra e possibile navigare nella gerarchia dei POD e Aree Omogenee", "Sulla destra è possibile visualizzare dati generali dell’area a cui si riferisce la scheda"],
-    "Branch_sequence": [],
-    "Exception_sequence": [],
-    "Note": "no"
-  }
+{
+  "Id": "UC3.4.5",
+  "Title": "Dettaglio scheda censimento",
+  "Summary": "Permette di visualizzare i dettaglio di una scheda censimento precedentemente caricata",
+  "Actor": ["Regione", "Sindaco", "Fornitore"],
+  "Precondition": "UC3.4",
+  "Postcondition": "L’utente visualizza le informazioni relative alla scheda censimento",
+  "Base_sequence": [
+    "L’utente seleziona l’operazione di dettaglio",
+    "L’utente visualizza una nuova pagina di dettaglio dove non è possibile modificare le informazioni visualizzate",
+    "Sulla sinistra e possibile navigare nella gerarchia dei POD e Aree Omogenee",
+    "Sulla destra è possibile visualizzare dati generali dell’area a cui si riferisce la scheda"
+  ],
+  "Branch_sequence": [],
+  "Exception_sequence": [],
+  "Note": "no"
+}
 ]

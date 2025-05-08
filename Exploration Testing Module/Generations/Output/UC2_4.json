@@ -1,0 +1,140 @@
+[
+  {
+    "test_case_id": "UC2.4_TC1",
+    "title": "Selezione comuni e KPI valido",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza il risultato della analisi su un grafico",
+    "test_steps": [
+      {
+        "step": "Seleziona due o più comuni dal menù a tendina",
+        "expected": "I comuni selezionati vengono visualizzati nella lista"
+      },
+      {
+        "step": "Seleziona un KPI valido",
+        "expected": "Il KPI selezionato viene visualizzato nel campo di selezione"
+      },
+      {
+        "step": "Conferma la richiesta cliccando sul pulsante",
+        "expected": "Viene visualizzato il grafico con il confronto desiderato"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alto",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC2",
+    "title": "Selezione comuni non valido",
+    "preconditions": "UC2",
+    "postconditions": "Nessun grafico viene visualizzato",
+    "test_steps": [
+      {
+        "step": "Lascia il campo di selezione dei comuni vuoto",
+        "expected": "Viene mostrato un messaggio di errore"
+      },
+      {
+        "step": "Seleziona un KPI valido",
+        "expected": "Il KPI selezionato viene visualizzato nel campo di selezione"
+      },
+      {
+        "step": "Conferma la richiesta cliccando sul pulsante",
+        "expected": "Non viene visualizzato il grafico"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Medio",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC3",
+    "title": "Selezione KPI non valido",
+    "preconditions": "UC2",
+    "postconditions": "Nessun grafico viene visualizzato",
+    "test_steps": [
+      {
+        "step": "Seleziona due o più comuni dal menù a tendina",
+        "expected": "I comuni selezionati vengono visualizzati nella lista"
+      },
+      {
+        "step": "Lascia il campo di selezione del KPI vuoto",
+        "expected": "Viene mostrato un messaggio di errore"
+      },
+      {
+        "step": "Conferma la richiesta cliccando sul pulsante",
+        "expected": "Non viene visualizzato il grafico"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Medio",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC4",
+    "title": "Selezione di un solo comune",
+    "preconditions": "UC2",
+    "postconditions": "Viene visualizzato un messaggio di avviso",
+    "test_steps": [
+      {
+        "step": "Seleziona un solo comune dal menù a tendina",
+        "expected": "Il comune selezionato viene visualizzato nella lista"
+      },
+      {
+        "step": "Seleziona un KPI valido",
+        "expected": "Il KPI selezionato viene visualizzato nel campo di selezione"
+      },
+      {
+        "step": "Conferma la richiesta cliccando sul pulsante",
+        "expected": "Viene visualizzato un messaggio di avviso che richiede la selezione di almeno due comuni"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Basso",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC5",
+    "title": "Selezione di comuni e KPI con dati non disponibili",
+    "preconditions": "UC2",
+    "postconditions": "Viene visualizzato un messaggio di avviso",
+    "test_steps": [
+      {
+        "step": "Seleziona due o più comuni dal menù a tendina",
+        "expected": "I comuni selezionati vengono visualizzati nella lista"
+      },
+      {
+        "step": "Seleziona un KPI valido",
+        "expected": "Il KPI selezionato viene visualizzato nel campo di selezione"
+      },
+      {
+        "step": "Conferma la richiesta cliccando sul pulsante",
+        "expected": "Viene visualizzato un messaggio di avviso che indica la mancanza di dati per il grafico"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Basso",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC6",
+    "title": "Selezione di comuni e KPI con dati parzialmente disponibili",
+    "preconditions": "UC2",
+    "postconditions": "Viene visualizzato il grafico con i dati disponibili",
+    "test_steps": [
+      {
+        "step": "Seleziona due o più comuni dal menù a tendina",
+        "expected": "I comuni selezionati vengono visualizzati nella lista"
+      },
+      {
+        "step": "Seleziona un KPI valido",
+        "expected": "Il KPI selezionato viene visualizzato nel campo di selezione"
+      },
+      {
+        "step": "Conferma la richiesta cliccando sul pulsante",
+        "expected": "Viene visualizzato il grafico con i dati disponibili e un messaggio di avviso per i dati mancanti"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alto",
+    "use_case_id": "UC2.4"
+  }
+]

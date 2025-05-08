@@ -1,0 +1,100 @@
+📝 PROMPT:
+base_prompt = f"""
+Act as a senior Test Engineer. You will receive a Use Case in formally structured TXT format.
+
+Your task is to generate a JSON array of test cases that verify the functional behavior of the system, covering base flow, alternatives, exceptions, and pre/postconditions.
+
+Example output format (return only an array of objects):
+{
+  "test_case_id": "UC2_TC2",
+  "title": "Input incompleto",
+  "preconditions": "UC1",
+  "postconditions": "Nessuna modifica salvata",
+  "test_steps": [
+    { "step": "Lascia il campo 'email' vuoto", "expected": "Viene mostrato un messaggio di errore" }
+  ],
+  "test_type": "Negativo",
+  "priority": "Medium",
+  "use_case_id": "UC2"
+}
+
+Instructions:
+- Generate at least 4 test cases per use case.
+- Include both **positive** and **negative** tests.
+- The `test_type` must be either "Positive" or "Negative".
+- Each `test_case_id` must begin with the Use Case ID.
+
+Do not explain anything. Return **only** the resulting JSON array.  
+DO NOT include any "```json" or "```" markers.  
+Ensure all brackets are properly opened and closed.
+
+Note: The field content (e.g., title, steps, etc.) must remain in **Italian**.
+
+The following is the use case in TXT format:
+"""
+
+Id: UC2.2  
+Title: Ricerca impianti di illuminazione  
+Summary: Ricerca per caratteristiche degli impianti di illuminazione  
+Actor: Regione, Sindaco, Fornitore, Cittadino  
+Precondition: UC2  
+Postcondition: L’utente visualizza gli impianti di illuminazione che corrispondono ai criteri di ricerca  
+Base_sequence:  
+1) L’utente seleziona il comune di ricerca, così come i parametri tra quelli disponibili  
+2) L’utente conferma la ricerca con il click  
+3) L’utente visualizza sulla mappa la posizione dell’impianto d’illuminazione relativo al comune  
+Branch_sequence: no  
+Exception_sequence: no  
+Note: no
+
+📥 RISPOSTA:
+[
+  {
+    "test_case_id": "UC2.2_TC1",
+    "title": "Ricerca impianti di illuminazione con parametri validi",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza gli impianti di illuminazione che corrispondono ai criteri di ricerca",
+    "test_steps": [
+      { "step": "Seleziona il comune di ricerca e parametri validi", "expected": "Gli impianti di illuminazione vengono visualizzati sulla mappa" }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC2.2"
+  },
+  {
+    "test_case_id": "UC2.2_TC2",
+    "title": "Ricerca impianti di illuminazione senza selezionare il comune",
+    "preconditions": "UC2",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      { "step": "Lascia vuoto il campo del comune di ricerca", "expected": "Viene mostrato un messaggio di errore" }
+    ],
+    "test_type": "Negativo",
+    "priority": "Medium",
+    "use_case_id": "UC2.2"
+  },
+  {
+    "test_case_id": "UC2.2_TC3",
+    "title": "Ricerca impianti di illuminazione con parametri non validi",
+    "preconditions": "UC2",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      { "step": "Inserisci parametri non validi per la ricerca", "expected": "Viene mostrato un messaggio di errore" }
+    ],
+    "test_type": "Negativo",
+    "priority": "Low",
+    "use_case_id": "UC2.2"
+  },
+  {
+    "test_case_id": "UC2.2_TC4",
+    "title": "Ricerca impianti di illuminazione con tutti i parametri selezionati",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza gli impianti di illuminazione che corrispondono ai criteri di ricerca",
+    "test_steps": [
+      { "step": "Seleziona tutti i parametri disponibili per la ricerca", "expected": "Gli impianti di illuminazione vengono visualizzati sulla mappa" }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC2.2"
+  }
+]

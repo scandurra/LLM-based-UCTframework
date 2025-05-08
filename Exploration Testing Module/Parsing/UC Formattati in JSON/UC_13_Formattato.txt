@@ -4,7 +4,7 @@
   "Title": "Ricerca scheda censimento per stato",
   "Summary": "Permette la ricerca tra le schede censimento in base allo stato",
   "Actor": ["Regione", "Sindaco", "Fornitore"],
-  "Precondition": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+  "Precondition": "UC3.2",
   "Postcondition": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
   "Base_sequence": ["L’utente inserisce tra i parametri di ricerca il stato", "L’utente conferma la ricerca", "L’utente visualizza il risultato della ricerca come nello UC3.1"],
   "Branch_sequence": [],

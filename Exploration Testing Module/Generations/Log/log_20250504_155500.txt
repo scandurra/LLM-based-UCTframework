@@ -1,0 +1,103 @@
+📝 PROMPT:
+base_prompt = f"""
+Act as a senior Test Engineer. You will receive a Use Case in formally structured TXT format.
+
+Your task is to generate a JSON array of test cases that verify the functional behavior of the system, covering base flow, alternatives, exceptions, and pre/postconditions.
+
+Example output format (return only an array of objects):
+{
+  "test_case_id": "UC2_TC2",
+  "title": "Input incompleto",
+  "preconditions": "UC1",
+  "postconditions": "Nessuna modifica salvata",
+  "test_steps": [
+    { "step": "Lascia il campo 'email' vuoto", "expected": "Viene mostrato un messaggio di errore" }
+  ],
+  "test_type": "Negativo",
+  "priority": "Medium",
+  "use_case_id": "UC2"
+}
+
+Instructions:
+- Generate at least 4 test cases per use case.
+- Include both **positive** and **negative** tests.
+- The `test_type` must be either "Positive" or "Negative".
+- Each `test_case_id` must begin with the Use Case ID.
+
+Do not explain anything. Return **only** the resulting JSON array.  
+DO NOT include any "```json" or "```" markers.  
+Ensure all brackets are properly opened and closed.
+
+Note: The field content (e.g., title, steps, etc.) must remain in **Italian**.
+
+The following is the use case in TXT format:
+"""
+
+Id: UC2.3  
+Title: Visualizzazione tabella dati generali  
+Summary: Permette di visualizzare informazioni illuminotecniche per comune  
+Actor: Regione, Sindaco, Fornitore, Cittadino  
+Precondition: UC2  
+Postcondition: L’utente visualizza le informazioni corrispondenti alla paginazione richiesta  
+Base_sequence: 
+1) L’utente naviga nella sezione dashboard utilizzando il menù apposito
+2) L’utente scorre nella pagina fino a visualizzare una sezione tabellare dedicata ai dati generali, dove i dati saranno presentati in forma tabellare
+3) È possibile scorrere tra i comuni disponibili alla consultazione e censiti, tramite selettore della pagine in basso a destra
+4) È possibile modificare gli elementi visualizzati per pagina, tramite selettore in basso a sinistra
+5) È possibile ordinare per colonna di dati, cliccando sul nome della colonna  
+Branch_sequence: no  
+Exception_sequence: no  
+Note: no
+
+📥 RISPOSTA:
+[
+  {
+    "test_case_id": "UC2.3_TC1",
+    "title": "Visualizzazione tabella dati generali corretta",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      { "step": "L’utente naviga nella sezione dashboard utilizzando il menù apposito", "expected": "La dashboard viene visualizzata correttamente" },
+      { "step": "L’utente scorre nella pagina fino a visualizzare la sezione tabellare dedicata ai dati generali", "expected": "La tabella dei dati generali viene visualizzata correttamente" }
+    ],
+    "test_type": "Positive",
+    "priority": "High",
+    "use_case_id": "UC2.3"
+  },
+  {
+    "test_case_id": "UC2.3_TC2",
+    "title": "Selezione comuni non disponibili",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      { "step": "L’utente seleziona un comune non disponibile alla consultazione", "expected": "Viene mostrato un messaggio di errore" }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC2.3"
+  },
+  {
+    "test_case_id": "UC2.3_TC3",
+    "title": "Modifica degli elementi visualizzati per pagina non corretta",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      { "step": "L’utente modifica gli elementi visualizzati per pagina con un valore non valido", "expected": "Viene mostrato un messaggio di errore" }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC2.3"
+  },
+  {
+    "test_case_id": "UC2.3_TC4",
+    "title": "Ordinamento per colonna non corretto",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      { "step": "L’utente clicca sul nome della colonna per ordinare, ma la colonna non è ordinabile", "expected": "Viene mostrato un messaggio di errore" }
+    ],
+    "test_type": "Negative",
+    "priority": "Low",
+    "use_case_id": "UC2.3"
+  }
+]

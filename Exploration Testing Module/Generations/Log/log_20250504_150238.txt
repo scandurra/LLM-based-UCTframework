@@ -1,0 +1,129 @@
+📝 PROMPT:
+You are a Quality Assurance expert. Your task is to generate a suite of test cases for each use case provided in JSON format.
+
+The output must be in **JSON only**, structured as an array of test case objects, following the example below:
+
+{
+  "test_case_id": "UC2_TC2",
+  "title": "Input incompleto",
+  "preconditions": "UC1",
+  "postconditions": "Nessuna modifica salvata",
+  "test_steps": [
+    { "step": "Lascia il campo 'email' vuoto", "expected": "Viene mostrato un messaggio di errore" }
+  ],
+  "test_type": "Negativo",
+  "priority": "Medium",
+  "use_case_id": "UC2"
+}
+
+Guidelines:
+- Generate **at least 4–6 test cases** per use case.
+- Include both **positive** (success) and **negative** (error, missing input, etc.) tests.
+- Use unique names for `test_case_id` following the format `UCx_TCy`.
+- Base your test cases on base_sequence, branch_sequence, exception_sequence, and pre/postconditions.
+
+Only return the JSON array. DO NOT explain anything.  
+DO NOT include "```json" or "```" markers.  
+Make sure brackets are correctly opened and closed.
+
+Note: Even though the structure is in English, all content inside the fields (titles, steps, etc.) must remain in **Italian**.
+
+The following is the use case in JSON format:
+
+[
+{
+  "Id": "UC1",
+  "Title": "Login utente",
+  "Summary": "Autenticazione di un’utente registrato al sistema",
+  "Actor": ["Regione", "Sindaco", "Fornitore", "Progettista", "Cittadino"],
+  "Precondition": "L’utente non è autenticato",
+  "Postcondition": "L’utente è autenticato ed è a conoscenza che l’operazione ha avuto successo",
+  "Base_sequence": ["L’utente inserisce le proprie credenziali all’interno del form", "L’utente inizia il processo di autenticazione cliccando il tasto “Login”", "L’utente visualizza un messaggio di operazione completata con successo"],
+  "Branch_sequence": ["All’utente è richiesto modificare la prima password di accesso", "L’utente inserisce la nuova password e conferma"],
+  "Exception_sequence": ["L’utente visualizza un messaggio di operazione completata con un errore relativo all’eccezione verificatasi (credenziali errate, mismatch della nuova password…)", "L’utente può ripartire dal punto 1 della base sequence"],
+  "Note": "no"
+}
+]
+
+📥 RISPOSTA:
+[
+  {
+    "test_case_id": "UC1_TC1",
+    "title": "Login utente con credenziali corrette",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "L’utente è autenticato ed è a conoscenza che l’operazione ha avuto successo",
+    "test_steps": [
+      { "step": "L’utente inserisce le proprie credenziali all’interno del form", "expected": "Le credenziali vengono accettate" },
+      { "step": "L’utente inizia il processo di autenticazione cliccando il tasto “Login”", "expected": "Il sistema procede con la verifica delle credenziali" },
+      { "step": "L’utente visualizza un messaggio di operazione completata con successo", "expected": "Il messaggio di successo viene visualizzato" }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC2",
+    "title": "Login utente con credenziali errate",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      { "step": "L’utente inserisce credenziali errate all’interno del form", "expected": "Le credenziali vengono rifiutate" },
+      { "step": "L’utente inizia il processo di autenticazione cliccando il tasto “Login”", "expected": "Il sistema visualizza un messaggio di errore" }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC3",
+    "title": "Login utente con campo username vuoto",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      { "step": "L’utente lascia il campo username vuoto", "expected": "Il sistema richiede di inserire lo username" },
+      { "step": "L’utente inizia il processo di autenticazione cliccando il tasto “Login”", "expected": "Il sistema visualizza un messaggio di errore" }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC4",
+    "title": "Login utente con campo password vuoto",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      { "step": "L’utente lascia il campo password vuoto", "expected": "Il sistema richiede di inserire la password" },
+      { "step": "L’utente inizia il processo di autenticazione cliccando il tasto “Login”", "expected": "Il sistema visualizza un messaggio di errore" }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC5",
+    "title": "Login utente con richiesta di modifica password",
+    "preconditions": "L’utente non è autenticato e la password è scaduta",
+    "postconditions": "L’utente è autenticato ed è a conoscenza che l’operazione ha avuto successo",
+    "test_steps": [
+      { "step": "All’utente è richiesto modificare la prima password di accesso", "expected": "La richiesta di modifica password viene visualizzata" },
+      { "step": "L’utente inserisce la nuova password e conferma", "expected": "La nuova password viene accettata" }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC6",
+    "title": "Login utente con mismatch della nuova password",
+    "preconditions": "L’utente non è autenticato e la password è scaduta",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      { "step": "All’utente è richiesto modificare la prima password di accesso", "expected": "La richiesta di modifica password viene visualizzata" },
+      { "step": "L’utente inserisce una nuova password che non corrisponde alla conferma", "expected": "Il sistema visualizza un messaggio di errore" }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC1"
+  }
+]

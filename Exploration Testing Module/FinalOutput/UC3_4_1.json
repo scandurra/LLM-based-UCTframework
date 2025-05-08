@@ -1,0 +1,96 @@
+[
+  {
+    "test_case_id": "UC3.4.1_TC1",
+    "title": "Download scheda censimento completato con successo",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente visualizza un messaggio di conferma e ottiene il file desiderato",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di download della scheda censimento",
+        "expected": "Viene visualizzato l’avanzamento del download richiesto all’interno del browser"
+      },
+      {
+        "step": "Attende il completamento del download",
+        "expected": "Il file viene scaricato correttamente sul dispositivo"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alto",
+    "use_case_id": "UC3.4.1"
+  },
+  {
+    "test_case_id": "UC3.4.1_TC2",
+    "title": "Selezione operazione di download non riuscita",
+    "preconditions": "UC3.4",
+    "postconditions": "Nessun file scaricato",
+    "test_steps": [
+      {
+        "step": "Tenta di selezionare l’operazione di download senza avere i permessi necessari",
+        "expected": "Viene mostrato un messaggio di errore per mancanza di autorizzazione"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Medio",
+    "use_case_id": "UC3.4.1"
+  },
+  {
+    "test_case_id": "UC3.4.1_TC3",
+    "title": "Download interrotto",
+    "preconditions": "UC3.4",
+    "postconditions": "Il file non è stato scaricato correttamente",
+    "test_steps": [
+      {
+        "step": "Interrompe il download della scheda censimento durante l’avanzamento",
+        "expected": "Viene visualizzato un messaggio di errore per download interrotto"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Basso",
+    "use_case_id": "UC3.4.1"
+  },
+  {
+    "test_case_id": "UC3.4.1_TC4",
+    "title": "Download di scheda censimento non esistente",
+    "preconditions": "UC3.4",
+    "postconditions": "Nessun file scaricato",
+    "test_steps": [
+      {
+        "step": "Tenta di scaricare una scheda censimento che non esiste",
+        "expected": "Viene mostrato un messaggio di errore per risorsa non trovata"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Medio",
+    "use_case_id": "UC3.4.1"
+  },
+  {
+    "test_case_id": "UC3.4.1_TC5",
+    "title": "Download di scheda censimento con formato non supportato",
+    "preconditions": "UC3.4",
+    "postconditions": "Nessun file scaricato",
+    "test_steps": [
+      {
+        "step": "Tenta di scaricare una scheda censimento in un formato non supportato",
+        "expected": "Viene mostrato un messaggio di errore per formato non supportato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Basso",
+    "use_case_id": "UC3.4.1"
+  },
+  {
+    "test_case_id": "UC3.4.1_TC6",
+    "title": "Download scheda censimento con grandi dimensioni",
+    "preconditions": "UC3.4",
+    "postconditions": "Il file viene scaricato correttamente ma richiede più tempo del normale",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di download per una scheda censimento con dimensioni molto grandi",
+        "expected": "Il download richiede più tempo per completarsi a causa delle grandi dimensioni del file"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alto",
+    "use_case_id": "UC3.4.1"
+  }
+]

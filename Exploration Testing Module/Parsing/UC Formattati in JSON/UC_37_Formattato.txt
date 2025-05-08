@@ -4,7 +4,7 @@
   "Title": "Aggiunta impianto",
   "Summary": "Permette di aggiungere un nuovo impianto per il comune selezionato",
   "Actor": ["Progettista"],
-  "Precondition": "L’utente visualizza la sezione relativa alla gestione degli impianti",
+  "Precondition": "UC4.1",
   "Postcondition": "L’utente visualizza un messaggio di conferma",
   "Base_sequence": ["L’utente clicca sul tasto dedicato all’aggiunta di un singolo impianto", "L’utente inserisce il nome e seleziona il comune tra quelli disponibili", "L’utente visualizza un messaggio di conferma"],
   "Branch_sequence": ["In caso di annullamento l’utente visualizza un messaggio di avvenuto annullamento"],

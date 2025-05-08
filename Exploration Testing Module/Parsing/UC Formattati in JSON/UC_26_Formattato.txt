@@ -4,7 +4,7 @@
   "Title": "Modifica Elettric panel sezione Dati tecnici",
   "Summary": "Permette di modificare la sezione dei dati tecnici di un pannello elettrico, relativo ad un POD, della scheda censimento",
   "Actor": ["Regione", "Sindaco", "Fornitore"],
-  "Precondition": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+  "Precondition": "UC3.4.3",
   "Postcondition": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
   "Base_sequence": [
     "L’utente seleziona il POD per la modifica tramite il menù ad albero di sinistra",

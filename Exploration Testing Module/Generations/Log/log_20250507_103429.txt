@@ -1,0 +1,135 @@
+📝 PROMPT:
+You are a Quality Assurance expert. Your task is to generate a suite of test cases for each use case provided in JSON format.
+
+The output must be in **JSON only**, structured as an array of test case objects, following the example below:
+
+{
+  "test_case_id": "UC2_TC2",
+  "title": "Input incompleto",
+  "preconditions": "UC1",
+  "postconditions": "Nessuna modifica salvata",
+  "test_steps": [
+    { "step": "Lascia il campo 'email' vuoto", "expected": "Viene mostrato un messaggio di errore" }
+  ],
+  "test_type": "Negativo",
+  "priority": "Medium",
+  "use_case_id": "UC2"
+}
+
+Guidelines:
+- Generate **at least 4–6 test cases** per use case.
+- Include both **positive** (success) and **negative** (error, missing input, etc.) tests.
+- Use unique names for `test_case_id` following the format `UCx_TCy`.
+- Base your test cases on base_sequence, branch_sequence, exception_sequence, and pre/postconditions.
+
+Only return the JSON array. DO NOT explain anything.  
+DO NOT include "```json" or "```" markers.  
+Make sure brackets are correctly opened and closed.
+
+Note: Even though the structure is in English, all content inside the fields (titles, steps, etc.) must remain in **Italian**.
+
+The following is the use case in JSON format:
+
+[
+{
+  "Id": "UC3.3",
+  "Title": "Caricamento schede censimento",
+  "Summary": "Aggiunge una scheda censimento tra quelle salvate, caricando il file sul portale tramite l’apposita sezione",
+  "Actor": ["Regione", "Sindaco", "Fornitore"],
+  "Precondition": "UC3",
+  "Postcondition": "L’utente può visualizzare le informazioni corrispondenti alla scheda censimento appena caricata",
+  "Base_sequence": [
+    "L’utente clicca sul tasto relativo al caricamento (upload) delle schede censimento",
+    "Nella nuova finestra è possibile scegliere alcuni parametri come il nome, così come il formato di caricamento",
+    "Si procede all’upload tramite drag-and-drop sulla apposita sezione mostrata. La stessa sezione, con un click, consente la selezione del file tramite browser",
+    "Viene mostrata una barra di caricamento",
+    "Alla fine del processo viene mostrato un messaggio di operazione andata a buon fine"
+  ],
+  "Branch_sequence": [],
+  "Exception_sequence": [],
+  "Note": "no"
+}
+]
+
+📥 RISPOSTA:
+[
+  {
+    "test_case_id": "UC3.3_TC1",
+    "title": "Caricamento scheda censimento con successo",
+    "preconditions": "UC3",
+    "postconditions": "L’utente può visualizzare le informazioni corrispondenti alla scheda censimento appena caricata",
+    "test_steps": [
+      { "step": "L’utente clicca sul tasto relativo al caricamento (upload) delle schede censimento", "expected": "Viene aperta la finestra di caricamento" },
+      { "step": "L’utente seleziona un file valido e lo carica tramite drag-and-drop", "expected": "Viene mostrata una barra di caricamento" },
+      { "step": "Il caricamento si conclude con successo", "expected": "Viene mostrato un messaggio di operazione andata a buon fine" }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alto",
+    "use_case_id": "UC3.3"
+  },
+  {
+    "test_case_id": "UC3.3_TC2",
+    "title": "Caricamento scheda censimento con file non valido",
+    "preconditions": "UC3",
+    "postconditions": "L’utente non può visualizzare le informazioni corrispondenti alla scheda censimento",
+    "test_steps": [
+      { "step": "L’utente clicca sul tasto relativo al caricamento (upload) delle schede censimento", "expected": "Viene aperta la finestra di caricamento" },
+      { "step": "L’utente seleziona un file non valido e lo carica tramite drag-and-drop", "expected": "Viene mostrato un messaggio di errore" }
+    ],
+    "test_type": "Negativo",
+    "priority": "Medio",
+    "use_case_id": "UC3.3"
+  },
+  {
+    "test_case_id": "UC3.3_TC3",
+    "title": "Caricamento scheda censimento senza selezionare file",
+    "preconditions": "UC3",
+    "postconditions": "L’utente non può visualizzare le informazioni corrispondenti alla scheda censimento",
+    "test_steps": [
+      { "step": "L’utente clicca sul tasto relativo al caricamento (upload) delle schede censimento", "expected": "Viene aperta la finestra di caricamento" },
+      { "step": "L’utente non seleziona alcun file e tenta di caricare", "expected": "Viene mostrato un messaggio di errore" }
+    ],
+    "test_type": "Negativo",
+    "priority": "Basso",
+    "use_case_id": "UC3.3"
+  },
+  {
+    "test_case_id": "UC3.3_TC4",
+    "title": "Caricamento scheda censimento con formato non supportato",
+    "preconditions": "UC3",
+    "postconditions": "L’utente non può visualizzare le informazioni corrispondenti alla scheda censimento",
+    "test_steps": [
+      { "step": "L’utente clicca sul tasto relativo al caricamento (upload) delle schede censimento", "expected": "Viene aperta la finestra di caricamento" },
+      { "step": "L’utente seleziona un file con formato non supportato e lo carica tramite drag-and-drop", "expected": "Viene mostrato un messaggio di errore" }
+    ],
+    "test_type": "Negativo",
+    "priority": "Medio",
+    "use_case_id": "UC3.3"
+  },
+  {
+    "test_case_id": "UC3.3_TC5",
+    "title": "Caricamento scheda censimento con nome già esistente",
+    "preconditions": "UC3",
+    "postconditions": "L’utente non può visualizzare le informazioni corrispondenti alla scheda censimento",
+    "test_steps": [
+      { "step": "L’utente clicca sul tasto relativo al caricamento (upload) delle schede censimento", "expected": "Viene aperta la finestra di caricamento" },
+      { "step": "L’utente seleziona un file con nome già esistente e lo carica tramite drag-and-drop", "expected": "Viene mostrato un messaggio di errore" }
+    ],
+    "test_type": "Negativo",
+    "priority": "Medio",
+    "use_case_id": "UC3.3"
+  },
+  {
+    "test_case_id": "UC3.3_TC6",
+    "title": "Caricamento scheda censimento con caricamento interrotto",
+    "preconditions": "UC3",
+    "postconditions": "L’utente non può visualizzare le informazioni corrispondenti alla scheda censimento",
+    "test_steps": [
+      { "step": "L’utente clicca sul tasto relativo al caricamento (upload) delle schede censimento", "expected": "Viene aperta la finestra di caricamento" },
+      { "step": "L’utente seleziona un file e lo carica tramite drag-and-drop, interrompendo il caricamento a metà", "expected": "Viene mostrato un messaggio di errore" }
+    ],
+    "test_type": "Negativo",
+    "priority": "Basso",
+    "use_case_id": "UC3.3"
+  }
+]

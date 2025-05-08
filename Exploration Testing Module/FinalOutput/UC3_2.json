@@ -1,0 +1,92 @@
+[
+  {
+    "test_case_id": "UC3.2_TC1",
+    "title": "Ricerca scheda censimento con parametri validi",
+    "preconditions": "UC3",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Inserisci parametri di ricerca validi nella barra di ricerca",
+        "expected": "Vengono visualizzate le schede censimento corrispondenti"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alto",
+    "use_case_id": "UC3.2"
+  },
+  {
+    "test_case_id": "UC3.2_TC2",
+    "title": "Ricerca scheda censimento con parametri vuoti",
+    "preconditions": "UC3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Lascia i campi di ricerca vuoti",
+        "expected": "Viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Medio",
+    "use_case_id": "UC3.2"
+  },
+  {
+    "test_case_id": "UC3.2_TC3",
+    "title": "Ricerca scheda censimento con parametri non validi",
+    "preconditions": "UC3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Inserisci parametri di ricerca non validi nella barra di ricerca",
+        "expected": "Viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Medio",
+    "use_case_id": "UC3.2"
+  },
+  {
+    "test_case_id": "UC3.2_TC4",
+    "title": "Ricerca scheda censimento con più parametri",
+    "preconditions": "UC3",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Inserisci più parametri di ricerca validi nella barra di ricerca",
+        "expected": "Vengono visualizzate le schede censimento corrispondenti"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alto",
+    "use_case_id": "UC3.2"
+  },
+  {
+    "test_case_id": "UC3.2_TC5",
+    "title": "Ricerca scheda censimento con parametri di ricerca molto lunghi",
+    "preconditions": "UC3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Inserisci parametri di ricerca molto lunghi nella barra di ricerca",
+        "expected": "Viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Basso",
+    "use_case_id": "UC3.2"
+  },
+  {
+    "test_case_id": "UC3.2_TC6",
+    "title": "Ricerca scheda censimento senza autorizzazione",
+    "preconditions": "Utente non autenticato",
+    "postconditions": "Viene mostrato un messaggio di accesso negato",
+    "test_steps": [
+      {
+        "step": "Tenta di eseguire la ricerca senza essere autenticato",
+        "expected": "Viene mostrato un messaggio di accesso negato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alto",
+    "use_case_id": "UC3.2"
+  }
+]

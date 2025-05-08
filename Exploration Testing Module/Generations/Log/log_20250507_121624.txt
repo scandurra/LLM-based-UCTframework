@@ -1,0 +1,124 @@
+📝 PROMPT:
+You are a Quality Assurance expert. Your task is to generate a suite of test cases for each use case provided in JSON format.
+
+The output must be in **JSON only**, structured as an array of test case objects, following the example below:
+
+{
+  "test_case_id": "UC2_TC2",
+  "title": "Input incompleto",
+  "preconditions": "UC1",
+  "postconditions": "Nessuna modifica salvata",
+  "test_steps": [
+    { "step": "Lascia il campo 'email' vuoto", "expected": "Viene mostrato un messaggio di errore" }
+  ],
+  "test_type": "Negativo",
+  "priority": "Medium",
+  "use_case_id": "UC2"
+}
+
+Guidelines:
+- Generate **at least 4–6 test cases** per use case.
+- Include both **positive** (success) and **negative** (error, missing input, etc.) tests.
+- Use unique names for `test_case_id` following the format `UCx_TCy`.
+- Base your test cases on base_sequence, branch_sequence, exception_sequence, and pre/postconditions.
+
+Only return the JSON array. DO NOT explain anything.  
+DO NOT include "```json" or "```" markers.  
+Make sure brackets are correctly opened and closed.
+
+Note: Even though the structure is in English, all content inside the fields (titles, steps, etc.) must remain in **Italian**.
+
+The following is the use case in JSON format:
+
+[
+{
+  "Id": "UC3.4.4",
+  "Title": "Congela scheda censimento",
+  "Summary": "Permette di congelare dal portale una scheda censimento precedentemente caricata",
+  "Actor": ["Regione", "Sindaco", "Fornitore"],
+  "Precondition": "UC3.4",
+  "Postcondition": "L’utente non può più svolgere qualsiasi azione sulla scheda. Inoltre, lo stato visualizzato della scheda è come “non attivo”",
+  "Base_sequence": ["L’utente seleziona l’operazione di congelamento", "All’utente viene richiesta la conferma del congelamento della scheda indicata", "In caso di conferma l’utente visualizza un messaggio di conferma dell’operazione"],
+  "Branch_sequence": ["In caso di annullamento il congelamento viene interrotto"],
+  "Exception_sequence": [],
+  "Note": "no"
+}
+]
+
+📥 RISPOSTA:
+[
+  {
+    "test_case_id": "UC3.4.4_TC1",
+    "title": "Congelamento scheda censimento valido",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente non può più svolgere qualsiasi azione sulla scheda. Inoltre, lo stato visualizzato della scheda è come “non attivo”",
+    "test_steps": [
+      { "step": "Seleziona l’operazione di congelamento", "expected": "Viene richiesta la conferma del congelamento" },
+      { "step": "Conferma il congelamento della scheda", "expected": "Viene visualizzato un messaggio di conferma dell’operazione" }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alto",
+    "use_case_id": "UC3.4.4"
+  },
+  {
+    "test_case_id": "UC3.4.4_TC2",
+    "title": "Annullamento congelamento scheda censimento",
+    "preconditions": "UC3.4",
+    "postconditions": "Il congelamento viene interrotto",
+    "test_steps": [
+      { "step": "Seleziona l’operazione di congelamento", "expected": "Viene richiesta la conferma del congelamento" },
+      { "step": "Annulla il congelamento della scheda", "expected": "Il congelamento viene interrotto e non vengono apportate modifiche" }
+    ],
+    "test_type": "Negativo",
+    "priority": "Medio",
+    "use_case_id": "UC3.4.4"
+  },
+  {
+    "test_case_id": "UC3.4.4_TC3",
+    "title": "Congelamento scheda censimento senza permessi",
+    "preconditions": "Utente non autorizzato",
+    "postconditions": "Viene visualizzato un messaggio di errore per mancanza di permessi",
+    "test_steps": [
+      { "step": "Tenta di selezionare l’operazione di congelamento senza permessi", "expected": "Viene visualizzato un messaggio di errore" }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alto",
+    "use_case_id": "UC3.4.4"
+  },
+  {
+    "test_case_id": "UC3.4.4_TC4",
+    "title": "Congelamento scheda censimento con dati non validi",
+    "preconditions": "UC3.4",
+    "postconditions": "Viene visualizzato un messaggio di errore per dati non validi",
+    "test_steps": [
+      { "step": "Inserisci dati non validi durante l’operazione di congelamento", "expected": "Viene visualizzato un messaggio di errore" }
+    ],
+    "test_type": "Negativo",
+    "priority": "Medio",
+    "use_case_id": "UC3.4.4"
+  },
+  {
+    "test_case_id": "UC3.4.4_TC5",
+    "title": "Congelamento scheda censimento multipla volte",
+    "preconditions": "UC3.4",
+    "postconditions": "Viene visualizzato un messaggio di errore per congelamento già eseguito",
+    "test_steps": [
+      { "step": "Esegui l’operazione di congelamento più volte sulla stessa scheda", "expected": "Viene visualizzato un messaggio di errore" }
+    ],
+    "test_type": "Negativo",
+    "priority": "Basso",
+    "use_case_id": "UC3.4.4"
+  },
+  {
+    "test_case_id": "UC3.4.4_TC6",
+    "title": "Congelamento scheda censimento con stato già non attivo",
+    "preconditions": "Scheda censimento già congelata",
+    "postconditions": "Viene visualizzato un messaggio di errore per stato già non attivo",
+    "test_steps": [
+      { "step": "Tenta di eseguire l’operazione di congelamento su una scheda già congelata", "expected": "Viene visualizzato un messaggio di errore" }
+    ],
+    "test_type": "Negativo",
+    "priority": "Basso",
+    "use_case_id": "UC3.4.4"
+  }
+]

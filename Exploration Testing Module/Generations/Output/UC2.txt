@@ -1,0 +1,91 @@
+[
+  {
+    "test_case_id": "UC2_TC1",
+    "title": "Apertura della dashboard con successo",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza la sezione relativa alla dashboard",
+    "test_steps": [
+      {
+        "step": "L’utente naviga nella sezione relativa alla dashboard utilizzando il menù laterale di sinistra",
+        "expected": "La dashboard si apre correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alto",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC2",
+    "title": "Accesso alla dashboard senza autorizzazione",
+    "preconditions": "Utente non autenticato",
+    "postconditions": "L’utente non può accedere alla dashboard",
+    "test_steps": [
+      {
+        "step": "L’utente tenta di accedere alla dashboard senza essere autenticato",
+        "expected": "Viene visualizzato un messaggio di accesso negato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Medio",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC3",
+    "title": "Apertura della dashboard con dati non validi",
+    "preconditions": "Dati di input non validi",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "L’utente inserisce dati non validi per accedere alla dashboard",
+        "expected": "Viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Basso",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC4",
+    "title": "Apertura della dashboard con successo come Regione",
+    "preconditions": "Utente autenticato come Regione",
+    "postconditions": "L’utente visualizza la sezione relativa alla dashboard come Regione",
+    "test_steps": [
+      {
+        "step": "L’utente autenticato come Regione naviga nella sezione relativa alla dashboard",
+        "expected": "La dashboard si apre correttamente con i dati relativi alla Regione"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alto",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC5",
+    "title": "Apertura della dashboard con successo come Sindaco",
+    "preconditions": "Utente autenticato come Sindaco",
+    "postconditions": "L’utente visualizza la sezione relativa alla dashboard come Sindaco",
+    "test_steps": [
+      {
+        "step": "L’utente autenticato come Sindaco naviga nella sezione relativa alla dashboard",
+        "expected": "La dashboard si apre correttamente con i dati relativi al Sindaco"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alto",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC6",
+    "title": "Apertura della dashboard con problema di connessione",
+    "preconditions": "Problema di connessione alla rete",
+    "postconditions": "L’utente visualizza un messaggio di errore di connessione",
+    "test_steps": [
+      {
+        "step": "L’utente tenta di accedere alla dashboard con un problema di connessione",
+        "expected": "Viene visualizzato un messaggio di errore di connessione"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Medio",
+    "use_case_id": "UC2"
+  }

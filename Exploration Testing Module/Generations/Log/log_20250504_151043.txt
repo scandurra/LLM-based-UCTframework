@@ -1,0 +1,129 @@
+📝 PROMPT:
+You are a Quality Assurance expert. Your task is to generate a suite of test cases for each use case provided in JSON format.
+
+The output must be in **JSON only**, structured as an array of test case objects, following the example below:
+
+{
+  "test_case_id": "UC2_TC2",
+  "title": "Input incompleto",
+  "preconditions": "UC1",
+  "postconditions": "Nessuna modifica salvata",
+  "test_steps": [
+    { "step": "Lascia il campo 'email' vuoto", "expected": "Viene mostrato un messaggio di errore" }
+  ],
+  "test_type": "Negativo",
+  "priority": "Medium",
+  "use_case_id": "UC2"
+}
+
+Guidelines:
+- Generate **at least 4–6 test cases** per use case.
+- Include both **positive** (success) and **negative** (error, missing input, etc.) tests.
+- Use unique names for `test_case_id` following the format `UCx_TCy`.
+- Base your test cases on base_sequence, branch_sequence, exception_sequence, and pre/postconditions.
+
+Only return the JSON array. DO NOT explain anything.  
+DO NOT include "```json" or "```" markers.  
+Make sure brackets are correctly opened and closed.
+
+Note: Even though the structure is in English, all content inside the fields (titles, steps, etc.) must remain in **Italian**.
+
+The following is the use case in JSON format:
+
+[
+{
+  "Id": "UC2.3",
+  "Title": "Visualizzazione tabella dati generali (parte di UC2: Dashboard)",
+  "Summary": "Permette di visualizzare informazioni illuminotecniche per comune",
+  "Actor": ["Regione", "Sindaco", "Fornitore", "Cittadino"],
+  "Precondition": "UC2",
+  "Postcondition": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+  "Base_sequence": [
+    "L’utente naviga nella sezione dashboard utilizzando il menù apposito",
+    "L’utente scorre nella pagina fino a visualizzare una sezione tabellare dedicata ai dati generali, dove i dati saranno presentati in forma tabellare",
+    "È possibile scorrere tra i comuni disponibili alla consultazione e censiti, tramite selettore della pagine in basso a destra",
+    "È possibile modificare gli elementi visualizzati per pagina, tramite selettore in basso a sinistra",
+    "È possibile ordinare per colonna di dati, cliccando sul nome della colonna"
+  ],
+  "Branch_sequence": [],
+  "Exception_sequence": [],
+  "Note": "no"
+}
+]
+
+📥 RISPOSTA:
+[
+  {
+    "test_case_id": "UC2.3_TC1",
+    "title": "Visualizzazione tabella dati generali con successo",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      { "step": "L’utente naviga nella sezione dashboard utilizzando il menù apposito", "expected": "La pagina della dashboard si apre correttamente" },
+      { "step": "L’utente scorre nella pagina fino a visualizzare una sezione tabellare dedicata ai dati generali", "expected": "La tabella dei dati generali è visibile e contiene i dati attesi" }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alto",
+    "use_case_id": "UC2.3"
+  },
+  {
+    "test_case_id": "UC2.3_TC2",
+    "title": "Selezione comune non presente",
+    "preconditions": "UC2",
+    "postconditions": "Viene mostrato un messaggio di errore per comune non trovato",
+    "test_steps": [
+      { "step": "L’utente seleziona un comune non presente nel database", "expected": "Viene mostrato un messaggio di errore per comune non trovato" }
+    ],
+    "test_type": "Negativo",
+    "priority": "Medio",
+    "use_case_id": "UC2.3"
+  },
+  {
+    "test_case_id": "UC2.3_TC3",
+    "title": "Modifica del numero di elementi per pagina",
+    "preconditions": "UC2",
+    "postconditions": "Il numero di elementi visualizzati per pagina è stato modificato correttamente",
+    "test_steps": [
+      { "step": "L’utente seleziona un nuovo numero di elementi per pagina tramite il selettore", "expected": "Il numero di elementi visualizzati per pagina è stato aggiornato" }
+    ],
+    "test_type": "Positivo",
+    "priority": "Basso",
+    "use_case_id": "UC2.3"
+  },
+  {
+    "test_case_id": "UC2.3_TC4",
+    "title": "Ordinamento per colonna di dati",
+    "preconditions": "UC2",
+    "postconditions": "I dati sono stati ordinati correttamente in base alla colonna selezionata",
+    "test_steps": [
+      { "step": "L’utente clicca sul nome di una colonna per ordinare i dati", "expected": "I dati sono stati ordinati in modo crescente o decrescente in base alla colonna selezionata" }
+    ],
+    "test_type": "Positivo",
+    "priority": "Medio",
+    "use_case_id": "UC2.3"
+  },
+  {
+    "test_case_id": "UC2.3_TC5",
+    "title": "Paginazione con numero di pagine non valido",
+    "preconditions": "UC2",
+    "postconditions": "Viene mostrato un messaggio di errore per pagina non valida",
+    "test_steps": [
+      { "step": "L’utente inserisce un numero di pagine non valido", "expected": "Viene mostrato un messaggio di errore per pagina non valida" }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alto",
+    "use_case_id": "UC2.3"
+  },
+  {
+    "test_case_id": "UC2.3_TC6",
+    "title": "Visualizzazione tabella dati generali con dati vuoti",
+    "preconditions": "UC2",
+    "postconditions": "Viene mostrato un messaggio di informazione per dati non presenti",
+    "test_steps": [
+      { "step": "L’utente visualizza la tabella dei dati generali senza dati", "expected": "Viene mostrato un messaggio di informazione per dati non presenti" }
+    ],
+    "test_type": "Negativo",
+    "priority": "Basso",
+    "use_case_id": "UC2.3"
+  }
+]

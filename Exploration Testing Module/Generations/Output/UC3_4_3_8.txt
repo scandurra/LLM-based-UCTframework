@@ -1,0 +1,92 @@
+[
+  {
+    "test_case_id": "UC3.4.3.8_TC1",
+    "title": "Modifica informazioni di manutenzione con successo",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      { "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra", "expected": "Il POD selezionato viene visualizzato" },
+      { "step": "Espandi la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD", "expected": "I pannelli elettrici vengono visualizzati" },
+      { "step": "Seleziona il pannello elettrico per la modifica", "expected": "Il pannello elettrico selezionato viene visualizzato" },
+      { "step": "Seleziona il tab relativo alle informazioni di manutenzione", "expected": "Le informazioni di manutenzione vengono visualizzate" },
+      { "step": "Compila il form con le informazioni desiderate", "expected": "Il form viene compilato correttamente" },
+      { "step": "Applica le modifiche con l’apposito tasto", "expected": "Un messaggio di conferma dell’operazione viene visualizzato" }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.8"
+  },
+  {
+    "test_case_id": "UC3.4.3.8_TC2",
+    "title": "Modifica informazioni di manutenzione con dati non validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      { "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra", "expected": "Il POD selezionato viene visualizzato" },
+      { "step": "Espandi la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD", "expected": "I pannelli elettrici vengono visualizzati" },
+      { "step": "Seleziona il pannello elettrico per la modifica", "expected": "Il pannello elettrico selezionato viene visualizzato" },
+      { "step": "Seleziona il tab relativo alle informazioni di manutenzione", "expected": "Le informazioni di manutenzione vengono visualizzate" },
+      { "step": "Compila il form con dati non validi", "expected": "Un messaggio di errore viene visualizzato" }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.8"
+  },
+  {
+    "test_case_id": "UC3.4.3.8_TC3",
+    "title": "Modifica informazioni di manutenzione senza selezionare il POD",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      { "step": "Non selezionare il POD per la modifica", "expected": "Un messaggio di errore viene visualizzato" }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.8"
+  },
+  {
+    "test_case_id": "UC3.4.3.8_TC4",
+    "title": "Modifica informazioni di manutenzione senza selezionare il pannello elettrico",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      { "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra", "expected": "Il POD selezionato viene visualizzato" },
+      { "step": "Non selezionare il pannello elettrico per la modifica", "expected": "Un messaggio di errore viene visualizzato" }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.8"
+  },
+  {
+    "test_case_id": "UC3.4.3.8_TC5",
+    "title": "Modifica informazioni di manutenzione con dati vuoti",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      { "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra", "expected": "Il POD selezionato viene visualizzato" },
+      { "step": "Espandi la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD", "expected": "I pannelli elettrici vengono visualizzati" },
+      { "step": "Seleziona il pannello elettrico per la modifica", "expected": "Il pannello elettrico selezionato viene visualizzato" },
+      { "step": "Seleziona il tab relativo alle informazioni di manutenzione", "expected": "Le informazioni di manutenzione vengono visualizzate" },
+      { "step": "Lascia il form vuoto", "expected": "Un messaggio di errore viene visualizzato" }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.8"
+  },
+  {
+    "test_case_id": "UC3.4.3.8_TC6",
+    "title": "Modifica informazioni di manutenzione con successo e annullamento",
+    "preconditions": "UC3.4.3.8",
+    "postconditions": "Le modifiche vengono annullate",
+    "test_steps": [
+      { "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra", "expected": "Il POD selezionato viene visualizzato" },
+      { "step": "Espandi la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD", "expected": "I pannelli elettrici vengono visualizzati" },
+      { "step": "Seleziona il pannello elettrico per la modifica", "expected": "Il pannello elettrico selezionato viene visualizzato" },
+      { "step": "Seleziona il tab relativo alle informazioni di manutenzione", "expected": "Le informazioni di manutenzione vengono visualizzate" },
+      { "step": "Compila il form con dati validi", "expected": "Un messaggio di conferma viene visualizzato" },
+      { "step": "Annulla le modifiche", "expected": "Le modifiche vengono annullate" }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.8"
+  }

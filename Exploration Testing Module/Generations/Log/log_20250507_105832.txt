@@ -1,0 +1,134 @@
+📝 PROMPT:
+You are a Quality Assurance expert. Your task is to generate a suite of test cases for each use case provided in JSON format.
+
+The output must be in **JSON only**, structured as an array of test case objects, following the example below:
+
+{
+  "test_case_id": "UC2_TC2",
+  "title": "Input incompleto",
+  "preconditions": "UC1",
+  "postconditions": "Nessuna modifica salvata",
+  "test_steps": [
+    { "step": "Lascia il campo 'email' vuoto", "expected": "Viene mostrato un messaggio di errore" }
+  ],
+  "test_type": "Negativo",
+  "priority": "Medium",
+  "use_case_id": "UC2"
+}
+
+Guidelines:
+- Generate **at least 4–6 test cases** per use case.
+- Include both **positive** (success) and **negative** (error, missing input, etc.) tests.
+- Use unique names for `test_case_id` following the format `UCx_TCy`.
+- Base your test cases on base_sequence, branch_sequence, exception_sequence, and pre/postconditions.
+
+Only return the JSON array. DO NOT explain anything.  
+DO NOT include "```json" or "```" markers.  
+Make sure brackets are correctly opened and closed.
+
+Note: Even though the structure is in English, all content inside the fields (titles, steps, etc.) must remain in **Italian**.
+
+The following is the use case in JSON format:
+
+[
+{
+  "Id": "UC3.4.3.1",
+  "Title": "Modifica sezione Area",
+  "Summary": "Permette di modificare i parametri della sezione Area relativa ai dati generali della scheda censimento",
+  "Actor": ["Regione", "Sindaco", "Fornitore"],
+  "Precondition": "UC3.4.3",
+  "Postcondition": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+  "Base_sequence": ["L’utente entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra", "L’utente visualizza i dati precedenti e può compilare il form con le informazioni desiderate", "L’utente applica le modifiche con l’apposito tasto", "In caso di conferma l’utente visualizza un messaggio di conferma dell’operazione"],
+  "Branch_sequence": ["In caso di dati non validi viene mostrato un messaggio di errore"],
+  "Exception_sequence": [],
+  "Note": "no"
+}
+]
+
+📥 RISPOSTA:
+[
+  {
+    "test_case_id": "UC3.4.3.1_TC1",
+    "title": "Modifica sezione Area con successo",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      { "step": "L’utente entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra", "expected": "L’utente visualizza i dati precedenti" },
+      { "step": "L’utente compila il form con le informazioni desiderate", "expected": "Il form viene compilato correttamente" },
+      { "step": "L’utente applica le modifiche con l’apposito tasto", "expected": "Viene visualizzato un messaggio di conferma dell’operazione" }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alto",
+    "use_case_id": "UC3.4.3.1"
+  },
+  {
+    "test_case_id": "UC3.4.3.1_TC2",
+    "title": "Modifica sezione Area con dati non validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      { "step": "L’utente entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra", "expected": "L’utente visualizza i dati precedenti" },
+      { "step": "L’utente compila il form con dati non validi", "expected": "Il form non viene compilato correttamente" },
+      { "step": "L’utente applica le modifiche con l’apposito tasto", "expected": "Viene visualizzato un messaggio di errore" }
+    ],
+    "test_type": "Negativo",
+    "priority": "Medio",
+    "use_case_id": "UC3.4.3.1"
+  },
+  {
+    "test_case_id": "UC3.4.3.1_TC3",
+    "title": "Modifica sezione Area senza compilare il form",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      { "step": "L’utente entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra", "expected": "L’utente visualizza i dati precedenti" },
+      { "step": "L’utente non compila il form", "expected": "Il form è vuoto" },
+      { "step": "L’utente applica le modifiche con l’apposito tasto", "expected": "Viene visualizzato un messaggio di errore" }
+    ],
+    "test_type": "Negativo",
+    "priority": "Basso",
+    "use_case_id": "UC3.4.3.1"
+  },
+  {
+    "test_case_id": "UC3.4.3.1_TC4",
+    "title": "Modifica sezione Area con dati parzialmente validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      { "step": "L’utente entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra", "expected": "L’utente visualizza i dati precedenti" },
+      { "step": "L’utente compila parzialmente il form con dati validi e non validi", "expected": "Il form è compilato parzialmente" },
+      { "step": "L’utente applica le modifiche con l’apposito tasto", "expected": "Viene visualizzato un messaggio di errore" }
+    ],
+    "test_type": "Negativo",
+    "priority": "Medio",
+    "use_case_id": "UC3.4.3.1"
+  },
+  {
+    "test_case_id": "UC3.4.3.1_TC5",
+    "title": "Modifica sezione Area con successo e dati già esistenti",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      { "step": "L’utente entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra", "expected": "L’utente visualizza i dati precedenti" },
+      { "step": "L’utente compila il form con dati già esistenti", "expected": "Il form viene compilato correttamente" },
+      { "step": "L’utente applica le modifiche con l’apposito tasto", "expected": "Viene visualizzato un messaggio di conferma dell’operazione" }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alto",
+    "use_case_id": "UC3.4.3.1"
+  },
+  {
+    "test_case_id": "UC3.4.3.1_TC6",
+    "title": "Modifica sezione Area con dati non validi e successivo retry",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      { "step": "L’utente entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra", "expected": "L’utente visualizza i dati precedenti" },
+      { "step": "L’utente compila il form con dati non validi", "expected": "Il form non viene compilato correttamente" },
+      { "step": "L’utente visualizza un messaggio di errore e ritenta la modifica", "expected": "Il form può essere compilato nuovamente" },
+      { "step": "L’utente compila il form con dati validi e applica le modifiche", "expected": "Viene visualizzato un messaggio di conferma dell’operazione" }
+    ],
+    "test_type": "Negativo/Positivo",
+    "priority": "Medio",
+    "use_case_id": "UC3.4.3.1"
+  }
