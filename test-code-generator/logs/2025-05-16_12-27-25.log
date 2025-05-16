@@ -1,0 +1,6 @@
+2025-05-16 12:27:25,359 - __main__ - INFO - Found 0 dependencies for use case UC1
+2025-05-16 12:27:25,359 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt template loaded from path: ./prompts/single_processing/zero_shot/raw.txt
+2025-05-16 12:27:25,359 - test_code_generator.prompt_builder.prompt_builder - INFO - Test parameters loaded from path: ./input_files/parameters/test_parameters.env
+2025-05-16 12:27:25,359 - test_code_generator.prompt_builder.prompt_builder - INFO - Test parameters loaded from path: ./input_files/pom/login_page.js
+2025-05-16 12:27:25,359 - test_code_generator.prompt_builder.prompt_builder - INFO - Test reporter loaded from path: ./input_files/reporter_minimal.js
+2025-05-16 12:27:25,359 - test_code_generator.prompt_builder.prompt_builder - INFO - Previous code section loaded from path: ./input_files/reporter_minimal.js

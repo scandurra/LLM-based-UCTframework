@@ -1,0 +1,62 @@
+2025-05-14 12:30:56,843 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt template loaded from path: ./prompts/single_processing/zero_shot/base.txt
+2025-05-14 12:30:56,844 - test_code_generator.prompt_builder.prompt_builder - INFO - Test parameters loaded from path: ./input_files/parameters/test_parameters.env
+2025-05-14 12:30:56,844 - test_code_generator.prompt_builder.prompt_builder - INFO - Test parameters loaded from path: ./input_files/pom/pom.js
+2025-05-14 12:30:56,844 - test_code_generator.prompt_builder.prompt_builder - INFO - Test reporter loaded from path: ./input_files/reporter_minimal.js
+2025-05-14 12:30:56,844 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt built: You are a testing engineer, expert in writing Javascript end-to-end tests with Playwright.
+
+Task: Analyze the test cases provided below and generate for each test case a complete and working Playwright test script in Javascript, following the steps described in the test cases.
+When creating test scripts, use only the page object model provided for interacting with the DOM and the parameters provided.
+
+Use the following test parameters when creating scripts:
+E2E_BASE_URL="http://pell-portal.bologna.enea.it/"
+E2E_LOGIN_URL="https://idp.smartcityplatform.enea.it/"
+E2E_HOME_URL="" 
+E2E_DASHBOARD_URL="" 
+E2E_CTS_URL="" 
+E2E_LOGIN_EMAIL_ADMIN="test.admin@pell.it"
+E2E_LOGIN_PASSWORD_ADMIN="Testadmin01!"
+E2E_LOGIN_EMAIL_REGION="test.region@pell.it"
+E2E_LOGIN_PASSWORD_REGION="Testregion01!"
+
+Instructions:
+1. Analyze the test cases provided
+2. For each test case, generate a test script in Javascript with Playwright
+3. Use only Page object model provided to interact with the DOM.
+4. In each test script, call the reporter object methods as in the example below.
+5. Put the code in functions for reusability
+
+<example>
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1 - Login test with success");
+
+    // ... test case step 1
+    reporter.addStep('UC1_TC1_ID1', 'Step 1 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+
+    // ... test case step 2
+    reporter.addStep('UC1_TC1_ID2', 'Step 2 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+
+    // ...
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+</example>
+
+Here the test case to be converted in Playwright script:
+Test Case ID: UC1_TC1
+Title: Login con credenziali valide
+Use Case ID: UC1
+Priority: Alta
+Type: Positivo
+Preconditions: L’utente non è autenticato
+Postconditions: L’utente è autenticato ed è a conoscenza che l’operazione ha avuto successo
+Test Steps:
+  1. Step: Inserisci le credenziali corrette nel form di login
+Expected: Le credenziali vengono accettate
+  2. Step: Clicca il tasto “Login”
+Expected: Il sistema procede con l’autenticazione
+  3. Step: Verifica la visualizzazione del messaggio di successo
+Expected: Viene mostrato un messaggio che conferma l’avvenuta autenticazione
+
+Generate only JavaScript code. Do not include existing code implementation in the response, only reference it.
+2025-05-14 12:30:56,844 - test_code_generator.llm_client.ollama_client - INFO - OllamaClient initialized with model: llama3.3

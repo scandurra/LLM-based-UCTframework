@@ -1,0 +1,119 @@
+2025-05-14 12:32:59,437 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt template loaded from path: ./prompts/single_processing/zero_shot/base.txt
+2025-05-14 12:32:59,438 - test_code_generator.prompt_builder.prompt_builder - INFO - Test parameters loaded from path: ./input_files/parameters/test_parameters.env
+2025-05-14 12:32:59,438 - test_code_generator.prompt_builder.prompt_builder - INFO - Test parameters loaded from path: ./input_files/pom/pom.js
+2025-05-14 12:32:59,438 - test_code_generator.prompt_builder.prompt_builder - INFO - Test reporter loaded from path: ./input_files/reporter_minimal.js
+2025-05-14 12:32:59,438 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt built: You are a testing engineer, expert in writing Javascript end-to-end tests with Playwright.
+
+Task: Analyze the test cases provided below and generate for each test case a complete and working Playwright test script in Javascript, following the steps described in the test cases.
+When creating test scripts, use only the page object model provided for interacting with the DOM and the parameters provided.
+
+Use the following test parameters when creating scripts:
+E2E_BASE_URL="http://pell-portal.bologna.enea.it/"
+E2E_LOGIN_URL="https://idp.smartcityplatform.enea.it/"
+E2E_HOME_URL="" 
+E2E_DASHBOARD_URL="" 
+E2E_CTS_URL="" 
+E2E_LOGIN_EMAIL_ADMIN="test.admin@pell.it"
+E2E_LOGIN_PASSWORD_ADMIN="Testadmin01!"
+E2E_LOGIN_EMAIL_REGION="test.region@pell.it"
+E2E_LOGIN_PASSWORD_REGION="Testregion01!"
+
+Instructions:
+1. Analyze the test cases provided
+2. For each test case, generate a test script in Javascript with Playwright
+3. Use only Page object model provided to interact with the DOM.
+4. In each test script, call the reporter object methods as in the example below.
+5. Put the code in functions for reusability
+
+<example>
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1 - Login test with success");
+
+    // ... test case step 1
+    reporter.addStep('UC1_TC1_ID1', 'Step 1 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+
+    // ... test case step 2
+    reporter.addStep('UC1_TC1_ID2', 'Step 2 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+
+    // ...
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+</example>
+
+Here the test case to be converted in Playwright script:
+Test Case ID: UC1_TC1
+Title: Login con credenziali valide
+Use Case ID: UC1
+Priority: Alta
+Type: Positivo
+Preconditions: L’utente non è autenticato
+Postconditions: L’utente è autenticato ed è a conoscenza che l’operazione ha avuto successo
+Test Steps:
+  1. Step: Inserisci le credenziali corrette nel form di login
+Expected: Le credenziali vengono accettate
+  2. Step: Clicca il tasto “Login”
+Expected: Il sistema procede con l’autenticazione
+  3. Step: Verifica la visualizzazione del messaggio di successo
+Expected: Viene mostrato un messaggio che conferma l’avvenuta autenticazione
+
+Generate only JavaScript code. Do not include existing code implementation in the response, only reference it.
+2025-05-14 12:32:59,438 - test_code_generator.llm_client.ollama_client - INFO - OllamaClient initialized with model: llama3.3
+2025-05-14 12:34:09,040 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+```javascript
+// Import required modules and initialize variables
+const { test, expect } = require('@playwright/test');
+const reporter = require('./reporter'); // Assuming a custom reporter module
+const E2E_BASE_URL = "http://pell-portal.bologna.enea.it/";
+const E2E_LOGIN_URL = "https://idp.smartcityplatform.enea.it/";
+const E2E_LOGIN_EMAIL_ADMIN = "test.admin@pell.it";
+const E2E_LOGIN_PASSWORD_ADMIN = "Testadmin01!";
+
+// Function to login with valid credentials
+async function loginWithValidCredentials(page) {
+    await page.goto(E2E_LOGIN_URL);
+    await page.fill('input[name="username"]', E2E_LOGIN_EMAIL_ADMIN);
+    await page.fill('input[name="password"]', E2E_LOGIN_PASSWORD_ADMIN);
+}
+
+// Function to click the login button
+async function clickLoginButton(page) {
+    await page.click('button[type="submit"]');
+}
+
+// Function to verify success message
+async function verifySuccessMessage(page) {
+    const successMessage = await page.textContent('.success-message');
+    return successMessage.includes('Autenticazione avvenuta con successo');
+}
+
+// Test case: UC1_TC1 - Login with valid credentials
+test("UC1_TC1 - Login test with success", async ({ page, browserName }) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1 - Login test with success");
+
+    // Step 1: Inserisci le credenziali corrette nel form di login
+    const startTime = new Date().getTime();
+    await loginWithValidCredentials(page);
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    reporter.addStep('UC1_TC1_ID1', 'Insert valid credentials in the login form', 'Credenziali accettate', 'Credenziali accettate', true, `E2E_LOGIN_EMAIL_ADMIN: ${E2E_LOGIN_EMAIL_ADMIN}, E2E_LOGIN_PASSWORD_ADMIN: ${E2E_LOGIN_PASSWORD_ADMIN}`, executionTime);
+
+    // Step 2: Clicca il tasto “Login”
+    const startTimeStep2 = new Date().getTime();
+    await clickLoginButton(page);
+    const endTimeStep2 = new Date().getTime();
+    const executionTimeStep2 = (endTimeStep2 - startTimeStep2) / 1000;
+    reporter.addStep('UC1_TC1_ID2', 'Click the login button', 'Sistema procede con l’autenticazione', 'Sistema procede con l’autenticazione', true, '', executionTimeStep2);
+
+    // Step 3: Verifica la visualizzazione del messaggio di successo
+    const startTimeStep3 = new Date().getTime();
+    const isSuccessMessageDisplayed = await verifySuccessMessage(page);
+    const endTimeStep3 = new Date().getTime();
+    const executionTimeStep3 = (endTimeStep3 - startTimeStep3) / 1000;
+    reporter.addStep('UC1_TC1_ID3', 'Verify success message', 'Messaggio di successo visualizzato', isSuccessMessageDisplayed ? 'Messaggio di successo visualizzato' : 'Messaggio di successo non visualizzato', isSuccessMessageDisplayed, '', executionTimeStep3);
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+```

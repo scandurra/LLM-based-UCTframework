@@ -1,0 +1,289 @@
+{
+  "nodes": [
+    {
+      "id": "UC1"
+    },
+    {
+      "id": "UC2.1"
+    },
+    {
+      "id": "UC2"
+    },
+    {
+      "id": "UC2.2"
+    },
+    {
+      "id": "UC2.3"
+    },
+    {
+      "id": "UC2.4"
+    },
+    {
+      "id": "UC2.5"
+    },
+    {
+      "id": "UC2.6"
+    },
+    {
+      "id": "UC3.1"
+    },
+    {
+      "id": "UC3"
+    },
+    {
+      "id": "UC3.2.1"
+    },
+    {
+      "id": "UC3.2"
+    },
+    {
+      "id": "UC3.2.2"
+    },
+    {
+      "id": "UC3.2.3"
+    },
+    {
+      "id": "UC3.2.4"
+    },
+    {
+      "id": "UC3.3"
+    },
+    {
+      "id": "UC3.4.1"
+    },
+    {
+      "id": "UC3.4"
+    },
+    {
+      "id": "UC3.4.2"
+    },
+    {
+      "id": "UC3.4.3.1"
+    },
+    {
+      "id": "UC3.4.3"
+    },
+    {
+      "id": "UC3.4.3.10"
+    },
+    {
+      "id": "UC3.4.3.11"
+    },
+    {
+      "id": "UC3.4.3.12"
+    },
+    {
+      "id": "UC3.4.3.2"
+    },
+    {
+      "id": "UC3.4.3.3"
+    },
+    {
+      "id": "UC3.4.3.4"
+    },
+    {
+      "id": "UC3.4.3.5"
+    },
+    {
+      "id": "UC3.4.3.6"
+    },
+    {
+      "id": "UC3.4.3.7"
+    },
+    {
+      "id": "UC3.4.3.8"
+    },
+    {
+      "id": "UC3.4.3.9"
+    },
+    {
+      "id": "UC3.4.4"
+    },
+    {
+      "id": "UC3.4.5"
+    },
+    {
+      "id": "UC4.1.1"
+    },
+    {
+      "id": "UC4.1"
+    },
+    {
+      "id": "UC4"
+    },
+    {
+      "id": "UC4.2"
+    },
+    {
+      "id": "UC4.3"
+    },
+    {
+      "id": "UC5"
+    },
+    {
+      "id": "UC6"
+    }
+  ],
+  "edges": [
+    {
+      "source": "UC2.1",
+      "target": "UC2"
+    },
+    {
+      "source": "UC2.2",
+      "target": "UC2"
+    },
+    {
+      "source": "UC2.3",
+      "target": "UC2"
+    },
+    {
+      "source": "UC2.4",
+      "target": "UC2"
+    },
+    {
+      "source": "UC2.5",
+      "target": "UC2"
+    },
+    {
+      "source": "UC2.6",
+      "target": "UC2"
+    },
+    {
+      "source": "UC2",
+      "target": "UC1"
+    },
+    {
+      "source": "UC3.1",
+      "target": "UC3"
+    },
+    {
+      "source": "UC3.2.1",
+      "target": "UC3.2"
+    },
+    {
+      "source": "UC3.2.2",
+      "target": "UC3.2"
+    },
+    {
+      "source": "UC3.2.3",
+      "target": "UC3.2"
+    },
+    {
+      "source": "UC3.2.4",
+      "target": "UC3.2"
+    },
+    {
+      "source": "UC3.2",
+      "target": "UC3"
+    },
+    {
+      "source": "UC3.3",
+      "target": "UC3"
+    },
+    {
+      "source": "UC3.4.1",
+      "target": "UC3.4"
+    },
+    {
+      "source": "UC3.4.2",
+      "target": "UC3.4"
+    },
+    {
+      "source": "UC3.4.3.1",
+      "target": "UC3.4.3"
+    },
+    {
+      "source": "UC3.4.3.10",
+      "target": "UC3.4.3"
+    },
+    {
+      "source": "UC3.4.3.11",
+      "target": "UC3.4.3"
+    },
+    {
+      "source": "UC3.4.3.12",
+      "target": "UC3.4.3"
+    },
+    {
+      "source": "UC3.4.3.2",
+      "target": "UC3.4.3"
+    },
+    {
+      "source": "UC3.4.3.3",
+      "target": "UC3.4.3"
+    },
+    {
+      "source": "UC3.4.3.4",
+      "target": "UC3.4.3"
+    },
+    {
+      "source": "UC3.4.3.5",
+      "target": "UC3.4.3"
+    },
+    {
+      "source": "UC3.4.3.6",
+      "target": "UC3.4.3"
+    },
+    {
+      "source": "UC3.4.3.7",
+      "target": "UC3.4.3"
+    },
+    {
+      "source": "UC3.4.3.8",
+      "target": "UC3.4.3"
+    },
+    {
+      "source": "UC3.4.3.9",
+      "target": "UC3.4.3"
+    },
+    {
+      "source": "UC3.4.3",
+      "target": "UC3.4"
+    },
+    {
+      "source": "UC3.4.4",
+      "target": "UC3.4"
+    },
+    {
+      "source": "UC3.4.5",
+      "target": "UC3.4"
+    },
+    {
+      "source": "UC3.4",
+      "target": "UC3"
+    },
+    {
+      "source": "UC3",
+      "target": "UC1"
+    },
+    {
+      "source": "UC4.1.1",
+      "target": "UC4.1"
+    },
+    {
+      "source": "UC4.1",
+      "target": "UC4"
+    },
+    {
+      "source": "UC4.2",
+      "target": "UC4"
+    },
+    {
+      "source": "UC4.3",
+      "target": "UC4"
+    },
+    {
+      "source": "UC4",
+      "target": "UC1"
+    },
+    {
+      "source": "UC5",
+      "target": "UC1"
+    },
+    {
+      "source": "UC6",
+      "target": "UC1"
+    }
+  ]
+}

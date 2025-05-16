@@ -1,0 +1,92 @@
+2025-05-16 14:28:13,230 - __main__ - INFO - Found 0 dependencies for use case UC1
+2025-05-16 14:28:13,230 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt template loaded from path: ./prompts/single_processing/one_shot/raw.txt
+2025-05-16 14:28:13,230 - test_code_generator.prompt_builder.prompt_builder - INFO - Test parameters loaded from path: ./input_files/parameters/test_parameters.env
+2025-05-16 14:28:13,230 - test_code_generator.prompt_builder.prompt_builder - INFO - Read pom file dashboard_page.js: 
+export class DashboardPage {
+  readonly page: Page;
+  readonly downloadButton: Locator;
+  readonly comuneSelect: Locator;
+  readonly showImpiantiButton: Locator;
+
+  constructor(page: Page) {
+    this.page = page;
+    this.downloadButton = page.getByRole('button', { name: 'Download PDF' });
+    this.comuneSelect = page.getByLabel('Comuni', { exact: true });
+    this.showImpiantiButton = page.locator('#compute_apply_geomap_1');
+  }
+
+  async downloadPdf() {
+    await this.downloadButton.click();
+  }
+
+  async selectComune(index) {
+    comuneSelect.selectOption({index: index});
+  }
+
+  async showImpianti() {
+    showImpiantiButton.click();
+  }
+
+  async isImpiantiVisible() {
+    return await page.getByText('Mappa impianti d\'illuminazioneLoading...Completa i campi della form e premi').isVisible();
+  }
+}
+2025-05-16 14:28:13,230 - test_code_generator.prompt_builder.prompt_builder - INFO - Read pom file login_page.js: 
+export class LoginPage {
+    readonly page: Page;
+    readonly emailInput: Locator;
+    readonly passwordInput: Locator;
+    readonly loginButton: Locator;
+    readonly authenticate: Locator;
+    readonly errorMessage: Locator;
+  
+    constructor(page: Page) {
+      this.page = page;
+      this.loginButton = page.locator('text="Login"');
+      this.emailInput = page.locator('#email');
+      this.passwordInput = page.locator('#password');
+      this.authenticate = page.locator("#submit");
+      this.errorMessage = page.locator('.error-message');
+    }
+  
+    async displayLoginForm() {
+        await this.loginButton.click();
+    }
+  
+    async enterEmail(email) {
+        await this.emailInput.fill(email);
+    }
+  
+    async enterPassword(password) {
+        await this.passwordInput.fill(password);
+    }
+  
+    async getErrorMessage() {
+        return await this.errorMessage.textContent();
+    }
+
+    async login() {
+        await this.authenticate.click();
+    }
+  }
+2025-05-16 14:28:13,230 - test_code_generator.prompt_builder.prompt_builder - INFO - Read pom file home_page.js: 
+export class HomePage {
+    readonly page: Page;
+    readonly dashboardButton: Locator;
+  
+    constructor(page: Page) {
+      this.page = page;
+      this.dashboardButton = page.getByRole('link', { name: ' Dashboard' });
+    }
+
+    async navigateToDashboard() {
+        await this.dashboardButton.click();
+    }
+  }
+2025-05-16 14:28:13,230 - test_code_generator.prompt_builder.prompt_builder - INFO - Test reporter loaded from path: ./input_files/reporter_minimal.js
+2025-05-16 14:28:13,230 - test_code_generator.prompt_builder.prompt_builder - ERROR - [Errno 2] No such file or directory: './prompts/single_processing/one_shot/previous_code_section.txt'
+Traceback (most recent call last):
+  File "/home/sronzoni/GitHub/LLM-based-UCTframework/test-code-generator/src/test_code_generator/prompt_builder/prompt_builder.py", line 102, in __load_previous_code_section_file
+    with open("./prompts/single_processing/one_shot/previous_code_section.txt", "r") as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: './prompts/single_processing/one_shot/previous_code_section.txt'

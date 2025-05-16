@@ -1,0 +1,120 @@
+[
+  {
+    "test_case_id": "UC2.2_TC1",
+    "title": "Ricerca impianti di illuminazione con parametri validi",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza gli impianti di illuminazione che corrispondono ai criteri di ricerca",
+    "test_steps": [
+      {
+        "step": "Seleziona il comune di ricerca",
+        "expected": "Vengono visualizzati i parametri di ricerca disponibili"
+      },
+      {
+        "step": "Seleziona i parametri di ricerca",
+        "expected": "Vengono visualizzate le opzioni per confermare la ricerca"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Vengono visualizzati gli impianti di illuminazione sulla mappa"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alto",
+    "use_case_id": "UC2.2"
+  },
+  {
+    "test_case_id": "UC2.2_TC2",
+    "title": "Ricerca impianti di illuminazione senza selezionare il comune",
+    "preconditions": "UC2",
+    "postconditions": "Viene visualizzato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Non seleziona il comune di ricerca",
+        "expected": "Vengono visualizzate le opzioni per selezionare il comune"
+      },
+      {
+        "step": "Conferma la ricerca senza comune",
+        "expected": "Viene visualizzato un messaggio di errore per la mancanza del comune"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Medio",
+    "use_case_id": "UC2.2"
+  },
+  {
+    "test_case_id": "UC2.2_TC3",
+    "title": "Ricerca impianti di illuminazione con parametri non validi",
+    "preconditions": "UC2",
+    "postconditions": "Viene visualizzato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il comune di ricerca",
+        "expected": "Vengono visualizzati i parametri di ricerca disponibili"
+      },
+      {
+        "step": "Inserisci parametri di ricerca non validi",
+        "expected": "Viene visualizzato un messaggio di errore per i parametri non validi"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Medio",
+    "use_case_id": "UC2.2"
+  },
+  {
+    "test_case_id": "UC2.2_TC4",
+    "title": "Ricerca impianti di illuminazione con più parametri",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza gli impianti di illuminazione che corrispondono ai criteri di ricerca",
+    "test_steps": [
+      {
+        "step": "Seleziona il comune di ricerca",
+        "expected": "Vengono visualizzati i parametri di ricerca disponibili"
+      },
+      {
+        "step": "Seleziona più parametri di ricerca",
+        "expected": "Vengono visualizzate le opzioni per confermare la ricerca"
+      },
+      {
+        "step": "Conferma la ricerca con più parametri",
+        "expected": "Vengono visualizzati gli impianti di illuminazione sulla mappa che corrispondono ai criteri di ricerca"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alto",
+    "use_case_id": "UC2.2"
+  },
+  {
+    "test_case_id": "UC2.2_TC5",
+    "title": "Ricerca impianti di illuminazione senza parametri",
+    "preconditions": "UC2",
+    "postconditions": "Viene visualizzato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il comune di ricerca",
+        "expected": "Vengono visualizzati i parametri di ricerca disponibili"
+      },
+      {
+        "step": "Non seleziona nessun parametro di ricerca",
+        "expected": "Viene visualizzato un messaggio di errore per la mancanza dei parametri"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Medio",
+    "use_case_id": "UC2.2"
+  },
+  {
+    "test_case_id": "UC2.2_TC6",
+    "title": "Ricerca impianti di illuminazione con comune non esistente",
+    "preconditions": "UC2",
+    "postconditions": "Viene visualizzato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Inserisci un comune non esistente",
+        "expected": "Viene visualizzato un messaggio di errore per il comune non esistente"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Basso",
+    "use_case_id": "UC2.2"
+  }
+]

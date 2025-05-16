@@ -3,7 +3,6 @@ import ollama
 from test_code_generator.llm_client.base_llm_client import BaseLLMClient
 from test_code_generator.llm_client.llm_client_error import LLMClientError
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
 class OllamaClient(BaseLLMClient):
@@ -36,17 +35,32 @@ class OllamaClient(BaseLLMClient):
                 "content": prompt
             }]
 
-            response = ollama.chat(
+            response = ollama.generate(
                 model=self.model,
-                messages=messages,
+                prompt=prompt,
                 stream=False,
+                raw=True,
                 options={
                     "timeout": self.timeout,
                     "temperature": temperature
                 }
             )
+            content = response["response"]
 
-            return response.message.content
+            # response = ollama.chat(
+            #     model=self.model,
+            #     messages=messages,
+            #     stream=False,
+            #     options={
+            #         "timeout": self.timeout,
+            #         "temperature": temperature
+            #     }
+            # )
+            # content = response.message.content
+            logger.info(f"Ollama responded with: \n {content}")
+            
+            return content
+        
         except ollama.ResponseError as e:
             logger.exception(e)
             raise LLMClientError(e)

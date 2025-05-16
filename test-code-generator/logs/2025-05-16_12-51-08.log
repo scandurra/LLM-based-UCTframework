@@ -1,0 +1,199 @@
+2025-05-16 12:51:08,185 - __main__ - INFO - Found 0 dependencies for use case UC2_1
+2025-05-16 12:51:08,185 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt template loaded from path: ./prompts/single_processing/zero_shot/raw.txt
+2025-05-16 12:51:08,185 - test_code_generator.prompt_builder.prompt_builder - INFO - Test parameters loaded from path: ./input_files/parameters/test_parameters.env
+2025-05-16 12:51:08,185 - test_code_generator.prompt_builder.prompt_builder - INFO - Read pom file dashboard_page.js: 
+export class DashboardPage {
+    readonly page: Page;
+    readonly downloadButton: Locator;
+  
+    constructor(page: Page) {
+      this.page = page;
+      this.downloadButton = page.getByRole('button', { name: 'Download PDF' });
+    }
+
+    async downloadPdf() {
+        await this.downloadButton.click();
+    }
+  }
+2025-05-16 12:51:08,185 - test_code_generator.prompt_builder.prompt_builder - INFO - Read pom file login_page.js: 
+export class LoginPage {
+    readonly page: Page;
+    readonly emailInput: Locator;
+    readonly passwordInput: Locator;
+    readonly loginButton: Locator;
+    readonly authenticate: Locator;
+    readonly errorMessage: Locator;
+  
+    constructor(page: Page) {
+      this.page = page;
+      this.loginButton = page.locator('text="Login"');
+      this.emailInput = page.locator('#email');
+      this.passwordInput = page.locator('#password');
+      this.authenticate = page.locator("#submit");
+      this.errorMessage = page.locator('.error-message');
+    }
+  
+    async displayLoginForm() {
+        await this.loginButton.click();
+    }
+  
+    async enterEmail(email) {
+        await this.emailInput.fill(email);
+    }
+  
+    async enterPassword(password) {
+        await this.passwordInput.fill(password);
+    }
+  
+    async getErrorMessage() {
+        return await this.errorMessage.textContent();
+    }
+
+    async login() {
+        await this.authenticate.click();
+    }
+  }
+2025-05-16 12:51:08,185 - test_code_generator.prompt_builder.prompt_builder - INFO - Read pom file home_page.js: 
+export class HomePage {
+    readonly page: Page;
+    readonly dashboardButton: Locator;
+  
+    constructor(page: Page) {
+      this.page = page;
+      this.dashboardButton = page.getByRole('link', { name: ' Dashboard' });
+    }
+
+    async navigateToDashboard() {
+        await this.dashboardButton.click();
+    }
+  }
+2025-05-16 12:51:08,185 - test_code_generator.prompt_builder.prompt_builder - INFO - Test reporter loaded from path: ./input_files/reporter_minimal.js
+2025-05-16 12:51:08,186 - test_code_generator.prompt_builder.prompt_builder - INFO - Previous code section loaded from path: ./input_files/reporter_minimal.js
+2025-05-16 12:51:08,186 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt built: <|begin_of_text|><|start_header_id|>system<|end_header_id|>
+You are a testing engineer, expert in writing Javascript end-to-end tests with Playwright.
+
+Task: Analyze the test case provided below and generate a complete and working Playwright test script in Javascript, following the steps described in the test case.
+When creating the test script, use only the page object model provided for interacting with the DOM and the parameters provided.
+<|eot_id|>
+<|start_header_id|>user<|end_header_id|>
+Use only this page object models for interacting with the DOM:
+export class DashboardPage {
+    readonly page: Page;
+    readonly downloadButton: Locator;
+  
+    constructor(page: Page) {
+      this.page = page;
+      this.downloadButton = page.getByRole('button', { name: 'Download PDF' });
+    }
+
+    async downloadPdf() {
+        await this.downloadButton.click();
+    }
+  }export class LoginPage {
+    readonly page: Page;
+    readonly emailInput: Locator;
+    readonly passwordInput: Locator;
+    readonly loginButton: Locator;
+    readonly authenticate: Locator;
+    readonly errorMessage: Locator;
+  
+    constructor(page: Page) {
+      this.page = page;
+      this.loginButton = page.locator('text="Login"');
+      this.emailInput = page.locator('#email');
+      this.passwordInput = page.locator('#password');
+      this.authenticate = page.locator("#submit");
+      this.errorMessage = page.locator('.error-message');
+    }
+  
+    async displayLoginForm() {
+        await this.loginButton.click();
+    }
+  
+    async enterEmail(email) {
+        await this.emailInput.fill(email);
+    }
+  
+    async enterPassword(password) {
+        await this.passwordInput.fill(password);
+    }
+  
+    async getErrorMessage() {
+        return await this.errorMessage.textContent();
+    }
+
+    async login() {
+        await this.authenticate.click();
+    }
+  }export class HomePage {
+    readonly page: Page;
+    readonly dashboardButton: Locator;
+  
+    constructor(page: Page) {
+      this.page = page;
+      this.dashboardButton = page.getByRole('link', { name: ' Dashboard' });
+    }
+
+    async navigateToDashboard() {
+        await this.dashboardButton.click();
+    }
+  }
+
+Use the following test parameters when creating test script:
+E2E_BASE_URL="http://pell-portal.bologna.enea.it/"
+E2E_LOGIN_URL="https://idp.smartcityplatform.enea.it/"
+E2E_HOME_URL="" 
+E2E_DASHBOARD_URL="" 
+E2E_CTS_URL="" 
+E2E_LOGIN_EMAIL_ADMIN="test.admin@pell.it"
+E2E_LOGIN_PASSWORD_ADMIN="Testadmin01!"
+E2E_LOGIN_EMAIL_REGION="test.region@pell.it"
+E2E_LOGIN_PASSWORD_REGION="Testregion01!"
+
+
+
+Instructions:
+1. Analyze the test case provided
+2. For the test case, generate a test script in Javascript with Playwright
+3. Use only Page object model provided to interact with the DOM.
+4. Call the reporter object methods as in the example below.
+5. Put the code in functions for reusability
+6. Add the required import for Playwright and TestResultReporter from "../models/test-result-reporter"
+
+<example>
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1 - Login test with success");
+
+    // ... test case step 1
+    reporter.addStep('UC1_TC1_ID1', 'Step 1 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+
+    // ... test case step 2
+    reporter.addStep('UC1_TC1_ID2', 'Step 2 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+
+    // ...
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+</example>
+
+Here the test case to be converted in Playwright script:
+Test Case ID: UC2.1_TC1
+Title: Download PDF completato con successo
+Use Case ID: UC2.1
+Priority: Alto
+Type: Positivo
+Preconditions: UC2
+Postconditions: L’utente ha scaricato il file, può aprirlo dalla apposita sezione del browser utilizzato ed il file è ben formato
+Test Steps:
+  1. Step: L’utente inizia il processo di download cliccando sul tasto dedicato
+Expected: Viene visualizzata la richiesta di conferma
+  2. Step: L’utente conferma la richiesta
+Expected: Il file inizia a scaricarsi
+  3. Step: L’utente attende il completamento del download
+Expected: Viene visualizzato un messaggio di operazione completata con successo
+
+Generate only JavaScript code. Do not include existing code implementation in the response, only reference it. Generate only one test script.
+<|eot_id|>
+<|start_header_id|>assistant<|end_header_id|>
+2025-05-16 12:51:08,186 - test_code_generator.llm_client.ollama_client - INFO - OllamaClient initialized with model: llama3.3

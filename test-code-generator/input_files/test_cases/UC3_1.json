@@ -1,0 +1,92 @@
+[
+  {
+    "test_case_id": "UC3.1_TC1",
+    "title": "Visualizzazione schede censimento corretta",
+    "preconditions": "UC3",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "L’utente seleziona la scheda censimento da visualizzare",
+        "expected": "Viene visualizzata la scheda censimento in forma tabellare e paginata"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alto",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC2",
+    "title": "Scorrimento laterale per visualizzare colonne",
+    "preconditions": "UC3",
+    "postconditions": "L’utente può scorrere lateralmente per visualizzare tutte le colonne",
+    "test_steps": [
+      {
+        "step": "L’utente scorre lateralmente la tabella",
+        "expected": "Vengono visualizzate tutte le colonne della scheda censimento"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Medio",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC3",
+    "title": "Ordinamento colonne per click sul nome",
+    "preconditions": "UC3",
+    "postconditions": "Tutte le colonne visualizzabili consentono l’ordinamento con un click sul nome",
+    "test_steps": [
+      {
+        "step": "L’utente clicca sul nome di una colonna",
+        "expected": "La tabella viene ordinata in base alla colonna selezionata"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Medio",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC4",
+    "title": "Visualizzazione schede censimento non esistenti",
+    "preconditions": "UC3",
+    "postconditions": "Viene visualizzato un messaggio di errore per la mancanza della scheda censimento",
+    "test_steps": [
+      {
+        "step": "L’utente seleziona una scheda censimento non esistente",
+        "expected": "Viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Basso",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC5",
+    "title": "Paginazione non funzionante",
+    "preconditions": "UC3",
+    "postconditions": "Viene visualizzato un messaggio di errore per la paginazione non funzionante",
+    "test_steps": [
+      {
+        "step": "L’utente seleziona una pagina non esistente",
+        "expected": "Viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Basso",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC6",
+    "title": "Visualizzazione schede censimento con permessi insufficienti",
+    "preconditions": "UC3",
+    "postconditions": "Viene visualizzato un messaggio di errore per i permessi insufficienti",
+    "test_steps": [
+      {
+        "step": "L’utente senza permessi sufficienti tenta di visualizzare la scheda censimento",
+        "expected": "Viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alto",
+    "use_case_id": "UC3.1"
+  }
+]

@@ -1,0 +1,451 @@
+Ho modificato l'ordine degli elementi nel prompt.
+Mettendo per prima quelli meno rilevanti, spostando come ultimi i casi di test da generare.
+In questo modo sembra seguire meglio i casi di test.
+
+---------------------------
+2025-05-08 07:20:44,045 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt template loaded from path: ./prompts/one_shot.txt
+2025-05-08 07:20:44,045 - test_code_generator.prompt_builder.prompt_builder - INFO - Test parameters loaded from path: ./input_files/parameters/test_parameters.env
+2025-05-08 07:20:44,045 - test_code_generator.prompt_builder.prompt_builder - INFO - Test parameters loaded from path: ./input_files/pom/pom.js
+2025-05-08 07:20:44,045 - test_code_generator.prompt_builder.prompt_builder - INFO - Test reporter loaded from path: ./input_files/reporter_minimal.js
+2025-05-08 07:20:44,045 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt built: You are a software engineer expert in creating Playwright end-to-end tests.
+
+Your task is to write complete and working Playwright test scripts in JavaScript based on the provided Test Cases with Test Parameters, reusing existing code.
+
+In each test, reuse the following code, without modify it and without include it in the response:
+<existing_code>
+class TestResultReporter {  
+    setBrowserName(browserName) {
+      // Sets browser name before test start
+    }
+  
+    setTestCase(testCaseId, testCaseDescription) {
+      // Sets the ID of test case and its description
+    }
+  
+    addStep(stepId, description, expectedResults, actualResults, passFail, parametersUsed, executionTime) {
+      // Saves each step just executed  
+    }
+  
+    // Metodo per assicurarsi che il salvataggio venga fatto anche in caso di errore
+    async saveResults() {
+      // Saves the result of a test
+    }
+  
+    async onTestEnd(test, result) {
+      // Handles test execution end
+    }
+  }
+  
+</existing_code>
+
+When creating test scripts, use the following page object models:
+<pom>
+export class LoginPage {
+    readonly page: Page;
+    readonly emailInput: Locator;
+    readonly passwordInput: Locator;
+    readonly loginButton: Locator;
+    readonly authenticate: Locator;
+    readonly errorMessage: Locator;
+  
+    constructor(page: Page) {
+      this.page = page;
+      this.loginButton = page.locator('text="Login"');
+      this.emailInput = page.locator('#email');
+      this.passwordInput = page.locator('#password');
+      this.authenticate = page.locator("#submit");
+      this.errorMessage = page.locator('.error-message');
+    }
+  
+    async displayLoginForm() {
+        await this.loginButton.click();
+    }
+  
+    async enterEmail(email) {
+        await this.emailInput.fill(email);
+    }
+  
+    async enterPassword(password) {
+        await this.passwordInput.fill(password);
+    }
+  
+    async getErrorMessage() {
+        return await this.errorMessage.textContent();
+    }
+
+    async login() {
+        await this.authenticate.click();
+    }
+  }
+</pom>
+
+Here the test parameters to be used in test scripts:
+<test_parameters>
+E2E_BASE_URL="http://pell-portal.bologna.enea.it/"
+E2E_LOGIN_URL="https://idp.smartcityplatform.enea.it/"
+E2E_HOME_URL="" 
+E2E_DASHBOARD_URL="" 
+E2E_CTS_URL="" 
+E2E_LOGIN_EMAIL_ADMIN="test.admin@pell.it"
+E2E_LOGIN_PASSWORD_ADMIN="Testadmin01!"
+E2E_LOGIN_EMAIL_REGION="test.region@pell.it"
+E2E_LOGIN_PASSWORD_REGION="Testregion01!"
+</test_parameters>
+
+Here the test cases to follow for generating test scripts:
+<test_cases>
+[
+  {
+    "test_case_id": "UC1_TC1",
+    "title": "Valid Login Credentials",
+    "preconditions": "User is not authenticated and has access to PELL portal",
+    "postconditions": "User is redirected to Home page",
+    "test_steps": [
+      {
+        "step": "Click on the 'Login' button",
+        "expected": "Login form is displayed"
+      },
+      {
+        "step": "Enter valid email and password",
+        "expected": "No error messages are displayed"
+      },
+      {
+        "step": "Confirm authentication process",
+        "expected": "User is redirected to Home page"
+      }
+    ],
+    "test_type": "Positive",
+    "priority": "Hight",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC2",
+    "title": "Invalid Email",
+    "preconditions": "User is not authenticated and has access to PELL portal",
+    "postconditions": "User is not redirected to Home page",
+    "test_steps": [
+      {
+        "step": "Click on the 'Login' button",
+        "expected": "Login form is displayed"
+      },
+      {
+        "step": "Enter invalid email and valid password",
+        "expected": "Error message is displayed indicating invalid credentials"
+      },
+      {
+        "step": "Confirm authentication process",
+        "expected": "User is not redirected to Home page"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC3",
+    "title": "Invalid Password",
+    "preconditions": "User is not authenticated and has access to PELL portal",
+    "postconditions": "User is not redirected to Home page",
+    "test_steps": [
+      {
+        "step": "Click on the 'Login' button",
+        "expected": "Login form is displayed"
+      },
+      {
+        "step": "Enter valid email and invalid password",
+        "expected": "Error message is displayed indicating invalid credentials"
+      },
+      {
+        "step": "Confirm authentication process",
+        "expected": "User is not redirected to Home page"
+      }
+    ],
+    "test_type": "Negative",
+    "priority": "Medium",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC4",
+    "title": "Empty Email Field",
+    "preconditions": "User is not authenticated and has access to PELL portal",
+    "postconditions": "User is not redirected to Home page",
+    "test_steps": [
+      {
+        "step": "Click on the 'Login' button",
+        "expected": "Login form is displayed"
+      },
+      {
+        "step": "Leave email field empty and enter valid password",
+        "expected": "Error message is displayed indicating required field"
+      },
+      {
+        "step": "Confirm authentication process",
+        "expected": "User is not redirected to Home page"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Low",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC5",
+    "title": "Empty Password Field",
+    "preconditions": "User is not authenticated and has access to PELL portal",
+    "postconditions": "User is not redirected to Home page",
+    "test_steps": [
+      {
+        "step": "Click on the 'Login' button",
+        "expected": "Login form is displayed"
+      },
+      {
+        "step": "Enter valid email and leave empty password field",
+        "expected": "Error message is displayed indicating required field"
+      },
+      {
+        "step": "Confirm authentication process",
+        "expected": "User is not redirected to Home page"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Low",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC6",
+    "title": "SQL Injection Attempt",
+    "preconditions": "User is not authenticated and has access to PELL portal",
+    "postconditions": "User is not redirected to Home page",
+    "test_steps": [
+      {
+        "step": "Click on the 'Login' button",
+        "expected": "Login form is displayed"
+      },
+      {
+        "step": "Enter malicious input in email or password field",
+        "expected": "Error message is displayed indicating invalid credentials"
+      },
+      {
+        "step": "Confirm authentication process",
+        "expected": "User is not redirected to Home page and no SQL error occurs"
+      }
+    ],
+    "test_type": "Security",
+    "priority": "High",
+    "use_case_id": "UC1"
+  }
+]
+</test_cases>
+
+Follow this instructions:
+* You must generate one Playwright test for each test case provided, including all steps, using test parameters and page object models provided
+* Generate only javascript code, omitting the code provided in the prompt
+* Ensure the generated code is syntactically correct JavaScript for Playwright.
+* Use only the Page Object Models provided when interacting with the page elements.
+* For each test script generated, call the reporter method as in the example below.
+* Put the code for each step in a function, which can be called between tests when needed.
+* Do not invent or assume any information on the web page. Use only the information contained in the page object model.
+
+<example>
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1 - Login test with success");
+
+    // ... test case step 1
+    reporter.addStep('UC1_TC1_ID1', 'Step 1 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+
+    // ... test case step 2
+    reporter.addStep('UC1_TC1_ID2', 'Step 2 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+
+    // ...
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+</example>
+
+DO NOT include the existing code in your response. Reference it in your implementation but do not output it.
+2025-05-08 07:20:44,046 - test_code_generator.llm_client.ollama_client - INFO - OllamaClient initialized with model: llama3.3
+2025-05-08 07:28:05,758 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-05-08 07:28:05,758 - test_code_generator.llm_client.ollama_client - INFO - Ollama responded with: 
+ ```javascript
+// Import required modules and page object models
+const { test, expect } = require('@playwright/test');
+const { LoginPage } = require('./LoginPage');
+
+// Define reporter instance
+let reporter;
+
+test("UC1_TC1 - Valid Login Credentials", async ({ page, browserName }) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1 - Valid Login Credentials");
+
+    const loginPage = new LoginPage(page);
+
+    // Step 1: Click on the 'Login' button
+    await clickOnLoginButton(loginPage);
+    reporter.addStep('UC1_TC1_ID1', 'Click on the login button', 'Login form is displayed', 'Login form is displayed', true, '', Date.now());
+
+    // Step 2: Enter valid email and password
+    const email = process.env.EMAIL;
+    const password = process.env.PASSWORD;
+    await enterValidCredentials(loginPage, email, password);
+    reporter.addStep('UC1_TC1_ID2', 'Enter valid email and password', 'Login is successful', 'Login is successful', true, '', Date.now());
+
+    // Step 3: Confirm authentication process
+    await confirmAuthenticationProcess(loginPage);
+    reporter.addStep('UC1_TC1_ID3', 'Confirm authentication process', 'User is redirected to home page', 'User is redirected to home page', true, '', Date.now());
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+
+test("UC1_TC2 - Empty Email Field", async ({ page, browserName }) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC2 - Empty Email Field");
+
+    const loginPage = new LoginPage(page);
+
+    // Step 1: Click on the 'Login' button
+    await clickOnLoginButton(loginPage);
+    reporter.addStep('UC1_TC2_ID1', 'Click on the login button', 'Login form is displayed', 'Login form is displayed', true, '', Date.now());
+
+    // Step 2: Leave email field empty and enter valid password
+    const password = process.env.PASSWORD;
+    await leaveEmailFieldEmpty(loginPage, password);
+    reporter.addStep('UC1_TC2_ID2', 'Leave email field empty and enter valid password', 'Error message is displayed indicating required field', 'Error message is displayed indicating required field', true, '', Date.now());
+
+    // Step 3: Confirm authentication process
+    await confirmAuthenticationProcess(loginPage);
+    reporter.addStep('UC1_TC2_ID3', 'Confirm authentication process', 'User is not redirected to home page', 'User is not redirected to home page', true, '', Date.now());
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+
+test("UC1_TC3 - Empty Password Field", async ({ page, browserName }) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC3 - Empty Password Field");
+
+    const loginPage = new LoginPage(page);
+
+    // Step 1: Click on the 'Login' button
+    await clickOnLoginButton(loginPage);
+    reporter.addStep('UC1_TC3_ID1', 'Click on the login button', 'Login form is displayed', 'Login form is displayed', true, '', Date.now());
+
+    // Step 2: Enter valid email and leave password field empty
+    const email = process.env.EMAIL;
+    await enterValidEmailAndLeavePasswordFieldEmpty(loginPage, email);
+    reporter.addStep('UC1_TC3_ID2', 'Enter valid email and leave password field empty', 'Error message is displayed indicating required field', 'Error message is displayed indicating required field', true, '', Date.now());
+
+    // Step 3: Confirm authentication process
+    await confirmAuthenticationProcess(loginPage);
+    reporter.addStep('UC1_TC3_ID3', 'Confirm authentication process', 'User is not redirected to home page', 'User is not redirected to home page', true, '', Date.now());
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+
+test("UC1_TC4 - SQL Injection Attempt", async ({ page, browserName }) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC4 - SQL Injection Attempt");
+
+    const loginPage = new LoginPage(page);
+
+    // Step 1: Click on the 'Login' button
+    await clickOnLoginButton(loginPage);
+    reporter.addStep('UC1_TC4_ID1', 'Click on the login button', 'Login form is displayed', 'Login form is displayed', true, '', Date.now());
+
+    // Step 2: Enter malicious input in email or password field
+    const maliciousInput = "SELECT * FROM users WHERE id = 1";
+    await enterMaliciousInput(loginPage, maliciousInput);
+    reporter.addStep('UC1_TC4_ID2', 'Enter malicious input in email or password field', 'Error message is displayed indicating invalid credentials', 'Error message is displayed indicating invalid credentials', true, '', Date.now());
+
+    // Step 3: Confirm authentication process
+    await confirmAuthenticationProcess(loginPage);
+    reporter.addStep('UC1_TC4_ID3', 'Confirm authentication process', 'User is not redirected to home page and no SQL error occurs', 'User is not redirected to home page and no SQL error occurs', true, '', Date.now());
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+
+test("UC1_TC5 - Invalid Email", async ({ page, browserName }) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC5 - Invalid Email");
+
+    const loginPage = new LoginPage(page);
+
+    // Step 1: Click on the 'Login' button
+    await clickOnLoginButton(loginPage);
+    reporter.addStep('UC1_TC5_ID1', 'Click on the login button', 'Login form is displayed', 'Login form is displayed', true, '', Date.now());
+
+    // Step 2: Enter invalid email and valid password
+    const invalidEmail = "invalidemail";
+    const password = process.env.PASSWORD;
+    await enterInvalidEmailAndValidPassword(loginPage, invalidEmail, password);
+    reporter.addStep('UC1_TC5_ID2', 'Enter invalid email and valid password', 'Error message is displayed indicating invalid email', 'Error message is displayed indicating invalid email', true, '', Date.now());
+
+    // Step 3: Confirm authentication process
+    await confirmAuthenticationProcess(loginPage);
+    reporter.addStep('UC1_TC5_ID3', 'Confirm authentication process', 'User is not redirected to home page', 'User is not redirected to home page', true, '', Date.now());
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+
+test("UC1_TC6 - Invalid Password", async ({ page, browserName }) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC6 - Invalid Password");
+
+    const loginPage = new LoginPage(page);
+
+    // Step 1: Click on the 'Login' button
+    await clickOnLoginButton(loginPage);
+    reporter.addStep('UC1_TC6_ID1', 'Click on the login button', 'Login form is displayed', 'Login form is displayed', true, '', Date.now());
+
+    // Step 2: Enter valid email and invalid password
+    const email = process.env.EMAIL;
+    const invalidPassword = "invalidpassword";
+    await enterValidEmailAndInvalidPassword(loginPage, email, invalidPassword);
+    reporter.addStep('UC1_TC6_ID2', 'Enter valid email and invalid password', 'Error message is displayed indicating invalid password', 'Error message is displayed indicating invalid password', true, '', Date.now());
+
+    // Step 3: Confirm authentication process
+    await confirmAuthenticationProcess(loginPage);
+    reporter.addStep('UC1_TC6_ID3', 'Confirm authentication process', 'User is not redirected to home page', 'User is not redirected to home page', true, '', Date.now());
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+
+async function clickOnLoginButton(loginPage) {
+    await loginPage.clickOnLoginButton();
+}
+
+async function enterValidCredentials(loginPage, email, password) {
+    await loginPage.enterEmail(email);
+    await loginPage.enterPassword(password);
+    await loginPage.clickOnLoginButton();
+}
+
+async function confirmAuthenticationProcess(loginPage) {
+    await loginPage.waitForNavigation();
+}
+
+async function leaveEmailFieldEmpty(loginPage, password) {
+    await loginPage.enterPassword(password);
+    await loginPage.clickOnLoginButton();
+}
+
+async function enterValidEmailAndLeavePasswordFieldEmpty(loginPage, email) {
+    await loginPage.enterEmail(email);
+    await loginPage.clickOnLoginButton();
+}
+
+async function enterMaliciousInput(loginPage, maliciousInput) {
+    await loginPage.enterEmail(maliciousInput);
+    await loginPage.clickOnLoginButton();
+}
+
+async function enterInvalidEmailAndValidPassword(loginPage, invalidEmail, password) {
+    await loginPage.enterEmail(invalidEmail);
+    await loginPage.enterPassword(password);
+    await loginPage.clickOnLoginButton();
+}
+
+async function enterValidEmailAndInvalidPassword(loginPage, email, invalidPassword) {
+    await loginPage.enterEmail(email);
+    await loginPage.enterPassword(invalidPassword);
+    await loginPage.clickOnLoginButton();
+}

@@ -1,0 +1,232 @@
+[
+  {
+    "test_case_id": "UC1_TC1",
+    "title": "Login con credenziali valide",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "L’utente è autenticato ed è a conoscenza che l’operazione ha avuto successo",
+    "test_steps": [
+      {
+        "step": "Inserisci le credenziali corrette nel form di login",
+        "expected": "Le credenziali vengono accettate"
+      },
+      {
+        "step": "Clicca il tasto “Login”",
+        "expected": "Il sistema procede con l’autenticazione"
+      },
+      {
+        "step": "Verifica la visualizzazione del messaggio di successo",
+        "expected": "Viene mostrato un messaggio che conferma l’avvenuta autenticazione"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC2",
+    "title": "Login con credenziali errate",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "Il sistema visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Inserisci credenziali non valide (username o password sbagliati)",
+        "expected": "Le credenziali vengono rifiutate"
+      },
+      {
+        "step": "Clicca il tasto “Login”",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      },
+      {
+        "step": "Verifica la visualizzazione del messaggio di errore",
+        "expected": "Viene mostrato un messaggio che indica l’errore di autenticazione"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC3",
+    "title": "Login con campo username vuoto",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "Il sistema visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Lascia vuoto il campo username e inserisci una password",
+        "expected": "Il sistema rileva l’errore"
+      },
+      {
+        "step": "Clicca il tasto “Login”",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      },
+      {
+        "step": "Verifica la visualizzazione del messaggio di errore",
+        "expected": "Viene mostrato un messaggio che richiede di compilare tutti i campi"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC4",
+    "title": "Login con campo password vuoto",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "Il sistema visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Inserisci il username e lascia vuoto il campo password",
+        "expected": "Il sistema rileva l’errore"
+      },
+      {
+        "step": "Clicca il tasto “Login”",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      },
+      {
+        "step": "Verifica la visualizzazione del messaggio di errore",
+        "expected": "Viene mostrato un messaggio che richiede di compilare tutti i campi"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC5",
+    "title": "Cambio password alla prima autenticazione",
+    "preconditions": "L’utente non è autenticato e si trova alla prima autenticazione",
+    "postconditions": "La password viene cambiata con successo",
+    "test_steps": [
+      {
+        "step": "Inserisci le credenziali di default per la prima volta",
+        "expected": "Il sistema richiede il cambio della password"
+      },
+      {
+        "step": "Inserisci la nuova password e confermala",
+        "expected": "La password viene accettata e cambiata"
+      },
+      {
+        "step": "Verifica che la nuova password sia attiva",
+        "expected": "Il sistema permette l’accesso con la nuova password"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC6",
+    "title": "Tentativo di login con SQL Injection",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "Il sistema blocca l’accesso e visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Inserisci una stringa di input che tenta di eseguire un attacco SQL Injection",
+        "expected": "Il sistema rileva e blocca l’attacco"
+      },
+      {
+        "step": "Clicca il tasto “Login”",
+        "expected": "Il sistema visualizza un messaggio di errore di sicurezza"
+      },
+      {
+        "step": "Verifica la visualizzazione del messaggio di errore",
+        "expected": "Viene mostrato un messaggio che indica un tentativo di accesso non autorizzato"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC7",
+    "title": "Tentativo di login con Cross-Site Scripting (XSS)",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "Il sistema blocca l’accesso e visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Inserisci una stringa di input che tenta di eseguire un attacco XSS",
+        "expected": "Il sistema rileva e blocca l’attacco"
+      },
+      {
+        "step": "Clicca il tasto “Login”",
+        "expected": "Il sistema visualizza un messaggio di errore di sicurezza"
+      },
+      {
+        "step": "Verifica la visualizzazione del messaggio di errore",
+        "expected": "Viene mostrato un messaggio che indica un tentativo di accesso non autorizzato"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC8",
+    "title": "Login con account disabilitato",
+    "preconditions": "L’utente non è autenticato e il suo account è stato disabilitato",
+    "postconditions": "Il sistema visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Inserisci le credenziali di un account disabilitato",
+        "expected": "Il sistema rileva l’account disabilitato"
+      },
+      {
+        "step": "Clicca il tasto “Login”",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      },
+      {
+        "step": "Verifica la visualizzazione del messaggio di errore",
+        "expected": "Viene mostrato un messaggio che indica l’account disabilitato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC9",
+    "title": "Login con account non esistente",
+    "preconditions": "L’utente non è autenticato e l’account non esiste",
+    "postconditions": "Il sistema visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Inserisci credenziali di un account non esistente",
+        "expected": "Il sistema rileva l’errore"
+      },
+      {
+        "step": "Clicca il tasto “Login”",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      },
+      {
+        "step": "Verifica la visualizzazione del messaggio di errore",
+        "expected": "Viene mostrato un messaggio che indica credenziali errate o account non esistente"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC10",
+    "title": "Login con caratteri speciali nella password",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "Il sistema accetta la password con caratteri speciali",
+    "test_steps": [
+      {
+        "step": "Inserisci una password che contiene caratteri speciali (@,#,$, etc.)",
+        "expected": "La password viene accettata"
+      },
+      {
+        "step": "Clicca il tasto “Login”",
+        "expected": "Il sistema procede con l’autenticazione"
+      },
+      {
+        "step": "Verifica che la password funzioni correttamente",
+        "expected": "Il sistema permette l’accesso con la password contenente caratteri speciali"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC1"
+  }
+]

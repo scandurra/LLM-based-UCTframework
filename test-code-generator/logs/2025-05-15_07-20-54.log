@@ -1,0 +1,1523 @@
+2025-05-15 07:20:54,392 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt template loaded from path: ./prompts/single_processing/one_shot/raw.txt
+2025-05-15 07:20:54,392 - test_code_generator.prompt_builder.prompt_builder - INFO - Test parameters loaded from path: ./input_files/parameters/test_parameters.env
+2025-05-15 07:20:54,392 - test_code_generator.prompt_builder.prompt_builder - INFO - Test parameters loaded from path: ./input_files/pom/pom.js
+2025-05-15 07:20:54,392 - test_code_generator.prompt_builder.prompt_builder - INFO - Test reporter loaded from path: ./input_files/reporter_minimal.js
+2025-05-15 07:20:54,392 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt built: <|begin_of_text|><|start_header_id|>system<|end_header_id|>
+You are a testing engineer, expert in writing Javascript end-to-end tests with Playwright.
+
+Task: Analyze the test cases provided below and generate for each test case a complete and working Playwright test script in Javascript, following the steps described in the test cases.
+When creating test scripts, use only the page object model provided for interacting with the DOM and the parameters provided.
+<|eot_id|>
+<|start_header_id|>user<|end_header_id|>
+Use only this page object models for interacting with the DOM:
+export class SupportPage {
+    readonly page: Page;
+    readonly emailInput: Locator;
+    readonly passwordInput: Locator;
+    readonly loginButton: Locator;
+    readonly authenticate: Locator;
+    readonly errorMessage: Locator;
+  
+    constructor(page: Page) {
+      this.page = page;
+      this.issueCategory = page.locator("#issue-category");
+      this.issueDescription = page.locator("#issue-description");
+      this.email = page.locator("#email");
+      this.submit = page.getByRole("submit");
+      this.errorMessage = page.locator('.error-message');
+    }
+  
+    async selectIssueCategory(cateogry) {
+        await this.issueCategory.selectOption(category);
+    }
+  
+    async enterIssueDescription(description) {
+        await this.issueDescription.fill(description);
+    }
+  
+    async enterEmail(email) {
+        await this.email.fill(email);
+    }
+  
+    async getErrorMessage() {
+        return await this.errorMessage.textContent();
+    }
+
+    async submitIssue() {
+        await this.submit.click();
+    }
+  } 
+
+Use the following test parameters when creating scripts:
+E2E_BASE_URL="http://pell-portal.bologna.enea.it/"
+E2E_LOGIN_URL="https://idp.smartcityplatform.enea.it/"
+E2E_SUPPORT_SUCCESS_URL = "https://pell-portal.bologna.enea.it/support/result"
+E2E_HOME_URL="" 
+E2E_DASHBOARD_URL="" 
+E2E_CTS_URL="" 
+E2E_LOGIN_EMAIL_ADMIN="test.admin@pell.it"
+E2E_LOGIN_PASSWORD_ADMIN="Testadmin01!"
+E2E_LOGIN_EMAIL_REGION="test.region@pell.it"
+E2E_LOGIN_PASSWORD_REGION="Testregion01!"
+
+Instructions:
+1. Analyze the test cases provided
+2. For each test case, generate a test script in Javascript with Playwright
+3. Use only Page object model provided to interact with the DOM.
+4. In each test script, call the reporter object methods as in the example below.
+5. Put the code in functions for reusability
+
+<example>
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1 - Login test with success");
+
+    // ... test case step 1
+    reporter.addStep('UC1_TC1_ID1', 'Step 1 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+
+    // ... test case step 2
+    reporter.addStep('UC1_TC1_ID2', 'Step 2 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+
+    // ...
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+</example>
+
+Here the test case to be converted in Playwright script:
+Test Case ID: UC10_TC1
+Title: Invia richiesta di assistenza
+Use Case ID: UC10
+Priority: Alta
+Type: Positivo
+Preconditions: Nessuna
+Postconditions: L’utente è a conoscenza che l’operazione ha avuto successo
+Test Steps:
+  1. Step: L'utente compila la form di assistenza
+Expected: Tutte le informazioni vengono accettate
+  2. Step: Clicca il tasto "Invia"
+Expected: Il sistema procede con l'invio della richiesta id assistenza
+  3. Step: Verifica la visualizzazione del messaggio di successo
+Expected: Viene mostrato un messaggio che conferma l’avvenuta richiesta
+
+Generate only JavaScript code. Do not include existing code implementation in the response, only reference it.
+<|eot_id|>
+<|start_header_id|>assistant<|end_header_id|>
+const { test } = require('@playwright/test');
+const TestResultReporter = require('../test-result-reporter');
+
+const reporter = new TestResultReporter();
+
+test("UC10_TC1 - Invio richiesta di assistenza", async ({ page, browserName }) => {
+  reporter.setBrowserName(browserName);
+  reporter.setTestCase("UC10_TC1 - Invio richiesta di assistenza");
+
+  const supportPage = new SupportPage(page);
+
+  // Step 1
+  let startTime = Date.now();
+  const category = "Problemi account";
+  const description = "Non riesco più ad accedere al mio account";
+  const email = "test.region@pell.it"
+  await supportPage.selectIssueCategory();
+  await supportPage.enterIssueDescription();
+  await supportPage.enterEmail();
+  let endTime = Date.now();
+  reporter.addStep(
+    'UC10_TC1_ID1',
+    'L'utente compila la form di assistenza',
+    `Form compilata`,
+    `Form compilata`,
+    true,
+    { category, description, email },
+    endTime - startTime
+  );
+
+  // Step 2
+  startTime = date.now();
+  await supportPage.submitIssue();
+  await page.waitForUrl("https://pell-portal.bologna.enea.it/support/result", { waitUnitl: "networkidle" });
+  let testPass = page.url() == "https://pell-portal.bologna.enea.it/support/result";
+  endTime = date.now();
+  reporter.addStep(
+    'UC10_TC1_ID2',
+    'Clicca il tasto "Invia"',
+    "L'utente viene reindirizzato alla pagina di avvenuto invio",
+    testPass ? "L'utente viene reindirizzato alla pagina di avvenuto invio" : "Nessun reindirizzamento avvenuto",
+    testPass,
+    {},
+    endTime - startTime
+  );
+
+  if (testPass) {
+    reporter.onTestEnd(test, { status: "passed" });
+  } else {
+    reporter.onTestEnd(test, { status: "failed" });
+  }
+}); 
+<|eot_id|>
+<|start_header_id|>user<|end_header_id|>
+Use only this page object models for interacting with the DOM:
+export class LoginPage {
+    readonly page: Page;
+    readonly emailInput: Locator;
+    readonly passwordInput: Locator;
+    readonly loginButton: Locator;
+    readonly authenticate: Locator;
+    readonly errorMessage: Locator;
+  
+    constructor(page: Page) {
+      this.page = page;
+      this.loginButton = page.locator('text="Login"');
+      this.emailInput = page.locator('#email');
+      this.passwordInput = page.locator('#password');
+      this.authenticate = page.locator("#submit");
+      this.errorMessage = page.locator('.error-message');
+    }
+  
+    async displayLoginForm() {
+        await this.loginButton.click();
+    }
+  
+    async enterEmail(email) {
+        await this.emailInput.fill(email);
+    }
+  
+    async enterPassword(password) {
+        await this.passwordInput.fill(password);
+    }
+  
+    async getErrorMessage() {
+        return await this.errorMessage.textContent();
+    }
+
+    async login() {
+        await this.authenticate.click();
+    }
+  }
+
+Use the following test parameters when creating scripts:
+E2E_BASE_URL="http://pell-portal.bologna.enea.it/"
+E2E_LOGIN_URL="https://idp.smartcityplatform.enea.it/"
+E2E_HOME_URL="" 
+E2E_DASHBOARD_URL="" 
+E2E_CTS_URL="" 
+E2E_LOGIN_EMAIL_ADMIN="test.admin@pell.it"
+E2E_LOGIN_PASSWORD_ADMIN="Testadmin01!"
+E2E_LOGIN_EMAIL_REGION="test.region@pell.it"
+E2E_LOGIN_PASSWORD_REGION="Testregion01!"
+
+Instructions:
+1. Analyze the test cases provided
+2. For each test case, generate a test script in Javascript with Playwright
+3. Use only Page object model provided to interact with the DOM.
+4. In each test script, call the reporter object methods as in the example below.
+5. Put the code in functions for reusability
+
+<example>
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1 - Login test with success");
+
+    // ... test case step 1
+    reporter.addStep('UC1_TC1_ID1', 'Step 1 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+
+    // ... test case step 2
+    reporter.addStep('UC1_TC1_ID2', 'Step 2 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+
+    // ...
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+</example>
+
+Here the test case to be converted in Playwright script:
+Test Case ID: UC1_TC1
+Title: Login con credenziali valide
+Use Case ID: UC1
+Priority: Alta
+Type: Positivo
+Preconditions: L’utente non è autenticato
+Postconditions: L’utente è autenticato ed è a conoscenza che l’operazione ha avuto successo
+Test Steps:
+  1. Step: Inserisci le credenziali corrette nel form di login
+Expected: Le credenziali vengono accettate
+  2. Step: Clicca il tasto “Login”
+Expected: Il sistema procede con l’autenticazione
+  3. Step: Verifica la visualizzazione del messaggio di successo
+Expected: Viene mostrato un messaggio che conferma l’avvenuta autenticazione
+
+Generate only JavaScript code. Do not include existing code implementation in the response, only reference it.
+<|eot_id|>
+<|start_header_id|>assistant<|end_header_id|>
+2025-05-15 07:20:54,392 - test_code_generator.llm_client.ollama_client - INFO - OllamaClient initialized with model: llama3.3
+2025-05-15 07:25:18,131 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/generate "HTTP/1.1 200 OK"
+2025-05-15 07:25:18,132 - test_code_generator.llm_client.ollama_client - INFO - Ollama responded with: 
+ 
+
+```javascript
+const { test } = require('@playwright/test');
+const TestResultReporter = require('../test-result-reporter');
+
+const reporter = new TestResultReporter();
+
+test("UC1_TC1 - Login con credenziali valide", async ({ page, browserName }) => {
+  reporter.setBrowserName(browserName);
+  reporter.setTestCase("UC1_TC1 - Login con credenziali valide");
+
+  const loginPage = new LoginPage(page);
+
+  // Step 1
+  let startTime = Date.now();
+  await loginPage.displayLoginForm();
+  await loginPage.enterEmail(E2E_LOGIN_EMAIL_ADMIN);
+  await loginPage.enterPassword(E2E_LOGIN_PASSWORD_ADMIN);
+  let endTime = Date.now();
+  reporter.addStep(
+    'UC1_TC1_ID1',
+    'Inserisci le credenziali corrette nel form di login',
+    `Credenziali accettate`,
+    `Credenziali accettate`,
+    true,
+    { email: E2E_LOGIN_EMAIL_ADMIN, password: E2E_LOGIN_PASSWORD_ADMIN },
+    endTime - startTime
+  );
+
+  // Step 2
+  startTime = Date.now();
+  await loginPage.login();
+  let testPass = page.url() === E2E_BASE_URL;
+  endTime = Date.now();
+  reporter.addStep(
+    'UC1_TC1_ID2',
+    'Clicca il tasto “Login”',
+    `Il sistema procede con l’autenticazione`,
+    testPass ? `Il sistema procede con l’autenticazione` : `Autenticazione fallita`,
+    testPass,
+    {},
+    endTime - startTime
+  );
+
+  // Step 3
+  if (testPass) {
+    startTime = Date.now();
+    let errorMessage = await loginPage.getErrorMessage();
+    let expectedMessage = "";
+    let actualMessage = errorMessage;
+    let passFail = errorMessage === expectedMessage;
+    endTime = Date.now();
+    reporter.addStep(
+      'UC1_TC1_ID3',
+      'Verifica la visualizzazione del messaggio di successo',
+      `Messaggio di successo visualizzato`,
+      passFail ? `Messaggio di successo visualizzato` : `Nessun messaggio di successo visualizzato`,
+      passFail,
+      { expectedMessage, actualMessage },
+      endTime - startTime
+    );
+  }
+
+  if (testPass) {
+    reporter.onTestEnd(test, { status: "passed" });
+  } else {
+    reporter.onTestEnd(test, { status: "failed" });
+  }
+});
+```
+2025-05-15 07:25:18,132 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt template loaded from path: ./prompts/single_processing/one_shot/raw.txt
+2025-05-15 07:25:18,132 - test_code_generator.prompt_builder.prompt_builder - INFO - Test parameters loaded from path: ./input_files/parameters/test_parameters.env
+2025-05-15 07:25:18,132 - test_code_generator.prompt_builder.prompt_builder - INFO - Test parameters loaded from path: ./input_files/pom/pom.js
+2025-05-15 07:25:18,132 - test_code_generator.prompt_builder.prompt_builder - INFO - Test reporter loaded from path: ./input_files/reporter_minimal.js
+2025-05-15 07:25:18,132 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt built: <|begin_of_text|><|start_header_id|>system<|end_header_id|>
+You are a testing engineer, expert in writing Javascript end-to-end tests with Playwright.
+
+Task: Analyze the test cases provided below and generate for each test case a complete and working Playwright test script in Javascript, following the steps described in the test cases.
+When creating test scripts, use only the page object model provided for interacting with the DOM and the parameters provided.
+<|eot_id|>
+<|start_header_id|>user<|end_header_id|>
+Use only this page object models for interacting with the DOM:
+export class SupportPage {
+    readonly page: Page;
+    readonly emailInput: Locator;
+    readonly passwordInput: Locator;
+    readonly loginButton: Locator;
+    readonly authenticate: Locator;
+    readonly errorMessage: Locator;
+  
+    constructor(page: Page) {
+      this.page = page;
+      this.issueCategory = page.locator("#issue-category");
+      this.issueDescription = page.locator("#issue-description");
+      this.email = page.locator("#email");
+      this.submit = page.getByRole("submit");
+      this.errorMessage = page.locator('.error-message');
+    }
+  
+    async selectIssueCategory(cateogry) {
+        await this.issueCategory.selectOption(category);
+    }
+  
+    async enterIssueDescription(description) {
+        await this.issueDescription.fill(description);
+    }
+  
+    async enterEmail(email) {
+        await this.email.fill(email);
+    }
+  
+    async getErrorMessage() {
+        return await this.errorMessage.textContent();
+    }
+
+    async submitIssue() {
+        await this.submit.click();
+    }
+  } 
+
+Use the following test parameters when creating scripts:
+E2E_BASE_URL="http://pell-portal.bologna.enea.it/"
+E2E_LOGIN_URL="https://idp.smartcityplatform.enea.it/"
+E2E_SUPPORT_SUCCESS_URL = "https://pell-portal.bologna.enea.it/support/result"
+E2E_HOME_URL="" 
+E2E_DASHBOARD_URL="" 
+E2E_CTS_URL="" 
+E2E_LOGIN_EMAIL_ADMIN="test.admin@pell.it"
+E2E_LOGIN_PASSWORD_ADMIN="Testadmin01!"
+E2E_LOGIN_EMAIL_REGION="test.region@pell.it"
+E2E_LOGIN_PASSWORD_REGION="Testregion01!"
+
+Instructions:
+1. Analyze the test cases provided
+2. For each test case, generate a test script in Javascript with Playwright
+3. Use only Page object model provided to interact with the DOM.
+4. In each test script, call the reporter object methods as in the example below.
+5. Put the code in functions for reusability
+
+<example>
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1 - Login test with success");
+
+    // ... test case step 1
+    reporter.addStep('UC1_TC1_ID1', 'Step 1 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+
+    // ... test case step 2
+    reporter.addStep('UC1_TC1_ID2', 'Step 2 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+
+    // ...
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+</example>
+
+Here the test case to be converted in Playwright script:
+Test Case ID: UC10_TC1
+Title: Invia richiesta di assistenza
+Use Case ID: UC10
+Priority: Alta
+Type: Positivo
+Preconditions: Nessuna
+Postconditions: L’utente è a conoscenza che l’operazione ha avuto successo
+Test Steps:
+  1. Step: L'utente compila la form di assistenza
+Expected: Tutte le informazioni vengono accettate
+  2. Step: Clicca il tasto "Invia"
+Expected: Il sistema procede con l'invio della richiesta id assistenza
+  3. Step: Verifica la visualizzazione del messaggio di successo
+Expected: Viene mostrato un messaggio che conferma l’avvenuta richiesta
+
+Generate only JavaScript code. Do not include existing code implementation in the response, only reference it.
+<|eot_id|>
+<|start_header_id|>assistant<|end_header_id|>
+const { test } = require('@playwright/test');
+const TestResultReporter = require('../test-result-reporter');
+
+const reporter = new TestResultReporter();
+
+test("UC10_TC1 - Invio richiesta di assistenza", async ({ page, browserName }) => {
+  reporter.setBrowserName(browserName);
+  reporter.setTestCase("UC10_TC1 - Invio richiesta di assistenza");
+
+  const supportPage = new SupportPage(page);
+
+  // Step 1
+  let startTime = Date.now();
+  const category = "Problemi account";
+  const description = "Non riesco più ad accedere al mio account";
+  const email = "test.region@pell.it"
+  await supportPage.selectIssueCategory();
+  await supportPage.enterIssueDescription();
+  await supportPage.enterEmail();
+  let endTime = Date.now();
+  reporter.addStep(
+    'UC10_TC1_ID1',
+    'L'utente compila la form di assistenza',
+    `Form compilata`,
+    `Form compilata`,
+    true,
+    { category, description, email },
+    endTime - startTime
+  );
+
+  // Step 2
+  startTime = date.now();
+  await supportPage.submitIssue();
+  await page.waitForUrl("https://pell-portal.bologna.enea.it/support/result", { waitUnitl: "networkidle" });
+  let testPass = page.url() == "https://pell-portal.bologna.enea.it/support/result";
+  endTime = date.now();
+  reporter.addStep(
+    'UC10_TC1_ID2',
+    'Clicca il tasto "Invia"',
+    "L'utente viene reindirizzato alla pagina di avvenuto invio",
+    testPass ? "L'utente viene reindirizzato alla pagina di avvenuto invio" : "Nessun reindirizzamento avvenuto",
+    testPass,
+    {},
+    endTime - startTime
+  );
+
+  if (testPass) {
+    reporter.onTestEnd(test, { status: "passed" });
+  } else {
+    reporter.onTestEnd(test, { status: "failed" });
+  }
+}); 
+<|eot_id|>
+<|start_header_id|>user<|end_header_id|>
+Use only this page object models for interacting with the DOM:
+export class LoginPage {
+    readonly page: Page;
+    readonly emailInput: Locator;
+    readonly passwordInput: Locator;
+    readonly loginButton: Locator;
+    readonly authenticate: Locator;
+    readonly errorMessage: Locator;
+  
+    constructor(page: Page) {
+      this.page = page;
+      this.loginButton = page.locator('text="Login"');
+      this.emailInput = page.locator('#email');
+      this.passwordInput = page.locator('#password');
+      this.authenticate = page.locator("#submit");
+      this.errorMessage = page.locator('.error-message');
+    }
+  
+    async displayLoginForm() {
+        await this.loginButton.click();
+    }
+  
+    async enterEmail(email) {
+        await this.emailInput.fill(email);
+    }
+  
+    async enterPassword(password) {
+        await this.passwordInput.fill(password);
+    }
+  
+    async getErrorMessage() {
+        return await this.errorMessage.textContent();
+    }
+
+    async login() {
+        await this.authenticate.click();
+    }
+  }
+
+Use the following test parameters when creating scripts:
+E2E_BASE_URL="http://pell-portal.bologna.enea.it/"
+E2E_LOGIN_URL="https://idp.smartcityplatform.enea.it/"
+E2E_HOME_URL="" 
+E2E_DASHBOARD_URL="" 
+E2E_CTS_URL="" 
+E2E_LOGIN_EMAIL_ADMIN="test.admin@pell.it"
+E2E_LOGIN_PASSWORD_ADMIN="Testadmin01!"
+E2E_LOGIN_EMAIL_REGION="test.region@pell.it"
+E2E_LOGIN_PASSWORD_REGION="Testregion01!"
+
+Instructions:
+1. Analyze the test cases provided
+2. For each test case, generate a test script in Javascript with Playwright
+3. Use only Page object model provided to interact with the DOM.
+4. In each test script, call the reporter object methods as in the example below.
+5. Put the code in functions for reusability
+
+<example>
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1 - Login test with success");
+
+    // ... test case step 1
+    reporter.addStep('UC1_TC1_ID1', 'Step 1 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+
+    // ... test case step 2
+    reporter.addStep('UC1_TC1_ID2', 'Step 2 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+
+    // ...
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+</example>
+
+Here the test case to be converted in Playwright script:
+Test Case ID: UC1_TC2
+Title: Login con credenziali errate
+Use Case ID: UC1
+Priority: Alta
+Type: Negativo
+Preconditions: L’utente non è autenticato
+Postconditions: Il sistema visualizza un messaggio di errore
+Test Steps:
+  1. Step: Inserisci credenziali non valide (username o password sbagliati)
+Expected: Le credenziali vengono rifiutate
+  2. Step: Clicca il tasto “Login”
+Expected: Il sistema visualizza un messaggio di errore
+  3. Step: Verifica la visualizzazione del messaggio di errore
+Expected: Viene mostrato un messaggio che indica l’errore di autenticazione
+
+Generate only JavaScript code. Do not include existing code implementation in the response, only reference it.
+<|eot_id|>
+<|start_header_id|>assistant<|end_header_id|>
+2025-05-15 07:25:18,132 - test_code_generator.llm_client.ollama_client - INFO - OllamaClient initialized with model: llama3.3
+2025-05-15 07:27:08,962 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/generate "HTTP/1.1 200 OK"
+2025-05-15 07:27:08,962 - test_code_generator.llm_client.ollama_client - INFO - Ollama responded with: 
+ 
+
+```javascript
+test("UC1_TC2 - Login con credenziali errate", async ({ page, browserName }) => {
+  reporter.setBrowserName(browserName);
+  reporter.setTestCase("UC1_TC2 - Login con credenziali errate");
+
+  const loginPage = new LoginPage(page);
+
+  // Step 1
+  let startTime = Date.now();
+  await loginPage.displayLoginForm();
+  await loginPage.enterEmail("wrong-email@example.com");
+  await loginPage.enterPassword("wrong-password");
+  let endTime = Date.now();
+  reporter.addStep(
+    'UC1_TC2_ID1',
+    'Inserisci credenziali non valide (username o password sbagliati)',
+    `Credenziali rifiutate`,
+    `Credenziali inserite`,
+    true,
+    { email: "wrong-email@example.com", password: "wrong-password" },
+    endTime - startTime
+  );
+
+  // Step 2
+  startTime = Date.now();
+  await loginPage.login();
+  let testPass = await page.url() === E2E_LOGIN_URL;
+  endTime = Date.now();
+  reporter.addStep(
+    'UC1_TC2_ID2',
+    'Clicca il tasto “Login”',
+    "Il sistema visualizza un messaggio di errore",
+    testPass ? "Pagina di login ancora visibile" : "Reindirizzamento avvenuto",
+    !testPass,
+    {},
+    endTime - startTime
+  );
+
+  // Step 3
+  if (testPass) {
+    startTime = Date.now();
+    const errorMessage = await loginPage.getErrorMessage();
+    endTime = Date.now();
+    reporter.addStep(
+      'UC1_TC2_ID3',
+      'Verifica la visualizzazione del messaggio di errore',
+      "Viene mostrato un messaggio che indica l’errore di autenticazione",
+      errorMessage ? `Messaggio di errore: ${errorMessage}` : "Nessun messaggio di errore visibile",
+      !!errorMessage,
+      {},
+      endTime - startTime
+    );
+  }
+
+  reporter.onTestEnd(test, { status: testPass && !!errorMessage ? "passed" : "failed" });
+});
+```
+2025-05-15 07:27:08,962 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt template loaded from path: ./prompts/single_processing/one_shot/raw.txt
+2025-05-15 07:27:08,963 - test_code_generator.prompt_builder.prompt_builder - INFO - Test parameters loaded from path: ./input_files/parameters/test_parameters.env
+2025-05-15 07:27:08,963 - test_code_generator.prompt_builder.prompt_builder - INFO - Test parameters loaded from path: ./input_files/pom/pom.js
+2025-05-15 07:27:08,963 - test_code_generator.prompt_builder.prompt_builder - INFO - Test reporter loaded from path: ./input_files/reporter_minimal.js
+2025-05-15 07:27:08,963 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt built: <|begin_of_text|><|start_header_id|>system<|end_header_id|>
+You are a testing engineer, expert in writing Javascript end-to-end tests with Playwright.
+
+Task: Analyze the test cases provided below and generate for each test case a complete and working Playwright test script in Javascript, following the steps described in the test cases.
+When creating test scripts, use only the page object model provided for interacting with the DOM and the parameters provided.
+<|eot_id|>
+<|start_header_id|>user<|end_header_id|>
+Use only this page object models for interacting with the DOM:
+export class SupportPage {
+    readonly page: Page;
+    readonly emailInput: Locator;
+    readonly passwordInput: Locator;
+    readonly loginButton: Locator;
+    readonly authenticate: Locator;
+    readonly errorMessage: Locator;
+  
+    constructor(page: Page) {
+      this.page = page;
+      this.issueCategory = page.locator("#issue-category");
+      this.issueDescription = page.locator("#issue-description");
+      this.email = page.locator("#email");
+      this.submit = page.getByRole("submit");
+      this.errorMessage = page.locator('.error-message');
+    }
+  
+    async selectIssueCategory(cateogry) {
+        await this.issueCategory.selectOption(category);
+    }
+  
+    async enterIssueDescription(description) {
+        await this.issueDescription.fill(description);
+    }
+  
+    async enterEmail(email) {
+        await this.email.fill(email);
+    }
+  
+    async getErrorMessage() {
+        return await this.errorMessage.textContent();
+    }
+
+    async submitIssue() {
+        await this.submit.click();
+    }
+  } 
+
+Use the following test parameters when creating scripts:
+E2E_BASE_URL="http://pell-portal.bologna.enea.it/"
+E2E_LOGIN_URL="https://idp.smartcityplatform.enea.it/"
+E2E_SUPPORT_SUCCESS_URL = "https://pell-portal.bologna.enea.it/support/result"
+E2E_HOME_URL="" 
+E2E_DASHBOARD_URL="" 
+E2E_CTS_URL="" 
+E2E_LOGIN_EMAIL_ADMIN="test.admin@pell.it"
+E2E_LOGIN_PASSWORD_ADMIN="Testadmin01!"
+E2E_LOGIN_EMAIL_REGION="test.region@pell.it"
+E2E_LOGIN_PASSWORD_REGION="Testregion01!"
+
+Instructions:
+1. Analyze the test cases provided
+2. For each test case, generate a test script in Javascript with Playwright
+3. Use only Page object model provided to interact with the DOM.
+4. In each test script, call the reporter object methods as in the example below.
+5. Put the code in functions for reusability
+
+<example>
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1 - Login test with success");
+
+    // ... test case step 1
+    reporter.addStep('UC1_TC1_ID1', 'Step 1 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+
+    // ... test case step 2
+    reporter.addStep('UC1_TC1_ID2', 'Step 2 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+
+    // ...
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+</example>
+
+Here the test case to be converted in Playwright script:
+Test Case ID: UC10_TC1
+Title: Invia richiesta di assistenza
+Use Case ID: UC10
+Priority: Alta
+Type: Positivo
+Preconditions: Nessuna
+Postconditions: L’utente è a conoscenza che l’operazione ha avuto successo
+Test Steps:
+  1. Step: L'utente compila la form di assistenza
+Expected: Tutte le informazioni vengono accettate
+  2. Step: Clicca il tasto "Invia"
+Expected: Il sistema procede con l'invio della richiesta id assistenza
+  3. Step: Verifica la visualizzazione del messaggio di successo
+Expected: Viene mostrato un messaggio che conferma l’avvenuta richiesta
+
+Generate only JavaScript code. Do not include existing code implementation in the response, only reference it.
+<|eot_id|>
+<|start_header_id|>assistant<|end_header_id|>
+const { test } = require('@playwright/test');
+const TestResultReporter = require('../test-result-reporter');
+
+const reporter = new TestResultReporter();
+
+test("UC10_TC1 - Invio richiesta di assistenza", async ({ page, browserName }) => {
+  reporter.setBrowserName(browserName);
+  reporter.setTestCase("UC10_TC1 - Invio richiesta di assistenza");
+
+  const supportPage = new SupportPage(page);
+
+  // Step 1
+  let startTime = Date.now();
+  const category = "Problemi account";
+  const description = "Non riesco più ad accedere al mio account";
+  const email = "test.region@pell.it"
+  await supportPage.selectIssueCategory();
+  await supportPage.enterIssueDescription();
+  await supportPage.enterEmail();
+  let endTime = Date.now();
+  reporter.addStep(
+    'UC10_TC1_ID1',
+    'L'utente compila la form di assistenza',
+    `Form compilata`,
+    `Form compilata`,
+    true,
+    { category, description, email },
+    endTime - startTime
+  );
+
+  // Step 2
+  startTime = date.now();
+  await supportPage.submitIssue();
+  await page.waitForUrl("https://pell-portal.bologna.enea.it/support/result", { waitUnitl: "networkidle" });
+  let testPass = page.url() == "https://pell-portal.bologna.enea.it/support/result";
+  endTime = date.now();
+  reporter.addStep(
+    'UC10_TC1_ID2',
+    'Clicca il tasto "Invia"',
+    "L'utente viene reindirizzato alla pagina di avvenuto invio",
+    testPass ? "L'utente viene reindirizzato alla pagina di avvenuto invio" : "Nessun reindirizzamento avvenuto",
+    testPass,
+    {},
+    endTime - startTime
+  );
+
+  if (testPass) {
+    reporter.onTestEnd(test, { status: "passed" });
+  } else {
+    reporter.onTestEnd(test, { status: "failed" });
+  }
+}); 
+<|eot_id|>
+<|start_header_id|>user<|end_header_id|>
+Use only this page object models for interacting with the DOM:
+export class LoginPage {
+    readonly page: Page;
+    readonly emailInput: Locator;
+    readonly passwordInput: Locator;
+    readonly loginButton: Locator;
+    readonly authenticate: Locator;
+    readonly errorMessage: Locator;
+  
+    constructor(page: Page) {
+      this.page = page;
+      this.loginButton = page.locator('text="Login"');
+      this.emailInput = page.locator('#email');
+      this.passwordInput = page.locator('#password');
+      this.authenticate = page.locator("#submit");
+      this.errorMessage = page.locator('.error-message');
+    }
+  
+    async displayLoginForm() {
+        await this.loginButton.click();
+    }
+  
+    async enterEmail(email) {
+        await this.emailInput.fill(email);
+    }
+  
+    async enterPassword(password) {
+        await this.passwordInput.fill(password);
+    }
+  
+    async getErrorMessage() {
+        return await this.errorMessage.textContent();
+    }
+
+    async login() {
+        await this.authenticate.click();
+    }
+  }
+
+Use the following test parameters when creating scripts:
+E2E_BASE_URL="http://pell-portal.bologna.enea.it/"
+E2E_LOGIN_URL="https://idp.smartcityplatform.enea.it/"
+E2E_HOME_URL="" 
+E2E_DASHBOARD_URL="" 
+E2E_CTS_URL="" 
+E2E_LOGIN_EMAIL_ADMIN="test.admin@pell.it"
+E2E_LOGIN_PASSWORD_ADMIN="Testadmin01!"
+E2E_LOGIN_EMAIL_REGION="test.region@pell.it"
+E2E_LOGIN_PASSWORD_REGION="Testregion01!"
+
+Instructions:
+1. Analyze the test cases provided
+2. For each test case, generate a test script in Javascript with Playwright
+3. Use only Page object model provided to interact with the DOM.
+4. In each test script, call the reporter object methods as in the example below.
+5. Put the code in functions for reusability
+
+<example>
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1 - Login test with success");
+
+    // ... test case step 1
+    reporter.addStep('UC1_TC1_ID1', 'Step 1 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+
+    // ... test case step 2
+    reporter.addStep('UC1_TC1_ID2', 'Step 2 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+
+    // ...
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+</example>
+
+Here the test case to be converted in Playwright script:
+Test Case ID: UC1_TC3
+Title: Login con campo username vuoto
+Use Case ID: UC1
+Priority: Media
+Type: Negativo
+Preconditions: L’utente non è autenticato
+Postconditions: Il sistema visualizza un messaggio di errore
+Test Steps:
+  1. Step: Lascia vuoto il campo username e inserisci una password
+Expected: Il sistema rileva l’errore
+  2. Step: Clicca il tasto “Login”
+Expected: Il sistema visualizza un messaggio di errore
+  3. Step: Verifica la visualizzazione del messaggio di errore
+Expected: Viene mostrato un messaggio che richiede di compilare tutti i campi
+
+Generate only JavaScript code. Do not include existing code implementation in the response, only reference it.
+<|eot_id|>
+<|start_header_id|>assistant<|end_header_id|>
+2025-05-15 07:27:08,963 - test_code_generator.llm_client.ollama_client - INFO - OllamaClient initialized with model: llama3.3
+2025-05-15 07:28:59,410 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/generate "HTTP/1.1 200 OK"
+2025-05-15 07:28:59,410 - test_code_generator.llm_client.ollama_client - INFO - Ollama responded with: 
+ 
+
+```javascript
+test("UC1_TC3 - Login con campo username vuoto", async ({ page, browserName }) => {
+  reporter.setBrowserName(browserName);
+  reporter.setTestCase("UC1_TC3 - Login con campo username vuoto");
+
+  const loginPage = new LoginPage(page);
+
+  // Step 1
+  let startTime = Date.now();
+  await loginPage.displayLoginForm();
+  await loginPage.enterPassword(E2E_LOGIN_PASSWORD_ADMIN);
+  let endTime = Date.now();
+  reporter.addStep(
+    'UC1_TC3_ID1',
+    'Lascia vuoto il campo username e inserisci una password',
+    `Il sistema rileva l'errore`,
+    `Il sistema rileva l'errore`,
+    true,
+    { password: E2E_LOGIN_PASSWORD_ADMIN },
+    endTime - startTime
+  );
+
+  // Step 2
+  startTime = Date.now();
+  await loginPage.login();
+  endTime = Date.now();
+  reporter.addStep(
+    'UC1_TC3_ID2',
+    'Clicca il tasto “Login”',
+    `Il sistema visualizza un messaggio di errore`,
+    `Il sistema visualizza un messaggio di errore`,
+    true,
+    {},
+    endTime - startTime
+  );
+
+  // Step 3
+  startTime = Date.now();
+  const errorMessage = await loginPage.getErrorMessage();
+  let testPass = errorMessage !== null && errorMessage !== "";
+  endTime = Date.now();
+  reporter.addStep(
+    'UC1_TC3_ID3',
+    'Verifica la visualizzazione del messaggio di errore',
+    `Viene mostrato un messaggio che richiede di compilare tutti i campi`,
+    testPass ? `Messaggio di errore: ${errorMessage}` : "Nessun messaggio di errore",
+    testPass,
+    { errorMessage },
+    endTime - startTime
+  );
+
+  if (testPass) {
+    reporter.onTestEnd(test, { status: "passed" });
+  } else {
+    reporter.onTestEnd(test, { status: "failed" });
+  }
+});
+```
+2025-05-15 07:28:59,410 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt template loaded from path: ./prompts/single_processing/one_shot/raw.txt
+2025-05-15 07:28:59,410 - test_code_generator.prompt_builder.prompt_builder - INFO - Test parameters loaded from path: ./input_files/parameters/test_parameters.env
+2025-05-15 07:28:59,410 - test_code_generator.prompt_builder.prompt_builder - INFO - Test parameters loaded from path: ./input_files/pom/pom.js
+2025-05-15 07:28:59,410 - test_code_generator.prompt_builder.prompt_builder - INFO - Test reporter loaded from path: ./input_files/reporter_minimal.js
+2025-05-15 07:28:59,410 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt built: <|begin_of_text|><|start_header_id|>system<|end_header_id|>
+You are a testing engineer, expert in writing Javascript end-to-end tests with Playwright.
+
+Task: Analyze the test cases provided below and generate for each test case a complete and working Playwright test script in Javascript, following the steps described in the test cases.
+When creating test scripts, use only the page object model provided for interacting with the DOM and the parameters provided.
+<|eot_id|>
+<|start_header_id|>user<|end_header_id|>
+Use only this page object models for interacting with the DOM:
+export class SupportPage {
+    readonly page: Page;
+    readonly emailInput: Locator;
+    readonly passwordInput: Locator;
+    readonly loginButton: Locator;
+    readonly authenticate: Locator;
+    readonly errorMessage: Locator;
+  
+    constructor(page: Page) {
+      this.page = page;
+      this.issueCategory = page.locator("#issue-category");
+      this.issueDescription = page.locator("#issue-description");
+      this.email = page.locator("#email");
+      this.submit = page.getByRole("submit");
+      this.errorMessage = page.locator('.error-message');
+    }
+  
+    async selectIssueCategory(cateogry) {
+        await this.issueCategory.selectOption(category);
+    }
+  
+    async enterIssueDescription(description) {
+        await this.issueDescription.fill(description);
+    }
+  
+    async enterEmail(email) {
+        await this.email.fill(email);
+    }
+  
+    async getErrorMessage() {
+        return await this.errorMessage.textContent();
+    }
+
+    async submitIssue() {
+        await this.submit.click();
+    }
+  } 
+
+Use the following test parameters when creating scripts:
+E2E_BASE_URL="http://pell-portal.bologna.enea.it/"
+E2E_LOGIN_URL="https://idp.smartcityplatform.enea.it/"
+E2E_SUPPORT_SUCCESS_URL = "https://pell-portal.bologna.enea.it/support/result"
+E2E_HOME_URL="" 
+E2E_DASHBOARD_URL="" 
+E2E_CTS_URL="" 
+E2E_LOGIN_EMAIL_ADMIN="test.admin@pell.it"
+E2E_LOGIN_PASSWORD_ADMIN="Testadmin01!"
+E2E_LOGIN_EMAIL_REGION="test.region@pell.it"
+E2E_LOGIN_PASSWORD_REGION="Testregion01!"
+
+Instructions:
+1. Analyze the test cases provided
+2. For each test case, generate a test script in Javascript with Playwright
+3. Use only Page object model provided to interact with the DOM.
+4. In each test script, call the reporter object methods as in the example below.
+5. Put the code in functions for reusability
+
+<example>
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1 - Login test with success");
+
+    // ... test case step 1
+    reporter.addStep('UC1_TC1_ID1', 'Step 1 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+
+    // ... test case step 2
+    reporter.addStep('UC1_TC1_ID2', 'Step 2 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+
+    // ...
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+</example>
+
+Here the test case to be converted in Playwright script:
+Test Case ID: UC10_TC1
+Title: Invia richiesta di assistenza
+Use Case ID: UC10
+Priority: Alta
+Type: Positivo
+Preconditions: Nessuna
+Postconditions: L’utente è a conoscenza che l’operazione ha avuto successo
+Test Steps:
+  1. Step: L'utente compila la form di assistenza
+Expected: Tutte le informazioni vengono accettate
+  2. Step: Clicca il tasto "Invia"
+Expected: Il sistema procede con l'invio della richiesta id assistenza
+  3. Step: Verifica la visualizzazione del messaggio di successo
+Expected: Viene mostrato un messaggio che conferma l’avvenuta richiesta
+
+Generate only JavaScript code. Do not include existing code implementation in the response, only reference it.
+<|eot_id|>
+<|start_header_id|>assistant<|end_header_id|>
+const { test } = require('@playwright/test');
+const TestResultReporter = require('../test-result-reporter');
+
+const reporter = new TestResultReporter();
+
+test("UC10_TC1 - Invio richiesta di assistenza", async ({ page, browserName }) => {
+  reporter.setBrowserName(browserName);
+  reporter.setTestCase("UC10_TC1 - Invio richiesta di assistenza");
+
+  const supportPage = new SupportPage(page);
+
+  // Step 1
+  let startTime = Date.now();
+  const category = "Problemi account";
+  const description = "Non riesco più ad accedere al mio account";
+  const email = "test.region@pell.it"
+  await supportPage.selectIssueCategory();
+  await supportPage.enterIssueDescription();
+  await supportPage.enterEmail();
+  let endTime = Date.now();
+  reporter.addStep(
+    'UC10_TC1_ID1',
+    'L'utente compila la form di assistenza',
+    `Form compilata`,
+    `Form compilata`,
+    true,
+    { category, description, email },
+    endTime - startTime
+  );
+
+  // Step 2
+  startTime = date.now();
+  await supportPage.submitIssue();
+  await page.waitForUrl("https://pell-portal.bologna.enea.it/support/result", { waitUnitl: "networkidle" });
+  let testPass = page.url() == "https://pell-portal.bologna.enea.it/support/result";
+  endTime = date.now();
+  reporter.addStep(
+    'UC10_TC1_ID2',
+    'Clicca il tasto "Invia"',
+    "L'utente viene reindirizzato alla pagina di avvenuto invio",
+    testPass ? "L'utente viene reindirizzato alla pagina di avvenuto invio" : "Nessun reindirizzamento avvenuto",
+    testPass,
+    {},
+    endTime - startTime
+  );
+
+  if (testPass) {
+    reporter.onTestEnd(test, { status: "passed" });
+  } else {
+    reporter.onTestEnd(test, { status: "failed" });
+  }
+}); 
+<|eot_id|>
+<|start_header_id|>user<|end_header_id|>
+Use only this page object models for interacting with the DOM:
+export class LoginPage {
+    readonly page: Page;
+    readonly emailInput: Locator;
+    readonly passwordInput: Locator;
+    readonly loginButton: Locator;
+    readonly authenticate: Locator;
+    readonly errorMessage: Locator;
+  
+    constructor(page: Page) {
+      this.page = page;
+      this.loginButton = page.locator('text="Login"');
+      this.emailInput = page.locator('#email');
+      this.passwordInput = page.locator('#password');
+      this.authenticate = page.locator("#submit");
+      this.errorMessage = page.locator('.error-message');
+    }
+  
+    async displayLoginForm() {
+        await this.loginButton.click();
+    }
+  
+    async enterEmail(email) {
+        await this.emailInput.fill(email);
+    }
+  
+    async enterPassword(password) {
+        await this.passwordInput.fill(password);
+    }
+  
+    async getErrorMessage() {
+        return await this.errorMessage.textContent();
+    }
+
+    async login() {
+        await this.authenticate.click();
+    }
+  }
+
+Use the following test parameters when creating scripts:
+E2E_BASE_URL="http://pell-portal.bologna.enea.it/"
+E2E_LOGIN_URL="https://idp.smartcityplatform.enea.it/"
+E2E_HOME_URL="" 
+E2E_DASHBOARD_URL="" 
+E2E_CTS_URL="" 
+E2E_LOGIN_EMAIL_ADMIN="test.admin@pell.it"
+E2E_LOGIN_PASSWORD_ADMIN="Testadmin01!"
+E2E_LOGIN_EMAIL_REGION="test.region@pell.it"
+E2E_LOGIN_PASSWORD_REGION="Testregion01!"
+
+Instructions:
+1. Analyze the test cases provided
+2. For each test case, generate a test script in Javascript with Playwright
+3. Use only Page object model provided to interact with the DOM.
+4. In each test script, call the reporter object methods as in the example below.
+5. Put the code in functions for reusability
+
+<example>
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1 - Login test with success");
+
+    // ... test case step 1
+    reporter.addStep('UC1_TC1_ID1', 'Step 1 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+
+    // ... test case step 2
+    reporter.addStep('UC1_TC1_ID2', 'Step 2 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+
+    // ...
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+</example>
+
+Here the test case to be converted in Playwright script:
+Test Case ID: UC1_TC4
+Title: Login con campo password vuoto
+Use Case ID: UC1
+Priority: Media
+Type: Negativo
+Preconditions: L’utente non è autenticato
+Postconditions: Il sistema visualizza un messaggio di errore
+Test Steps:
+  1. Step: Inserisci il username e lascia vuoto il campo password
+Expected: Il sistema rileva l’errore
+  2. Step: Clicca il tasto “Login”
+Expected: Il sistema visualizza un messaggio di errore
+  3. Step: Verifica la visualizzazione del messaggio di errore
+Expected: Viene mostrato un messaggio che richiede di compilare tutti i campi
+
+Generate only JavaScript code. Do not include existing code implementation in the response, only reference it.
+<|eot_id|>
+<|start_header_id|>assistant<|end_header_id|>
+2025-05-15 07:28:59,410 - test_code_generator.llm_client.ollama_client - INFO - OllamaClient initialized with model: llama3.3
+2025-05-15 07:30:39,533 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/generate "HTTP/1.1 200 OK"
+2025-05-15 07:30:39,533 - test_code_generator.llm_client.ollama_client - INFO - Ollama responded with: 
+ 
+
+```javascript
+test("UC1_TC4 - Login con campo password vuoto", async ({ page, browserName }) => {
+  reporter.setBrowserName(browserName);
+  reporter.setTestCase("UC1_TC4 - Login con campo password vuoto");
+
+  const loginPage = new LoginPage(page);
+
+  // Step 1
+  let startTime = Date.now();
+  await loginPage.displayLoginForm();
+  await loginPage.enterEmail(E2E_LOGIN_EMAIL_ADMIN);
+  let endTime = Date.now();
+  reporter.addStep(
+    'UC1_TC4_ID1',
+    'Inserisci il username e lascia vuoto il campo password',
+    `Il sistema rileva l'errore`,
+    `Il sistema rileva l'errore`,
+    true,
+    { email: E2E_LOGIN_EMAIL_ADMIN },
+    endTime - startTime
+  );
+
+  // Step 2
+  startTime = Date.now();
+  await loginPage.login();
+  endTime = Date.now();
+  reporter.addStep(
+    'UC1_TC4_ID2',
+    'Clicca il tasto “Login”',
+    `Il sistema visualizza un messaggio di errore`,
+    `Il sistema visualizza un messaggio di errore`,
+    true,
+    {},
+    endTime - startTime
+  );
+
+  // Step 3
+  startTime = Date.now();
+  const errorMessage = await loginPage.getErrorMessage();
+  let testPass = errorMessage !== null && errorMessage !== "";
+  endTime = Date.now();
+  reporter.addStep(
+    'UC1_TC4_ID3',
+    'Verifica la visualizzazione del messaggio di errore',
+    `Viene mostrato un messaggio che richiede di compilare tutti i campi`,
+    testPass ? `Messaggio di errore: ${errorMessage}` : "Nessun messaggio di errore",
+    testPass,
+    { errorMessage },
+    endTime - startTime
+  );
+
+  if (testPass) {
+    reporter.onTestEnd(test, { status: "passed" });
+  } else {
+    reporter.onTestEnd(test, { status: "failed" });
+  }
+});
+```
+2025-05-15 07:30:39,533 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt template loaded from path: ./prompts/single_processing/one_shot/raw.txt
+2025-05-15 07:30:39,533 - test_code_generator.prompt_builder.prompt_builder - INFO - Test parameters loaded from path: ./input_files/parameters/test_parameters.env
+2025-05-15 07:30:39,533 - test_code_generator.prompt_builder.prompt_builder - INFO - Test parameters loaded from path: ./input_files/pom/pom.js
+2025-05-15 07:30:39,533 - test_code_generator.prompt_builder.prompt_builder - INFO - Test reporter loaded from path: ./input_files/reporter_minimal.js
+2025-05-15 07:30:39,533 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt built: <|begin_of_text|><|start_header_id|>system<|end_header_id|>
+You are a testing engineer, expert in writing Javascript end-to-end tests with Playwright.
+
+Task: Analyze the test cases provided below and generate for each test case a complete and working Playwright test script in Javascript, following the steps described in the test cases.
+When creating test scripts, use only the page object model provided for interacting with the DOM and the parameters provided.
+<|eot_id|>
+<|start_header_id|>user<|end_header_id|>
+Use only this page object models for interacting with the DOM:
+export class SupportPage {
+    readonly page: Page;
+    readonly emailInput: Locator;
+    readonly passwordInput: Locator;
+    readonly loginButton: Locator;
+    readonly authenticate: Locator;
+    readonly errorMessage: Locator;
+  
+    constructor(page: Page) {
+      this.page = page;
+      this.issueCategory = page.locator("#issue-category");
+      this.issueDescription = page.locator("#issue-description");
+      this.email = page.locator("#email");
+      this.submit = page.getByRole("submit");
+      this.errorMessage = page.locator('.error-message');
+    }
+  
+    async selectIssueCategory(cateogry) {
+        await this.issueCategory.selectOption(category);
+    }
+  
+    async enterIssueDescription(description) {
+        await this.issueDescription.fill(description);
+    }
+  
+    async enterEmail(email) {
+        await this.email.fill(email);
+    }
+  
+    async getErrorMessage() {
+        return await this.errorMessage.textContent();
+    }
+
+    async submitIssue() {
+        await this.submit.click();
+    }
+  } 
+
+Use the following test parameters when creating scripts:
+E2E_BASE_URL="http://pell-portal.bologna.enea.it/"
+E2E_LOGIN_URL="https://idp.smartcityplatform.enea.it/"
+E2E_SUPPORT_SUCCESS_URL = "https://pell-portal.bologna.enea.it/support/result"
+E2E_HOME_URL="" 
+E2E_DASHBOARD_URL="" 
+E2E_CTS_URL="" 
+E2E_LOGIN_EMAIL_ADMIN="test.admin@pell.it"
+E2E_LOGIN_PASSWORD_ADMIN="Testadmin01!"
+E2E_LOGIN_EMAIL_REGION="test.region@pell.it"
+E2E_LOGIN_PASSWORD_REGION="Testregion01!"
+
+Instructions:
+1. Analyze the test cases provided
+2. For each test case, generate a test script in Javascript with Playwright
+3. Use only Page object model provided to interact with the DOM.
+4. In each test script, call the reporter object methods as in the example below.
+5. Put the code in functions for reusability
+
+<example>
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1 - Login test with success");
+
+    // ... test case step 1
+    reporter.addStep('UC1_TC1_ID1', 'Step 1 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+
+    // ... test case step 2
+    reporter.addStep('UC1_TC1_ID2', 'Step 2 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+
+    // ...
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+</example>
+
+Here the test case to be converted in Playwright script:
+Test Case ID: UC10_TC1
+Title: Invia richiesta di assistenza
+Use Case ID: UC10
+Priority: Alta
+Type: Positivo
+Preconditions: Nessuna
+Postconditions: L’utente è a conoscenza che l’operazione ha avuto successo
+Test Steps:
+  1. Step: L'utente compila la form di assistenza
+Expected: Tutte le informazioni vengono accettate
+  2. Step: Clicca il tasto "Invia"
+Expected: Il sistema procede con l'invio della richiesta id assistenza
+  3. Step: Verifica la visualizzazione del messaggio di successo
+Expected: Viene mostrato un messaggio che conferma l’avvenuta richiesta
+
+Generate only JavaScript code. Do not include existing code implementation in the response, only reference it.
+<|eot_id|>
+<|start_header_id|>assistant<|end_header_id|>
+const { test } = require('@playwright/test');
+const TestResultReporter = require('../test-result-reporter');
+
+const reporter = new TestResultReporter();
+
+test("UC10_TC1 - Invio richiesta di assistenza", async ({ page, browserName }) => {
+  reporter.setBrowserName(browserName);
+  reporter.setTestCase("UC10_TC1 - Invio richiesta di assistenza");
+
+  const supportPage = new SupportPage(page);
+
+  // Step 1
+  let startTime = Date.now();
+  const category = "Problemi account";
+  const description = "Non riesco più ad accedere al mio account";
+  const email = "test.region@pell.it"
+  await supportPage.selectIssueCategory();
+  await supportPage.enterIssueDescription();
+  await supportPage.enterEmail();
+  let endTime = Date.now();
+  reporter.addStep(
+    'UC10_TC1_ID1',
+    'L'utente compila la form di assistenza',
+    `Form compilata`,
+    `Form compilata`,
+    true,
+    { category, description, email },
+    endTime - startTime
+  );
+
+  // Step 2
+  startTime = date.now();
+  await supportPage.submitIssue();
+  await page.waitForUrl("https://pell-portal.bologna.enea.it/support/result", { waitUnitl: "networkidle" });
+  let testPass = page.url() == "https://pell-portal.bologna.enea.it/support/result";
+  endTime = date.now();
+  reporter.addStep(
+    'UC10_TC1_ID2',
+    'Clicca il tasto "Invia"',
+    "L'utente viene reindirizzato alla pagina di avvenuto invio",
+    testPass ? "L'utente viene reindirizzato alla pagina di avvenuto invio" : "Nessun reindirizzamento avvenuto",
+    testPass,
+    {},
+    endTime - startTime
+  );
+
+  if (testPass) {
+    reporter.onTestEnd(test, { status: "passed" });
+  } else {
+    reporter.onTestEnd(test, { status: "failed" });
+  }
+}); 
+<|eot_id|>
+<|start_header_id|>user<|end_header_id|>
+Use only this page object models for interacting with the DOM:
+export class LoginPage {
+    readonly page: Page;
+    readonly emailInput: Locator;
+    readonly passwordInput: Locator;
+    readonly loginButton: Locator;
+    readonly authenticate: Locator;
+    readonly errorMessage: Locator;
+  
+    constructor(page: Page) {
+      this.page = page;
+      this.loginButton = page.locator('text="Login"');
+      this.emailInput = page.locator('#email');
+      this.passwordInput = page.locator('#password');
+      this.authenticate = page.locator("#submit");
+      this.errorMessage = page.locator('.error-message');
+    }
+  
+    async displayLoginForm() {
+        await this.loginButton.click();
+    }
+  
+    async enterEmail(email) {
+        await this.emailInput.fill(email);
+    }
+  
+    async enterPassword(password) {
+        await this.passwordInput.fill(password);
+    }
+  
+    async getErrorMessage() {
+        return await this.errorMessage.textContent();
+    }
+
+    async login() {
+        await this.authenticate.click();
+    }
+  }
+
+Use the following test parameters when creating scripts:
+E2E_BASE_URL="http://pell-portal.bologna.enea.it/"
+E2E_LOGIN_URL="https://idp.smartcityplatform.enea.it/"
+E2E_HOME_URL="" 
+E2E_DASHBOARD_URL="" 
+E2E_CTS_URL="" 
+E2E_LOGIN_EMAIL_ADMIN="test.admin@pell.it"
+E2E_LOGIN_PASSWORD_ADMIN="Testadmin01!"
+E2E_LOGIN_EMAIL_REGION="test.region@pell.it"
+E2E_LOGIN_PASSWORD_REGION="Testregion01!"
+
+Instructions:
+1. Analyze the test cases provided
+2. For each test case, generate a test script in Javascript with Playwright
+3. Use only Page object model provided to interact with the DOM.
+4. In each test script, call the reporter object methods as in the example below.
+5. Put the code in functions for reusability
+
+<example>
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1 - Login test with success");
+
+    // ... test case step 1
+    reporter.addStep('UC1_TC1_ID1', 'Step 1 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+
+    // ... test case step 2
+    reporter.addStep('UC1_TC1_ID2', 'Step 2 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+
+    // ...
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+</example>
+
+Here the test case to be converted in Playwright script:
+Test Case ID: UC1_TC5
+Title: Cambio password alla prima autenticazione
+Use Case ID: UC1
+Priority: Alta
+Type: Positivo
+Preconditions: L’utente non è autenticato e si trova alla prima autenticazione
+Postconditions: La password viene cambiata con successo
+Test Steps:
+  1. Step: Inserisci le credenziali di default per la prima volta
+Expected: Il sistema richiede il cambio della password
+  2. Step: Inserisci la nuova password e confermala
+Expected: La password viene accettata e cambiata
+  3. Step: Verifica che la nuova password sia attiva
+Expected: Il sistema permette l’accesso con la nuova password
+
+Generate only JavaScript code. Do not include existing code implementation in the response, only reference it.
+<|eot_id|>
+<|start_header_id|>assistant<|end_header_id|>
+2025-05-15 07:30:39,534 - test_code_generator.llm_client.ollama_client - INFO - OllamaClient initialized with model: llama3.3

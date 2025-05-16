@@ -1,0 +1,2 @@
+When in the test case there is a step, a precondition or a postcondition with a name of use case UC*, insert this piece of code:
+$existing_code

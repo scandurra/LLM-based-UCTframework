@@ -1,11 +1,11 @@
 import logging
+from pathlib import Path
 from test_code_generator.prompt_builder.prompt_template import PromptTemplate
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
 class PromptBuilder:
-    def __init__(self, template_path: str, test_parameters_path: str, pom_file_path: str, reporter_file_path: str) -> None:
+    def __init__(self, template_path: str, test_parameters_path: str, pom_folder_path: str, reporter_file_path: str) -> None:
         """
         Initialize the prompt builder and loads the template
         :param template_path: path of the prompt template to load
@@ -13,7 +13,7 @@ class PromptBuilder:
         """
         self.template_path = template_path
         self.test_parameters_path = test_parameters_path
-        self.pom_file_path = pom_file_path
+        self.pom_folder_path = pom_folder_path
         self.reporter_file_path = reporter_file_path
 
         self.prompt_template = None
@@ -23,15 +23,26 @@ class PromptBuilder:
 
         self.__load_prompt_template()
         self.__load_test_parameters()
-        self.__load_pom_file()
+        self.__load_pom_files()
         self.__load_reporter_file()
+        self.__load_previous_code_section_file()
 
-    def build_prompt(self, test_cases) -> str:
+    def build_prompt(self, test_cases, dependent_uc_code) -> str:
+        # building previous code section
+        
+        previousCodeSection = ""
+        if dependent_uc_code != "":
+            previousCodeSectionTemplate = PromptTemplate(self.previous_code_section)
+            previousCodeSection = previousCodeSectionTemplate.safe_substitute({
+                "existing_code": dependent_uc_code
+            })
+
         placeholder_values = {
             "test_cases": test_cases,
             "test_parameters": self.test_parameters,
             "pom": self.pom_file,
-            "existing_code": self.reporter_file
+            "existing_code": self.reporter_file,
+            "prvious_code_section": previousCodeSection
         }
         # Using string Template object in order to substitute only keys found and mainting the others without errors
         templateObj = PromptTemplate(self.prompt_template)
@@ -58,11 +69,21 @@ class PromptBuilder:
             logger.exception(e)
             raise
 
-    def __load_pom_file(self) -> None:
+    def __load_pom_files(self) -> None:
         try:
-            with open(self.pom_file_path, "r") as f:
-                self.pom_file = f.read()
-                logger.info(f"Test parameters loaded from path: {self.pom_file_path}")
+            directory = Path(self.pom_folder_path)
+
+            self.pom_file = ""
+            for file in directory.iterdir():
+                if file.is_file():
+                    with open(file, 'r') as f:
+                        content = f.read()
+                        logger.info(f"Read pom file {file.name}: \n{content}")
+                        self.pom_file += content
+                        
+            # with open(self.pom_folder_path, "r") as f:
+            #     self.pom_file = f.read()
+                
         except FileNotFoundError as e:
             logger.exception(e)
             raise
@@ -72,6 +93,15 @@ class PromptBuilder:
             with open(self.reporter_file_path, "r") as f:
                 self.reporter_file = f.read()
                 logger.info(f"Test reporter loaded from path: {self.reporter_file_path}")
+        except FileNotFoundError as e:
+            logger.exception(e)
+            raise
+
+    def __load_previous_code_section_file(self) -> None:
+        try:
+            with open("./prompts/single_processing/one_shot/previous_code_section.txt", "r") as f:
+                self.previous_code_section = f.read()
+                logger.info(f"Previous code section loaded from path: {self.reporter_file_path}")
         except FileNotFoundError as e:
             logger.exception(e)
             raise
