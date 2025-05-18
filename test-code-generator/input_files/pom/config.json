@@ -1,0 +1,11 @@
+{
+    "login_page.js": [
+        "UC1"
+    ],
+    "home_page.js": [
+        "UC2"
+    ],
+    "dashboard_page.js": [
+        "UC2.1"
+    ]
+}

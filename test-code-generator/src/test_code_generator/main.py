@@ -1,8 +1,10 @@
 from datetime import datetime
 from test_code_generator.llm_client import OllamaClient
 from test_code_generator.prompt_builder import PromptBuilder
+from test_code_generator.prompt_builder import PageObjectModelProcessor
 from test_code_generator.parser import TestCaseParser
 from test_code_generator.dependency_graph import DependencyGraph
+from test_code_generator.validator import JavascriptCodeValidator
 import logging
 from logging.handlers import TimedRotatingFileHandler
 import os
@@ -61,9 +63,13 @@ def main():
 
     test_cases = TestCaseParser.read_from_file(test_cases_path)
 
+    page_object_model_processor = PageObjectModelProcessor.from_config_file(pom_folder_path)
+    page_object_models = page_object_model_processor.load(use_case_name)
+
     for test_case in test_cases:
-        prompt_builder = PromptBuilder(prompt_template_path, test_parameters_path, pom_folder_path, existing_code_path)
-        prompt = prompt_builder.build_prompt(test_case, dependent_uc_code)
+        prompt_builder = PromptBuilder(prompt_template_path, test_parameters_path, existing_code_path)
+        pom_content = "\n\n".join(f"{v}" for k, v in page_object_models.items())
+        prompt = prompt_builder.build_prompt(test_case, dependent_uc_code, pom_content)
 
         llm_client = OllamaClient(model="llama3.3")
         response = llm_client.generate(prompt, temperature=0.0)
@@ -71,9 +77,12 @@ def main():
         print("---------------------------------")
         print(response)
 
+        javascriptCodeValidator = JavascriptCodeValidator()
+        js_code = javascriptCodeValidator.clean_code(response)
+
         # Save to a file
         with open(os.path.join(output_path, use_case_name + ".js"), "a") as f:
-            f.write(response)
+            f.write(js_code)
 
 if __name__ == "__main__":
     main()

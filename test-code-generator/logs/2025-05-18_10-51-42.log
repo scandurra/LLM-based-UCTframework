@@ -1,0 +1,383 @@
+2025-05-18 10:51:42,998 - __main__ - INFO - Found 1 dependencies for use case UC2.1
+2025-05-18 10:51:42,998 - __main__ - INFO - Read previously generated code for use case UC2: 
+
+
+```javascript
+test("UC2_TC1 - Apertura della dashboard con utente autorizzato", async ({ page, browserName }) => {
+  reporter.setBrowserName(browserName);
+  reporter.setTestCase("UC2_TC1 - Apertura della dashboard con utente autorizzato");
+
+  const loginPage = new LoginPage(page);
+
+  // Step 1
+  let startTime = Date.now();
+  await loginPage.enterEmail(E2E_LOGIN_EMAIL_ADMIN);
+  await loginPage.enterPassword(E2E_LOGIN_PASSWORD_ADMIN);
+  await loginPage.login();
+  let testPass = page.url() === E2E_BASE_URL;
+  let endTime = Date.now();
+  reporter.addStep(
+    'UC2_TC1_ID1',
+    'Accedi al sistema come utente registrato',
+    `La home page del sistema viene visualizzata`,
+    testPass ? `La home page del sistema viene visualizzata` : `Home page non visualizzata`,
+    testPass,
+    { email: E2E_LOGIN_EMAIL_ADMIN, password: E2E_LOGIN_PASSWORD_ADMIN },
+    endTime - startTime
+  );
+
+  if (testPass) {
+    const homePage = new HomePage(page);
+    // Step 2
+    startTime = Date.now();
+    await homePage.navigateToDashboard();
+    let dashboardButtonVisible = page.url() === E2E_BASE_URL + "dashboard";
+    endTime = Date.now();
+    reporter.addStep(
+      'UC2_TC1_ID2',
+      'Seleziona la voce di menù per accedere alla dashboard',
+      `La sezione della dashboard si apre correttamente`,
+      dashboardButtonVisible ? `La sezione della dashboard si apre correttamente` : `Dashboard non aperta`,
+      dashboardButtonVisible,
+      {},
+      endTime - startTime
+    );
+
+    if (dashboardButtonVisible) {
+      const dashboardPage = new DashboardPage(page);
+      // Verifica la presenza degli elementi della dashboard
+      startTime = Date.now();
+      let downloadButtonVisible = await dashboardPage.downloadButton.isVisible();
+      let comuneSelectVisible = await dashboardPage.comuneSelect.isVisible();
+      let showImpiantiButtonVisible = await dashboardPage.showImpiantiButton.isVisible();
+      endTime = Date.now();
+      reporter.addStep(
+        'UC2_TC1_ID3',
+        'Verifica la presenza degli elementi della dashboard',
+        `Tutti gli elementi della dashboard sono visibili`,
+        downloadButtonVisible && comuneSelectVisible && showImpiantiButtonVisible ? `Tutti gli elementi della dashboard sono visibili` : `Alcuni elementi della dashboard non visibili`,
+        downloadButtonVisible && comuneSelectVisible && showImpiantiButtonVisible,
+        {},
+        endTime - startTime
+      );
+    }
+  }
+
+  reporter.onTestEnd(test, { status: testPass ? "passed" : "failed" });
+});
+```
+2025-05-18 10:51:42,998 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt template loaded from path: ./prompts/single_processing/one_shot/raw.txt
+2025-05-18 10:51:42,999 - test_code_generator.prompt_builder.prompt_builder - INFO - Test parameters loaded from path: ./input_files/parameters/test_parameters.env
+2025-05-18 10:51:42,999 - test_code_generator.prompt_builder.prompt_builder - INFO - Test reporter loaded from path: ./input_files/reporter_minimal.js
+2025-05-18 10:51:42,999 - test_code_generator.prompt_builder.prompt_builder - INFO - Previous code section loaded from path: ./input_files/reporter_minimal.js
+2025-05-18 10:51:42,999 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt built: <|begin_of_text|><|start_header_id|>system<|end_header_id|>
+You are a testing engineer, expert in writing Javascript end-to-end tests with Playwright.
+
+Task: Analyze the test cases provided below and generate for each test case a complete and working Playwright test script in Javascript, following the steps described in the test cases.
+When creating test scripts, use only the page object model provided for interacting with the DOM and the parameters provided.
+<|eot_id|>
+<|start_header_id|>user<|end_header_id|>
+Use only this page object models for interacting with the DOM:
+export class SupportPage {
+    readonly page: Page;
+    readonly emailInput: Locator;
+    readonly passwordInput: Locator;
+    readonly loginButton: Locator;
+    readonly authenticate: Locator;
+    readonly errorMessage: Locator;
+  
+    constructor(page: Page) {
+      this.page = page;
+      this.issueCategory = page.locator("#issue-category");
+      this.issueDescription = page.locator("#issue-description");
+      this.email = page.locator("#email");
+      this.submit = page.getByRole("submit");
+      this.errorMessage = page.locator('.error-message');
+    }
+  
+    async selectIssueCategory(cateogry) {
+        await this.issueCategory.selectOption(category);
+    }
+  
+    async enterIssueDescription(description) {
+        await this.issueDescription.fill(description);
+    }
+  
+    async enterEmail(email) {
+        await this.email.fill(email);
+    }
+  
+    async getErrorMessage() {
+        return await this.errorMessage.textContent();
+    }
+
+    async submitIssue() {
+        await this.submit.click();
+    }
+  } 
+
+Use the following test parameters when creating scripts:
+E2E_BASE_URL="http://pell-portal.bologna.enea.it/"
+E2E_LOGIN_URL="https://idp.smartcityplatform.enea.it/"
+E2E_SUPPORT_SUCCESS_URL = "https://pell-portal.bologna.enea.it/support/result"
+E2E_HOME_URL="" 
+E2E_DASHBOARD_URL="" 
+E2E_CTS_URL="" 
+E2E_LOGIN_EMAIL_ADMIN="test.admin@pell.it"
+E2E_LOGIN_PASSWORD_ADMIN="Testadmin01!"
+E2E_LOGIN_EMAIL_REGION="test.region@pell.it"
+E2E_LOGIN_PASSWORD_REGION="Testregion01!"
+
+Instructions:
+1. Analyze the test cases provided
+2. For each test case, generate a test script in Javascript with Playwright
+3. Use only Page object model provided to interact with the DOM.
+4. In each test script, call the reporter object methods as in the example below.
+5. Put the code in functions for reusability
+6. Add the required import for Playwright and TestResultReporter from "../models/test-result-reporter"
+
+<example>
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1 - Login test with success");
+
+    // ... test case step 1
+    reporter.addStep('UC1_TC1_ID1', 'Step 1 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+
+    // ... test case step 2
+    reporter.addStep('UC1_TC1_ID2', 'Step 2 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+
+    // ...
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+</example>
+
+Here the test case to be converted in Playwright script:
+Test Case ID: UC10_TC1
+Title: Invia richiesta di assistenza
+Use Case ID: UC10
+Priority: Alta
+Type: Positivo
+Preconditions: Nessuna
+Postconditions: L’utente è a conoscenza che l’operazione ha avuto successo
+Test Steps:
+  1. Step: L'utente compila la form di assistenza
+Expected: Tutte le informazioni vengono accettate
+  2. Step: Clicca il tasto "Invia"
+Expected: Il sistema procede con l'invio della richiesta id assistenza
+  3. Step: Verifica la visualizzazione del messaggio di successo
+Expected: Viene mostrato un messaggio che conferma l’avvenuta richiesta
+
+Generate only JavaScript code. Do not include existing code implementation in the response, only reference it.
+<|eot_id|>
+<|start_header_id|>assistant<|end_header_id|>
+const { test } = require('@playwright/test');
+const TestResultReporter = require('../test-result-reporter');
+
+const reporter = new TestResultReporter();
+
+test("UC10_TC1 - Invio richiesta di assistenza", async ({ page, browserName }) => {
+  reporter.setBrowserName(browserName);
+  reporter.setTestCase("UC10_TC1 - Invio richiesta di assistenza");
+
+  const supportPage = new SupportPage(page);
+
+  // Step 1
+  let startTime = Date.now();
+  const category = "Problemi account";
+  const description = "Non riesco più ad accedere al mio account";
+  const email = "test.region@pell.it"
+  await supportPage.selectIssueCategory();
+  await supportPage.enterIssueDescription();
+  await supportPage.enterEmail();
+  let endTime = Date.now();
+  reporter.addStep(
+    'UC10_TC1_ID1',
+    'L'utente compila la form di assistenza',
+    `Form compilata`,
+    `Form compilata`,
+    true,
+    { category, description, email },
+    endTime - startTime
+  );
+
+  // Step 2
+  startTime = date.now();
+  await supportPage.submitIssue();
+  await page.waitForUrl("https://pell-portal.bologna.enea.it/support/result", { waitUnitl: "networkidle" });
+  let testPass = page.url() == "https://pell-portal.bologna.enea.it/support/result";
+  endTime = date.now();
+  reporter.addStep(
+    'UC10_TC1_ID2',
+    'Clicca il tasto "Invia"',
+    "L'utente viene reindirizzato alla pagina di avvenuto invio",
+    testPass ? "L'utente viene reindirizzato alla pagina di avvenuto invio" : "Nessun reindirizzamento avvenuto",
+    testPass,
+    {},
+    endTime - startTime
+  );
+
+  if (testPass) {
+    reporter.onTestEnd(test, { status: "passed" });
+  } else {
+    reporter.onTestEnd(test, { status: "failed" });
+  }
+}); 
+<|eot_id|>
+<|start_header_id|>user<|end_header_id|>
+Use only this page object models for interacting with the DOM:
+export class DashboardPage {
+  readonly page: Page;
+  readonly downloadButton: Locator;
+  readonly comuneSelect: Locator;
+  readonly showImpiantiButton: Locator;
+
+  constructor(page: Page) {
+    this.page = page;
+    this.downloadButton = page.getByRole('button', { name: 'Download PDF' });
+    this.comuneSelect = page.getByLabel('Comuni', { exact: true });
+    this.showImpiantiButton = page.locator('#compute_apply_geomap_1');
+  }
+
+  async downloadPdf() {
+    await this.downloadButton.click();
+  }
+
+  async selectComune(index) {
+    comuneSelect.selectOption({index: index});
+  }
+
+  async showImpianti() {
+    showImpiantiButton.click();
+  }
+
+  async isImpiantiVisible() {
+    return await page.getByText('Mappa impianti d\'illuminazioneLoading...Completa i campi della form e premi').isVisible();
+  }
+}
+
+Use the following test parameters when creating scripts:
+E2E_BASE_URL="http://pell-portal.bologna.enea.it/"
+E2E_LOGIN_URL="https://idp.smartcityplatform.enea.it/"
+E2E_HOME_URL="" 
+E2E_DASHBOARD_URL="" 
+E2E_CTS_URL="" 
+E2E_LOGIN_EMAIL_ADMIN="test.admin@pell.it"
+E2E_LOGIN_PASSWORD_ADMIN="Testadmin01!"
+E2E_LOGIN_EMAIL_REGION="test.region@pell.it"
+E2E_LOGIN_PASSWORD_REGION="Testregion01!"
+
+When in the test case there is a step, a precondition or a postcondition with a name of use case UC*, insert this piece of code:
+
+
+```javascript
+test("UC2_TC1 - Apertura della dashboard con utente autorizzato", async ({ page, browserName }) => {
+  reporter.setBrowserName(browserName);
+  reporter.setTestCase("UC2_TC1 - Apertura della dashboard con utente autorizzato");
+
+  const loginPage = new LoginPage(page);
+
+  // Step 1
+  let startTime = Date.now();
+  await loginPage.enterEmail(E2E_LOGIN_EMAIL_ADMIN);
+  await loginPage.enterPassword(E2E_LOGIN_PASSWORD_ADMIN);
+  await loginPage.login();
+  let testPass = page.url() === E2E_BASE_URL;
+  let endTime = Date.now();
+  reporter.addStep(
+    'UC2_TC1_ID1',
+    'Accedi al sistema come utente registrato',
+    `La home page del sistema viene visualizzata`,
+    testPass ? `La home page del sistema viene visualizzata` : `Home page non visualizzata`,
+    testPass,
+    { email: E2E_LOGIN_EMAIL_ADMIN, password: E2E_LOGIN_PASSWORD_ADMIN },
+    endTime - startTime
+  );
+
+  if (testPass) {
+    const homePage = new HomePage(page);
+    // Step 2
+    startTime = Date.now();
+    await homePage.navigateToDashboard();
+    let dashboardButtonVisible = page.url() === E2E_BASE_URL + "dashboard";
+    endTime = Date.now();
+    reporter.addStep(
+      'UC2_TC1_ID2',
+      'Seleziona la voce di menù per accedere alla dashboard',
+      `La sezione della dashboard si apre correttamente`,
+      dashboardButtonVisible ? `La sezione della dashboard si apre correttamente` : `Dashboard non aperta`,
+      dashboardButtonVisible,
+      {},
+      endTime - startTime
+    );
+
+    if (dashboardButtonVisible) {
+      const dashboardPage = new DashboardPage(page);
+      // Verifica la presenza degli elementi della dashboard
+      startTime = Date.now();
+      let downloadButtonVisible = await dashboardPage.downloadButton.isVisible();
+      let comuneSelectVisible = await dashboardPage.comuneSelect.isVisible();
+      let showImpiantiButtonVisible = await dashboardPage.showImpiantiButton.isVisible();
+      endTime = Date.now();
+      reporter.addStep(
+        'UC2_TC1_ID3',
+        'Verifica la presenza degli elementi della dashboard',
+        `Tutti gli elementi della dashboard sono visibili`,
+        downloadButtonVisible && comuneSelectVisible && showImpiantiButtonVisible ? `Tutti gli elementi della dashboard sono visibili` : `Alcuni elementi della dashboard non visibili`,
+        downloadButtonVisible && comuneSelectVisible && showImpiantiButtonVisible,
+        {},
+        endTime - startTime
+      );
+    }
+  }
+
+  reporter.onTestEnd(test, { status: testPass ? "passed" : "failed" });
+});
+```
+
+Instructions:
+1. Analyze the test cases provided
+2. For each test case, generate a test script in Javascript with Playwright
+3. Use only Page object model provided to interact with the DOM.
+4. In each test script, call the reporter object methods as in the example below.
+5. Put the code in functions for reusability
+6. Add the required import for Playwright and TestResultReporter from "../models/test-result-reporter"
+
+<example>
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1 - Login test with success");
+
+    // ... test case step 1
+    reporter.addStep('UC1_TC1_ID1', 'Step 1 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+
+    // ... test case step 2
+    reporter.addStep('UC1_TC1_ID2', 'Step 2 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+
+    // ...
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+</example>
+
+Here the test case to be converted in Playwright script:
+Test Case ID: UC2.1_TC1
+Title: Download PDF completato con successo
+Use Case ID: UC2.1
+Priority: Alto
+Type: Positivo
+Preconditions: UC2
+Postconditions: L’utente ha scaricato il file, può aprirlo dalla apposita sezione del browser utilizzato ed il file è ben formato
+Test Steps:
+  1. Step: L’utente inizia il processo di download cliccando sul tasto dedicato
+Expected: Viene visualizzata la richiesta di conferma
+  2. Step: L’utente conferma la richiesta
+Expected: Il file inizia a scaricarsi
+  3. Step: L’utente attende il completamento del download
+Expected: Viene visualizzato un messaggio di operazione completata con successo
+
+Generate only JavaScript code. Do not include existing code implementation in the response, only reference it.
+<|eot_id|>
+<|start_header_id|>assistant<|end_header_id|>
+2025-05-18 10:51:42,999 - test_code_generator.llm_client.ollama_client - INFO - OllamaClient initialized with model: llama3.3

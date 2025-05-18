@@ -1,11 +1,12 @@
 import logging
 from pathlib import Path
 from test_code_generator.prompt_builder.prompt_template import PromptTemplate
+from test_code_generator.prompt_builder.page_object_model_processor import PageObjectModelProcessor
 
 logger = logging.getLogger(__name__)
 
 class PromptBuilder:
-    def __init__(self, template_path: str, test_parameters_path: str, pom_folder_path: str, reporter_file_path: str) -> None:
+    def __init__(self, template_path: str, test_parameters_path: str, reporter_file_path: str) -> None:
         """
         Initialize the prompt builder and loads the template
         :param template_path: path of the prompt template to load
@@ -13,21 +14,18 @@ class PromptBuilder:
         """
         self.template_path = template_path
         self.test_parameters_path = test_parameters_path
-        self.pom_folder_path = pom_folder_path
         self.reporter_file_path = reporter_file_path
 
         self.prompt_template = None
         self.test_parameters = None
-        self.pom_file = None
         self.reporter_file = None
 
         self.__load_prompt_template()
         self.__load_test_parameters()
-        self.__load_pom_files()
         self.__load_reporter_file()
         self.__load_previous_code_section_file()
 
-    def build_prompt(self, test_cases, dependent_uc_code) -> str:
+    def build_prompt(self, test_cases, dependent_uc_code, pom_content) -> str:
         # building previous code section
         
         previousCodeSection = ""
@@ -40,7 +38,7 @@ class PromptBuilder:
         placeholder_values = {
             "test_cases": test_cases,
             "test_parameters": self.test_parameters,
-            "pom": self.pom_file,
+            "pom": pom_content,
             "existing_code": self.reporter_file,
             "prvious_code_section": previousCodeSection
         }
@@ -65,25 +63,6 @@ class PromptBuilder:
             with open(self.test_parameters_path, "r") as f:
                 self.test_parameters = f.read()
                 logger.info(f"Test parameters loaded from path: {self.test_parameters_path}")
-        except FileNotFoundError as e:
-            logger.exception(e)
-            raise
-
-    def __load_pom_files(self) -> None:
-        try:
-            directory = Path(self.pom_folder_path)
-
-            self.pom_file = ""
-            for file in directory.iterdir():
-                if file.is_file():
-                    with open(file, 'r') as f:
-                        content = f.read()
-                        logger.info(f"Read pom file {file.name}: \n{content}")
-                        self.pom_file += content
-                        
-            # with open(self.pom_folder_path, "r") as f:
-            #     self.pom_file = f.read()
-                
         except FileNotFoundError as e:
             logger.exception(e)
             raise
