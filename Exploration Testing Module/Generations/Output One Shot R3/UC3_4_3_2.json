@@ -1,0 +1,186 @@
+[
+  {
+    "test_case_id": "UC3.4.3.2_TC1",
+    "title": "Modifica dati generali con informazioni valide",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione PlSystemGeneralData utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Compila il form con informazioni desiderate e valide",
+        "expected": "Il sistema accetta le modifiche"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Viene visualizzato un messaggio di conferma dell’operazione"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.2"
+  },
+  {
+    "test_case_id": "UC3.4.3.2_TC2",
+    "title": "Modifica dati generali con informazioni non valide",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione PlSystemGeneralData utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Compila il form con informazioni non valide (es. dati mancanti o formati errati)",
+        "expected": "Il sistema segnala un errore"
+      },
+      {
+        "step": "Tenta di applicare le modifiche con l’apposito tasto",
+        "expected": "Viene visualizzato un messaggio di errore e le modifiche non vengono applicate"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.2"
+  },
+  {
+    "test_case_id": "UC3.4.3.2_TC3",
+    "title": "Modifica dati generali senza apportare modifiche",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema non applica alcuna modifica e visualizza un messaggio di conferma",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione PlSystemGeneralData utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Non apportare alcuna modifica ai dati",
+        "expected": "Il sistema non segnala errori"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Viene visualizzato un messaggio di conferma senza applicare modifiche"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.2"
+  },
+  {
+    "test_case_id": "UC3.4.3.2_TC4",
+    "title": "Modifica dati generali con caratteri speciali",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema accetta o normalizza i caratteri speciali",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione PlSystemGeneralData utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci caratteri speciali nei campi di testo (es. @, #, $)",
+        "expected": "Il sistema accetta o normalizza i caratteri"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Le modifiche vengono applicate correttamente"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.2"
+  },
+  {
+    "test_case_id": "UC3.4.3.2_TC5",
+    "title": "Modifica dati generali con utente non autorizzato",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema nega l’accesso e richiede autenticazione",
+    "test_steps": [
+      {
+        "step": "Tenta di accedere alla sezione PlSystemGeneralData senza essere loggato",
+        "expected": "Il sistema reindirizza alla pagina di login"
+      },
+      {
+        "step": "Inserisci credenziali non valide o non esistenti",
+        "expected": "Il sistema segnala un errore di autenticazione"
+      },
+      {
+        "step": "Tenta di applicare le modifiche con l’apposito tasto",
+        "expected": "L’accesso è negato e viene richiesta l’autenticazione"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.2"
+  },
+  {
+    "test_case_id": "UC3.4.3.2_TC6",
+    "title": "Modifica dati generali con campi obbligatori vuoti",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema segnala un errore e non applica le modifiche",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione PlSystemGeneralData utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Lascia vuoti i campi obbligatori",
+        "expected": "Il sistema segnala un errore"
+      },
+      {
+        "step": "Tenta di applicare le modifiche con l’apposito tasto",
+        "expected": "Viene visualizzato un messaggio di errore e le modifiche non vengono applicate"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.2"
+  },
+  {
+    "test_case_id": "UC3.4.3.2_TC7",
+    "title": "Modifica dati generali con dati troppo lunghi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema tronca o segnala un errore per i dati troppo lunghi",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione PlSystemGeneralData utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci dati troppo lunghi nei campi di testo",
+        "expected": "Il sistema tronca o segnala un errore per i dati troppo lunghi"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Le modifiche vengono applicate correttamente o viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.2"
+  },
+  {
+    "test_case_id": "UC3.4.3.2_TC8",
+    "title": "Modifica dati generali con dati non coerenti",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema segnala un errore o richiede conferma per i dati non coerenti",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione PlSystemGeneralData utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci dati non coerenti (es. data di fine precedente alla data di inizio)",
+        "expected": "Il sistema segnala un errore o richiede conferma"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Viene visualizzato un messaggio di errore o richiesta di conferma e le modifiche non vengono applicate"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.2"
+  }
+]

@@ -1,0 +1,97 @@
+[
+  {
+    "test_case_id": "UC4_TC1",
+    "title": "Apertura modulo SAVE con utente autorizzato",
+    "preconditions": "UC1",
+    "postconditions": "Il modulo SAVE è visualizzato correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione del menù laterale di sinistra relativa al modulo SAVE",
+        "expected": "La sezione del modulo SAVE è visualizzata"
+      },
+      {
+        "step": "Seleziona il modulo SAVE",
+        "expected": "Il modulo SAVE si apre correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC4"
+  },
+  {
+    "test_case_id": "UC4_TC2",
+    "title": "Apertura modulo SAVE con utente non autorizzato",
+    "preconditions": "",
+    "postconditions": "Il sistema visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione del menù laterale di sinistra relativa al modulo SAVE senza autorizzazione",
+        "expected": "Il sistema richiede l'autorizzazione"
+      },
+      {
+        "step": "Inserisci credenziali non valide",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC4"
+  },
+  {
+    "test_case_id": "UC4_TC3",
+    "title": "Apertura modulo SAVE con dati mancanti",
+    "preconditions": "UC1",
+    "postconditions": "Il sistema visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione del menù laterale di sinistra relativa al modulo SAVE",
+        "expected": "La sezione del modulo SAVE è visualizzata"
+      },
+      {
+        "step": "Non selezionare il modulo SAVE",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC4"
+  },
+  {
+    "test_case_id": "UC4_TC4",
+    "title": "Apertura modulo SAVE con SQL injection",
+    "preconditions": "",
+    "postconditions": "Il sistema visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione del menù laterale di sinistra relativa al modulo SAVE",
+        "expected": "La sezione del modulo SAVE è visualizzata"
+      },
+      {
+        "step": "Inserisci una query SQL malevola",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC4"
+  },
+  {
+    "test_case_id": "UC4_TC5",
+    "title": "Apertura modulo SAVE con caratteri speciali",
+    "preconditions": "UC1",
+    "postconditions": "Il sistema visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione del menù laterale di sinistra relativa al modulo SAVE",
+        "expected": "La sezione del modulo SAVE è visualizzata"
+      },
+      {
+        "step": "Inserisci caratteri speciali nel campo di input",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC4"
+  }
+]

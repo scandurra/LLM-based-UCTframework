@@ -1,0 +1,137 @@
+[
+  {
+    "test_case_id": "UC3.4.3.3_TC1",
+    "title": "Modifica POD sezione anagrafica con dati validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD è selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati di anagrafica",
+        "expected": "Il tab è visualizzato correttamente"
+      },
+      {
+        "step": "Compila il form con le informazioni desiderate",
+        "expected": "Il form viene compilato correttamente"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Le modifiche vengono applicate correttamente e appare un messaggio di conferma"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.3"
+  },
+  {
+    "test_case_id": "UC3.4.3.3_TC2",
+    "title": "Modifica POD sezione anagrafica con dati non validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD è selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati di anagrafica",
+        "expected": "Il tab è visualizzato correttamente"
+      },
+      {
+        "step": "Compila il form con informazioni non valide",
+        "expected": "Il form non viene compilato correttamente e appare un messaggio di errore"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Le modifiche non vengono applicate e appare un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.3"
+  },
+  {
+    "test_case_id": "UC3.4.3.3_TC3",
+    "title": "Modifica POD sezione anagrafica con campi obbligatori vuoti",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD è selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati di anagrafica",
+        "expected": "Il tab è visualizzato correttamente"
+      },
+      {
+        "step": "Lascia vuoti i campi obbligatori e compila gli altri campi",
+        "expected": "Il form non viene compilato correttamente e appare un messaggio di errore"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Le modifiche non vengono applicate e appare un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.3"
+  },
+  {
+    "test_case_id": "UC3.4.3.3_TC4",
+    "title": "Modifica POD sezione anagrafica con dati di lunghezza eccessiva",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD è selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati di anagrafica",
+        "expected": "Il tab è visualizzato correttamente"
+      },
+      {
+        "step": "Inserisci dati di lunghezza eccessiva nei campi",
+        "expected": "Il form non viene compilato correttamente e appare un messaggio di errore"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Le modifiche non vengono applicate e appare un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.3"
+  },
+  {
+    "test_case_id": "UC3.4.3.3_TC5",
+    "title": "Modifica POD sezione anagrafica con caratteri speciali",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD è selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati di anagrafica",
+        "expected": "Il tab è visualizzato correttamente"
+      },
+      {
+        "step": "Inserisci caratteri speciali nei campi",
+        "expected": "Il form non viene compilato correttamente e appare un messaggio di errore"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Le modifiche non vengono applicate e appare un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.3"
+  }
+]

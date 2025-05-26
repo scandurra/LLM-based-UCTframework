@@ -1,0 +1,20 @@
+[
+  {
+    "Id": "UC3.2",
+    "Title": "Ricerca scheda censimento (parte di UC3: Gestione schede censimento)",
+    "Summary": "Permette la ricerca tra le schede censimento",
+    "Actor": [
+      "Regione",
+      "Sindaco",
+      "Fornitore"
+    ],
+    "Precondition": "UC3",
+    "Postcondition": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "Base_sequence": [
+      "L’utente visualizza la barra di ricerca relativa alle schede censimento"
+    ],
+    "Branch_sequence": [],
+    "Exception_sequence": [],
+    "Note": "no"
+  }
+]

@@ -1,0 +1,457 @@
+📝 PROMPT:
+<|begin_of_text|><|start_header_id|>system<|end_header_id|>
+You are a Quality Assurance expert. Your task is to generate a suite of test cases for each use case provided in JSON format.
+
+
+The output must be in **JSON only**, structured as an array of test case objects, following the example below:
+
+[
+  {
+    "test_case_id": "UC7.2_TC1",
+    "title": "Segnalazione guasto con dati validi e foto allegata",
+    "preconditions": "UC7",
+    "postconditions": "Il sistema registra la segnalazione e notifica il fornitore responsabile",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione segnalazioni guasti",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Compila il modulo inserendo posizione, descrizione e carica una foto",
+        "expected": "Il modulo viene completato correttamente"
+      },
+      {
+        "step": "Conferma l’invio della segnalazione",
+        "expected": "Il sistema registra la segnalazione e mostra conferma"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC7.2"
+  },
+  ... (other test cases)
+]
+
+Guidelines:
+1) You must not create test cases that can be reproducible on the server side, so you must not generate blocked or disabled account tests, connection error or slow connection tests, maintenance tests, etc.
+2) You should create test cases that can be reproducible on the client side, including SQL injections for a Login use case.
+3) Generate a minimum of 3 test cases per use case, maxmimum of 10 (depending of the needs).
+4) Include both **positive** (success) and **negative** (error, missing input, etc.) tests , boundary conditions(if applicable),
+edge cases(if applicable), security and usability considerations (if applicable, for example in a Login use case you can do the injection test case).
+5) Use unique names for `test_case_id` following the format `UCx_TCy`.
+6) Base your test cases on base_sequence, branch_sequence, exception_sequence, and pre/postconditions.
+7) If in the use case description in JSON has "UCx" as "Precondition" tag, you must put "UCx" in the preconditions field of the test cases.
+
+
+Only return the JSON array. DO NOT explain anything.  
+DO NOT include "```json" or "```" markers.  
+Very importanti, you have to make sure all brackets are correctly opened and closed.
+Follow strictly the guidelines.
+
+Note: Even though the structure is in English, all content inside the fields (titles, steps, etc.) must remain in **Italian**.
+
+<|eot_id|><|start_header_id|>user<|end_header_id|>
+The following is the use case in JSON format, generate different test cases:
+[
+  {
+    "Id": "UC8.2.3",
+    "Title": "Esportazione report energetici (parte di UC8.2: Analisi consumi energetici)",
+    "Summary": "Consente agli utenti autorizzati di esportare i report dei consumi energetici in diversi formati",
+    "Actor": [
+      "Regione",
+      "Fornitore"
+    ],
+    "Precondition": "UC8.2",
+    "Postcondition": "Il file esportato viene scaricato correttamente",
+    "Base_sequence": [
+    "L’utente accede alla sezione analisi consumi",
+    "Seleziona il periodo di interesse e il formato di esportazione (PDF, CSV)",
+    "Avvia l’esportazione e scarica il file"
+    ],
+    "Branch_sequence": [],
+    "Exception_sequence": [],
+    "Note": "no"
+  }
+]
+<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+[
+  {
+    "test_case_id": "UC8.2.3_TC1",
+    "title": "Esportazione report in PDF con dati validi",
+    "preconditions": "UC8.2",
+    "postconditions": "Il file esportato viene scaricato correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione analisi consumi",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un periodo valido e il formato PDF",
+        "expected": "Le selezioni vengono accettate"
+      },
+      {
+        "step": "Avvia l’esportazione",
+        "expected": "Il file PDF viene generato e scaricato"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC8.2.3"
+  },
+  {
+    "test_case_id": "UC8.2.3_TC2",
+    "title": "Esportazione con formato non supportato",
+    "preconditions": "UC8.2",
+    "postconditions": "Il file non viene esportato e viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione analisi consumi",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un formato non previsto (es. .doc)",
+        "expected": "Il sistema mostra un errore di formato non valido"
+      },
+      {
+        "step": "Tenta di avviare l’esportazione",
+        "expected": "L’operazione viene bloccata"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC8.2.3"
+  },
+  {
+    "test_case_id": "UC8.2.3_TC3",
+    "title": "Esportazione CSV con grande quantità di dati",
+    "preconditions": "UC8.2",
+    "postconditions": "Il file esportato viene scaricato correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione analisi consumi",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un intervallo temporale ampio e il formato CSV",
+        "expected": "Il sistema accetta l’intervallo"
+      },
+      {
+        "step": "Avvia l’esportazione",
+        "expected": "Il file CSV viene generato con successo"
+      }
+    ],
+    "test_type": "Prestazione",
+    "priority": "Alta",
+    "use_case_id": "UC8.2.3"
+  },
+  {
+    "test_case_id": "UC8.2.3_TC4",
+    "title": "Esportazione senza selezionare periodo",
+    "preconditions": "UC8.2",
+    "postconditions": "Il file non viene esportato",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione analisi consumi",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Lascia vuoto il campo relativo al periodo",
+        "expected": "Il sistema segnala la mancanza di informazioni"
+      },
+      {
+        "step": "Tenta di avviare l’esportazione",
+        "expected": "La funzione non procede e viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC8.2.3"
+  },
+  {
+    "test_case_id": "UC8.2.3_TC5",
+    "title": "Boundary test: esportazione con date di inizio e fine coincidenti",
+    "preconditions": "UC8.2",
+    "postconditions": "Il file viene esportato con i dati del giorno selezionato",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione analisi consumi",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Imposta come data di inizio e fine la stessa giornata",
+        "expected": "Il sistema accetta la selezione"
+      },
+      {
+        "step": "Avvia l’esportazione",
+        "expected": "Il file viene esportato correttamente"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Alta",
+    "use_case_id": "UC8.2.3"
+  },
+  {
+    "test_case_id": "UC8.2.3_TC6",
+    "title": "Security test: esportazione da parte di utente non autenticato",
+    "preconditions": "UC8.2",
+    "postconditions": "Nessun file viene generato; viene richiesta l’autenticazione",
+    "test_steps": [
+      {
+        "step": "Accedi direttamente alla sezione analisi consumi senza login",
+        "expected": "Il sistema reindirizza alla pagina di login"
+      },
+      {
+        "step": "Tenta di accedere manualmente all’URL di esportazione",
+        "expected": "Accesso negato e richiesta autenticazione"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC8.2.3"
+  },
+  {
+    "test_case_id": "UC8.2.3_TC7",
+    "title": "Edge case: esportazione con caratteri speciali nel nome del file",
+    "preconditions": "UC8.2",
+    "postconditions": "Il file viene salvato con un nome corretto e sicuro",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione analisi consumi",
+        "expected": "La sezione viene caricata correttamente"
+      },
+      {
+        "step": "Immetti un titolo con caratteri speciali (es. consumo@2024!)",
+        "expected": "Il sistema normalizza o rimuove i caratteri non validi"
+      },
+      {
+        "step": "Avvia l’esportazione",
+        "expected": "Il file viene generato con un nome valido"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC8.2.3"
+  },
+  {
+    "test_case_id": "UC8.2.3_TC8",
+    "title": "Esportazione mentre il sistema è in manutenzione",
+    "preconditions": "UC8.2",
+    "postconditions": "Il sistema notifica l’indisponibilità della funzione",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione analisi consumi",
+        "expected": "Viene visualizzato un messaggio di manutenzione"
+      },
+      {
+        "step": "Tenta comunque di esportare un report",
+        "expected": "Il sistema blocca l’operazione e notifica la manutenzione in corso"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC8.2.3"
+  }
+]
+<|eot_id|><|start_header_id|>user<|end_header_id|>
+The following is the use case in JSON format, generate different test cases:
+
+[
+  {
+    "Id": "UC2.6",
+    "Title": "Analisi consumo comune per POD (parte di UC2: Dashboard)",
+    "Summary": "Permette di visualizzare un’analisi per comune dei consumi sulla base di alcuni parametri selezionati",
+    "Actor": [
+      "Comune",
+      "Fornitore"
+    ],
+    "Precondition": "UC2",
+    "Postcondition": "L’utente visualizza le informazioni consultando i grafici",
+    "Base_sequence": [
+      "L’utente scorre nella pagina fino a visualizzare la sezione dedicata al consumo",
+      "Selezionato il comune, è possibile eseguire un’analisi più puntuale andando a specificare POD, pannello elettrico, periodo e tipo di potenza analizzata"
+    ],
+    "Branch_sequence": [],
+    "Exception_sequence": [],
+    "Note": "no"
+  }
+]
+
+<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+📥 RESPONSE:
+[
+  {
+    "test_case_id": "UC2.6_TC1",
+    "title": "Visualizzazione analisi consumo comune con parametri validi",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza le informazioni consultando i grafici",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e scorri fino alla sezione di analisi dei consumi",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un comune, POD, pannello elettrico, periodo e tipo di potenza",
+        "expected": "I parametri vengono accettati e l’analisi avviata"
+      },
+      {
+        "step": "Visualizza i risultati dell’analisi",
+        "expected": "I grafici e le informazioni sono visualizzati correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC2",
+    "title": "Selezione di comune non valido",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema segnala l’errore e richiede la selezione di un comune valido",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e scorri fino alla sezione di analisi dei consumi",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci un comune non esistente o non valido",
+        "expected": "Il sistema segnala l’errore e richiede una nuova selezione"
+      },
+      {
+        "step": "Tenta di avviare l’analisi senza correggere il comune",
+        "expected": "L’operazione non procede e viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC3",
+    "title": "Analisi con dati non disponibili per il periodo selezionato",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema informa dell’indisponibilità dei dati",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e scorri fino alla sezione di analisi dei consumi",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un comune, POD, pannello elettrico e un periodo per cui non ci sono dati disponibili",
+        "expected": "Il sistema avvisa dell’assenza di dati"
+      },
+      {
+        "step": "Tenta di visualizzare l’analisi",
+    "expected": "Viene mostrato un messaggio che informa dell’indisponibilità dei dati per il periodo selezionato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC4",
+    "title": "Selezione multipla di comuni",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema gestisce la selezione multipla e visualizza i dati aggregati",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e scorri fino alla sezione di analisi dei consumi",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona più comuni",
+        "expected": "Il sistema accetta la selezione multipla"
+      },
+      {
+        "step": "Avvia l’analisi",
+        "expected": "I dati vengono aggregati e visualizzati correttamente per tutti i comuni selezionati"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC5",
+    "title": "Boundary test: selezione del periodo di un solo giorno",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema visualizza i dati per il giorno selezionato",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e scorri fino alla sezione di analisi dei consumi",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un comune, POD, pannello elettrico e un periodo di un solo giorno",
+        "expected": "Il sistema accetta la selezione"
+      },
+      {
+        "step": "Avvia l’analisi",
+        "expected": "I dati vengono visualizzati correttamente per il giorno selezionato"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Alta",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC6",
+    "title": "Security test: accesso non autorizzato alla sezione di analisi",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema nega l’accesso e richiede autenticazione",
+    "test_steps": [
+      {
+        "step": "Tenta di accedere direttamente alla sezione di analisi dei consumi senza essere loggato",
+        "expected": "Il sistema reindirizza alla pagina di login"
+      },
+      {
+        "step": "Inserisci credenziali non valide",
+        "expected": "Il sistema segnala l’errore e richiede nuovamente le credenziali"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC7",
+    "title": "Edge case: utilizzo di browser non supportato",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema informa dell’incompatibilità del browser",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard utilizzando un browser non supportato",
+        "expected": "Il sistema visualizza un messaggio di incompatibilità"
+      },
+      {
+        "step": "Tenta di navigare nella sezione di analisi dei consumi",
+        "expected": "Le funzionalità potrebbero non essere completamente disponibili o funzionanti correttamente"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC8",
+    "title": "Performance test: carico pesante di utenti simultanei",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema mantiene le prestazioni anche con un alto numero di utenti",
+    "test_steps": [
+      {
+        "step": "Simula un accesso contemporaneo di molti utenti alla sezione di analisi dei consumi",
+        "expected": "Il sistema risponde senza rallentamenti significativi"
+      },
+      {
+        "step": "Verifica le prestazioni del sistema in termini di tempo di caricamento e risposta",
+        "expected": "I tempi di risposta rimangono accettabili anche con carico pesante"
+      }
+    ],
+    "test_type": "Prestazione",
+    "priority": "Alta",
+    "use_case_id": "UC2.6"
+  }
+]
+
+⏱️ EXECUTION TIME: 511.56 seconds

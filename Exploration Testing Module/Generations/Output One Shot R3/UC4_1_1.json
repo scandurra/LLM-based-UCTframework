@@ -1,0 +1,140 @@
+[
+  {
+    "test_case_id": "UC4.1.1_TC1",
+    "title": "Aggiunta impianto con dati validi",
+    "preconditions": "UC4.1",
+    "postconditions": "L’utente visualizza un messaggio di conferma",
+    "test_steps": [
+      {
+        "step": "Clicca sul tasto dedicato all’aggiunta di un singolo impianto",
+        "expected": "La sezione per l’inserimento dei dati dell’impianto viene visualizzata"
+      },
+      {
+        "step": "Inserisci il nome e seleziona il comune tra quelli disponibili",
+        "expected": "I dati vengono accettati e salvati"
+      },
+      {
+        "step": "Conferma l’aggiunta dell’impianto",
+        "expected": "Viene visualizzato un messaggio di conferma dell’avvenuta aggiunta"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC4.1.1"
+  },
+  {
+    "test_case_id": "UC4.1.1_TC2",
+    "title": "Aggiunta impianto con nome già esistente",
+    "preconditions": "UC4.1",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Clicca sul tasto dedicato all’aggiunta di un singolo impianto",
+        "expected": "La sezione per l’inserimento dei dati dell’impianto viene visualizzata"
+      },
+      {
+        "step": "Inserisci un nome già utilizzato e seleziona il comune",
+        "expected": "Il sistema segnala che il nome è già in uso"
+      },
+      {
+        "step": "Tenta di confermare l’aggiunta dell’impianto",
+        "expected": "L’operazione viene bloccata e viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC4.1.1"
+  },
+  {
+    "test_case_id": "UC4.1.1_TC3",
+    "title": "Aggiunta impianto senza selezionare comune",
+    "preconditions": "UC4.1",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Clicca sul tasto dedicato all’aggiunta di un singolo impianto",
+        "expected": "La sezione per l’inserimento dei dati dell’impianto viene visualizzata"
+      },
+      {
+        "step": "Inserisci il nome senza selezionare il comune",
+        "expected": "Il sistema richiede la selezione del comune"
+      },
+      {
+        "step": "Tenta di confermare l’aggiunta dell’impianto",
+        "expected": "L’operazione viene bloccata e viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC4.1.1"
+  },
+  {
+    "test_case_id": "UC4.1.1_TC4",
+    "title": "Annullamento aggiunta impianto",
+    "preconditions": "UC4.1",
+    "postconditions": "L’utente visualizza un messaggio di annullamento",
+    "test_steps": [
+      {
+        "step": "Clicca sul tasto dedicato all’aggiunta di un singolo impianto",
+        "expected": "La sezione per l’inserimento dei dati dell’impianto viene visualizzata"
+      },
+      {
+        "step": "Inserisci il nome e seleziona il comune",
+        "expected": "I dati vengono accettati"
+      },
+      {
+        "step": "Annulla l’aggiunta dell’impianto",
+        "expected": "Viene visualizzato un messaggio di annullamento dell’operazione"
+      }
+    ],
+    "test_type": "Branch",
+    "priority": "Bassa",
+    "use_case_id": "UC4.1.1"
+  },
+  {
+    "test_case_id": "UC4.1.1_TC5",
+    "title": "Aggiunta impianto con caratteri speciali nel nome",
+    "preconditions": "UC4.1",
+    "postconditions": "L’utente visualizza un messaggio di conferma o di errore",
+    "test_steps": [
+      {
+        "step": "Clicca sul tasto dedicato all’aggiunta di un singolo impianto",
+        "expected": "La sezione per l’inserimento dei dati dell’impianto viene visualizzata"
+      },
+      {
+        "step": "Inserisci il nome con caratteri speciali e seleziona il comune",
+        "expected": "Il sistema accetta o rifiuta i caratteri speciali"
+      },
+      {
+        "step": "Conferma l’aggiunta dell’impianto",
+        "expected": "Viene visualizzato un messaggio di conferma o di errore a seconda della gestione dei caratteri speciali"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC4.1.1"
+  },
+  {
+    "test_case_id": "UC4.1.1_TC6",
+    "title": "Aggiunta impianto senza autorizzazione",
+    "preconditions": "UC4.1",
+    "postconditions": "L’utente visualizza un messaggio di accesso negato",
+    "test_steps": [
+      {
+        "step": "Tenta di accedere alla funzione di aggiunta impianto senza essere loggato o senza autorizzazione",
+        "expected": "Il sistema richiede l’autenticazione o mostra un messaggio di accesso negato"
+      },
+      {
+        "step": "Inserisci le credenziali di accesso non valide o non autorizzate",
+        "expected": "Il sistema blocca l’accesso e visualizza un messaggio di errore"
+      },
+      {
+        "step": "Tenta di forzare l’accesso alla funzione",
+        "expected": "Il sistema mantiene la protezione e non consente l’accesso non autorizzato"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC4.1.1"
+  }
+]

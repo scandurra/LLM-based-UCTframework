@@ -1,0 +1,101 @@
+[
+  {
+    "test_case_id": "UC2.4_TC1",
+    "title": "Selezione di comuni e KPI validi per benchmarking",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza il risultato della analisi su un grafico",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione dashboard e seleziona i comuni desiderati",
+        "expected": "I comuni vengono aggiunti correttamente alla lista"
+      },
+      {
+        "step": "Seleziona un KPI valido tra le opzioni disponibili",
+        "expected": "Il KPI viene selezionato e visualizzato nel form"
+      },
+      {
+        "step": "Conferma la richiesta cliccando sul pulsante di esecuzione",
+        "expected": "Il sistema genera il grafico con i dati dei comuni selezionati"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC2",
+    "title": "Selezione di nessun comune per il benchmarking",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema segnala l’errore e richiede la selezione dei comuni",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione dashboard senza selezionare i comuni",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      },
+      {
+        "step": "Tenta di confermare la richiesta senza comuni selezionati",
+        "expected": "Il sistema non esegue l’azione e richiede la selezione dei comuni"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC3",
+    "title": "Selezione di un KPI non valido per il benchmarking",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema segnala l’errore e richiede la selezione di un KPI valido",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione dashboard e seleziona un KPI non disponibile",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      },
+      {
+        "step": "Tenta di confermare la richiesta con il KPI non valido",
+        "expected": "Il sistema non esegue l’azione e richiede la selezione di un KPI valido"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC4",
+    "title": "Benchmarking con molti comuni selezionati",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema visualizza il grafico con i dati dei comuni selezionati",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione dashboard e seleziona un numero elevato di comuni",
+        "expected": "I comuni vengono aggiunti correttamente alla lista"
+      },
+      {
+        "step": "Seleziona un KPI valido e conferma la richiesta",
+        "expected": "Il sistema genera il grafico con i dati dei comuni selezionati"
+      }
+    ],
+    "test_type": "Prestazione",
+    "priority": "Alta",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC5",
+    "title": "Selezione di un solo comune per il benchmarking",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema visualizza il grafico con i dati del comune selezionato",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione dashboard e seleziona un solo comune",
+        "expected": "Il comune viene aggiunto correttamente alla lista"
+      },
+      {
+        "step": "Seleziona un KPI valido e conferma la richiesta",
+        "expected": "Il sistema genera il grafico con i dati del comune selezionato"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Media",
+    "use_case_id": "UC2.4"
+  }
+]

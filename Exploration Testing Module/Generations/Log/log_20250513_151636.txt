@@ -1,0 +1,269 @@
+📝 PROMPT:
+<|begin_of_text|><|start_header_id|>system<|end_header_id|>
+You are a Quality Assurance expert. Your task is to generate a suite of test cases for each use case provided in JSON format.
+
+The output must be in **JSON only**, structured as an array of test case objects, following the example below:
+
+[
+  {
+    "test_case_id": "UC7.2_TC1",
+    "title": "Segnalazione guasto con dati validi e foto allegata",
+    "preconditions": "UC7",
+    "postconditions": "Il sistema registra la segnalazione e notifica il fornitore responsabile",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione segnalazioni guasti",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Compila il modulo inserendo posizione, descrizione e carica una foto",
+        "expected": "Il modulo viene completato correttamente"
+      },
+      {
+        "step": "Conferma l’invio della segnalazione",
+        "expected": "Il sistema registra la segnalazione e mostra conferma"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC7.2"
+  },
+  ... (other test cases)
+]
+
+Guidelines:
+- Generate a minimum of 3 test cases per use case, maxmimum of 10 (depending of the needs)-
+- Include both **positive** (success) and **negative** (error, missing input, etc.) tests , boundary conditions(if applicable),
+edge cases(if applicable), security and usability considerations (if applicable).
+- Use unique names for `test_case_id` following the format `UCx_TCy`.
+- Base your test cases on base_sequence, branch_sequence, exception_sequence, and pre/postconditions.
+- If in the use case description in JSON has "UCx" as "Precondition" tag, you must put "UCx" in the preconditions field of the test cases.
+
+Only return the JSON array. DO NOT explain anything.  
+DO NOT include "```json" or "```" markers.  
+Make sure all brackets are correctly opened and closed.
+
+Note: Even though the structure is in English, all content inside the fields (titles, steps, etc.) must remain in **Italian**.
+
+<|eot_id|><|start_header_id|>user<|end_header_id|>
+The following is the use case in JSON format, generate different test cases:
+[
+  {
+    "Id": "UC7.2",
+    "Title": "Segnalazione guasti illuminazione pubblica (parte di UC7: Gestione manutenzioni)",
+    "Summary": "Permette all’utente di segnalare un guasto su un impianto di illuminazione pubblica",
+    "Actor": [
+      "Cittadino",
+      "Fornitore",
+      "Sindaco"
+    ],
+    "Precondition": "UC7",
+    "Postcondition": "Il sistema registra la segnalazione e notifica il fornitore responsabile",
+    "Base_sequence": [
+      "L’utente accede alla sezione segnalazioni guasti",
+      "Compila il modulo con localizzazione e descrizione del guasto",
+      "Conferma l’invio della segnalazione"
+    ],
+    "Branch_sequence": [],
+    "Exception_sequence": [],
+    "Note": "no"
+  }
+]
+<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+[
+  {
+    "test_case_id": "UC7.2_TC1",
+    "title": "Segnalazione guasto con dati validi e foto allegata",
+    "preconditions": "UC7",
+    "postconditions": "Il sistema registra la segnalazione e notifica il fornitore responsabile",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione segnalazioni guasti",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Compila il modulo inserendo posizione, descrizione e carica una foto",
+        "expected": "Il modulo viene completato correttamente"
+      },
+      {
+        "step": "Conferma l’invio della segnalazione",
+        "expected": "Il sistema registra la segnalazione e mostra conferma"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC7.2"
+  },
+  {
+    "test_case_id": "UC7.2_TC2",
+    "title": "Segnalazione guasto senza descrizione",
+    "preconditions": "UC7",
+    "postconditions": "Il sistema non accetta la segnalazione",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione segnalazioni guasti",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Compila il modulo inserendo solo la posizione, lasciando vuota la descrizione",
+        "expected": "Il sistema segnala la mancanza di informazioni obbligatorie"
+      },
+      {
+        "step": "Conferma l’invio della segnalazione",
+        "expected": "La segnalazione non viene inviata e viene mostrato un errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC7.2"
+  },
+  {
+    "test_case_id": "UC7.2_TC3",
+    "title": "Segnalazione guasto con foto in formato non supportato",
+    "preconditions": "UC7",
+    "postconditions": "Il sistema non accetta la foto e segnala l’errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione segnalazioni guasti",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Compila il modulo inserendo posizione, descrizione e carica una foto in formato .exe",
+        "expected": "Il sistema blocca il caricamento della foto"
+      },
+      {
+        "step": "Conferma l’invio della segnalazione",
+        "expected": "La segnalazione viene bloccata per file non valido"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC7.2"
+  }
+]
+<|eot_id|><|start_header_id|>user<|end_header_id|>
+The following is the use case in JSON format, generate different test cases:
+
+[
+  {
+    "Id": "UC2",
+    "Title": "Dashboard",
+    "Summary": "Apertura della dashboard",
+    "Actor": [
+      "Regione",
+      "Sindaco",
+      "Fornitore",
+      "Progettista",
+      "Cittadino"
+    ],
+    "Precondition": "UC1",
+    "Postcondition": "L’utente visualizza la sezione relativa alla dashboard",
+    "Base_sequence": [
+      "L’utente naviga nella sezione relativa alla dashboard utilizzando il menù laterale di sinistra"
+    ],
+    "Branch_sequence": [],
+    "Exception_sequence": [],
+    "Note": "no"
+  }
+]
+
+<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+📥 RISPOSTA:
+[
+  {
+    "test_case_id": "UC2_TC1",
+    "title": "Apertura della dashboard con utente autorizzato",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza la sezione relativa alla dashboard",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente autorizzato (ad esempio, Regione o Sindaco)",
+        "expected": "La home page del sistema è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona la voce di menù relativa alla dashboard",
+        "expected": "La sezione della dashboard si apre e viene visualizzata correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC2",
+    "title": "Apertura della dashboard con utente non autorizzato",
+    "preconditions": "",
+    "postconditions": "Il sistema blocca l’accesso alla dashboard",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente non autorizzato (ad esempio, un cittadino non registrato)",
+        "expected": "La home page del sistema è visualizzata correttamente, ma senza opzioni di accesso alla dashboard"
+      },
+      {
+        "step": "Tenta di accedere alla sezione della dashboard",
+        "expected": "Il sistema blocca l’accesso e visualizza un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC3",
+    "title": "Apertura della dashboard con dati di sessione scaduti",
+    "preconditions": "UC1",
+    "postconditions": "Il sistema richiede la reimmissione delle credenziali",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente autorizzato e lascia scadere i dati di sessione",
+        "expected": "La sessione è scaduta e il sistema richiede la reimmissione delle credenziali"
+      },
+      {
+        "step": "Tenta di accedere alla sezione della dashboard senza reimmettere le credenziali",
+        "expected": "Il sistema blocca l’accesso e richiede la reimmissione delle credenziali"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC4",
+    "title": "Apertura della dashboard con browser non supportato",
+    "preconditions": "UC1",
+    "postconditions": "Il sistema visualizza un messaggio di errore per browser non supportato",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema utilizzando un browser non supportato (ad esempio, Internet Explorer)",
+        "expected": "La home page del sistema è visualizzata correttamente, ma con un messaggio di errore"
+      },
+      {
+        "step": "Tenta di accedere alla sezione della dashboard",
+        "expected": "Il sistema visualizza un messaggio di errore per browser non supportato"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Bassa",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC5",
+    "title": "Apertura della dashboard con connessione lenta",
+    "preconditions": "UC1",
+    "postconditions": "Il sistema visualizza un messaggio di attesa per la connessione lenta",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema con una connessione internet lenta",
+        "expected": "La home page del sistema è visualizzata correttamente, ma con un messaggio di attesa"
+      },
+      {
+        "step": "Tenta di accedere alla sezione della dashboard",
+        "expected": "Il sistema visualizza un messaggio di attesa per la connessione lenta"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Bassa",
+    "use_case_id": "UC2"
+  }
+]

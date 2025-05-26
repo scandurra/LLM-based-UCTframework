@@ -1,0 +1,182 @@
+[
+  {
+    "test_case_id": "UC3.4.3.2_TC1",
+    "title": "Modifica dati generali con informazioni valide",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Compila il form con informazioni desiderate e valide",
+        "expected": "Il sistema accetta le modifiche"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Viene visualizzato un messaggio di conferma dell’operazione"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.2"
+  },
+  {
+    "test_case_id": "UC3.4.3.2_TC2",
+    "title": "Modifica dati generali con informazioni non valide",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Compila il form con informazioni non valide (es. campi obbligatori vuoti)",
+        "expected": "Il sistema segnala un errore"
+      },
+      {
+        "step": "Tenta di applicare le modifiche con l’apposito tasto",
+        "expected": "Viene mostrato un messaggio di errore e le modifiche non vengono applicate"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.2"
+  },
+  {
+    "test_case_id": "UC3.4.3.2_TC3",
+    "title": "Modifica dati generali senza autorizzazione",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’accesso alla modifica dei dati è negato",
+    "test_steps": [
+      {
+        "step": "Tenta di accedere alla sezione relativa ai dati dell’area senza essere loggato o con un ruolo non autorizzato",
+        "expected": "Il sistema richiede l’autenticazione o mostra un messaggio di accesso negato"
+      },
+      {
+        "step": "Tenta comunque di modificare i dati",
+        "expected": "L’operazione fallisce e viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.2"
+  },
+  {
+    "test_case_id": "UC3.4.3.2_TC4",
+    "title": "Modifica dati generali con campi vuoti",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore per i campi obbligatori",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Lascia vuoti i campi obbligatori e compila gli altri campi con informazioni valide",
+        "expected": "Il sistema segnala un errore per i campi obbligatori vuoti"
+      },
+      {
+        "step": "Tenta di applicare le modifiche con l’apposito tasto",
+        "expected": "Viene mostrato un messaggio di errore e le modifiche non vengono applicate"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.2"
+  },
+  {
+    "test_case_id": "UC3.4.3.2_TC5",
+    "title": "Modifica dati generali con caratteri speciali",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema accetta o normalizza i caratteri speciali",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci caratteri speciali nei campi di testo (es. @, #, $)",
+        "expected": "Il sistema accetta o normalizza i caratteri speciali"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Le modifiche vengono applicate correttamente"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.2"
+  },
+  {
+    "test_case_id": "UC3.4.3.2_TC6",
+    "title": "Modifica dati generali e annullamento delle modifiche",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Le modifiche vengono annullate correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Apporta alcune modifiche ai campi",
+        "expected": "Le modifiche vengono applicate temporaneamente"
+      },
+      {
+        "step": "Annulla le modifiche utilizzando l’apposito tasto",
+        "expected": "Le modifiche vengono annullate e i dati tornano allo stato originale"
+      }
+    ],
+    "test_type": "Funzionalità",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.2"
+  },
+  {
+    "test_case_id": "UC3.4.3.2_TC7",
+    "title": "Modifica dati generali con un grande numero di caratteri",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema gestisce correttamente il limite di caratteri",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci un grande numero di caratteri in un campo di testo (es. oltre 1000 caratteri)",
+        "expected": "Il sistema gestisce correttamente il limite di caratteri, eventualmente troncandoli o mostrando un messaggio di errore"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Le modifiche vengono applicate correttamente o viene mostrato un messaggio di errore per il limite di caratteri superato"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.2"
+  },
+  {
+    "test_case_id": "UC3.4.3.2_TC8",
+    "title": "Modifica dati generali con dati duplicati",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema gestisce correttamente i dati duplicati",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci dati già presenti in altri record (es. nome e cognome già esistenti)",
+        "expected": "Il sistema gestisce correttamente i dati duplicati, eventualmente mostrando un messaggio di avviso o errore"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Le modifiche vengono applicate correttamente o viene mostrato un messaggio di errore per i dati duplicati"
+      }
+    ],
+    "test_type": "Funzionalità",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.2"
+  }
+]

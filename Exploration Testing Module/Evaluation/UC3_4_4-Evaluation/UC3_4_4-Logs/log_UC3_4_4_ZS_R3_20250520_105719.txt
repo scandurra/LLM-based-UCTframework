@@ -1,0 +1,170 @@
+📝 PROMPT:
+<|begin_of_text|><|start_header_id|>system<|end_header_id|>
+You are a Quality Assurance expert. 
+<|eot_id|><|start_header_id|>user<|end_header_id|>
+Your task is to generate a suite of test cases for each use case provided in JSON format.
+
+The output must be in **JSON only**, structured as an array of test case objects, following the example below:
+
+[
+  {
+    "test_case_id": "UC7.2_TC1",
+    "title": "Segnalazione guasto con dati validi e foto allegata",
+    "preconditions": "UC7",
+    "postconditions": "Il sistema registra la segnalazione e notifica il fornitore responsabile",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione segnalazioni guasti",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Compila il modulo inserendo posizione, descrizione e carica una foto",
+        "expected": "Il modulo viene completato correttamente"
+      },
+      {
+        "step": "Conferma l’invio della segnalazione",
+        "expected": "Il sistema registra la segnalazione e mostra conferma"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC7.2"
+  },
+  ... (other test cases)
+]
+
+Guidelines:
+1) You must not create test cases that can be reproducible on the server side, so you must not generate blocked or disabled account tests, connection error or slow connection tests, maintenance tests, etc.
+2) You should create test cases that can be reproducible on the client side, including SQL injections for a Login use case.
+3) Generate a minimum of 3 test cases per use case, maxmimum of 10 (depending of the needs).
+4) Include both **positive** (success) and **negative** (error, missing input, etc.) tests , boundary conditions(if applicable),
+edge cases(if applicable), security and usability considerations (if applicable, for example in a Login use case you can do the injection test case).
+5) Use unique names for `test_case_id` following the format `UCx_TCy`.
+6) Base your test cases on base_sequence, branch_sequence, exception_sequence, and pre/postconditions.
+7) If in the use case description in JSON has "UCx" as "Precondition" tag, you must put "UCx" in the preconditions field of the test cases.
+
+
+Only return the JSON array. DO NOT explain anything.  
+DO NOT include "```json" or "```" markers.  
+Very importanti, you have to make sure all brackets are correctly opened and closed.
+Follow strictly the guidelines.
+
+Note: Even though the structure is in English, all content inside the fields (titles, steps, etc.) must remain in **Italian**.
+
+The following is the use case in JSON format, generate different test cases:
+
+[
+  {
+    "Id": "UC3.4.4",
+    "Title": "Congela scheda censimento (parte di UC3.4: Azione su scheda censimento) (parte di UC3: Gestione schede censimento)",
+    "Summary": "Permette di congelare dal portale una scheda censimento precedentemente caricata",
+    "Actor": [
+      "Regione",
+      "Sindaco",
+      "Fornitore"
+    ],
+    "Precondition": "UC3.4",
+    "Postcondition": "L’utente non può più svolgere qualsiasi azione sulla scheda. Inoltre, lo stato visualizzato della scheda è come “non attivo”",
+    "Base_sequence": [
+      "L’utente seleziona l’operazione di congelamento",
+      "All’utente viene richiesta la conferma del congelamento della scheda indicata",
+      "In caso di conferma l’utente visualizza un messaggio di conferma dell’operazione"
+    ],
+    "Branch_sequence": [
+      "In caso di annullamento il congelamento viene interrotto"
+    ],
+    "Exception_sequence": [],
+    "Note": "no"
+  }
+]
+
+<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+📥 RESPONSE:
+[
+  {
+    "test_case_id": "UC3.4.4_TC1",
+    "title": "Congela scheda censimento con successo",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente non può più svolgere qualsiasi azione sulla scheda. Inoltre, lo stato visualizzato della scheda è come “non attivo”",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di congelamento della scheda censimento",
+        "expected": "Viene richiesta la conferma del congelamento"
+      },
+      {
+        "step": "Conferma il congelamento della scheda",
+        "expected": "Viene visualizzato un messaggio di conferma dell’operazione"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.4"
+  },
+  {
+    "test_case_id": "UC3.4.4_TC2",
+    "title": "Annullamento congelamento scheda censimento",
+    "preconditions": "UC3.4",
+    "postconditions": "",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di congelamento della scheda censimento",
+        "expected": "Viene richiesta la conferma del congelamento"
+      },
+      {
+        "step": "Annulla il congelamento della scheda",
+        "expected": "Il congelamento viene interrotto e non viene visualizzato alcun messaggio di conferma"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.4"
+  },
+  {
+    "test_case_id": "UC3.4.4_TC3",
+    "title": "Congela scheda censimento senza selezionare l’operazione di congelamento",
+    "preconditions": "UC3.4",
+    "postconditions": "",
+    "test_steps": [
+      {
+        "step": "Non seleziona l’operazione di congelamento della scheda censimento",
+        "expected": "Non viene richiesta la conferma del congelamento"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.4"
+  },
+  {
+    "test_case_id": "UC3.4.4_TC4",
+    "title": "Congela scheda censimento con dati non validi",
+    "preconditions": "UC3.4",
+    "postconditions": "",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di congelamento della scheda censimento con dati non validi",
+        "expected": "Viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.4"
+  },
+  {
+    "test_case_id": "UC3.4.4_TC5",
+    "title": "Congela scheda censimento con utente non autorizzato",
+    "preconditions": "",
+    "postconditions": "",
+    "test_steps": [
+      {
+        "step": "Tenta di congelare la scheda censimento come utente non autorizzato",
+        "expected": "Viene visualizzato un messaggio di accesso negato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.4"
+  }
+]
+
+⏱️ EXECUTION TIME: 163.26 seconds

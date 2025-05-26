@@ -1,0 +1,482 @@
+📝 PROMPT:
+You are a Quality Assurance expert. Your task is to generate a suite of test cases for each use case provided in JSON format.
+
+The output must be in **JSON only**, structured as an array of test case objects, following the example below:
+
+[
+  {
+    "test_case_id": "UC1_TC1",
+    "title": "Credenziali di Login Valide",
+    "preconditions": "L'utente non è autenticato e ha accesso al portale PELL",
+    "postconditions": "L'utente viene reindirizzato alla pagina principale",
+    "test_steps": [
+      {
+        "step": "Clicca sul pulsante 'Login'",
+        "expected": "Il modulo di login è visualizzato"
+      },
+      {
+        "step": "Inserisci email e password validi",
+        "expected": "Non vengono visualizzati messaggi di errore"
+      },
+      {
+        "step": "Conferma il processo di autenticazione",
+        "expected": "L'utente viene reindirizzato alla pagina principale"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC1"
+  },
+  ... (other test cases)
+]
+
+Guidelines:
+- Generate **at least 4–6 test cases** per use case.
+- Include both **positive** (success) and **negative** (error, missing input, etc.) tests , boundary conditions(if applicable),
+edge cases(if applicable), security and usability considerations (if applicable).
+- Use unique names for `test_case_id` following the format `UCx_TCy`.
+- Base your test cases on base_sequence, branch_sequence, exception_sequence, and pre/postconditions.
+- If in the use case description has "UCx" as preconditions, you must put "UCx" in the preconditions field of the test cases.
+
+Only return the JSON array. DO NOT explain anything.  
+DO NOT include "```json" or "```" markers.  
+Make sure all brackets are correctly opened and closed.
+
+Note: Even though the structure is in English, all content inside the fields (titles, steps, etc.) must remain in **Italian**.
+
+Now i give you two example of use cases and two example of what expected:
+
+Example 1:
+<use case>
+The following is the use case in JSON format, generate different test cases:
+[
+  {
+    "Id": "UC1",
+    "Title": "Login utente",
+    "Summary": "Autenticazione di un’utente registrato al sistema",
+    "Actor": [
+      "Regione",
+      "Sindaco",
+      "Fornitore",
+      "Progettista",
+      "Cittadino"
+    ],
+    "Precondition": "L’utente non è autenticato",
+    "Postcondition": "L’utente è autenticato ed è a conoscenza che l’operazione ha avuto successo",
+    "Base_sequence": [
+      "L’utente inserisce le proprie credenziali all’interno del form",
+      "L’utente inizia il processo di autenticazione cliccando il tasto “Login”",
+      "L’utente visualizza un messaggio di operazione completata con successo"
+    ],
+    "Branch_sequence": [
+      "All’utente è richiesto modificare la prima password di accesso",
+      "L’utente inserisce la nuova password e conferma"
+    ],
+    "Exception_sequence": [
+      "L’utente visualizza un messaggio di operazione completata con un errore relativo all’eccezione verificatasi (credenziali errate, mismatch della nuova password…)",
+      "L’utente può ripartire dal punto 1 della base sequence"
+    ],
+    "Note": "no"
+  }
+]
+</use case>
+<expected output>
+[
+  {
+    "test_case_id": "UC1_TC1",
+    "title": "Credenziali di Login Valide",
+    "preconditions": "L'utente non è autenticato e ha accesso al portale PELL",
+    "postconditions": "L'utente viene reindirizzato alla pagina principale",
+    "test_steps": [
+      {
+        "step": "Clicca sul pulsante 'Login'",
+        "expected": "Il modulo di login è visualizzato"
+      },
+      {
+        "step": "Inserisci email e password validi",
+        "expected": "Non vengono visualizzati messaggi di errore"
+      },
+      {
+        "step": "Conferma il processo di autenticazione",
+        "expected": "L'utente viene reindirizzato alla pagina principale"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC2",
+    "title": "Email Non Valida",
+    "preconditions": "L'utente non è autenticato e ha accesso al portale PELL",
+    "postconditions": "L'utente non viene reindirizzato alla pagina principale",
+    "test_steps": [
+      {
+        "step": "Clicca sul pulsante 'Login'",
+        "expected": "Il modulo di login è visualizzato"
+      },
+      {
+        "step": "Inserisci un'email non valida e una password valida",
+        "expected": "Viene visualizzato un messaggio di errore che indica credenziali non valide"
+      },
+      {
+        "step": "Conferma il processo di autenticazione",
+        "expected": "L'utente non viene reindirizzato alla pagina principale"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC3",
+    "title": "Password Non Valida",
+    "preconditions": "L'utente non è autenticato e ha accesso al portale PELL",
+    "postconditions": "L'utente non viene reindirizzato alla pagina principale",
+    "test_steps": [
+      {
+        "step": "Clicca sul pulsante 'Login'",
+        "expected": "Il modulo di login è visualizzato"
+      },
+      {
+        "step": "Inserisci un'email valida e una password non valida",
+        "expected": "Viene visualizzato un messaggio di errore che indica credenziali non valide"
+      },
+      {
+        "step": "Conferma il processo di autenticazione",
+        "expected": "L'utente non viene reindirizzato alla pagina principale"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC4",
+    "title": "Campo Email Vuoto",
+    "preconditions": "L'utente non è autenticato e ha accesso al portale PELL",
+    "postconditions": "L'utente non viene reindirizzato alla pagina principale",
+    "test_steps": [
+      {
+        "step": "Clicca sul pulsante 'Login'",
+        "expected": "Il modulo di login è visualizzato"
+      },
+      {
+        "step": "Lascia il campo email vuoto e inserisci una password valida",
+        "expected": "Viene visualizzato un messaggio di errore che indica campo obbligatorio"
+      },
+      {
+        "step": "Conferma il processo di autenticazione",
+        "expected": "L'utente non viene reindirizzato alla pagina principale"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Bassa",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC5",
+    "title": "Campo Password Vuoto",
+    "preconditions": "L'utente non è autenticato e ha accesso al portale PELL",
+    "postconditions": "L'utente non viene reindirizzato alla pagina principale",
+    "test_steps": [
+      {
+        "step": "Clicca sul pulsante 'Login'",
+        "expected": "Il modulo di login è visualizzato"
+      },
+      {
+        "step": "Inserisci un'email valida e lascia il campo password vuoto",
+        "expected": "Viene visualizzato un messaggio di errore che indica campo obbligatorio"
+      },
+      {
+        "step": "Conferma il processo di autenticazione",
+        "expected": "L'utente non viene reindirizzato alla pagina principale"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Bassa",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC6",
+    "title": "Tentativo di Iniezione SQL",
+    "preconditions": "L'utente non è autenticato e ha accesso al portale PELL",
+    "postconditions": "L'utente non viene reindirizzato alla pagina principale",
+    "test_steps": [
+      {
+        "step": "Clicca sul pulsante 'Login'",
+        "expected": "Il modulo di login è visualizzato"
+      },
+      {
+        "step": "Inserisci un input dannoso nel campo email o password",
+        "expected": "Viene visualizzato un messaggio di errore che indica credenziali non valide"
+      },
+      {
+        "step": "Conferma il processo di autenticazione",
+        "expected": "L'utente non viene reindirizzato alla pagina principale e non si verificano errori SQL"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC1"
+  }
+]
+</expected output>
+
+Example 2:
+<use case>
+[
+{
+  "Id": "UC3.2.3",
+  "Title": "Ricerca scheda censimento per tipo",
+  "Summary": "Permette la ricerca tra le schede censimento in base al tipo",
+  "Actor": ["Regione", "Sindaco", "Fornitore"],
+  "Precondition": "UC3.2",
+  "Postcondition": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+  "Base_sequence": ["L’utente inserisce tra i parametri di ricerca il tipo", "L’utente conferma la ricerca", "L’utente visualizza il risultato della ricerca come nello UC3.1"],
+  "Branch_sequence": [],
+  "Exception_sequence": [],
+  "Note": "no"
+}
+]
+</use case>
+</expected output>
+[
+  {
+    "test_case_id": "UC3.2.3_TC1",
+    "title": "Ricerca scheda censimento per tipo valido",
+    "preconditions": "UC3.2",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "L’utente inserisce tra i parametri di ricerca il tipo 'A'",
+        "expected": "Viene mostrato il risultato della ricerca"
+      },
+      {
+        "step": "L’utente conferma la ricerca",
+        "expected": "Vengono visualizzate le informazioni corrispondenti alla paginazione richiesta"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alto",
+    "use_case_id": "UC3.2.3"
+  },
+  {
+    "test_case_id": "UC3.2.3_TC2",
+    "title": "Ricerca scheda censimento per tipo non esistente",
+    "preconditions": "UC3.2",
+    "postconditions": "Nessun risultato trovato",
+    "test_steps": [
+      {
+        "step": "L’utente inserisce tra i parametri di ricerca il tipo 'ZZ'",
+        "expected": "Viene mostrato un messaggio di 'nessun risultato trovato'"
+      },
+      {
+        "step": "L’utente conferma la ricerca",
+        "expected": "Non vengono visualizzate informazioni"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Medio",
+    "use_case_id": "UC3.2.3"
+  },
+  {
+    "test_case_id": "UC3.2.3_TC3",
+    "title": "Ricerca scheda censimento senza inserire tipo",
+    "preconditions": "UC3.2",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "L’utente non inserisce nessun parametro di ricerca",
+        "expected": "Viene mostrato un messaggio di errore"
+      },
+      {
+        "step": "L’utente conferma la ricerca",
+        "expected": "Non vengono visualizzate informazioni"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Basso",
+    "use_case_id": "UC3.2.3"
+  },
+  {
+    "test_case_id": "UC3.2.3_TC4",
+    "title": "Ricerca scheda censimento con tipo parziale",
+    "preconditions": "UC3.2",
+    "postconditions": "Viene mostrato il risultato della ricerca parziale",
+    "test_steps": [
+      {
+        "step": "L’utente inserisce tra i parametri di ricerca il tipo 'A'",
+        "expected": "Viene mostrato il risultato della ricerca"
+      },
+      {
+        "step": "L’utente aggiunge un altro parametro di ricerca",
+        "expected": "Vengono visualizzate le informazioni corrispondenti alla paginazione richiesta con il nuovo parametro"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Medio",
+    "use_case_id": "UC3.2.3"
+  },
+  {
+    "test_case_id": "UC3.2.3_TC5",
+    "title": "Ricerca scheda censimento con tipo contenente caratteri speciali",
+    "preconditions": "UC3.2",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "L’utente inserisce tra i parametri di ricerca il tipo '@#$'",
+        "expected": "Viene mostrato un messaggio di errore"
+      },
+      {
+        "step": "L’utente conferma la ricerca",
+        "expected": "Non vengono visualizzate informazioni"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Basso",
+    "use_case_id": "UC3.2.3"
+  },
+  {
+    "test_case_id": "UC3.2.3_TC6",
+    "title": "Ricerca scheda censimento con tipo lungo",
+    "preconditions": "UC3.2",
+    "postconditions": "Viene mostrato il risultato della ricerca",
+    "test_steps": [
+      {
+        "step": "L’utente inserisce tra i parametri di ricerca il tipo 'abcdefghijklmnopqrstuvwxyz'",
+        "expected": "Viene mostrato il risultato della ricerca"
+      },
+      {
+        "step": "L’utente conferma la ricerca",
+        "expected": "Vengono visualizzate le informazioni corrispondenti alla paginazione richiesta"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alto",
+    "use_case_id": "UC3.2.3"
+  }
+]
+</expected output>
+
+
+The following is the use case in JSON format, generate different test cases:
+
+[
+  {
+    "Id": "UC2",
+    "Title": "Dashboard",
+    "Summary": "Apertura della dashboard",
+    "Actor": [
+      "Regione",
+      "Sindaco",
+      "Fornitore",
+      "Progettista",
+      "Cittadino"
+    ],
+    "Precondition": "UC1",
+    "Postcondition": "L’utente visualizza la sezione relativa alla dashboard",
+    "Base_sequence": [
+      "L’utente naviga nella sezione relativa alla dashboard utilizzando il menù laterale di sinistra"
+    ],
+    "Branch_sequence": [],
+    "Exception_sequence": [],
+    "Note": "no"
+  }
+]
+
+<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+📥 RISPOSTA:
+[
+  {
+    "test_case_id": "UC2_TC1",
+    "title": "Apertura della dashboard con utente autenticato",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza la sezione relativa alla dashboard",
+    "test_steps": [
+      {
+        "step": "L’utente naviga nella sezione relativa alla dashboard utilizzando il menù laterale di sinistra",
+        "expected": "La sezione della dashboard viene visualizzata correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC2",
+    "title": "Apertura della dashboard senza autenticazione",
+    "preconditions": "",
+    "postconditions": "L’utente non visualizza la sezione relativa alla dashboard",
+    "test_steps": [
+      {
+        "step": "L’utente tenta di accedere alla dashboard senza essere autenticato",
+        "expected": "Viene visualizzato un messaggio di errore che richiede l’autenticazione"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC3",
+    "title": "Apertura della dashboard con permessi insufficienti",
+    "preconditions": "UC1",
+    "postconditions": "L’utente non visualizza la sezione relativa alla dashboard",
+    "test_steps": [
+      {
+        "step": "L’utente autenticato con permessi insufficienti tenta di accedere alla dashboard",
+        "expected": "Viene visualizzato un messaggio di errore che indica permessi insufficienti"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC4",
+    "title": "Apertura della dashboard con dati non validi",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "L’utente inserisce dati non validi nella dashboard",
+        "expected": "Viene visualizzato un messaggio di errore che richiede la correzione dei dati"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Basso",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC5",
+    "title": "Apertura della dashboard con caricamento lento",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza la sezione relativa alla dashboard dopo un tempo di attesa ragionevole",
+    "test_steps": [
+      {
+        "step": "L’utente naviga nella sezione relativa alla dashboard in condizioni di rete lenta",
+        "expected": "La sezione della dashboard viene visualizzata correttamente dopo un tempo di attesa ragionevole"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC6",
+    "title": "Apertura della dashboard con browser non supportato",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "L’utente tenta di accedere alla dashboard utilizzando un browser non supportato",
+        "expected": "Viene visualizzato un messaggio di errore che indica il browser non supportato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Basso",
+    "use_case_id": "UC2"
+  }
+]

@@ -1,0 +1,315 @@
+📝 PROMPT:
+<|begin_of_text|><|start_header_id|>system<|end_header_id|>
+You are a Quality Assurance expert. Your task is to generate a suite of test cases for each use case provided in JSON format.
+
+The output must be in **JSON only**, structured as an array of test case objects, following the example below:
+
+[
+  {
+    "test_case_id": "UC7.2_TC1",
+    "title": "Segnalazione guasto con dati validi e foto allegata",
+    "preconditions": "UC7",
+    "postconditions": "Il sistema registra la segnalazione e notifica il fornitore responsabile",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione segnalazioni guasti",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Compila il modulo inserendo posizione, descrizione e carica una foto",
+        "expected": "Il modulo viene completato correttamente"
+      },
+      {
+        "step": "Conferma l’invio della segnalazione",
+        "expected": "Il sistema registra la segnalazione e mostra conferma"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC7.2"
+  },
+  ... (other test cases)
+]
+
+Guidelines:
+1) You must not create test cases that can be reproducible on the server side, so you must not generate blocked or disabled account tests, connection error or slow connection tests, maintenance tests, etc.
+2) You should create test cases that can be reproducible on the client side, including SQL injections for a Login use case.
+3) Generate a minimum of 3 test cases per use case, maxmimum of 10 (depending of the needs).
+4) Include both **positive** (success) and **negative** (error, missing input, etc.) tests , boundary conditions(if applicable),
+edge cases(if applicable), security and usability considerations (if applicable, for example in a Login use case you can do the injection test case).
+5) Use unique names for `test_case_id` following the format `UCx_TCy`.
+6) Base your test cases on base_sequence, branch_sequence, exception_sequence, and pre/postconditions.
+7) If in the use case description in JSON has "UCx" as "Precondition" tag, you must put "UCx" in the preconditions field of the test cases.
+
+
+Only return the JSON array. DO NOT explain anything.  
+DO NOT include "```json" or "```" markers.  
+Very importanti, you have to make sure all brackets are correctly opened and closed.
+Follow strictly the guidelines.
+
+Note: Even though the structure is in English, all content inside the fields (titles, steps, etc.) must remain in **Italian**.
+
+<|eot_id|><|start_header_id|>user<|end_header_id|>
+The following is the use case in JSON format, generate different test cases:
+
+[
+  {
+    "Id": "UC2.4",
+    "Title": "Benchmarking KPI per comune (parte di UC2: Dashboard)",
+    "Summary": "Consente di analizzare i Key Performance Indicator dei comuni selezionati",
+    "Actor": [
+      "Regione",
+      "Sindaco",
+      "Fornitore",
+      "Cittadino"
+    ],
+    "Precondition": "UC2",
+    "Postcondition": "L’utente visualizza il risultato della analisi su un grafico, in base ai comuni e al KPI su cui fare il confronto",
+    "Base_sequence": [
+      "L’utente seleziona i comuni desiderati dal menù a tendina, tramite ricerca e selezione",
+      "L’utente seleziona il KPI desiderato",
+      "L’utente conferma la richiesta cliccando sul pulsante",
+      "L’utente visualizza il grafico con il confronto desiderato",
+      "no"
+    ],
+    "Branch_sequence": [],
+    "Exception_sequence": [],
+    "Note": "no"
+  }
+]
+
+<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+📥 RISPOSTA:
+[
+  {
+    "test_case_id": "UC2.4_TC1",
+    "title": "Selezione comuni e KPI validi",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza il risultato della analisi su un grafico, in base ai comuni e al KPI su cui fare il confronto",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e seleziona i comuni desiderati dal menù a tendina",
+        "expected": "I comuni vengono visualizzati correttamente"
+      },
+      {
+        "step": "Seleziona il KPI desiderato",
+        "expected": "Il KPI viene selezionato correttamente"
+      },
+      {
+        "step": "Conferma la richiesta cliccando sul pulsante",
+        "expected": "Il sistema visualizza il grafico con il confronto desiderato"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC2",
+    "title": "Selezione comuni non validi",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e seleziona comuni non presenti nel menù a tendina",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      },
+      {
+        "step": "Seleziona il KPI desiderato",
+        "expected": "Il KPI viene selezionato correttamente, ma la richiesta non può essere completata"
+      },
+      {
+        "step": "Conferma la richiesta cliccando sul pulsante",
+        "expected": "Il sistema visualizza un messaggio di errore e non esegue la richiesta"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC3",
+    "title": "Selezione KPI non valido",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e seleziona i comuni desiderati dal menù a tendina",
+        "expected": "I comuni vengono visualizzati correttamente"
+      },
+      {
+        "step": "Seleziona un KPI non presente nella lista dei KPI disponibili",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      },
+      {
+        "step": "Conferma la richiesta cliccando sul pulsante",
+        "expected": "Il sistema visualizza un messaggio di errore e non esegue la richiesta"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC4",
+    "title": "Selezione di più comuni e KPI",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza il risultato della analisi su un grafico, in base ai comuni e al KPI su cui fare il confronto",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e seleziona più comuni desiderati dal menù a tendina",
+        "expected": "I comuni vengono visualizzati correttamente"
+      },
+      {
+        "step": "Seleziona il KPI desiderato",
+        "expected": "Il KPI viene selezionato correttamente"
+      },
+      {
+        "step": "Conferma la richiesta cliccando sul pulsante",
+        "expected": "Il sistema visualizza il grafico con il confronto desiderato per tutti i comuni selezionati"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC5",
+    "title": "Selezione di nessun comune e KPI",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard senza selezionare alcun comune",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      },
+      {
+        "step": "Seleziona il KPI desiderato",
+        "expected": "Il KPI viene selezionato correttamente, ma la richiesta non può essere completata"
+      },
+      {
+        "step": "Conferma la richiesta cliccando sul pulsante",
+        "expected": "Il sistema visualizza un messaggio di errore e non esegue la richiesta"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC6",
+    "title": "Selezione di comuni e KPI con dati non aggiornati",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di errore o un avviso di dati non aggiornati",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e seleziona i comuni desiderati dal menù a tendina con dati non aggiornati",
+        "expected": "Il sistema visualizza un messaggio di errore o un avviso di dati non aggiornati"
+      },
+      {
+        "step": "Seleziona il KPI desiderato",
+        "expected": "Il KPI viene selezionato correttamente, ma la richiesta non può essere completata a causa dei dati non aggiornati"
+      },
+      {
+        "step": "Conferma la richiesta cliccando sul pulsante",
+        "expected": "Il sistema visualizza un messaggio di errore o un avviso di dati non aggiornati e non esegue la richiesta"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC7",
+    "title": "Selezione di comuni e KPI con dati mancanti",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di errore o un avviso di dati mancanti",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e seleziona i comuni desiderati dal menù a tendina con dati mancanti",
+        "expected": "Il sistema visualizza un messaggio di errore o un avviso di dati mancanti"
+      },
+      {
+        "step": "Seleziona il KPI desiderato",
+        "expected": "Il KPI viene selezionato correttamente, ma la richiesta non può essere completata a causa dei dati mancanti"
+      },
+      {
+        "step": "Conferma la richiesta cliccando sul pulsante",
+        "expected": "Il sistema visualizza un messaggio di errore o un avviso di dati mancanti e non esegue la richiesta"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC8",
+    "title": "Selezione di comuni e KPI con dati duplicati",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di errore o un avviso di dati duplicati",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e seleziona i comuni desiderati dal menù a tendina con dati duplicati",
+        "expected": "Il sistema visualizza un messaggio di errore o un avviso di dati duplicati"
+      },
+      {
+        "step": "Seleziona il KPI desiderato",
+        "expected": "Il KPI viene selezionato correttamente, ma la richiesta non può essere completata a causa dei dati duplicati"
+      },
+      {
+        "step": "Conferma la richiesta cliccando sul pulsante",
+        "expected": "Il sistema visualizza un messaggio di errore o un avviso di dati duplicati e non esegue la richiesta"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC9",
+    "title": "Selezione di comuni e KPI con formato dati non corretto",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di errore o un avviso di formato dati non corretto",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e seleziona i comuni desiderati dal menù a tendina con formato dati non corretto",
+        "expected": "Il sistema visualizza un messaggio di errore o un avviso di formato dati non corretto"
+      },
+      {
+        "step": "Seleziona il KPI desiderato",
+        "expected": "Il KPI viene selezionato correttamente, ma la richiesta non può essere completata a causa del formato dati non corretto"
+      },
+      {
+        "step": "Conferma la richiesta cliccando sul pulsante",
+        "expected": "Il sistema visualizza un messaggio di errore o un avviso di formato dati non corretto e non esegue la richiesta"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC10",
+    "title": "Selezione di comuni e KPI con lunghezza dati superiore al massimo consentito",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di errore o un avviso di lunghezza dati superiore al massimo consentito",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e seleziona i comuni desiderati dal menù a tendina con lunghezza dati superiore al massimo consentito",
+        "expected": "Il sistema visualizza un messaggio di errore o un avviso di lunghezza dati superiore al massimo consentito"
+      },
+      {
+        "step": "Seleziona il KPI desiderato",
+        "expected": "Il KPI viene selezionato correttamente, ma la richiesta non può essere completata a causa della lunghezza dati superiore al massimo consentito"
+      },
+      {
+        "step": "Conferma la richiesta cliccando sul pulsante",
+        "expected": "Il sistema visualizza un messaggio di errore o un avviso di lunghezza dati superiore al massimo consentito e non esegue la richiesta"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC2.4"
+  }
+]

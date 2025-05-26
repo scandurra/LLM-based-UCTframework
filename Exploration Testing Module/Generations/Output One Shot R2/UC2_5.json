@@ -1,0 +1,166 @@
+[
+  {
+    "test_case_id": "UC2.5_TC1",
+    "title": "Visualizzazione grafici con dati validi",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza le informazioni consultando i grafici",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard",
+        "expected": "La pagina della dashboard viene caricata correttamente"
+      },
+      {
+        "step": "Scorri nella pagina fino a raggiungere la sezione dei grafici",
+        "expected": "I grafici vengono visualizzati correttamente"
+      },
+      {
+        "step": "Osserva i grafici sui comuni aderenti per regione, punti luce per regione e distribuzione punti luce per tipo apparecchio",
+        "expected": "I dati sono coerenti e ben rappresentati"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC2",
+    "title": "Visualizzazione grafici senza dati",
+    "preconditions": "UC2",
+    "postconditions": "I grafici non vengono visualizzati o mostrano un messaggio di assenza di dati",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard in un momento in cui non ci sono dati disponibili",
+        "expected": "La pagina della dashboard viene caricata ma senza dati"
+      },
+      {
+        "step": "Scorri nella pagina fino a raggiungere la sezione dei grafici",
+        "expected": "I grafici non vengono visualizzati o mostrano un messaggio di assenza di dati"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC3",
+    "title": "Interazione con i grafici",
+    "preconditions": "UC2",
+    "postconditions": "L’utente può interagire correttamente con i grafici",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e scorri fino ai grafici",
+        "expected": "I grafici sono visibili"
+      },
+      {
+        "step": "Clicca su un grafico per ingrandirlo o visualizzare dettagli",
+        "expected": "Il grafico si ingrandisce o mostra i dettagli richiesti"
+      },
+      {
+        "step": "Naviga tra le varie opzioni di visualizzazione dei dati (es. zoom, tipo di grafico)",
+        "expected": "Le opzioni funzionano correttamente e il grafico si aggiorna di conseguenza"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC4",
+    "title": "Visualizzazione su dispositivi mobili",
+    "preconditions": "UC2",
+    "postconditions": "I grafici sono visibili e navigabili anche su dispositivi mobili",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard da un dispositivo mobile",
+        "expected": "La pagina della dashboard si adatta allo schermo del dispositivo mobile"
+      },
+      {
+        "step": "Scorri fino alla sezione dei grafici",
+        "expected": "I grafici sono visibili e ben formattati per il dispositivo mobile"
+      },
+      {
+        "step": "Interagisci con i grafici utilizzando touch screen",
+        "expected": "L’interazione è fluida e risponde correttamente ai comandi"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Alta",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC5",
+    "title": "Accesso non autorizzato",
+    "preconditions": "UC2",
+    "postconditions": "L’accesso ai grafici è negato e viene richiesta l’autenticazione",
+    "test_steps": [
+      {
+        "step": "Tenta di accedere alla dashboard senza essere loggato",
+        "expected": "Il sistema richiede l’autenticazione"
+      },
+      {
+        "step": "Inserisci credenziali non valide",
+        "expected": "L’accesso viene negato e il sistema segnala un errore di autenticazione"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC6",
+    "title": "Grafici con dati parzialmente mancanti",
+    "preconditions": "UC2",
+    "postconditions": "I grafici vengono visualizzati con i dati disponibili e indicazione dei dati mancanti",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard quando alcuni dati non sono disponibili",
+        "expected": "La pagina della dashboard viene caricata"
+      },
+      {
+        "step": "Scorri fino alla sezione dei grafici",
+        "expected": "I grafici mostrano i dati disponibili e indicazioni per i dati mancanti"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC7",
+    "title": "Test di prestazione con grandi quantità di dati",
+    "preconditions": "UC2",
+    "postconditions": "I grafici vengono visualizzati correttamente anche con grandi quantità di dati",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard con un grande set di dati",
+        "expected": "La pagina della dashboard si carica senza problemi"
+      },
+      {
+        "step": "Scorri fino alla sezione dei grafici",
+        "expected": "I grafici vengono visualizzati correttamente e sono interattivi"
+      }
+    ],
+    "test_type": "Prestazione",
+    "priority": "Alta",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC8",
+    "title": "Compatibilità con browser diversi",
+    "preconditions": "UC2",
+    "postconditions": "I grafici sono visibili e funzionano correttamente su diversi browser",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard utilizzando browser differenti (es. Chrome, Firefox, Safari)",
+        "expected": "La pagina della dashboard si carica correttamente in ogni browser"
+      },
+      {
+        "step": "Scorri fino alla sezione dei grafici",
+        "expected": "I grafici sono visibili e funzionano come atteso in ogni browser"
+      }
+    ],
+    "test_type": "Compatibilità",
+    "priority": "Alta",
+    "use_case_id": "UC2.5"
+  }
+]

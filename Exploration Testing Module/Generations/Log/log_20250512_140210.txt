@@ -1,0 +1,351 @@
+📝 PROMPT:
+You are a Quality Assurance expert. Your task is to generate a suite of test cases for each use case provided in JSON format.
+
+The output must be in **JSON only**, structured as an array of test case objects, following the example below:
+
+[
+  {
+    "test_case_id": "UC1_TC1",
+    "title": "Credenziali di Login Valide",
+    "preconditions": "L'utente non è autenticato e ha accesso al portale PELL",
+    "postconditions": "L'utente viene reindirizzato alla pagina principale",
+    "test_steps": [
+      {
+        "step": "Clicca sul pulsante 'Login'",
+        "expected": "Il modulo di login è visualizzato"
+      },
+      {
+        "step": "Inserisci email e password validi",
+        "expected": "Non vengono visualizzati messaggi di errore"
+      },
+      {
+        "step": "Conferma il processo di autenticazione",
+        "expected": "L'utente viene reindirizzato alla pagina principale"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC1"
+  },
+  ... (other test cases)
+  {
+    "test_case_id": "UC1_TC5",
+    "title": "Campo Password Vuoto",
+    "preconditions": "L'utente non è autenticato e ha accesso al portale PELL",
+    "postconditions": "L'utente non viene reindirizzato alla pagina principale",
+    "test_steps": [
+      {
+        "step": "Clicca sul pulsante 'Login'",
+        "expected": "Il modulo di login è visualizzato"
+      },
+      {
+        "step": "Inserisci un'email valida e lascia il campo password vuoto",
+        "expected": "Viene visualizzato un messaggio di errore che indica campo obbligatorio"
+      },
+      {
+        "step": "Conferma il processo di autenticazione",
+        "expected": "L'utente non viene reindirizzato alla pagina principale"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Bassa",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC6",
+    "title": "Tentativo di Iniezione SQL",
+    "preconditions": "L'utente non è autenticato e ha accesso al portale PELL",
+    "postconditions": "L'utente non viene reindirizzato alla pagina principale",
+    "test_steps": [
+      {
+        "step": "Clicca sul pulsante 'Login'",
+        "expected": "Il modulo di login è visualizzato"
+      },
+      {
+        "step": "Inserisci un input dannoso nel campo email o password",
+        "expected": "Viene visualizzato un messaggio di errore che indica credenziali non valide"
+      },
+      {
+        "step": "Conferma il processo di autenticazione",
+        "expected": "L'utente non viene reindirizzato alla pagina principale e non si verificano errori SQL"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC1"
+  }
+]
+
+Guidelines:
+- Generate a minimum of 4 test cases per use case, maxmimum of 10 (depending of the needs)-
+- Include both **positive** (success) and **negative** (error, missing input, etc.) tests , boundary conditions(if applicable),
+edge cases(if applicable), security and usability considerations (if applicable).
+- Use unique names for `test_case_id` following the format `UCx_TCy`.
+- Base your test cases on base_sequence, branch_sequence, exception_sequence, and pre/postconditions.
+- If in the use case description in JSON has "UCx" as "Precondition" tag, you must put "UCx" in the preconditions field of the test cases.
+
+Only return the JSON array. DO NOT explain anything.  
+DO NOT include "```json" or "```" markers.  
+Make sure all brackets are correctly opened and closed.
+
+Note: Even though the structure is in English, all content inside the fields (titles, steps, etc.) must remain in **Italian**.
+
+The following is the use case in JSON format, generate different test cases:
+
+[
+  {
+    "Id": "UC2.4",
+    "Title": "Benchmarking KPI per comune (parte di UC2: Dashboard)",
+    "Summary": "Consente di analizzare i Key Performance Indicator dei comuni selezionati",
+    "Actor": [
+      "Regione",
+      "Sindaco",
+      "Fornitore",
+      "Cittadino"
+    ],
+    "Precondition": "UC2",
+    "Postcondition": "L’utente visualizza il risultato della analisi su un grafico, in base ai comuni e al KPI su cui fare il confronto",
+    "Base_sequence": [
+      "L’utente seleziona i comuni desiderati dal menù a tendina, tramite ricerca e selezione",
+      "L’utente seleziona il KPI desiderato",
+      "L’utente conferma la richiesta cliccando sul pulsante",
+      "L’utente visualizza il grafico con il confronto desiderato",
+      "no"
+    ],
+    "Branch_sequence": [],
+    "Exception_sequence": [],
+    "Note": "no"
+  }
+]
+
+<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+📥 RISPOSTA:
+[
+  {
+    "test_case_id": "UC2.4_TC1",
+    "title": "Selezione Comuni e KPI Validi",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza il risultato della analisi su un grafico",
+    "test_steps": [
+      {
+        "step": "Seleziona almeno due comuni desiderati dal menù a tendina",
+        "expected": "I comuni selezionati vengono visualizzati nella lista"
+      },
+      {
+        "step": "Seleziona un KPI desiderato",
+        "expected": "Il KPI selezionato viene visualizzato nel campo di selezione"
+      },
+      {
+        "step": "Conferma la richiesta cliccando sul pulsante",
+        "expected": "L’utente visualizza il grafico con il confronto desiderato"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC2",
+    "title": "Selezione di Un Solo Comune",
+    "preconditions": "UC2",
+    "postconditions": "L’utente non visualizza il risultato della analisi su un grafico",
+    "test_steps": [
+      {
+        "step": "Seleziona solo un comune desiderato dal menù a tendina",
+        "expected": "Il sistema richiede la selezione di almeno due comuni"
+      },
+      {
+        "step": "Seleziona un KPI desiderato",
+        "expected": "Il KPI selezionato viene visualizzato nel campo di selezione"
+      },
+      {
+        "step": "Conferma la richiesta cliccando sul pulsante",
+        "expected": "L’utente non visualizza il grafico con il confronto desiderato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC3",
+    "title": "Selezione di Nessun Comune",
+    "preconditions": "UC2",
+    "postconditions": "L’utente non visualizza il risultato della analisi su un grafico",
+    "test_steps": [
+      {
+        "step": "Non selezionare nessun comune dal menù a tendina",
+        "expected": "Il sistema richiede la selezione di almeno due comuni"
+      },
+      {
+        "step": "Seleziona un KPI desiderato",
+        "expected": "Il KPI selezionato viene visualizzato nel campo di selezione"
+      },
+      {
+        "step": "Conferma la richiesta cliccando sul pulsante",
+        "expected": "L’utente non visualizza il grafico con il confronto desiderato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC4",
+    "title": "Selezione di KPI Non Validi",
+    "preconditions": "UC2",
+    "postconditions": "L’utente non visualizza il risultato della analisi su un grafico",
+    "test_steps": [
+      {
+        "step": "Seleziona almeno due comuni desiderati dal menù a tendina",
+        "expected": "I comuni selezionati vengono visualizzati nella lista"
+      },
+      {
+        "step": "Inserisci un KPI non valido",
+        "expected": "Il sistema richiede la selezione di un KPI valido"
+      },
+      {
+        "step": "Conferma la richiesta cliccando sul pulsante",
+    "expected": "L’utente non visualizza il grafico con il confronto desiderato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC5",
+    "title": "Tentativo di Iniezione SQL",
+    "preconditions": "UC2",
+    "postconditions": "L’utente non visualizza il risultato della analisi su un grafico",
+    "test_steps": [
+      {
+        "step": "Inserisci input dannoso nel campo di selezione dei comuni o del KPI",
+        "expected": "Il sistema blocca l'input dannoso e richiede una selezione valida"
+      },
+      {
+        "step": "Conferma la richiesta cliccando sul pulsante",
+        "expected": "L’utente non visualizza il grafico con il confronto desiderato e non si verificano errori SQL"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC6",
+    "title": "Selezione di Molti Comuni",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza il risultato della analisi su un grafico",
+    "test_steps": [
+      {
+        "step": "Seleziona molti comuni desiderati dal menù a tendina",
+        "expected": "I comuni selezionati vengono visualizzati nella lista"
+      },
+      {
+        "step": "Seleziona un KPI desiderato",
+        "expected": "Il KPI selezionato viene visualizzato nel campo di selezione"
+      },
+      {
+        "step": "Conferma la richiesta cliccando sul pulsante",
+        "expected": "L’utente visualizza il grafico con il confronto desiderato"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Bassa",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC7",
+    "title": "Selezione di Comuni con Caratteri Speciali",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza il risultato della analisi su un grafico",
+    "test_steps": [
+      {
+        "step": "Seleziona comuni desiderati con caratteri speciali dal menù a tendina",
+        "expected": "I comuni selezionati vengono visualizzati nella lista"
+      },
+      {
+        "step": "Seleziona un KPI desiderato",
+        "expected": "Il KPI selezionato viene visualizzato nel campo di selezione"
+      },
+      {
+        "step": "Conferma la richiesta cliccando sul pulsante",
+        "expected": "L’utente visualizza il grafico con il confronto desiderato"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Bassa",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC8",
+    "title": "Selezione di Comuni con Spazi Vuoti",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza il risultato della analisi su un grafico",
+    "test_steps": [
+      {
+        "step": "Seleziona comuni desiderati con spazi vuoti dal menù a tendina",
+        "expected": "I comuni selezionati vengono visualizzati nella lista"
+      },
+      {
+        "step": "Seleziona un KPI desiderato",
+        "expected": "Il KPI selezionato viene visualizzato nel campo di selezione"
+      },
+      {
+        "step": "Conferma la richiesta cliccando sul pulsante",
+        "expected": "L’utente visualizza il grafico con il confronto desiderato"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Bassa",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC9",
+    "title": "Selezione di Comuni con Numeri",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza il risultato della analisi su un grafico",
+    "test_steps": [
+      {
+        "step": "Seleziona comuni desiderati con numeri dal menù a tendina",
+        "expected": "I comuni selezionati vengono visualizzati nella lista"
+      },
+      {
+        "step": "Seleziona un KPI desiderato",
+        "expected": "Il KPI selezionato viene visualizzato nel campo di selezione"
+      },
+      {
+        "step": "Conferma la richiesta cliccando sul pulsante",
+        "expected": "L’utente visualizza il grafico con il confronto desiderato"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Bassa",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC10",
+    "title": "Selezione di Comuni con Caratteri Non ASCII",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza il risultato della analisi su un grafico",
+    "test_steps": [
+      {
+        "step": "Seleziona comuni desiderati con caratteri non ASCII dal menù a tendina",
+        "expected": "I comuni selezionati vengono visualizzati nella lista"
+      },
+      {
+        "step": "Seleziona un KPI desiderato",
+        "expected": "Il KPI selezionato viene visualizzato nel campo di selezione"
+      },
+      {
+        "step": "Conferma la richiesta cliccando sul pulsante",
+        "expected": "L’utente visualizza il grafico con il confronto desiderato"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Bassa",
+    "use_case_id": "UC2.4"
+  }
+]

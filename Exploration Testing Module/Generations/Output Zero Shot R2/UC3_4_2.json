@@ -1,0 +1,97 @@
+[
+  {
+    "test_case_id": "UC3.4.2_TC1",
+    "title": "Elimina scheda censimento con conferma",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di cancellazione della scheda censimento",
+        "expected": "Viene richiesta la conferma dell’eliminazione"
+      },
+      {
+        "step": "Conferma l’eliminazione della scheda indicata",
+        "expected": "Il sistema elimina la scheda e visualizza un messaggio di conferma"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.2"
+  },
+  {
+    "test_case_id": "UC3.4.2_TC2",
+    "title": "Elimina scheda censimento con annullamento",
+    "preconditions": "UC3.4",
+    "postconditions": "L’eliminazione viene interrotta",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di cancellazione della scheda censimento",
+        "expected": "Viene richiesta la conferma dell’eliminazione"
+      },
+      {
+        "step": "Annulla l’eliminazione della scheda indicata",
+        "expected": "Il sistema interrompe l’eliminazione e non modifica la scheda"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.2"
+  },
+  {
+    "test_case_id": "UC3.4.2_TC3",
+    "title": "Elimina scheda censimento senza selezionare l’operazione di cancellazione",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema non elimina la scheda",
+    "test_steps": [
+      {
+        "step": "Non si seleziona l’operazione di cancellazione della scheda censimento",
+        "expected": "Il sistema non richiede la conferma dell’eliminazione"
+      },
+      {
+        "step": "Verifica che la scheda non sia stata eliminata",
+        "expected": "La scheda rimane intatta e non è stata modificata"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.2"
+  },
+  {
+    "test_case_id": "UC3.4.2_TC4",
+    "title": "Elimina scheda censimento con dati non validi",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di cancellazione della scheda censimento con dati non validi",
+        "expected": "Il sistema richiede la conferma dell’eliminazione ma non elimina la scheda"
+      },
+      {
+        "step": "Conferma l’eliminazione della scheda indicata",
+        "expected": "Il sistema visualizza un messaggio di errore e non elimina la scheda"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.2"
+  },
+  {
+    "test_case_id": "UC3.4.2_TC5",
+    "title": "Elimina scheda censimento con utente non autorizzato",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema visualizza un messaggio di accesso negato",
+    "test_steps": [
+      {
+        "step": "Tenta di eliminare la scheda censimento come utente non autorizzato",
+        "expected": "Il sistema richiede l’autenticazione o visualizza un messaggio di accesso negato"
+      },
+      {
+        "step": "Verifica che la scheda non sia stata eliminata",
+        "expected": "La scheda rimane intatta e non è stata modificata"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.2"
+  }
+]

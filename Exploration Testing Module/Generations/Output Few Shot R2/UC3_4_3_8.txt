@@ -1,0 +1,156 @@
+[
+  {
+    "test_case_id": "UC3.4.3.8_TC1",
+    "title": "Modifica elettric panel con dati validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD viene selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato e seleziona il pannello elettrico per la modifica",
+        "expected": "Il pannello elettrico viene visualizzato"
+      },
+      {
+        "step": "Seleziona il tab relativo alle informazioni di manutenzione e compila il form con dati validi",
+        "expected": "I dati vengono accettati senza errori"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Viene visualizzato un messaggio di conferma dell’operazione"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.8"
+  },
+  {
+    "test_case_id": "UC3.4.3.8_TC2",
+    "title": "Modifica elettric panel con dati non validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD viene selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato e seleziona il pannello elettrico per la modifica",
+        "expected": "Il pannello elettrico viene visualizzato"
+      },
+      {
+        "step": "Seleziona il tab relativo alle informazioni di manutenzione e compila il form con dati non validi (es. campi obbligatori vuoti)",
+        "expected": "Viene mostrato un messaggio di errore"
+      },
+      {
+        "step": "Tenta di applicare le modifiche con l’apposito tasto",
+        "expected": "L’operazione non va a buon fine e viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.8"
+  },
+  {
+    "test_case_id": "UC3.4.3.8_TC3",
+    "title": "Modifica elettric panel senza selezionare il POD",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Non è possibile procedere con la modifica",
+    "test_steps": [
+      {
+        "step": "Non selezionare il POD tramite il menù ad albero di sinistra",
+        "expected": "Il sistema non consente di proseguire"
+      },
+      {
+        "step": "Tenta di accedere direttamente alla sezione di modifica del pannello elettrico",
+        "expected": "Viene richiesto di selezionare il POD"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.8"
+  },
+  {
+    "test_case_id": "UC3.4.3.8_TC4",
+    "title": "Modifica elettric panel con campi obbligatori vuoti",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD viene selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato e seleziona il pannello elettrico per la modifica",
+        "expected": "Il pannello elettrico viene visualizzato"
+      },
+      {
+        "step": "Seleziona il tab relativo alle informazioni di manutenzione e lascia vuoti i campi obbligatori",
+        "expected": "Viene mostrato un messaggio di errore"
+      },
+      {
+        "step": "Tenta di applicare le modifiche con l’apposito tasto",
+        "expected": "L’operazione non va a buon fine e viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.8"
+  },
+  {
+    "test_case_id": "UC3.4.3.8_TC5",
+    "title": "Boundary test: modifica elettric panel con dati al limite dei campi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "I dati vengono accettati e l’operazione va a buon fine",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD viene selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato e seleziona il pannello elettrico per la modifica",
+        "expected": "Il pannello elettrico viene visualizzato"
+      },
+      {
+        "step": "Seleziona il tab relativo alle informazioni di manutenzione e compila il form con dati al limite dei campi (es. lunghezza massima dei campi)",
+        "expected": "I dati vengono accettati senza errori"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Viene visualizzato un messaggio di conferma dell’operazione"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.8"
+  },
+  {
+    "test_case_id": "UC3.4.3.8_TC6",
+    "title": "Edge case: modifica elettric panel con caratteri speciali nei dati",
+    "preconditions": "UC3.4.3",
+    "postconditions": "I dati vengono accettati e l’operazione va a buon fine",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD viene selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato e seleziona il pannello elettrico per la modifica",
+        "expected": "Il pannello elettrico viene visualizzato"
+      },
+      {
+        "step": "Seleziona il tab relativo alle informazioni di manutenzione e compila il form con caratteri speciali nei dati (es. @, #, $)",
+        "expected": "I dati vengono accettati senza errori"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Viene visualizzato un messaggio di conferma dell’operazione"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.8"
+  },
+]

@@ -1,0 +1,203 @@
+📝 PROMPT:
+<|begin_of_text|><|start_header_id|>system<|end_header_id|>
+You are a Quality Assurance expert. Your task is to generate a suite of test cases for each use case provided in JSON format.
+
+The output must be in **JSON only**, structured as an array of test case objects, following the example below:
+
+[
+  {
+    "test_case_id": "UC7.2_TC1",
+    "title": "Segnalazione guasto con dati validi e foto allegata",
+    "preconditions": "UC7",
+    "postconditions": "Il sistema registra la segnalazione e notifica il fornitore responsabile",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione segnalazioni guasti",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Compila il modulo inserendo posizione, descrizione e carica una foto",
+        "expected": "Il modulo viene completato correttamente"
+      },
+      {
+        "step": "Conferma l’invio della segnalazione",
+        "expected": "Il sistema registra la segnalazione e mostra conferma"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC7.2"
+  },
+  ... (other test cases)
+]
+
+Guidelines:
+1) You must not create test cases that can be reproducible on the server side, so you must not generate blocked or disabled account tests, connection error or slow connection tests, maintenance tests, etc.
+2) You should create test cases that can be reproducible on the client side, including SQL injections for a Login use case.
+3) Generate a minimum of 3 test cases per use case, maxmimum of 10 (depending of the needs).
+4) Include both **positive** (success) and **negative** (error, missing input, etc.) tests , boundary conditions(if applicable),
+edge cases(if applicable), security and usability considerations (if applicable, for example in a Login use case you can do the injection test case).
+5) Use unique names for `test_case_id` following the format `UCx_TCy`.
+6) Base your test cases on base_sequence, branch_sequence, exception_sequence, and pre/postconditions.
+7) If in the use case description in JSON has "UCx" as "Precondition" tag, you must put "UCx" in the preconditions field of the test cases.
+
+
+Only return the JSON array. DO NOT explain anything.  
+DO NOT include "```json" or "```" markers.  
+Very importanti, you have to make sure all brackets are correctly opened and closed.
+Follow strictly the guidelines.
+
+Note: Even though the structure is in English, all content inside the fields (titles, steps, etc.) must remain in **Italian**.
+
+<|eot_id|><|start_header_id|>user<|end_header_id|>
+The following is the use case in JSON format, generate different test cases:
+
+[
+  {
+    "Id": "UC6",
+    "Title": "Logout utente",
+    "Summary": "De-autenticazione di un’utente registrato al sistema",
+    "Actor": [
+      "Regione",
+      "Sindaco",
+      "Fornitore",
+      "Progettista",
+      "Cittadino"
+    ],
+    "Precondition": "UC1",
+    "Postcondition": "L’utente è non è più autenticato ed è a conoscenza che l’operazione ha avuto successo",
+    "Base_sequence": [
+      "L’utente clicca sul proprio nome utente in alto a destra",
+      "L’utente inizia il processo di logout cliccando il tasto “Logout”",
+      "L’utente visualizza un messaggio di operazione completata con successo"
+    ],
+    "Branch_sequence": [],
+    "Exception_sequence": [],
+    "Note": "no"
+  }
+]
+
+<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+📥 RISPOSTA:
+[
+  {
+    "test_case_id": "UC6_TC1",
+    "title": "Logout utente con dati validi",
+    "preconditions": "UC1",
+    "postconditions": "L’utente è non è più autenticato ed è a conoscenza che l’operazione ha avuto successo",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente registrato",
+        "expected": "La home page del sistema è visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul proprio nome utente in alto a destra",
+        "expected": "Il menu di opzioni utente è visualizzato"
+      },
+      {
+        "step": "Inizia il processo di logout cliccando il tasto “Logout”",
+        "expected": "Il sistema richiede conferma per il logout"
+      },
+      {
+        "step": "Conferma l’operazione di logout",
+        "expected": "L’utente è disconnesso e visualizza un messaggio di operazione completata con successo"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC6"
+  },
+  {
+    "test_case_id": "UC6_TC2",
+    "title": "Logout utente senza conferma",
+    "preconditions": "UC1",
+    "postconditions": "L’utente è non è più autenticato ed è a conoscenza che l’operazione ha avuto successo",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente registrato",
+        "expected": "La home page del sistema è visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul proprio nome utente in alto a destra",
+        "expected": "Il menu di opzioni utente è visualizzato"
+      },
+      {
+        "step": "Inizia il processo di logout cliccando il tasto “Logout”",
+        "expected": "Il sistema richiede conferma per il logout"
+      },
+      {
+        "step": "Annulla l’operazione di logout",
+        "expected": "L’utente rimane connesso e non visualizza messaggio di operazione completata"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC6"
+  },
+  {
+    "test_case_id": "UC6_TC3",
+    "title": "Logout utente con più tentativi di disconnessione",
+    "preconditions": "UC1",
+    "postconditions": "L’utente è non è più autenticato ed è a conoscenza che l’operazione ha avuto successo",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente registrato",
+        "expected": "La home page del sistema è visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul proprio nome utente in alto a destra",
+        "expected": "Il menu di opzioni utente è visualizzato"
+      },
+      {
+        "step": "Inizia il processo di logout cliccando il tasto “Logout” e annulla l’operazione più volte",
+        "expected": "Il sistema continua a richiedere conferma per il logout"
+      },
+      {
+        "step": "Conferma finalmente l’operazione di logout",
+        "expected": "L’utente è disconnesso e visualizza un messaggio di operazione completata con successo"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Bassa",
+    "use_case_id": "UC6"
+  },
+  {
+    "test_case_id": "UC6_TC4",
+    "title": "Logout utente senza essere autenticato",
+    "preconditions": "",
+    "postconditions": "Il sistema visualizza un messaggio di errore per accesso non autorizzato",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema senza autenticazione",
+        "expected": "La home page del sistema non è visualizzata"
+      },
+      {
+        "step": "Tenta di cliccare sul tasto “Logout”",
+        "expected": "Il sistema visualizza un messaggio di errore per accesso non autorizzato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC6"
+  },
+  {
+    "test_case_id": "UC6_TC5",
+    "title": "Logout utente con sessione scaduta",
+    "preconditions": "UC1",
+    "postconditions": "L’utente è non è più autenticato ed è a conoscenza che l’operazione ha avuto successo",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente registrato e lascia la sessione inattiva per un lungo periodo",
+        "expected": "La sessione scade automaticamente"
+      },
+      {
+        "step": "Tenta di cliccare sul tasto “Logout”",
+        "expected": "Il sistema richiede nuovamente l’autenticazione"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Media",
+    "use_case_id": "UC6"
+  }
+]

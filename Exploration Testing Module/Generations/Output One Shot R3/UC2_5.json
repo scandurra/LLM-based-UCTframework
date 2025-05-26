@@ -1,0 +1,186 @@
+[
+  {
+    "test_case_id": "UC2.5_TC1",
+    "title": "Visualizzazione grafici con dati validi e completa visibilità",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza le informazioni consultando i grafici",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard",
+        "expected": "La pagina viene caricata correttamente"
+      },
+      {
+        "step": "Scorri nella pagina fino a raggiungere la sezione dei grafici",
+        "expected": "I grafici vengono visualizzati correttamente"
+      },
+      {
+        "step": "Osserva i grafici sui comuni aderenti per regione, punti luce per regione e distribuzione punti luce per tipo apparecchio",
+        "expected": "Tutti i grafici sono visibili e leggibili"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC2",
+    "title": "Visualizzazione grafici con dati parziali o mancanti",
+    "preconditions": "UC2",
+    "postconditions": "I grafici vengono visualizzati con messaggi di dati mancanti o parziali",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard con dati parziali o mancanti",
+        "expected": "La pagina viene caricata ma con avvisi di dati incompleti"
+      },
+      {
+        "step": "Scorri nella pagina fino a raggiungere la sezione dei grafici",
+        "expected": "I grafici vengono visualizzati con indicatori di dati mancanti"
+      },
+      {
+        "step": "Osserva i messaggi relativi ai dati parziali o mancanti",
+        "expected": "I messaggi sono chiari e indicano la causa della mancanza dei dati"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC3",
+    "title": "Visualizzazione grafici su dispositivo mobile",
+    "preconditions": "UC2",
+    "postconditions": "I grafici sono visibili e leggibili anche su dispositivi mobili",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard da un dispositivo mobile",
+        "expected": "La pagina si adatta correttamente allo schermo del dispositivo"
+      },
+      {
+        "step": "Scorri nella pagina fino a raggiungere la sezione dei grafici",
+        "expected": "I grafici sono visibili e ben formattati per il dispositivo mobile"
+      },
+      {
+        "step": "Interagisci con i grafici (zoom, scroll)",
+        "expected": "L’interazione è fluida e funzionale"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Alta",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC4",
+    "title": "Visualizzazione grafici con accessibilità per utenti con disabilità",
+    "preconditions": "UC2",
+    "postconditions": "I grafici sono accessibili e leggibili anche per utenti con disabilità",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard utilizzando strumenti di accessibilità (es. lettore dello schermo)",
+        "expected": "La pagina è navigabile correttamente con gli strumenti di accessibilità"
+      },
+      {
+        "step": "Scorri nella pagina fino a raggiungere la sezione dei grafici",
+        "expected": "I grafici sono descritti in modo accessibile per gli utenti con disabilità visiva"
+      },
+      {
+        "step": "Interagisci con i grafici utilizzando comandi vocali o di navigazione alternativi",
+        "expected": "L’interazione è possibile e funzionale"
+      }
+    ],
+    "test_type": "Accessibilità",
+    "priority": "Alta",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC5",
+    "title": "Visualizzazione grafici con dati aggiornati in tempo reale",
+    "preconditions": "UC2",
+    "postconditions": "I grafici riflettono i dati aggiornati in tempo reale",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e osserva i grafici",
+        "expected": "I grafici mostrano i dati attuali"
+      },
+      {
+        "step": "Aggiorna manualmente i dati sottostanti (se possibile) o attendi un aggiornamento automatico",
+        "expected": "I grafici si aggiornano di conseguenza"
+      },
+      {
+        "step": "Verifica la coerenza dei dati nei grafici aggiornati",
+        "expected": "I dati sono coerenti e riflettono le modifiche apportate"
+      }
+    ],
+    "test_type": "Funzionalità",
+    "priority": "Alta",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC6",
+    "title": "Visualizzazione grafici con layout personalizzato",
+    "preconditions": "UC2",
+    "postconditions": "I grafici sono visualizzati secondo il layout scelto dall’utente",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e seleziona opzioni di personalizzazione del layout",
+        "expected": "Le opzioni di personalizzazione sono disponibili"
+      },
+      {
+        "step": "Seleziona un layout diverso per i grafici (es. ordine, dimensioni)",
+        "expected": "I grafici si adattano al nuovo layout"
+      },
+      {
+        "step": "Verifica che le informazioni siano ancora chiare e leggibili",
+        "expected": "Le informazioni rimangono accessibili e comprensibili"
+      }
+    ],
+    "test_type": "Personalizzazione",
+    "priority": "Media",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC7",
+    "title": "Visualizzazione grafici con errori di rendering o visualizzazione",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema gestisce correttamente gli errori di rendering o visualizzazione",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e simula un errore di rendering (es. browser non supportato, connessione lenta)",
+        "expected": "Il sistema rileva l’errore e fornisce un messaggio di errore o una soluzione alternativa"
+      },
+      {
+        "step": "Verifica le opzioni di recupero o alternative offerte dal sistema",
+        "expected": "Le opzioni sono utili e aiutano l’utente a superare il problema"
+      },
+      {
+        "step": "Ripeti il test con diversi tipi di errori (es. dati mancanti, formato non supportato)",
+        "expected": "Il sistema gestisce ogni tipo di errore in modo appropriato"
+      }
+    ],
+    "test_type": "Robustezza",
+    "priority": "Alta",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC8",
+    "title": "Visualizzazione grafici in diverse condizioni di luce e risoluzione dello schermo",
+    "preconditions": "UC2",
+    "postconditions": "I grafici sono visibili e leggibili in diverse condizioni ambientali",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard in condizioni di luce diversa (es. luce diretta, oscurità)",
+        "expected": "I grafici rimangono visibili e leggibili"
+      },
+      {
+        "step": "Testa la visualizzazione su schermi con risoluzioni diverse (es. HD, 4K, retina)",
+        "expected": "I grafici si adattano correttamente alla risoluzione dello schermo"
+      },
+      {
+        "step": "Verifica che i colori e le informazioni siano coerenti in tutte le condizioni",
+        "expected": "I grafici mantengono la loro leggibilità e comprensibilità"
+      }
+    ],
+    "test_type": "Compatibilità",
+    "priority": "Media",
+    "use_case_id": "UC2.5"
+  }
+]

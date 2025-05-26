@@ -1,0 +1,97 @@
+[
+  {
+    "test_case_id": "UC2_TC1",
+    "title": "Apertura della dashboard con successo",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza la sezione relativa alla dashboard",
+    "test_steps": [
+      {
+        "step": "Accedi al menù laterale di sinistra",
+        "expected": "Il menù è visibile e navigabile"
+      },
+      {
+        "step": "Seleziona l’opzione per accedere alla dashboard",
+        "expected": "La sezione della dashboard si apre correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC2",
+    "title": "Tentativo di accesso alla dashboard senza autorizzazione",
+    "preconditions": "UC1",
+    "postconditions": "L’accesso alla dashboard non è consentito",
+    "test_steps": [
+      {
+        "step": "Accedi al menù laterale di sinistra come utente non autorizzato",
+        "expected": "Il menù è visibile ma l’opzione per la dashboard non è accessibile"
+      },
+      {
+        "step": "Tenta di forzare l’accesso alla dashboard",
+        "expected": "L’accesso viene negato e compare un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC3",
+    "title": "Apertura della dashboard con utente non loggato",
+    "preconditions": "UC1",
+    "postconditions": "L’utente viene reindirizzato alla pagina di login",
+    "test_steps": [
+      {
+        "step": "Tenta di accedere direttamente alla dashboard senza essere loggato",
+        "expected": "Il sistema richiede l’autenticazione"
+      },
+      {
+        "step": "Inserisci credenziali non valide",
+        "expected": "L’accesso viene negato e compare un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC4",
+    "title": "Verifica della visibilità dei contenuti nella dashboard",
+    "preconditions": "UC1",
+    "postconditions": "I contenuti sono visibili e correttamente formattati",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard come utente autorizzato",
+        "expected": "La dashboard si apre e i contenuti sono visibili"
+      },
+      {
+        "step": "Verifica la presenza e la correttezza dei dati visualizzati",
+        "expected": "Tutti gli elementi della dashboard sono presenti e corretti"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Alta",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC5",
+    "title": "Tentativo di sovraccarico della dashboard con troppe richieste",
+    "preconditions": "UC1",
+    "postconditions": "La dashboard rimane stabile e funzionale",
+    "test_steps": [
+      {
+        "step": "Esegui molteplici richieste contemporanee alla dashboard",
+        "expected": "La dashboard risponde senza problemi di prestazione"
+      },
+      {
+        "step": "Verifica che la dashboard non mostri errori o messaggi di timeout",
+        "expected": "La dashboard rimane funzionale e stabile"
+      }
+    ],
+    "test_type": "Prestazione",
+    "priority": "Alta",
+    "use_case_id": "UC2"
+  }
+]

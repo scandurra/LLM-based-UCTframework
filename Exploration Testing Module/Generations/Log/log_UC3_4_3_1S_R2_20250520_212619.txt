@@ -1,0 +1,438 @@
+📝 PROMPT:
+<|begin_of_text|><|start_header_id|>system<|end_header_id|>
+You are a Quality Assurance expert. Your task is to generate a suite of test cases for each use case provided in JSON format.
+
+
+The output must be in **JSON only**, structured as an array of test case objects, following the example below:
+
+[
+  {
+    "test_case_id": "UC7.2_TC1",
+    "title": "Segnalazione guasto con dati validi e foto allegata",
+    "preconditions": "UC7",
+    "postconditions": "Il sistema registra la segnalazione e notifica il fornitore responsabile",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione segnalazioni guasti",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Compila il modulo inserendo posizione, descrizione e carica una foto",
+        "expected": "Il modulo viene completato correttamente"
+      },
+      {
+        "step": "Conferma l’invio della segnalazione",
+        "expected": "Il sistema registra la segnalazione e mostra conferma"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC7.2"
+  },
+  ... (other test cases)
+]
+
+Guidelines:
+1) You must not create test cases that can be reproducible on the server side, so you must not generate blocked or disabled account tests, connection error or slow connection tests, maintenance tests, etc.
+2) You should create test cases that can be reproducible on the client side, including SQL injections for a Login use case.
+3) Generate a minimum of 3 test cases per use case, maxmimum of 10 (depending of the needs).
+4) Include both **positive** (success) and **negative** (error, missing input, etc.) tests , boundary conditions(if applicable),
+edge cases(if applicable), security and usability considerations (if applicable, for example in a Login use case you can do the injection test case).
+5) Use unique names for `test_case_id` following the format `UCx_TCy`.
+6) Base your test cases on base_sequence, branch_sequence, exception_sequence, and pre/postconditions.
+7) If in the use case description in JSON has "UCx" as "Precondition" tag, you must put "UCx" in the preconditions field of the test cases.
+
+
+Only return the JSON array. DO NOT explain anything.  
+DO NOT include "```json" or "```" markers.  
+Very importanti, you have to make sure all brackets are correctly opened and closed.
+Follow strictly the guidelines.
+
+Note: Even though the structure is in English, all content inside the fields (titles, steps, etc.) must remain in **Italian**.
+
+<|eot_id|><|start_header_id|>user<|end_header_id|>
+The following is the use case in JSON format, generate different test cases:
+[
+  {
+    "Id": "UC8.2.3",
+    "Title": "Esportazione report energetici (parte di UC8.2: Analisi consumi energetici)",
+    "Summary": "Consente agli utenti autorizzati di esportare i report dei consumi energetici in diversi formati",
+    "Actor": [
+      "Regione",
+      "Fornitore"
+    ],
+    "Precondition": "UC8.2",
+    "Postcondition": "Il file esportato viene scaricato correttamente",
+    "Base_sequence": [
+    "L’utente accede alla sezione analisi consumi",
+    "Seleziona il periodo di interesse e il formato di esportazione (PDF, CSV)",
+    "Avvia l’esportazione e scarica il file"
+    ],
+    "Branch_sequence": [],
+    "Exception_sequence": [],
+    "Note": "no"
+  }
+]
+<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+[
+  {
+    "test_case_id": "UC8.2.3_TC1",
+    "title": "Esportazione report in PDF con dati validi",
+    "preconditions": "UC8.2",
+    "postconditions": "Il file esportato viene scaricato correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione analisi consumi",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un periodo valido e il formato PDF",
+        "expected": "Le selezioni vengono accettate"
+      },
+      {
+        "step": "Avvia l’esportazione",
+        "expected": "Il file PDF viene generato e scaricato"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC8.2.3"
+  },
+  {
+    "test_case_id": "UC8.2.3_TC2",
+    "title": "Esportazione con formato non supportato",
+    "preconditions": "UC8.2",
+    "postconditions": "Il file non viene esportato e viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione analisi consumi",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un formato non previsto (es. .doc)",
+        "expected": "Il sistema mostra un errore di formato non valido"
+      },
+      {
+        "step": "Tenta di avviare l’esportazione",
+        "expected": "L’operazione viene bloccata"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC8.2.3"
+  },
+  {
+    "test_case_id": "UC8.2.3_TC3",
+    "title": "Esportazione CSV con grande quantità di dati",
+    "preconditions": "UC8.2",
+    "postconditions": "Il file esportato viene scaricato correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione analisi consumi",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un intervallo temporale ampio e il formato CSV",
+        "expected": "Il sistema accetta l’intervallo"
+      },
+      {
+        "step": "Avvia l’esportazione",
+        "expected": "Il file CSV viene generato con successo"
+      }
+    ],
+    "test_type": "Prestazione",
+    "priority": "Alta",
+    "use_case_id": "UC8.2.3"
+  },
+  {
+    "test_case_id": "UC8.2.3_TC4",
+    "title": "Esportazione senza selezionare periodo",
+    "preconditions": "UC8.2",
+    "postconditions": "Il file non viene esportato",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione analisi consumi",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Lascia vuoto il campo relativo al periodo",
+        "expected": "Il sistema segnala la mancanza di informazioni"
+      },
+      {
+        "step": "Tenta di avviare l’esportazione",
+        "expected": "La funzione non procede e viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC8.2.3"
+  },
+  {
+    "test_case_id": "UC8.2.3_TC5",
+    "title": "Boundary test: esportazione con date di inizio e fine coincidenti",
+    "preconditions": "UC8.2",
+    "postconditions": "Il file viene esportato con i dati del giorno selezionato",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione analisi consumi",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Imposta come data di inizio e fine la stessa giornata",
+        "expected": "Il sistema accetta la selezione"
+      },
+      {
+        "step": "Avvia l’esportazione",
+        "expected": "Il file viene esportato correttamente"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Alta",
+    "use_case_id": "UC8.2.3"
+  },
+  {
+    "test_case_id": "UC8.2.3_TC6",
+    "title": "Security test: esportazione da parte di utente non autenticato",
+    "preconditions": "UC8.2",
+    "postconditions": "Nessun file viene generato; viene richiesta l’autenticazione",
+    "test_steps": [
+      {
+        "step": "Accedi direttamente alla sezione analisi consumi senza login",
+        "expected": "Il sistema reindirizza alla pagina di login"
+      },
+      {
+        "step": "Tenta di accedere manualmente all’URL di esportazione",
+        "expected": "Accesso negato e richiesta autenticazione"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC8.2.3"
+  },
+  {
+    "test_case_id": "UC8.2.3_TC7",
+    "title": "Edge case: esportazione con caratteri speciali nel nome del file",
+    "preconditions": "UC8.2",
+    "postconditions": "Il file viene salvato con un nome corretto e sicuro",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione analisi consumi",
+        "expected": "La sezione viene caricata correttamente"
+      },
+      {
+        "step": "Immetti un titolo con caratteri speciali (es. consumo@2024!)",
+        "expected": "Il sistema normalizza o rimuove i caratteri non validi"
+      },
+      {
+        "step": "Avvia l’esportazione",
+        "expected": "Il file viene generato con un nome valido"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC8.2.3"
+  },
+  {
+    "test_case_id": "UC8.2.3_TC8",
+    "title": "Esportazione mentre il sistema è in manutenzione",
+    "preconditions": "UC8.2",
+    "postconditions": "Il sistema notifica l’indisponibilità della funzione",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione analisi consumi",
+        "expected": "Viene visualizzato un messaggio di manutenzione"
+      },
+      {
+        "step": "Tenta comunque di esportare un report",
+        "expected": "Il sistema blocca l’operazione e notifica la manutenzione in corso"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC8.2.3"
+  }
+]
+<|eot_id|><|start_header_id|>user<|end_header_id|>
+The following is the use case in JSON format, generate different test cases:
+
+[
+  {
+    "Id": "UC3.4.3",
+    "Title": "Modifica scheda censimento (parte di UC3.4: Azione su scheda censimento) (parte di UC3: Gestione schede censimento)",
+    "Summary": "Mostra la sezione relativa alla modifica dei dati di una scheda censimento",
+    "Actor": [
+      "Regione",
+      "Sindaco",
+      "Fornitore"
+    ],
+    "Precondition": "UC3.4",
+    "Postcondition": "L’utente visualizza le informazioni della scheda in fase di edit",
+    "Base_sequence": [
+      "L’utente seleziona l’operazione di modifica"
+    ],
+    "Branch_sequence": [],
+    "Exception_sequence": [],
+    "Note": "no"
+  }
+]
+
+<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+📥 RESPONSE:
+[
+  {
+    "test_case_id": "UC3.4.3_TC1",
+    "title": "Modifica scheda censimento con dati validi",
+    "preconditions": "UC3.4",
+    "postconditions": "Le informazioni della scheda vengono visualizzate in modalità edit",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione delle schede censimento",
+        "expected": "La sezione viene caricata correttamente"
+      },
+      {
+        "step": "Seleziona una scheda esistente e l’operazione di modifica",
+        "expected": "La scheda viene visualizzata in modalità edit"
+      },
+      {
+        "step": "Modifica i campi con dati validi",
+        "expected": "I dati vengono accettati e la scheda rimane in modalità edit"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3"
+  },
+  {
+    "test_case_id": "UC3.4.3_TC2",
+    "title": "Modifica scheda censimento senza permessi",
+    "preconditions": "UC3.4",
+    "postconditions": "L’accesso alla modifica della scheda viene negato",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione delle schede censimento con un utente senza permessi di modifica",
+        "expected": "La sezione viene caricata ma l’opzione di modifica non è disponibile"
+      },
+      {
+        "step": "Tenta di selezionare una scheda e l’operazione di modifica",
+        "expected": "Il sistema nega l’accesso alla funzione di modifica"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3"
+  },
+  {
+    "test_case_id": "UC3.4.3_TC3",
+    "title": "Modifica scheda censimento con dati non validi",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema segnala errori di validazione",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione delle schede censimento",
+        "expected": "La sezione viene caricata correttamente"
+      },
+      {
+        "step": "Seleziona una scheda esistente e l’operazione di modifica",
+        "expected": "La scheda viene visualizzata in modalità edit"
+      },
+      {
+        "step": "Inserisci dati non validi nei campi (es. caratteri speciali dove richiesti numeri)",
+        "expected": "Il sistema segnala gli errori di validazione e non permette la modifica"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3"
+  },
+  {
+    "test_case_id": "UC3.4.3_TC4",
+    "title": "Modifica scheda censimento con campi obbligatori vuoti",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema richiede di compilare i campi obbligatori",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione delle schede censimento",
+        "expected": "La sezione viene caricata correttamente"
+      },
+      {
+        "step": "Seleziona una scheda esistente e l’operazione di modifica",
+        "expected": "La scheda viene visualizzata in modalità edit"
+      },
+      {
+        "step": "Lascia vuoti i campi obbligatori e tenta di salvare le modifiche",
+        "expected": "Il sistema segnala l’errore e richiede la compilazione dei campi mancanti"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3"
+  },
+  {
+    "test_case_id": "UC3.4.3_TC5",
+    "title": "Modifica scheda censimento con dati troppo lunghi",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema tronca i dati o li rifiuta",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione delle schede censimento",
+        "expected": "La sezione viene caricata correttamente"
+      },
+      {
+        "step": "Seleziona una scheda esistente e l’operazione di modifica",
+        "expected": "La scheda viene visualizzata in modalità edit"
+      },
+      {
+        "step": "Inserisci dati più lunghi del consentito nei campi",
+        "expected": "Il sistema tronca i dati o li rifiuta e visualizza un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3"
+  },
+  {
+    "test_case_id": "UC3.4.3_TC6",
+    "title": "Modifica scheda censimento e annullamento delle modifiche",
+    "preconditions": "UC3.4",
+    "postconditions": "Le modifiche vengono annullate e la scheda torna allo stato originale",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione delle schede censimento",
+        "expected": "La sezione viene caricata correttamente"
+      },
+      {
+        "step": "Seleziona una scheda esistente e l’operazione di modifica",
+        "expected": "La scheda viene visualizzata in modalità edit"
+      },
+      {
+        "step": "Apporta alcune modifiche e poi annullale",
+        "expected": "Le modifiche vengono annullate e la scheda ritorna allo stato originale"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3"
+  },
+  {
+    "test_case_id": "UC3.4.3_TC7",
+    "title": "Modifica scheda censimento con più utenti contemporaneamente",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema gestisce le modifiche in modo atomico o avvisa gli utenti di conflitti",
+    "test_steps": [
+      {
+        "step": "Due o più utenti accedono alla stessa scheda censimento in modalità edit",
+        "expected": "Il sistema gestisce le modifiche in modo da evitare perdita di dati o avvisa gli utenti di conflitti"
+      },
+      {
+        "step": "Ogni utente apporta modifiche",
+        "expected": "Il sistema salva le modifiche in modo coerente o richiede la risoluzione dei conflitti"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3"
+  }
+]
+
+⏱️ EXECUTION TIME: 434.26 seconds

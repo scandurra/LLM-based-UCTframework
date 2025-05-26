@@ -1,0 +1,24 @@
+[
+  {
+    "Id": "UC3.4.4",
+    "Title": "Congela scheda censimento (parte di UC3.4: Azione su scheda censimento) (parte di UC3: Gestione schede censimento)",
+    "Summary": "Permette di congelare dal portale una scheda censimento precedentemente caricata",
+    "Actor": [
+      "Regione",
+      "Sindaco",
+      "Fornitore"
+    ],
+    "Precondition": "UC3.4",
+    "Postcondition": "L’utente non può più svolgere qualsiasi azione sulla scheda. Inoltre, lo stato visualizzato della scheda è come “non attivo”",
+    "Base_sequence": [
+      "L’utente seleziona l’operazione di congelamento",
+      "All’utente viene richiesta la conferma del congelamento della scheda indicata",
+      "In caso di conferma l’utente visualizza un messaggio di conferma dell’operazione"
+    ],
+    "Branch_sequence": [
+      "In caso di annullamento il congelamento viene interrotto"
+    ],
+    "Exception_sequence": [],
+    "Note": "no"
+  }
+]

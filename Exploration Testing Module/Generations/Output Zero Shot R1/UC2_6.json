@@ -1,0 +1,117 @@
+[
+  {
+    "test_case_id": "UC2.6_TC1",
+    "title": "Analisi consumo comune con parametri validi",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza le informazioni consultando i grafici",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione dedicata al consumo",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona il comune e specifica POD, pannello elettrico, periodo e tipo di potenza analizzata",
+        "expected": "I parametri vengono selezionati correttamente"
+      },
+      {
+        "step": "Esegui l’analisi",
+        "expected": "L’analisi viene eseguita e i risultati sono visualizzati nei grafici"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC2",
+    "title": "Analisi consumo comune con parametri mancanti",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione dedicata al consumo",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Non selezionare il comune e non specifica POD, pannello elettrico, periodo e tipo di potenza analizzata",
+        "expected": "I parametri non vengono selezionati"
+      },
+      {
+        "step": "Esegui l’analisi",
+        "expected": "Viene visualizzato un messaggio di errore per parametri mancanti"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC3",
+    "title": "Analisi consumo comune con parametri non validi",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione dedicata al consumo",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona il comune e specifica POD, pannello elettrico, periodo e tipo di potenza analizzata con valori non validi",
+        "expected": "I parametri vengono selezionati ma non sono validi"
+      },
+      {
+        "step": "Esegui l’analisi",
+        "expected": "Viene visualizzato un messaggio di errore per parametri non validi"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC4",
+    "title": "Analisi consumo comune con selezione di più comuni",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza le informazioni consultando i grafici",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione dedicata al consumo",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona più comuni e specifica POD, pannello elettrico, periodo e tipo di potenza analizzata",
+        "expected": "I parametri vengono selezionati correttamente"
+      },
+      {
+        "step": "Esegui l’analisi",
+        "expected": "L’analisi viene eseguita e i risultati sono visualizzati nei grafici per ogni comune selezionato"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Bassa",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC5",
+    "title": "Analisi consumo comune con nessun dato disponibile",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di avviso",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione dedicata al consumo",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona il comune e specifica POD, pannello elettrico, periodo e tipo di potenza analizzata",
+        "expected": "I parametri vengono selezionati correttamente"
+      },
+      {
+        "step": "Esegui l’analisi",
+        "expected": "Viene visualizzato un messaggio di avviso per assenza di dati"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC2.6"
+  }
+]

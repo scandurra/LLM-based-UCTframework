@@ -1,0 +1,117 @@
+[
+  {
+    "test_case_id": "UC3.2.1_TC1",
+    "title": "Ricerca scheda censimento per nome con dati validi",
+    "preconditions": "UC3.2",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci il nome della scheda censimento da ricercare",
+        "expected": "Il campo di input è compilato correttamente"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema visualizza i risultati della ricerca"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.2.1"
+  },
+  {
+    "test_case_id": "UC3.2.1_TC2",
+    "title": "Ricerca scheda censimento per nome con dati non validi",
+    "preconditions": "UC3.2",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci un nome non esistente della scheda censimento da ricercare",
+        "expected": "Il campo di input è compilato correttamente"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema visualizza un messaggio di errore per dati non trovati"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.2.1"
+  },
+  {
+    "test_case_id": "UC3.2.1_TC3",
+    "title": "Ricerca scheda censimento per nome con campo di input vuoto",
+    "preconditions": "UC3.2",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Lascia vuoto il campo di input del nome della scheda censimento da ricercare",
+        "expected": "Il campo di input è vuoto"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema visualizza un messaggio di errore per campo obbligatorio"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.2.1"
+  },
+  {
+    "test_case_id": "UC3.2.1_TC4",
+    "title": "Ricerca scheda censimento per nome con caratteri speciali",
+    "preconditions": "UC3.2",
+    "postconditions": "L’utente visualizza un messaggio di errore o i risultati della ricerca",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci il nome della scheda censimento da ricercare con caratteri speciali",
+        "expected": "Il campo di input è compilato correttamente"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema gestisce correttamente i caratteri speciali e visualizza i risultati della ricerca o un messaggio di errore"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Bassa",
+    "use_case_id": "UC3.2.1"
+  },
+  {
+    "test_case_id": "UC3.2.1_TC5",
+    "title": "Ricerca scheda censimento per nome con lunghezza massima del campo di input",
+    "preconditions": "UC3.2",
+    "postconditions": "L’utente visualizza un messaggio di errore o i risultati della ricerca",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci il nome della scheda censimento da ricercare con la lunghezza massima del campo di input",
+        "expected": "Il campo di input è compilato correttamente"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema gestisce correttamente la lunghezza massima del campo di input e visualizza i risultati della ricerca o un messaggio di errore"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Bassa",
+    "use_case_id": "UC3.2.1"
+  }
+]

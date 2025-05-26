@@ -1,0 +1,182 @@
+[
+  {
+    "test_case_id": "UC3.2.1_TC1",
+    "title": "Ricerca scheda censimento per nome valido",
+    "preconditions": "UC3.2",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci un nome valido nella barra di ricerca",
+        "expected": "Il sistema accetta l’input"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema mostra i risultati della ricerca relativi al nome inserito"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.2.1"
+  },
+  {
+    "test_case_id": "UC3.2.1_TC2",
+    "title": "Ricerca con nome non esistente",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema mostra un messaggio di nessun risultato trovato",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci un nome che non esiste nel database",
+        "expected": "Il sistema accetta l’input"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema mostra un messaggio di ‘nessun risultato trovato’"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.2.1"
+  },
+  {
+    "test_case_id": "UC3.2.1_TC3",
+    "title": "Ricerca con campo nome vuoto",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema richiede di inserire un valore nel campo nome",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Lascia vuoto il campo di ricerca per il nome",
+        "expected": "Il sistema segnala l’errore di campo obbligatorio"
+      },
+      {
+        "step": "Tenta di confermare la ricerca",
+        "expected": "La ricerca non viene eseguita e compare un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.2.1"
+  },
+  {
+    "test_case_id": "UC3.2.1_TC4",
+    "title": "Ricerca con caratteri speciali nel nome",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema esegue la ricerca ignorando o normalizzando i caratteri speciali",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci un nome contenente caratteri speciali (es. nom!@#)",
+        "expected": "Il sistema accetta l’input e lo normalizza"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema mostra i risultati della ricerca relativi al nome inserito, ignorando o sostituendo i caratteri speciali"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC3.2.1"
+  },
+  {
+    "test_case_id": "UC3.2.1_TC5",
+    "title": "Ricerca con nome lungo",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema esegue la ricerca anche con nomi lunghi",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci un nome molto lungo (es. oltre 50 caratteri)",
+        "expected": "Il sistema accetta l’input senza problemi di lunghezza"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema mostra i risultati della ricerca relativi al nome inserito"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Bassa",
+    "use_case_id": "UC3.2.1"
+  },
+  {
+    "test_case_id": "UC3.2.1_TC6",
+    "title": "Ricerca senza autenticazione",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema richiede l’autenticazione",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento senza essere loggato",
+        "expected": "Il sistema reindirizza alla pagina di login"
+      },
+      {
+        "step": "Tenta di eseguire la ricerca",
+        "expected": "Accesso negato e richiesta autenticazione"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.2.1"
+  },
+  {
+    "test_case_id": "UC3.2.1_TC7",
+    "title": "Ricerca con più parametri di ricerca (nome e altri)",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema esegue la ricerca considerando tutti i parametri inseriti",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci più parametri di ricerca, incluso il nome",
+        "expected": "Il sistema accetta tutti gli input"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema mostra i risultati della ricerca considerando tutti i parametri inseriti"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC3.2.1"
+  },
+  {
+    "test_case_id": "UC3.2.1_TC8",
+    "title": "Ricerca con nome parziale",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema esegue la ricerca mostrando risultati parziali",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci solo una parte del nome",
+        "expected": "Il sistema accetta l’input parziale"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema mostra i risultati della ricerca relativi alla parte del nome inserita"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC3.2.1"
+  }
+]

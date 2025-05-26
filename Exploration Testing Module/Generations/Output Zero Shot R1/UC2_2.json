@@ -1,0 +1,105 @@
+[
+  {
+    "test_case_id": "UC2.2_TC1",
+    "title": "Ricerca impianti di illuminazione con parametri validi",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza gli impianti di illuminazione che corrispondono ai criteri di ricerca",
+    "test_steps": [
+      {
+        "step": "Seleziona il comune di ricerca e i parametri disponibili",
+        "expected": "I parametri vengono selezionati correttamente"
+      },
+      {
+        "step": "Conferma la ricerca con il click",
+        "expected": "La ricerca viene avviata correttamente"
+      },
+      {
+        "step": "Visualizza sulla mappa la posizione dell’impianto d’illuminazione relativo al comune",
+        "expected": "Gli impianti di illuminazione vengono visualizzati correttamente sulla mappa"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.2"
+  },
+  {
+    "test_case_id": "UC2.2_TC2",
+    "title": "Ricerca impianti di illuminazione senza selezionare il comune",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Non selezionare il comune di ricerca",
+        "expected": "Il sistema richiede la selezione del comune"
+      },
+      {
+        "step": "Conferma la ricerca con il click",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.2"
+  },
+  {
+    "test_case_id": "UC2.2_TC3",
+    "title": "Ricerca impianti di illuminazione con parametri non validi",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Inserisci parametri non validi per la ricerca",
+        "expected": "Il sistema richiede la correzione dei parametri"
+      },
+      {
+        "step": "Conferma la ricerca con il click",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.2"
+  },
+  {
+    "test_case_id": "UC2.2_TC4",
+    "title": "Ricerca impianti di illuminazione con selezione multipla di comuni",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza gli impianti di illuminazione che corrispondono ai criteri di ricerca",
+    "test_steps": [
+      {
+        "step": "Seleziona più comuni di ricerca",
+        "expected": "I comuni vengono selezionati correttamente"
+      },
+      {
+        "step": "Conferma la ricerca con il click",
+        "expected": "La ricerca viene avviata correttamente"
+      },
+      {
+        "step": "Visualizza sulla mappa la posizione dell’impianto d’illuminazione relativo ai comuni selezionati",
+        "expected": "Gli impianti di illuminazione vengono visualizzati correttamente sulla mappa"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Bassa",
+    "use_case_id": "UC2.2"
+  },
+  {
+    "test_case_id": "UC2.2_TC5",
+    "title": "Ricerca impianti di illuminazione con parametri di ricerca vuoti",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Non inserire parametri di ricerca",
+        "expected": "Il sistema richiede l’inserimento dei parametri"
+      },
+      {
+        "step": "Conferma la ricerca con il click",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC2.2"
+  }
+]

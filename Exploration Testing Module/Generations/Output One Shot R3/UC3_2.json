@@ -1,0 +1,182 @@
+[
+  {
+    "test_case_id": "UC3.2_TC1",
+    "title": "Ricerca con parametri validi",
+    "preconditions": "UC3",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla ricerca",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci criteri di ricerca validi (es. nome, data)",
+        "expected": "Il sistema accetta i parametri di ricerca"
+      },
+      {
+        "step": "Avvia la ricerca",
+        "expected": "Vengono visualizzati i risultati della ricerca"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.2"
+  },
+  {
+    "test_case_id": "UC3.2_TC2",
+    "title": "Ricerca senza parametri",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema visualizza un messaggio di errore o richiede di inserire parametri",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Lascia vuoti i campi di ricerca",
+        "expected": "Il sistema richiede l’inserimento dei parametri"
+      },
+      {
+        "step": "Tenta di avviare la ricerca",
+        "expected": "Viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.2"
+  },
+  {
+    "test_case_id": "UC3.2_TC3",
+    "title": "Ricerca con parametri non validi",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci parametri non validi (es. caratteri speciali non ammessi)",
+        "expected": "Il sistema rifiuta i parametri"
+      },
+      {
+        "step": "Tenta di avviare la ricerca",
+        "expected": "Viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.2"
+  },
+  {
+    "test_case_id": "UC3.2_TC4",
+    "title": "Ricerca con paginazione",
+    "preconditions": "UC3",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci criteri di ricerca validi e seleziona una paginazione specifica",
+        "expected": "Il sistema accetta i parametri di ricerca e la paginazione"
+      },
+      {
+        "step": "Avvia la ricerca",
+        "expected": "Vengono visualizzati i risultati della ricerca nella paginazione selezionata"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.2"
+  },
+  {
+    "test_case_id": "UC3.2_TC5",
+    "title": "Ricerca senza autorizzazione",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema richiede l’autorizzazione o nega l’accesso",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione schede censimento senza autorizzazione",
+        "expected": "Il sistema richiede l’autenticazione"
+      },
+      {
+        "step": "Tenta di avviare la ricerca",
+        "expected": "L’accesso viene negato"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.2"
+  },
+  {
+    "test_case_id": "UC3.2_TC6",
+    "title": "Ricerca con SQL Injection",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema protegge contro l’iniezione di codice malevolo",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci parametri di ricerca contenenti codice SQL malevolo",
+        "expected": "Il sistema rileva e blocca l’attacco"
+      },
+      {
+        "step": "Tenta di avviare la ricerca",
+        "expected": "Viene visualizzato un messaggio di errore o il sistema protegge i dati"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.2"
+  },
+  {
+    "test_case_id": "UC3.2_TC7",
+    "title": "Ricerca con caratteri speciali nei parametri",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema gestisce correttamente i caratteri speciali",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci parametri di ricerca contenenti caratteri speciali (es. @, #, $)",
+        "expected": "Il sistema accetta i parametri"
+      },
+      {
+        "step": "Avvia la ricerca",
+        "expected": "Vengono visualizzati i risultati della ricerca correttamente"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC3.2"
+  },
+  {
+    "test_case_id": "UC3.2_TC8",
+    "title": "Ricerca con un numero elevato di parametri",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema gestisce correttamente il carico di lavoro",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci un numero elevato di parametri di ricerca",
+        "expected": "Il sistema accetta i parametri"
+      },
+      {
+        "step": "Avvia la ricerca",
+        "expected": "Vengono visualizzati i risultati della ricerca senza problemi di performance"
+      }
+    ],
+    "test_type": "Prestazione",
+    "priority": "Media",
+    "use_case_id": "UC3.2"
+  }
+]

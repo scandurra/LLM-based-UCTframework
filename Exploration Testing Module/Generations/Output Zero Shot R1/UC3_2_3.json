@@ -1,0 +1,117 @@
+[
+  {
+    "test_case_id": "UC3.2.3_TC1",
+    "title": "Ricerca scheda censimento per tipo con dati validi",
+    "preconditions": "UC3.2",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci il tipo di scheda censimento nella maschera di ricerca",
+        "expected": "Il campo di ricerca è compilato correttamente"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema visualizza i risultati della ricerca"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.2.3"
+  },
+  {
+    "test_case_id": "UC3.2.3_TC2",
+    "title": "Ricerca scheda censimento per tipo con dati non validi",
+    "preconditions": "UC3.2",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci un tipo di scheda censimento non esistente nella maschera di ricerca",
+        "expected": "Il campo di ricerca è compilato ma il tipo non esiste"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema visualizza un messaggio di errore per tipo non trovato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.2.3"
+  },
+  {
+    "test_case_id": "UC3.2.3_TC3",
+    "title": "Ricerca scheda censimento per tipo con campo vuoto",
+    "preconditions": "UC3.2",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Lascia vuoto il campo di ricerca del tipo di scheda censimento",
+        "expected": "Il campo di ricerca è vuoto"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema visualizza un messaggio di errore per campo obbligatorio"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.2.3"
+  },
+  {
+    "test_case_id": "UC3.2.3_TC4",
+    "title": "Ricerca scheda censimento per tipo con più tipi",
+    "preconditions": "UC3.2",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci più tipi di scheda censimento nella maschera di ricerca",
+        "expected": "I campi di ricerca sono compilati correttamente"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema visualizza i risultati della ricerca per tutti i tipi selezionati"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.2.3"
+  },
+  {
+    "test_case_id": "UC3.2.3_TC5",
+    "title": "Ricerca scheda censimento per tipo con caratteri speciali",
+    "preconditions": "UC3.2",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci caratteri speciali nel campo di ricerca del tipo di scheda censimento",
+        "expected": "Il campo di ricerca contiene caratteri non validi"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema visualizza un messaggio di errore per caratteri non validi"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.2.3"
+  }
+]

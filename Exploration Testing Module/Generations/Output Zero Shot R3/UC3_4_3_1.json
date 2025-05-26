@@ -1,0 +1,117 @@
+[
+  {
+    "test_case_id": "UC3.4.3.1_TC1",
+    "title": "Modifica sezione Area con dati validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Compila il form con le informazioni desiderate",
+        "expected": "Il form viene compilato correttamente"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Il sistema applica le modifiche e visualizza un messaggio di conferma"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.1"
+  },
+  {
+    "test_case_id": "UC3.4.3.1_TC2",
+    "title": "Modifica sezione Area con dati non validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Compila il form con informazioni non valide",
+        "expected": "Il form non viene compilato correttamente"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Il sistema mostra un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.1"
+  },
+  {
+    "test_case_id": "UC3.4.3.1_TC3",
+    "title": "Modifica sezione Area senza compilare il form",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Non compilare il form",
+        "expected": "Il form non viene compilato"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Il sistema mostra un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.1"
+  },
+  {
+    "test_case_id": "UC3.4.3.1_TC4",
+    "title": "Modifica sezione Area con dati validi e cancellazione dei campi obbligatori",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Compila il form con le informazioni desiderate e cancella i campi obbligatori",
+        "expected": "Il form non viene compilato correttamente"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Il sistema mostra un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.1"
+  },
+  {
+    "test_case_id": "UC3.4.3.1_TC5",
+    "title": "Modifica sezione Area con dati validi e caratteri speciali",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Compila il form con le informazioni desiderate e caratteri speciali",
+        "expected": "Il form viene compilato correttamente"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Il sistema applica le modifiche e visualizza un messaggio di conferma"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.1"
+  }
+]

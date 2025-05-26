@@ -1,0 +1,178 @@
+[
+  {
+    "test_case_id": "UC3.2.1_TC1",
+    "title": "Ricerca scheda censimento per nome esatto",
+    "preconditions": "UC3.2",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione viene caricata correttamente"
+      },
+      {
+        "step": "Inserisci un nome esatto di una scheda censimento",
+        "expected": "Il sistema accetta l’input"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema visualizza i risultati della ricerca corrispondenti al nome inserito"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.2.1"
+  },
+  {
+    "test_case_id": "UC3.2.1_TC2",
+    "title": "Ricerca scheda censimento per nome parziale",
+    "preconditions": "UC3.2",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione viene caricata correttamente"
+      },
+      {
+        "step": "Inserisci una parte del nome di una scheda censimento",
+        "expected": "Il sistema accetta l’input"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema visualizza i risultati della ricerca che contengono la stringa parziale inserita"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.2.1"
+  },
+  {
+    "test_case_id": "UC3.2.1_TC3",
+    "title": "Ricerca senza inserire nome",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione viene caricata correttamente"
+      },
+      {
+        "step": "Lascia vuoto il campo del nome",
+        "expected": "Il sistema segnala l’errore di input mancante"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema non esegue la ricerca e visualizza un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.2.1"
+  },
+  {
+    "test_case_id": "UC3.2.1_TC4",
+    "title": "Ricerca con nome non esistente",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema visualizza un messaggio di nessun risultato trovato",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione viene caricata correttamente"
+      },
+      {
+        "step": "Inserisci un nome che non corrisponde a nessuna scheda censimento",
+        "expected": "Il sistema accetta l’input"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema visualizza un messaggio di ‘nessun risultato trovato’"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.2.1"
+  },
+  {
+    "test_case_id": "UC3.2.1_TC5",
+    "title": "Ricerca con caratteri speciali nel nome",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema gestisce correttamente i caratteri speciali",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione viene caricata correttamente"
+      },
+      {
+        "step": "Inserisci un nome con caratteri speciali (es. @, #, !)",
+        "expected": "Il sistema accetta l’input o lo normalizza"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema esegue la ricerca correttamente ignorando o gestendo i caratteri speciali"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC3.2.1"
+  },
+  {
+    "test_case_id": "UC3.2.1_TC6",
+    "title": "Ricerca con nome lungo",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema gestisce correttamente il nome lungo",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione viene caricata correttamente"
+      },
+      {
+        "step": "Inserisci un nome molto lungo (oltre 100 caratteri)",
+        "expected": "Il sistema accetta l’input o lo tronca"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema esegue la ricerca correttamente anche con nomi lunghi"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Bassa",
+    "use_case_id": "UC3.2.1"
+  },
+  {
+    "test_case_id": "UC3.2.1_TC7",
+    "title": "Ricerca mentre il sistema è in manutenzione",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema notifica l’indisponibilità della funzione",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento durante la manutenzione",
+        "expected": "Viene visualizzato un messaggio di manutenzione"
+      },
+      {
+        "step": "Tenta comunque di eseguire una ricerca",
+        "expected": "Il sistema blocca l’operazione e notifica la manutenzione in corso"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC3.2.1"
+  },
+  {
+    "test_case_id": "UC3.2.1_TC8",
+    "title": "Ricerca con utente non autorizzato",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema nega l’accesso alla funzione di ricerca",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento come utente non autorizzato",
+        "expected": "Viene visualizzato un messaggio di accesso negato"
+      },
+      {
+        "step": "Tenta comunque di eseguire una ricerca",
+        "expected": "Il sistema blocca l’operazione e richiede autenticazione o autorizzazione"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.2.1"
+  }
+]

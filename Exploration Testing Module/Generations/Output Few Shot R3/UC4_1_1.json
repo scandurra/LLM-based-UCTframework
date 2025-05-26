@@ -1,0 +1,117 @@
+[
+  {
+    "test_case_id": "UC4.1.1_TC1",
+    "title": "Aggiunta impianto con dati validi",
+    "preconditions": "UC4.1",
+    "postconditions": "L’utente visualizza un messaggio di conferma",
+    "test_steps": [
+      {
+        "step": "Clicca sul tasto dedicato all’aggiunta di un singolo impianto",
+        "expected": "La sezione per l’inserimento dei dati dell’impianto viene visualizzata"
+      },
+      {
+        "step": "Inserisci il nome e seleziona il comune tra quelli disponibili",
+        "expected": "I dati vengono accettati e salvati"
+      },
+      {
+        "step": "Conferma l’aggiunta dell’impianto",
+        "expected": "Viene visualizzato un messaggio di conferma"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC4.1.1"
+  },
+  {
+    "test_case_id": "UC4.1.1_TC2",
+    "title": "Aggiunta impianto senza selezionare comune",
+    "preconditions": "UC4.1",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Clicca sul tasto dedicato all’aggiunta di un singolo impianto",
+        "expected": "La sezione per l’inserimento dei dati dell’impianto viene visualizzata"
+      },
+      {
+        "step": "Inserisci il nome senza selezionare il comune",
+        "expected": "Il sistema segnala l’errore di mancata selezione del comune"
+      },
+      {
+        "step": "Tenta di confermare l’aggiunta dell’impianto",
+        "expected": "L’operazione non viene completata e viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC4.1.1"
+  },
+  {
+    "test_case_id": "UC4.1.1_TC3",
+    "title": "Annullamento aggiunta impianto",
+    "preconditions": "UC4.1",
+    "postconditions": "L’utente visualizza un messaggio di avvenuto annullamento",
+    "test_steps": [
+      {
+        "step": "Clicca sul tasto dedicato all’aggiunta di un singolo impianto",
+        "expected": "La sezione per l’inserimento dei dati dell’impianto viene visualizzata"
+      },
+      {
+        "step": "Inizia a inserire i dati dell’impianto e poi clicca su annulla",
+        "expected": "I dati vengono cancellati e non salvati"
+      },
+      {
+        "step": "Conferma l’annullamento",
+        "expected": "Viene visualizzato un messaggio di avvenuto annullamento"
+      }
+    ],
+    "test_type": "Branch",
+    "priority": "Alta",
+    "use_case_id": "UC4.1.1"
+  },
+  {
+    "test_case_id": "UC4.1.1_TC4",
+    "title": "Aggiunta impianto con nome già esistente",
+    "preconditions": "UC4.1",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Clicca sul tasto dedicato all’aggiunta di un singolo impianto",
+        "expected": "La sezione per l’inserimento dei dati dell’impianto viene visualizzata"
+      },
+      {
+        "step": "Inserisci il nome di un impianto già esistente e seleziona il comune",
+        "expected": "Il sistema segnala l’errore di nome già utilizzato"
+      },
+      {
+        "step": "Tenta di confermare l’aggiunta dell’impianto",
+        "expected": "L’operazione non viene completata e viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC4.1.1"
+  },
+  {
+    "test_case_id": "UC4.1.1_TC5",
+    "title": "Aggiunta impianto con dati parzialmente incompleti",
+    "preconditions": "UC4.1",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Clicca sul tasto dedicato all’aggiunta di un singolo impianto",
+        "expected": "La sezione per l’inserimento dei dati dell’impianto viene visualizzata"
+      },
+      {
+        "step": "Inserisci solo alcuni dei campi richiesti e lascia gli altri vuoti",
+        "expected": "Il sistema segnala l’errore di dati incompleti"
+      },
+      {
+        "step": "Tenta di confermare l’aggiunta dell’impianto",
+        "expected": "L’operazione non viene completata e viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC4.1.1"
+  }
+]

@@ -1,0 +1,221 @@
+📝 PROMPT:
+<|begin_of_text|><|start_header_id|>system<|end_header_id|>
+You are a Quality Assurance expert. Your task is to generate a suite of test cases for each use case provided in JSON format.
+
+The output must be in **JSON only**, structured as an array of test case objects, following the example below:
+
+[
+  {
+    "test_case_id": "UC7.2_TC1",
+    "title": "Segnalazione guasto con dati validi e foto allegata",
+    "preconditions": "UC7",
+    "postconditions": "Il sistema registra la segnalazione e notifica il fornitore responsabile",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione segnalazioni guasti",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Compila il modulo inserendo posizione, descrizione e carica una foto",
+        "expected": "Il modulo viene completato correttamente"
+      },
+      {
+        "step": "Conferma l’invio della segnalazione",
+        "expected": "Il sistema registra la segnalazione e mostra conferma"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC7.2"
+  },
+  ... (other test cases)
+]
+
+Guidelines:
+- Generate a minimum of 3 test cases per use case, maxmimum of 10 (depending of the needs)-
+- Include both **positive** (success) and **negative** (error, missing input, etc.) tests , boundary conditions(if applicable),
+edge cases(if applicable), security and usability considerations (if applicable, for example in a Login use case you can do the injection test case).
+- Use unique names for `test_case_id` following the format `UCx_TCy`.
+- Base your test cases on base_sequence, branch_sequence, exception_sequence, and pre/postconditions.
+- If in the use case description in JSON has "UCx" as "Precondition" tag, you must put "UCx" in the preconditions field of the test cases.
+
+Only return the JSON array. DO NOT explain anything.  
+DO NOT include "```json" or "```" markers.  
+Make sure all brackets are correctly opened and closed.
+
+Note: Even though the structure is in English, all content inside the fields (titles, steps, etc.) must remain in **Italian**.
+
+<|eot_id|><|start_header_id|>user<|end_header_id|>
+The following is the use case in JSON format, generate different test cases:
+[
+  {
+    "Id": "UC7.2",
+    "Title": "Segnalazione guasti illuminazione pubblica (parte di UC7: Gestione manutenzioni)",
+    "Summary": "Permette all’utente di segnalare un guasto su un impianto di illuminazione pubblica",
+    "Actor": [
+      "Cittadino",
+      "Fornitore",
+      "Sindaco"
+    ],
+    "Precondition": "UC7",
+    "Postcondition": "Il sistema registra la segnalazione e notifica il fornitore responsabile",
+    "Base_sequence": [
+      "L’utente accede alla sezione segnalazioni guasti",
+      "Compila il modulo con localizzazione e descrizione del guasto",
+      "Conferma l’invio della segnalazione"
+    ],
+    "Branch_sequence": [],
+    "Exception_sequence": [],
+    "Note": "no"
+  }
+]
+<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+<|eot_id|><|start_header_id|>user<|end_header_id|>
+The following is the use case in JSON format, generate different test cases:
+[
+  {
+    "Id": "UC8.2.3",
+    "Title": "Esportazione report energetici (parte di UC8.2: Analisi consumi energetici)",
+    "Summary": "Consente agli utenti autorizzati di esportare i report dei consumi energetici in diversi formati",
+    "Actor": [
+      "Regione",
+      "Fornitore"
+    ],
+    "Precondition": "UC8.2",
+    "Postcondition": "Il file esportato viene scaricato correttamente",
+    "Base_sequence": [
+    "L’utente accede alla sezione analisi consumi",
+    "Seleziona il periodo di interesse e il formato di esportazione (PDF, CSV)",
+    "Avvia l’esportazione e scarica il file"
+    ],
+    "Branch_sequence": [],
+    "Exception_sequence": [],
+    "Note": "no"
+  }
+]
+<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+<|eot_id|><|start_header_id|>user<|end_header_id|>
+The following is the use case in JSON format, generate different test cases:
+
+[
+  {
+    "Id": "UC2.1",
+    "Title": "Download PDF (parte di UC2: Dashboard)",
+    "Summary": "Download del PDF relativo alle informazioni della dashboard",
+    "Actor": [
+      "Regione",
+      "Sindaco",
+      "Fornitore"
+    ],
+    "Precondition": "UC2",
+    "Postcondition": "L’utente ha scaricato il file, può aprirlo dalla apposita sezione del browser utilizzato ed il file è ben formato",
+    "Base_sequence": [
+      "L’utente inizia il processo di download cliccando sul tasto dedicato",
+      "L’utente conferma la richiesta",
+      "L’utente visualizza un messaggio di operazione completata con successo",
+      "no"
+    ],
+    "Branch_sequence": [],
+    "Exception_sequence": [
+      "L’utente visualizza un messaggio di operazione completata con un errore relativo all’eccezione verificatasi",
+      "L’utente può ripartire dal punto 2 della base sequence"
+    ],
+    "Note": "no"
+  }
+]
+
+<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+📥 RISPOSTA:
+[
+  {
+    "test_case_id": "UC2.1_TC1",
+    "title": "Download PDF con successo",
+    "preconditions": "UC2",
+    "postconditions": "L’utente ha scaricato il file, può aprirlo dalla apposita sezione del browser utilizzato ed il file è ben formato",
+    "test_steps": [
+      {
+        "step": "L’utente inizia il processo di download cliccando sul tasto dedicato",
+        "expected": "Il sistema avvia la procedura di download"
+      },
+      {
+        "step": "L’utente conferma la richiesta",
+        "expected": "Il sistema continua con la procedura di download"
+      },
+      {
+        "step": "L’utente visualizza un messaggio di operazione completata con successo",
+        "expected": "Il file PDF è stato scaricato correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC2",
+    "title": "Download PDF con errore",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di operazione completata con un errore relativo all’eccezione verificatasi",
+    "test_steps": [
+      {
+        "step": "L’utente inizia il processo di download cliccando sul tasto dedicato",
+        "expected": "Il sistema avvia la procedura di download"
+      },
+      {
+        "step": "Si verifica un errore durante la procedura di download",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      },
+      {
+        "step": "L’utente visualizza un messaggio di operazione completata con un errore relativo all’eccezione verificatasi",
+        "expected": "Il messaggio di errore è visualizzato correttamente"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC3",
+    "title": "Download PDF con conferma richiesta non valida",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di operazione completata con un errore relativo all’eccezione verificatasi",
+    "test_steps": [
+      {
+        "step": "L’utente inizia il processo di download cliccando sul tasto dedicato",
+        "expected": "Il sistema avvia la procedura di download"
+      },
+      {
+        "step": "L’utente inserisce una conferma richiesta non valida",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      },
+      {
+        "step": "L’utente visualizza un messaggio di operazione completata con un errore relativo all’eccezione verificatasi",
+        "expected": "Il messaggio di errore è visualizzato correttamente"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC4",
+    "title": "Download PDF senza autorizzazione",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di operazione completata con un errore relativo all’eccezione verificatasi",
+    "test_steps": [
+      {
+        "step": "L’utente non autorizzato tenta di iniziare il processo di download cliccando sul tasto dedicato",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      },
+      {
+        "step": "L’utente visualizza un messaggio di operazione completata con un errore relativo all’eccezione verificatasi",
+        "expected": "Il messaggio di errore è visualizzato correttamente"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC2.1"
+  }
+]

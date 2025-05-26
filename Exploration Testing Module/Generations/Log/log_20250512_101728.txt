@@ -1,0 +1,190 @@
+📝 PROMPT:
+You are a Quality Assurance expert. Your task is to generate a suite of test cases for each use case provided in JSON format.
+
+The output must be in **JSON only**, structured as an array of test case objects, following the example below:
+
+[
+  {
+    "test_case_id": "UC1_TC1",
+    "title": "Credenziali di Login Valide",
+    "preconditions": "L'utente non è autenticato e ha accesso al portale PELL",
+    "postconditions": "L'utente viene reindirizzato alla pagina principale",
+    "test_steps": [
+      {
+        "step": "Clicca sul pulsante 'Login'",
+        "expected": "Il modulo di login è visualizzato"
+      },
+      {
+        "step": "Inserisci email e password validi",
+        "expected": "Non vengono visualizzati messaggi di errore"
+      },
+      {
+        "step": "Conferma il processo di autenticazione",
+        "expected": "L'utente viene reindirizzato alla pagina principale"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC1"
+  },
+  ... (other test cases)
+]
+
+Guidelines:
+- Generate **at least 4–6 test cases** per use case.
+- Include both **positive** (success) and **negative** (error, missing input, etc.) tests , boundary conditions(if applicable),
+edge cases(if applicable), security and usability considerations (if applicable).
+- Use unique names for `test_case_id` following the format `UCx_TCy`.
+- Base your test cases on base_sequence, branch_sequence, exception_sequence, and pre/postconditions.
+- If in the use case description has "UCx" as preconditions, you must put "UCx" in the preconditions field of the test cases.
+
+Only return the JSON array. DO NOT explain anything.  
+DO NOT include "```json" or "```" markers.  
+Make sure all brackets are correctly opened and closed.
+
+Note: Even though the structure is in English, all content inside the fields (titles, steps, etc.) must remain in **Italian**.
+
+The following is the use case in JSON format, generate different test cases:
+
+[
+  {
+    "Id": "UC2",
+    "Title": "Dashboard",
+    "Summary": "Apertura della dashboard",
+    "Actor": [
+      "Regione",
+      "Sindaco",
+      "Fornitore",
+      "Progettista",
+      "Cittadino"
+    ],
+    "Precondition": "UC1",
+    "Postcondition": "L’utente visualizza la sezione relativa alla dashboard",
+    "Base_sequence": [
+      "L’utente naviga nella sezione relativa alla dashboard utilizzando il menù laterale di sinistra"
+    ],
+    "Branch_sequence": [],
+    "Exception_sequence": [],
+    "Note": "no"
+  }
+]
+
+<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+📥 RISPOSTA:
+[
+  {
+    "test_case_id": "UC2_TC1",
+    "title": "Apertura della dashboard con utente autenticato",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza la sezione relativa alla dashboard",
+    "test_steps": [
+      {
+        "step": "Clicca sul menù laterale di sinistra e seleziona la voce 'Dashboard'",
+        "expected": "La sezione della dashboard viene visualizzata"
+      },
+      {
+        "step": "Verifica la presenza dei dati relativi alla dashboard",
+        "expected": "I dati relativi alla dashboard sono visualizzati correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC2",
+    "title": "Apertura della dashboard con utente non autenticato",
+    "preconditions": "",
+    "postconditions": "L’utente viene reindirizzato alla pagina di login",
+    "test_steps": [
+      {
+        "step": "Clicca sul menù laterale di sinistra e seleziona la voce 'Dashboard'",
+        "expected": "La pagina di login viene visualizzata"
+      },
+      {
+        "step": "Verifica che non sia possibile accedere alla dashboard senza autenticazione",
+        "expected": "Non è possibile accedere alla dashboard senza autenticazione"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC3",
+    "title": "Apertura della dashboard con dati mancanti",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza la sezione relativa alla dashboard con messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Clicca sul menù laterale di sinistra e seleziona la voce 'Dashboard' con dati mancanti",
+        "expected": "La sezione della dashboard viene visualizzata con un messaggio di errore"
+      },
+      {
+        "step": "Verifica che il messaggio di errore sia corretto",
+        "expected": "Il messaggio di errore è visualizzato correttamente"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC4",
+    "title": "Apertura della dashboard con dati non validi",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza la sezione relativa alla dashboard con messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Clicca sul menù laterale di sinistra e seleziona la voce 'Dashboard' con dati non validi",
+        "expected": "La sezione della dashboard viene visualizzata con un messaggio di errore"
+      },
+      {
+        "step": "Verifica che il messaggio di errore sia corretto",
+        "expected": "Il messaggio di errore è visualizzato correttamente"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC5",
+    "title": "Apertura della dashboard con utente con privilegi insufficienti",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza la sezione relativa alla dashboard con messaggio di accesso negato",
+    "test_steps": [
+      {
+        "step": "Clicca sul menù laterale di sinistra e seleziona la voce 'Dashboard' con utente con privilegi insufficienti",
+        "expected": "La sezione della dashboard viene visualizzata con un messaggio di accesso negato"
+      },
+      {
+        "step": "Verifica che il messaggio di accesso negato sia corretto",
+        "expected": "Il messaggio di accesso negato è visualizzato correttamente"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC6",
+    "title": "Apertura della dashboard con caricamento lento dei dati",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza la sezione relativa alla dashboard con un messaggio di attesa",
+    "test_steps": [
+      {
+        "step": "Clicca sul menù laterale di sinistra e seleziona la voce 'Dashboard' con caricamento lento dei dati",
+        "expected": "La sezione della dashboard viene visualizzata con un messaggio di attesa"
+      },
+      {
+        "step": "Verifica che il messaggio di attesa sia corretto",
+        "expected": "Il messaggio di attesa è visualizzato correttamente"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC2"
+  }
+]

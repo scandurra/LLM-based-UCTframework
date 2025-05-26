@@ -1,0 +1,117 @@
+[
+  {
+    "test_case_id": "UC3.4.3.1_TC1",
+    "title": "Modifica sezione Area con dati validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Compila il form con informazioni valide",
+        "expected": "Il form viene compilato senza errori"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Viene visualizzato un messaggio di conferma dell’operazione"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.1"
+  },
+  {
+    "test_case_id": "UC3.4.3.1_TC2",
+    "title": "Modifica sezione Area con dati non validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Compila il form con informazioni non valide (es. campi obbligatori vuoti)",
+        "expected": "Il sistema segnala gli errori"
+      },
+      {
+        "step": "Tenta di applicare le modifiche con l’apposito tasto",
+        "expected": "Viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.1"
+  },
+  {
+    "test_case_id": "UC3.4.3.1_TC3",
+    "title": "Modifica sezione Area senza compilare il form",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Lascia vuoto il form senza compilare i campi",
+        "expected": "Il sistema segnala la mancanza di informazioni"
+      },
+      {
+        "step": "Tenta di applicare le modifiche con l’apposito tasto",
+        "expected": "Viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.1"
+  },
+  {
+    "test_case_id": "UC3.4.3.1_TC4",
+    "title": "Boundary test: modifica sezione Area con dati al limite dei caratteri consentiti",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Compila il form con informazioni che raggiungono il limite massimo dei caratteri consentiti",
+        "expected": "Il form viene compilato senza errori"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Viene visualizzato un messaggio di conferma dell’operazione"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.1"
+  },
+  {
+    "test_case_id": "UC3.4.3.1_TC5",
+    "title": "Edge case: modifica sezione Area con caratteri speciali nei dati",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine o un messaggio di errore per caratteri non validi",
+    "test_steps": [
+      {
+        "step": "Entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Compila il form con informazioni che includono caratteri speciali (es. @, #, $)",
+        "expected": "Il sistema gestisce i caratteri speciali o segnala un errore per quelli non validi"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Viene visualizzato un messaggio di conferma dell’operazione o un messaggio di errore"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.1"
+  }
+]

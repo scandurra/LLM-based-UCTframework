@@ -1,0 +1,178 @@
+[
+  {
+    "test_case_id": "UC3.2_TC1",
+    "title": "Ricerca con parametri validi",
+    "preconditions": "UC3",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla ricerca",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci criteri di ricerca validi (es. nome, data)",
+        "expected": "Il sistema accetta i parametri"
+      },
+      {
+        "step": "Esegui la ricerca",
+        "expected": "Vengono visualizzati i risultati della ricerca"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.2"
+  },
+  {
+    "test_case_id": "UC3.2_TC2",
+    "title": "Ricerca senza parametri",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema visualizza un messaggio di errore o richiede parametri",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Lascia vuoti i campi di ricerca",
+        "expected": "Il sistema segnala l’assenza di parametri"
+      },
+      {
+        "step": "Tenta di eseguire la ricerca",
+        "expected": "Viene visualizzato un messaggio di errore o richiesta di inserire parametri"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.2"
+  },
+  {
+    "test_case_id": "UC3.2_TC3",
+    "title": "Ricerca con caratteri speciali",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema gestisce correttamente i caratteri speciali",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci criteri di ricerca con caratteri speciali (es. @, #, $)",
+        "expected": "Il sistema accetta i parametri o li gestisce in modo appropriato"
+      },
+      {
+        "step": "Esegui la ricerca",
+        "expected": "I risultati della ricerca sono visualizzati correttamente"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC3.2"
+  },
+  {
+    "test_case_id": "UC3.2_TC4",
+    "title": "Ricerca con paginazione",
+    "preconditions": "UC3",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci criteri di ricerca e seleziona una paginazione specifica",
+        "expected": "Il sistema accetta i parametri di paginazione"
+      },
+      {
+        "step": "Esegui la ricerca",
+        "expected": "Vengono visualizzati i risultati della ricerca nella paginazione selezionata"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.2"
+  },
+  {
+    "test_case_id": "UC3.2_TC5",
+    "title": "Ricerca con utente non autorizzato",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema nega l’accesso alla funzione di ricerca",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione schede censimento senza autenticazione",
+        "expected": "Il sistema richiede l’autenticazione"
+      },
+      {
+        "step": "Tenta di eseguire la ricerca",
+        "expected": "L’accesso è negato e viene richiesta l’autenticazione"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.2"
+  },
+  {
+    "test_case_id": "UC3.2_TC6",
+    "title": "Ricerca con dati non esistenti",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema visualizza un messaggio di ‘nessun risultato trovato’",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci criteri di ricerca per dati non esistenti",
+        "expected": "Il sistema esegue la ricerca"
+      },
+      {
+        "step": "Esegui la ricerca",
+        "expected": "Viene visualizzato un messaggio di ‘nessun risultato trovato’"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.2"
+  },
+  {
+    "test_case_id": "UC3.2_TC7",
+    "title": "Ricerca con lunghe stringhe di ricerca",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema gestisce correttamente le lunghe stringhe di ricerca",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci una lunga stringa di ricerca (es. oltre 100 caratteri)",
+        "expected": "Il sistema accetta la stringa di ricerca"
+      },
+      {
+        "step": "Esegui la ricerca",
+        "expected": "I risultati della ricerca sono visualizzati correttamente"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC3.2"
+  },
+  {
+    "test_case_id": "UC3.2_TC8",
+    "title": "Ricerca durante la manutenzione del sistema",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema visualizza un messaggio di indisponibilità",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione schede censimento durante la manutenzione",
+        "expected": "Viene visualizzato un messaggio di manutenzione"
+      },
+      {
+        "step": "Tenta di eseguire la ricerca",
+        "expected": "Il sistema blocca l’operazione e visualizza un messaggio di indisponibilità"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC3.2"
+  }
+]

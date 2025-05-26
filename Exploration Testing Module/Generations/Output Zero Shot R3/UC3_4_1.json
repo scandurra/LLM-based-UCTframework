@@ -1,0 +1,109 @@
+[
+  {
+    "test_case_id": "UC3.4.1_TC1",
+    "title": "Download scheda censimento con dati validi e rete stabile",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente visualizza un messaggio di conferma e ottiene il file desiderato",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di download della scheda censimento",
+        "expected": "L’operazione di download viene avviata correttamente"
+      },
+      {
+        "step": "Verifica l’avanzamento del download all’interno del browser",
+        "expected": "L’avanzamento del download è visualizzato correttamente"
+      },
+      {
+        "step": "Verifica il file scaricato",
+        "expected": "Il file scaricato contiene le informazioni sulla scheda censimento selezionata"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.1"
+  },
+  {
+    "test_case_id": "UC3.4.1_TC2",
+    "title": "Download scheda censimento con rete lenta",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente visualizza un messaggio di conferma e ottiene il file desiderato",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di download della scheda censimento con rete lenta",
+        "expected": "L’operazione di download viene avviata correttamente"
+      },
+      {
+        "step": "Verifica l’avanzamento del download all’interno del browser",
+        "expected": "L’avanzamento del download è visualizzato correttamente, ma più lentamente del solito"
+      },
+      {
+        "step": "Verifica il file scaricato",
+        "expected": "Il file scaricato contiene le informazioni sulla scheda censimento selezionata"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.1"
+  },
+  {
+    "test_case_id": "UC3.4.1_TC3",
+    "title": "Download scheda censimento senza selezionare la scheda",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Tenta di avviare l’operazione di download senza selezionare la scheda censimento",
+        "expected": "Viene visualizzato un messaggio di errore"
+      },
+      {
+        "step": "Verifica il messaggio di errore",
+        "expected": "Il messaggio di errore indica che è necessario selezionare una scheda censimento"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.1"
+  },
+  {
+    "test_case_id": "UC3.4.1_TC4",
+    "title": "Download scheda censimento con browser non supportato",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Tenta di avviare l’operazione di download con un browser non supportato",
+        "expected": "Viene visualizzato un messaggio di errore"
+      },
+      {
+        "step": "Verifica il messaggio di errore",
+        "expected": "Il messaggio di errore indica che il browser non è supportato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.1"
+  },
+  {
+    "test_case_id": "UC3.4.1_TC5",
+    "title": "Download scheda censimento con file già esistente",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente visualizza un messaggio di conferma e ottiene il file desiderato",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di download della scheda censimento con file già esistente",
+        "expected": "L’operazione di download viene avviata correttamente"
+      },
+      {
+        "step": "Verifica l’avanzamento del download all’interno del browser",
+        "expected": "L’avanzamento del download è visualizzato correttamente"
+      },
+      {
+        "step": "Verifica il file scaricato",
+        "expected": "Il file scaricato contiene le informazioni sulla scheda censimento selezionata e sovrascrive il file esistente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.1"
+  }
+]

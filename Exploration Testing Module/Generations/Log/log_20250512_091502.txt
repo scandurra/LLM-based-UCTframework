@@ -1,0 +1,191 @@
+📝 PROMPT:
+<|begin_of_text|><|start_header_id|>system<|end_header_id|>
+You are a Quality Assurance expert. Your task is to generate a suite of test cases for each use case provided in JSON format.
+
+The output must be in **JSON only**, structured as an array of test case objects, following the example below:
+
+[
+  {
+    "test_case_id": "UC1_TC1",
+    "title": "Credenziali di Login Valide",
+    "preconditions": "L'utente non è autenticato e ha accesso al portale PELL",
+    "postconditions": "L'utente viene reindirizzato alla pagina principale",
+    "test_steps": [
+      {
+        "step": "Clicca sul pulsante 'Login'",
+        "expected": "Il modulo di login è visualizzato"
+      },
+      {
+        "step": "Inserisci email e password validi",
+        "expected": "Non vengono visualizzati messaggi di errore"
+      },
+      {
+        "step": "Conferma il processo di autenticazione",
+        "expected": "L'utente viene reindirizzato alla pagina principale"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC1"
+  },
+  ... (other test cases)
+]
+
+Guidelines:
+- Generate **at least 4–6 test cases** per use case.
+- Include both **positive** (success) and **negative** (error, missing input, etc.) tests , boundary conditions(if applicable),
+edge cases(if applicable), security and usability considerations (if applicable).
+- Use unique names for `test_case_id` following the format `UCx_TCy`.
+- Base your test cases on base_sequence, branch_sequence, exception_sequence, and pre/postconditions.
+- If in the use case description has "UCx" as preconditions, you must put "UCx" in the preconditions field of the test cases.
+
+Only return the JSON array. DO NOT explain anything.  
+DO NOT include "```json" or "```" markers.  
+Make sure all brackets are correctly opened and closed.
+
+Note: Even though the structure is in English, all content inside the fields (titles, steps, etc.) must remain in **Italian**.
+<|eot_id|><|start_header_id|>user<|end_header_id|>
+The following is the use case in JSON format, generate different test cases:
+
+[
+  {
+    "Id": "UC2",
+    "Title": "Dashboard",
+    "Summary": "Apertura della dashboard",
+    "Actor": [
+      "Regione",
+      "Sindaco",
+      "Fornitore",
+      "Progettista",
+      "Cittadino"
+    ],
+    "Precondition": "UC1",
+    "Postcondition": "L’utente visualizza la sezione relativa alla dashboard",
+    "Base_sequence": [
+      "L’utente naviga nella sezione relativa alla dashboard utilizzando il menù laterale di sinistra"
+    ],
+    "Branch_sequence": [],
+    "Exception_sequence": [],
+    "Note": "no"
+  }
+]
+
+<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+📥 RISPOSTA:
+[
+  {
+    "test_case_id": "UC2_TC1",
+    "title": "Apertura della dashboard con utente autenticato",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza la sezione relativa alla dashboard",
+    "test_steps": [
+      {
+        "step": "Clicca sul menù laterale di sinistra",
+        "expected": "Il menù laterale di sinistra è visualizzato"
+      },
+      {
+        "step": "Seleziona la voce di menù 'Dashboard'",
+        "expected": "La sezione relativa alla dashboard è visualizzata"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC2",
+    "title": "Apertura della dashboard senza utente autenticato",
+    "preconditions": "",
+    "postconditions": "L’utente non visualizza la sezione relativa alla dashboard",
+    "test_steps": [
+      {
+        "step": "Clicca sul menù laterale di sinistra",
+        "expected": "Il menù laterale di sinistra non è visualizzato"
+      },
+      {
+        "step": "Tenta di accedere alla sezione 'Dashboard'",
+        "expected": "Viene visualizzato un messaggio di errore per mancata autenticazione"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC3",
+    "title": "Apertura della dashboard con utente non autorizzato",
+    "preconditions": "UC1",
+    "postconditions": "L’utente non visualizza la sezione relativa alla dashboard",
+    "test_steps": [
+      {
+        "step": "Clicca sul menù laterale di sinistra",
+        "expected": "Il menù laterale di sinistra è visualizzato"
+      },
+      {
+        "step": "Seleziona la voce di menù 'Dashboard' senza avere i permessi necessari",
+        "expected": "Viene visualizzato un messaggio di errore per mancanza di autorizzazione"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC4",
+    "title": "Apertura della dashboard con dati non validi",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Clicca sul menù laterale di sinistra",
+        "expected": "Il menù laterale di sinistra è visualizzato"
+      },
+      {
+        "step": "Inserisci dati non validi per accedere alla sezione 'Dashboard'",
+        "expected": "Viene visualizzato un messaggio di errore per dati non validi"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC5",
+    "title": "Apertura della dashboard con caricamento lento",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza la sezione relativa alla dashboard dopo un certo tempo di attesa",
+    "test_steps": [
+      {
+        "step": "Clicca sul menù laterale di sinistra",
+        "expected": "Il menù laterale di sinistra è visualizzato"
+      },
+      {
+        "step": "Seleziona la voce di menù 'Dashboard' e attendi il caricamento",
+        "expected": "La sezione relativa alla dashboard è visualizzata dopo un certo tempo di attesa"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Bassa",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC6",
+    "title": "Apertura della dashboard con browser non supportato",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza un messaggio di errore per browser non supportato",
+    "test_steps": [
+      {
+        "step": "Clicca sul menù laterale di sinistra utilizzando un browser non supportato",
+        "expected": "Il menù laterale di sinistra non è visualizzato"
+      },
+      {
+        "step": "Tenta di accedere alla sezione 'Dashboard'",
+        "expected": "Viene visualizzato un messaggio di errore per browser non supportato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC2"
+  }
+]

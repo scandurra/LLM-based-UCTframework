@@ -1,0 +1,186 @@
+[
+  {
+    "test_case_id": "UC3.4.2_TC1",
+    "title": "Elimina scheda censimento con conferma",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione gestione schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona una scheda censimento esistente e l’operazione di cancellazione",
+        "expected": "Il sistema richiede la conferma dell’eliminazione"
+      },
+      {
+        "step": "Conferma l’eliminazione della scheda",
+        "expected": "Il sistema elimina la scheda e visualizza un messaggio di conferma"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.2"
+  },
+  {
+    "test_case_id": "UC3.4.2_TC2",
+    "title": "Annulla eliminazione scheda censimento",
+    "preconditions": "UC3.4",
+    "postconditions": "L’eliminazione della scheda viene interrotta",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione gestione schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona una scheda censimento esistente e l’operazione di cancellazione",
+        "expected": "Il sistema richiede la conferma dell’eliminazione"
+      },
+      {
+        "step": "Annulla l’eliminazione della scheda",
+        "expected": "L’operazione di eliminazione viene interrotta e la scheda rimane integra"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.2"
+  },
+  {
+    "test_case_id": "UC3.4.2_TC3",
+    "title": "Elimina scheda censimento non esistente",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema segnala l’assenza della scheda",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione gestione schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Tenta di selezionare una scheda censimento non esistente per l’eliminazione",
+        "expected": "Il sistema segnala che la scheda non è presente"
+      },
+      {
+        "step": "Conferma comunque l’operazione",
+        "expected": "L’operazione fallisce e il sistema mostra un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.2"
+  },
+  {
+    "test_case_id": "UC3.4.2_TC4",
+    "title": "Elimina scheda censimento senza autorizzazione",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema nega l’accesso all’operazione di eliminazione",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione gestione schede censimento con un utente non autorizzato",
+        "expected": "Il sistema limita l’accesso alle funzioni"
+      },
+      {
+        "step": "Tenta di selezionare una scheda censimento per l’eliminazione",
+        "expected": "Il sistema nega l’accesso all’operazione"
+      },
+      {
+        "step": "Tenta comunque di confermare l’eliminazione",
+        "expected": "L’operazione non è possibile e il sistema mostra un messaggio di accesso negato"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.2"
+  },
+  {
+    "test_case_id": "UC3.4.2_TC5",
+    "title": "Elimina scheda censimento con dati dipendenti",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema gestisce correttamente i dati dipendenti",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione gestione schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona una scheda censimento con dati dipendenti (es. riferimenti ad altre schede) per l’eliminazione",
+        "expected": "Il sistema avvisa dell’esistenza di dati dipendenti"
+      },
+      {
+        "step": "Conferma l’eliminazione della scheda",
+        "expected": "Il sistema gestisce i dati dipendenti secondo le regole definite (es. cascata, messaggio di avviso)"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.2"
+  },
+  {
+    "test_case_id": "UC3.4.2_TC6",
+    "title": "Elimina più schede censimento contemporaneamente",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema elimina tutte le schede selezionate",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione gestione schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona più schede censimento per l’eliminazione",
+        "expected": "Il sistema richiede la conferma dell’eliminazione di tutte le schede selezionate"
+      },
+      {
+        "step": "Conferma l’eliminazione delle schede",
+        "expected": "Il sistema elimina tutte le schede selezionate e visualizza un messaggio di conferma"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.2"
+  },
+  {
+    "test_case_id": "UC3.4.2_TC7",
+    "title": "Elimina scheda censimento con timeout",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema gestisce il timeout e mantiene lo stato precedente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione gestione schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona una scheda censimento per l’eliminazione e attendi il timeout",
+        "expected": "Il sistema scade la sessione o richiede di ripetere l’operazione"
+      },
+      {
+        "step": "Tenta di confermare l’eliminazione dopo il timeout",
+        "expected": "Il sistema gestisce il timeout e mantiene lo stato precedente, negando l’accesso all’operazione"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.2"
+  },
+  {
+    "test_case_id": "UC3.4.2_TC8",
+    "title": "Elimina scheda censimento con errore di rete",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema gestisce l’errore di rete e mantiene lo stato precedente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione gestione schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona una scheda censimento per l’eliminazione e simula un errore di rete",
+        "expected": "Il sistema segnala l’errore di rete e non esegue l’operazione"
+      },
+      {
+        "step": "Tenta di confermare l’eliminazione dopo l’errore di rete",
+        "expected": "Il sistema gestisce l’errore di rete e mantiene lo stato precedente, negando l’accesso all’operazione"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.2"
+  }
+]

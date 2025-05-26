@@ -1,0 +1,117 @@
+[
+  {
+    "test_case_id": "UC3.2_TC1",
+    "title": "Ricerca scheda censimento con parametri validi",
+    "preconditions": "UC3",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La barra di ricerca è visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci parametri di ricerca validi (ad esempio, nome della regione)",
+        "expected": "I risultati della ricerca sono visualizzati correttamente"
+      },
+      {
+        "step": "Seleziona un elemento dalla lista dei risultati",
+        "expected": "Le informazioni dettagliate dell’elemento selezionato sono visualizzate"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.2"
+  },
+  {
+    "test_case_id": "UC3.2_TC2",
+    "title": "Ricerca scheda censimento con parametri vuoti",
+    "preconditions": "UC3",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La barra di ricerca è visualizzata correttamente"
+      },
+      {
+        "step": "Lascia vuoti i parametri di ricerca",
+        "expected": "Un messaggio di errore richiede l’inserimento dei parametri"
+      },
+      {
+        "step": "Conferma la ricerca senza inserire parametri",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.2"
+  },
+  {
+    "test_case_id": "UC3.2_TC3",
+    "title": "Ricerca scheda censimento con parametri non validi",
+    "preconditions": "UC3",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La barra di ricerca è visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci parametri di ricerca non validi (ad esempio, caratteri speciali)",
+        "expected": "Un messaggio di errore richiede l’inserimento di parametri validi"
+      },
+      {
+        "step": "Conferma la ricerca con parametri non validi",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.2"
+  },
+  {
+    "test_case_id": "UC3.2_TC4",
+    "title": "Ricerca scheda censimento con selezione multipla",
+    "preconditions": "UC3",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La barra di ricerca è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona più elementi dalla lista dei risultati",
+        "expected": "Le informazioni dettagliate degli elementi selezionati sono visualizzate"
+      },
+      {
+        "step": "Conferma la visualizzazione dei dettagli",
+        "expected": "Il sistema visualizza le informazioni richieste"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.2"
+  },
+  {
+    "test_case_id": "UC3.2_TC5",
+    "title": "Ricerca scheda censimento con ordinamento dei risultati",
+    "preconditions": "UC3",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La barra di ricerca è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un criterio di ordinamento (ad esempio, data di creazione)",
+        "expected": "I risultati della ricerca sono ordinati secondo il criterio selezionato"
+      },
+      {
+        "step": "Conferma la visualizzazione dei risultati ordinati",
+        "expected": "Il sistema visualizza i risultati ordinati correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.2"
+  }
+]

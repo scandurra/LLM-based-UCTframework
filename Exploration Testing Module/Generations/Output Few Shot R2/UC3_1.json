@@ -1,0 +1,117 @@
+[
+  {
+    "test_case_id": "UC3.1_TC1",
+    "title": "Visualizzazione schede censimento con dati validi e paginazione",
+    "preconditions": "UC3",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di visualizzazione delle schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona il numero di righe per pagina e scorri tra le pagine",
+        "expected": "Le informazioni vengono visualizzate in base alla selezione"
+      },
+      {
+        "step": "Clicca sul nome di una colonna per ordinare i dati",
+        "expected": "I dati vengono ordinati correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC2",
+    "title": "Visualizzazione senza selezionare il numero di righe per pagina",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema visualizza un messaggio di errore o utilizza un valore predefinito",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di visualizzazione delle schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Lascia vuoto il campo del numero di righe per pagina",
+        "expected": "Il sistema segnala la mancanza di informazioni o utilizza un valore predefinito"
+      },
+      {
+        "step": "Tenta di visualizzare le informazioni",
+        "expected": "Il sistema mostra un messaggio di errore o applica il valore predefinito"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC3",
+    "title": "Visualizzazione con ordinamento su più colonne",
+    "preconditions": "UC3",
+    "postconditions": "L’utente visualizza le informazioni ordinate correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di visualizzazione delle schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca su più nomi di colonna per ordinare i dati in modo multiplo",
+        "expected": "I dati vengono ordinati correttamente in base alle selezioni"
+      },
+      {
+        "step": "Verifica l’ordinamento dei dati",
+        "expected": "L’ordinamento è coerente con le scelte dell’utente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC4",
+    "title": "Boundary test: visualizzazione con un solo elemento nella pagina",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema visualizza l’elemento singolo correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di visualizzazione delle schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un numero di righe per pagina che corrisponde al numero di elementi disponibili",
+        "expected": "Il sistema visualizza l’elemento singolo senza problemi di formattazione"
+      },
+      {
+        "step": "Verifica la presenza e la correttezza dell’informazione",
+        "expected": "L’informazione è presente e visualizzata correttamente"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Media",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC5",
+    "title": "Edge case: utilizzo di caratteri speciali nella ricerca",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema gestisce i caratteri speciali senza errori",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di visualizzazione delle schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci caratteri speciali nella barra di ricerca",
+        "expected": "Il sistema gestisce i caratteri senza problemi di formattazione o errori"
+      },
+      {
+        "step": "Verifica la presenza e la correttezza dei risultati",
+        "expected": "I risultati sono coerenti con la ricerca effettuata"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC3.1"
+  }
+]

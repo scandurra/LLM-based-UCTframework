@@ -1,0 +1,120 @@
+[
+  {
+    "test_case_id": "UC4_TC1",
+    "title": "Apertura modulo SAVE con utente autorizzato",
+    "preconditions": "UC1",
+    "postconditions": "L’interfaccia del modulo SAVE viene visualizzata correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente autorizzato (Regione, Sindaco, Fornitore, Progettista)",
+        "expected": "La dashboard principale viene caricata"
+      },
+      {
+        "step": "Seleziona il modulo SAVE dal menù laterale di sinistra",
+        "expected": "L’interfaccia del modulo SAVE si apre correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC4"
+  },
+  {
+    "test_case_id": "UC4_TC2",
+    "title": "Tentativo di accesso al modulo SAVE da parte di utente non autorizzato",
+    "preconditions": "UC1",
+    "postconditions": "L’accesso al modulo SAVE viene negato",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente non autorizzato",
+        "expected": "La dashboard principale si carica ma senza le autorizzazioni per il modulo SAVE"
+      },
+      {
+        "step": "Tenta di accedere al modulo SAVE",
+        "expected": "Il sistema nega l’accesso e visualizza un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC4"
+  },
+  {
+    "test_case_id": "UC4_TC3",
+    "title": "Apertura modulo SAVE con diverse autorizzazioni",
+    "preconditions": "UC1",
+    "postconditions": "L’interfaccia del modulo SAVE si adatta alle autorizzazioni dell’utente",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come Regione",
+        "expected": "La dashboard principale e il menù laterale mostrano le opzioni disponibili per la Regione"
+      },
+      {
+        "step": "Seleziona il modulo SAVE",
+        "expected": "L’interfaccia del modulo SAVE si apre con le funzionalità accessibili alla Regione"
+      },
+      {
+        "step": "Ripeti i passaggi come Sindaco, Fornitore e Progettista",
+        "expected": "Ogni ruolo visualizza la versione adatta del modulo SAVE in base alle proprie autorizzazioni"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC4"
+  },
+  {
+    "test_case_id": "UC4_TC4",
+    "title": "Test di usabilità: navigazione nel modulo SAVE",
+    "preconditions": "UC1",
+    "postconditions": "L’utente può navigare agevolmente all’interno del modulo SAVE",
+    "test_steps": [
+      {
+        "step": "Accedi al modulo SAVE come utente autorizzato",
+        "expected": "La struttura del modulo è chiara e facile da comprendere"
+      },
+      {
+        "step": "Esegui diverse azioni all’interno del modulo (es. visualizza informazioni, modifica impostazioni)",
+        "expected": "Le operazioni vengono eseguite senza problemi e il feedback visivo è appropriato"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Media",
+    "use_case_id": "UC4"
+  },
+  {
+    "test_case_id": "UC4_TC5",
+    "title": "Test di sicurezza: iniezione SQL nel modulo SAVE",
+    "preconditions": "UC1",
+    "postconditions": "Il sistema respinge l’iniezione SQL e mantiene la sicurezza",
+    "test_steps": [
+      {
+        "step": "Accedi al modulo SAVE come utente autorizzato",
+        "expected": "Il modulo si carica normalmente"
+      },
+      {
+        "step": "Tenta di eseguire un attacco di iniezione SQL inserendo codice malevolo nei campi di input",
+        "expected": "Il sistema rileva e blocca l’attacco, mostrando un messaggio di errore"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC4"
+  },
+  {
+    "test_case_id": "UC4_TC6",
+    "title": "Test di prestazione: carico del modulo SAVE con molti dati",
+    "preconditions": "UC1",
+    "postconditions": "Il modulo SAVE gestisce il carico senza problemi di performance",
+    "test_steps": [
+      {
+        "step": "Accedi al modulo SAVE come utente autorizzato",
+        "expected": "Il modulo si carica normalmente"
+      },
+      {
+        "step": "Simula un grande volume di dati o utenti simultanei",
+        "expected": "Il sistema mantiene le prestazioni e non mostra rallentamenti significativi"
+      }
+    ],
+    "test_type": "Prestazione",
+    "priority": "Media",
+    "use_case_id": "UC4"
+  }
+]

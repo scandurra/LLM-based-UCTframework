@@ -1,0 +1,71 @@
+[
+  {
+    "test_case_id": "UC6_TC1",
+    "title": "Logout utente con successo",
+    "preconditions": "UC1",
+    "postconditions": "L’utente non è più autenticato ed è a conoscenza che l’operazione ha avuto successo",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione utente",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul proprio nome utente e seleziona il tasto “Logout”",
+        "expected": "Il processo di logout inizia"
+      },
+      {
+        "step": "Conferma l’intenzione di effettuare il logout",
+        "expected": "Un messaggio di successo conferma la disconnessione"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC6"
+  },
+  {
+    "test_case_id": "UC6_TC2",
+    "title": "Logout utente senza conferma",
+    "preconditions": "UC1",
+    "postconditions": "Il logout non viene eseguito e l’utente rimane autenticato",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione utente",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul proprio nome utente e seleziona il tasto “Logout”",
+        "expected": "Il processo di logout inizia"
+      },
+      {
+        "step": "Annulla l’operazione di logout prima della conferma",
+        "expected": "L’utente rimane autenticato e non si verifica il logout"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC6"
+  },
+  {
+    "test_case_id": "UC6_TC3",
+    "title": "Logout utente con più sessioni aperte",
+    "preconditions": "UC1",
+    "postconditions": "Tutte le sessioni dell’utente vengono chiuse e l’utente non è più autenticato",
+    "test_steps": [
+      {
+        "step": "Apri più sessioni di lavoro con lo stesso account utente",
+        "expected": "Tutte le sessioni sono attive"
+      },
+      {
+        "step": "Esegui il logout da una delle sessioni",
+        "expected": "Il processo di logout inizia"
+      },
+      {
+        "step": "Verifica lo stato di autenticazione nelle altre sessioni",
+        "expected": "Tutte le sessioni risultano chiuse e l’utente non è più autenticato"
+      }
+    ],
+    "test_type": "Prestazione",
+    "priority": "Alta",
+    "use_case_id": "UC6"
+  }
+]

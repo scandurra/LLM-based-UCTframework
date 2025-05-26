@@ -1,0 +1,94 @@
+[
+  {
+    "test_case_id": "UC3.4.3_TC1",
+    "title": "Modifica scheda censimento con dati validi",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente visualizza le informazioni della scheda in fase di edit",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di modifica sulla scheda censimento",
+        "expected": "La sezione di modifica viene visualizzata correttamente"
+      },
+      {
+        "step": "Modifica i campi con dati validi",
+        "expected": "I dati vengono accettati e salvati"
+      },
+      {
+        "step": "Conferma le modifiche",
+        "expected": "Le informazioni vengono aggiornate con successo"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3"
+  },
+  {
+    "test_case_id": "UC3.4.3_TC2",
+    "title": "Modifica scheda censimento con dati mancanti",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente non può procedere senza compilare tutti i campi obbligatori",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di modifica sulla scheda censimento",
+        "expected": "La sezione di modifica viene visualizzata correttamente"
+      },
+      {
+        "step": "Lascia vuoti campi obbligatori",
+        "expected": "Il sistema segnala gli errori e richiede la compilazione dei campi mancanti"
+      },
+      {
+        "step": "Tenta di confermare le modifiche",
+        "expected": "La modifica non viene eseguita e vengono visualizzati messaggi di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3"
+  },
+  {
+    "test_case_id": "UC3.4.3_TC3",
+    "title": "Modifica scheda censimento con dati non validi",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente riceve un messaggio di errore per i dati non validi",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di modifica sulla scheda censimento",
+        "expected": "La sezione di modifica viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci dati non validi in campi specifici (es. testo in un campo numerico)",
+        "expected": "Il sistema rileva l’errore e richiede la correzione dei dati"
+      },
+      {
+        "step": "Tenta di confermare le modifiche",
+        "expected": "La modifica non viene eseguita e vengono visualizzati messaggi di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3"
+  },
+  {
+    "test_case_id": "UC3.4.3_TC4",
+    "title": "Modifica scheda censimento annullando le modifiche",
+    "preconditions": "UC3.4",
+    "postconditions": "Le modifiche vengono annullate e la scheda rimane invariata",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di modifica sulla scheda censimento",
+        "expected": "La sezione di modifica viene visualizzata correttamente"
+      },
+      {
+        "step": "Apporta modifiche ai campi",
+        "expected": "I dati vengono temporaneamente aggiornati"
+      },
+      {
+        "step": "Annulla le modifiche",
+        "expected": "Le modifiche vengono annullate e la scheda torna allo stato originale"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3"
+  },
+]

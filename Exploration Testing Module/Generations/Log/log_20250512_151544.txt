@@ -1,0 +1,260 @@
+📝 PROMPT:
+You are a Quality Assurance expert. Your task is to generate a suite of test cases for each use case provided in JSON format.
+
+The output must be in **JSON only**, structured as an array of test case objects, following the example below:
+
+[
+  {
+    "test_case_id": "UC1_TC1",
+    "title": "Credenziali di Login Valide",
+    "preconditions": "L'utente non è autenticato e ha accesso al portale PELL",
+    "postconditions": "L'utente viene reindirizzato alla pagina principale",
+    "test_steps": [
+      {
+        "step": "Clicca sul pulsante 'Login'",
+        "expected": "Il modulo di login è visualizzato"
+      },
+      {
+        "step": "Inserisci email e password validi",
+        "expected": "Non vengono visualizzati messaggi di errore"
+      },
+      {
+        "step": "Conferma il processo di autenticazione",
+        "expected": "L'utente viene reindirizzato alla pagina principale"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC1"
+  },
+  ... (other test cases)
+  {
+    "test_case_id": "UC1_TC5",
+    "title": "Campo Password Vuoto",
+    "preconditions": "L'utente non è autenticato e ha accesso al portale PELL",
+    "postconditions": "L'utente non viene reindirizzato alla pagina principale",
+    "test_steps": [
+      {
+        "step": "Clicca sul pulsante 'Login'",
+        "expected": "Il modulo di login è visualizzato"
+      },
+      {
+        "step": "Inserisci un'email valida e lascia il campo password vuoto",
+        "expected": "Viene visualizzato un messaggio di errore che indica campo obbligatorio"
+      },
+      {
+        "step": "Conferma il processo di autenticazione",
+        "expected": "L'utente non viene reindirizzato alla pagina principale"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Bassa",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC6",
+    "title": "Tentativo di Iniezione SQL",
+    "preconditions": "L'utente non è autenticato e ha accesso al portale PELL",
+    "postconditions": "L'utente non viene reindirizzato alla pagina principale",
+    "test_steps": [
+      {
+        "step": "Clicca sul pulsante 'Login'",
+        "expected": "Il modulo di login è visualizzato"
+      },
+      {
+        "step": "Inserisci un input dannoso nel campo email o password",
+        "expected": "Viene visualizzato un messaggio di errore che indica credenziali non valide"
+      },
+      {
+        "step": "Conferma il processo di autenticazione",
+        "expected": "L'utente non viene reindirizzato alla pagina principale e non si verificano errori SQL"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC1"
+  }
+]
+
+Guidelines:
+- Generate a minimum of 4 test cases per use case, maxmimum of 10 (depending of the needs)-
+- Include both **positive** (success) and **negative** (error, missing input, etc.) tests , boundary conditions(if applicable),
+edge cases(if applicable), security and usability considerations (if applicable).
+- Use unique names for `test_case_id` following the format `UCx_TCy`.
+- Base your test cases on base_sequence, branch_sequence, exception_sequence, and pre/postconditions.
+- If in the use case description in JSON has "UCx" as "Precondition" tag, you must put "UCx" in the preconditions field of the test cases.
+
+Only return the JSON array. DO NOT explain anything.  
+DO NOT include "```json" or "```" markers.  
+Make sure all brackets are correctly opened and closed.
+
+Note: Even though the structure is in English, all content inside the fields (titles, steps, etc.) must remain in **Italian**.
+
+The following is the use case in JSON format, generate different test cases:
+
+[
+  {
+    "Id": "UC3.2.1",
+    "Title": "Ricerca scheda censimento per nome (parte di UC3.2: Ricerca scheda censimento) (parte di UC3: Gestione schede censimento)",
+    "Summary": "Permette la ricerca tra le schede censimento in base al nome",
+    "Actor": [
+      "Regione",
+      "Sindaco",
+      "Fornitore"
+    ],
+    "Precondition": "UC3.2",
+    "Postcondition": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "Base_sequence": [
+      "L’utente inserisce tra i parametri di ricerca il nome",
+      "L’utente conferma la ricerca",
+      "L’utente visualizza il risultato della ricerca come nello UC3.1"
+    ],
+    "Branch_sequence": [],
+    "Exception_sequence": [],
+    "Note": "no"
+  }
+]
+
+<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+📥 RISPOSTA:
+[
+  {
+    "test_case_id": "UC3.2.1_TC1",
+    "title": "Ricerca scheda censimento per nome valido",
+    "preconditions": "UC3.2",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Inserisci un nome valido tra i parametri di ricerca",
+        "expected": "Il sistema accetta il parametro di ricerca"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema esegue la ricerca e visualizza i risultati"
+      },
+      {
+        "step": "Verifica i risultati della ricerca",
+        "expected": "I risultati della ricerca sono visualizzati correttamente e includono le informazioni richieste"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.2.1"
+  },
+  {
+    "test_case_id": "UC3.2.1_TC2",
+    "title": "Ricerca scheda censimento per nome non valido",
+    "preconditions": "UC3.2",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Inserisci un nome non valido tra i parametri di ricerca",
+        "expected": "Il sistema segnala un errore"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema visualizza un messaggio di errore che indica il problema con il parametro di ricerca"
+      },
+      {
+        "step": "Verifica il messaggio di errore",
+        "expected": "Il messaggio di errore è chiaro e indica la causa dell'errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.2.1"
+  },
+  {
+    "test_case_id": "UC3.2.1_TC3",
+    "title": "Ricerca scheda censimento con nome vuoto",
+    "preconditions": "UC3.2",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Lascia vuoto il campo del nome tra i parametri di ricerca",
+        "expected": "Il sistema segnala un errore"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema visualizza un messaggio di errore che indica l'obbligatorietà del campo"
+      },
+      {
+        "step": "Verifica il messaggio di errore",
+        "expected": "Il messaggio di errore è chiaro e indica la causa dell'errore"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Bassa",
+    "use_case_id": "UC3.2.1"
+  },
+  {
+    "test_case_id": "UC3.2.1_TC4",
+    "title": "Ricerca scheda censimento con caratteri speciali nel nome",
+    "preconditions": "UC3.2",
+    "postconditions": "L’utente visualizza un messaggio di errore o i risultati della ricerca",
+    "test_steps": [
+      {
+        "step": "Inserisci caratteri speciali nel campo del nome tra i parametri di ricerca",
+        "expected": "Il sistema accetta il parametro di ricerca o segnala un errore"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema esegue la ricerca e visualizza i risultati o un messaggio di errore"
+      },
+      {
+        "step": "Verifica i risultati della ricerca o il messaggio di errore",
+        "expected": "I risultati della ricerca sono visualizzati correttamente o il messaggio di errore è chiaro e indica la causa dell'errore"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC3.2.1"
+  },
+  {
+    "test_case_id": "UC3.2.1_TC5",
+    "title": "Ricerca scheda censimento con nome lungo",
+    "preconditions": "UC3.2",
+    "postconditions": "L’utente visualizza un messaggio di errore o i risultati della ricerca",
+    "test_steps": [
+      {
+        "step": "Inserisci un nome molto lungo tra i parametri di ricerca",
+        "expected": "Il sistema accetta il parametro di ricerca o segnala un errore"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema esegue la ricerca e visualizza i risultati o un messaggio di errore"
+      },
+      {
+        "step": "Verifica i risultati della ricerca o il messaggio di errore",
+        "expected": "I risultati della ricerca sono visualizzati correttamente o il messaggio di errore è chiaro e indica la causa dell'errore"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC3.2.1"
+  },
+  {
+    "test_case_id": "UC3.2.1_TC6",
+    "title": "Ricerca scheda censimento con attacchi di iniezione SQL",
+    "preconditions": "UC3.2",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Inserisci input dannosi nel campo del nome tra i parametri di ricerca per tentare un attacco di iniezione SQL",
+        "expected": "Il sistema segnala un errore e non esegue l'attacco"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema visualizza un messaggio di errore che indica il problema con il parametro di ricerca"
+      },
+      {
+        "step": "Verifica il messaggio di errore",
+        "expected": "Il messaggio di errore è chiaro e indica la causa dell'errore senza rivelare informazioni sensibili"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.2.1"
+  }
+]

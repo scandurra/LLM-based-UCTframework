@@ -1,0 +1,117 @@
+[
+  {
+    "test_case_id": "UC4.2_TC1",
+    "title": "Aggiunta nuovo investimento con dati validi",
+    "preconditions": "UC4",
+    "postconditions": "L’utente visualizza un messaggio di conferma",
+    "test_steps": [
+      {
+        "step": "Naviga nella sezione dedicata agli investimenti e clicca sul tasto per aggiungere un nuovo investimento",
+        "expected": "Il form per l’inserimento dei parametri dell’investimento viene visualizzato"
+      },
+      {
+        "step": "Compila il form con tutti i parametri richiesti in modo corretto",
+        "expected": "Il sistema accetta i dati e procede alla conferma"
+      },
+      {
+        "step": "Conferma l’aggiunta del nuovo investimento",
+        "expected": "Viene visualizzato un messaggio di conferma dell’avvenuta aggiunta"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC4.2"
+  },
+  {
+    "test_case_id": "UC4.2_TC2",
+    "title": "Aggiunta nuovo investimento con dati mancanti",
+    "preconditions": "UC4",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Naviga nella sezione dedicata agli investimenti e clicca sul tasto per aggiungere un nuovo investimento",
+        "expected": "Il form per l’inserimento dei parametri dell’investimento viene visualizzato"
+      },
+      {
+        "step": "Lascia vuoti alcuni campi obbligatori del form",
+        "expected": "Il sistema segnala l’errore e richiede la compilazione di tutti i campi necessari"
+      },
+      {
+        "step": "Tenta di confermare l’aggiunta del nuovo investimento",
+        "expected": "L’operazione non va a buon fine e viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC4.2"
+  },
+  {
+    "test_case_id": "UC4.2_TC3",
+    "title": "Aggiunta nuovo investimento e annullamento",
+    "preconditions": "UC4",
+    "postconditions": "L’utente visualizza un messaggio di avvenuto annullamento",
+    "test_steps": [
+      {
+        "step": "Naviga nella sezione dedicata agli investimenti e clicca sul tasto per aggiungere un nuovo investimento",
+        "expected": "Il form per l’inserimento dei parametri dell’investimento viene visualizzato"
+      },
+      {
+        "step": "Compila parzialmente il form e poi clicca su annulla",
+        "expected": "Il sistema chiede conferma dell’annullamento"
+      },
+      {
+        "step": "Conferma l’annullamento dell’operazione di aggiunta del nuovo investimento",
+        "expected": "Viene visualizzato un messaggio che conferma l’avvenuto annullamento"
+      }
+    ],
+    "test_type": "Branch",
+    "priority": "Media",
+    "use_case_id": "UC4.2"
+  },
+  {
+    "test_case_id": "UC4.2_TC4",
+    "title": "Aggiunta nuovo investimento con dati non validi",
+    "preconditions": "UC4",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Naviga nella sezione dedicata agli investimenti e clicca sul tasto per aggiungere un nuovo investimento",
+        "expected": "Il form per l’inserimento dei parametri dell’investimento viene visualizzato"
+      },
+      {
+        "step": "Inserisci dati non validi (es. stringhe al posto di numeri)",
+        "expected": "Il sistema rileva l’errore e richiede la correzione dei dati"
+      },
+      {
+        "step": "Tenta di confermare l’aggiunta del nuovo investimento",
+        "expected": "L’operazione non va a buon fine e viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC4.2"
+  },
+  {
+    "test_case_id": "UC4.2_TC5",
+    "title": "Aggiunta nuovo investimento con campi troppo lunghi",
+    "preconditions": "UC4",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Naviga nella sezione dedicata agli investimenti e clicca sul tasto per aggiungere un nuovo investimento",
+        "expected": "Il form per l’inserimento dei parametri dell’investimento viene visualizzato"
+      },
+      {
+        "step": "Inserisci dati con lunghezza superiore ai limiti consentiti",
+        "expected": "Il sistema segnala l’errore e richiede la riduzione della lunghezza dei dati"
+      },
+      {
+        "step": "Tenta di confermare l’aggiunta del nuovo investimento",
+        "expected": "L’operazione non va a buon fine e viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC4.2"
+  }
+]

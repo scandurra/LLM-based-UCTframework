@@ -1,0 +1,186 @@
+[
+  {
+    "test_case_id": "UC3.4.5_TC1",
+    "title": "Visualizzazione dettaglio scheda censimento con dati validi",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente visualizza le informazioni relative alla scheda censimento",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione delle schede censimento",
+        "expected": "La sezione viene caricata correttamente"
+      },
+      {
+        "step": "Seleziona una scheda censimento esistente e clicca su dettaglio",
+        "expected": "Viene visualizzata la pagina di dettaglio della scheda selezionata"
+      },
+      {
+        "step": "Verifica che le informazioni visualizzate siano corrette e non modificabili",
+        "expected": "Le informazioni sono visualizzate correttamente e non è possibile modificarle"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.5"
+  },
+  {
+    "test_case_id": "UC3.4.5_TC2",
+    "title": "Visualizzazione dettaglio scheda censimento senza dati",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema visualizza un messaggio di assenza di dati",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione delle schede censimento",
+        "expected": "La sezione viene caricata correttamente"
+      },
+      {
+        "step": "Seleziona una scheda censimento non esistente o senza dati e clicca su dettaglio",
+        "expected": "Il sistema visualizza un messaggio di assenza di dati"
+      },
+      {
+        "step": "Verifica che il messaggio di errore sia chiaro e utile",
+        "expected": "Il messaggio è chiaro e fornisce indicazioni utili all’utente"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.5"
+  },
+  {
+    "test_case_id": "UC3.4.5_TC3",
+    "title": "Navigazione nella gerarchia dei POD e Aree Omogenee",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente può navigare correttamente nella gerarchia",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione delle schede censimento e seleziona una scheda",
+        "expected": "La pagina di dettaglio della scheda viene visualizzata"
+      },
+      {
+        "step": "Clicca sulla gerarchia dei POD e Aree Omogenee sulla sinistra",
+        "expected": "La navigazione nella gerarchia funziona correttamente"
+      },
+      {
+        "step": "Verifica che le informazioni visualizzate siano coerenti con la posizione nella gerarchia",
+        "expected": "Le informazioni sono coerenti e aggiornate"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.5"
+  },
+  {
+    "test_case_id": "UC3.4.5_TC4",
+    "title": "Visualizzazione dati generali dell’area",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente visualizza i dati generali dell’area",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione delle schede censimento e seleziona una scheda",
+        "expected": "La pagina di dettaglio della scheda viene visualizzata"
+      },
+      {
+        "step": "Clicca sulla sezione dei dati generali dell’area sulla destra",
+        "expected": "I dati generali dell’area vengono visualizzati correttamente"
+      },
+      {
+        "step": "Verifica che i dati siano aggiornati e coerenti con le informazioni della scheda",
+        "expected": "I dati sono aggiornati e coerenti"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.5"
+  },
+  {
+    "test_case_id": "UC3.4.5_TC5",
+    "title": "Tentativo di modifica dei dati nella pagina di dettaglio",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema impedisce la modifica dei dati",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione delle schede censimento e seleziona una scheda",
+        "expected": "La pagina di dettaglio della scheda viene visualizzata"
+      },
+      {
+        "step": "Tenta di modificare i dati visualizzati nella pagina di dettaglio",
+        "expected": "Il sistema impedisce la modifica e visualizza un messaggio di errore"
+      },
+      {
+        "step": "Verifica che il messaggio di errore sia chiaro e utile",
+        "expected": "Il messaggio è chiaro e fornisce indicazioni utili all’utente"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.5"
+  },
+  {
+    "test_case_id": "UC3.4.5_TC6",
+    "title": "Security test: accesso alla pagina di dettaglio senza autorizzazione",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema nega l’accesso alla pagina di dettaglio",
+    "test_steps": [
+      {
+        "step": "Tenta di accedere alla sezione di gestione delle schede censimento senza autorizzazione",
+        "expected": "Il sistema nega l’accesso e visualizza un messaggio di errore"
+      },
+      {
+        "step": "Verifica che il messaggio di errore sia chiaro e utile",
+        "expected": "Il messaggio è chiaro e fornisce indicazioni utili all’utente"
+      },
+      {
+        "step": "Tenta di accedere alla pagina di dettaglio di una scheda censimento senza autorizzazione",
+        "expected": "Il sistema nega l’accesso e visualizza un messaggio di errore"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.5"
+  },
+  {
+    "test_case_id": "UC3.4.5_TC7",
+    "title": "Edge case: visualizzazione di una scheda censimento con dati non standard",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema gestisce correttamente i dati non standard",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione delle schede censimento e seleziona una scheda con dati non standard",
+        "expected": "La pagina di dettaglio della scheda viene visualizzata correttamente"
+      },
+      {
+        "step": "Verifica che i dati non standard siano visualizzati correttamente",
+        "expected": "I dati non standard sono visualizzati correttamente"
+      },
+      {
+        "step": "Verifica che il sistema gestisca correttamente i dati non standard",
+        "expected": "Il sistema gestisce correttamente i dati non standard"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC3.4.5"
+  },
+  {
+    "test_case_id": "UC3.4.5_TC8",
+    "title": "Performance test: visualizzazione di una grande quantità di schede censimento",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema gestisce correttamente la visualizzazione di una grande quantità di schede censimento",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione delle schede censimento e seleziona un numero elevato di schede",
+        "expected": "La pagina di dettaglio delle schede viene visualizzata correttamente"
+      },
+      {
+        "step": "Verifica che il sistema gestisca correttamente la visualizzazione di una grande quantità di schede censimento",
+        "expected": "Il sistema gestisce correttamente la visualizzazione di una grande quantità di schede censimento"
+      },
+      {
+        "step": "Verifica che le prestazioni del sistema siano accettabili",
+        "expected": "Le prestazioni del sistema sono accettabili"
+      }
+    ],
+    "test_type": "Performance",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.5"
+  }
+]

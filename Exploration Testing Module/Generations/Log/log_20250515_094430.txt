@@ -1,0 +1,215 @@
+📝 PROMPT:
+<|begin_of_text|><|start_header_id|>system<|end_header_id|>
+You are a Quality Assurance expert. Your task is to generate a suite of test cases for each use case provided in JSON format.
+
+The output must be in **JSON only**, structured as an array of test case objects, following the example below:
+
+[
+  {
+    "test_case_id": "UC7.2_TC1",
+    "title": "Segnalazione guasto con dati validi e foto allegata",
+    "preconditions": "UC7",
+    "postconditions": "Il sistema registra la segnalazione e notifica il fornitore responsabile",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione segnalazioni guasti",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Compila il modulo inserendo posizione, descrizione e carica una foto",
+        "expected": "Il modulo viene completato correttamente"
+      },
+      {
+        "step": "Conferma l’invio della segnalazione",
+        "expected": "Il sistema registra la segnalazione e mostra conferma"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC7.2"
+  },
+  ... (other test cases)
+]
+
+Guidelines:
+1) You must not create test cases that can be reproducible on the server side, so you must not generate blocked or disabled account tests, connection error or slow connection tests, maintenance tests, etc.
+2) You should create test cases that can be reproducible on the client side, including SQL injections for a Login use case.
+3) Generate a minimum of 3 test cases per use case, maxmimum of 10 (depending of the needs).
+4) Include both **positive** (success) and **negative** (error, missing input, etc.) tests , boundary conditions(if applicable),
+edge cases(if applicable), security and usability considerations (if applicable, for example in a Login use case you can do the injection test case).
+5) Use unique names for `test_case_id` following the format `UCx_TCy`.
+6) Base your test cases on base_sequence, branch_sequence, exception_sequence, and pre/postconditions.
+7) If in the use case description in JSON has "UCx" as "Precondition" tag, you must put "UCx" in the preconditions field of the test cases.
+
+
+Only return the JSON array. DO NOT explain anything.  
+DO NOT include "```json" or "```" markers.  
+Very importanti, you have to make sure all brackets are correctly opened and closed.
+Follow strictly the guidelines.
+
+Note: Even though the structure is in English, all content inside the fields (titles, steps, etc.) must remain in **Italian**.
+
+<|eot_id|><|start_header_id|>user<|end_header_id|>
+The following is the use case in JSON format, generate different test cases:
+
+[
+  {
+    "Id": "UC2.6",
+    "Title": "Analisi consumo comune per POD (parte di UC2: Dashboard)",
+    "Summary": "Permette di visualizzare un’analisi per comune dei consumi sulla base di alcuni parametri selezionati",
+    "Actor": [
+      "Comune",
+      "Fornitore"
+    ],
+    "Precondition": "UC2",
+    "Postcondition": "L’utente visualizza le informazioni consultando i grafici",
+    "Base_sequence": [
+      "L’utente scorre nella pagina fino a visualizzare la sezione dedicata al consumo",
+      "Selezionato il comune, è possibile eseguire un’analisi più puntuale andando a specificare POD, pannello elettrico, periodo e tipo di potenza analizzata"
+    ],
+    "Branch_sequence": [],
+    "Exception_sequence": [],
+    "Note": "no"
+  }
+]
+
+<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+📥 RISPOSTA:
+[
+  {
+    "test_case_id": "UC2.6_TC1",
+    "title": "Analisi consumo comune con parametri validi",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza le informazioni consultando i grafici",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione dedicata al consumo",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un comune valido",
+        "expected": "Il comune viene selezionato correttamente"
+      },
+      {
+        "step": "Specifica POD, pannello elettrico, periodo e tipo di potenza analizzata",
+        "expected": "I parametri vengono impostati correttamente"
+      },
+      {
+        "step": "Esegui l’analisi",
+        "expected": "L’analisi viene eseguita e i risultati vengono visualizzati"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC2",
+    "title": "Analisi consumo comune con comune non selezionato",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione dedicata al consumo",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Non selezionare un comune",
+        "expected": "Il sistema richiede la selezione di un comune"
+      },
+      {
+        "step": "Specifica POD, pannello elettrico, periodo e tipo di potenza analizzata",
+        "expected": "I parametri vengono impostati correttamente ma l’analisi non può essere eseguita"
+      },
+      {
+        "step": "Esegui l’analisi",
+        "expected": "Il sistema visualizza un messaggio di errore per la mancata selezione del comune"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC3",
+    "title": "Analisi consumo comune con parametri non validi",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione dedicata al consumo",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un comune valido",
+        "expected": "Il comune viene selezionato correttamente"
+      },
+      {
+        "step": "Specifica POD, pannello elettrico, periodo e tipo di potenza analizzata con valori non validi",
+        "expected": "I parametri vengono impostati ma il sistema rileva errori di validazione"
+      },
+      {
+        "step": "Esegui l’analisi",
+        "expected": "Il sistema visualizza un messaggio di errore per i parametri non validi"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC4",
+    "title": "Analisi consumo comune con selezione di più comuni",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza le informazioni consultando i grafici",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione dedicata al consumo",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona più comuni validi",
+        "expected": "I comuni vengono selezionati correttamente"
+      },
+      {
+        "step": "Specifica POD, pannello elettrico, periodo e tipo di potenza analizzata",
+        "expected": "I parametri vengono impostati correttamente"
+      },
+      {
+        "step": "Esegui l’analisi",
+        "expected": "L’analisi viene eseguita e i risultati vengono visualizzati per ogni comune selezionato"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Bassa",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC5",
+    "title": "Analisi consumo comune con nessun dato disponibile",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di informazione",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione dedicata al consumo",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un comune valido",
+        "expected": "Il comune viene selezionato correttamente"
+      },
+      {
+        "step": "Specifica POD, pannello elettrico, periodo e tipo di potenza analizzata",
+        "expected": "I parametri vengono impostati correttamente"
+      },
+      {
+        "step": "Esegui l’analisi",
+        "expected": "Il sistema visualizza un messaggio di informazione per la mancanza di dati disponibili"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC2.6"
+  }
+]

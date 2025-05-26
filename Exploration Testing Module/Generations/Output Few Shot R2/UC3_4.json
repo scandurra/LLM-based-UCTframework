@@ -1,0 +1,97 @@
+[
+  {
+    "test_case_id": "UC3.4_TC1",
+    "title": "Visualizzazione azioni disponibili sulla scheda censimento",
+    "preconditions": "UC3",
+    "postconditions": "Le azioni sono visualizzate correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento",
+        "expected": "La lista delle schede è visibile"
+      },
+      {
+        "step": "Clicca sul tasto delle azioni di una scheda",
+        "expected": "La palette di operazioni appare"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC2",
+    "title": "Selezione azione non valida",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema segnala l’azione non valida",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento",
+        "expected": "La lista delle schede è visibile"
+      },
+      {
+        "step": "Clicca sul tasto delle azioni e seleziona un’opzione non valida",
+        "expected": "Il sistema mostra un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC3",
+    "title": "Azioni su scheda censimento con dati incompleti",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema richiede la completazione dei dati",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento",
+        "expected": "La lista delle schede è visibile"
+      },
+      {
+        "step": "Seleziona una scheda con informazioni mancanti e clicca sul tasto delle azioni",
+        "expected": "Il sistema richiede di completare i dati prima di procedere"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC4",
+    "title": "Usabilità della palette delle azioni",
+    "preconditions": "UC3",
+    "postconditions": "La palette è facilmente utilizzabile",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento",
+        "expected": "La lista delle schede è visibile"
+      },
+      {
+        "step": "Clicca sul tasto delle azioni e valuta l’usabilità della palette",
+        "expected": "Le opzioni sono chiare e facilmente selezionabili"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Alta",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC5",
+    "title": "Azioni su scheda censimento con permessi insufficienti",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema nega l’accesso alle azioni",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento con un utente a bassi privilegi",
+        "expected": "La lista delle schede è visibile"
+      },
+      {
+        "step": "Clicca sul tasto delle azioni e tenta di eseguire un’azione richiedente permessi più elevati",
+        "expected": "Il sistema nega l’accesso all’azione"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.4"
+  }
+]

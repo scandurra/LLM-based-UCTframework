@@ -1,0 +1,167 @@
+[
+  {
+    "test_case_id": "UC3.4.3.9_TC1",
+    "title": "Modifica dati punto luce con informazioni valide",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD selezionato viene visualizzato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato e seleziona un pannello elettrico",
+        "expected": "I punti luce relativi al pannello vengono mostrati"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati punti luce e compila il form con informazioni valide",
+        "expected": "Il form viene compilato correttamente senza errori"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Viene visualizzato un messaggio di conferma dell’operazione andata a buon fine"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.9"
+  },
+  {
+    "test_case_id": "UC3.4.3.9_TC2",
+    "title": "Modifica dati punto luce con informazioni non valide",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD selezionato viene visualizzato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato e seleziona un pannello elettrico",
+        "expected": "I punti luce relativi al pannello vengono mostrati"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati punti luce e compila il form con informazioni non valide (es. campo obbligatorio vuoto)",
+        "expected": "Il sistema segnala un errore di validazione dei dati"
+      },
+      {
+        "step": "Tenta di applicare le modifiche con l’apposito tasto",
+        "expected": "L’operazione non va a buon fine e viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.9"
+  },
+  {
+    "test_case_id": "UC3.4.3.9_TC3",
+    "title": "Modifica dati punto luce senza selezionare il POD",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema non permette di procedere",
+    "test_steps": [
+      {
+        "step": "Non seleziona il POD e tenta di accedere direttamente alla modifica dei dati punto luce",
+        "expected": "Il sistema richiede la selezione del POD"
+      },
+      {
+        "step": "Tenta di proseguire senza selezionare un pannello elettrico",
+        "expected": "Il sistema non permette di visualizzare i punti luce"
+      },
+      {
+        "step": "Tenta comunque di applicare le modifiche",
+        "expected": "L’operazione non va a buon fine e viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.9"
+  },
+  {
+    "test_case_id": "UC3.4.3.9_TC4",
+    "title": "Modifica dati punto luce con utente non autorizzato",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema nega l’accesso alla funzione di modifica",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema con un utente che non ha i permessi per la modifica dei dati punto luce",
+        "expected": "Il sistema non visualizza le opzioni di modifica"
+      },
+      {
+        "step": "Tenta di accedere manualmente alla pagina di modifica dei dati punto luce",
+        "expected": "Il sistema nega l’accesso e richiede l’autenticazione o i permessi necessari"
+      },
+      {
+        "step": "Tenta comunque di applicare le modifiche",
+        "expected": "L’operazione non va a buon fine e viene mostrato un messaggio di accesso negato"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.9"
+  },
+  {
+    "test_case_id": "UC3.4.3.9_TC5",
+    "title": "Modifica dati punto luce con caratteri speciali nei campi di input",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema gestisce correttamente i caratteri speciali",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD e il pannello elettrico, poi accedi alla modifica dei dati punto luce",
+        "expected": "La pagina di modifica viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci caratteri speciali (es. @,#,$) nei campi di input del form",
+        "expected": "Il sistema accetta i caratteri speciali o li gestisce in modo appropriato (es. li rimuove, li sostituisce con entità HTML)"
+      },
+      {
+        "step": "Applica le modifiche",
+        "expected": "Le modifiche vengono applicate correttamente e il sistema non segnala errori"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.9"
+  },
+  {
+    "test_case_id": "UC3.4.3.9_TC6",
+    "title": "Modifica dati punto luce con campi di input vuoti",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema richiede di compilare i campi obbligatori",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD e il pannello elettrico, poi accedi alla modifica dei dati punto luce",
+        "expected": "La pagina di modifica viene visualizzata correttamente"
+      },
+      {
+        "step": "Lascia vuoti i campi obbligatori del form e tenta di applicare le modifiche",
+        "expected": "Il sistema segnala un errore per i campi obbligatori vuoti"
+      },
+      {
+        "step": "Compila i campi obbligatori e applica nuovamente le modifiche",
+        "expected": "Le modifiche vengono applicate correttamente"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.9"
+  },
+  {
+    "test_case_id": "UC3.4.3.9_TC7",
+    "title": "Modifica dati punto luce durante la manutenzione del sistema",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema notifica che la funzione non è disponibile",
+    "test_steps": [
+      {
+        "step": "Tenta di accedere alla modifica dei dati punto luce durante un periodo di manutenzione del sistema",
+        "expected": "Il sistema visualizza un messaggio di indisponibilità"
+      },
+      {
+        "step": "Tenta comunque di applicare le modifiche",
+        "expected": "L’operazione non va a buon fine e il sistema notifica l’indisponibilità della funzione"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.9"
+  }
+]

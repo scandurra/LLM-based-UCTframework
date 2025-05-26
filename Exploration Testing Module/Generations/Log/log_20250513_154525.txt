@@ -1,0 +1,233 @@
+📝 PROMPT:
+<|begin_of_text|><|start_header_id|>system<|end_header_id|>
+You are a Quality Assurance expert. Your task is to generate a suite of test cases for each use case provided in JSON format.
+
+The output must be in **JSON only**, structured as an array of test case objects, following the example below:
+
+[
+  {
+    "test_case_id": "UC7.2_TC1",
+    "title": "Segnalazione guasto con dati validi e foto allegata",
+    "preconditions": "UC7",
+    "postconditions": "Il sistema registra la segnalazione e notifica il fornitore responsabile",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione segnalazioni guasti",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Compila il modulo inserendo posizione, descrizione e carica una foto",
+        "expected": "Il modulo viene completato correttamente"
+      },
+      {
+        "step": "Conferma l’invio della segnalazione",
+        "expected": "Il sistema registra la segnalazione e mostra conferma"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC7.2"
+  },
+  ... (other test cases)
+]
+
+Guidelines:
+- Generate a minimum of 3 test cases per use case, maxmimum of 10 (depending of the needs)-
+- Include both **positive** (success) and **negative** (error, missing input, etc.) tests , boundary conditions(if applicable),
+edge cases(if applicable), security and usability considerations (if applicable, for example in a Login use case you can do the injection test case).
+- Use unique names for `test_case_id` following the format `UCx_TCy`.
+- Base your test cases on base_sequence, branch_sequence, exception_sequence, and pre/postconditions.
+- If in the use case description in JSON has "UCx" as "Precondition" tag, you must put "UCx" in the preconditions field of the test cases.
+
+Only return the JSON array. DO NOT explain anything.  
+DO NOT include "```json" or "```" markers.  
+Make sure all brackets are correctly opened and closed.
+
+Note: Even though the structure is in English, all content inside the fields (titles, steps, etc.) must remain in **Italian**.
+
+<|eot_id|><|start_header_id|>user<|end_header_id|>
+The following is the use case in JSON format, generate different test cases:
+[
+  {
+    "Id": "UC7.2",
+    "Title": "Segnalazione guasti illuminazione pubblica (parte di UC7: Gestione manutenzioni)",
+    "Summary": "Permette all’utente di segnalare un guasto su un impianto di illuminazione pubblica",
+    "Actor": [
+      "Cittadino",
+      "Fornitore",
+      "Sindaco"
+    ],
+    "Precondition": "UC7",
+    "Postcondition": "Il sistema registra la segnalazione e notifica il fornitore responsabile",
+    "Base_sequence": [
+      "L’utente accede alla sezione segnalazioni guasti",
+      "Compila il modulo con localizzazione e descrizione del guasto",
+      "Conferma l’invio della segnalazione"
+    ],
+    "Branch_sequence": [],
+    "Exception_sequence": [],
+    "Note": "no"
+  }
+]
+<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+<|eot_id|><|start_header_id|>user<|end_header_id|>
+The following is the use case in JSON format, generate different test cases:
+[
+  {
+    "Id": "UC8.2.3",
+    "Title": "Esportazione report energetici (parte di UC8.2: Analisi consumi energetici)",
+    "Summary": "Consente agli utenti autorizzati di esportare i report dei consumi energetici in diversi formati",
+    "Actor": [
+      "Regione",
+      "Fornitore"
+    ],
+    "Precondition": "UC8.2",
+    "Postcondition": "Il file esportato viene scaricato correttamente",
+    "Base_sequence": [
+    "L’utente accede alla sezione analisi consumi",
+    "Seleziona il periodo di interesse e il formato di esportazione (PDF, CSV)",
+    "Avvia l’esportazione e scarica il file"
+    ],
+    "Branch_sequence": [],
+    "Exception_sequence": [],
+    "Note": "no"
+  }
+]
+<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+<|eot_id|><|start_header_id|>user<|end_header_id|>
+The following is the use case in JSON format, generate different test cases:
+
+[
+  {
+    "Id": "UC2.2",
+    "Title": "Ricerca impianti di illuminazione (parte di UC2: Dashboard)",
+    "Summary": "Ricerca per caratteristiche degli impianti di illuminazione",
+    "Actor": [
+      "Regione",
+      "Sindaco",
+      "Fornitore",
+      "Cittadino"
+    ],
+    "Precondition": "UC2",
+    "Postcondition": "L’utente visualizza gli impianti di illuminazione che corrispondono ai criteri di ricerca",
+    "Base_sequence": [
+      "L’utente seleziona il comune di ricerca, così come i parametri tra quelli disponibili",
+      "L’utente conferma la ricerca con il click",
+      "L’utente visualizza sulla mappa la posizione dell’impianto d’illuminazione relativo al comune"
+    ],
+    "Branch_sequence": [],
+    "Exception_sequence": [],
+    "Note": "no"
+  }
+]
+
+<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+📥 RISPOSTA:
+[
+  {
+    "test_case_id": "UC2.2_TC1",
+    "title": "Ricerca impianti di illuminazione con parametri validi",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza gli impianti di illuminazione che corrispondono ai criteri di ricerca",
+    "test_steps": [
+      {
+        "step": "Seleziona il comune di ricerca e i parametri di ricerca",
+        "expected": "I parametri vengono selezionati correttamente"
+      },
+      {
+        "step": "Conferma la ricerca con il click",
+        "expected": "La ricerca viene avviata correttamente"
+      },
+      {
+        "step": "Visualizza sulla mappa la posizione dell’impianto d’illuminazione relativo al comune",
+        "expected": "Gli impianti di illuminazione vengono visualizzati correttamente sulla mappa"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.2"
+  },
+  {
+    "test_case_id": "UC2.2_TC2",
+    "title": "Ricerca impianti di illuminazione senza selezionare il comune",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Non seleziona il comune di ricerca",
+        "expected": "Il sistema richiede la selezione del comune"
+      },
+      {
+        "step": "Conferma la ricerca con il click",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.2"
+  },
+  {
+    "test_case_id": "UC2.2_TC3",
+    "title": "Ricerca impianti di illuminazione con parametri non validi",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona parametri di ricerca non validi",
+        "expected": "Il sistema richiede la correzione dei parametri"
+      },
+      {
+        "step": "Conferma la ricerca con il click",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.2"
+  },
+  {
+    "test_case_id": "UC2.2_TC4",
+    "title": "Ricerca impianti di illuminazione con più comuni selezionati",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza gli impianti di illuminazione che corrispondono ai criteri di ricerca",
+    "test_steps": [
+      {
+        "step": "Seleziona più comuni di ricerca",
+        "expected": "I comuni vengono selezionati correttamente"
+      },
+      {
+        "step": "Conferma la ricerca con il click",
+        "expected": "La ricerca viene avviata correttamente"
+      },
+      {
+        "step": "Visualizza sulla mappa la posizione dell’impianto d’illuminazione relativo ai comuni selezionati",
+        "expected": "Gli impianti di illuminazione vengono visualizzati correttamente sulla mappa"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Bassa",
+    "use_case_id": "UC2.2"
+  },
+  {
+    "test_case_id": "UC2.2_TC5",
+    "title": "Ricerca impianti di illuminazione senza parametri di ricerca",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Non seleziona parametri di ricerca",
+        "expected": "Il sistema richiede la selezione dei parametri"
+      },
+      {
+        "step": "Conferma la ricerca con il click",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.2"
+  }
+]

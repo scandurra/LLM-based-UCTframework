@@ -1,0 +1,97 @@
+[
+  {
+    "test_case_id": "UC3.4_TC1",
+    "title": "Visualizzazione azioni disponibili sulla scheda censimento",
+    "preconditions": "UC3",
+    "postconditions": "La palette di operazioni viene visualizzata correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento",
+        "expected": "Le schede vengono elencate correttamente"
+      },
+      {
+        "step": "Clicca sul tasto azioni per una scheda specifica",
+        "expected": "La palette di operazioni si apre mostrando le opzioni disponibili"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC2",
+    "title": "Selezione di un’azione non valida",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema segnala l’errore e non esegue l’azione",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento",
+        "expected": "Le schede vengono elencate correttamente"
+      },
+      {
+        "step": "Clicca sul tasto azioni e seleziona un’opzione non valida",
+        "expected": "Il sistema mostra un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC3",
+    "title": "Chiusura della palette di operazioni",
+    "preconditions": "UC3",
+    "postconditions": "La palette si chiude correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento e apri la palette di operazioni",
+        "expected": "Le opzioni vengono visualizzate"
+      },
+      {
+        "step": "Clicca fuori dalla palette o sul tasto di chiusura",
+        "expected": "La palette si chiude senza errori"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC4",
+    "title": "Selezione rapida di più azioni",
+    "preconditions": "UC3",
+    "postconditions": "Le azioni vengono eseguite correttamente una dopo l’altra",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento e apri la palette di operazioni",
+        "expected": "Le opzioni sono visibili"
+      },
+      {
+        "step": "Seleziona più azioni in rapida sequenza",
+        "expected": "Il sistema esegue le azioni senza problemi"
+      }
+    ],
+    "test_type": "Prestazione",
+    "priority": "Alta",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC5",
+    "title": "Interazione con la palette su dispositivi mobili",
+    "preconditions": "UC3",
+    "postconditions": "La palette è utilizzabile senza problemi sui dispositivi mobili",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento da un dispositivo mobile",
+        "expected": "La pagina si adatta allo schermo"
+      },
+      {
+        "step": "Apri la palette di operazioni e interagisci con essa",
+        "expected": "Le azioni sono selezionabili e eseguibili correttamente"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Alta",
+    "use_case_id": "UC3.4"
+  }
+]

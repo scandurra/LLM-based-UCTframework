@@ -1,0 +1,186 @@
+[
+  {
+    "test_case_id": "UC2.5_TC1",
+    "title": "Visualizzazione grafici con dati validi e completo",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza le informazioni consultando i grafici",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard",
+        "expected": "La dashboard viene caricata correttamente"
+      },
+      {
+        "step": "Scorri nella pagina fino a raggiungere la sezione dei grafici",
+        "expected": "I grafici vengono visualizzati correttamente"
+      },
+      {
+        "step": "Osserva i grafici di comuni aderenti per regione, punti luce per regione e distribuzione punti luce per tipo apparecchio",
+        "expected": "Tutti i grafici sono visibili e contengono dati"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC2",
+    "title": "Visualizzazione grafici con dati parziali",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza le informazioni disponibili consultando i grafici",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard",
+        "expected": "La dashboard viene caricata correttamente"
+      },
+      {
+        "step": "Scorri nella pagina fino a raggiungere la sezione dei grafici",
+        "expected": "I grafici vengono visualizzati correttamente"
+      },
+      {
+        "step": "Osserva i grafici con dati parziali (ad esempio, solo alcuni comuni o regioni)",
+        "expected": "I grafici mostrano i dati disponibili e indicano la mancanza di dati per le altre aree"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC3",
+    "title": "Visualizzazione grafici senza dati",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio che indica l’assenza di dati",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard",
+        "expected": "La dashboard viene caricata correttamente"
+      },
+      {
+        "step": "Scorri nella pagina fino a raggiungere la sezione dei grafici",
+        "expected": "I grafici vengono visualizzati ma senza dati"
+      },
+      {
+        "step": "Osserva il messaggio che indica l’assenza di dati",
+        "expected": "Il messaggio è chiaro e indica la causa dell’assenza di dati"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC4",
+    "title": "Interazione con i grafici (zoom, hover, ecc.)",
+    "preconditions": "UC2",
+    "postconditions": "L’utente può interagire correttamente con i grafici",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard",
+        "expected": "La dashboard viene caricata correttamente"
+      },
+      {
+        "step": "Scorri nella pagina fino a raggiungere la sezione dei grafici",
+        "expected": "I grafici vengono visualizzati correttamente"
+      },
+      {
+        "step": "Esegui azioni di zoom, hover e altre interazioni sui grafici",
+        "expected": "Le interazioni funzionano come previsto e forniscono informazioni aggiuntive"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Alta",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC5",
+    "title": "Visualizzazione grafici su dispositivi mobili",
+    "preconditions": "UC2",
+    "postconditions": "L’utente può visualizzare i grafici correttamente su dispositivi mobili",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard da un dispositivo mobile",
+        "expected": "La dashboard viene caricata e adattata per il dispositivo mobile"
+      },
+      {
+        "step": "Scorri nella pagina fino a raggiungere la sezione dei grafici",
+        "expected": "I grafici vengono visualizzati in modo chiaro e leggibile sul dispositivo mobile"
+      },
+      {
+        "step": "Osserva i grafici e le informazioni fornite",
+        "expected": "Tutti gli elementi sono visibili e facilmente accessibili"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Alta",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC6",
+    "title": "Accesso ai grafici da parte di utenti non autorizzati",
+    "preconditions": "UC2",
+    "postconditions": "L’accesso ai grafici è negato e viene richiesta l’autenticazione",
+    "test_steps": [
+      {
+        "step": "Tenta di accedere alla dashboard senza autenticazione",
+        "expected": "Il sistema richiede l’autenticazione"
+      },
+      {
+        "step": "Inserisci credenziali non valide o non esistenti",
+        "expected": "L’accesso viene negato e viene mostrato un messaggio di errore"
+      },
+      {
+        "step": "Tenta di accedere direttamente alla sezione dei grafici",
+        "expected": "L’accesso è negato e il sistema reindirizza alla pagina di login"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC7",
+    "title": "Visualizzazione grafici con dati non aggiornati",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio che indica la data dell’ultimo aggiornamento",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard",
+        "expected": "La dashboard viene caricata correttamente"
+      },
+      {
+        "step": "Scorri nella pagina fino a raggiungere la sezione dei grafici",
+        "expected": "I grafici vengono visualizzati ma con dati non aggiornati"
+      },
+      {
+        "step": "Osserva il messaggio che indica la data dell’ultimo aggiornamento",
+        "expected": "Il messaggio è chiaro e indica la data dell’ultimo aggiornamento dei dati"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC8",
+    "title": "Visualizzazione grafici con errori di visualizzazione",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio che indica l’errore di visualizzazione",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard",
+        "expected": "La dashboard viene caricata correttamente"
+      },
+      {
+        "step": "Scorri nella pagina fino a raggiungere la sezione dei grafici",
+        "expected": "I grafici non vengono visualizzati a causa di un errore"
+      },
+      {
+        "step": "Osserva il messaggio che indica l’errore di visualizzazione",
+        "expected": "Il messaggio è chiaro e fornisce indicazioni su come risolvere il problema"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC2.5"
+  }
+]

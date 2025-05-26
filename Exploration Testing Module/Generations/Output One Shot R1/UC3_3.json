@@ -1,0 +1,178 @@
+[
+  {
+    "test_case_id": "UC3.3_TC1",
+    "title": "Caricamento scheda censimento con dati validi e formato supportato",
+    "preconditions": "UC3",
+    "postconditions": "La scheda censimento viene caricata correttamente e visualizzata",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di caricamento delle schede censimento",
+        "expected": "La sezione è accessibile e visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un file in formato supportato (es. PDF, CSV) tramite drag-and-drop o browser",
+        "expected": "Il file viene selezionato e pronto per il caricamento"
+      },
+      {
+        "step": "Avvia il processo di upload e attendi la fine del caricamento",
+        "expected": "La barra di caricamento si completa e compare un messaggio di successo"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.3"
+  },
+  {
+    "test_case_id": "UC3.3_TC2",
+    "title": "Caricamento con file non supportato",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema mostra un messaggio di errore per formato non supportato",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di caricamento delle schede censimento",
+        "expected": "La sezione è accessibile e visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un file in formato non supportato (es. MP3, ZIP)",
+        "expected": "Il sistema mostra un messaggio di errore per il formato non supportato"
+      },
+      {
+        "step": "Tenta di avviare il caricamento",
+        "expected": "L’operazione viene bloccata e compare un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.3"
+  },
+  {
+    "test_case_id": "UC3.3_TC3",
+    "title": "Caricamento con file vuoto o danneggiato",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema mostra un messaggio di errore per file non valido",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di caricamento delle schede censimento",
+        "expected": "La sezione è accessibile e visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un file vuoto o danneggiato",
+        "expected": "Il sistema rileva l’errore nel file"
+      },
+      {
+        "step": "Tenta di avviare il caricamento",
+        "expected": "L’operazione viene bloccata e compare un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.3"
+  },
+  {
+    "test_case_id": "UC3.3_TC4",
+    "title": "Caricamento senza selezionare un file",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema richiede la selezione di un file",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di caricamento delle schede censimento",
+        "expected": "La sezione è accessibile e visualizzata correttamente"
+      },
+      {
+        "step": "Lascia vuoto il campo di selezione del file",
+        "expected": "Il sistema segnala la mancanza del file"
+      },
+      {
+        "step": "Tenta di avviare il caricamento senza file",
+        "expected": "La funzione non procede e viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.3"
+  },
+  {
+    "test_case_id": "UC3.3_TC5",
+    "title": "Caricamento con nome file troppo lungo",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema tronca il nome del file o mostra un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di caricamento delle schede censimento",
+        "expected": "La sezione è accessibile e visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un file con nome troppo lungo",
+        "expected": "Il sistema tronca il nome o mostra un messaggio di errore"
+      },
+      {
+        "step": "Avvia il caricamento",
+        "expected": "Il file viene caricato con successo o compare un messaggio di errore per il nome troppo lungo"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Bassa",
+    "use_case_id": "UC3.3"
+  },
+  {
+    "test_case_id": "UC3.3_TC6",
+    "title": "Caricamento durante la manutenzione del sistema",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema mostra un messaggio di indisponibilità",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di caricamento delle schede censimento durante la manutenzione",
+        "expected": "Viene visualizzato un messaggio di manutenzione"
+      },
+      {
+        "step": "Tenta comunque di caricare una scheda",
+        "expected": "Il sistema blocca l’operazione e notifica la manutenzione in corso"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC3.3"
+  },
+  {
+    "test_case_id": "UC3.3_TC7",
+    "title": "Caricamento con utente non autorizzato",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema nega l’accesso alla funzione di caricamento",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di caricamento delle schede censimento con un utente non autorizzato",
+        "expected": "Viene visualizzato un messaggio di accesso negato"
+      },
+      {
+        "step": "Tenta comunque di caricare una scheda",
+        "expected": "Il sistema blocca l’operazione e richiede l’autenticazione o mostra un messaggio di accesso negato"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.3"
+  },
+  {
+    "test_case_id": "UC3.3_TC8",
+    "title": "Caricamento di più file contemporaneamente",
+    "preconditions": "UC3",
+    "postconditions": "I file vengono caricati correttamente uno dopo l’altro o il sistema mostra un messaggio di limite raggiunto",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di caricamento delle schede censimento",
+        "expected": "La sezione è accessibile e visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona più file per il caricamento contemporaneo",
+        "expected": "I file vengono caricati in sequenza o compare un messaggio di limite raggiunto"
+      },
+      {
+        "step": "Verifica lo stato dei file caricati",
+        "expected": "Tutti i file selezionati sono stati caricati con successo o alcuni mostrano errori"
+      }
+    ],
+    "test_type": "Funzionalità",
+    "priority": "Media",
+    "use_case_id": "UC3.3"
+  }
+]

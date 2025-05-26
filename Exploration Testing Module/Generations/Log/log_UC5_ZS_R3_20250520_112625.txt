@@ -1,0 +1,210 @@
+📝 PROMPT:
+<|begin_of_text|><|start_header_id|>system<|end_header_id|>
+You are a Quality Assurance expert. 
+<|eot_id|><|start_header_id|>user<|end_header_id|>
+Your task is to generate a suite of test cases for each use case provided in JSON format.
+
+The output must be in **JSON only**, structured as an array of test case objects, following the example below:
+
+[
+  {
+    "test_case_id": "UC7.2_TC1",
+    "title": "Segnalazione guasto con dati validi e foto allegata",
+    "preconditions": "UC7",
+    "postconditions": "Il sistema registra la segnalazione e notifica il fornitore responsabile",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione segnalazioni guasti",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Compila il modulo inserendo posizione, descrizione e carica una foto",
+        "expected": "Il modulo viene completato correttamente"
+      },
+      {
+        "step": "Conferma l’invio della segnalazione",
+        "expected": "Il sistema registra la segnalazione e mostra conferma"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC7.2"
+  },
+  ... (other test cases)
+]
+
+Guidelines:
+1) You must not create test cases that can be reproducible on the server side, so you must not generate blocked or disabled account tests, connection error or slow connection tests, maintenance tests, etc.
+2) You should create test cases that can be reproducible on the client side, including SQL injections for a Login use case.
+3) Generate a minimum of 3 test cases per use case, maxmimum of 10 (depending of the needs).
+4) Include both **positive** (success) and **negative** (error, missing input, etc.) tests , boundary conditions(if applicable),
+edge cases(if applicable), security and usability considerations (if applicable, for example in a Login use case you can do the injection test case).
+5) Use unique names for `test_case_id` following the format `UCx_TCy`.
+6) Base your test cases on base_sequence, branch_sequence, exception_sequence, and pre/postconditions.
+7) If in the use case description in JSON has "UCx" as "Precondition" tag, you must put "UCx" in the preconditions field of the test cases.
+
+
+Only return the JSON array. DO NOT explain anything.  
+DO NOT include "```json" or "```" markers.  
+Very importanti, you have to make sure all brackets are correctly opened and closed.
+Follow strictly the guidelines.
+
+Note: Even though the structure is in English, all content inside the fields (titles, steps, etc.) must remain in **Italian**.
+
+The following is the use case in JSON format, generate different test cases:
+
+[
+  {
+    "Id": "UC5",
+    "Title": "Selezione lingua",
+    "Summary": "Modifica della lingua utilizzata dal portale autenticato",
+    "Actor": [
+      "Regione",
+      "Sindaco",
+      "Fornitore",
+      "Progettista",
+      "Cittadino"
+    ],
+    "Precondition": "UC1",
+    "Postcondition": "L’utente visualizza il portale con la lingua selezionata",
+    "Base_sequence": [
+      "L’utente clicca sul proprio nome utente in alto a destra",
+      "L’utente modifica la lingua selezionandola dal menù a tendina disponibile dal menù apparso con il punto 1",
+      "L’utente, dopo il ricaricamento della pagina, visualizza il portale con la lingua selezionata"
+    ],
+    "Branch_sequence": [],
+    "Exception_sequence": [],
+    "Note": "no"
+  }
+]
+
+<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+📥 RESPONSE:
+[
+  {
+    "test_case_id": "UC5_TC1",
+    "title": "Selezione lingua italiana",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza il portale con la lingua selezionata",
+    "test_steps": [
+      {
+        "step": "Accedi al portale autenticato",
+        "expected": "Il portale è visualizzato correttamente"
+      },
+      {
+        "step": "Clicca sul proprio nome utente in alto a destra",
+        "expected": "Il menù appare correttamente"
+      },
+      {
+        "step": "Seleziona la lingua italiana dal menù a tendina",
+        "expected": "La lingua viene selezionata correttamente"
+      },
+      {
+        "step": "Verifica che il portale sia visualizzato in italiano dopo il ricaricamento della pagina",
+        "expected": "Il portale è visualizzato in italiano"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC5"
+  },
+  {
+    "test_case_id": "UC5_TC2",
+    "title": "Selezione lingua inglese",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza il portale con la lingua selezionata",
+    "test_steps": [
+      {
+        "step": "Accedi al portale autenticato",
+        "expected": "Il portale è visualizzato correttamente"
+      },
+      {
+        "step": "Clicca sul proprio nome utente in alto a destra",
+        "expected": "Il menù appare correttamente"
+      },
+      {
+        "step": "Seleziona la lingua inglese dal menù a tendina",
+        "expected": "La lingua viene selezionata correttamente"
+      },
+      {
+        "step": "Verifica che il portale sia visualizzato in inglese dopo il ricaricamento della pagina",
+        "expected": "Il portale è visualizzato in inglese"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC5"
+  },
+  {
+    "test_case_id": "UC5_TC3",
+    "title": "Selezione lingua non supportata",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi al portale autenticato",
+        "expected": "Il portale è visualizzato correttamente"
+      },
+      {
+        "step": "Clicca sul proprio nome utente in alto a destra",
+        "expected": "Il menù appare correttamente"
+      },
+      {
+        "step": "Seleziona una lingua non supportata dal menù a tendina",
+        "expected": "Un messaggio di errore viene visualizzato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC5"
+  },
+  {
+    "test_case_id": "UC5_TC4",
+    "title": "Selezione lingua senza ricaricamento della pagina",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi al portale autenticato",
+        "expected": "Il portale è visualizzato correttamente"
+      },
+      {
+        "step": "Clicca sul proprio nome utente in alto a destra",
+        "expected": "Il menù appare correttamente"
+      },
+      {
+        "step": "Seleziona una lingua dal menù a tendina senza ricaricare la pagina",
+        "expected": "Un messaggio di errore viene visualizzato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC5"
+  },
+  {
+    "test_case_id": "UC5_TC5",
+    "title": "Selezione lingua con caratteri speciali",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi al portale autenticato",
+        "expected": "Il portale è visualizzato correttamente"
+      },
+      {
+        "step": "Clicca sul proprio nome utente in alto a destra",
+        "expected": "Il menù appare correttamente"
+      },
+      {
+        "step": "Inserisci caratteri speciali nel campo di selezione della lingua",
+        "expected": "Un messaggio di errore viene visualizzato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC5"
+  }
+]
+
+⏱️ EXECUTION TIME: 216.61 seconds

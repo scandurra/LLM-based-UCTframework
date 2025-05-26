@@ -1,0 +1,188 @@
+[
+  {
+    "test_case_id": "UC1_TC1",
+    "title": "Login utente con credenziali valide",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "L’utente è autenticato ed è a conoscenza che l’operazione ha avuto successo",
+    "test_steps": [
+      {
+        "step": "Inserisci le credenziali valide nel form di login",
+        "expected": "Il sistema accetta le credenziali e procede con il processo di autenticazione"
+      },
+      {
+        "step": "Clicca il tasto “Login”",
+        "expected": "Il sistema visualizza un messaggio di operazione completata con successo"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC2",
+    "title": "Login utente con credenziali errate",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Inserisci le credenziali errate nel form di login",
+        "expected": "Il sistema rifiuta le credenziali e visualizza un messaggio di errore"
+      },
+      {
+        "step": "Clicca il tasto “Login”",
+        "expected": "Il sistema visualizza un messaggio di operazione non riuscita con un errore relativo alle credenziali errate"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC3",
+    "title": "Login utente con campo username vuoto",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Lascia il campo username vuoto e inserisci la password nel form di login",
+        "expected": "Il sistema rifiuta le credenziali e visualizza un messaggio di errore"
+      },
+      {
+        "step": "Clicca il tasto “Login”",
+        "expected": "Il sistema visualizza un messaggio di operazione non riuscita con un errore relativo al campo username vuoto"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC4",
+    "title": "Login utente con campo password vuoto",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Inserisci il username e lascia il campo password vuoto nel form di login",
+        "expected": "Il sistema rifiuta le credenziali e visualizza un messaggio di errore"
+      },
+      {
+        "step": "Clicca il tasto “Login”",
+        "expected": "Il sistema visualizza un messaggio di operazione non riuscita con un errore relativo al campo password vuoto"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC5",
+    "title": "Login utente con iniezione SQL",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Inserisci una stringa di iniezione SQL nel campo username o password del form di login",
+        "expected": "Il sistema rifiuta le credenziali e visualizza un messaggio di errore"
+      },
+      {
+        "step": "Clicca il tasto “Login”",
+        "expected": "Il sistema visualizza un messaggio di operazione non riuscita con un errore relativo all’iniezione SQL"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC6",
+    "title": "Login utente con cambio password",
+    "preconditions": "L’utente non è autenticato e deve cambiare la prima password di accesso",
+    "postconditions": "L’utente è autenticato ed è a conoscenza che l’operazione ha avuto successo",
+    "test_steps": [
+      {
+        "step": "Inserisci le credenziali valide nel form di login e clicca il tasto “Login”",
+        "expected": "Il sistema richiede di cambiare la prima password di accesso"
+      },
+      {
+        "step": "Inserisci la nuova password e conferma",
+        "expected": "Il sistema accetta la nuova password e procede con il processo di autenticazione"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC7",
+    "title": "Login utente con cambio password non riuscito",
+    "preconditions": "L’utente non è autenticato e deve cambiare la prima password di accesso",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Inserisci le credenziali valide nel form di login e clicca il tasto “Login”",
+        "expected": "Il sistema richiede di cambiare la prima password di accesso"
+      },
+      {
+        "step": "Inserisci una nuova password non valida o non confermata",
+        "expected": "Il sistema rifiuta la nuova password e visualizza un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC8",
+    "title": "Login utente con più tentativi falliti",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Inserisci le credenziali errate nel form di login e clicca il tasto “Login” più volte",
+        "expected": "Il sistema rifiuta le credenziali e visualizza un messaggio di errore dopo più tentativi falliti"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC9",
+    "title": "Login utente con caratteri speciali nella password",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "L’utente è autenticato ed è a conoscenza che l’operazione ha avuto successo",
+    "test_steps": [
+      {
+        "step": "Inserisci le credenziali valide con caratteri speciali nella password nel form di login",
+        "expected": "Il sistema accetta le credenziali e procede con il processo di autenticazione"
+      },
+      {
+        "step": "Clicca il tasto “Login”",
+        "expected": "Il sistema visualizza un messaggio di operazione completata con successo"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Bassa",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC10",
+    "title": "Login utente con lunghezza password minima",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "L’utente è autenticato ed è a conoscenza che l’operazione ha avuto successo",
+    "test_steps": [
+      {
+        "step": "Inserisci le credenziali valide con lunghezza password minima nel form di login",
+        "expected": "Il sistema accetta le credenziali e procede con il processo di autenticazione"
+      },
+      {
+        "step": "Clicca il tasto “Login”",
+        "expected": "Il sistema visualizza un messaggio di operazione completata con successo"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Bassa",
+    "use_case_id": "UC1"
+  }
+]

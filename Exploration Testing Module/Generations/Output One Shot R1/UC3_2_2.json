@@ -1,0 +1,174 @@
+[
+  {
+    "test_case_id": "UC3.2.2_TC1",
+    "title": "Ricerca scheda censimento per stato valido",
+    "preconditions": "UC3.2",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci uno stato valido tra i parametri di ricerca",
+        "expected": "Il sistema accetta lo stato selezionato"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "I risultati della ricerca vengono visualizzati correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.2.2"
+  },
+  {
+    "test_case_id": "UC3.2.2_TC2",
+    "title": "Ricerca con stato non esistente",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema segnala che non ci sono risultati per lo stato selezionato",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci uno stato non esistente tra i parametri di ricerca",
+        "expected": "Il sistema avvisa dell’assenza di risultati"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Viene mostrato un messaggio che indica l’assenza di risultati"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.2.2"
+  },
+  {
+    "test_case_id": "UC3.2.2_TC3",
+    "title": "Ricerca senza specificare lo stato",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema richiede di inserire uno stato valido",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Lascia vuoto il campo relativo allo stato",
+        "expected": "Il sistema segnala l’errore di inserimento"
+      },
+      {
+        "step": "Tenta di confermare la ricerca",
+        "expected": "La funzione non procede e viene richiesto di inserire uno stato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.2.2"
+  },
+  {
+    "test_case_id": "UC3.2.2_TC4",
+    "title": "Ricerca con stato contenente caratteri speciali",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema gestisce correttamente i caratteri speciali nello stato",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci uno stato con caratteri speciali (es. St@to)",
+        "expected": "Il sistema normalizza o gestisce i caratteri speciali"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "I risultati vengono visualizzati correttamente, se esistono"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC3.2.2"
+  },
+  {
+    "test_case_id": "UC3.2.2_TC5",
+    "title": "Ricerca con stato lungo",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema gestisce correttamente stati lunghi",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci uno stato molto lungo (es. una frase)",
+        "expected": "Il sistema accetta lo stato o lo tronca secondo le regole di gestione dei dati"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "I risultati vengono visualizzati correttamente, se esistono"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC3.2.2"
+  },
+  {
+    "test_case_id": "UC3.2.2_TC6",
+    "title": "Ricerca da parte di utente non autorizzato",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema nega l’accesso alla funzione di ricerca",
+    "test_steps": [
+      {
+        "step": "Tenta di accedere alla sezione di ricerca senza essere loggato",
+        "expected": "Il sistema richiede l’autenticazione"
+      },
+      {
+        "step": "Inserisci credenziali non valide o non esistenti",
+        "expected": "Il sistema nega l’accesso e richiede nuovamente le credenziali"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.2.2"
+  },
+  {
+    "test_case_id": "UC3.2.2_TC7",
+    "title": "Ricerca con stato che contiene SQL injection",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema protegge contro gli attacchi di SQL injection",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci uno stato che contiene codice SQL malevolo (es. DROP TABLE)",
+        "expected": "Il sistema rileva e blocca l’attacco, non eseguendo il codice malevolo"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.2.2"
+  },
+  {
+    "test_case_id": "UC3.2.2_TC8",
+    "title": "Ricerca con stato che contiene cross-site scripting (XSS)",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema protegge contro gli attacchi di XSS",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci uno stato che contiene codice HTML/JavaScript malevolo (es. <script>alert(‘XSS’)</script>)",
+        "expected": "Il sistema rileva e blocca l’attacco, non eseguendo il codice malevolo"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.2.2"
+  }
+]

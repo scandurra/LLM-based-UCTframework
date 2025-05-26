@@ -1,0 +1,117 @@
+[
+  {
+    "test_case_id": "UC4.3_TC1",
+    "title": "Aggiunta simulazione con dati validi",
+    "preconditions": "UC4",
+    "postconditions": "L’utente ha aggiunto l’associazione nel menu dedicato",
+    "test_steps": [
+      {
+        "step": "Naviga nella terza sezione dedicata alle analisi",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto dedicato all’aggiunta di una singola analisi",
+        "expected": "Il sistema apre la finestra per l’inserimento dei dati"
+      },
+      {
+        "step": "Seleziona un impianto e un investimento validi da associare",
+        "expected": "I dati vengono accettati e il sistema visualizza un messaggio di conferma"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC4.3"
+  },
+  {
+    "test_case_id": "UC4.3_TC2",
+    "title": "Aggiunta simulazione con annullamento",
+    "preconditions": "UC4",
+    "postconditions": "L’utente visualizza un messaggio di avvenuto annullamento",
+    "test_steps": [
+      {
+        "step": "Naviga nella terza sezione dedicata alle analisi",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto dedicato all’aggiunta di una singola analisi",
+        "expected": "Il sistema apre la finestra per l’inserimento dei dati"
+      },
+      {
+        "step": "Seleziona un impianto e un investimento, poi annulla l’operazione",
+        "expected": "Il sistema visualizza un messaggio di avvenuto annullamento e non aggiunge l’associazione"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC4.3"
+  },
+  {
+    "test_case_id": "UC4.3_TC3",
+    "title": "Aggiunta simulazione senza selezionare impianto",
+    "preconditions": "UC4",
+    "postconditions": "Il sistema non aggiunge l’associazione e visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Naviga nella terza sezione dedicata alle analisi",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto dedicato all’aggiunta di una singola analisi",
+        "expected": "Il sistema apre la finestra per l’inserimento dei dati"
+      },
+      {
+        "step": "Lascia vuoto il campo relativo all’impianto e tenta di aggiungere l’analisi",
+        "expected": "Il sistema visualizza un messaggio di errore e non procede con l’aggiunta"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC4.3"
+  },
+  {
+    "test_case_id": "UC4.3_TC4",
+    "title": "Aggiunta simulazione con selezione multipla di impianti",
+    "preconditions": "UC4",
+    "postconditions": "Il sistema gestisce correttamente la selezione multipla e aggiunge le associazioni",
+    "test_steps": [
+      {
+        "step": "Naviga nella terza sezione dedicata alle analisi",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto dedicato all’aggiunta di una singola analisi",
+        "expected": "Il sistema apre la finestra per l’inserimento dei dati"
+      },
+      {
+        "step": "Seleziona più impianti e un investimento da associare",
+        "expected": "Il sistema accetta le selezioni multiple e aggiunge le associazioni correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC4.3"
+  },
+  {
+    "test_case_id": "UC4.3_TC5",
+    "title": "Aggiunta simulazione con dati di input non validi",
+    "preconditions": "UC4",
+    "postconditions": "Il sistema visualizza un messaggio di errore e non aggiunge l’associazione",
+    "test_steps": [
+      {
+        "step": "Naviga nella terza sezione dedicata alle analisi",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto dedicato all’aggiunta di una singola analisi",
+        "expected": "Il sistema apre la finestra per l’inserimento dei dati"
+      },
+      {
+        "step": "Inserisci dati non validi (es. caratteri speciali nei campi numerici) e tenta di aggiungere l’analisi",
+        "expected": "Il sistema visualizza un messaggio di errore e non procede con l’aggiunta"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC4.3"
+  }
+]

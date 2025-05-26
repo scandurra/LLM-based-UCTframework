@@ -1,0 +1,237 @@
+📝 PROMPT:
+You are a Quality Assurance expert. Your task is to generate a suite of test cases for each use case provided in JSON format.
+
+The output must be in **JSON only**, structured as an array of test case objects, following the example below:
+
+[
+  {
+    "test_case_id": "UC1_TC1",
+    "title": "Credenziali di Login Valide",
+    "preconditions": "L'utente non è autenticato e ha accesso al portale PELL",
+    "postconditions": "L'utente viene reindirizzato alla pagina principale",
+    "test_steps": [
+      {
+        "step": "Clicca sul pulsante 'Login'",
+        "expected": "Il modulo di login è visualizzato"
+      },
+      {
+        "step": "Inserisci email e password validi",
+        "expected": "Non vengono visualizzati messaggi di errore"
+      },
+      {
+        "step": "Conferma il processo di autenticazione",
+        "expected": "L'utente viene reindirizzato alla pagina principale"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC1"
+  },
+  ... (other test cases)
+  {
+    "test_case_id": "UC1_TC5",
+    "title": "Campo Password Vuoto",
+    "preconditions": "L'utente non è autenticato e ha accesso al portale PELL",
+    "postconditions": "L'utente non viene reindirizzato alla pagina principale",
+    "test_steps": [
+      {
+        "step": "Clicca sul pulsante 'Login'",
+        "expected": "Il modulo di login è visualizzato"
+      },
+      {
+        "step": "Inserisci un'email valida e lascia il campo password vuoto",
+        "expected": "Viene visualizzato un messaggio di errore che indica campo obbligatorio"
+      },
+      {
+        "step": "Conferma il processo di autenticazione",
+        "expected": "L'utente non viene reindirizzato alla pagina principale"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Bassa",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC6",
+    "title": "Tentativo di Iniezione SQL",
+    "preconditions": "L'utente non è autenticato e ha accesso al portale PELL",
+    "postconditions": "L'utente non viene reindirizzato alla pagina principale",
+    "test_steps": [
+      {
+        "step": "Clicca sul pulsante 'Login'",
+        "expected": "Il modulo di login è visualizzato"
+      },
+      {
+        "step": "Inserisci un input dannoso nel campo email o password",
+        "expected": "Viene visualizzato un messaggio di errore che indica credenziali non valide"
+      },
+      {
+        "step": "Conferma il processo di autenticazione",
+        "expected": "L'utente non viene reindirizzato alla pagina principale e non si verificano errori SQL"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC1"
+  }
+]
+
+Guidelines:
+- Generate a minimum of 4 test cases per use case, maxmimum of 10 (depending of the needs)-
+- Include both **positive** (success) and **negative** (error, missing input, etc.) tests , boundary conditions(if applicable),
+edge cases(if applicable), security and usability considerations (if applicable).
+- Use unique names for `test_case_id` following the format `UCx_TCy`.
+- Base your test cases on base_sequence, branch_sequence, exception_sequence, and pre/postconditions.
+- If in the use case description in JSON has "UCx" as "Precondition" tag, you must put "UCx" in the preconditions field of the test cases.
+
+Only return the JSON array. DO NOT explain anything.  
+DO NOT include "```json" or "```" markers.  
+Make sure all brackets are correctly opened and closed.
+
+Note: Even though the structure is in English, all content inside the fields (titles, steps, etc.) must remain in **Italian**.
+
+The following is the use case in JSON format, generate different test cases:
+
+[
+  {
+    "Id": "UC3.1",
+    "Title": "Visualizzazione schede censimento (parte di UC3: Gestione schede censimento)",
+    "Summary": "Permette di visualizzare informazioni anagrafiche dell’entità scheda censimento, utilizzata per censire la rete di illuminazione pubblica",
+    "Actor": [
+      "Regione",
+      "Sindaco",
+      "Fornitore"
+    ],
+    "Precondition": "UC3",
+    "Postcondition": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "Base_sequence": [
+      "L’utente visualizza le informazioni in forma tabellare e paginata",
+      "È possibile scorrere lateralmente per visualizzare tutte le colonne",
+      "Tutte le colonne visualizzabili consentono l’ordinamento con un click sul nome"
+    ],
+    "Branch_sequence": [],
+    "Exception_sequence": [],
+    "Note": "no"
+  }
+]
+
+<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+📥 RISPOSTA:
+[
+  {
+    "test_case_id": "UC3.1_TC1",
+    "title": "Visualizzazione Schede Censimento Corretta",
+    "preconditions": "UC3",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione schede censimento",
+        "expected": "La pagina di visualizzazione delle schede censimento è visualizzata"
+      },
+      {
+        "step": "Verifica la presenza di informazioni anagrafiche dell’entità scheda censimento",
+        "expected": "Le informazioni sono visualizzate in forma tabellare e paginata"
+      },
+      {
+        "step": "Scorri lateralmente per visualizzare tutte le colonne",
+        "expected": "Tutte le colonne sono visualizzabili"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC2",
+    "title": "Ordinamento Colonne",
+    "preconditions": "UC3",
+    "postconditions": "L’utente visualizza le informazioni ordinate correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione schede censimento",
+        "expected": "La pagina di visualizzazione delle schede censimento è visualizzata"
+      },
+      {
+        "step": "Clicca sul nome di una colonna per ordinare le informazioni",
+        "expected": "Le informazioni sono ordinate correttamente in base alla colonna selezionata"
+      },
+      {
+        "step": "Verifica che l’ordinamento sia coerente con la selezione",
+        "expected": "L’ordinamento è coerente con la selezione"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC3",
+    "title": "Paginazione Corretta",
+    "preconditions": "UC3",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione schede censimento",
+        "expected": "La pagina di visualizzazione delle schede censimento è visualizzata"
+      },
+      {
+        "step": "Seleziona una pagina diversa da quella attuale",
+        "expected": "Le informazioni sono aggiornate in base alla paginazione selezionata"
+      },
+      {
+        "step": "Verifica che le informazioni siano coerenti con la paginazione",
+        "expected": "Le informazioni sono coerenti con la paginazione"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC4",
+    "title": "Assenza di Informazioni",
+    "preconditions": "UC3",
+    "postconditions": "L’utente visualizza un messaggio di assenza di informazioni",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione schede censimento",
+        "expected": "La pagina di visualizzazione delle schede censimento è visualizzata"
+      },
+      {
+        "step": "Verifica la presenza di informazioni anagrafiche dell’entità scheda censimento",
+        "expected": "Un messaggio di assenza di informazioni è visualizzato"
+      },
+      {
+        "step": "Verifica che il messaggio sia chiaro e comprensibile",
+        "expected": "Il messaggio è chiaro e comprensibile"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC5",
+    "title": "Utente Non Autorizzato",
+    "preconditions": "",
+    "postconditions": "L’utente non autorizzato non può accedere alla sezione di gestione schede censimento",
+    "test_steps": [
+      {
+        "step": "Tenta di accedere alla sezione di gestione schede censimento senza essere autorizzato",
+        "expected": "Un messaggio di accesso negato è visualizzato"
+      },
+      {
+        "step": "Verifica che il messaggio sia chiaro e comprensibile",
+        "expected": "Il messaggio è chiaro e comprensibile"
+      },
+      {
+        "step": "Verifica che l’utente non possa accedere alla sezione",
+        "expected": "L’utente non può accedere alla sezione"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.1"
+  }
+]

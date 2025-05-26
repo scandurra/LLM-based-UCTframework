@@ -1,0 +1,162 @@
+[
+  {
+    "test_case_id": "UC3.4.3.1_TC1",
+    "title": "Modifica sezione Area con dati validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione dei dati dell’area tramite il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Compila il form con informazioni valide e aggiorna i dati",
+        "expected": "I dati vengono accettati senza errori"
+      },
+      {
+        "step": "Applica le modifiche utilizzando l’apposito tasto",
+        "expected": "Il sistema conferma l’avvenuta modifica"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.1"
+  },
+  {
+    "test_case_id": "UC3.4.3.1_TC2",
+    "title": "Modifica sezione Area con dati non validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione dei dati dell’area tramite il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci dati non validi nel form (es. campi obbligatori vuoti, formati errati)",
+        "expected": "Il sistema segnala gli errori di compilazione"
+      },
+      {
+        "step": "Tenta di applicare le modifiche",
+        "expected": "Il sistema mostra un messaggio di errore e non applica le modifiche"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.1"
+  },
+  {
+    "test_case_id": "UC3.4.3.1_TC3",
+    "title": "Modifica sezione Area senza autorizzazione",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’accesso alla modifica è negato e viene richiesta l’autorizzazione",
+    "test_steps": [
+      {
+        "step": "Accedi alla piattaforma con un account non autorizzato a modificare la sezione Area",
+        "expected": "La sezione non è accessibile o mostra un messaggio di accesso negato"
+      },
+      {
+        "step": "Tenta di accedere manualmente all’URL della sezione Area",
+        "expected": "Il sistema reindirizza alla pagina di login o mostra un messaggio di autorizzazione richiesta"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.1"
+  },
+  {
+    "test_case_id": "UC3.4.3.1_TC4",
+    "title": "Modifica sezione Area con campi obbligatori vuoti",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema segnala gli errori di compilazione",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione dei dati dell’area tramite il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Lascia vuoti i campi obbligatori e tenta di applicare le modifiche",
+        "expected": "Il sistema mostra un messaggio di errore per i campi mancanti"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.1"
+  },
+  {
+    "test_case_id": "UC3.4.3.1_TC5",
+    "title": "Modifica sezione Area con dati troppo lunghi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema tronca i dati o mostra un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione dei dati dell’area tramite il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci dati più lunghi del consentito nei campi di testo",
+        "expected": "Il sistema tronca i dati o mostra un messaggio di errore per lunghezza eccessiva"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.1"
+  },
+  {
+    "test_case_id": "UC3.4.3.1_TC6",
+    "title": "Modifica sezione Area e annullamento delle modifiche",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Le modifiche vengono annullate e i dati tornano allo stato precedente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione dei dati dell’area tramite il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Apporta delle modifiche ai dati e poi annulla le modifiche",
+        "expected": "I dati tornano allo stato precedente senza alcuna modifica"
+      }
+    ],
+    "test_type": "Funzionalità",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.1"
+  },
+  {
+    "test_case_id": "UC3.4.3.1_TC7",
+    "title": "Modifica sezione Area con caratteri speciali",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema accetta o normalizza i caratteri speciali",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione dei dati dell’area tramite il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci caratteri speciali nei campi di testo (es. @, #, $)",
+        "expected": "Il sistema accetta i caratteri o li normalizza senza errori"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.1"
+  },
+  {
+    "test_case_id": "UC3.4.3.1_TC8",
+    "title": "Modifica sezione Area in concomitanza con altre azioni di modifica",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Le modifiche vengono applicate correttamente senza conflitti",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione dei dati dell’area tramite il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Apporta delle modifiche ai dati mentre un altro utente sta modificando la stessa sezione",
+        "expected": "Il sistema gestisce le modifiche in modo da evitare conflitti e assicurare la coerenza dei dati"
+      }
+    ],
+    "test_type": "Integrazione",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.1"
+  }
+]

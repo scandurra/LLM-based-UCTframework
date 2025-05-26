@@ -1,0 +1,166 @@
+[
+  {
+    "test_case_id": "UC6_TC1",
+    "title": "Logout utente con sessione attiva",
+    "preconditions": "UC1",
+    "postconditions": "L’utente è disconnesso e visualizza un messaggio di conferma",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente registrato",
+        "expected": "La dashboard dell’utente viene visualizzata"
+      },
+      {
+        "step": "Clicca sul nome utente in alto a destra e seleziona 'Logout'",
+        "expected": "Il processo di logout inizia"
+      },
+      {
+        "step": "Conferma l’intenzione di disconnettersi",
+        "expected": "Un messaggio di successo conferma la disconnessione"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC6"
+  },
+  {
+    "test_case_id": "UC6_TC2",
+    "title": "Tentativo di logout senza sessione attiva",
+    "preconditions": "",
+    "postconditions": "Il sistema richiede l’autenticazione",
+    "test_steps": [
+      {
+        "step": "Accedi alla pagina di logout senza essere loggato",
+        "expected": "Il sistema reindirizza alla pagina di login"
+      },
+      {
+        "step": "Tenta di eseguire il logout",
+        "expected": "Viene richiesta l’autenticazione"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC6"
+  },
+  {
+    "test_case_id": "UC6_TC3",
+    "title": "Logout con più sessioni aperte",
+    "preconditions": "UC1",
+    "postconditions": "Tutte le sessioni vengono chiuse",
+    "test_steps": [
+      {
+        "step": "Apri più istanze del browser con la stessa sessione di login",
+        "expected": "Tutte le istanze mostrano la dashboard dell’utente"
+      },
+      {
+        "step": "Esegui il logout in una delle istanze",
+        "expected": "La disconnessione avviene correttamente"
+      },
+      {
+        "step": "Verifica lo stato di login nelle altre istanze",
+        "expected": "Tutte le istanze richiedono nuovamente l’autenticazione"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC6"
+  },
+  {
+    "test_case_id": "UC6_TC4",
+    "title": "Logout da utente con permessi amministrativi",
+    "preconditions": "UC1",
+    "postconditions": "L’amministratore è disconnesso e non può più accedere alle funzioni di amministrazione",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come amministratore",
+        "expected": "La dashboard dell’amministratore viene visualizzata"
+      },
+      {
+        "step": "Clicca sul nome utente e seleziona 'Logout'",
+        "expected": "Il processo di logout inizia"
+      },
+      {
+        "step": "Tenta di accedere a funzioni amministrative dopo il logout",
+        "expected": "L’accesso viene negato e richiede nuovamente l’autenticazione"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC6"
+  },
+  {
+    "test_case_id": "UC6_TC5",
+    "title": "Test di sicurezza: iniezione SQL nel processo di logout",
+    "preconditions": "UC1",
+    "postconditions": "Il sistema non esegue comandi SQL arbitrari e mantiene la sicurezza",
+    "test_steps": [
+      {
+        "step": "Tenta di iniettare codice SQL malintenzionato nel campo di logout",
+        "expected": "Il sistema rileva e blocca l’attacco"
+      },
+      {
+        "step": "Verifica che il sistema non abbia eseguito azioni indesiderate",
+        "expected": "Nessun comando SQL arbitrario è stato eseguito"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC6"
+  },
+  {
+    "test_case_id": "UC6_TC6",
+    "title": "Test di usabilità: messaggio di conferma al logout",
+    "preconditions": "UC1",
+    "postconditions": "L’utente riceve un chiaro messaggio di conferma",
+    "test_steps": [
+      {
+        "step": "Esegui il logout",
+        "expected": "Un messaggio di successo viene visualizzato"
+      },
+      {
+        "step": "Valuta la chiarezza e l’efficacia del messaggio",
+        "expected": "Il messaggio è chiaro e comprensibile per l’utente"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Media",
+    "use_case_id": "UC6"
+  },
+  {
+    "test_case_id": "UC6_TC7",
+    "title": "Test di prestazione: tempo di risposta al logout",
+    "preconditions": "UC1",
+    "postconditions": "Il sistema risponde in tempi ragionevoli",
+    "test_steps": [
+      {
+        "step": "Esegui il logout e misura il tempo di risposta",
+        "expected": "Il tempo di risposta è inferiore a 2 secondi"
+      },
+      {
+        "step": "Ripeti il test più volte per assicurare la coerenza dei risultati",
+        "expected": "I tempi di risposta rimangono costanti e accettabili"
+      }
+    ],
+    "test_type": "Prestazione",
+    "priority": "Media",
+    "use_case_id": "UC6"
+  },
+  {
+    "test_case_id": "UC6_TC8",
+    "title": "Test di compatibilità: logout su diversi browser e dispositivi",
+    "preconditions": "UC1",
+    "postconditions": "Il logout funziona correttamente su tutti i browser e dispositivi supportati",
+    "test_steps": [
+      {
+        "step": "Esegui il logout su diversi browser (Chrome, Firefox, Edge, Safari)",
+        "expected": "Il logout avviene correttamente su ogni browser"
+      },
+      {
+        "step": "Ripeti il test su dispositivi mobili e tablet",
+        "expected": "Il logout funziona come atteso anche su dispositivi mobili"
+      }
+    ],
+    "test_type": "Compatibilità",
+    "priority": "Alta",
+    "use_case_id": "UC6"
+  }
+]

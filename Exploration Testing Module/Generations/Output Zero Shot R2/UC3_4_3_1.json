@@ -1,0 +1,140 @@
+[
+  {
+    "test_case_id": "UC3.4.3.1_TC1",
+    "title": "Modifica sezione Area con dati validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Compila il form con le informazioni desiderate",
+        "expected": "Il form viene compilato correttamente"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Il sistema visualizza un messaggio di conferma dell’operazione"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.1"
+  },
+  {
+    "test_case_id": "UC3.4.3.1_TC2",
+    "title": "Modifica sezione Area con dati non validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Compila il form con informazioni non valide",
+        "expected": "Il form non viene compilato correttamente"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.1"
+  },
+  {
+    "test_case_id": "UC3.4.3.1_TC3",
+    "title": "Modifica sezione Area senza compilare il form",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Non compilare il form",
+        "expected": "Il form non viene compilato"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.1"
+  },
+  {
+    "test_case_id": "UC3.4.3.1_TC4",
+    "title": "Modifica sezione Area con dati parzialmente validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Compila parzialmente il form con informazioni valide e non valide",
+        "expected": "Il form non viene compilato correttamente"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.1"
+  },
+  {
+    "test_case_id": "UC3.4.3.1_TC5",
+    "title": "Modifica sezione Area con caratteri speciali",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Compila il form con caratteri speciali",
+        "expected": "Il form non viene compilato correttamente"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.1"
+  },
+  {
+    "test_case_id": "UC3.4.3.1_TC6",
+    "title": "Modifica sezione Area con dati troppo lunghi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Compila il form con dati troppo lunghi",
+        "expected": "Il form non viene compilato correttamente"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.1"
+  }
+]

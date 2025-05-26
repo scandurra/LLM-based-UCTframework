@@ -1,0 +1,117 @@
+[
+  {
+    "test_case_id": "UC3.3_TC1",
+    "title": "Caricamento scheda censimento con dati validi e formato corretto",
+    "preconditions": "UC3",
+    "postconditions": "L’utente può visualizzare le informazioni corrispondenti alla scheda censimento appena caricata",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di caricamento delle schede censimento",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona il file da caricare tramite drag-and-drop o browser",
+        "expected": "Il file viene selezionato correttamente"
+      },
+      {
+        "step": "Conferma l’upload del file",
+        "expected": "La barra di caricamento appare e il file viene caricato con successo"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.3"
+  },
+  {
+    "test_case_id": "UC3.3_TC2",
+    "title": "Caricamento scheda censimento con formato non supportato",
+    "preconditions": "UC3",
+    "postconditions": "L’utente riceve un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di caricamento delle schede censimento",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un file con formato non supportato tramite drag-and-drop o browser",
+        "expected": "Il file viene selezionato ma non caricato"
+      },
+      {
+        "step": "Conferma l’upload del file",
+        "expected": "Appare un messaggio di errore che indica il formato non supportato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.3"
+  },
+  {
+    "test_case_id": "UC3.3_TC3",
+    "title": "Caricamento scheda censimento senza selezionare il file",
+    "preconditions": "UC3",
+    "postconditions": "L’utente riceve un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di caricamento delle schede censimento",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Non selezionare alcun file",
+        "expected": "Il sistema richiede la selezione di un file"
+      },
+      {
+        "step": "Conferma l’upload senza file",
+        "expected": "Appare un messaggio di errore che richiede la selezione di un file"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.3"
+  },
+  {
+    "test_case_id": "UC3.3_TC4",
+    "title": "Caricamento scheda censimento con nome già esistente",
+    "preconditions": "UC3",
+    "postconditions": "L’utente riceve un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di caricamento delle schede censimento",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un file e assegna un nome già utilizzato",
+        "expected": "Il sistema rileva il nome duplicato"
+      },
+      {
+        "step": "Conferma l’upload del file con nome duplicato",
+        "expected": "Appare un messaggio di errore che indica il nome già esistente"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.3"
+  },
+  {
+    "test_case_id": "UC3.3_TC5",
+    "title": "Caricamento scheda censimento con dimensione file eccessiva",
+    "preconditions": "UC3",
+    "postconditions": "L’utente riceve un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di caricamento delle schede censimento",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un file con dimensione superiore al limite consentito",
+        "expected": "Il sistema rileva la dimensione eccessiva del file"
+      },
+      {
+        "step": "Conferma l’upload del file di grandi dimensioni",
+        "expected": "Appare un messaggio di errore che indica la dimensione massima consentita"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.3"
+  }
+]

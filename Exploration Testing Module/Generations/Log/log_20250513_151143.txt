@@ -1,0 +1,320 @@
+📝 PROMPT:
+<|begin_of_text|><|start_header_id|>system<|end_header_id|>
+You are a Quality Assurance expert. Your task is to generate a suite of test cases for each use case provided in JSON format.
+
+The output must be in **JSON only**, structured as an array of test case objects, following the example below:
+
+[
+  {
+    "test_case_id": "UC7.2_TC1",
+    "title": "Segnalazione guasto con dati validi e foto allegata",
+    "preconditions": "UC7",
+    "postconditions": "Il sistema registra la segnalazione e notifica il fornitore responsabile",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione segnalazioni guasti",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Compila il modulo inserendo posizione, descrizione e carica una foto",
+        "expected": "Il modulo viene completato correttamente"
+      },
+      {
+        "step": "Conferma l’invio della segnalazione",
+        "expected": "Il sistema registra la segnalazione e mostra conferma"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC7.2"
+  },
+  ... (other test cases)
+]
+
+Guidelines:
+- Generate a minimum of 3 test cases per use case, maxmimum of 10 (depending of the needs)-
+- Include both **positive** (success) and **negative** (error, missing input, etc.) tests , boundary conditions(if applicable),
+edge cases(if applicable), security and usability considerations (if applicable).
+- Use unique names for `test_case_id` following the format `UCx_TCy`.
+- Base your test cases on base_sequence, branch_sequence, exception_sequence, and pre/postconditions.
+- If in the use case description in JSON has "UCx" as "Precondition" tag, you must put "UCx" in the preconditions field of the test cases.
+
+Only return the JSON array. DO NOT explain anything.  
+DO NOT include "```json" or "```" markers.  
+Make sure all brackets are correctly opened and closed.
+
+Note: Even though the structure is in English, all content inside the fields (titles, steps, etc.) must remain in **Italian**.
+
+<|eot_id|><|start_header_id|>user<|end_header_id|>
+The following is the use case in JSON format, generate different test cases:
+[
+  {
+    "Id": "UC7.2",
+    "Title": "Segnalazione guasti illuminazione pubblica (parte di UC7: Gestione manutenzioni)",
+    "Summary": "Permette all’utente di segnalare un guasto su un impianto di illuminazione pubblica",
+    "Actor": [
+      "Cittadino",
+      "Fornitore",
+      "Sindaco"
+    ],
+    "Precondition": "UC7",
+    "Postcondition": "Il sistema registra la segnalazione e notifica il fornitore responsabile",
+    "Base_sequence": [
+      "L’utente accede alla sezione segnalazioni guasti",
+      "Compila il modulo con localizzazione e descrizione del guasto",
+      "Conferma l’invio della segnalazione"
+    ],
+    "Branch_sequence": [],
+    "Exception_sequence": [],
+    "Note": "no"
+  }
+]
+<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+[
+  {
+    "test_case_id": "UC7.2_TC1",
+    "title": "Segnalazione guasto con dati validi e foto allegata",
+    "preconditions": "UC7",
+    "postconditions": "Il sistema registra la segnalazione e notifica il fornitore responsabile",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione segnalazioni guasti",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Compila il modulo inserendo posizione, descrizione e carica una foto",
+        "expected": "Il modulo viene completato correttamente"
+      },
+      {
+        "step": "Conferma l’invio della segnalazione",
+        "expected": "Il sistema registra la segnalazione e mostra conferma"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC7.2"
+  },
+  {
+    "test_case_id": "UC7.2_TC2",
+    "title": "Segnalazione guasto senza descrizione",
+    "preconditions": "UC7",
+    "postconditions": "Il sistema non accetta la segnalazione",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione segnalazioni guasti",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Compila il modulo inserendo solo la posizione, lasciando vuota la descrizione",
+        "expected": "Il sistema segnala la mancanza di informazioni obbligatorie"
+      },
+      {
+        "step": "Conferma l’invio della segnalazione",
+        "expected": "La segnalazione non viene inviata e viene mostrato un errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC7.2"
+  },
+  {
+    "test_case_id": "UC7.2_TC3",
+    "title": "Segnalazione guasto con foto in formato non supportato",
+    "preconditions": "UC7",
+    "postconditions": "Il sistema non accetta la foto e segnala l’errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione segnalazioni guasti",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Compila il modulo inserendo posizione, descrizione e carica una foto in formato .exe",
+        "expected": "Il sistema blocca il caricamento della foto"
+      },
+      {
+        "step": "Conferma l’invio della segnalazione",
+        "expected": "La segnalazione viene bloccata per file non valido"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC7.2"
+  }
+]
+<|eot_id|><|start_header_id|>user<|end_header_id|>
+The following is the use case in JSON format, generate different test cases:
+
+[
+  {
+    "Id": "UC1",
+    "Title": "Login utente",
+    "Summary": "Autenticazione di un’utente registrato al sistema",
+    "Actor": [
+      "Regione",
+      "Sindaco",
+      "Fornitore",
+      "Progettista",
+      "Cittadino"
+    ],
+    "Precondition": "L’utente non è autenticato",
+    "Postcondition": "L’utente è autenticato ed è a conoscenza che l’operazione ha avuto successo",
+    "Base_sequence": [
+      "L’utente inserisce le proprie credenziali all’interno del form",
+      "L’utente inizia il processo di autenticazione cliccando il tasto “Login”",
+      "L’utente visualizza un messaggio di operazione completata con successo"
+    ],
+    "Branch_sequence": [
+      "All’utente è richiesto modificare la prima password di accesso",
+      "L’utente inserisce la nuova password e conferma"
+    ],
+    "Exception_sequence": [
+      "L’utente visualizza un messaggio di operazione completata con un errore relativo all’eccezione verificatasi (credenziali errate, mismatch della nuova password…)",
+      "L’utente può ripartire dal punto 1 della base sequence"
+    ],
+    "Note": "no"
+  }
+]
+
+<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+📥 RISPOSTA:
+[
+  {
+    "test_case_id": "UC1_TC1",
+    "title": "Login utente con credenziali valide",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "L’utente è autenticato ed è a conoscenza che l’operazione ha avuto successo",
+    "test_steps": [
+      {
+        "step": "Inserisci le proprie credenziali all’interno del form",
+        "expected": "Il form accetta le credenziali"
+      },
+      {
+        "step": "Clicca il tasto “Login” per avviare il processo di autenticazione",
+        "expected": "Il sistema inizia la procedura di autenticazione"
+      },
+      {
+        "step": "Verifica il messaggio di esito dell’operazione",
+        "expected": "Viene visualizzato un messaggio di operazione completata con successo"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC2",
+    "title": "Login utente con credenziali errate",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "Il sistema visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Inserisci credenziali errate all’interno del form",
+        "expected": "Il form segnala un errore"
+      },
+      {
+        "step": "Clicca il tasto “Login” per avviare il processo di autenticazione",
+        "expected": "Il sistema visualizza un messaggio di errore relativo alle credenziali errate"
+      },
+      {
+        "step": "Verifica la possibilità di riprovare l’accesso",
+        "expected": "L’utente può ripartire dal punto 1 della base sequence"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC3",
+    "title": "Login utente con prima password di accesso e richiesta di modifica",
+    "preconditions": "L’utente non è autenticato e utilizza la prima password di accesso",
+    "postconditions": "L’utente è autenticato dopo aver modificato la password",
+    "test_steps": [
+      {
+        "step": "Inserisci le proprie credenziali all’interno del form con la prima password di accesso",
+        "expected": "Il sistema richiede la modifica della password"
+      },
+      {
+        "step": "Inserisci la nuova password e conferma",
+        "expected": "La password viene modificata correttamente"
+      },
+      {
+        "step": "Verifica il messaggio di esito dell’operazione",
+        "expected": "Viene visualizzato un messaggio di operazione completata con successo"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC4",
+    "title": "Login utente con mismatch della nuova password",
+    "preconditions": "L’utente non è autenticato e utilizza la prima password di accesso",
+    "postconditions": "Il sistema visualizza un messaggio di errore relativo al mismatch della nuova password",
+    "test_steps": [
+      {
+        "step": "Inserisci le proprie credenziali all’interno del form con la prima password di accesso",
+        "expected": "Il sistema richiede la modifica della password"
+      },
+      {
+        "step": "Inserisci una nuova password e conferma con un valore diverso",
+        "expected": "Il sistema segnala un errore relativo al mismatch della nuova password"
+      },
+      {
+        "step": "Verifica la possibilità di riprovare l’accesso",
+        "expected": "L’utente può ripartire dal punto 1 della base sequence"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC5",
+    "title": "Login utente con campo username vuoto",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "Il sistema visualizza un messaggio di errore relativo al campo username vuoto",
+    "test_steps": [
+      {
+        "step": "Lascia vuoto il campo username e inserisci la password",
+        "expected": "Il sistema segnala un errore relativo al campo username vuoto"
+      },
+      {
+        "step": "Clicca il tasto “Login” per avviare il processo di autenticazione",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      },
+      {
+        "step": "Verifica la possibilità di riprovare l’accesso",
+        "expected": "L’utente può ripartire dal punto 1 della base sequence"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC6",
+    "title": "Login utente con campo password vuoto",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "Il sistema visualizza un messaggio di errore relativo al campo password vuoto",
+    "test_steps": [
+      {
+        "step": "Inserisci il username e lascia vuoto il campo password",
+        "expected": "Il sistema segnala un errore relativo al campo password vuoto"
+      },
+      {
+        "step": "Clicca il tasto “Login” per avviare il processo di autenticazione",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      },
+      {
+        "step": "Verifica la possibilità di riprovare l’accesso",
+        "expected": "L’utente può ripartire dal punto 1 della base sequence"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC1"
+  }
+]

@@ -1,0 +1,182 @@
+[
+  {
+    "test_case_id": "UC3.3_TC1",
+    "title": "Caricamento scheda censimento con file valido",
+    "preconditions": "UC3",
+    "postconditions": "La scheda censimento viene caricata e visualizzata correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di caricamento delle schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un file valido per il caricamento (es. PDF, CSV)",
+        "expected": "Il file viene accettato e pronto per l’upload"
+      },
+      {
+        "step": "Carica il file tramite drag-and-drop o selezione dal browser",
+        "expected": "La barra di caricamento appare e il file viene caricato con successo"
+      },
+      {
+        "step": "Verifica la presenza del messaggio di conferma",
+        "expected": "Il messaggio di operazione andata a buon fine viene visualizzato"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.3"
+  },
+  {
+    "test_case_id": "UC3.3_TC2",
+    "title": "Caricamento con file non supportato",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema mostra un messaggio di errore per formato non supportato",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di caricamento delle schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un file con formato non supportato (es. MP3, EXE)",
+        "expected": "Il sistema mostra un messaggio di errore per formato non valido"
+      },
+      {
+        "step": "Tenta di caricare il file",
+        "expected": "L’operazione di caricamento viene bloccata e mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.3"
+  },
+  {
+    "test_case_id": "UC3.3_TC3",
+    "title": "Caricamento senza selezionare file",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema richiede la selezione di un file",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di caricamento delle schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Lascia vuoto il campo per la selezione del file",
+        "expected": "Il sistema richiede la selezione di un file valido"
+      },
+      {
+        "step": "Tenta di procedere senza file",
+        "expected": "Il sistema non permette di proseguire e mostra un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.3"
+  },
+  {
+    "test_case_id": "UC3.3_TC4",
+    "title": "Caricamento con file troppo grande",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema mostra un messaggio di errore per dimensione massima superata",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di caricamento delle schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un file con dimensioni superiori al limite consentito",
+        "expected": "Il sistema mostra un messaggio di errore per dimensione massima superata"
+      },
+      {
+        "step": "Tenta di caricare il file",
+        "expected": "L’operazione di caricamento viene bloccata e mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.3"
+  },
+  {
+    "test_case_id": "UC3.3_TC5",
+    "title": "Caricamento con più file contemporaneamente",
+    "preconditions": "UC3",
+    "postconditions": "I file vengono caricati correttamente o il sistema mostra un messaggio di errore per multi-upload non supportato",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di caricamento delle schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona più file per il caricamento contemporaneo",
+        "expected": "Il sistema accetta o rifiuta la selezione multipla"
+      },
+      {
+        "step": "Tenta di caricare i file",
+        "expected": "I file vengono caricati con successo o viene mostrato un messaggio di errore per funzionalità non supportata"
+      }
+    ],
+    "test_type": "Positivo/Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC3.3"
+  },
+  {
+    "test_case_id": "UC3.3_TC6",
+    "title": "Caricamento durante la manutenzione del sistema",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema mostra un messaggio di indisponibilità della funzione",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di caricamento delle schede censimento durante la manutenzione",
+        "expected": "Viene visualizzato un messaggio di manutenzione"
+      },
+      {
+        "step": "Tenta comunque di caricare una scheda censimento",
+        "expected": "Il sistema blocca l’operazione e notifica la manutenzione in corso"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC3.3"
+  },
+  {
+    "test_case_id": "UC3.3_TC7",
+    "title": "Caricamento con utente non autorizzato",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema richiede l’autenticazione o mostra un messaggio di accesso negato",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di caricamento delle schede censimento senza autenticazione",
+        "expected": "Viene richiesta l’autenticazione"
+      },
+      {
+        "step": "Tenta di caricare una scheda censimento senza autorizzazione",
+        "expected": "Il sistema blocca l’accesso e richiede le credenziali di accesso valide"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.3"
+  },
+  {
+    "test_case_id": "UC3.3_TC8",
+    "title": "Caricamento con dati sensibili non protetti",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema protegge i dati sensibili durante il caricamento",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di caricamento delle schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un file contenente dati sensibili non protetti",
+        "expected": "Il sistema avvisa dell’importanza della protezione dei dati e procede al caricamento in modo sicuro"
+      },
+      {
+        "step": "Verifica la presenza di misure di protezione per i dati sensibili",
+        "expected": "Il sistema applica le necessarie misure di sicurezza per proteggere i dati sensibili"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.3"
+  }
+]

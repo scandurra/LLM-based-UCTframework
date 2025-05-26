@@ -1,0 +1,167 @@
+[
+  {
+    "test_case_id": "UC3.3_TC1",
+    "title": "Caricamento scheda censimento con dati validi e formato supportato",
+    "preconditions": "UC3",
+    "postconditions": "L’utente può visualizzare le informazioni corrispondenti alla scheda censimento appena caricata",
+    "test_steps": [
+      {
+        "step": "Clicca sul tasto di caricamento delle schede censimento",
+        "expected": "La finestra di caricamento si apre correttamente"
+      },
+      {
+        "step": "Seleziona un file nel formato supportato (es. PDF) e compila i parametri richiesti",
+        "expected": "Il sistema accetta il file e i parametri"
+      },
+      {
+        "step": "Procedi all’upload del file tramite drag-and-drop o selezione tramite browser",
+        "expected": "La barra di caricamento appare e si completa correttamente"
+      },
+      {
+        "step": "Verifica il messaggio di esito positivo dell’operazione",
+        "expected": "Il messaggio conferma l’avvenuto caricamento della scheda censimento"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.3"
+  },
+  {
+    "test_case_id": "UC3.3_TC2",
+    "title": "Caricamento scheda censimento con formato non supportato",
+    "preconditions": "UC3",
+    "postconditions": "L’utente riceve un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Clicca sul tasto di caricamento delle schede censimento",
+        "expected": "La finestra di caricamento si apre correttamente"
+      },
+      {
+        "step": "Seleziona un file in un formato non supportato (es. MP3) e compila i parametri richiesti",
+        "expected": "Il sistema rifiuta il file e visualizza un messaggio di errore"
+      },
+      {
+        "step": "Tenta di procedere all’upload del file",
+        "expected": "L’operazione non va a buon fine e viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.3"
+  },
+  {
+    "test_case_id": "UC3.3_TC3",
+    "title": "Caricamento scheda censimento senza compilazione dei parametri richiesti",
+    "preconditions": "UC3",
+    "postconditions": "L’utente riceve un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Clicca sul tasto di caricamento delle schede censimento",
+        "expected": "La finestra di caricamento si apre correttamente"
+      },
+      {
+        "step": "Lascia vuoti i campi dei parametri richiesti e seleziona un file",
+        "expected": "Il sistema segnala la mancanza di informazioni necessarie"
+      },
+      {
+        "step": "Tenta di procedere all’upload del file",
+        "expected": "L’operazione non va a buon fine e viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.3"
+  },
+  {
+    "test_case_id": "UC3.3_TC4",
+    "title": "Caricamento scheda censimento con file di grandi dimensioni",
+    "preconditions": "UC3",
+    "postconditions": "L’utente può visualizzare le informazioni corrispondenti alla scheda censimento appena caricata",
+    "test_steps": [
+      {
+        "step": "Clicca sul tasto di caricamento delle schede censimento",
+        "expected": "La finestra di caricamento si apre correttamente"
+      },
+      {
+        "step": "Seleziona un file di grandi dimensioni nel formato supportato e compila i parametri richiesti",
+        "expected": "Il sistema accetta il file e i parametri"
+      },
+      {
+        "step": "Procedi all’upload del file tramite drag-and-drop o selezione tramite browser",
+        "expected": "La barra di caricamento potrebbe impiegare più tempo, ma l’operazione va a buon fine"
+      }
+    ],
+    "test_type": "Prestazione",
+    "priority": "Alta",
+    "use_case_id": "UC3.3"
+  },
+  {
+    "test_case_id": "UC3.3_TC5",
+    "title": "Caricamento scheda censimento con più file contemporaneamente",
+    "preconditions": "UC3",
+    "postconditions": "L’utente può visualizzare le informazioni corrispondenti alle schede censimento appena caricate",
+    "test_steps": [
+      {
+        "step": "Clicca sul tasto di caricamento delle schede censimento",
+        "expected": "La finestra di caricamento si apre correttamente"
+      },
+      {
+        "step": "Seleziona più file nel formato supportato e compila i parametri richiesti per ogni file",
+        "expected": "Il sistema accetta i file e i parametri"
+      },
+      {
+        "step": "Procedi all’upload dei file tramite drag-and-drop o selezione tramite browser",
+        "expected": "La barra di caricamento appare e si completa correttamente per ogni file"
+      }
+    ],
+    "test_type": "Funzionalità",
+    "priority": "Alta",
+    "use_case_id": "UC3.3"
+  },
+  {
+    "test_case_id": "UC3.3_TC6",
+    "title": "Caricamento scheda censimento con file vuoto",
+    "preconditions": "UC3",
+    "postconditions": "L’utente riceve un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Clicca sul tasto di caricamento delle schede censimento",
+        "expected": "La finestra di caricamento si apre correttamente"
+      },
+      {
+        "step": "Seleziona un file vuoto nel formato supportato e compila i parametri richiesti",
+        "expected": "Il sistema rifiuta il file e visualizza un messaggio di errore"
+      },
+      {
+        "step": "Tenta di procedere all’upload del file",
+        "expected": "L’operazione non va a buon fine e viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.3"
+  },
+  {
+    "test_case_id": "UC3.3_TC7",
+    "title": "Caricamento scheda censimento con nome file molto lungo",
+    "preconditions": "UC3",
+    "postconditions": "L’utente può visualizzare le informazioni corrispondenti alla scheda censimento appena caricata",
+    "test_steps": [
+      {
+        "step": "Clicca sul tasto di caricamento delle schede censimento",
+        "expected": "La finestra di caricamento si apre correttamente"
+      },
+      {
+        "step": "Seleziona un file con nome molto lungo nel formato supportato e compila i parametri richiesti",
+        "expected": "Il sistema accetta il file e i parametri, troncando o gestendo opportunamente il nome del file se necessario"
+      },
+      {
+        "step": "Procedi all’upload del file tramite drag-and-drop o selezione tramite browser",
+        "expected": "La barra di caricamento appare e si completa correttamente"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC3.3"
+  }
+]

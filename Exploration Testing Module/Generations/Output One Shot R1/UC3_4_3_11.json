@@ -1,0 +1,182 @@
+[
+  {
+    "test_case_id": "UC3.4.3.11_TC1",
+    "title": "Modifica LightSource con dati validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD viene selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato e seleziona un pannello elettrico, poi un punto luce, un dispositivo punto luce e infine una sorgente di luce",
+        "expected": "La navigazione avviene senza errori"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati apparecchio e compila il form con informazioni valide",
+        "expected": "Il form viene compilato correttamente"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "L’operazione viene completata con successo e visualizzato un messaggio di conferma"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.11"
+  },
+  {
+    "test_case_id": "UC3.4.3.11_TC2",
+    "title": "Modifica LightSource con dati non validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD viene selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato e seleziona un pannello elettrico, poi un punto luce, un dispositivo punto luce e infine una sorgente di luce",
+        "expected": "La navigazione avviene senza errori"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati apparecchio e compila il form con informazioni non valide (es. campi obbligatori vuoti)",
+        "expected": "Il sistema rileva gli errori di compilazione"
+      },
+      {
+        "step": "Tenta di applicare le modifiche con l’apposito tasto",
+        "expected": "Viene visualizzato un messaggio di errore e l’operazione non viene completata"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.11"
+  },
+  {
+    "test_case_id": "UC3.4.3.11_TC3",
+    "title": "Modifica LightSource senza selezionare il POD",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema non permette di procedere",
+    "test_steps": [
+      {
+        "step": "Non selezionare il POD e tenta di accedere direttamente alla modifica della sorgente luminosa",
+        "expected": "Il sistema richiede la selezione del POD"
+      },
+      {
+        "step": "Tenta di forzare l’accesso alla modifica senza POD selezionato",
+        "expected": "L’operazione non è possibile e viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.11"
+  },
+  {
+    "test_case_id": "UC3.4.3.11_TC4",
+    "title": "Modifica LightSource con utente non autorizzato",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’accesso alla modifica è negato",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema con un utente che non ha i permessi per la modifica della sorgente luminosa",
+        "expected": "Il sistema non permette l’accesso alla funzione di modifica"
+      },
+      {
+        "step": "Tenta di forzare l’accesso alla modifica della sorgente luminosa",
+        "expected": "L’operazione non è possibile e viene mostrato un messaggio di accesso negato"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.11"
+  },
+  {
+    "test_case_id": "UC3.4.3.11_TC5",
+    "title": "Modifica LightSource con dati parzialmente validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema richiede la correzione dei dati non validi",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD e naviga fino alla sorgente luminosa da modificare",
+        "expected": "La navigazione avviene senza errori"
+      },
+      {
+        "step": "Compila parzialmente il form con informazioni valide e altre non valide",
+        "expected": "Il sistema rileva gli errori di compilazione"
+      },
+      {
+        "step": "Tenta di applicare le modifiche con l’apposito tasto",
+        "expected": "Viene visualizzato un messaggio di errore che richiede la correzione dei dati non validi"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.11"
+  },
+  {
+    "test_case_id": "UC3.4.3.11_TC6",
+    "title": "Modifica LightSource con caratteri speciali nei campi di input",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema gestisce correttamente i caratteri speciali",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD e naviga fino alla sorgente luminosa da modificare",
+        "expected": "La navigazione avviene senza errori"
+      },
+      {
+        "step": "Compila il form con informazioni che includono caratteri speciali (es. @, #, $)",
+        "expected": "Il sistema accetta i caratteri speciali o li gestisce in modo appropriato"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "L’operazione viene completata senza errori e i dati vengono salvati correttamente"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.11"
+  },
+  {
+    "test_case_id": "UC3.4.3.11_TC7",
+    "title": "Modifica LightSource in concomitanza con altre operazioni di sistema",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema gestisce correttamente le operazioni concorrenti",
+    "test_steps": [
+      {
+        "step": "Esegui altre operazioni di sistema (es. aggiornamento dei dati, modifica di altri elementi) mentre si tenta di modificare la sorgente luminosa",
+        "expected": "Il sistema gestisce le operazioni concorrenti senza errori"
+      },
+      {
+        "step": "Verifica che la modifica della sorgente luminosa venga eseguita correttamente nonostante le altre operazioni in corso",
+        "expected": "La modifica viene applicata senza problemi"
+      }
+    ],
+    "test_type": "Stress",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.11"
+  },
+  {
+    "test_case_id": "UC3.4.3.11_TC8",
+    "title": "Modifica LightSource con dati di input molto grandi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema gestisce correttamente i dati di input di grandi dimensioni",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD e naviga fino alla sorgente luminosa da modificare",
+        "expected": "La navigazione avviene senza errori"
+      },
+      {
+        "step": "Compila il form con dati di input molto grandi (es. lunghe stringhe di testo, numeri a virgola mobile estesi)",
+        "expected": "Il sistema accetta i dati di input senza problemi di formato o dimensione"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "L’operazione viene completata senza errori e i dati vengono salvati correttamente"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.11"
+  }
+]

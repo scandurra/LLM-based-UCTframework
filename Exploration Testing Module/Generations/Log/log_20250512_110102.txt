@@ -1,0 +1,398 @@
+📝 PROMPT:
+You are a Quality Assurance expert. Your task is to generate a suite of test cases for each use case provided in JSON format.
+
+The output must be in **JSON only**, structured as an array of test case objects, following the example below:
+
+[
+  {
+    "test_case_id": "UC1_TC1",
+    "title": "Credenziali di Login Valide",
+    "preconditions": "L'utente non è autenticato e ha accesso al portale PELL",
+    "postconditions": "L'utente viene reindirizzato alla pagina principale",
+    "test_steps": [
+      {
+        "step": "Clicca sul pulsante 'Login'",
+        "expected": "Il modulo di login è visualizzato"
+      },
+      {
+        "step": "Inserisci email e password validi",
+        "expected": "Non vengono visualizzati messaggi di errore"
+      },
+      {
+        "step": "Conferma il processo di autenticazione",
+        "expected": "L'utente viene reindirizzato alla pagina principale"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC1"
+  },
+  ... (other test cases)
+]
+
+Guidelines:
+- Generate **at least 4–6 test cases** per use case.
+- Include both **positive** (success) and **negative** (error, missing input, etc.) tests , boundary conditions(if applicable),
+edge cases(if applicable), security and usability considerations (if applicable).
+- Use unique names for `test_case_id` following the format `UCx_TCy`.
+- Base your test cases on base_sequence, branch_sequence, exception_sequence, and pre/postconditions.
+- If in the use case description has "UCx" as preconditions, you must put "UCx" in the preconditions field of the test cases.
+
+Only return the JSON array. DO NOT explain anything.  
+DO NOT include "```json" or "```" markers.  
+Make sure all brackets are correctly opened and closed.
+
+Note: Even though the structure is in English, all content inside the fields (titles, steps, etc.) must remain in **Italian**.
+
+Now i give you an example of use case and an example of what expected:
+
+Example:
+<use case>
+The following is the use case in JSON format, generate different test cases:
+[
+  {
+    "Id": "UC1",
+    "Title": "Login utente",
+    "Summary": "Autenticazione di un’utente registrato al sistema",
+    "Actor": [
+      "Regione",
+      "Sindaco",
+      "Fornitore",
+      "Progettista",
+      "Cittadino"
+    ],
+    "Precondition": "L’utente non è autenticato",
+    "Postcondition": "L’utente è autenticato ed è a conoscenza che l’operazione ha avuto successo",
+    "Base_sequence": [
+      "L’utente inserisce le proprie credenziali all’interno del form",
+      "L’utente inizia il processo di autenticazione cliccando il tasto “Login”",
+      "L’utente visualizza un messaggio di operazione completata con successo"
+    ],
+    "Branch_sequence": [
+      "All’utente è richiesto modificare la prima password di accesso",
+      "L’utente inserisce la nuova password e conferma"
+    ],
+    "Exception_sequence": [
+      "L’utente visualizza un messaggio di operazione completata con un errore relativo all’eccezione verificatasi (credenziali errate, mismatch della nuova password…)",
+      "L’utente può ripartire dal punto 1 della base sequence"
+    ],
+    "Note": "no"
+  }
+]
+</use case>
+<expected output>
+[
+  {
+    "test_case_id": "UC1_TC1",
+    "title": "Credenziali di Login Valide",
+    "preconditions": "L'utente non è autenticato e ha accesso al portale PELL",
+    "postconditions": "L'utente viene reindirizzato alla pagina principale",
+    "test_steps": [
+      {
+        "step": "Clicca sul pulsante 'Login'",
+        "expected": "Il modulo di login è visualizzato"
+      },
+      {
+        "step": "Inserisci email e password validi",
+        "expected": "Non vengono visualizzati messaggi di errore"
+      },
+      {
+        "step": "Conferma il processo di autenticazione",
+        "expected": "L'utente viene reindirizzato alla pagina principale"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC2",
+    "title": "Email Non Valida",
+    "preconditions": "L'utente non è autenticato e ha accesso al portale PELL",
+    "postconditions": "L'utente non viene reindirizzato alla pagina principale",
+    "test_steps": [
+      {
+        "step": "Clicca sul pulsante 'Login'",
+        "expected": "Il modulo di login è visualizzato"
+      },
+      {
+        "step": "Inserisci un'email non valida e una password valida",
+        "expected": "Viene visualizzato un messaggio di errore che indica credenziali non valide"
+      },
+      {
+        "step": "Conferma il processo di autenticazione",
+        "expected": "L'utente non viene reindirizzato alla pagina principale"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC3",
+    "title": "Password Non Valida",
+    "preconditions": "L'utente non è autenticato e ha accesso al portale PELL",
+    "postconditions": "L'utente non viene reindirizzato alla pagina principale",
+    "test_steps": [
+      {
+        "step": "Clicca sul pulsante 'Login'",
+        "expected": "Il modulo di login è visualizzato"
+      },
+      {
+        "step": "Inserisci un'email valida e una password non valida",
+        "expected": "Viene visualizzato un messaggio di errore che indica credenziali non valide"
+      },
+      {
+        "step": "Conferma il processo di autenticazione",
+        "expected": "L'utente non viene reindirizzato alla pagina principale"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC4",
+    "title": "Campo Email Vuoto",
+    "preconditions": "L'utente non è autenticato e ha accesso al portale PELL",
+    "postconditions": "L'utente non viene reindirizzato alla pagina principale",
+    "test_steps": [
+      {
+        "step": "Clicca sul pulsante 'Login'",
+        "expected": "Il modulo di login è visualizzato"
+      },
+      {
+        "step": "Lascia il campo email vuoto e inserisci una password valida",
+        "expected": "Viene visualizzato un messaggio di errore che indica campo obbligatorio"
+      },
+      {
+        "step": "Conferma il processo di autenticazione",
+        "expected": "L'utente non viene reindirizzato alla pagina principale"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Bassa",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC5",
+    "title": "Campo Password Vuoto",
+    "preconditions": "L'utente non è autenticato e ha accesso al portale PELL",
+    "postconditions": "L'utente non viene reindirizzato alla pagina principale",
+    "test_steps": [
+      {
+        "step": "Clicca sul pulsante 'Login'",
+        "expected": "Il modulo di login è visualizzato"
+      },
+      {
+        "step": "Inserisci un'email valida e lascia il campo password vuoto",
+        "expected": "Viene visualizzato un messaggio di errore che indica campo obbligatorio"
+      },
+      {
+        "step": "Conferma il processo di autenticazione",
+        "expected": "L'utente non viene reindirizzato alla pagina principale"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Bassa",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC6",
+    "title": "Tentativo di Iniezione SQL",
+    "preconditions": "L'utente non è autenticato e ha accesso al portale PELL",
+    "postconditions": "L'utente non viene reindirizzato alla pagina principale",
+    "test_steps": [
+      {
+        "step": "Clicca sul pulsante 'Login'",
+        "expected": "Il modulo di login è visualizzato"
+      },
+      {
+        "step": "Inserisci un input dannoso nel campo email o password",
+        "expected": "Viene visualizzato un messaggio di errore che indica credenziali non valide"
+      },
+      {
+        "step": "Conferma il processo di autenticazione",
+        "expected": "L'utente non viene reindirizzato alla pagina principale e non si verificano errori SQL"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC1"
+  }
+]
+</expected output>
+
+
+The following is the use case in JSON format, generate different test cases:
+
+[
+  {
+    "Id": "UC2.1",
+    "Title": "Download PDF (parte di UC2: Dashboard)",
+    "Summary": "Download del PDF relativo alle informazioni della dashboard",
+    "Actor": [
+      "Regione",
+      "Sindaco",
+      "Fornitore"
+    ],
+    "Precondition": "UC2",
+    "Postcondition": "L’utente ha scaricato il file, può aprirlo dalla apposita sezione del browser utilizzato ed il file è ben formato",
+    "Base_sequence": [
+      "L’utente inizia il processo di download cliccando sul tasto dedicato",
+      "L’utente conferma la richiesta",
+      "L’utente visualizza un messaggio di operazione completata con successo",
+      "no"
+    ],
+    "Branch_sequence": [],
+    "Exception_sequence": [
+      "L’utente visualizza un messaggio di operazione completata con un errore relativo all’eccezione verificatasi",
+      "L’utente può ripartire dal punto 2 della base sequence"
+    ],
+    "Note": "no"
+  }
+]
+
+<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+📥 RISPOSTA:
+[
+  {
+    "test_case_id": "UC2.1_TC1",
+    "title": "Download PDF Riuscito",
+    "preconditions": "L'utente è autenticato e ha accesso alla dashboard (UC2)",
+    "postconditions": "Il file PDF viene scaricato correttamente",
+    "test_steps": [
+      {
+        "step": "Clicca sul pulsante di download del PDF",
+        "expected": "Viene visualizzata la richiesta di conferma per il download"
+      },
+      {
+        "step": "Conferma la richiesta di download",
+        "expected": "Il file inizia a scaricarsi e viene visualizzato un messaggio di operazione completata con successo"
+      },
+      {
+        "step": "Apri il file PDF scaricato",
+        "expected": "Il file si apre correttamente e contiene le informazioni della dashboard"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC2",
+    "title": "Download PDF Fallito - Errore di Rete",
+    "preconditions": "L'utente è autenticato e ha accesso alla dashboard (UC2)",
+    "postconditions": "Il file PDF non viene scaricato",
+    "test_steps": [
+      {
+        "step": "Clicca sul pulsante di download del PDF",
+        "expected": "Viene visualizzata la richiesta di conferma per il download"
+      },
+      {
+        "step": "Conferma la richiesta di download con una connessione di rete instabile",
+        "expected": "Viene visualizzato un messaggio di errore relativo alla connessione di rete"
+      },
+      {
+        "step": "Riprova il download",
+    "expected": "Il file inizia a scaricarsi correttamente dopo la riprovazione"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC3",
+    "title": "Download PDF Fallito - File Corrotto",
+    "preconditions": "L'utente è autenticato e ha accesso alla dashboard (UC2)",
+    "postconditions": "Il file PDF non viene scaricato",
+    "test_steps": [
+      {
+        "step": "Clicca sul pulsante di download del PDF",
+        "expected": "Viene visualizzata la richiesta di conferma per il download"
+      },
+      {
+        "step": "Conferma la richiesta di download con un file corrotto",
+        "expected": "Viene visualizzato un messaggio di errore relativo al file corrotto"
+      },
+      {
+        "step": "Riprova il download",
+    "expected": "Il file non si apre correttamente a causa della corruzione"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC4",
+    "title": "Download PDF con Autorizzazioni Insufficienti",
+    "preconditions": "L'utente è autenticato ma non ha le autorizzazioni necessarie per accedere alla dashboard (UC2)",
+    "postconditions": "Il file PDF non viene scaricato",
+    "test_steps": [
+      {
+        "step": "Clicca sul pulsante di download del PDF",
+        "expected": "Viene visualizzato un messaggio di accesso negato"
+      },
+      {
+        "step": "Tenta di accedere al file PDF senza autorizzazioni",
+        "expected": "Il sistema non consente l'accesso al file"
+      },
+      {
+        "step": "Richiedi le autorizzazioni necessarie per accedere alla dashboard",
+    "expected": "L'utente può accedere alla dashboard e scaricare il file dopo aver ottenuto le autorizzazioni"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Bassa",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC5",
+    "title": "Download PDF con Parametri di Download Non Validi",
+    "preconditions": "L'utente è autenticato e ha accesso alla dashboard (UC2)",
+    "postconditions": "Il file PDF non viene scaricato",
+    "test_steps": [
+      {
+        "step": "Clicca sul pulsante di download del PDF con parametri non validi",
+        "expected": "Viene visualizzato un messaggio di errore relativo ai parametri"
+      },
+      {
+        "step": "Tenta di scaricare il file con parametri corretti",
+        "expected": "Il file inizia a scaricarsi correttamente"
+      },
+      {
+        "step": "Verifica che il file sia stato scaricato correttamente",
+    "expected": "Il file è stato scaricato e si apre senza problemi"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Bassa",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC6",
+    "title": "Tentativo di Download PDF con Input Dannoso",
+    "preconditions": "L'utente è autenticato e ha accesso alla dashboard (UC2)",
+    "postconditions": "Il file PDF non viene scaricato e il sistema rimane sicuro",
+    "test_steps": [
+      {
+        "step": "Clicca sul pulsante di download del PDF con input dannoso",
+        "expected": "Viene visualizzato un messaggio di errore relativo alla sicurezza"
+      },
+      {
+        "step": "Tenta di scaricare il file senza input dannoso",
+        "expected": "Il file inizia a scaricarsi correttamente e senza problemi di sicurezza"
+      },
+      {
+        "step": "Verifica che il sistema sia rimasto sicuro",
+    "expected": "Il sistema non ha subito alcun danno o violazione della sicurezza"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC2.1"
+  }
+]

@@ -1,0 +1,154 @@
+[
+  {
+    "test_case_id": "UC3.4_TC1",
+    "title": "Visualizzazione palette azioni su scheda censimento valida",
+    "preconditions": "UC3",
+    "postconditions": "La palette di azioni viene visualizzata correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento",
+        "expected": "Le schede vengono elencate correttamente"
+      },
+      {
+        "step": "Clicca sul tasto azioni di una scheda valida",
+        "expected": "La palette di azioni appare con le opzioni disponibili"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC2",
+    "title": "Selezione azione non disponibile",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema segnala che l’azione non è disponibile",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento",
+        "expected": "Le schede vengono elencate correttamente"
+      },
+      {
+        "step": "Clicca sul tasto azioni di una scheda e seleziona un’azione non disponibile",
+        "expected": "Il sistema mostra un messaggio che indica l’indisponibilità dell’azione"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC3",
+    "title": "Azioni su scheda censimento non esistente",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema segnala che la scheda non esiste",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento",
+        "expected": "Le schede vengono elencate correttamente"
+      },
+      {
+        "step": "Tenta di accedere a una scheda non esistente e clicca sul tasto azioni",
+        "expected": "Il sistema mostra un messaggio di errore indicando che la scheda non è trovata"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC4",
+    "title": "Azioni su scheda censimento senza permessi",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema nega l’accesso alle azioni",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento con un utente senza permessi",
+        "expected": "Le schede vengono elencate ma le azioni non sono disponibili"
+      },
+      {
+        "step": "Tenta di cliccare sul tasto azioni di una scheda",
+        "expected": "Il sistema mostra un messaggio di accesso negato"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC5",
+    "title": "Concorrenza nell’accesso alle azioni su scheda censimento",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema gestisce correttamente la concorrenza",
+    "test_steps": [
+      {
+        "step": "Due o più utenti accedono contemporaneamente alla stessa scheda censimento",
+        "expected": "Il sistema gestisce l’accesso in modo da non generare conflitti"
+      },
+      {
+        "step": "Gli utenti cliccano sul tasto azioni quasi contemporaneamente",
+        "expected": "Le azioni vengono eseguite correttamente senza errori di concorrenza"
+      }
+    ],
+    "test_type": "Prestazione",
+    "priority": "Alta",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC6",
+    "title": "Azioni su scheda censimento con dati non validi",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema segnala l’errore e non esegue l’azione",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento",
+        "expected": "Le schede vengono elencate correttamente"
+      },
+      {
+        "step": "Modifica manualmente i dati della scheda in modo da renderli non validi e clicca sul tasto azioni",
+        "expected": "Il sistema rileva l’errore e mostra un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC7",
+    "title": "Azioni su scheda censimento con caratteri speciali nel nome",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema gestisce correttamente i caratteri speciali",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento",
+        "expected": "Le schede vengono elencate correttamente"
+      },
+      {
+        "step": "Clicca sul tasto azioni di una scheda con caratteri speciali nel nome",
+        "expected": "Il sistema esegue l’azione senza problemi"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC8",
+    "title": "Azioni su scheda censimento in condizioni di carico elevato",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema mantiene le prestazioni anche in condizioni di carico elevato",
+    "test_steps": [
+      {
+        "step": "Simula un carico elevato sul sistema",
+        "expected": "Il sistema rimane stabile"
+      },
+      {
+        "step": "Accedi alla sezione delle schede censimento e clicca sul tasto azioni durante il carico elevato",
+        "expected": "Le azioni vengono eseguite senza rallentamenti significativi"
+      }
+    ],
+    "test_type": "Prestazione",
+    "priority": "Alta",
+    "use_case_id": "UC3.4"
+  }
+]

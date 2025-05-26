@@ -1,0 +1,206 @@
+[
+  {
+    "test_case_id": "UC3.4.3.8_TC1",
+    "title": "Modifica informazioni manutenzione pannello elettrico con dati validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD viene selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato e seleziona il pannello elettrico",
+        "expected": "Il pannello elettrico è visualizzato nella struttura ad albero"
+      },
+      {
+        "step": "Seleziona il tab relativo alle informazioni di manutenzione e compila il form con dati validi",
+        "expected": "I dati vengono accettati e il form può essere inviato"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Viene visualizzato un messaggio di conferma dell’operazione"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.8"
+  },
+  {
+    "test_case_id": "UC3.4.3.8_TC2",
+    "title": "Modifica informazioni manutenzione con dati non validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD viene selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato e seleziona il pannello elettrico",
+        "expected": "Il pannello elettrico è visualizzato nella struttura ad albero"
+      },
+      {
+        "step": "Seleziona il tab relativo alle informazioni di manutenzione e compila il form con dati non validi (es. date future)",
+        "expected": "I dati non vengono accettati e viene visualizzato un messaggio di errore"
+      },
+      {
+        "step": "Tenta di applicare le modifiche con l’apposito tasto",
+        "expected": "L’operazione non va a buon fine e il messaggio di errore persiste"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.8"
+  },
+  {
+    "test_case_id": "UC3.4.3.8_TC3",
+    "title": "Modifica informazioni manutenzione senza selezionare pannello elettrico",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema non permette di procedere con la modifica",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD viene selezionato correttamente"
+      },
+      {
+        "step": "Non selezionare alcun pannello elettrico",
+        "expected": "Il sistema non permette di accedere alla modifica delle informazioni di manutenzione"
+      },
+      {
+        "step": "Tenta di applicare le modifiche con l’apposito tasto",
+        "expected": "L’operazione non è disponibile o viene bloccata"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.8"
+  },
+  {
+    "test_case_id": "UC3.4.3.8_TC4",
+    "title": "Modifica informazioni manutenzione con campi obbligatori vuoti",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema segnala l’errore e non permette di procedere",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD viene selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato e seleziona il pannello elettrico",
+        "expected": "Il pannello elettrico è visualizzato nella struttura ad albero"
+      },
+      {
+        "step": "Lascia vuoti campi obbligatori nel form di modifica delle informazioni di manutenzione",
+        "expected": "Il sistema segnala l’errore e non permette di inviare il form"
+      },
+      {
+        "step": "Tenta di applicare le modifiche con l’apposito tasto",
+        "expected": "L’operazione non va a buon fine e il messaggio di errore persiste"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.8"
+  },
+  {
+    "test_case_id": "UC3.4.3.8_TC5",
+    "title": "Modifica informazioni manutenzione con utente non autorizzato",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema non permette l’accesso alla modifica",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema con un utente non autorizzato a modificare le informazioni di manutenzione",
+        "expected": "L’utente non ha accesso alla funzionalità di modifica"
+      },
+      {
+        "step": "Tenta di selezionare il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il sistema blocca l’accesso o visualizza un messaggio di autorizzazione negata"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.8"
+  },
+  {
+    "test_case_id": "UC3.4.3.8_TC6",
+    "title": "Modifica informazioni manutenzione con dati troppo lunghi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema tronca i dati o visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD viene selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato e seleziona il pannello elettrico",
+        "expected": "Il pannello elettrico è visualizzato nella struttura ad albero"
+      },
+      {
+        "step": "Inserisci dati troppo lunghi nel form di modifica delle informazioni di manutenzione",
+        "expected": "Il sistema tronca i dati o visualizza un messaggio di errore"
+      },
+      {
+        "step": "Tenta di applicare le modifiche con l’apposito tasto",
+        "expected": "L’operazione potrebbe non andare a buon fine o il messaggio di errore persiste"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.8"
+  },
+  {
+    "test_case_id": "UC3.4.3.8_TC7",
+    "title": "Modifica informazioni manutenzione con caratteri speciali",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema gestisce correttamente i caratteri speciali",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD viene selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato e seleziona il pannello elettrico",
+        "expected": "Il pannello elettrico è visualizzato nella struttura ad albero"
+      },
+      {
+        "step": "Inserisci caratteri speciali nel form di modifica delle informazioni di manutenzione",
+        "expected": "Il sistema gestisce correttamente i caratteri speciali senza errori"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "L’operazione va a buon fine e i dati vengono salvati correttamente"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.8"
+  },
+  {
+    "test_case_id": "UC3.4.3.8_TC8",
+    "title": "Modifica informazioni manutenzione in concomitanza con un’altra modifica",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema gestisce correttamente le modifiche concorrenti",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD viene selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato e seleziona il pannello elettrico",
+        "expected": "Il pannello elettrico è visualizzato nella struttura ad albero"
+      },
+      {
+        "step": "Inizia a modificare le informazioni di manutenzione mentre un altro utente sta facendo lo stesso",
+        "expected": "Il sistema gestisce la situazione di concorrenza senza perdita di dati o errori"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "L’operazione va a buon fine e i dati vengono salvati correttamente, considerando le modifiche concorrenti"
+      }
+    ],
+    "test_type": "Stress",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.8"
+  }
+]

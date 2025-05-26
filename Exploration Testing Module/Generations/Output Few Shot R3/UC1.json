@@ -1,0 +1,163 @@
+[
+  {
+    "test_case_id": "UC1_TC1",
+    "title": "Login con credenziali valide",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "L’utente è autenticato ed è a conoscenza che l’operazione ha avuto successo",
+    "test_steps": [
+      {
+        "step": "Inserisci username e password corretti nel form di login",
+        "expected": "Le credenziali vengono accettate"
+      },
+      {
+        "step": "Clicca il tasto “Login”",
+        "expected": "Il sistema procede con l’autenticazione"
+      },
+      {
+        "step": "Visualizza il messaggio di login avvenuto con successo",
+        "expected": "L’utente è autenticato e visualizza la pagina principale"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC2",
+    "title": "Login con credenziali errate",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Inserisci username e password errati nel form di login",
+        "expected": "Il sistema rileva le credenziali non valide"
+      },
+      {
+        "step": "Clicca il tasto “Login”",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      },
+      {
+        "step": "Visualizza il messaggio di login fallito",
+        "expected": "L’utente può riprovare l’accesso"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC3",
+    "title": "Cambio password alla prima autenticazione",
+    "preconditions": "L’utente non è autenticato e deve cambiare la password di default",
+    "postconditions": "La nuova password viene accettata e l’utente è autenticato",
+    "test_steps": [
+      {
+        "step": "Inserisci username e password di default nel form di login",
+        "expected": "Il sistema richiede il cambio della password"
+      },
+      {
+        "step": "Inserisci la nuova password e conferma",
+        "expected": "La nuova password viene accettata"
+      },
+      {
+        "step": "Visualizza il messaggio di login avvenuto con successo dopo il cambio password",
+        "expected": "L’utente è autenticato con la nuova password"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC4",
+    "title": "Tentativo di SQL injection nel campo username",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "Il sistema rileva e blocca l’attacco",
+    "test_steps": [
+      {
+        "step": "Inserisci una stringa di testo contenente codice SQL nel campo username",
+        "expected": "Il sistema rileva la possibile iniezione di SQL"
+      },
+      {
+        "step": "Clicca il tasto “Login”",
+        "expected": "Il sistema blocca l’accesso e visualizza un messaggio di errore"
+      },
+      {
+        "step": "Visualizza il messaggio di tentativo di accesso non autorizzato",
+        "expected": "L’utente non può accedere al sistema"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC5",
+    "title": "Login con campo username vuoto",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "Il sistema visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Lascia vuoto il campo username e inserisci una password",
+        "expected": "Il sistema rileva il campo obbligatorio mancante"
+      },
+      {
+        "step": "Clicca il tasto “Login”",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      },
+      {
+        "step": "Visualizza il messaggio di login fallito",
+        "expected": "L’utente può riprovare l’accesso"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC6",
+    "title": "Login con password non confermata",
+    "preconditions": "L’utente deve cambiare la password di default e non conferma la nuova password",
+    "postconditions": "Il sistema richiede la conferma della password",
+    "test_steps": [
+      {
+        "step": "Inserisci username e password di default, poi inserisci una nuova password senza confermarla",
+        "expected": "Il sistema richiede la conferma della nuova password"
+      },
+      {
+        "step": "Clicca il tasto “Login” senza aver confermato la password",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      },
+      {
+        "step": "Visualizza il messaggio di login fallito",
+        "expected": "L’utente può riprovare l’accesso"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC7",
+    "title": "Boundary test: login con username e password di lunghezza massima",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "Il sistema accetta le credenziali se sono valide",
+    "test_steps": [
+      {
+        "step": "Inserisci un username e una password della lunghezza massima consentita",
+        "expected": "Il sistema accetta le credenziali"
+      },
+      {
+        "step": "Clicca il tasto “Login”",
+        "expected": "Il sistema procede con l’autenticazione"
+      },
+      {
+        "step": "Visualizza il messaggio di login avvenuto con successo",
+        "expected": "L’utente è autenticato"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Alta",
+    "use_case_id": "UC1"
+  }
+]

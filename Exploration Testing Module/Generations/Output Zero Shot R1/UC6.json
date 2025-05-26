@@ -1,0 +1,79 @@
+[
+  {
+    "test_case_id": "UC6_TC1",
+    "title": "Logout utente con successo",
+    "preconditions": "UC1",
+    "postconditions": "L’utente è non è più autenticato ed è a conoscenza che l’operazione ha avuto successo",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente registrato",
+        "expected": "La home page del sistema è visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul proprio nome utente in alto a destra",
+        "expected": "Il menu di opzioni utente è visualizzato"
+      },
+      {
+        "step": "Clicca il tasto “Logout”",
+        "expected": "Il sistema richiede conferma per il logout"
+      },
+      {
+        "step": "Conferma il logout",
+        "expected": "Un messaggio di operazione completata con successo è visualizzato e l’utente viene reindirizzato alla pagina di login"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC6"
+  },
+  {
+    "test_case_id": "UC6_TC2",
+    "title": "Logout utente senza conferma",
+    "preconditions": "UC1",
+    "postconditions": "L’utente è non è più autenticato ma non viene visualizzato il messaggio di successo",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente registrato",
+        "expected": "La home page del sistema è visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul proprio nome utente in alto a destra",
+        "expected": "Il menu di opzioni utente è visualizzato"
+      },
+      {
+        "step": "Clicca il tasto “Logout” e chiudi la finestra di conferma",
+        "expected": "L’utente viene disconnesso ma non viene visualizzato alcun messaggio"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC6"
+  },
+  {
+    "test_case_id": "UC6_TC3",
+    "title": "Logout utente con più tentativi",
+    "preconditions": "UC1",
+    "postconditions": "L’utente è non è più autenticato ed è a conoscenza che l’operazione ha avuto successo",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente registrato",
+        "expected": "La home page del sistema è visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul proprio nome utente in alto a destra",
+        "expected": "Il menu di opzioni utente è visualizzato"
+      },
+      {
+        "step": "Clicca il tasto “Logout” e annulla la richiesta di conferma per 3 volte",
+        "expected": "Al quarto tentativo, il sistema richiede nuovamente la conferma del logout"
+      },
+      {
+        "step": "Conferma il logout al quarto tentativo",
+        "expected": "Un messaggio di operazione completata con successo è visualizzato e l’utente viene reindirizzato alla pagina di login"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC6"
+  }
+]

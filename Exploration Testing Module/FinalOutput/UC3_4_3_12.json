@@ -7,23 +7,19 @@
     "test_steps": [
       {
         "step": "Seleziona la zona omogenea per la modifica tramite il menù ad albero di sinistra",
-        "expected": "La zona omogenea è selezionata correttamente"
+        "expected": "La zona omogenea viene selezionata correttamente"
       },
       {
-        "step": "Seleziona il tab relativo ai dati zona omogenea",
-        "expected": "Il tab dei dati zona omogenea è visualizzato"
+        "step": "Seleziona il tab relativo ai dati zona omogenea e compila il form con informazioni valide",
+        "expected": "Il form viene compilato correttamente"
       },
       {
-        "step": "Compila il form con le informazioni desiderate e applica le modifiche",
-        "expected": "Le modifiche sono applicate correttamente"
-      },
-      {
-        "step": "Conferma le modifiche",
-        "expected": "Viene visualizzato un messaggio di conferma dell’operazione"
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "L’operazione va a buon fine e compare un messaggio di conferma"
       }
     ],
     "test_type": "Positivo",
-    "priority": "Alto",
+    "priority": "Alta",
     "use_case_id": "UC3.4.3.12"
   },
   {
@@ -34,107 +30,88 @@
     "test_steps": [
       {
         "step": "Seleziona la zona omogenea per la modifica tramite il menù ad albero di sinistra",
-        "expected": "La zona omogenea è selezionata correttamente"
+        "expected": "La zona omogenea viene selezionata correttamente"
       },
       {
-        "step": "Seleziona il tab relativo ai dati zona omogenea",
-        "expected": "Il tab dei dati zona omogenea è visualizzato"
+        "step": "Seleziona il tab relativo ai dati zona omogenea e compila il form con informazioni non valide",
+        "expected": "Il sistema segnala un errore"
       },
       {
-        "step": "Compila il form con dati non validi e applica le modifiche",
-        "expected": "Viene mostrato un messaggio di errore"
+        "step": "Tenta di applicare le modifiche con l’apposito tasto",
+        "expected": "Viene visualizzato un messaggio di errore"
       }
     ],
     "test_type": "Negativo",
-    "priority": "Alto",
+    "priority": "Media",
     "use_case_id": "UC3.4.3.12"
   },
   {
     "test_case_id": "UC3.4.3.12_TC3",
-    "title": "Modifica zona omogenea senza selezionare la zona",
-    "preconditions": "UC3.4.3",
-    "postconditions": "Viene mostrato un messaggio di errore",
-    "test_steps": [
-      {
-        "step": "Non seleziona la zona omogenea per la modifica",
-        "expected": "Il sistema non permette di proseguire"
-      },
-      {
-        "step": "Seleziona il tab relativo ai dati zona omogenea",
-        "expected": "Il tab dei dati zona omogenea non è visualizzato"
-      }
-    ],
-    "test_type": "Negativo",
-    "priority": "Medio",
-    "use_case_id": "UC3.4.3.12"
-  },
-  {
-    "test_case_id": "UC3.4.3.12_TC4",
     "title": "Modifica zona omogenea senza compilare il form",
     "preconditions": "UC3.4.3",
     "postconditions": "Viene mostrato un messaggio di errore",
     "test_steps": [
       {
         "step": "Seleziona la zona omogenea per la modifica tramite il menù ad albero di sinistra",
-        "expected": "La zona omogenea è selezionata correttamente"
+        "expected": "La zona omogenea viene selezionata correttamente"
       },
       {
-        "step": "Seleziona il tab relativo ai dati zona omogenea",
-        "expected": "Il tab dei dati zona omogenea è visualizzato"
+        "step": "Seleziona il tab relativo ai dati zona omogenea senza compilare il form",
+        "expected": "Il sistema richiede la compilazione del form"
       },
       {
-        "step": "Non compila il form e applica le modifiche",
-        "expected": "Viene mostrato un messaggio di errore"
+        "step": "Tenta di applicare le modifiche con l’apposito tasto",
+        "expected": "Viene visualizzato un messaggio di errore per campi obbligatori non compilati"
       }
     ],
     "test_type": "Negativo",
-    "priority": "Medio",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.12"
+  },
+  {
+    "test_case_id": "UC3.4.3.12_TC4",
+    "title": "Boundary test: modifica zona omogenea con dati al limite dei campi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’operazione va a buon fine",
+    "test_steps": [
+      {
+        "step": "Seleziona la zona omogenea per la modifica tramite il menù ad albero di sinistra",
+        "expected": "La zona omogenea viene selezionata correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati zona omogenea e compila il form con informazioni al limite dei campi (es. numero massimo di caratteri)",
+        "expected": "Il form viene compilato correttamente"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "L’operazione va a buon fine e compare un messaggio di conferma"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Alta",
     "use_case_id": "UC3.4.3.12"
   },
   {
     "test_case_id": "UC3.4.3.12_TC5",
-    "title": "Modifica zona omogenea con dati parzialmente validi",
+    "title": "Edge case: modifica zona omogenea con caratteri speciali nei dati",
     "preconditions": "UC3.4.3",
-    "postconditions": "Viene mostrato un messaggio di errore",
+    "postconditions": "L’operazione va a buon fine o viene gestito l’errore",
     "test_steps": [
       {
         "step": "Seleziona la zona omogenea per la modifica tramite il menù ad albero di sinistra",
-        "expected": "La zona omogenea è selezionata correttamente"
+        "expected": "La zona omogenea viene selezionata correttamente"
       },
       {
-        "step": "Seleziona il tab relativo ai dati zona omogenea",
-        "expected": "Il tab dei dati zona omogenea è visualizzato"
+        "step": "Seleziona il tab relativo ai dati zona omogenea e compila il form con caratteri speciali (es. @, #, $)",
+        "expected": "Il sistema gestisce i caratteri speciali correttamente o segnala un errore"
       },
       {
-        "step": "Compila parzialmente il form con dati validi e applica le modifiche",
-        "expected": "Viene mostrato un messaggio di errore"
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "L’operazione va a buon fine o viene visualizzato un messaggio di errore appropriato"
       }
     ],
-    "test_type": "Negativo",
-    "priority": "Basso",
-    "use_case_id": "UC3.4.3.12"
-  },
-  {
-    "test_case_id": "UC3.4.3.12_TC6",
-    "title": "Modifica zona omogenea con dati validi e annullamento delle modifiche",
-    "preconditions": "UC3.4.3",
-    "postconditions": "Le modifiche non sono state applicate",
-    "test_steps": [
-      {
-        "step": "Seleziona la zona omogenea per la modifica tramite il menù ad albero di sinistra",
-        "expected": "La zona omogenea è selezionata correttamente"
-      },
-      {
-        "step": "Seleziona il tab relativo ai dati zona omogenea",
-        "expected": "Il tab dei dati zona omogenea è visualizzato"
-      },
-      {
-        "step": "Compila il form con le informazioni desiderate e annulla le modifiche",
-        "expected": "Le modifiche non sono state applicate"
-      }
-    ],
-    "test_type": "Positivo",
-    "priority": "Basso",
+    "test_type": "Edge",
+    "priority": "Media",
     "use_case_id": "UC3.4.3.12"
   }
 ]

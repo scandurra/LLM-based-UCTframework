@@ -1,0 +1,182 @@
+[
+  {
+    "test_case_id": "UC2.2_TC1",
+    "title": "Ricerca impianti di illuminazione per comune",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza gli impianti di illuminazione del comune selezionato",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e seleziona la funzione di ricerca impianti",
+        "expected": "La sezione di ricerca viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un comune valido e conferma la ricerca",
+        "expected": "Gli impianti del comune selezionato vengono mostrati sulla mappa"
+      },
+      {
+        "step": "Verifica la presenza degli impianti di illuminazione nella mappa",
+        "expected": "Gli impianti sono visualizzati correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.2"
+  },
+  {
+    "test_case_id": "UC2.2_TC2",
+    "title": "Ricerca impianti di illuminazione con parametri multipli",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza gli impianti che corrispondono a tutti i criteri selezionati",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e seleziona la funzione di ricerca impianti",
+        "expected": "La sezione di ricerca viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona più parametri di ricerca (es. comune, tipo di impianto, etc.)",
+        "expected": "I parametri vengono accettati e la ricerca avviata"
+      },
+      {
+        "step": "Verifica che gli impianti visualizzati soddisfino tutti i criteri selezionati",
+        "expected": "Gli impianti mostrati corrispondono ai criteri di ricerca"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.2"
+  },
+  {
+    "test_case_id": "UC2.2_TC3",
+    "title": "Ricerca senza selezionare comune",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema richiede la selezione del comune",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e seleziona la funzione di ricerca impianti",
+        "expected": "La sezione di ricerca viene visualizzata correttamente"
+      },
+      {
+        "step": "Lascia vuoto il campo del comune e tenta di confermare la ricerca",
+        "expected": "Il sistema segnala l’errore e richiede la selezione del comune"
+      },
+      {
+        "step": "Verifica che non vengano visualizzati impianti senza la selezione del comune",
+        "expected": "Nessun impianto viene mostrato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.2"
+  },
+  {
+    "test_case_id": "UC2.2_TC4",
+    "title": "Ricerca con comune non esistente",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema segnala l’errore e non visualizza impianti",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e seleziona la funzione di ricerca impianti",
+        "expected": "La sezione di ricerca viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci un comune non esistente e tenta di confermare la ricerca",
+        "expected": "Il sistema segnala l’errore del comune non trovato"
+      },
+      {
+        "step": "Verifica che non vengano visualizzati impianti",
+        "expected": "Nessun impianto viene mostrato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.2"
+  },
+  {
+    "test_case_id": "UC2.2_TC5",
+    "title": "Ricerca con caratteri speciali nel campo di ricerca",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema gestisce correttamente i caratteri speciali",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e seleziona la funzione di ricerca impianti",
+        "expected": "La sezione di ricerca viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci caratteri speciali (es. @, #, etc.) nel campo di ricerca del comune",
+        "expected": "Il sistema gestisce i caratteri speciali senza errori"
+      },
+      {
+        "step": "Verifica che la ricerca funzioni correttamente nonostante i caratteri speciali",
+        "expected": "La ricerca produce risultati coerenti"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC2.2"
+  },
+  {
+    "test_case_id": "UC2.2_TC6",
+    "title": "Ricerca da parte di utente non autenticato",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema richiede l’autenticazione",
+    "test_steps": [
+      {
+        "step": "Tenta di accedere alla funzione di ricerca impianti senza essere loggato",
+        "expected": "Il sistema reindirizza alla pagina di login"
+      },
+      {
+        "step": "Verifica che la funzione di ricerca non sia accessibile senza autenticazione",
+        "expected": "Accesso negato e richiesta di login"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC2.2"
+  },
+  {
+    "test_case_id": "UC2.2_TC7",
+    "title": "Ricerca con selezione di più comuni",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema visualizza gli impianti dei comuni selezionati",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e seleziona la funzione di ricerca impianti",
+        "expected": "La sezione di ricerca viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona più comuni e conferma la ricerca",
+        "expected": "Gli impianti dei comuni selezionati vengono mostrati sulla mappa"
+      },
+      {
+        "step": "Verifica che gli impianti visualizzati siano quelli relativi ai comuni selezionati",
+        "expected": "Gli impianti mostrati corrispondono ai comuni selezionati"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.2"
+  },
+  {
+    "test_case_id": "UC2.2_TC8",
+    "title": "Ricerca con filtri avanzati",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema applica correttamente i filtri avanzati",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e seleziona la funzione di ricerca impianti",
+        "expected": "La sezione di ricerca viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona filtri avanzati (es. tipo di impianto, data di installazione, etc.)",
+        "expected": "I filtri vengono applicati e la ricerca avviata"
+      },
+      {
+        "step": "Verifica che gli impianti visualizzati soddisfino tutti i criteri dei filtri avanzati",
+        "expected": "Gli impianti mostrati corrispondono ai filtri selezionati"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.2"
+  }
+]

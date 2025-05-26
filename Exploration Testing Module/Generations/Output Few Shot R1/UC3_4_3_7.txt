@@ -1,0 +1,113 @@
+[
+  {
+    "test_case_id": "UC3.4.3.7_TC1",
+    "title": "Modifica dati operativi con informazioni valide",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD selezionato viene visualizzato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato e seleziona il pannello elettrico per la modifica",
+        "expected": "Il pannello elettrico selezionato è accessibile"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati operativi e compila il form con informazioni valide",
+        "expected": "Le informazioni vengono accettate senza errori"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Un messaggio di conferma dell’operazione andata a buon fine viene visualizzato"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.7"
+  },
+  {
+    "test_case_id": "UC3.4.3.7_TC2",
+    "title": "Modifica dati operativi con informazioni non valide",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD selezionato viene visualizzato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato e seleziona il pannello elettrico per la modifica",
+        "expected": "Il pannello elettrico selezionato è accessibile"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati operativi e compila il form con informazioni non valide (es. campi obbligatori vuoti)",
+        "expected": "Un messaggio di errore viene visualizzato indicando i campi non validi"
+      },
+      {
+        "step": "Tenta di applicare le modifiche con l’apposito tasto",
+        "expected": "L’operazione non va a buon fine e il messaggio di errore rimane visibile"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.7"
+  },
+  {
+    "test_case_id": "UC3.4.3.7_TC3",
+    "title": "Modifica dati operativi senza selezionare il pannello elettrico",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Non è possibile accedere alla modifica dei dati operativi",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD selezionato viene visualizzato correttamente"
+      },
+      {
+        "step": "Non selezionare il pannello elettrico e tenta di accedere alla sezione dei dati operativi",
+        "expected": "La sezione non è accessibile o un messaggio indica di selezionare un pannello elettrico"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.7"
+  },
+  {
+    "test_case_id": "UC3.4.3.7_TC4",
+    "title": "Modifica dati operativi con campi di input troppo lunghi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Un messaggio di errore indica i campi che superano la lunghezza massima consentita",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra e seleziona il pannello elettrico",
+        "expected": "Il pannello elettrico selezionato è accessibile"
+      },
+      {
+        "step": "Compila il form con campi di input troppo lunghi",
+        "expected": "Un messaggio di errore viene visualizzato indicando i campi che superano la lunghezza massima consentita"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.7"
+  },
+  {
+    "test_case_id": "UC3.4.3.7_TC5",
+    "title": "Modifica dati operativi con caratteri speciali nei campi di input",
+    "preconditions": "UC3.4.3",
+    "postconditions": "I caratteri speciali vengono accettati o opportunamente gestiti",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra e seleziona il pannello elettrico",
+        "expected": "Il pannello elettrico selezionato è accessibile"
+      },
+      {
+        "step": "Compila il form con caratteri speciali nei campi di input (es. @, #, $)",
+        "expected": "I caratteri speciali vengono accettati o opportunamente gestiti senza errori"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.7"
+  },
+]

@@ -1,0 +1,120 @@
+[
+  {
+    "test_case_id": "UC3_TC1",
+    "title": "Accesso alla sezione schede censimento con utente autorizzato",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza la sezione relativa alle schede censimento",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente autorizzato (Regione, Sindaco, Fornitore)",
+        "expected": "Il sistema consente l’accesso"
+      },
+      {
+        "step": "Seleziona la sezione relativa alle schede censimento dal menù laterale",
+        "expected": "La sezione viene visualizzata correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC2",
+    "title": "Accesso alla sezione schede censimento senza autorizzazione",
+    "preconditions": "UC1",
+    "postconditions": "Il sistema nega l’accesso e richiede autenticazione",
+    "test_steps": [
+      {
+        "step": "Tenta di accedere al sistema come utente non autorizzato",
+        "expected": "Il sistema richiede autenticazione"
+      },
+      {
+        "step": "Inserisci credenziali non valide o lascia i campi vuoti",
+        "expected": "Il sistema nega l’accesso e visualizza un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC3",
+    "title": "Accesso alla sezione schede censimento con diversi ruoli",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza la sezione relativa alle schede censimento con funzionalità adeguate al ruolo",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come Regione",
+        "expected": "Il sistema consente l’accesso e visualizza le funzionalità di amministrazione"
+      },
+      {
+        "step": "Accedi al sistema come Sindaco",
+        "expected": "Il sistema consente l’accesso e visualizza le funzionalità di gestione locale"
+      },
+      {
+        "step": "Accedi al sistema come Fornitore",
+        "expected": "Il sistema consente l’accesso e visualizza le funzionalità di fornitura"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC4",
+    "title": "Test di prestazione: accesso alla sezione con carico elevato",
+    "preconditions": "UC1",
+    "postconditions": "Il sistema mantiene le prestazioni e visualizza la sezione senza problemi",
+    "test_steps": [
+      {
+        "step": "Simula un carico elevato di utenti che accedono contemporaneamente alla sezione",
+        "expected": "Il sistema gestisce il carico senza rallentamenti"
+      },
+      {
+        "step": "Verifica le prestazioni del sistema in termini di tempo di caricamento e risposta",
+        "expected": "I tempi di caricamento e risposta rimangono accettabili"
+      }
+    ],
+    "test_type": "Prestazione",
+    "priority": "Alta",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC5",
+    "title": "Test di usabilità: navigazione nella sezione schede censimento",
+    "preconditions": "UC1",
+    "postconditions": "L’utente può navigare agevolmente all’interno della sezione",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione schede censimento e valuta la chiarezza dell’interfaccia",
+        "expected": "L’interfaccia è chiara e facile da utilizzare"
+      },
+      {
+        "step": "Esegui operazioni di base all’interno della sezione (es. visualizza, modifica, cancella)",
+        "expected": "Le operazioni vengono eseguite senza problemi"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Media",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC6",
+    "title": "Test di sicurezza: iniezione SQL nella sezione schede censimento",
+    "preconditions": "UC1",
+    "postconditions": "Il sistema respinge l’attacco e mantiene la sicurezza",
+    "test_steps": [
+      {
+        "step": "Tenta di eseguire un attacco di iniezione SQL nella sezione",
+        "expected": "Il sistema rileva e blocca l’attacco"
+      },
+      {
+        "step": "Verifica che il sistema non mostri informazioni sensibili o errori critici",
+        "expected": "Il sistema mantiene la sicurezza e non rivela dati sensibili"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3"
+  }
+]

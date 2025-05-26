@@ -1,0 +1,174 @@
+[
+  {
+    "test_case_id": "UC3.4.3.12_TC1",
+    "title": "Modifica zona omogenea con dati validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Seleziona la zona omogenea per la modifica tramite il menù ad albero di sinistra",
+        "expected": "La zona omogenea viene selezionata correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati zona omogenea",
+        "expected": "Il tab dei dati zona omogenea viene visualizzato"
+      },
+      {
+        "step": "Compila il form con informazioni valide",
+        "expected": "Il form viene compilato correttamente"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Le modifiche vengono applicate con successo"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.12"
+  },
+  {
+    "test_case_id": "UC3.4.3.12_TC2",
+    "title": "Modifica zona omogenea con dati non validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona la zona omogenea per la modifica tramite il menù ad albero di sinistra",
+        "expected": "La zona omogenea viene selezionata correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati zona omogenea",
+        "expected": "Il tab dei dati zona omogenea viene visualizzato"
+      },
+      {
+        "step": "Compila il form con informazioni non valide (es. campi obbligatori vuoti)",
+        "expected": "Il form non può essere inviato e viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.12"
+  },
+  {
+    "test_case_id": "UC3.4.3.12_TC3",
+    "title": "Modifica zona omogenea senza selezionare la zona",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Non seleziona la zona omogenea per la modifica",
+        "expected": "Il sistema richiede la selezione della zona"
+      },
+      {
+        "step": "Tenta di accedere al tab dei dati zona omogenea",
+        "expected": "L’accesso al tab è negato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.12"
+  },
+  {
+    "test_case_id": "UC3.4.3.12_TC4",
+    "title": "Modifica zona omogenea con caratteri speciali nei campi di input",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema gestisce correttamente i caratteri speciali",
+    "test_steps": [
+      {
+        "step": "Seleziona la zona omogenea per la modifica tramite il menù ad albero di sinistra",
+        "expected": "La zona omogenea viene selezionata correttamente"
+      },
+      {
+        "step": "Compila il form con caratteri speciali nei campi di input (es. @,#,$)",
+        "expected": "Il sistema accetta i caratteri speciali o li gestisce in modo appropriato"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.12"
+  },
+  {
+    "test_case_id": "UC3.4.3.12_TC5",
+    "title": "Modifica zona omogenea con utente non autorizzato",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’accesso è negato e viene richiesta l’autorizzazione",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema con un utente non autorizzato a modificare la zona omogenea",
+        "expected": "L’accesso alla funzione di modifica è negato"
+      },
+      {
+        "step": "Tenta di selezionare la zona omogenea per la modifica",
+        "expected": "Il sistema richiede l’autorizzazione o reindirizza alla pagina di login"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.12"
+  },
+  {
+    "test_case_id": "UC3.4.3.12_TC6",
+    "title": "Modifica zona omogenea con dati troppo lunghi nei campi di input",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema gestisce correttamente i dati troppo lunghi",
+    "test_steps": [
+      {
+        "step": "Seleziona la zona omogenea per la modifica tramite il menù ad albero di sinistra",
+        "expected": "La zona omogenea viene selezionata correttamente"
+      },
+      {
+        "step": "Compila il form con dati troppo lunghi nei campi di input",
+        "expected": "Il sistema tronca i dati o li gestisce in modo appropriato"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.12"
+  },
+  {
+    "test_case_id": "UC3.4.3.12_TC7",
+    "title": "Modifica zona omogenea e annullamento delle modifiche",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Le modifiche vengono annullate correttamente",
+    "test_steps": [
+      {
+        "step": "Seleziona la zona omogenea per la modifica tramite il menù ad albero di sinistra",
+        "expected": "La zona omogenea viene selezionata correttamente"
+      },
+      {
+        "step": "Compila il form con nuove informazioni",
+        "expected": "Il form viene compilato correttamente"
+      },
+      {
+        "step": "Annulla le modifiche",
+        "expected": "Le modifiche vengono annullate e i dati tornano allo stato precedente"
+      }
+    ],
+    "test_type": "Funzionalità",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.12"
+  },
+  {
+    "test_case_id": "UC3.4.3.12_TC8",
+    "title": "Modifica zona omogenea e salvataggio delle modifiche multiple volte",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Le modifiche vengono salvate correttamente più volte",
+    "test_steps": [
+      {
+        "step": "Seleziona la zona omogenea per la modifica tramite il menù ad albero di sinistra",
+        "expected": "La zona omogenea viene selezionata correttamente"
+      },
+      {
+        "step": "Compila il form con nuove informazioni e salva le modifiche",
+        "expected": "Le modifiche vengono salvate correttamente"
+      },
+      {
+        "step": "Apporta altre modifiche e salva di nuovo",
+        "expected": "Le nuove modifiche vengono salvate correttamente"
+      }
+    ],
+    "test_type": "Funzionalità",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.12"
+  }
+]

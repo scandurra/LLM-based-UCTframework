@@ -1,0 +1,232 @@
+[
+  {
+    "test_case_id": "UC3.4.3.2_TC1",
+    "title": "Modifica sezione PlSystemGeneralData con dati validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Compila il form con le informazioni desiderate",
+        "expected": "Il form viene compilato correttamente"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Il sistema visualizza un messaggio di conferma dell’operazione"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.2"
+  },
+  {
+    "test_case_id": "UC3.4.3.2_TC2",
+    "title": "Modifica sezione PlSystemGeneralData con dati non validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Compila il form con informazioni non valide",
+        "expected": "Il form non viene compilato correttamente"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.2"
+  },
+  {
+    "test_case_id": "UC3.4.3.2_TC3",
+    "title": "Modifica sezione PlSystemGeneralData senza compilare il form",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Non compila il form",
+        "expected": "Il form non viene compilato"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.2"
+  },
+  {
+    "test_case_id": "UC3.4.3.2_TC4",
+    "title": "Modifica sezione PlSystemGeneralData con dati parzialmente validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Compila parzialmente il form con informazioni valide e non valide",
+        "expected": "Il form non viene compilato correttamente"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.2"
+  },
+  {
+    "test_case_id": "UC3.4.3.2_TC5",
+    "title": "Modifica sezione PlSystemGeneralData con dati di lunghezza massima",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema visualizza un messaggio di conferma dell’operazione",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Compila il form con informazioni di lunghezza massima",
+        "expected": "Il form viene compilato correttamente"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Il sistema visualizza un messaggio di conferma dell’operazione"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.2"
+  },
+  {
+    "test_case_id": "UC3.4.3.2_TC6",
+    "title": "Modifica sezione PlSystemGeneralData con dati di lunghezza minima",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema visualizza un messaggio di conferma dell’operazione",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Compila il form con informazioni di lunghezza minima",
+        "expected": "Il form viene compilato correttamente"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Il sistema visualizza un messaggio di conferma dell’operazione"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.2"
+  },
+  {
+    "test_case_id": "UC3.4.3.2_TC7",
+    "title": "Modifica sezione PlSystemGeneralData con dati speciali",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema visualizza un messaggio di conferma dell’operazione",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Compila il form con informazioni speciali (ad esempio @,#,$,etc.)",
+        "expected": "Il form viene compilato correttamente"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Il sistema visualizza un messaggio di conferma dell’operazione"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.2"
+  },
+  {
+    "test_case_id": "UC3.4.3.2_TC8",
+    "title": "Modifica sezione PlSystemGeneralData con dati di tipo errato",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Compila il form con informazioni di tipo errato (ad esempio una stringa in un campo numerico)",
+        "expected": "Il form non viene compilato correttamente"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.2"
+  },
+  {
+    "test_case_id": "UC3.4.3.2_TC9",
+    "title": "Modifica sezione PlSystemGeneralData con dati mancanti",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Non compila alcuni campi obbligatori del form",
+        "expected": "Il form non viene compilato correttamente"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.2"
+  },
+  {
+    "test_case_id": "UC3.4.3.2_TC10",
+    "title": "Modifica sezione PlSystemGeneralData con dati duplicati",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Compila il form con informazioni duplicate",
+        "expected": "Il form non viene compilato correttamente"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.2"
+  }
+]

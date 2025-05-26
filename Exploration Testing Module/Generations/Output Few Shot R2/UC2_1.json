@@ -1,0 +1,105 @@
+[
+  {
+    "test_case_id": "UC2.1_TC1",
+    "title": "Download PDF con successo",
+    "preconditions": "UC2",
+    "postconditions": "L’utente ha scaricato il file, può aprirlo dalla apposita sezione del browser utilizzato ed il file è ben formato",
+    "test_steps": [
+      {
+        "step": "Clicca sul tasto di download PDF",
+        "expected": "Il processo di download inizia"
+      },
+      {
+        "step": "Conferma la richiesta di download",
+        "expected": "Il download procede senza errori"
+      },
+      {
+        "step": "Verifica il messaggio di completamento dell’operazione",
+        "expected": "Viene visualizzato un messaggio di successo"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC2",
+    "title": "Download PDF con errore di rete",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di operazione completata con un errore relativo all’eccezione verificatasi",
+    "test_steps": [
+      {
+        "step": "Clicca sul tasto di download PDF",
+        "expected": "Il processo di download inizia"
+      },
+      {
+        "step": "Simula una perdita di connessione durante il download",
+        "expected": "Viene visualizzato un messaggio di errore"
+      },
+      {
+        "step": "Tenta di ripetere l’operazione",
+        "expected": "L’utente può ripartire dal punto 2 della base sequence"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC3",
+    "title": "Download PDF senza conferma",
+    "preconditions": "UC2",
+    "postconditions": "L’operazione di download non procede",
+    "test_steps": [
+      {
+        "step": "Clicca sul tasto di download PDF",
+        "expected": "Il processo di download inizia"
+      },
+      {
+        "step": "Non confermare la richiesta di download",
+        "expected": "Il download non avviene"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC4",
+    "title": "Download PDF con browser non supportato",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di operazione completata con un errore relativo all’eccezione verificatasi",
+    "test_steps": [
+      {
+        "step": "Accedere alla pagina di download utilizzando un browser non supportato",
+        "expected": "Il processo di download potrebbe non funzionare correttamente"
+      },
+      {
+        "step": "Clicca sul tasto di download PDF",
+        "expected": "Viene visualizzato un messaggio di errore o il download non avviene"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC5",
+    "title": "Download PDF con file vuoto",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di operazione completata con un errore relativo all’eccezione verificatasi",
+    "test_steps": [
+      {
+        "step": "Clicca sul tasto di download PDF quando il file è vuoto",
+        "expected": "Viene visualizzato un messaggio di errore"
+      },
+      {
+        "step": "Verifica la possibilità di ripetere l’operazione",
+        "expected": "L’utente può ripartire dal punto 2 della base sequence"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.1"
+  }
+]

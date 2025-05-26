@@ -1,0 +1,105 @@
+[
+  {
+    "test_case_id": "UC3.1_TC1",
+    "title": "Visualizzazione schede censimento con dati validi e paginazione",
+    "preconditions": "UC3",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di visualizzazione delle schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un numero di elementi per pagina e scorri tra le pagine",
+        "expected": "Le informazioni vengono visualizzate in base alla selezione"
+      },
+      {
+        "step": "Ordina i dati cliccando sul nome di una colonna",
+        "expected": "I dati vengono ordinati correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC2",
+    "title": "Visualizzazione schede censimento con ordinamento su più colonne",
+    "preconditions": "UC3",
+    "postconditions": "L’utente visualizza le informazioni ordinate correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di visualizzazione delle schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Ordina i dati cliccando su più colonne in sequenza",
+        "expected": "I dati vengono ordinati secondo la sequenza di click"
+      },
+      {
+        "step": "Verifica che l’ordinamento sia mantenuto anche dopo il cambio di pagina",
+        "expected": "L’ordinamento è coerente su tutte le pagine"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC3",
+    "title": "Visualizzazione schede censimento senza selezionare numero di elementi per pagina",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema visualizza un numero di elementi predefinito per pagina",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di visualizzazione delle schede censimento senza specificare il numero di elementi per pagina",
+        "expected": "La sezione viene visualizzata con un numero predefinito di elementi per pagina"
+      },
+      {
+        "step": "Verifica che le funzionalità di ordinamento e paginazione siano comunque disponibili",
+        "expected": "Tutte le funzionalità sono accessibili e funzionano correttamente"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC4",
+    "title": "Visualizzazione schede censimento con selezione di un numero eccessivo di elementi per pagina",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema visualizza un messaggio di errore o limita il numero di elementi visualizzati",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di visualizzazione delle schede censimento e seleziona un numero molto alto di elementi per pagina",
+        "expected": "Il sistema reagisce limitando il numero di elementi o mostrando un messaggio di errore"
+      },
+      {
+        "step": "Verifica che le funzionalità di base siano comunque accessibili",
+        "expected": "L’utente può ancora navigare e utilizzare le altre funzioni"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC5",
+    "title": "Usabilità della visualizzazione schede censimento su dispositivi mobili",
+    "preconditions": "UC3",
+    "postconditions": "L’utente può visualizzare e navigare le informazioni in modo confortevole su dispositivo mobile",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di visualizzazione delle schede censimento da un dispositivo mobile",
+        "expected": "La sezione è ottimizzata per la visualizzazione su schermo mobile"
+      },
+      {
+        "step": "Verifica che le funzionalità di base siano accessibili e utilizzabili con facilità",
+        "expected": "Tutte le funzioni principali sono facilmente raggiungibili e utilizzabili"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Alta",
+    "use_case_id": "UC3.1"
+  }
+]

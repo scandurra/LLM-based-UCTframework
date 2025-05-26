@@ -1,0 +1,154 @@
+[
+  {
+    "test_case_id": "UC3_TC1",
+    "title": "Accesso alla gestione schede censimento con utente autorizzato",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza la sezione relativa alle schede censimento",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come Regione, Sindaco o Fornitore",
+        "expected": "La home page del sistema viene visualizzata"
+      },
+      {
+        "step": "Seleziona la voce di menù per la gestione delle schede censimento",
+        "expected": "La sezione relativa alle schede censimento si apre correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC2",
+    "title": "Accesso alla gestione schede censimento con utente non autorizzato",
+    "preconditions": "UC1",
+    "postconditions": "L’accesso viene negato e viene richiesta l’autenticazione",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente non autorizzato (es. cittadino)",
+        "expected": "La home page del sistema viene visualizzata ma con limitazioni"
+      },
+      {
+        "step": "Tenta di accedere alla sezione delle schede censimento",
+        "expected": "Il sistema nega l’accesso e richiede autenticazione o mostra un messaggio di accesso negato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC3",
+    "title": "Accesso alla gestione schede censimento senza autenticazione",
+    "preconditions": "UC1",
+    "postconditions": "Il sistema richiede l’autenticazione",
+    "test_steps": [
+      {
+        "step": "Tenta di accedere direttamente all’URL della sezione delle schede censimento senza login",
+        "expected": "Il sistema reindirizza alla pagina di login"
+      },
+      {
+        "step": "Inserisci credenziali non valide o lascia i campi vuoti",
+        "expected": "Il sistema segnala un errore di autenticazione e richiede nuovamente le credenziali"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC4",
+    "title": "Test di prestazione: accesso alla gestione schede censimento con carico elevato",
+    "preconditions": "UC1",
+    "postconditions": "La sezione si apre senza problemi di performance",
+    "test_steps": [
+      {
+        "step": "Simula un alto carico di utenti simultanei che accedono alla sezione delle schede censimento",
+        "expected": "Il sistema gestisce il carico senza rallentamenti significativi"
+      },
+      {
+        "step": "Verifica i tempi di risposta del sistema",
+        "expected": "I tempi di risposta rimangono accettabili anche con carico elevato"
+      }
+    ],
+    "test_type": "Prestazione",
+    "priority": "Media",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC5",
+    "title": "Test di usabilità: navigazione nella sezione delle schede censimento",
+    "preconditions": "UC1",
+    "postconditions": "L’utente può navigare agevolmente all’interno della sezione",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento come utente autorizzato",
+        "expected": "La sezione si apre e la navigazione è intuitiva"
+      },
+      {
+        "step": "Esegui operazioni di base (es. visualizza, cerca, filtra)",
+        "expected": "Le operazioni vengono eseguite senza difficoltà e il sistema risponde correttamente"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Media",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC6",
+    "title": "Test di sicurezza: iniezione SQL nella gestione schede censimento",
+    "preconditions": "UC1",
+    "postconditions": "Il sistema respinge l’attacco e non esegue operazioni non autorizzate",
+    "test_steps": [
+      {
+        "step": "Tenta di eseguire un attacco di iniezione SQL nella sezione delle schede censimento",
+        "expected": "Il sistema rileva e blocca l’attacco"
+      },
+      {
+        "step": "Verifica che non siano state eseguite operazioni non autorizzate",
+        "expected": "Nessun dato è stato compromesso o modificato"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC7",
+    "title": "Test di compatibilità: accesso alla gestione schede censimento da browser diversi",
+    "preconditions": "UC1",
+    "postconditions": "La sezione è accessibile e funzionale su tutti i browser testati",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento utilizzando browser differenti (es. Chrome, Firefox, Edge)",
+        "expected": "La sezione si apre correttamente su ogni browser"
+      },
+      {
+        "step": "Esegui operazioni base su ogni browser",
+        "expected": "Le operazioni vengono eseguite senza problemi su tutti i browser testati"
+      }
+    ],
+    "test_type": "Compatibilità",
+    "priority": "Media",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC8",
+    "title": "Test di accessibilità: gestione schede censimento per utenti con disabilità",
+    "preconditions": "UC1",
+    "postconditions": "La sezione è accessibile e utilizzabile anche per utenti con disabilità",
+    "test_steps": [
+      {
+        "step": "Utilizza strumenti di assistenza (es. lettore dello schermo, tastiera solo) per accedere alla sezione",
+        "expected": "La sezione è accessibile e navigabile utilizzando gli strumenti di assistenza"
+      },
+      {
+        "step": "Verifica la conformità agli standard di accessibilità (es. WCAG 2.1)",
+        "expected": "La sezione soddisfa gli standard di accessibilità richiesti"
+      }
+    ],
+    "test_type": "Accessibilità",
+    "priority": "Media",
+    "use_case_id": "UC3"
+  }
+]

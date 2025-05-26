@@ -1,0 +1,116 @@
+[
+  {
+    "test_case_id": "UC3_TC1",
+    "title": "Apertura interfaccia gestione schede censimento con utente autorizzato",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza la sezione relativa alle schede censimento",
+    "test_steps": [
+      {
+        "step": "Accedi all'applicazione come Regione",
+        "expected": "La home page dell'applicazione è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona la sezione relativa alle schede censimento dal menù laterale di sinistra",
+        "expected": "La sezione relativa alle schede censimento è visualizzata correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC2",
+    "title": "Apertura interfaccia gestione schede censimento con utente non autorizzato",
+    "preconditions": "",
+    "postconditions": "L’utente non visualizza la sezione relativa alle schede censimento",
+    "test_steps": [
+      {
+        "step": "Accedi all'applicazione come utente non autorizzato",
+        "expected": "La home page dell'applicazione è visualizzata correttamente"
+      },
+      {
+        "step": "Tenta di selezionare la sezione relativa alle schede censimento dal menù laterale di sinistra",
+        "expected": "Viene visualizzato un messaggio di errore per mancanza di autorizzazione"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC3",
+    "title": "Apertura interfaccia gestione schede censimento con dati di input mancanti",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza un messaggio di errore per dati di input mancanti",
+    "test_steps": [
+      {
+        "step": "Accedi all'applicazione come Regione",
+        "expected": "La home page dell'applicazione è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona la sezione relativa alle schede censimento dal menù laterale di sinistra senza inserire i dati di input richiesti",
+        "expected": "Viene visualizzato un messaggio di errore per dati di input mancanti"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC4",
+    "title": "Apertura interfaccia gestione schede censimento con dati di input non validi",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza un messaggio di errore per dati di input non validi",
+    "test_steps": [
+      {
+        "step": "Accedi all'applicazione come Regione",
+        "expected": "La home page dell'applicazione è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona la sezione relativa alle schede censimento dal menù laterale di sinistra inserendo dati di input non validi",
+        "expected": "Viene visualizzato un messaggio di errore per dati di input non validi"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC5",
+    "title": "Apertura interfaccia gestione schede censimento con utente Sindaco",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza la sezione relativa alle schede censimento",
+    "test_steps": [
+      {
+        "step": "Accedi all'applicazione come Sindaco",
+        "expected": "La home page dell'applicazione è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona la sezione relativa alle schede censimento dal menù laterale di sinistra",
+        "expected": "La sezione relativa alle schede censimento è visualizzata correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC6",
+    "title": "Apertura interfaccia gestione schede censimento con utente Fornitore",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza la sezione relativa alle schede censimento",
+    "test_steps": [
+      {
+        "step": "Accedi all'applicazione come Fornitore",
+        "expected": "La home page dell'applicazione è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona la sezione relativa alle schede censimento dal menù laterale di sinistra",
+        "expected": "La sezione relativa alle schede censimento è visualizzata correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3"
+  }
+]

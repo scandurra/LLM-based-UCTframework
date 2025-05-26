@@ -1,0 +1,266 @@
+📝 PROMPT:
+<|begin_of_text|><|start_header_id|>system<|end_header_id|>
+You are a Quality Assurance expert. 
+<|eot_id|><|start_header_id|>user<|end_header_id|>
+Your task is to generate a suite of test cases for each use case provided in JSON format.
+
+The output must be in **JSON only**, structured as an array of test case objects, following the example below:
+
+[
+  {
+    "test_case_id": "UC7.2_TC1",
+    "title": "Segnalazione guasto con dati validi e foto allegata",
+    "preconditions": "UC7",
+    "postconditions": "Il sistema registra la segnalazione e notifica il fornitore responsabile",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione segnalazioni guasti",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Compila il modulo inserendo posizione, descrizione e carica una foto",
+        "expected": "Il modulo viene completato correttamente"
+      },
+      {
+        "step": "Conferma l’invio della segnalazione",
+        "expected": "Il sistema registra la segnalazione e mostra conferma"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC7.2"
+  },
+  ... (other test cases)
+]
+
+Guidelines:
+1) You must not create test cases that can be reproducible on the server side, so you must not generate blocked or disabled account tests, connection error or slow connection tests, maintenance tests, etc.
+2) You should create test cases that can be reproducible on the client side, including SQL injections for a Login use case.
+3) Generate a minimum of 3 test cases per use case, maxmimum of 10 (depending of the needs).
+4) Include both **positive** (success) and **negative** (error, missing input, etc.) tests , boundary conditions(if applicable),
+edge cases(if applicable), security and usability considerations (if applicable, for example in a Login use case you can do the injection test case).
+5) Use unique names for `test_case_id` following the format `UCx_TCy`.
+6) Base your test cases on base_sequence, branch_sequence, exception_sequence, and pre/postconditions.
+7) If in the use case description in JSON has "UCx" as "Precondition" tag, you must put "UCx" in the preconditions field of the test cases.
+
+
+Only return the JSON array. DO NOT explain anything.  
+DO NOT include "```json" or "```" markers.  
+Very importanti, you have to make sure all brackets are correctly opened and closed.
+Follow strictly the guidelines.
+
+Note: Even though the structure is in English, all content inside the fields (titles, steps, etc.) must remain in **Italian**.
+
+The following is the use case in JSON format, generate different test cases:
+
+[
+  {
+    "Id": "UC3.4.3.7",
+    "Title": "Modifica Elettric panel sezione Dati operativi (parte di UC3.4.3 Modifica scheda censimento) (parte di UC3.4: Azione su scheda censimento) (parte di UC3: Gestione schede censimento)",
+    "Summary": "Permette di modificare la sezione dei dati operativi di un pannello elettrico, relativo ad un POD, della scheda censimento",
+    "Actor": [
+      "Regione",
+      "Sindaco",
+      "Fornitore"
+    ],
+    "Precondition": "UC3.4.3",
+    "Postcondition": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "Base_sequence": [
+      "L’utente seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+      "L’utente espande la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD",
+      "L’utente seleziona il pannello elettrico per la modifica",
+      "L’utente seleziona il tab relativo ai dati operativi",
+      "L’utente visualizza i dati precedenti e può compilare il form con le informazioni desiderate",
+      "L’utente applica le modifiche con l’apposito tasto",
+      "In caso di conferma l’utente visualizza un messaggio di conferma dell’operazione"
+    ],
+    "Branch_sequence": [
+      "In caso di dati non validi viene mostrato un messaggio di errore"
+    ],
+    "Exception_sequence": [],
+    "Note": "no"
+  }
+]
+
+<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+📥 RESPONSE:
+[
+  {
+    "test_case_id": "UC3.4.3.7_TC1",
+    "title": "Modifica dati operativi pannello elettrico con dati validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD è selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD",
+        "expected": "I pannelli elettrici sono visualizzati correttamente"
+      },
+      {
+        "step": "Seleziona il pannello elettrico per la modifica",
+        "expected": "Il pannello elettrico è selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati operativi",
+        "expected": "I dati operativi sono visualizzati correttamente"
+      },
+      {
+        "step": "Compila il form con le informazioni desiderate",
+        "expected": "Il form è compilato correttamente"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Le modifiche sono applicate correttamente e viene visualizzato un messaggio di conferma"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.7"
+  },
+  {
+    "test_case_id": "UC3.4.3.7_TC2",
+    "title": "Modifica dati operativi pannello elettrico con dati non validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD è selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD",
+        "expected": "I pannelli elettrici sono visualizzati correttamente"
+      },
+      {
+        "step": "Seleziona il pannello elettrico per la modifica",
+        "expected": "Il pannello elettrico è selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati operativi",
+        "expected": "I dati operativi sono visualizzati correttamente"
+      },
+      {
+        "step": "Compila il form con informazioni non valide",
+        "expected": "Il form non è compilato correttamente"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.7"
+  },
+  {
+    "test_case_id": "UC3.4.3.7_TC3",
+    "title": "Modifica dati operativi pannello elettrico senza compilare il form",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD è selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD",
+        "expected": "I pannelli elettrici sono visualizzati correttamente"
+      },
+      {
+        "step": "Seleziona il pannello elettrico per la modifica",
+        "expected": "Il pannello elettrico è selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati operativi",
+        "expected": "I dati operativi sono visualizzati correttamente"
+      },
+      {
+        "step": "Non compilare il form",
+        "expected": "Il form non è compilato"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.7"
+  },
+  {
+    "test_case_id": "UC3.4.3.7_TC4",
+    "title": "Modifica dati operativi pannello elettrico con caratteri speciali nel form",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore o il form è compilato correttamente",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD è selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD",
+        "expected": "I pannelli elettrici sono visualizzati correttamente"
+      },
+      {
+        "step": "Seleziona il pannello elettrico per la modifica",
+        "expected": "Il pannello elettrico è selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati operativi",
+        "expected": "I dati operativi sono visualizzati correttamente"
+      },
+      {
+        "step": "Compila il form con caratteri speciali",
+        "expected": "Il form è compilato correttamente o viene mostrato un messaggio di errore"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Viene mostrato un messaggio di conferma o di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.7"
+  },
+  {
+    "test_case_id": "UC3.4.3.7_TC5",
+    "title": "Modifica dati operativi pannello elettrico con lunghezza massima del form",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore o il form è compilato correttamente",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD è selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD",
+        "expected": "I pannelli elettrici sono visualizzati correttamente"
+      },
+      {
+        "step": "Seleziona il pannello elettrico per la modifica",
+        "expected": "Il pannello elettrico è selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati operativi",
+        "expected": "I dati operativi sono visualizzati correttamente"
+      },
+      {
+        "step": "Compila il form con la lunghezza massima consentita",
+        "expected": "Il form è compilato correttamente o viene mostrato un messaggio di errore"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Viene mostrato un messaggio di conferma o di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.7"
+  }
+]
+
+⏱️ EXECUTION TIME: 389.51 seconds

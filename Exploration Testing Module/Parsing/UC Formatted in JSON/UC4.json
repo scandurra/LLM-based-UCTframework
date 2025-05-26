@@ -1,0 +1,21 @@
+[
+  {
+    "Id": "UC4",
+    "Title": "Gestione modulo SAVE",
+    "Summary": "Apertura dell’interfaccia dedicata al modulo SAVE",
+    "Actor": [
+      "Regione",
+      "Sindaco",
+      "Fornitore",
+      "Progettista"
+    ],
+    "Precondition": "UC1",
+    "Postcondition": "no",
+    "Base_sequence": [
+      "L’utente naviga nella sezione relativa al modulo SAVE utilizzando il menù laterale di sinistra"
+    ],
+    "Branch_sequence": [],
+    "Exception_sequence": [],
+    "Note": "no"
+  }
+]

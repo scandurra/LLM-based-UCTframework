@@ -6,8 +6,16 @@
     "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
     "test_steps": [
       {
-        "step": "L’utente inserisce tra i parametri di ricerca lo stato 'Italia'",
-        "expected": "Viene mostrato il risultato della ricerca"
+        "step": "Inserisci uno stato valido tra i parametri di ricerca",
+        "expected": "Il sistema accetta lo stato"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "La ricerca viene avviata correttamente"
+      },
+      {
+        "step": "Visualizza il risultato della ricerca",
+        "expected": "Le informazioni relative allo stato selezionato vengono visualizzate"
       }
     ],
     "test_type": "Positivo",
@@ -16,13 +24,17 @@
   },
   {
     "test_case_id": "UC3.2.2_TC2",
-    "title": "Ricerca scheda censimento per stato non valido",
+    "title": "Ricerca scheda censimento senza stato",
     "preconditions": "UC3.2",
-    "postconditions": "Viene mostrato un messaggio di errore",
+    "postconditions": "Il sistema segnala un errore per mancanza di parametri di ricerca",
     "test_steps": [
       {
-        "step": "L’utente inserisce tra i parametri di ricerca lo stato 'Francia'",
-        "expected": "Viene mostrato un messaggio di errore"
+        "step": "Lascia vuoto il campo relativo allo stato",
+        "expected": "Il sistema richiede l’inserimento dello stato"
+      },
+      {
+        "step": "Tenta di confermare la ricerca",
+        "expected": "La ricerca non viene avviata e compare un messaggio di errore"
       }
     ],
     "test_type": "Negativo",
@@ -31,61 +43,58 @@
   },
   {
     "test_case_id": "UC3.2.2_TC3",
-    "title": "Ricerca scheda censimento senza stato",
+    "title": "Ricerca scheda censimento con stato non valido",
     "preconditions": "UC3.2",
-    "postconditions": "Viene mostrato un messaggio di errore",
+    "postconditions": "Il sistema segnala un errore per stato non riconosciuto",
     "test_steps": [
       {
-        "step": "L’utente non inserisce lo stato tra i parametri di ricerca",
-        "expected": "Viene mostrato un messaggio di errore"
+        "step": "Inserisci uno stato non esistente o non valido",
+        "expected": "Il sistema segnala che lo stato non è valido"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "La ricerca non produce risultati e compare un messaggio di errore"
       }
     ],
     "test_type": "Negativo",
-    "priority": "Bassa",
+    "priority": "Media",
     "use_case_id": "UC3.2.2"
   },
   {
     "test_case_id": "UC3.2.2_TC4",
-    "title": "Ricerca scheda censimento per stato con caratteri speciali",
+    "title": "Boundary test: ricerca con stato al limite della lunghezza massima consentita",
     "preconditions": "UC3.2",
-    "postconditions": "Viene mostrato un messaggio di errore",
+    "postconditions": "Il sistema accetta lo stato e avvia la ricerca",
     "test_steps": [
       {
-        "step": "L’utente inserisce tra i parametri di ricerca lo stato 'It@lia'",
-        "expected": "Viene mostrato un messaggio di errore"
+        "step": "Inserisci uno stato con il numero massimo di caratteri consentito",
+        "expected": "Il sistema accetta lo stato"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "La ricerca viene avviata correttamente"
       }
     ],
-    "test_type": "Negativo",
-    "priority": "Bassa",
+    "test_type": "Boundary",
+    "priority": "Alta",
     "use_case_id": "UC3.2.2"
   },
   {
     "test_case_id": "UC3.2.2_TC5",
-    "title": "Ricerca scheda censimento per stato con spazi vuoti",
+    "title": "Usabilità: ricerca con stato contenente caratteri speciali",
     "preconditions": "UC3.2",
-    "postconditions": "Viene mostrato un messaggio di errore",
+    "postconditions": "Il sistema gestisce correttamente i caratteri speciali",
     "test_steps": [
       {
-        "step": "L’utente inserisce tra i parametri di ricerca lo stato '  Italia  '",
-        "expected": "Viene mostrato un messaggio di errore"
-      }
-    ],
-    "test_type": "Negativo",
-    "priority": "Bassa",
-    "use_case_id": "UC3.2.2"
-  },
-  {
-    "test_case_id": "UC3.2.2_TC6",
-    "title": "Ricerca scheda censimento per stato con lunghezza massima",
-    "preconditions": "UC3.2",
-    "postconditions": "Viene mostrato il risultato della ricerca",
-    "test_steps": [
+        "step": "Inserisci uno stato che include caratteri speciali (es. punti, virgolette)",
+        "expected": "Il sistema accetta lo stato e avvia la ricerca"
+      },
       {
-        "step": "L’utente inserisce tra i parametri di ricerca lo stato 'Regione Autonoma della Sardegna'",
-        "expected": "Viene mostrato il risultato della ricerca"
+        "step": "Conferma la ricerca",
+        "expected": "La ricerca produce risultati coerenti con il parametro di ricerca inserito"
       }
     ],
-    "test_type": "Positivo",
+    "test_type": "Usabilità",
     "priority": "Media",
     "use_case_id": "UC3.2.2"
   }

@@ -1,0 +1,211 @@
+📝 PROMPT:
+You are a Quality Assurance expert. Your task is to generate a suite of test cases for each use case provided in JSON format.
+
+The output must be in **JSON only**, structured as an array of test case objects, following the example below:
+
+[
+  {
+    "test_case_id": "UC1_TC1",
+    "title": "Credenziali di Login Valide",
+    "preconditions": "L'utente non è autenticato e ha accesso al portale PELL",
+    "postconditions": "L'utente viene reindirizzato alla pagina principale",
+    "test_steps": [
+      {
+        "step": "Clicca sul pulsante 'Login'",
+        "expected": "Il modulo di login è visualizzato"
+      },
+      {
+        "step": "Inserisci email e password validi",
+        "expected": "Non vengono visualizzati messaggi di errore"
+      },
+      {
+        "step": "Conferma il processo di autenticazione",
+        "expected": "L'utente viene reindirizzato alla pagina principale"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC1"
+  },
+  ... (other test cases)
+  {
+    "test_case_id": "UC1_TC5",
+    "title": "Campo Password Vuoto",
+    "preconditions": "L'utente non è autenticato e ha accesso al portale PELL",
+    "postconditions": "L'utente non viene reindirizzato alla pagina principale",
+    "test_steps": [
+      {
+        "step": "Clicca sul pulsante 'Login'",
+        "expected": "Il modulo di login è visualizzato"
+      },
+      {
+        "step": "Inserisci un'email valida e lascia il campo password vuoto",
+        "expected": "Viene visualizzato un messaggio di errore che indica campo obbligatorio"
+      },
+      {
+        "step": "Conferma il processo di autenticazione",
+        "expected": "L'utente non viene reindirizzato alla pagina principale"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Bassa",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC6",
+    "title": "Tentativo di Iniezione SQL",
+    "preconditions": "L'utente non è autenticato e ha accesso al portale PELL",
+    "postconditions": "L'utente non viene reindirizzato alla pagina principale",
+    "test_steps": [
+      {
+        "step": "Clicca sul pulsante 'Login'",
+        "expected": "Il modulo di login è visualizzato"
+      },
+      {
+        "step": "Inserisci un input dannoso nel campo email o password",
+        "expected": "Viene visualizzato un messaggio di errore che indica credenziali non valide"
+      },
+      {
+        "step": "Conferma il processo di autenticazione",
+        "expected": "L'utente non viene reindirizzato alla pagina principale e non si verificano errori SQL"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC1"
+  }
+]
+
+Guidelines:
+- Generate a minimum of 4 test cases per use case, maxmimum of 10 (depending of the needs)-
+- Include both **positive** (success) and **negative** (error, missing input, etc.) tests , boundary conditions(if applicable),
+edge cases(if applicable), security and usability considerations (if applicable).
+- Use unique names for `test_case_id` following the format `UCx_TCy`.
+- Base your test cases on base_sequence, branch_sequence, exception_sequence, and pre/postconditions.
+- If in the use case description in JSON has "UCx" as "Precondition" tag, you must put "UCx" in the preconditions field of the test cases.
+
+Only return the JSON array. DO NOT explain anything.  
+DO NOT include "```json" or "```" markers.  
+Make sure all brackets are correctly opened and closed.
+
+Note: Even though the structure is in English, all content inside the fields (titles, steps, etc.) must remain in **Italian**.
+
+The following is the use case in JSON format, generate different test cases:
+
+[
+  {
+    "Id": "UC3.4.2",
+    "Title": "Elimina scheda censimento (parte di UC3.4: Azione su scheda censimento) (parte di UC3: Gestione schede censimento)",
+    "Summary": "Permette di eliminare dal portale una scheda censimento precedentemente caricata",
+    "Actor": [
+      "Regione",
+      "Sindaco",
+      "Fornitore"
+    ],
+    "Precondition": "UC3.4",
+    "Postcondition": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "Base_sequence": [
+      "L’utente seleziona l’operazione di cancellazione",
+      "All’utente viene richiesta la conferma dell’eliminazione della scheda indicata",
+      "In caso di conferma l’utente visualizza un messaggio di conferma dell’operazione"
+    ],
+    "Branch_sequence": [
+      "In caso di annullamento l’eliminazione viene interrotta"
+    ],
+    "Exception_sequence": [],
+    "Note": "no"
+  }
+]
+
+<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+📥 RISPOSTA:
+[
+  {
+    "test_case_id": "UC3.4.2_TC1",
+    "title": "Elimina scheda censimento con successo",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di cancellazione della scheda censimento",
+        "expected": "Viene richiesta la conferma dell’eliminazione della scheda indicata"
+      },
+      {
+        "step": "Conferma l’eliminazione della scheda",
+        "expected": "L’utente visualizza un messaggio di conferma dell’operazione"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.2"
+  },
+  {
+    "test_case_id": "UC3.4.2_TC2",
+    "title": "Annulla eliminazione scheda censimento",
+    "preconditions": "UC3.4",
+    "postconditions": "L’eliminazione della scheda censimento non viene eseguita",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di cancellazione della scheda censimento",
+        "expected": "Viene richiesta la conferma dell’eliminazione della scheda indicata"
+      },
+      {
+        "step": "Annulla l’eliminazione della scheda",
+        "expected": "L’eliminazione viene interrotta e non si verificano errori"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.2"
+  },
+  {
+    "test_case_id": "UC3.4.2_TC3",
+    "title": "Elimina scheda censimento senza autorizzazione",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente non può eliminare la scheda censimento",
+    "test_steps": [
+      {
+        "step": "Tenta di selezionare l’operazione di cancellazione della scheda censimento senza autorizzazione",
+        "expected": "Viene visualizzato un messaggio di errore che indica mancanza di autorizzazione"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.2"
+  },
+  {
+    "test_case_id": "UC3.4.2_TC4",
+    "title": "Elimina scheda censimento con dati non validi",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente non può eliminare la scheda censimento",
+    "test_steps": [
+      {
+        "step": "Tenta di selezionare l’operazione di cancellazione della scheda censimento con dati non validi",
+        "expected": "Viene visualizzato un messaggio di errore che indica dati non validi"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.2"
+  },
+  {
+    "test_case_id": "UC3.4.2_TC5",
+    "title": "Elimina scheda censimento con conferma multipla",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di cancellazione della scheda censimento",
+        "expected": "Viene richiesta la conferma dell’eliminazione della scheda indicata"
+      },
+      {
+        "step": "Conferma più volte l’eliminazione della scheda",
+        "expected": "L’utente visualizza un messaggio di conferma dell’operazione solo una volta"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Media",
+    "use_case_id": "UC3.4.2"
+  }
+]

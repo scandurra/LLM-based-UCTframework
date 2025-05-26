@@ -1,0 +1,167 @@
+[
+  {
+    "test_case_id": "UC3.4.3.5_TC1",
+    "title": "Modifica anagrafica pannello elettrico con dati validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD selezionato è visualizzato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato e seleziona il pannello elettrico per la modifica",
+        "expected": "I pannelli elettrici relativi al POD sono elencati correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati di anagrafica e compila il form con informazioni valide",
+        "expected": "Il form è compilabile senza errori"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Un messaggio di conferma dell’operazione andata a buon fine è visualizzato"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.5"
+  },
+  {
+    "test_case_id": "UC3.4.3.5_TC2",
+    "title": "Modifica anagrafica pannello elettrico con dati non validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD selezionato è visualizzato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato e seleziona il pannello elettrico per la modifica",
+        "expected": "I pannelli elettrici relativi al POD sono elencati correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati di anagrafica e compila il form con informazioni non valide (es. campi obbligatori vuoti)",
+        "expected": "Il form non può essere inviato a causa degli errori"
+      },
+      {
+        "step": "Tenta di applicare le modifiche con l’apposito tasto",
+        "expected": "Un messaggio di errore è visualizzato indicando i dati non validi"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.5"
+  },
+  {
+    "test_case_id": "UC3.4.3.5_TC3",
+    "title": "Modifica anagrafica pannello elettrico senza selezionare il POD",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Non è possibile procedere con la modifica",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di modifica anagrafica del pannello elettrico senza aver selezionato un POD",
+        "expected": "Il sistema richiede la selezione di un POD"
+      },
+      {
+        "step": "Tenta di proseguire con la modifica senza POD selezionato",
+        "expected": "Il sistema non consente di procedere"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.5"
+  },
+  {
+    "test_case_id": "UC3.4.3.5_TC4",
+    "title": "Modifica anagrafica pannello elettrico con campi obbligatori non compilati",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra e seleziona il pannello elettrico",
+        "expected": "Il pannello elettrico è selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati di anagrafica e lascia vuoti i campi obbligatori",
+        "expected": "Il form non può essere inviato a causa dei campi mancanti"
+      },
+      {
+        "step": "Tenta di applicare le modifiche con l’apposito tasto",
+        "expected": "Un messaggio di errore è visualizzato indicando i campi obbligatori non compilati"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.5"
+  },
+  {
+    "test_case_id": "UC3.4.3.5_TC5",
+    "title": "Modifica anagrafica pannello elettrico con dati di lunghezza eccessiva",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra e seleziona il pannello elettrico",
+        "expected": "Il pannello elettrico è selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati di anagrafica e inserisci dati con lunghezza superiore al massimo consentito",
+        "expected": "Il form non può essere inviato a causa della lunghezza eccessiva dei dati"
+      },
+      {
+        "step": "Tenta di applicare le modifiche con l’apposito tasto",
+        "expected": "Un messaggio di errore è visualizzato indicando la lunghezza massima consentita"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.5"
+  },
+  {
+    "test_case_id": "UC3.4.3.5_TC6",
+    "title": "Modifica anagrafica pannello elettrico con caratteri non ammessi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra e seleziona il pannello elettrico",
+        "expected": "Il pannello elettrico è selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati di anagrafica e inserisci caratteri non ammessi (es. <, >, etc.)",
+        "expected": "Il form non può essere inviato a causa dei caratteri non validi"
+      },
+      {
+        "step": "Tenta di applicare le modifiche con l’apposito tasto",
+        "expected": "Un messaggio di errore è visualizzato indicando i caratteri non ammessi"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.5"
+  },
+  {
+    "test_case_id": "UC3.4.3.5_TC7",
+    "title": "Modifica anagrafica pannello elettrico con dati già esistenti",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra e seleziona il pannello elettrico",
+        "expected": "Il pannello elettrico è selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati di anagrafica e inserisci dati già esistenti per un altro pannello",
+        "expected": "Il form non può essere inviato a causa della duplicazione dei dati"
+      },
+      {
+        "step": "Tenta di applicare le modifiche con l’apposito tasto",
+        "expected": "Un messaggio di errore è visualizzato indicando la duplicazione dei dati"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.5"
+  }
+]

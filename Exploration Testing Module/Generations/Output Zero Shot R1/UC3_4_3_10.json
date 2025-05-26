@@ -1,0 +1,304 @@
+[
+  {
+    "test_case_id": "UC3.4.3.10_TC1",
+    "title": "Modifica LightSpotDevice con dati validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD è selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato e seleziona il pannello elettrico",
+        "expected": "Il pannello elettrico è visualizzato correttamente"
+      },
+      {
+        "step": "Seleziona il punto luce ed espandi la visione ad albero del punto luce selezionato",
+        "expected": "I dispositivi punti luce sono visualizzati correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati apparecchio e compila il form con le informazioni desiderate",
+        "expected": "Il form è compilato correttamente"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Un messaggio di conferma dell’operazione è visualizzato"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.10"
+  },
+  {
+    "test_case_id": "UC3.4.3.10_TC2",
+    "title": "Modifica LightSpotDevice con dati non validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD è selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato e seleziona il pannello elettrico",
+        "expected": "Il pannello elettrico è visualizzato correttamente"
+      },
+      {
+        "step": "Seleziona il punto luce ed espandi la visione ad albero del punto luce selezionato",
+        "expected": "I dispositivi punti luce sono visualizzati correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati apparecchio e compila il form con informazioni non valide",
+        "expected": "Il form non è compilato correttamente"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Un messaggio di errore è visualizzato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.10"
+  },
+  {
+    "test_case_id": "UC3.4.3.10_TC3",
+    "title": "Modifica LightSpotDevice senza selezionare il POD",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Non selezionare il POD",
+        "expected": "Il pannello elettrico non è visualizzato"
+      },
+      {
+        "step": "Tentare di espandere la visione ad albero del punto luce",
+        "expected": "Il punto luce non è visualizzato"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati apparecchio",
+        "expected": "Il form non è accessibile"
+      },
+      {
+        "step": "Tentare di applicare le modifiche con l’apposito tasto",
+        "expected": "Un messaggio di errore è visualizzato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.10"
+  },
+  {
+    "test_case_id": "UC3.4.3.10_TC4",
+    "title": "Modifica LightSpotDevice con dati parzialmente validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD è selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato e seleziona il pannello elettrico",
+        "expected": "Il pannello elettrico è visualizzato correttamente"
+      },
+      {
+        "step": "Seleziona il punto luce ed espandi la visione ad albero del punto luce selezionato",
+        "expected": "I dispositivi punti luce sono visualizzati correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati apparecchio e compila il form con informazioni parzialmente valide",
+        "expected": "Il form non è compilato correttamente"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Un messaggio di errore è visualizzato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.10"
+  },
+  {
+    "test_case_id": "UC3.4.3.10_TC5",
+    "title": "Modifica LightSpotDevice con dati troppo lunghi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD è selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato e seleziona il pannello elettrico",
+        "expected": "Il pannello elettrico è visualizzato correttamente"
+      },
+      {
+        "step": "Seleziona il punto luce ed espandi la visione ad albero del punto luce selezionato",
+        "expected": "I dispositivi punti luce sono visualizzati correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati apparecchio e compila il form con informazioni troppo lunghe",
+        "expected": "Il form non è compilato correttamente"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Un messaggio di errore è visualizzato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.10"
+  },
+  {
+    "test_case_id": "UC3.4.3.10_TC6",
+    "title": "Modifica LightSpotDevice con caratteri speciali",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD è selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato e seleziona il pannello elettrico",
+        "expected": "Il pannello elettrico è visualizzato correttamente"
+      },
+      {
+        "step": "Seleziona il punto luce ed espandi la visione ad albero del punto luce selezionato",
+        "expected": "I dispositivi punti luce sono visualizzati correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati apparecchio e compila il form con caratteri speciali",
+        "expected": "Il form non è compilato correttamente"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Un messaggio di errore è visualizzato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.10"
+  },
+  {
+    "test_case_id": "UC3.4.3.10_TC7",
+    "title": "Modifica LightSpotDevice senza autorizzazione",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Tentare di accedere alla modifica del POD senza autorizzazione",
+        "expected": "L’accesso è negato"
+      },
+      {
+        "step": "Tentare di espandere la visione ad albero del punto luce",
+        "expected": "Il punto luce non è visualizzato"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati apparecchio",
+        "expected": "Il form non è accessibile"
+      },
+      {
+        "step": "Tentare di applicare le modifiche con l’apposito tasto",
+        "expected": "Un messaggio di errore è visualizzato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.10"
+  },
+  {
+    "test_case_id": "UC3.4.3.10_TC8",
+    "title": "Modifica LightSpotDevice con dati duplicati",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD è selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato e seleziona il pannello elettrico",
+        "expected": "Il pannello elettrico è visualizzato correttamente"
+      },
+      {
+        "step": "Seleziona il punto luce ed espandi la visione ad albero del punto luce selezionato",
+        "expected": "I dispositivi punti luce sono visualizzati correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati apparecchio e compila il form con informazioni duplicate",
+        "expected": "Il form non è compilato correttamente"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Un messaggio di errore è visualizzato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.10"
+  },
+  {
+    "test_case_id": "UC3.4.3.10_TC9",
+    "title": "Modifica LightSpotDevice con dati non coerenti",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD è selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato e seleziona il pannello elettrico",
+        "expected": "Il pannello elettrico è visualizzato correttamente"
+      },
+      {
+        "step": "Seleziona il punto luce ed espandi la visione ad albero del punto luce selezionato",
+        "expected": "I dispositivi punti luce sono visualizzati correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati apparecchio e compila il form con informazioni non coerenti",
+        "expected": "Il form non è compilato correttamente"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Un messaggio di errore è visualizzato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.10"
+  },
+  {
+    "test_case_id": "UC3.4.3.10_TC10",
+    "title": "Modifica LightSpotDevice con dati mancanti",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD è selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato e seleziona il pannello elettrico",
+        "expected": "Il pannello elettrico è visualizzato correttamente"
+      },
+      {
+        "step": "Seleziona il punto luce ed espandi la visione ad albero del punto luce selezionato",
+        "expected": "I dispositivi punti luce sono visualizzati correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati apparecchio e compila il form con informazioni mancanti",
+        "expected": "Il form non è compilato correttamente"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Un messaggio di errore è visualizzato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.10"
+  }
+]

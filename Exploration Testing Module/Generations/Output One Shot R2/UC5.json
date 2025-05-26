@@ -1,0 +1,174 @@
+[
+  {
+    "test_case_id": "UC5_TC1",
+    "title": "Selezione lingua italiana",
+    "preconditions": "UC1",
+    "postconditions": "Il portale viene visualizzato in italiano",
+    "test_steps": [
+      {
+        "step": "Accedi al portale e clicca sul nome utente",
+        "expected": "Viene visualizzato il menù di opzioni"
+      },
+      {
+        "step": "Seleziona 'Italiano' dal menù a tendina delle lingue",
+        "expected": "La selezione viene accettata e la pagina si ricarica"
+      },
+      {
+        "step": "Verifica che il portale sia visualizzato in italiano",
+        "expected": "Tutti gli elementi del portale sono tradotti in italiano"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC5"
+  },
+  {
+    "test_case_id": "UC5_TC2",
+    "title": "Selezione lingua inglese",
+    "preconditions": "UC1",
+    "postconditions": "Il portale viene visualizzato in inglese",
+    "test_steps": [
+      {
+        "step": "Accedi al portale e clicca sul nome utente",
+        "expected": "Viene visualizzato il menù di opzioni"
+      },
+      {
+        "step": "Seleziona 'Inglese' dal menù a tendina delle lingue",
+        "expected": "La selezione viene accettata e la pagina si ricarica"
+      },
+      {
+        "step": "Verifica che il portale sia visualizzato in inglese",
+        "expected": "Tutti gli elementi del portale sono tradotti in inglese"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC5"
+  },
+  {
+    "test_case_id": "UC5_TC3",
+    "title": "Cambio lingua multiple volte",
+    "preconditions": "UC1",
+    "postconditions": "Il portale riflette correttamente l’ultima lingua selezionata",
+    "test_steps": [
+      {
+        "step": "Accedi al portale e clicca sul nome utente",
+        "expected": "Viene visualizzato il menù di opzioni"
+      },
+      {
+        "step": "Seleziona 'Italiano', poi 'Inglese' e infine nuovamente 'Italiano'",
+        "expected": "La pagina si ricarica dopo ogni selezione e riflette la lingua scelta"
+      },
+      {
+        "step": "Verifica che il portale sia visualizzato in italiano dopo l’ultimo cambio",
+        "expected": "Tutti gli elementi del portale sono tradotti in italiano"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC5"
+  },
+  {
+    "test_case_id": "UC5_TC4",
+    "title": "Selezione lingua non supportata",
+    "preconditions": "UC1",
+    "postconditions": "Il portale visualizza un messaggio di errore o rimane nella lingua predefinita",
+    "test_steps": [
+      {
+        "step": "Accedi al portale e clicca sul nome utente",
+        "expected": "Viene visualizzato il menù di opzioni"
+      },
+      {
+        "step": "Inserisci manualmente una lingua non supportata nel campo di selezione",
+        "expected": "Il sistema rifiuta la selezione o visualizza un messaggio di errore"
+      },
+      {
+        "step": "Verifica il comportamento del portale",
+        "expected": "Il portale rimane nella lingua predefinita o mostra un messaggio di lingua non supportata"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC5"
+  },
+  {
+    "test_case_id": "UC5_TC5",
+    "title": "Selezione lingua con caratteri speciali",
+    "preconditions": "UC1",
+    "postconditions": "Il portale gestisce correttamente i caratteri speciali",
+    "test_steps": [
+      {
+        "step": "Accedi al portale e clicca sul nome utente",
+        "expected": "Viene visualizzato il menù di opzioni"
+      },
+      {
+        "step": "Inserisci una lingua con caratteri speciali (es. 'Itali@no') nel campo di selezione",
+        "expected": "Il sistema gestisce correttamente i caratteri speciali o li rimuove"
+      },
+      {
+        "step": "Verifica il comportamento del portale",
+        "expected": "Il portale visualizza un messaggio di errore o seleziona la lingua più vicina"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC5"
+  },
+  {
+    "test_case_id": "UC5_TC6",
+    "title": "Selezione lingua senza permessi di accesso",
+    "preconditions": "UC1",
+    "postconditions": "Il portale nega l’accesso alla funzionalità di selezione lingua",
+    "test_steps": [
+      {
+        "step": "Accedi al portale con un account senza permessi per la modifica della lingua",
+        "expected": "Viene visualizzato un messaggio di accesso negato"
+      },
+      {
+        "step": "Tenta di selezionare una lingua",
+        "expected": "Il sistema blocca l’accesso e visualizza un messaggio di permesso negato"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC5"
+  },
+  {
+    "test_case_id": "UC5_TC7",
+    "title": "Selezione lingua con sessione scaduta",
+    "preconditions": "UC1",
+    "postconditions": "Il portale richiede la reimmissione delle credenziali",
+    "test_steps": [
+      {
+        "step": "Lascia scadere la sessione di accesso",
+        "expected": "Viene visualizzato un messaggio di sessione scaduta"
+      },
+      {
+        "step": "Tenta di selezionare una lingua",
+        "expected": "Il sistema richiede la reimmissione delle credenziali per accedere alla funzionalità"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC5"
+  },
+  {
+    "test_case_id": "UC5_TC8",
+    "title": "Selezione lingua con browser non supportato",
+    "preconditions": "UC1",
+    "postconditions": "Il portale visualizza un messaggio di compatibilità o funziona parzialmente",
+    "test_steps": [
+      {
+        "step": "Accedi al portale con un browser non supportato",
+        "expected": "Viene visualizzato un messaggio di compatibilità"
+      },
+      {
+        "step": "Tenta di selezionare una lingua",
+        "expected": "Il sistema funziona parzialmente o visualizza un messaggio di errore"
+      }
+    ],
+    "test_type": "Compatibilità",
+    "priority": "Bassa",
+    "use_case_id": "UC5"
+  }
+]

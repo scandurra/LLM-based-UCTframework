@@ -1,0 +1,162 @@
+[
+  {
+    "test_case_id": "UC3.4.3.3_TC1",
+    "title": "Modifica POD sezione anagrafica con dati validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD selezionato viene visualizzato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati di anagrafica",
+        "expected": "I dati anagrafici vengono mostrati"
+      },
+      {
+        "step": "Compila il form con informazioni valide e applica le modifiche",
+        "expected": "Le modifiche vengono accettate e un messaggio di conferma viene visualizzato"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.3"
+  },
+  {
+    "test_case_id": "UC3.4.3.3_TC2",
+    "title": "Modifica POD con dati non validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD selezionato viene visualizzato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati di anagrafica e inserisci dati non validi (es. caratteri speciali in campo numerico)",
+        "expected": "I dati vengono rifiutati"
+      },
+      {
+        "step": "Tenta di applicare le modifiche",
+        "expected": "Un messaggio di errore viene visualizzato indicando i campi non validi"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.3"
+  },
+  {
+    "test_case_id": "UC3.4.3.3_TC3",
+    "title": "Modifica POD senza autorizzazione",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’accesso alla modifica del POD è negato",
+    "test_steps": [
+      {
+        "step": "Accedi come utente non autorizzato (es. ruolo diverso da Regione, Sindaco o Fornitore)",
+        "expected": "La pagina di modifica del POD non è accessibile"
+      },
+      {
+        "step": "Tenta di accedere manualmente alla pagina di modifica",
+        "expected": "L’accesso viene negato e viene richiesta l’autorizzazione"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.3"
+  },
+  {
+    "test_case_id": "UC3.4.3.3_TC4",
+    "title": "Modifica POD con campi obbligatori vuoti",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Un messaggio di errore richiede il completamento dei campi obbligatori",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD selezionato viene visualizzato correttamente"
+      },
+      {
+        "step": "Lascia vuoti i campi obbligatori e tenta di applicare le modifiche",
+        "expected": "Un messaggio di errore richiede il completamento dei campi obbligatori"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.3"
+  },
+  {
+    "test_case_id": "UC3.4.3.3_TC5",
+    "title": "Modifica POD con dati troppo lunghi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Un messaggio di errore indica che i dati superano la lunghezza massima consentita",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD selezionato viene visualizzato correttamente"
+      },
+      {
+        "step": "Inserisci dati che superano la lunghezza massima consentita in uno o più campi",
+        "expected": "Un messaggio di errore indica i campi con dati troppo lunghi"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.3"
+  },
+  {
+    "test_case_id": "UC3.4.3.3_TC6",
+    "title": "Modifica POD e annullamento delle modifiche",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Le modifiche vengono annullate e i dati originali sono conservati",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD selezionato viene visualizzato correttamente"
+      },
+      {
+        "step": "Apporta alcune modifiche ai dati anagrafici e poi annulla le modifiche",
+        "expected": "I dati tornano allo stato originale e un messaggio conferma l’annullamento delle modifiche"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.3"
+  },
+  {
+    "test_case_id": "UC3.4.3.3_TC7",
+    "title": "Modifica POD con dati duplicati",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Un messaggio di errore indica la presenza di dati duplicati",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD selezionato viene visualizzato correttamente"
+      },
+      {
+        "step": "Inserisci dati che sono già presenti in un altro POD",
+        "expected": "Un messaggio di errore indica la presenza di dati duplicati"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.3"
+  },
+  {
+    "test_case_id": "UC3.4.3.3_TC8",
+    "title": "Modifica POD e salvataggio con nome file non valido",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Un messaggio di errore indica che il nome del file non è valido",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD selezionato viene visualizzato correttamente"
+      },
+      {
+        "step": "Tenta di salvare le modifiche con un nome file che contiene caratteri non validi",
+        "expected": "Un messaggio di errore indica che il nome del file non è valido"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.3"
+  }
+]

@@ -1,0 +1,97 @@
+[
+  {
+    "test_case_id": "UC4.1_TC1",
+    "title": "Visualizzazione sezione di gestione impianto con utente autorizzato",
+    "preconditions": "UC4",
+    "postconditions": "La sezione di gestione dell’impianto è visualizzata correttamente",
+    "test_steps": [
+      {
+        "step": "L’utente si autentica come Regione, Sindaco, Fornitore o Progettista",
+        "expected": "L’utente accede alla piattaforma"
+      },
+      {
+        "step": "L’utente naviga nella sezione di gestione dell’impianto",
+        "expected": "La sezione di gestione dell’impianto è visualizzata correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC4.1"
+  },
+  {
+    "test_case_id": "UC4.1_TC2",
+    "title": "Visualizzazione sezione di gestione impianto con utente non autorizzato",
+    "preconditions": "",
+    "postconditions": "La sezione di gestione dell’impianto non è visualizzata",
+    "test_steps": [
+      {
+        "step": "L’utente si autentica come utente non autorizzato",
+        "expected": "L’utente non accede alla piattaforma"
+      },
+      {
+        "step": "L’utente tenta di navigare nella sezione di gestione dell’impianto",
+        "expected": "La sezione di gestione dell’impianto non è visualizzata"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC4.1"
+  },
+  {
+    "test_case_id": "UC4.1_TC3",
+    "title": "Visualizzazione sezione di gestione impianto con dati non validi",
+    "preconditions": "UC4",
+    "postconditions": "La sezione di gestione dell’impianto non è visualizzata",
+    "test_steps": [
+      {
+        "step": "L’utente si autentica come Regione, Sindaco, Fornitore o Progettista",
+        "expected": "L’utente accede alla piattaforma"
+      },
+      {
+        "step": "L’utente inserisce dati non validi nella sezione di gestione dell’impianto",
+        "expected": "La sezione di gestione dell’impianto non è visualizzata"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC4.1"
+  },
+  {
+    "test_case_id": "UC4.1_TC4",
+    "title": "Visualizzazione sezione di gestione impianto con barra orizzontale dedicata non visibile",
+    "preconditions": "UC4",
+    "postconditions": "La sezione di gestione dell’impianto non è visualizzata",
+    "test_steps": [
+      {
+        "step": "L’utente si autentica come Regione, Sindaco, Fornitore o Progettista",
+        "expected": "L’utente accede alla piattaforma"
+      },
+      {
+        "step": "La barra orizzontale dedicata agli impianti non è visibile",
+        "expected": "La sezione di gestione dell’impianto non è visualizzata"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC4.1"
+  },
+  {
+    "test_case_id": "UC4.1_TC5",
+    "title": "Visualizzazione sezione di gestione impianto con più utenti contemporaneamente",
+    "preconditions": "UC4",
+    "postconditions": "La sezione di gestione dell’impianto è visualizzata correttamente per tutti gli utenti",
+    "test_steps": [
+      {
+        "step": "Molti utenti si autenticano come Regione, Sindaco, Fornitore o Progettista",
+        "expected": "Tutti gli utenti accedono alla piattaforma"
+      },
+      {
+        "step": "Gli utenti navigano nella sezione di gestione dell’impianto contemporaneamente",
+        "expected": "La sezione di gestione dell’impianto è visualizzata correttamente per tutti gli utenti"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC4.1"
+  }
+]

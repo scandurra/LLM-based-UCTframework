@@ -1,0 +1,166 @@
+[
+  {
+    "test_case_id": "UC3.4.3.10_TC1",
+    "title": "Modifica dati apparecchio con informazioni valide",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD viene selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato e seleziona un pannello elettrico",
+        "expected": "I pannelli elettrici vengono visualizzati e il pannello elettrico viene selezionato"
+      },
+      {
+        "step": "Seleziona un punto luce e poi un dispositivo punto luce, quindi accedi al tab dei dati apparecchio",
+        "expected": "I dati precedenti del dispositivo vengono visualizzati"
+      },
+      {
+        "step": "Compila il form con informazioni valide e applica le modifiche",
+        "expected": "Le modifiche vengono applicate con successo e viene mostrato un messaggio di conferma"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.10"
+  },
+  {
+    "test_case_id": "UC3.4.3.10_TC2",
+    "title": "Modifica dati apparecchio con informazioni non valide",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD e accedi al tab dei dati apparecchio di un dispositivo punto luce",
+        "expected": "I dati precedenti del dispositivo vengono visualizzati"
+      },
+      {
+        "step": "Inserisci informazioni non valide nel form (es. campi obbligatori vuoti, formati errati)",
+        "expected": "Il sistema segnala gli errori di validazione"
+      },
+      {
+        "step": "Tenta di applicare le modifiche",
+        "expected": "L’operazione non va a buon fine e viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.10"
+  },
+  {
+    "test_case_id": "UC3.4.3.10_TC3",
+    "title": "Modifica dati apparecchio senza selezionare il dispositivo punto luce",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema non permette di procedere",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD e accedi al pannello elettrico senza selezionare un punto luce",
+        "expected": "Il sistema richiede la selezione di un punto luce"
+      },
+      {
+        "step": "Tenta di accedere direttamente al tab dei dati apparecchio",
+        "expected": "L’accesso non è possibile senza la selezione del dispositivo punto luce"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.10"
+  },
+  {
+    "test_case_id": "UC3.4.3.10_TC4",
+    "title": "Modifica dati apparecchio con permessi insufficienti",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema nega l’accesso alla modifica",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema con un utente che non ha i permessi per la modifica dei dati apparecchio",
+        "expected": "L’utente non può visualizzare il tab di modifica"
+      },
+      {
+        "step": "Tenta di forzare l’accesso alla pagina di modifica",
+        "expected": "Il sistema blocca l’accesso e mostra un messaggio di autorizzazione negata"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.10"
+  },
+  {
+    "test_case_id": "UC3.4.3.10_TC5",
+    "title": "Modifica dati apparecchio con caricamento di un file non supportato",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema segnala l’errore e non carica il file",
+    "test_steps": [
+      {
+        "step": "Seleziona il dispositivo punto luce e accedi al tab dei dati apparecchio",
+        "expected": "I dati precedenti del dispositivo vengono visualizzati"
+      },
+      {
+        "step": "Tenta di caricare un file non supportato (es. un’immagine in un campo testuale)",
+        "expected": "Il sistema rileva l’errore e segnala il problema"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.10"
+  },
+  {
+    "test_case_id": "UC3.4.3.10_TC6",
+    "title": "Modifica dati apparecchio in concomitanza con un’altra modifica",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema gestisce correttamente le modifiche concorrenti",
+    "test_steps": [
+      {
+        "step": "Due utenti selezionano lo stesso dispositivo punto luce e tentano di modificare i dati apparecchio contemporaneamente",
+        "expected": "Il sistema gestisce le modifiche in modo da evitare conflitti"
+      },
+      {
+        "step": "Verifica che le modifiche vengano applicate correttamente e senza perdita di dati",
+        "expected": "Le modifiche sono state applicate con successo per entrambi gli utenti"
+      }
+    ],
+    "test_type": "Concorrenza",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.10"
+  },
+  {
+    "test_case_id": "UC3.4.3.10_TC7",
+    "title": "Modifica dati apparecchio con un numero elevato di dispositivi punto luce",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema gestisce le modifiche senza problemi di performance",
+    "test_steps": [
+      {
+        "step": "Seleziona un POD con un numero elevato di pannelli elettrici, punti luce e dispositivi punto luce",
+        "expected": "La struttura ad albero viene caricata senza problemi"
+      },
+      {
+        "step": "Modifica i dati apparecchio per più dispositivi punto luce",
+        "expected": "Le modifiche vengono applicate con successo senza rallentamenti significativi"
+      }
+    ],
+    "test_type": "Performance",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.10"
+  },
+  {
+    "test_case_id": "UC3.4.3.10_TC8",
+    "title": "Modifica dati apparecchio e annullamento delle modifiche",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Le modifiche vengono annullate correttamente",
+    "test_steps": [
+      {
+        "step": "Seleziona il dispositivo punto luce e modifica i dati apparecchio",
+        "expected": "Le modifiche vengono applicate"
+      },
+      {
+        "step": "Annulla le modifiche",
+        "expected": "I dati tornano allo stato precedente alla modifica"
+      }
+    ],
+    "test_type": "Funzionalità",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.10"
+  }
+]

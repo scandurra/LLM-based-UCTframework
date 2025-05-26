@@ -1,0 +1,120 @@
+[
+  {
+    "test_case_id": "UC4_TC1",
+    "title": "Apertura modulo SAVE con utente autorizzato",
+    "preconditions": "UC1",
+    "postconditions": "L’interfaccia del modulo SAVE viene visualizzata correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente autorizzato (Regione, Sindaco, Fornitore, Progettista)",
+        "expected": "La home page del sistema viene caricata"
+      },
+      {
+        "step": "Seleziona il modulo SAVE dal menù laterale di sinistra",
+        "expected": "L’interfaccia del modulo SAVE si apre correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC4"
+  },
+  {
+    "test_case_id": "UC4_TC2",
+    "title": "Tentativo di accesso al modulo SAVE senza autorizzazione",
+    "preconditions": "UC1",
+    "postconditions": "Viene mostrato un messaggio di accesso negato",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente non autorizzato",
+        "expected": "La home page del sistema viene caricata"
+      },
+      {
+        "step": "Tenta di selezionare il modulo SAVE dal menù laterale di sinistra",
+        "expected": "Il sistema mostra un messaggio di accesso negato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC4"
+  },
+  {
+    "test_case_id": "UC4_TC3",
+    "title": "Apertura modulo SAVE con diversi ruoli utente",
+    "preconditions": "UC1",
+    "postconditions": "L’interfaccia del modulo SAVE si adatta ai permessi dell’utente",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come Regione",
+        "expected": "La home page del sistema viene caricata"
+      },
+      {
+        "step": "Seleziona il modulo SAVE e verifica le funzionalità disponibili",
+        "expected": "Le funzionalità sono coerenti con i permessi di Regione"
+      },
+      {
+        "step": "Ripeti i passaggi come Sindaco, Fornitore e Progettista",
+        "expected": "L’interfaccia si adatta ai permessi di ciascun ruolo"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC4"
+  },
+  {
+    "test_case_id": "UC4_TC4",
+    "title": "Test di usabilità: navigazione nel modulo SAVE",
+    "preconditions": "UC1",
+    "postconditions": "La navigazione all’interno del modulo SAVE è intuitiva e facile",
+    "test_steps": [
+      {
+        "step": "Accedi al modulo SAVE come utente autorizzato",
+        "expected": "L’interfaccia del modulo SAVE si apre"
+      },
+      {
+        "step": "Esegui diverse azioni di navigazione all’interno del modulo (es. seleziona sottosezioni, torna indietro)",
+        "expected": "La navigazione è logica e facile da eseguire"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Media",
+    "use_case_id": "UC4"
+  },
+  {
+    "test_case_id": "UC4_TC5",
+    "title": "Test di sicurezza: iniezione SQL nel modulo SAVE",
+    "preconditions": "UC1",
+    "postconditions": "Il sistema respinge l’iniezione SQL e mantiene la sicurezza",
+    "test_steps": [
+      {
+        "step": "Accedi al modulo SAVE come utente autorizzato",
+        "expected": "L’interfaccia del modulo SAVE si apre"
+      },
+      {
+        "step": "Tenta di eseguire un’iniezione SQL attraverso i campi di input",
+        "expected": "Il sistema rileva e blocca l’attacco, mostrando un messaggio di errore"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC4"
+  },
+  {
+    "test_case_id": "UC4_TC6",
+    "title": "Test di prestazione: caricamento del modulo SAVE con grandi dati",
+    "preconditions": "UC1",
+    "postconditions": "Il modulo SAVE si carica in tempi ragionevoli anche con grandi quantità di dati",
+    "test_steps": [
+      {
+        "step": "Accedi al modulo SAVE come utente autorizzato",
+        "expected": "L’interfaccia del modulo SAVE si apre"
+      },
+      {
+        "step": "Simula un grande carico di lavoro o una grande quantità di dati da visualizzare",
+        "expected": "Il sistema mantiene le prestazioni e il modulo SAVE si carica senza problemi"
+      }
+    ],
+    "test_type": "Prestazione",
+    "priority": "Media",
+    "use_case_id": "UC4"
+  }
+]

@@ -1,0 +1,272 @@
+[
+  {
+    "test_case_id": "UC3.4.3.4_TC1",
+    "title": "Modifica POD sezione consumi con dati validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD è selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati consumistici del POD",
+        "expected": "Il tab è visualizzato correttamente"
+      },
+      {
+        "step": "Compila il form con le informazioni desiderate",
+        "expected": "Il form viene compilato correttamente"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "L’utente visualizza un messaggio di conferma dell’operazione"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.4"
+  },
+  {
+    "test_case_id": "UC3.4.3.4_TC2",
+    "title": "Modifica POD sezione consumi con dati non validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD è selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati consumistici del POD",
+        "expected": "Il tab è visualizzato correttamente"
+      },
+      {
+        "step": "Compila il form con informazioni non valide",
+        "expected": "Il form non viene compilato correttamente"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.4"
+  },
+  {
+    "test_case_id": "UC3.4.3.4_TC3",
+    "title": "Modifica POD sezione consumi senza compilare il form",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD è selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati consumistici del POD",
+        "expected": "Il tab è visualizzato correttamente"
+      },
+      {
+        "step": "Non compila il form",
+        "expected": "Il form non viene compilato"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.4"
+  },
+  {
+    "test_case_id": "UC3.4.3.4_TC4",
+    "title": "Modifica POD sezione consumi con dati parzialmente validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD è selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati consumistici del POD",
+        "expected": "Il tab è visualizzato correttamente"
+      },
+      {
+        "step": "Compila parzialmente il form con informazioni valide e non valide",
+        "expected": "Il form non viene compilato correttamente"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.4"
+  },
+  {
+    "test_case_id": "UC3.4.3.4_TC5",
+    "title": "Modifica POD sezione consumi con dati di lunghezza massima",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD è selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati consumistici del POD",
+        "expected": "Il tab è visualizzato correttamente"
+      },
+      {
+        "step": "Compila il form con informazioni di lunghezza massima",
+        "expected": "Il form viene compilato correttamente"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "L’utente visualizza un messaggio di conferma dell’operazione"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.4"
+  },
+  {
+    "test_case_id": "UC3.4.3.4_TC6",
+    "title": "Modifica POD sezione consumi con dati di lunghezza minima",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD è selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati consumistici del POD",
+        "expected": "Il tab è visualizzato correttamente"
+      },
+      {
+        "step": "Compila il form con informazioni di lunghezza minima",
+        "expected": "Il form viene compilato correttamente"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "L’utente visualizza un messaggio di conferma dell’operazione"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.4"
+  },
+  {
+    "test_case_id": "UC3.4.3.4_TC7",
+    "title": "Modifica POD sezione consumi con dati speciali",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD è selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati consumistici del POD",
+        "expected": "Il tab è visualizzato correttamente"
+      },
+      {
+        "step": "Compila il form con informazioni speciali (ad esempio caratteri non standard)",
+        "expected": "Il form viene compilato correttamente"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "L’utente visualizza un messaggio di conferma dell’operazione"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.4"
+  },
+  {
+    "test_case_id": "UC3.4.3.4_TC8",
+    "title": "Modifica POD sezione consumi con dati SQL injection",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD è selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati consumistici del POD",
+        "expected": "Il tab è visualizzato correttamente"
+      },
+      {
+        "step": "Compila il form con informazioni di tipo SQL injection (ad esempio ' OR 1=1)",
+        "expected": "Viene mostrato un messaggio di errore"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.4"
+  },
+  {
+    "test_case_id": "UC3.4.3.4_TC9",
+    "title": "Modifica POD sezione consumi con dati di formato non corretto",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD è selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati consumistici del POD",
+        "expected": "Il tab è visualizzato correttamente"
+      },
+      {
+        "step": "Compila il form con informazioni di formato non corretto (ad esempio una data nel formato errato)",
+        "expected": "Viene mostrato un messaggio di errore"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.4"
+  },
+  {
+    "test_case_id": "UC3.4.3.4_TC10",
+    "title": "Modifica POD sezione consumi con dati mancanti",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD è selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati consumistici del POD",
+        "expected": "Il tab è visualizzato correttamente"
+      },
+      {
+        "step": "Non compila alcuni campi obbligatori del form",
+        "expected": "Viene mostrato un messaggio di errore"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.4"
+  }
+]

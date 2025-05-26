@@ -1,0 +1,117 @@
+[
+  {
+    "test_case_id": "UC3.4.5_TC1",
+    "title": "Visualizzazione dettaglio scheda censimento con dati validi",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente visualizza le informazioni relative alla scheda censimento",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di dettaglio su una scheda censimento esistente",
+        "expected": "La pagina di dettaglio si apre correttamente"
+      },
+      {
+        "step": "Verifica la presenza dei dati generali dell’area e della gerarchia dei POD e Aree Omogenee",
+        "expected": "Tutti i dati richiesti sono visualizzati correttamente"
+      },
+      {
+        "step": "Naviga nella gerarchia dei POD e Aree Omogenee",
+        "expected": "La navigazione avviene senza errori"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.5"
+  },
+  {
+    "test_case_id": "UC3.4.5_TC2",
+    "title": "Tentativo di modifica dei dati in pagina di dettaglio",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente non può modificare i dati",
+    "test_steps": [
+      {
+        "step": "Apri la pagina di dettaglio di una scheda censimento",
+        "expected": "La pagina si apre in modalità sola lettura"
+      },
+      {
+        "step": "Tenta di modificare un campo dei dati generali dell’area",
+        "expected": "Il sistema non consente la modifica"
+      },
+      {
+        "step": "Verifica che non ci siano pulsanti o link per salvare le modifiche",
+        "expected": "Non sono presenti opzioni per salvare modifiche"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.5"
+  },
+  {
+    "test_case_id": "UC3.4.5_TC3",
+    "title": "Visualizzazione dettaglio scheda censimento con dati mancanti",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente visualizza un messaggio di dati non disponibili",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di dettaglio su una scheda censimento con dati parziali",
+        "expected": "La pagina di dettaglio si apre ma segnala la mancanza di dati"
+      },
+      {
+        "step": "Verifica la presenza di messaggi che indicano la mancanza di informazioni",
+        "expected": "Sono presenti avvisi sulla incompletezza dei dati"
+      },
+      {
+        "step": "Controlla se è possibile navigare nella gerarchia dei POD e Aree Omogenee",
+        "expected": "La navigazione è possibile anche con dati parziali"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.5"
+  },
+  {
+    "test_case_id": "UC3.4.5_TC4",
+    "title": "Selezione di una scheda censimento non esistente",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente riceve un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Tenta di selezionare l’operazione di dettaglio su una scheda censimento inesistente",
+        "expected": "Il sistema segnala l’assenza della scheda"
+      },
+      {
+        "step": "Verifica la presenza di un messaggio di errore che indica la mancanza della scheda",
+        "expected": "È presente un avviso che informa dell’errore"
+      },
+      {
+        "step": "Controlla se è possibile tornare alla lista delle schede censimento",
+        "expected": "La navigazione indietro è possibile e funziona correttamente"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.5"
+  },
+  {
+    "test_case_id": "UC3.4.5_TC5",
+    "title": "Usabilità della pagina di dettaglio scheda censimento",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente può facilmente visualizzare e navigare all’interno dei dettagli",
+    "test_steps": [
+      {
+        "step": "Apri la pagina di dettaglio di una scheda censimento campione",
+        "expected": "La pagina si apre rapidamente e senza errori"
+      },
+      {
+        "step": "Valuta la chiarezza e l’organizzazione dei dati visualizzati",
+        "expected": "I dati sono ben organizzati e facili da leggere"
+      },
+      {
+        "step": "Verifica la presenza di elementi di aiuto o guide per l’utente",
+        "expected": "Sono presenti informazioni utili per facilitare la comprensione dei dati"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.5"
+  }
+]

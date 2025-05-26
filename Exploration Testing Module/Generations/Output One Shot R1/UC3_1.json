@@ -1,0 +1,166 @@
+[
+  {
+    "test_case_id": "UC3.1_TC1",
+    "title": "Visualizzazione schede censimento con dati validi e paginazione",
+    "preconditions": "UC3",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un numero di elementi per pagina e scorri tra le pagine",
+        "expected": "Le informazioni vengono visualizzate in forma tabellare e paginata correttamente"
+      },
+      {
+        "step": "Verifica la possibilità di scorrere lateralmente per visualizzare tutte le colonne",
+        "expected": "Tutte le colonne sono visibili scorrendo"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC2",
+    "title": "Ordinamento delle colonne",
+    "preconditions": "UC3",
+    "postconditions": "Le colonne vengono ordinate correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul nome di una colonna per ordinare i dati",
+        "expected": "I dati vengono ordinati in base alla colonna selezionata"
+      },
+      {
+        "step": "Verifica che l’ordinamento funzioni anche in modalità inversa (ASC/DESC)",
+        "expected": "L’ordinamento funziona correttamente in entrambe le direzioni"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC3",
+    "title": "Visualizzazione con numero di elementi per pagina variabile",
+    "preconditions": "UC3",
+    "postconditions": "Le informazioni vengono visualizzate correttamente indipendentemente dal numero di elementi per pagina",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un numero variabile di elementi per pagina (es. 10, 25, 50)",
+        "expected": "Le informazioni vengono visualizzate correttamente per ogni impostazione"
+      },
+      {
+        "step": "Verifica che la paginazione funzioni correttamente per ogni selezione",
+        "expected": "La paginazione funziona senza errori"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC4",
+    "title": "Visualizzazione senza dati",
+    "preconditions": "UC3",
+    "postconditions": "Viene visualizzato un messaggio che indica l’assenza di dati",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione schede censimento con nessun dato disponibile",
+        "expected": "La sezione viene visualizzata ma senza dati"
+      },
+      {
+        "step": "Verifica la presenza di un messaggio che indica l’assenza di dati",
+        "expected": "Il messaggio di assenza di dati è visibile e chiaro"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC5",
+    "title": "Boundary test: visualizzazione con un solo elemento",
+    "preconditions": "UC3",
+    "postconditions": "L’elemento viene visualizzato correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione schede censimento con un solo dato disponibile",
+        "expected": "La sezione viene visualizzata con il singolo elemento"
+      },
+      {
+        "step": "Verifica che l’elemento sia visualizzato correttamente e che non ci siano errori di formattazione",
+        "expected": "L’elemento è visualizzato senza problemi"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Media",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC6",
+    "title": "Security test: accesso non autorizzato",
+    "preconditions": "UC3",
+    "postconditions": "L’accesso viene negato e richiesta l’autenticazione",
+    "test_steps": [
+      {
+        "step": "Tenta di accedere alla sezione senza essere autenticato",
+        "expected": "Il sistema reindirizza alla pagina di login"
+      },
+      {
+        "step": "Inserisci credenziali non valide o scadute",
+        "expected": "L’accesso viene negato e viene richiesta nuovamente l’autenticazione"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC7",
+    "title": "Edge case: visualizzazione con dati contenenti caratteri speciali",
+    "preconditions": "UC3",
+    "postconditions": "I dati vengono visualizzati correttamente senza problemi di formattazione",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione schede censimento con dati contenenti caratteri speciali",
+        "expected": "La sezione viene visualizzata senza errori"
+      },
+      {
+        "step": "Verifica che i dati siano visualizzati correttamente e non ci siano problemi di encoding",
+        "expected": "I dati sono visualizzati senza problemi di formattazione o encoding"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC8",
+    "title": "Visualizzazione su dispositivi mobili",
+    "preconditions": "UC3",
+    "postconditions": "La sezione viene visualizzata correttamente e funziona senza problemi sui dispositivi mobili",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione schede censimento utilizzando un dispositivo mobile",
+        "expected": "La sezione viene visualizzata in modo responsivo"
+      },
+      {
+        "step": "Verifica che tutte le funzionalità siano accessibili e funzionino correttamente sul dispositivo mobile",
+        "expected": "Tutte le funzionalità sono accessibili e funzionano senza problemi"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.1"
+  }
+]

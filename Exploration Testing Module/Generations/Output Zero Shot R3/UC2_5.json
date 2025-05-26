@@ -1,0 +1,117 @@
+[
+  {
+    "test_case_id": "UC2.5_TC1",
+    "title": "Visualizzazione grafici con dati validi",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza le informazioni consultando i grafici",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard",
+        "expected": "La dashboard è visualizzata correttamente"
+      },
+      {
+        "step": "Scorri nella pagina fino a visualizzare le sezioni contrassegnate dai grafici",
+        "expected": "Le sezioni sono visualizzate correttamente"
+      },
+      {
+        "step": "Seleziona un grafico per visualizzare le informazioni",
+        "expected": "Il grafico è visualizzato correttamente con i dati"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC2",
+    "title": "Visualizzazione grafici senza dati",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di avviso per l’assenza di dati",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard",
+        "expected": "La dashboard è visualizzata correttamente"
+      },
+      {
+        "step": "Scorri nella pagina fino a visualizzare le sezioni contrassegnate dai grafici",
+        "expected": "Le sezioni sono visualizzate correttamente"
+      },
+      {
+        "step": "Seleziona un grafico per visualizzare le informazioni",
+        "expected": "Viene visualizzato un messaggio di avviso per l’assenza di dati"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC3",
+    "title": "Visualizzazione grafici con filtri applicati",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza le informazioni consultando i grafici con filtri applicati",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard",
+        "expected": "La dashboard è visualizzata correttamente"
+      },
+      {
+        "step": "Scorri nella pagina fino a visualizzare le sezioni contrassegnate dai grafici",
+        "expected": "Le sezioni sono visualizzate correttamente"
+      },
+      {
+        "step": "Seleziona un filtro per applicarlo ai grafici",
+        "expected": "Il filtro è applicato correttamente e i dati vengono aggiornati"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC4",
+    "title": "Visualizzazione grafici con più filtri applicati",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza le informazioni consultando i grafici con più filtri applicati",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard",
+        "expected": "La dashboard è visualizzata correttamente"
+      },
+      {
+        "step": "Scorri nella pagina fino a visualizzare le sezioni contrassegnate dai grafici",
+        "expected": "Le sezioni sono visualizzate correttamente"
+      },
+      {
+        "step": "Seleziona più filtri per applicarli ai grafici",
+        "expected": "I filtri sono applicati correttamente e i dati vengono aggiornati"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC5",
+    "title": "Visualizzazione grafici con filtri non validi",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di errore per i filtri non validi",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard",
+        "expected": "La dashboard è visualizzata correttamente"
+      },
+      {
+        "step": "Scorri nella pagina fino a visualizzare le sezioni contrassegnate dai grafici",
+        "expected": "Le sezioni sono visualizzate correttamente"
+      },
+      {
+        "step": "Seleziona un filtro non valido per applicarlo ai grafici",
+        "expected": "Viene visualizzato un messaggio di errore per il filtro non valido"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.5"
+  }
+]

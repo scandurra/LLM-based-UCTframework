@@ -1,0 +1,162 @@
+[
+  {
+    "test_case_id": "UC2.1_TC1",
+    "title": "Download PDF con successo",
+    "preconditions": "UC2",
+    "postconditions": "L’utente ha scaricato il file e può aprirlo correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e clicca sul tasto di download del PDF",
+        "expected": "Il processo di download inizia"
+      },
+      {
+        "step": "Conferma la richiesta di download",
+        "expected": "Il sistema procede con il download"
+      },
+      {
+        "step": "Verifica che il file venga scaricato e visualizza un messaggio di successo",
+        "expected": "Il file è presente nella cartella dei download e il messaggio di successo è visualizzato"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC2",
+    "title": "Download PDF con errore di rete",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di errore e può riprovare",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e clicca sul tasto di download del PDF",
+        "expected": "Il processo di download inizia"
+      },
+      {
+        "step": "Interrompi la connessione internet durante il download",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      },
+      {
+        "step": "Ripristina la connessione e riprova a scaricare",
+        "expected": "Il download riprende o si completa con successo"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC3",
+    "title": "Download PDF senza permessi",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di accesso negato",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard con un utente senza permessi per il download",
+        "expected": "Il tasto di download non è visibile o è disabilitato"
+      },
+      {
+        "step": "Tenta di accedere direttamente all’URL del PDF",
+        "expected": "Il sistema nega l’accesso e visualizza un messaggio di errore"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC4",
+    "title": "Download PDF con browser non supportato",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di compatibilità",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard utilizzando un browser non supportato",
+        "expected": "Il sistema avvisa dell’incompatibilità"
+      },
+      {
+        "step": "Tenta di scaricare il PDF",
+        "expected": "Il download fallisce o il file non viene visualizzato correttamente"
+      }
+    ],
+    "test_type": "Compatibilità",
+    "priority": "Media",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC5",
+    "title": "Download PDF con file non disponibile",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di file non trovato",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e clicca sul tasto di download del PDF",
+        "expected": "Il processo di download inizia"
+      },
+      {
+        "step": "Rimuovi il file PDF dal server durante il download",
+        "expected": "Il sistema visualizza un messaggio di errore per file non trovato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC6",
+    "title": "Download PDF con dimensione massima superata",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di limite di dimensione superato",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e clicca sul tasto di download del PDF",
+        "expected": "Il processo di download inizia"
+      },
+      {
+        "step": "Genera un PDF con dimensioni superiori al limite consentito",
+        "expected": "Il sistema visualizza un messaggio di errore per dimensione massima superata"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Media",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC7",
+    "title": "Download PDF con nome file non valido",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di errore per nome file non valido",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e clicca sul tasto di download del PDF",
+        "expected": "Il processo di download inizia"
+      },
+      {
+        "step": "Assegna un nome al file che contiene caratteri non validi",
+        "expected": "Il sistema visualizza un messaggio di errore per nome file non valido"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC8",
+    "title": "Download PDF con più tentativi di download falliti",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di limite di tentativi superato",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e clicca sul tasto di download del PDF",
+        "expected": "Il processo di download inizia"
+      },
+      {
+        "step": "Interrompi il download più volte fino a raggiungere il limite di tentativi consentiti",
+        "expected": "Il sistema visualizza un messaggio di errore per limite di tentativi superato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.1"
+  }
+]

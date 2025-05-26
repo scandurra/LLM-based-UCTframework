@@ -1,0 +1,23 @@
+[
+  {
+    "Id": "UC2.2",
+    "Title": "Ricerca impianti di illuminazione (parte di UC2: Dashboard)",
+    "Summary": "Ricerca per caratteristiche degli impianti di illuminazione",
+    "Actor": [
+      "Regione",
+      "Sindaco",
+      "Fornitore",
+      "Cittadino"
+    ],
+    "Precondition": "UC2",
+    "Postcondition": "L’utente visualizza gli impianti di illuminazione che corrispondono ai criteri di ricerca",
+    "Base_sequence": [
+      "L’utente seleziona il comune di ricerca, così come i parametri tra quelli disponibili",
+      "L’utente conferma la ricerca con il click",
+      "L’utente visualizza sulla mappa la posizione dell’impianto d’illuminazione relativo al comune"
+    ],
+    "Branch_sequence": [],
+    "Exception_sequence": [],
+    "Note": "no"
+  }
+]

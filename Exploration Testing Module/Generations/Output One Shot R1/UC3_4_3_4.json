@@ -1,0 +1,190 @@
+[
+  {
+    "test_case_id": "UC3.4.3.4_TC1",
+    "title": "Modifica POD sezione consumi con dati validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Accedi alla scheda censimento e seleziona il POD tramite il menù ad albero di sinistra",
+        "expected": "Il POD viene selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati consumistici del POD",
+        "expected": "I dati precedenti vengono visualizzati"
+      },
+      {
+        "step": "Compila il form con informazioni desiderate e valide",
+        "expected": "Il form viene compilato correttamente"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "L’operazione viene completata con successo"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.4"
+  },
+  {
+    "test_case_id": "UC3.4.3.4_TC2",
+    "title": "Modifica POD sezione consumi con dati non validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla scheda censimento e seleziona il POD tramite il menù ad albero di sinistra",
+        "expected": "Il POD viene selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati consumistici del POD",
+        "expected": "I dati precedenti vengono visualizzati"
+      },
+      {
+        "step": "Compila il form con informazioni non valide (es. campi obbligatori vuoti)",
+        "expected": "Il sistema segnala l’errore"
+      },
+      {
+        "step": "Tenta di applicare le modifiche",
+        "expected": "L’operazione non viene completata e viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.4"
+  },
+  {
+    "test_case_id": "UC3.4.3.4_TC3",
+    "title": "Modifica POD sezione consumi senza autorizzazione",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’accesso alla modifica viene negato",
+    "test_steps": [
+      {
+        "step": "Accedi alla scheda censimento con un utente non autorizzato",
+        "expected": "L’accesso alla sezione di modifica POD è negato"
+      },
+      {
+        "step": "Tenta di selezionare il tab relativo ai dati consumistici del POD",
+        "expected": "Il sistema blocca l’accesso"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.4"
+  },
+  {
+    "test_case_id": "UC3.4.3.4_TC4",
+    "title": "Modifica POD sezione consumi con campi obbligatori mancanti",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema richiede la compilazione dei campi obbligatori",
+    "test_steps": [
+      {
+        "step": "Accedi alla scheda censimento e seleziona il POD tramite il menù ad albero di sinistra",
+        "expected": "Il POD viene selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati consumistici del POD",
+        "expected": "I dati precedenti vengono visualizzati"
+      },
+      {
+        "step": "Lascia vuoti campi obbligatori e tenta di applicare le modifiche",
+        "expected": "Il sistema segnala l’errore e richiede la compilazione dei campi mancanti"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.4"
+  },
+  {
+    "test_case_id": "UC3.4.3.4_TC5",
+    "title": "Modifica POD sezione consumi con dati di input eccessivamente lunghi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema tronca o rifiuta i dati troppo lunghi",
+    "test_steps": [
+      {
+        "step": "Accedi alla scheda censimento e seleziona il POD tramite il menù ad albero di sinistra",
+        "expected": "Il POD viene selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati consumistici del POD",
+        "expected": "I dati precedenti vengono visualizzati"
+      },
+      {
+        "step": "Inserisci dati di input eccessivamente lunghi in un campo",
+        "expected": "Il sistema tronca o rifiuta i dati troppo lunghi"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.4"
+  },
+  {
+    "test_case_id": "UC3.4.3.4_TC6",
+    "title": "Modifica POD sezione consumi con caratteri speciali nei dati di input",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema accetta o normalizza i caratteri speciali",
+    "test_steps": [
+      {
+        "step": "Accedi alla scheda censimento e seleziona il POD tramite il menù ad albero di sinistra",
+        "expected": "Il POD viene selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati consumistici del POD",
+        "expected": "I dati precedenti vengono visualizzati"
+      },
+      {
+        "step": "Inserisci caratteri speciali in un campo di input",
+        "expected": "Il sistema accetta o normalizza i caratteri speciali"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.4"
+  },
+  {
+    "test_case_id": "UC3.4.3.4_TC7",
+    "title": "Modifica POD sezione consumi e annullamento delle modifiche",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Le modifiche vengono annullate correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla scheda censimento e seleziona il POD tramite il menù ad albero di sinistra",
+        "expected": "Il POD viene selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati consumistici del POD",
+        "expected": "I dati precedenti vengono visualizzati"
+      },
+      {
+        "step": "Apporta delle modifiche e poi annullale",
+        "expected": "Le modifiche vengono annullate correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.4"
+  },
+  {
+    "test_case_id": "UC3.4.3.4_TC8",
+    "title": "Modifica POD sezione consumi e salvataggio delle modifiche multiple volte",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Le modifiche vengono salvate correttamente più volte",
+    "test_steps": [
+      {
+        "step": "Accedi alla scheda censimento e seleziona il POD tramite il menù ad albero di sinistra",
+        "expected": "Il POD viene selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati consumistici del POD",
+        "expected": "I dati precedenti vengono visualizzati"
+      },
+      {
+        "step": "Apporta delle modifiche e salva, poi apporta altre modifiche e salva di nuovo",
+        "expected": "Le modifiche vengono salvate correttamente più volte"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.4"
+  }
+]

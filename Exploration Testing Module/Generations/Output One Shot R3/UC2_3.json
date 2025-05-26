@@ -1,0 +1,170 @@
+[
+  {
+    "test_case_id": "UC2.3_TC1",
+    "title": "Visualizzazione tabella dati generali con impostazioni predefinite",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione dashboard utilizzando il menù apposito",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Scorri nella pagina fino a visualizzare la sezione tabellare dedicata ai dati generali",
+        "expected": "La tabella è visibile e contiene i dati previsti"
+      },
+      {
+        "step": "Verifica che le impostazioni predefinite di paginazione siano applicate",
+        "expected": "Il numero di elementi per pagina e l’ordinamento sono quelli di default"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.3"
+  },
+  {
+    "test_case_id": "UC2.3_TC2",
+    "title": "Navigazione tra comuni con selettore di pagine",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza le informazioni relative al comune selezionato",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione dashboard e scorri fino alla tabella dei dati generali",
+        "expected": "La tabella è visibile"
+      },
+      {
+        "step": "Seleziona un comune diverso utilizzando il selettore di pagine in basso a destra",
+        "expected": "I dati nella tabella si aggiornano per riflettere le informazioni del comune selezionato"
+      },
+      {
+        "step": "Verifica che i dati siano coerenti con il comune selezionato",
+        "expected": "Tutti i dati visualizzati sono relativi al comune scelto"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.3"
+  },
+  {
+    "test_case_id": "UC2.3_TC3",
+    "title": "Modifica del numero di elementi per pagina",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza il nuovo numero di elementi per pagina",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione dashboard e scorri fino alla tabella dei dati generali",
+        "expected": "La tabella è visibile"
+      },
+      {
+        "step": "Modifica il numero di elementi visualizzati per pagina utilizzando il selettore in basso a sinistra",
+        "expected": "Il numero di righe nella tabella si aggiorna secondo la scelta"
+      },
+      {
+        "step": "Verifica che i dati siano coerenti con la nuova impostazione di paginazione",
+        "expected": "La tabella contiene il numero corretto di elementi per pagina"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC2.3"
+  },
+  {
+    "test_case_id": "UC2.3_TC4",
+    "title": "Ordinamento per colonna di dati",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza i dati ordinati secondo la colonna selezionata",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione dashboard e scorri fino alla tabella dei dati generali",
+        "expected": "La tabella è visibile"
+      },
+      {
+        "step": "Clicca sul nome di una colonna per ordinare i dati",
+        "expected": "I dati nella tabella si riordinano secondo la colonna selezionata"
+      },
+      {
+        "step": "Verifica che l’ordinamento sia corretto e coerente con la scelta",
+        "expected": "Tutti i dati sono ordinati in modo ascendente o discendente secondo la colonna cliccata"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.3"
+  },
+  {
+    "test_case_id": "UC2.3_TC5",
+    "title": "Visualizzazione con nessun dato disponibile",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio informativo sulla mancanza di dati",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione dashboard e scorri fino alla tabella dei dati generali in un scenario senza dati disponibili",
+        "expected": "La tabella è visibile ma vuota"
+      },
+      {
+        "step": "Verifica la presenza di un messaggio che informa sull’assenza di dati",
+        "expected": "Un messaggio chiaro indica che non ci sono dati da visualizzare"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.3"
+  },
+  {
+    "test_case_id": "UC2.3_TC6",
+    "title": "Accesso alla tabella dati generali senza autorizzazione",
+    "preconditions": "UC2",
+    "postconditions": "L’utente non può accedere alla sezione e viene reindirizzato alla pagina di login o visualizza un messaggio di accesso negato",
+    "test_steps": [
+      {
+        "step": "Tenta di accedere alla sezione dashboard senza essere loggato o con credenziali non valide",
+        "expected": "La pagina di login appare o un messaggio di accesso negato è visualizzato"
+      },
+      {
+        "step": "Verifica che non sia possibile visualizzare la tabella dei dati generali",
+        "expected": "La tabella non è accessibile e non sono visibili i dati"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC2.3"
+  },
+  {
+    "test_case_id": "UC2.3_TC7",
+    "title": "Test di carico e prestazioni con un grande numero di dati",
+    "preconditions": "UC2",
+    "postconditions": "La tabella dei dati generali rimane performante e risponde prontamente anche con un elevato volume di dati",
+    "test_steps": [
+      {
+        "step": "Simula un carico pesante di dati nella tabella dei dati generali",
+        "expected": "La tabella continua a caricarsi e a essere navigabile senza problemi"
+      },
+      {
+        "step": "Verifica le prestazioni della pagina in termini di tempo di caricamento e risposta agli input dell’utente",
+        "expected": "I tempi di caricamento sono ragionevoli e la tabella rimane interattiva"
+      }
+    ],
+    "test_type": "Prestazione",
+    "priority": "Media",
+    "use_case_id": "UC2.3"
+  },
+  {
+    "test_case_id": "UC2.3_TC8",
+    "title": "Compatibilità con diversi dispositivi e browser",
+    "preconditions": "UC2",
+    "postconditions": "La tabella dei dati generali è visualizzabile e funziona correttamente su vari dispositivi e browser",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione dashboard utilizzando diversi dispositivi (desktop, tablet, smartphone) e browser (Chrome, Firefox, Safari, Edge)",
+        "expected": "La tabella è visibile e funziona correttamente su ogni dispositivo e browser testato"
+      },
+      {
+        "step": "Verifica la layout e il comportamento della tabella su schermi di diverse dimensioni",
+        "expected": "La tabella si adatta bene alle diverse risoluzioni e orientamenti dello schermo"
+      }
+    ],
+    "test_type": "Compatibilità",
+    "priority": "Alta",
+    "use_case_id": "UC2.3"
+  }
+]

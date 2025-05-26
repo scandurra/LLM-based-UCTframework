@@ -1,0 +1,186 @@
+[
+  {
+    "test_case_id": "UC3.2.4_TC1",
+    "title": "Ricerca scheda censimento con parametri validi",
+    "preconditions": "UC3.2",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla ricerca",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La pagina di ricerca viene caricata correttamente"
+      },
+      {
+        "step": "Inserisci parametri di ricerca validi (nome, stato e tipo)",
+        "expected": "I campi vengono accettati senza errori"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema restituisce i risultati della ricerca pertinenti"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.2.4"
+  },
+  {
+    "test_case_id": "UC3.2.4_TC2",
+    "title": "Ricerca con campo nome vuoto",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema richiede di inserire il nome",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La pagina di ricerca viene visualizzata"
+      },
+      {
+        "step": "Lascia vuoto il campo del nome e compila gli altri campi",
+        "expected": "Il sistema segnala l’errore di campo obbligatorio"
+      },
+      {
+        "step": "Tenta di confermare la ricerca",
+        "expected": "La ricerca non viene eseguita e compare un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.2.4"
+  },
+  {
+    "test_case_id": "UC3.2.4_TC3",
+    "title": "Ricerca con parametri non validi (stato non esistente)",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema restituisce un messaggio di stato non valido",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La pagina di ricerca è accessibile"
+      },
+      {
+        "step": "Inserisci un stato non esistente tra i parametri di ricerca",
+        "expected": "Il sistema rileva l’errore nel campo stato"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema mostra un messaggio di errore per lo stato non valido"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.2.4"
+  },
+  {
+    "test_case_id": "UC3.2.4_TC4",
+    "title": "Ricerca senza specificare il tipo",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema richiede di selezionare un tipo",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La pagina di ricerca è visibile"
+      },
+      {
+        "step": "Lascia vuoto il campo del tipo e compila gli altri campi",
+        "expected": "Il sistema richiede la selezione di un tipo valido"
+      },
+      {
+        "step": "Tenta di confermare la ricerca",
+        "expected": "La ricerca non viene avviata e compare un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.2.4"
+  },
+  {
+    "test_case_id": "UC3.2.4_TC5",
+    "title": "Ricerca con caratteri speciali nel campo nome",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema esegue la ricerca ignorando o normalizzando i caratteri speciali",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La pagina di ricerca è accessibile"
+      },
+      {
+        "step": "Inserisci caratteri speciali nel campo nome (es. @, #, $)",
+        "expected": "Il sistema accetta l’input o lo normalizza"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema restituisce i risultati pertinenti ignorando o gestendo correttamente i caratteri speciali"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC3.2.4"
+  },
+  {
+    "test_case_id": "UC3.2.4_TC6",
+    "title": "Ricerca con più pagine di risultati",
+    "preconditions": "UC3.2",
+    "postconditions": "L’utente può navigare tra le pagine dei risultati",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La pagina di ricerca è visibile"
+      },
+      {
+        "step": "Inserisci parametri di ricerca che restituiscono più pagine di risultati",
+        "expected": "Il sistema visualizza i link per la navigazione tra le pagine"
+      },
+      {
+        "step": "Naviga tra le pagine dei risultati",
+        "expected": "I risultati vengono visualizzati correttamente in ogni pagina"
+      }
+    ],
+    "test_type": "Prestazione",
+    "priority": "Alta",
+    "use_case_id": "UC3.2.4"
+  },
+  {
+    "test_case_id": "UC3.2.4_TC7",
+    "title": "Ricerca senza risultati",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema visualizza un messaggio di nessun risultato trovato",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La pagina di ricerca è accessibile"
+      },
+      {
+        "step": "Inserisci parametri di ricerca che non restituiscono risultati",
+        "expected": "Il sistema avvisa dell’assenza di risultati"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema visualizza un messaggio informativo sulla mancanza di risultati"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.2.4"
+  },
+  {
+    "test_case_id": "UC3.2.4_TC8",
+    "title": "Ricerca con utente non autorizzato",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema nega l’accesso alla funzione di ricerca",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema con un utente non autorizzato",
+        "expected": "La pagina di login o il messaggio di accesso negato è visibile"
+      },
+      {
+        "step": "Tenta di accedere alla sezione di ricerca schede censimento",
+        "expected": "Il sistema blocca l’accesso e richiede le credenziali di accesso valide"
+      },
+      {
+        "step": "Inserisci credenziali non valide",
+        "expected": "Il sistema mantiene il blocco dell’accesso e avvisa dell’errore di autenticazione"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.2.4"
+  }
+]

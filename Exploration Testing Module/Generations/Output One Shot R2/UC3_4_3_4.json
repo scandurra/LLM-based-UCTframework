@@ -1,0 +1,206 @@
+[
+  {
+    "test_case_id": "UC3.4.3.4_TC1",
+    "title": "Modifica POD sezione consumi con dati validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Accedi alla scheda censimento e seleziona il POD tramite il menù ad albero",
+        "expected": "Il POD viene selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati consumistici del POD",
+        "expected": "I dati precedenti vengono visualizzati"
+      },
+      {
+        "step": "Compila il form con informazioni desiderate e valide",
+        "expected": "Il form viene compilato senza errori"
+      },
+      {
+        "step": "Applica le modifiche",
+        "expected": "Viene visualizzato un messaggio di conferma dell’operazione"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.4"
+  },
+  {
+    "test_case_id": "UC3.4.3.4_TC2",
+    "title": "Modifica POD sezione consumi con dati non validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla scheda censimento e seleziona il POD tramite il menù ad albero",
+        "expected": "Il POD viene selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati consumistici del POD",
+        "expected": "I dati precedenti vengono visualizzati"
+      },
+      {
+        "step": "Compila il form con informazioni non valide (es. campo numerico con testo)",
+        "expected": "Il sistema segnala l’errore di validazione"
+      },
+      {
+        "step": "Tenta di applicare le modifiche",
+        "expected": "Viene mostrato un messaggio di errore e le modifiche non vengono applicate"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.4"
+  },
+  {
+    "test_case_id": "UC3.4.3.4_TC3",
+    "title": "Modifica POD sezione consumi senza compilare il form",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore per campi obbligatori mancanti",
+    "test_steps": [
+      {
+        "step": "Accedi alla scheda censimento e seleziona il POD tramite il menù ad albero",
+        "expected": "Il POD viene selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati consumistici del POD",
+        "expected": "I dati precedenti vengono visualizzati"
+      },
+      {
+        "step": "Lascia vuoto il form e tenta di applicare le modifiche",
+        "expected": "Il sistema segnala l’errore per campi obbligatori mancanti"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.4"
+  },
+  {
+    "test_case_id": "UC3.4.3.4_TC4",
+    "title": "Modifica POD sezione consumi con dati parzialmente validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore per i campi non validi",
+    "test_steps": [
+      {
+        "step": "Accedi alla scheda censimento e seleziona il POD tramite il menù ad albero",
+        "expected": "Il POD viene selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati consumistici del POD",
+        "expected": "I dati precedenti vengono visualizzati"
+      },
+      {
+        "step": "Compila parzialmente il form con informazioni valide e non valide",
+        "expected": "Il sistema segnala l’errore solo per i campi non validi"
+      },
+      {
+        "step": "Tenta di applicare le modifiche",
+        "expected": "Viene mostrato un messaggio di errore per i campi non validi e le modifiche parzialmente valide non vengono applicate"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.4"
+  },
+  {
+    "test_case_id": "UC3.4.3.4_TC5",
+    "title": "Modifica POD sezione consumi da parte di utente non autorizzato",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Accesso negato e richiesta autenticazione",
+    "test_steps": [
+      {
+        "step": "Tenta di accedere alla scheda censimento senza permessi sufficienti",
+        "expected": "Viene visualizzato un messaggio di accesso negato"
+      },
+      {
+        "step": "Tenta comunque di selezionare il POD e modificare i dati consumistici",
+        "expected": "L’accesso viene bloccato e viene richiesta l’autenticazione"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.4"
+  },
+  {
+    "test_case_id": "UC3.4.3.4_TC6",
+    "title": "Modifica POD sezione consumi con caratteri speciali nei campi di input",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema gestisce correttamente i caratteri speciali",
+    "test_steps": [
+      {
+        "step": "Accedi alla scheda censimento e seleziona il POD tramite il menù ad albero",
+        "expected": "Il POD viene selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati consumistici del POD",
+        "expected": "I dati precedenti vengono visualizzati"
+      },
+      {
+        "step": "Compila il form con caratteri speciali (es. @, #, $) nei campi di input",
+        "expected": "Il sistema gestisce correttamente i caratteri speciali senza errori"
+      },
+      {
+        "step": "Applica le modifiche",
+        "expected": "Le modifiche vengono applicate correttamente e il sistema non segnala errori"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.4"
+  },
+  {
+    "test_case_id": "UC3.4.3.4_TC7",
+    "title": "Modifica POD sezione consumi con un numero elevato di caratteri nei campi di input",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema gestisce correttamente il limite di caratteri",
+    "test_steps": [
+      {
+        "step": "Accedi alla scheda censimento e seleziona il POD tramite il menù ad albero",
+        "expected": "Il POD viene selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati consumistici del POD",
+        "expected": "I dati precedenti vengono visualizzati"
+      },
+      {
+        "step": "Compila il form con un numero elevato di caratteri (es. oltre 1000 caratteri) nei campi di input",
+        "expected": "Il sistema gestisce correttamente il limite di caratteri e non permette l’inserimento di dati oltre il limite"
+      },
+      {
+        "step": "Tenta di applicare le modifiche",
+        "expected": "Il sistema segnala un errore per il superamento del limite di caratteri e le modifiche non vengono applicate"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.4"
+  },
+  {
+    "test_case_id": "UC3.4.3.4_TC8",
+    "title": "Modifica POD sezione consumi in concomitanza con altre operazioni di modifica",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema gestisce correttamente le modifiche concorrenti",
+    "test_steps": [
+      {
+        "step": "Accedi alla scheda censimento e seleziona il POD tramite il menù ad albero",
+        "expected": "Il POD viene selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati consumistici del POD",
+        "expected": "I dati precedenti vengono visualizzati"
+      },
+      {
+        "step": "Compila il form con informazioni desiderate mentre un altro utente sta modificando altri campi della stessa scheda censimento",
+        "expected": "Il sistema gestisce correttamente le modifiche concorrenti e non perde dati"
+      },
+      {
+        "step": "Applica le modifiche",
+        "expected": "Le modifiche vengono applicate correttamente e il sistema non segnala errori di concorrenza"
+      }
+    ],
+    "test_type": "Integrazione",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.4"
+  }
+]

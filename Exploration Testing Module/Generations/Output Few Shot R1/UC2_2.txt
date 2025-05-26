@@ -1,0 +1,101 @@
+[
+  {
+    "test_case_id": "UC2.2_TC1",
+    "title": "Ricerca impianti di illuminazione con parametri validi",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza gli impianti di illuminazione che corrispondono ai criteri di ricerca",
+    "test_steps": [
+      {
+        "step": "Seleziona un comune e dei parametri di ricerca validi",
+        "expected": "I parametri vengono accettati"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "La mappa si aggiorna con gli impianti di illuminazione trovati"
+      },
+      {
+        "step": "Visualizza i dettagli degli impianti di illuminazione",
+        "expected": "Le informazioni vengono visualizzate correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.2"
+  },
+  {
+    "test_case_id": "UC2.2_TC2",
+    "title": "Ricerca senza selezionare il comune",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema segnala l’errore di ricerca",
+    "test_steps": [
+      {
+        "step": "Lascia vuoto il campo del comune",
+        "expected": "Il sistema richiede la selezione del comune"
+      },
+      {
+        "step": "Tenta di confermare la ricerca",
+        "expected": "La ricerca non procede e viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.2"
+  },
+  {
+    "test_case_id": "UC2.2_TC3",
+    "title": "Ricerca con parametri non validi",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema segnala l’errore di ricerca",
+    "test_steps": [
+      {
+        "step": "Inserisci dei parametri di ricerca non validi (es. testo al posto di numeri)",
+        "expected": "Il sistema rileva l’errore e richiede la correzione"
+      },
+      {
+        "step": "Tenta di confermare la ricerca",
+        "expected": "La ricerca non procede e viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.2"
+  },
+  {
+    "test_case_id": "UC2.2_TC4",
+    "title": "Ricerca con selezione multipla di comuni",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema visualizza gli impianti di illuminazione per tutti i comuni selezionati",
+    "test_steps": [
+      {
+        "step": "Seleziona più comuni",
+        "expected": "I comuni vengono aggiunti alla lista di ricerca"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "La mappa si aggiorna con gli impianti di illuminazione trovati per tutti i comuni selezionati"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.2"
+  },
+  {
+    "test_case_id": "UC2.2_TC5",
+    "title": "Boundary test: ricerca con il massimo numero di parametri",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema gestisce correttamente tutti i parametri",
+    "test_steps": [
+      {
+        "step": "Seleziona il massimo numero di parametri disponibili",
+        "expected": "Tutti i parametri vengono accettati"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "La mappa si aggiorna con gli impianti di illuminazione trovati in base a tutti i parametri"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Alta",
+    "use_case_id": "UC2.2"
+  },
+]

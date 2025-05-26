@@ -1,0 +1,105 @@
+[
+  {
+    "test_case_id": "UC3.4.4_TC1",
+    "title": "Congelamento scheda censimento con conferma",
+    "preconditions": "UC3.4",
+    "postconditions": "La scheda viene congelata e lo stato visualizzato è non attivo",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di congelamento della scheda censimento",
+        "expected": "L’opzione di congelamento è disponibile"
+      },
+      {
+        "step": "Conferma il congelamento della scheda indicata",
+        "expected": "Viene visualizzato un messaggio di conferma dell’operazione"
+      },
+      {
+        "step": "Verifica lo stato della scheda dopo il congelamento",
+        "expected": "La scheda è non attiva e non sono possibili ulteriori azioni"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.4"
+  },
+  {
+    "test_case_id": "UC3.4.4_TC2",
+    "title": "Congelamento scheda censimento con annullamento",
+    "preconditions": "UC3.4",
+    "postconditions": "Il congelamento non viene eseguito e la scheda rimane nello stato precedente",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di congelamento della scheda censimento",
+        "expected": "L’opzione di congelamento è disponibile"
+      },
+      {
+        "step": "Annulla il congelamento della scheda indicata",
+        "expected": "Il processo di congelamento viene interrotto"
+      },
+      {
+        "step": "Verifica lo stato della scheda dopo l’annullamento",
+        "expected": "La scheda rimane nello stato precedente al tentativo di congelamento"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.4"
+  },
+  {
+    "test_case_id": "UC3.4.4_TC3",
+    "title": "Congelamento scheda censimento senza autorizzazione",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente non può eseguire il congelamento",
+    "test_steps": [
+      {
+        "step": "Tenta di accedere alla funzione di congelamento senza permessi sufficienti",
+        "expected": "Accesso negato"
+      },
+      {
+        "step": "Verifica la possibilità di eseguire altre azioni sulla scheda",
+        "expected": "L’utente può comunque visualizzare la scheda ma non modificarla"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.4"
+  },
+  {
+    "test_case_id": "UC3.4.4_TC4",
+    "title": "Congelamento di più schede censimento contemporaneamente",
+    "preconditions": "UC3.4",
+    "postconditions": "Tutte le schede selezionate vengono congelate",
+    "test_steps": [
+      {
+        "step": "Seleziona più schede censimento per il congelamento",
+        "expected": "L’opzione di congelamento è disponibile per tutte le schede"
+      },
+      {
+        "step": "Conferma il congelamento delle schede selezionate",
+        "expected": "Tutte le schede vengono congelate e visualizzano lo stato non attivo"
+      }
+    ],
+    "test_type": "Prestazione",
+    "priority": "Media",
+    "use_case_id": "UC3.4.4"
+  },
+  {
+    "test_case_id": "UC3.4.4_TC5",
+    "title": "Congelamento scheda censimento con dati non validi",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema rileva e gestisce i dati non validi",
+    "test_steps": [
+      {
+        "step": "Inserisci dati non validi durante il processo di congelamento",
+        "expected": "Il sistema segnala l’errore e richiede la correzione"
+      },
+      {
+        "step": "Correggi i dati e riprova il congelamento",
+        "expected": "La scheda viene congelata correttamente dopo la correzione dei dati"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC3.4.4"
+  }
+]

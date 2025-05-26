@@ -1,0 +1,194 @@
+[
+  {
+    "test_case_id": "UC3.4.3.3_TC1",
+    "title": "Modifica POD sezione anagrafica con dati validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD viene selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati di anagrafica",
+        "expected": "Il tab dei dati anagrafici viene visualizzato"
+      },
+      {
+        "step": "Compila il form con informazioni valide e applica le modifiche",
+        "expected": "Le modifiche vengono applicate con successo"
+      },
+      {
+        "step": "Verifica la presenza del messaggio di conferma",
+        "expected": "Il messaggio di conferma dell’operazione viene visualizzato"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.3"
+  },
+  {
+    "test_case_id": "UC3.4.3.3_TC2",
+    "title": "Modifica POD sezione anagrafica con dati non validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD viene selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati di anagrafica",
+        "expected": "Il tab dei dati anagrafici viene visualizzato"
+      },
+      {
+        "step": "Compila il form con informazioni non valide (es. campo obbligatorio vuoto) e applica le modifiche",
+        "expected": "Viene mostrato un messaggio di errore per i dati non validi"
+      },
+      {
+        "step": "Verifica che le modifiche non vengano applicate",
+        "expected": "Le modifiche non vengono salvate"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.3"
+  },
+  {
+    "test_case_id": "UC3.4.3.3_TC3",
+    "title": "Modifica POD sezione anagrafica senza autorizzazione",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’accesso alla modifica dei dati viene negato",
+    "test_steps": [
+      {
+        "step": "Accedi come utente non autorizzato alla modifica del POD",
+        "expected": "Il sistema nega l’accesso alla sezione di modifica"
+      },
+      {
+        "step": "Tenta di selezionare il tab relativo ai dati di anagrafica",
+        "expected": "L’accesso al tab viene negato"
+      },
+      {
+        "step": "Verifica che non sia possibile applicare modifiche",
+        "expected": "Le modifiche non sono possibili e viene visualizzato un messaggio di accesso negato"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.3"
+  },
+  {
+    "test_case_id": "UC3.4.3.3_TC4",
+    "title": "Modifica POD sezione anagrafica con campi obbligatori vuoti",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore per i campi obbligatori mancanti",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD viene selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati di anagrafica e lascia vuoti i campi obbligatori",
+        "expected": "I campi obbligatori sono evidenziati come mancanti"
+      },
+      {
+        "step": "Tenta di applicare le modifiche",
+        "expected": "Viene mostrato un messaggio di errore per i campi obbligatori vuoti"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.3"
+  },
+  {
+    "test_case_id": "UC3.4.3.3_TC5",
+    "title": "Modifica POD sezione anagrafica con dati troppo lunghi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore per i dati troppo lunghi",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD viene selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati di anagrafica e inserisci dati troppo lunghi in un campo",
+        "expected": "I dati vengono rifiutati per la loro lunghezza"
+      },
+      {
+        "step": "Tenta di applicare le modifiche",
+        "expected": "Viene mostrato un messaggio di errore per i dati troppo lunghi"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.3"
+  },
+  {
+    "test_case_id": "UC3.4.3.3_TC6",
+    "title": "Modifica POD sezione anagrafica con caratteri non ammessi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore per i caratteri non ammessi",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD viene selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati di anagrafica e inserisci caratteri non ammessi in un campo",
+        "expected": "I caratteri vengono rifiutati per la loro natura"
+      },
+      {
+        "step": "Tenta di applicare le modifiche",
+        "expected": "Viene mostrato un messaggio di errore per i caratteri non ammessi"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.3"
+  },
+  {
+    "test_case_id": "UC3.4.3.3_TC7",
+    "title": "Modifica POD sezione anagrafica e annullamento delle modifiche",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Le modifiche vengono annullate correttamente",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD viene selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati di anagrafica e apporta delle modifiche",
+        "expected": "Le modifiche vengono applicate temporaneamente"
+      },
+      {
+        "step": "Annulla le modifiche",
+        "expected": "Le modifiche vengono annullate e i dati tornano allo stato originale"
+      }
+    ],
+    "test_type": "Funzionalità",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.3"
+  },
+  {
+    "test_case_id": "UC3.4.3.3_TC8",
+    "title": "Modifica POD sezione anagrafica con più utenti contemporaneamente",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema gestisce correttamente le modifiche multiple",
+    "test_steps": [
+      {
+        "step": "Due o più utenti selezionano lo stesso POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il sistema permette la modifica contemporanea"
+      },
+      {
+        "step": "Gli utenti applicano modifiche diverse ai dati anagrafici",
+        "expected": "Le modifiche vengono gestite correttamente e non si sovrappongono"
+      },
+      {
+        "step": "Verifica che le modifiche vengano salvate correttamente per ogni utente",
+        "expected": "Tutte le modifiche vengono applicate senza perdita di dati"
+      }
+    ],
+    "test_type": "Concorrenza",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.3"
+  }
+]

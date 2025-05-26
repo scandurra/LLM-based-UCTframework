@@ -1,0 +1,117 @@
+[
+  {
+    "test_case_id": "UC3.1_TC1",
+    "title": "Visualizzazione schede censimento con dati validi e paginazione",
+    "preconditions": "UC3",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di visualizzazione schede censimento",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona il numero di righe da visualizzare per paginazione",
+        "expected": "Il sistema visualizza il numero selezionato di righe"
+      },
+      {
+        "step": "Scorri lateralmente per visualizzare tutte le colonne",
+        "expected": "Tutte le colonne sono visualizzabili"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC2",
+    "title": "Visualizzazione schede censimento con ordinamento",
+    "preconditions": "UC3",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di visualizzazione schede censimento",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul nome di una colonna per ordinare i dati",
+        "expected": "I dati sono ordinati correttamente"
+      },
+      {
+        "step": "Clicca nuovamente sul nome della stessa colonna per invertire l’ordinamento",
+        "expected": "L’ordinamento è invertito correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC3",
+    "title": "Visualizzazione schede censimento con dati non validi",
+    "preconditions": "UC3",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di visualizzazione schede censimento",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci dati non validi nella ricerca",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      },
+      {
+        "step": "Clicca sul pulsante di reset per reimpostare la ricerca",
+        "expected": "La ricerca è reimpostata correttamente"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC4",
+    "title": "Visualizzazione schede censimento con paginazione non valida",
+    "preconditions": "UC3",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di visualizzazione schede censimento",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un numero di righe non valido per la paginazione",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      },
+      {
+        "step": "Clicca sul pulsante di reset per reimpostare la paginazione",
+        "expected": "La paginazione è reimpostata correttamente"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC5",
+    "title": "Visualizzazione schede censimento con utente non autorizzato",
+    "preconditions": "UC3",
+    "postconditions": "L’utente visualizza un messaggio di accesso negato",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di visualizzazione schede censimento senza autorizzazione",
+        "expected": "Il sistema visualizza un messaggio di accesso negato"
+      },
+      {
+        "step": "Tenta di accedere alla sezione con credenziali non valide",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      },
+      {
+        "step": "Clicca sul pulsante di registrazione per richiedere l’accesso",
+        "expected": "La procedura di registrazione è avviata correttamente"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC3.1"
+  }
+]

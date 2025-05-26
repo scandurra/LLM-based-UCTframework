@@ -1,0 +1,472 @@
+📝 PROMPT:
+<|begin_of_text|><|start_header_id|>system<|end_header_id|>
+You are a Quality Assurance expert. Your task is to generate a suite of test cases for each use case provided in JSON format.
+
+The output must be in **JSON only**, structured as an array of test case objects, following the example below:
+
+[
+  {
+    "test_case_id": "UC7.2_TC1",
+    "title": "Segnalazione guasto con dati validi e foto allegata",
+    "preconditions": "UC7",
+    "postconditions": "Il sistema registra la segnalazione e notifica il fornitore responsabile",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione segnalazioni guasti",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Compila il modulo inserendo posizione, descrizione e carica una foto",
+        "expected": "Il modulo viene completato correttamente"
+      },
+      {
+        "step": "Conferma l’invio della segnalazione",
+        "expected": "Il sistema registra la segnalazione e mostra conferma"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC7.2"
+  },
+  ... (other test cases)
+]
+
+Guidelines:
+1) You must not create test cases that can be reproducible on the server side, so you must not generate blocked or disabled account tests, connection error or slow connection tests, maintenance tests, etc.
+2) You should create test cases that can be reproducible on the client side, including SQL injections for a Login use case.
+3) Generate a minimum of 3 test cases per use case, maxmimum of 10 (depending of the needs).
+4) Include both **positive** (success) and **negative** (error, missing input, etc.) tests , boundary conditions(if applicable),
+edge cases(if applicable), security and usability considerations (if applicable, for example in a Login use case you can do the injection test case).
+5) Use unique names for `test_case_id` following the format `UCx_TCy`.
+6) Base your test cases on base_sequence, branch_sequence, exception_sequence, and pre/postconditions.
+7) If in the use case description in JSON has "UCx" as "Precondition" tag, you must put "UCx" in the preconditions field of the test cases.
+
+
+Only return the JSON array. DO NOT explain anything.  
+DO NOT include "```json" or "```" markers.  
+Very importanti, you have to make sure all brackets are correctly opened and closed.
+Follow strictly the guidelines.
+
+Note: Even though the structure is in English, all content inside the fields (titles, steps, etc.) must remain in **Italian**.
+
+<|eot_id|><|start_header_id|>user<|end_header_id|>
+The following is the use case in JSON format, generate different test cases:
+[
+  {
+    "Id": "UC8.2.3",
+    "Title": "Esportazione report energetici (parte di UC8.2: Analisi consumi energetici)",
+    "Summary": "Consente agli utenti autorizzati di esportare i report dei consumi energetici in diversi formati",
+    "Actor": [
+      "Regione",
+      "Fornitore"
+    ],
+    "Precondition": "UC8.2",
+    "Postcondition": "Il file esportato viene scaricato correttamente",
+    "Base_sequence": [
+    "L’utente accede alla sezione analisi consumi",
+    "Seleziona il periodo di interesse e il formato di esportazione (PDF, CSV)",
+    "Avvia l’esportazione e scarica il file"
+    ],
+    "Branch_sequence": [],
+    "Exception_sequence": [],
+    "Note": "no"
+  }
+]
+<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+[
+  {
+    "test_case_id": "UC8.2.3_TC1",
+    "title": "Esportazione report in PDF con dati validi",
+    "preconditions": "UC8.2",
+    "postconditions": "Il file esportato viene scaricato correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione analisi consumi",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un periodo valido e il formato PDF",
+        "expected": "Le selezioni vengono accettate"
+      },
+      {
+        "step": "Avvia l’esportazione",
+        "expected": "Il file PDF viene generato e scaricato"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC8.2.3"
+  },
+  {
+    "test_case_id": "UC8.2.3_TC2",
+    "title": "Esportazione con formato non supportato",
+    "preconditions": "UC8.2",
+    "postconditions": "Il file non viene esportato e viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione analisi consumi",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un formato non previsto (es. .doc)",
+        "expected": "Il sistema mostra un errore di formato non valido"
+      },
+      {
+        "step": "Tenta di avviare l’esportazione",
+        "expected": "L’operazione viene bloccata"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC8.2.3"
+  },
+  {
+    "test_case_id": "UC8.2.3_TC3",
+    "title": "Esportazione CSV con grande quantità di dati",
+    "preconditions": "UC8.2",
+    "postconditions": "Il file esportato viene scaricato correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione analisi consumi",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un intervallo temporale ampio e il formato CSV",
+        "expected": "Il sistema accetta l’intervallo"
+      },
+      {
+        "step": "Avvia l’esportazione",
+        "expected": "Il file CSV viene generato con successo"
+      }
+    ],
+    "test_type": "Prestazione",
+    "priority": "Alta",
+    "use_case_id": "UC8.2.3"
+  },
+  {
+    "test_case_id": "UC8.2.3_TC4",
+    "title": "Esportazione senza selezionare periodo",
+    "preconditions": "UC8.2",
+    "postconditions": "Il file non viene esportato",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione analisi consumi",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Lascia vuoto il campo relativo al periodo",
+        "expected": "Il sistema segnala la mancanza di informazioni"
+      },
+      {
+        "step": "Tenta di avviare l’esportazione",
+        "expected": "La funzione non procede e viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC8.2.3"
+  },
+  {
+    "test_case_id": "UC8.2.3_TC5",
+    "title": "Boundary test: esportazione con date di inizio e fine coincidenti",
+    "preconditions": "UC8.2",
+    "postconditions": "Il file viene esportato con i dati del giorno selezionato",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione analisi consumi",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Imposta come data di inizio e fine la stessa giornata",
+        "expected": "Il sistema accetta la selezione"
+      },
+      {
+        "step": "Avvia l’esportazione",
+        "expected": "Il file viene esportato correttamente"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Alta",
+    "use_case_id": "UC8.2.3"
+  },
+  {
+    "test_case_id": "UC8.2.3_TC6",
+    "title": "Security test: esportazione da parte di utente non autenticato",
+    "preconditions": "UC8.2",
+    "postconditions": "Nessun file viene generato; viene richiesta l’autenticazione",
+    "test_steps": [
+      {
+        "step": "Accedi direttamente alla sezione analisi consumi senza login",
+        "expected": "Il sistema reindirizza alla pagina di login"
+      },
+      {
+        "step": "Tenta di accedere manualmente all’URL di esportazione",
+        "expected": "Accesso negato e richiesta autenticazione"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC8.2.3"
+  },
+  {
+    "test_case_id": "UC8.2.3_TC7",
+    "title": "Edge case: esportazione con caratteri speciali nel nome del file",
+    "preconditions": "UC8.2",
+    "postconditions": "Il file viene salvato con un nome corretto e sicuro",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione analisi consumi",
+        "expected": "La sezione viene caricata correttamente"
+      },
+      {
+        "step": "Immetti un titolo con caratteri speciali (es. consumo@2024!)",
+        "expected": "Il sistema normalizza o rimuove i caratteri non validi"
+      },
+      {
+        "step": "Avvia l’esportazione",
+        "expected": "Il file viene generato con un nome valido"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC8.2.3"
+  },
+  {
+    "test_case_id": "UC8.2.3_TC8",
+    "title": "Esportazione mentre il sistema è in manutenzione",
+    "preconditions": "UC8.2",
+    "postconditions": "Il sistema notifica l’indisponibilità della funzione",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione analisi consumi",
+        "expected": "Viene visualizzato un messaggio di manutenzione"
+      },
+      {
+        "step": "Tenta comunque di esportare un report",
+        "expected": "Il sistema blocca l’operazione e notifica la manutenzione in corso"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC8.2.3"
+  }
+]
+<|eot_id|><|start_header_id|>user<|end_header_id|>
+The following is the use case in JSON format, generate different test cases:
+
+[
+  {
+    "Id": "UC1",
+    "Title": "Login utente",
+    "Summary": "Autenticazione di un’utente registrato al sistema",
+    "Actor": [
+      "Regione",
+      "Sindaco",
+      "Fornitore",
+      "Progettista",
+      "Cittadino"
+    ],
+    "Precondition": "L’utente non è autenticato",
+    "Postcondition": "L’utente è autenticato ed è a conoscenza che l’operazione ha avuto successo",
+    "Base_sequence": [
+      "L’utente inserisce le proprie credenziali all’interno del form",
+      "L’utente inizia il processo di autenticazione cliccando il tasto “Login”",
+      "L’utente visualizza un messaggio di operazione completata con successo"
+    ],
+    "Branch_sequence": [
+      "All’utente è richiesto modificare la prima password di accesso",
+      "L’utente inserisce la nuova password e conferma"
+    ],
+    "Exception_sequence": [
+      "L’utente visualizza un messaggio di operazione completata con un errore relativo all’eccezione verificatasi (credenziali errate, mismatch della nuova password…)",
+      "L’utente può ripartire dal punto 1 della base sequence"
+    ],
+    "Note": "no"
+  }
+]
+
+<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+📥 RISPOSTA:
+[
+  {
+    "test_case_id": "UC1_TC1",
+    "title": "Login con credenziali valide",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "L’utente è autenticato ed è a conoscenza che l’operazione ha avuto successo",
+    "test_steps": [
+      {
+        "step": "Inserisci username e password corretti nel form di login",
+        "expected": "Le credenziali vengono accettate"
+      },
+      {
+        "step": "Clicca il tasto “Login”",
+        "expected": "Il sistema autentica l’utente con successo"
+      },
+      {
+        "step": "Verifica la presenza di un messaggio di login riuscito",
+        "expected": "Viene visualizzato un messaggio di benvenuto o conferma di accesso"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC2",
+    "title": "Login con credenziali errate",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Inserisci username o password errati nel form di login",
+        "expected": "Le credenziali vengono rifiutate"
+      },
+      {
+        "step": "Clicca il tasto “Login”",
+        "expected": "Il sistema mostra un messaggio di errore di autenticazione"
+      },
+      {
+        "step": "Verifica la presenza di un messaggio di login fallito",
+        "expected": "Viene visualizzato un messaggio di credenziali errate"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC3",
+    "title": "Login con campo username vuoto",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "Il sistema richiede di inserire il nome utente",
+    "test_steps": [
+      {
+        "step": "Lascia vuoto il campo username e inserisci una password",
+        "expected": "Il sistema segnala l’errore di campo obbligatorio"
+      },
+      {
+        "step": "Clicca il tasto “Login”",
+        "expected": "Il sistema non procede con l’autenticazione"
+      },
+      {
+        "step": "Verifica la presenza di un messaggio di errore per campo vuoto",
+        "expected": "Viene visualizzato un messaggio di inserire il nome utente"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC4",
+    "title": "Login con campo password vuoto",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "Il sistema richiede di inserire la password",
+    "test_steps": [
+      {
+        "step": "Inserisci il nome utente e lascia vuoto il campo password",
+        "expected": "Il sistema segnala l’errore di campo obbligatorio"
+      },
+      {
+        "step": "Clicca il tasto “Login”",
+        "expected": "Il sistema non procede con l’autenticazione"
+      },
+      {
+        "step": "Verifica la presenza di un messaggio di errore per campo vuoto",
+        "expected": "Viene visualizzato un messaggio di inserire la password"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC5",
+    "title": "SQL Injection nel campo username",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "Il sistema deve prevenire l’iniezione di codice SQL",
+    "test_steps": [
+      {
+        "step": "Inserisci una stringa di testo che contiene caratteri pericolosi (es. ' OR 1=1 --)",
+        "expected": "Il sistema deve rilevare e prevenire l’attacco"
+      },
+      {
+        "step": "Clicca il tasto “Login”",
+        "expected": "Il sistema non esegue la query malevola"
+      },
+      {
+        "step": "Verifica la presenza di un messaggio di errore per input non valido",
+        "expected": "Viene visualizzato un messaggio di input non valido o di attacco rilevato"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC6",
+    "title": "Cambio della prima password di accesso",
+    "preconditions": "L’utente è autenticato con la prima password",
+    "postconditions": "La nuova password viene salvata e utilizzata per le successive autenticazioni",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema con la prima password assegnata",
+        "expected": "Il sistema richiede di cambiare la password"
+      },
+      {
+        "step": "Inserisci una nuova password e confermala",
+        "expected": "La nuova password viene accettata e salvata"
+      },
+      {
+        "step": "Verifica che la nuova password funzioni per l’autenticazione",
+    "expected": "Il sistema autentica correttamente con la nuova password"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC7",
+    "title": "Tentativi di login consecutivi con credenziali errate",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "Il sistema blocca o limita gli accessi dopo un numero definito di tentativi falliti",
+    "test_steps": [
+      {
+        "step": "Esegui più tentativi di login con credenziali errate",
+        "expected": "Il sistema rileva i tentativi falliti e blocca o limita l’accesso"
+      },
+      {
+        "step": "Verifica la presenza di un messaggio di account bloccato o limitato",
+        "expected": "Viene visualizzato un messaggio che informa dell’impossibilità di accedere"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC8",
+    "title": "Login con utente non registrato",
+    "preconditions": "L’utente non è registrato al sistema",
+    "postconditions": "Il sistema informa che l’utente non esiste",
+    "test_steps": [
+      {
+        "step": "Inserisci credenziali di un utente non registrato",
+        "expected": "Il sistema segnala che l’utente non è trovato"
+      },
+      {
+        "step": "Clicca il tasto “Login”",
+        "expected": "Il sistema mostra un messaggio di utente non esistente"
+      },
+      {
+        "step": "Verifica la presenza di un link o indicazione per la registrazione",
+        "expected": "Viene offerta la possibilità di registrarsi"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC1"
+  }
+]

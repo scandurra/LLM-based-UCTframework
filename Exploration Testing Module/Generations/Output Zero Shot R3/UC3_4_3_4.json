@@ -1,0 +1,117 @@
+[
+  {
+    "test_case_id": "UC3.4.3.4_TC1",
+    "title": "Modifica POD sezione consumi con dati validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD è selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati consumistici del POD",
+        "expected": "Il tab è visualizzato correttamente"
+      },
+      {
+        "step": "Compila il form con le informazioni desiderate e applica le modifiche",
+        "expected": "Le modifiche vengono applicate correttamente e viene visualizzato un messaggio di conferma"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.4"
+  },
+  {
+    "test_case_id": "UC3.4.3.4_TC2",
+    "title": "Modifica POD sezione consumi con dati non validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD è selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati consumistici del POD",
+        "expected": "Il tab è visualizzato correttamente"
+      },
+      {
+        "step": "Compila il form con dati non validi e applica le modifiche",
+        "expected": "Viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.4"
+  },
+  {
+    "test_case_id": "UC3.4.3.4_TC3",
+    "title": "Modifica POD sezione consumi con campi obbligatori vuoti",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD è selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati consumistici del POD",
+        "expected": "Il tab è visualizzato correttamente"
+      },
+      {
+        "step": "Lascia vuoti i campi obbligatori e applica le modifiche",
+        "expected": "Viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.4"
+  },
+  {
+    "test_case_id": "UC3.4.3.4_TC4",
+    "title": "Modifica POD sezione consumi con dati di input eccessivamente lunghi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD è selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati consumistici del POD",
+        "expected": "Il tab è visualizzato correttamente"
+      },
+      {
+        "step": "Inserisci dati di input eccessivamente lunghi e applica le modifiche",
+        "expected": "Viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.4"
+  },
+  {
+    "test_case_id": "UC3.4.3.4_TC5",
+    "title": "Modifica POD sezione consumi con caratteri speciali non ammessi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD è selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati consumistici del POD",
+        "expected": "Il tab è visualizzato correttamente"
+      },
+      {
+        "step": "Inserisci caratteri speciali non ammessi e applica le modifiche",
+        "expected": "Viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.4"
+  }
+]
