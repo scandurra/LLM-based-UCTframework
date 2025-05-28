@@ -1,0 +1,10 @@
+2025-05-26 19:56:46,005 - __main__ - INFO - Found 0 dependencies for use case UC1
+2025-05-26 19:56:46,005 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt template loaded from path: ./prompts/single_processing/zero_shot/codellama/raw.txt
+2025-05-26 19:56:46,005 - test_code_generator.prompt_builder.prompt_builder - INFO - Test parameters loaded from path: ./input_files/parameters/test_parameters.env
+2025-05-26 19:56:46,005 - test_code_generator.prompt_builder.prompt_builder - INFO - Test reporter loaded from path: ./input_files/reporter_minimal.js
+2025-05-26 19:56:46,005 - test_code_generator.prompt_builder.prompt_builder - ERROR - [Errno 2] No such file or directory: './prompts/single_processing/zero_shot/previous_code_section.txt'
+Traceback (most recent call last):
+  File "/home/sronzoni/GitHub/LLM-based-UCTframework/test-code-generator/src/test_code_generator/prompt_builder/prompt_builder.py", line 81, in __load_previous_code_section_file
+    with open("./prompts/single_processing/zero_shot/previous_code_section.txt", "r") as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: './prompts/single_processing/zero_shot/previous_code_section.txt'

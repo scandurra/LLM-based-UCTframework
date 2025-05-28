@@ -8,16 +8,16 @@ class DependencyGraph:
     def __init__(self):
         self.nodes: Dict[str, Node] = {}
     
-    def add_node(self, node_id: str) -> Node:
+    def add_node(self, node_id: str, base_test_case_id: str|None) -> Node:
         """Add a node to the graph if it doesn't exist and return it."""
         if node_id not in self.nodes:
-            self.nodes[node_id] = Node(node_id)
+            self.nodes[node_id] = Node(node_id, base_test_case_id)
         return self.nodes[node_id]
     
     def add_edge(self, source_id: str, target_id: str) -> None:
         """Add a dependency edge from source to target."""
-        source = self.add_node(source_id)
-        target = self.add_node(target_id)
+        source = self.add_node(source_id, None)
+        target = self.add_node(target_id, None)
         
         # source depends on target
         source.add_dependency(target)
@@ -95,7 +95,7 @@ class DependencyGraph:
         if 'nodes' in data:
             for node_data in data['nodes']:
                 if 'id' in node_data:
-                    graph.add_node(node_data['id'])
+                    graph.add_node(node_data['id'], node_data.get('base_test_case_id'))
         
         # Add all edges
         if 'edges' in data:

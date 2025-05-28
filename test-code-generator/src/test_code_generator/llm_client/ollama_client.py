@@ -30,11 +30,6 @@ class OllamaClient(BaseLLMClient):
         """
 
         try:
-            messages = [{
-                "role": "user",
-                "content": prompt
-            }]
-
             response = ollama.generate(
                 model=self.model,
                 prompt=prompt,
@@ -45,18 +40,12 @@ class OllamaClient(BaseLLMClient):
                     "temperature": temperature
                 }
             )
-            content = response["response"]
-
-            # response = ollama.chat(
-            #     model=self.model,
-            #     messages=messages,
-            #     stream=False,
-            #     options={
-            #         "timeout": self.timeout,
-            #         "temperature": temperature
-            #     }
-            # )
-            # content = response.message.content
+            content = ""
+            for chunk in response:
+                content += chunk['message']['content']
+                print(chunk['message']['content'], end='', flush=True)
+            #content = response["response"]
+            
             logger.info(f"Ollama responded with: \n {content}")
             
             return content

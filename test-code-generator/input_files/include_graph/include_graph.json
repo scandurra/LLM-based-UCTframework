@@ -1,67 +1,88 @@
 {
   "nodes": [
     {
-      "id": "UC1"
+      "id": "UC1",
+      "base_test_case_id": "UC1_TC1"
     },
     {
-      "id": "UC2.1"
+      "id": "UC2.1",
+      "base_test_case_id": "UC2.1_TC1"
     },
     {
-      "id": "UC2"
+      "id": "UC2",
+      "base_test_case_id": "UC2_TC1"
     },
     {
-      "id": "UC2.2"
+      "id": "UC2.2",
+      "base_test_case_id": "UC2.2_TC1"
     },
     {
-      "id": "UC2.3"
+      "id": "UC2.3",
+      "base_test_case_id": "UC2.3_TC1"
     },
     {
-      "id": "UC2.4"
+      "id": "UC2.4",
+      "base_test_case_id": "UC2.4_TC1"
     },
     {
-      "id": "UC2.5"
+      "id": "UC2.5",
+      "base_test_case_id": "UC2.5_TC1"
     },
     {
-      "id": "UC2.6"
+      "id": "UC2.6",
+      "base_test_case_id": "UC2.6_TC1"
     },
     {
-      "id": "UC3.1"
+      "id": "UC3.1",
+      "base_test_case_id": "UC3.1_TC1"
     },
     {
-      "id": "UC3"
+      "id": "UC3",
+      "base_test_case_id": "UC3_TC1"
     },
     {
-      "id": "UC3.2.1"
+      "id": "UC3.2.1",
+      "base_test_case_id": "UC3.2.1_TC1"
     },
     {
-      "id": "UC3.2"
+      "id": "UC3.2",
+      "base_test_case_id": "UC3.2_TC1"
     },
     {
-      "id": "UC3.2.2"
+      "id": "UC3.2.2",
+      "base_test_case_id": "UC3.2.2_TC1"
     },
     {
-      "id": "UC3.2.3"
+      "id": "UC3.2.3",
+      "base_test_case_id": "UC3.2.3_TC1"
     },
     {
-      "id": "UC3.2.4"
+      "id": "UC3.2.4",
+      "base_test_case_id": "UC3.2.4_TC1"
     },
     {
-      "id": "UC3.3"
+      "id": "UC3.3",
+      "base_test_case_id": "UC3.3_TC1"
     },
     {
-      "id": "UC3.4.1"
+      "id": "UC3.4.1",
+      "base_test_case_id": "UC3.4.1_TC1"
     },
     {
-      "id": "UC3.4"
+      "id": "UC3.4",
+      "base_test_case_id": "UC3.4_TC1"
     },
     {
-      "id": "UC3.4.2"
+      "id": "UC3.4.2",
+      "base_test_case_id": "UC3.4.2_TC1"
     },
     {
-      "id": "UC3.4.3.1"
+      "id": "UC3.4.3.1",
+      "base_test_case_id": "UC3.4.3.1_TC1"
     },
     {
-      "id": "UC3.4.3"
+      "id": "UC3.4.3",
+      "base_test_case_id": "UC3.4.3.3_TC1"
     },
     {
       "id": "UC3.4.3.10"
@@ -118,7 +139,8 @@
       "id": "UC4.3"
     },
     {
-      "id": "UC5"
+      "id": "UC5",
+      "base_test_case_id": "UC5_TC1"
     },
     {
       "id": "UC6"

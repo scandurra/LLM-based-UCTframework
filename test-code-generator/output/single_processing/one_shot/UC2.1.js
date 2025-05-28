@@ -1,6 +1,3 @@
-
-
-```javascript
 test("UC2.1_TC1 - Download PDF completato con successo", async ({ page, browserName }) => {
   reporter.setBrowserName(browserName);
   reporter.setTestCase("UC2.1_TC1 - Download PDF completato con successo");
@@ -79,9 +76,8 @@ test("UC2.1_TC1 - Download PDF completato con successo", async ({ page, browserN
 
   reporter.onTestEnd(test, { status: testPass ? "passed" : "failed" });
 });
-```
 
-```javascript
+
 test("UC2.1_TC2 - Download PDF annullato", async ({ page, browserName }) => {
   reporter.setBrowserName(browserName);
   reporter.setTestCase("UC2.1_TC2 - Download PDF annullato");
@@ -166,9 +162,9 @@ test("UC2.1_TC2 - Download PDF annullato", async ({ page, browserName }) => {
 
   reporter.onTestEnd(test, { status: testPass && !downloadStarted ? "passed" : "failed" });
 });
-```
 
-```javascript
+
+
 test("UC2.1_TC3 - Download PDF con errore di rete", async ({ page, browserName }) => {
   reporter.setBrowserName(browserName);
   reporter.setTestCase("UC2.1_TC3 - Download PDF con errore di rete");
@@ -252,9 +248,9 @@ test("UC2.1_TC3 - Download PDF con errore di rete", async ({ page, browserName }
 
   reporter.onTestEnd(test, { status: testPass ? "passed" : "failed" });
 });
-```
 
-```javascript
+
+
 test("UC2.1_TC4 - Download PDF con file danneggiato", async ({ page, browserName }) => {
   reporter.setBrowserName(browserName);
   reporter.setTestCase("UC2.1_TC4 - Download PDF con file danneggiato");
@@ -348,9 +344,9 @@ test("UC2.1_TC4 - Download PDF con file danneggiato", async ({ page, browserName
 
   reporter.onTestEnd(test, { status: testPass ? "passed" : "failed" });
 });
-```
 
-```javascript
+
+
 test("UC2.1_TC5 - Download PDF senza autorizzazione", async ({ page, browserName }) => {
   reporter.setBrowserName(browserName);
   reporter.setTestCase("UC2.1_TC5 - Download PDF senza autorizzazione");
@@ -374,4 +370,3 @@ test("UC2.1_TC5 - Download PDF senza autorizzazione", async ({ page, browserName
 
   reporter.onTestEnd(test, { status: testPass ? "passed" : "failed" });
 });
-```

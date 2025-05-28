@@ -78,7 +78,7 @@ class PromptBuilder:
 
     def __load_previous_code_section_file(self) -> None:
         try:
-            with open("./prompts/single_processing/one_shot/previous_code_section.txt", "r") as f:
+            with open("./prompts/single_processing/zero_shot/codellama/previous_code_section.txt", "r") as f:
                 self.previous_code_section = f.read()
                 logger.info(f"Previous code section loaded from path: {self.reporter_file_path}")
         except FileNotFoundError as e:

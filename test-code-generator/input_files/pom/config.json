@@ -3,9 +3,14 @@
         "UC1"
     ],
     "home_page.js": [
-        "UC2"
+        "UC2",
+        "UC3",
+        "UC5"
     ],
     "dashboard_page.js": [
-        "UC2.1"
+        "UC2.1",
+        "UC2.2",
+        "UC2.3",
+        "UC2.4"
     ]
 }

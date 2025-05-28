@@ -1,20 +1,13 @@
 <|begin_of_text|><|start_header_id|>system<|end_header_id|>
 You are a testing engineer, expert in writing Javascript end-to-end tests with Playwright.
 
-Task: Analyze the test cases provided below and generate for each test case a complete and working Playwright test script in Javascript, following the steps described in the test cases.
+Task: Analyze the test case provided below and generate a complete and working Playwright test script in Javascript, following the steps described in the test case.
 When creating test scripts, use only the page object model provided for interacting with the DOM and the parameters provided.
 <|eot_id|>
 <|start_header_id|>user<|end_header_id|>
 Use only this page object models for interacting with the DOM:
-export class SupportPage {
-    readonly page: Page;
-    readonly emailInput: Locator;
-    readonly passwordInput: Locator;
-    readonly loginButton: Locator;
-    readonly authenticate: Locator;
-    readonly errorMessage: Locator;
-  
-    constructor(page: Page) {
+class SupportPage {
+    constructor(page) {
       this.page = page;
       this.issueCategory = page.locator("#issue-category");
       this.issueDescription = page.locator("#issue-description");
@@ -44,9 +37,10 @@ export class SupportPage {
     }
   } 
 
-Use the following test parameters when creating scripts:
+Use only the following parameters from environment variables in the test scripts:
 E2E_BASE_URL="http://pell-portal.bologna.enea.it/"
 E2E_LOGIN_URL="https://idp.smartcityplatform.enea.it/"
+E2E_SUPPORT_URL="https://pell-portal.bologna.enea.it/support/result"
 E2E_SUPPORT_SUCCESS_URL = "https://pell-portal.bologna.enea.it/support/result"
 E2E_HOME_URL="" 
 E2E_DASHBOARD_URL="" 
@@ -57,27 +51,39 @@ E2E_LOGIN_EMAIL_REGION="test.region@pell.it"
 E2E_LOGIN_PASSWORD_REGION="Testregion01!"
 
 Instructions:
-1. Analyze the test cases provided
-2. For each test case, generate a test script in Javascript with Playwright
+1. Analyze the test case provided
+2. For the test case, generate a test script in Javascript with Playwright
 3. Use only Page object model provided to interact with the DOM.
-4. In each test script, call the reporter object methods as in the example below.
-5. Put the code in functions for reusability
-6. Add the required import for Playwright and TestResultReporter from "../models/test-result-reporter"
+4. Call the TestResultReporter object methods as described below.
+5. Add the required import for Playwright, TestResultReporter from "../../models/test-result-reporter", page object models from "../../models/page_object_models/"
+6. Put the code in functions for reusability, with the reporter object as parameter not mandatory. If not null, call reporter methods.
 
 <example>
+const functionNameDescribingStep = async function(page, reporter) {
+    const startTime = DateTime.now();
+    
+    // Put here test case step implementation
+    
+    const endTime = DateTime.now();
+    const executionTime = endTime - startTime;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID1', 'Step 1 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+    }
+
+    // Include Playwright assertions
+    expect(condition);
+}
+
 test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
     reporter.setBrowserName(browserName);
     reporter.setTestCase("UC1_TC1 - Login test with success");
 
-    // ... test case step 1
-    reporter.addStep('UC1_TC1_ID1', 'Step 1 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+    // Call step functions in sequence
+    step1(page, reporter);
+    step2(page, reporter);
+    // Additional steps...
 
-    // ... test case step 2
-    reporter.addStep('UC1_TC1_ID2', 'Step 2 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
-
-    // ...
-
-    reporter.onTestEnd(test, { status: "passed" });
+    reporter.onTestEnd(test, { status: "passed" });     // status can be "passed" or "failed" 
 });
 </example>
 
@@ -90,28 +96,37 @@ Type: Positivo
 Preconditions: Nessuna
 Postconditions: L’utente è a conoscenza che l’operazione ha avuto successo
 Test Steps:
-  1. Step: L'utente compila la form di assistenza
+  1. Step: L'utente naviga nella pagina di assistenza
+Expected: La pagina di assistenza è visualizzata correttamente
+  2. Step: L'utente compila la form di assistenza
 Expected: Tutte le informazioni vengono accettate
-  2. Step: Clicca il tasto "Invia"
-Expected: Il sistema procede con l'invio della richiesta id assistenza
-  3. Step: Verifica la visualizzazione del messaggio di successo
-Expected: Viene mostrato un messaggio che conferma l’avvenuta richiesta
+  3. Step: Invia richiesta di assistenza
+Expected: Si viene reindirizzati alla pagina di conferma
 
-Generate only JavaScript code. Do not include existing code implementation in the response, only reference it.
+Output only valid and runnable JavaScript code with no explanations or markdown formatting. Do not copy existing code implementation in the response, only reference it.
 <|eot_id|>
 <|start_header_id|>assistant<|end_header_id|>
-const { test } = require('@playwright/test');
-const TestResultReporter = require('../test-result-reporter');
+const { test, expect } = require('@playwright/test');
+const SupportPage = require('../../models/page_object_models/support-page');
+const TestResultReporter = require('../../models/test-result-reporter');
 
 const reporter = new TestResultReporter();
 
-test("UC10_TC1 - Invio richiesta di assistenza", async ({ page, browserName }) => {
-  reporter.setBrowserName(browserName);
-  reporter.setTestCase("UC10_TC1 - Invio richiesta di assistenza");
+// Step 1
+const navigateToSupportPage = async function(page, reporter) {
+  const startTime = new Date().getTime();
+    await page.goto(process.env.E2E_SUPPORT_URL);
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('U101_TC1_ID1', 'Navigate to support page', 'Support page loaded', 'Support page loaded', true, `E2E_SUPPORT_URL: ${process.env.E2E_SUPPORT_URL}`, executionTime);
+    }
+}
 
+// Step 2
+const fillSupportForm = async function(page, reporter) {
   const supportPage = new SupportPage(page);
 
-  // Step 1
   let startTime = Date.now();
   const category = "Problemi account";
   const description = "Non riesco più ad accedere al mio account";
@@ -121,7 +136,7 @@ test("UC10_TC1 - Invio richiesta di assistenza", async ({ page, browserName }) =
   await supportPage.enterEmail();
   let endTime = Date.now();
   reporter.addStep(
-    'UC10_TC1_ID1',
+    'UC10_TC1_ID2',
     'L'utente compila la form di assistenza',
     `Form compilata`,
     `Form compilata`,
@@ -129,16 +144,20 @@ test("UC10_TC1 - Invio richiesta di assistenza", async ({ page, browserName }) =
     { category, description, email },
     endTime - startTime
   );
+}
 
-  // Step 2
+// Step 3
+const submitForm = async function (page, reporter) {
+  const supportPage = new SupportPage(page);
+
   startTime = date.now();
   await supportPage.submitIssue();
-  await page.waitForUrl("https://pell-portal.bologna.enea.it/support/result", { waitUnitl: "networkidle" });
-  let testPass = page.url() == "https://pell-portal.bologna.enea.it/support/result";
+  await page.waitForUrl(process.env.E2E_SUPPORT_SUCCESS_URL, { waitUnitl: "networkidle" });
+  let testPass = page.url() == process.env.E2E_SUPPORT_SUCCESS_URL;
   endTime = date.now();
   reporter.addStep(
-    'UC10_TC1_ID2',
-    'Clicca il tasto "Invia"',
+    'UC10_TC1_ID3',
+    'Invia richiesta di assistenza',
     "L'utente viene reindirizzato alla pagina di avvenuto invio",
     testPass ? "L'utente viene reindirizzato alla pagina di avvenuto invio" : "Nessun reindirizzamento avvenuto",
     testPass,
@@ -146,50 +165,70 @@ test("UC10_TC1 - Invio richiesta di assistenza", async ({ page, browserName }) =
     endTime - startTime
   );
 
-  if (testPass) {
-    reporter.onTestEnd(test, { status: "passed" });
-  } else {
-    reporter.onTestEnd(test, { status: "failed" });
-  }
+}
+
+test("UC10_TC1 - Invio richiesta di assistenza", async ({ page, browserName }) => {
+  reporter.setBrowserName(browserName);
+  reporter.setTestCase("UC10_TC1 - Invio richiesta di assistenza");
+
+  const supportPage = new SupportPage(page);
+
+  navigateToSupportPage(page, reporter);
+  fillSupportForm(page, reporter);
+  submitForm(page, reporter);
+
+  reporter.onTestEnd(test, { status: "passed" });
 }); 
 <|eot_id|>
 <|start_header_id|>user<|end_header_id|>
 Use only this page object models for interacting with the DOM:
 $pom
 
-Use the following test parameters when creating scripts:
+Use only the following parameters from environment variables in the test scripts:
 $test_parameters
 
 $prvious_code_section
 
 Instructions:
-1. Analyze the test cases provided
-2. For each test case, generate a test script in Javascript with Playwright
+1. Analyze the test case provided
+2. For the test case, generate a test script in Javascript with Playwright
 3. Use only Page object model provided to interact with the DOM.
-4. In each test script, call the reporter object methods as in the example below.
-5. Put the code in functions for reusability
-6. Add the required import for Playwright and TestResultReporter from "../models/test-result-reporter"
+4. Call the TestResultReporter object methods as described below.
+5. Add the required import for Playwright, TestResultReporter from "../../models/test-result-reporter", page object models from "../../models/page_object_models/"
+6. Put the code in functions for reusability, with the reporter object as parameter not mandatory. If not null, call reporter methods.
 
 <example>
+const functionNameDescribingStep = async function(page, reporter) {
+    const startTime = DateTime.now();
+    
+    // Put here test case step implementation
+    
+    const endTime = DateTime.now();
+    const executionTime = endTime - startTime;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID1', 'Step 1 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+    }
+
+    // Include Playwright assertions
+    expect(condition);
+}
+
 test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
     reporter.setBrowserName(browserName);
     reporter.setTestCase("UC1_TC1 - Login test with success");
 
-    // ... test case step 1
-    reporter.addStep('UC1_TC1_ID1', 'Step 1 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+    // Call step functions in sequence
+    step1(page, reporter);
+    step2(page, reporter);
+    // Additional steps...
 
-    // ... test case step 2
-    reporter.addStep('UC1_TC1_ID2', 'Step 2 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
-
-    // ...
-
-    reporter.onTestEnd(test, { status: "passed" });
+    reporter.onTestEnd(test, { status: "passed" });     // status can be "passed" or "failed" 
 });
 </example>
 
 Here the test case to be converted in Playwright script:
 $test_cases
 
-Generate only JavaScript code. Do not include existing code implementation in the response, only reference it.
+Output only valid and runnable JavaScript code with no explanations or markdown formatting. Do not copy existing code implementation in the response, only reference it.
 <|eot_id|>
 <|start_header_id|>assistant<|end_header_id|>

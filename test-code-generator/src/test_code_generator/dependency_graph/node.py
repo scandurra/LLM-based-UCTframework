@@ -3,8 +3,9 @@ from typing import Set
 class Node:
     """Represents a node in the dependency graph."""
     
-    def __init__(self, node_id: str):
+    def __init__(self, node_id: str, base_test_case_id: str|None):
         self.id = node_id
+        self.base_test_case_id = base_test_case_id
         # Nodes that depend on this node (children)
         self.dependents: Set[Node] = set()
         # Nodes that this node depends on (parents)

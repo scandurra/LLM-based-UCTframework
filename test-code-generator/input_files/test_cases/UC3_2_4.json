@@ -1,0 +1,109 @@
+[
+  {
+    "test_case_id": "UC3.2.4_TC1",
+    "title": "Ricerca scheda censimento con parametri validi",
+    "preconditions": "UC3.2",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Inserisci nome, stato e tipo di scheda censimento validi",
+        "expected": "I parametri vengono accettati"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "La ricerca viene avviata correttamente"
+      },
+      {
+        "step": "Visualizza il risultato della ricerca",
+        "expected": "Le informazioni richieste vengono visualizzate con successo"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.2.4"
+  },
+  {
+    "test_case_id": "UC3.2.4_TC2",
+    "title": "Ricerca scheda censimento con parametri parzialmente vuoti",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema gestisce i parametri mancanti e visualizza il risultato della ricerca",
+    "test_steps": [
+      {
+        "step": "Inserisci solo alcuni dei parametri di ricerca (es. nome e stato)",
+        "expected": "I parametri parziali vengono accettati"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "La ricerca viene avviata con i parametri disponibili"
+      },
+      {
+        "step": "Visualizza il risultato della ricerca",
+        "expected": "Le informazioni richieste vengono visualizzate in base ai parametri forniti"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.2.4"
+  },
+  {
+    "test_case_id": "UC3.2.4_TC3",
+    "title": "Ricerca scheda censimento con tutti parametri vuoti",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema segnala un errore per assenza di parametri di ricerca",
+    "test_steps": [
+      {
+        "step": "Lascia vuoti tutti i campi dei parametri di ricerca",
+        "expected": "Il sistema rileva l’assenza di parametri"
+      },
+      {
+        "step": "Tenta di confermare la ricerca",
+        "expected": "Viene visualizzato un messaggio di errore per mancanza di parametri"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.2.4"
+  },
+  {
+    "test_case_id": "UC3.2.4_TC4",
+    "title": "Ricerca scheda censimento con parametri non validi",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema gestisce i parametri non validi e visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Inserisci parametri di ricerca non validi (es. caratteri speciali non ammessi)",
+        "expected": "Il sistema rileva l’errore nei parametri"
+      },
+      {
+        "step": "Tenta di confermare la ricerca",
+        "expected": "Viene visualizzato un messaggio di errore per parametri non validi"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.2.4"
+  },
+  {
+    "test_case_id": "UC3.2.4_TC5",
+    "title": "Ricerca scheda censimento con molti parametri di ricerca",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema gestisce i molti parametri e visualizza il risultato della ricerca",
+    "test_steps": [
+      {
+        "step": "Inserisci molti parametri di ricerca (es. nome, stato, tipo, data)",
+        "expected": "I parametri vengono accettati"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "La ricerca viene avviata correttamente con tutti i parametri"
+      },
+      {
+        "step": "Visualizza il risultato della ricerca",
+        "expected": "Le informazioni richieste vengono visualizzate in base a tutti i parametri forniti"
+      }
+    ],
+    "test_type": "Prestazione",
+    "priority": "Alta",
+    "use_case_id": "UC3.2.4"
+  }
+]

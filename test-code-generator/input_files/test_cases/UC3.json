@@ -1,0 +1,78 @@
+[
+  {
+    "test_case_id": "UC3_TC1",
+    "title": "Apertura interfaccia gestione schede censimento con utente autorizzato",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza la sezione relativa alle schede censimento",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente autorizzato",
+        "expected": "La home page del sistema viene visualizzata"
+      },
+      {
+        "step": "Seleziona l’opzione per la gestione delle schede censimento dal menù laterale di sinistra",
+        "expected": "La sezione relativa alle schede censimento si apre correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC2",
+    "title": "Tentativo di accesso alla gestione schede censimento senza autorizzazione",
+    "preconditions": "UC1",
+    "postconditions": "L’accesso viene negato e viene visualizzato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente non autorizzato",
+        "expected": "La home page del sistema viene visualizzata"
+      },
+      {
+        "step": "Tenta di selezionare l’opzione per la gestione delle schede censimento dal menù laterale di sinistra",
+        "expected": "Viene visualizzato un messaggio di accesso negato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC3",
+    "title": "Navigazione nella sezione schede censimento con dati non validi",
+    "preconditions": "UC1",
+    "postconditions": "Il sistema gestisce correttamente i dati non validi e visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente autorizzato",
+        "expected": "La home page del sistema viene visualizzata"
+      },
+      {
+        "step": "Inserisci dati non validi nella sezione relativa alle schede censimento",
+        "expected": "Il sistema rileva l’errore e visualizza un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC4",
+    "title": "Test di usabilità della sezione schede censimento",
+    "preconditions": "UC1",
+    "postconditions": "L’utente può navigare agevolmente nella sezione relativa alle schede censimento",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente autorizzato",
+        "expected": "La home page del sistema viene visualizzata"
+      },
+      {
+        "step": "Naviga nella sezione relativa alle schede censimento e verifica la presenza di tutte le funzionalità necessarie",
+        "expected": "Tutte le funzionalità sono presenti e facilmente accessibili"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Alta",
+    "use_case_id": "UC3"
+  }
+]

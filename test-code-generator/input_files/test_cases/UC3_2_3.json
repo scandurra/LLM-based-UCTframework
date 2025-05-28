@@ -1,0 +1,113 @@
+[
+  {
+    "test_case_id": "UC3.2.3_TC1",
+    "title": "Ricerca scheda censimento per tipo con parametri validi",
+    "preconditions": "UC3.2",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Inserisci un tipo di scheda censimento valido",
+        "expected": "Il sistema accetta il parametro"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "La ricerca viene avviata correttamente"
+      },
+      {
+        "step": "Visualizza i risultati della ricerca",
+        "expected": "I risultati vengono visualizzati in base al tipo selezionato"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.2.3"
+  },
+  {
+    "test_case_id": "UC3.2.3_TC2",
+    "title": "Ricerca scheda censimento senza tipo selezionato",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema segnala l’assenza di parametri di ricerca",
+    "test_steps": [
+      {
+        "step": "Lascia vuoto il campo del tipo di scheda censimento",
+        "expected": "Il sistema segnala l’errore"
+      },
+      {
+        "step": "Tenta di confermare la ricerca",
+        "expected": "La ricerca non viene avviata"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.2.3"
+  },
+  {
+    "test_case_id": "UC3.2.3_TC3",
+    "title": "Ricerca scheda censimento con tipo non esistente",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema visualizza un messaggio di nessun risultato trovato",
+    "test_steps": [
+      {
+        "step": "Inserisci un tipo di scheda censimento non esistente",
+        "expected": "Il sistema accetta il parametro"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "La ricerca viene avviata ma non trova risultati"
+      },
+      {
+        "step": "Visualizza i risultati della ricerca",
+        "expected": "Viene visualizzato un messaggio di nessun risultato trovato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.2.3"
+  },
+  {
+    "test_case_id": "UC3.2.3_TC4",
+    "title": "Ricerca scheda censimento con caratteri speciali nel tipo",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema gestisce correttamente i caratteri speciali",
+    "test_steps": [
+      {
+        "step": "Inserisci un tipo di scheda censimento con caratteri speciali",
+        "expected": "Il sistema accetta il parametro"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "La ricerca viene avviata correttamente"
+      },
+      {
+        "step": "Visualizza i risultati della ricerca",
+        "expected": "I risultati vengono visualizzati correttamente anche con caratteri speciali"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC3.2.3"
+  },
+  {
+    "test_case_id": "UC3.2.3_TC5",
+    "title": "Ricerca scheda censimento con lunghezza massima del tipo",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema gestisce correttamente la lunghezza massima",
+    "test_steps": [
+      {
+        "step": "Inserisci un tipo di scheda censimento con la lunghezza massima consentita",
+        "expected": "Il sistema accetta il parametro"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "La ricerca viene avviata correttamente"
+      },
+      {
+        "step": "Visualizza i risultati della ricerca",
+        "expected": "I risultati vengono visualizzati correttamente anche con il tipo di lunghezza massima"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Media",
+    "use_case_id": "UC3.2.3"
+  }
+]

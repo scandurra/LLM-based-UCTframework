@@ -6,6 +6,10 @@
     "postconditions": "L’utente è autenticato ed è a conoscenza che l’operazione ha avuto successo",
     "test_steps": [
       {
+        "step": "Navigate to login page",
+        "expected": "Login page loaded"
+      },
+      {
         "step": "Inserisci le credenziali corrette nel form di login",
         "expected": "Le credenziali vengono accettate"
       },

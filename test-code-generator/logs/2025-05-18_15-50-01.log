@@ -1,0 +1,441 @@
+2025-05-18 15:50:01,194 - __main__ - INFO - Found 1 dependencies for use case UC2
+2025-05-18 15:50:01,194 - __main__ - INFO - Read previously generated code for use case UC1: 
+import { test, expect } from '@playwright/test';
+import { LoginPage } from '../models/login-page';
+import { TestResultReporter } from '../models/test-result-reporter';
+
+const loginWithCorrectCredentials = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    const loginPage = new LoginPage(page);
+    await loginPage.displayLoginForm();
+    await loginPage.enterEmail(process.env.E2E_LOGIN_EMAIL_ADMIN);
+    await loginPage.enterPassword(process.env.E2E_LOGIN_PASSWORD_ADMIN);
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID1', 'Inserisci le credenziali corrette nel form di login', 
+            'Le credenziali vengono accettate', 'Le credenziali vengono accettate', true, 
+            `Email: ${process.env.E2E_LOGIN_EMAIL_ADMIN}, Password: ${process.env.E2E_LOGIN_PASSWORD_ADMIN}`, executionTime);
+    }
+}
+
+const clickLoginButton = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    const loginPage = new LoginPage(page);
+    await loginPage.login();
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID2', 'Clicca il tasto “Login”', 
+            'Il sistema procede con l’autenticazione', 'Il sistema procede con l’autenticazione', true, '', executionTime);
+    }
+}
+
+const verifySuccessMessage = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    const loginPage = new LoginPage(page);
+    const errorMessage = await loginPage.getErrorMessage();
+    if (errorMessage === null) {
+        const endTime = new Date().getTime();
+        const executionTime = (endTime - startTime) / 1000;
+        if (reporter) {
+            reporter.addStep('UC1_TC1_ID3', 'Verifica la visualizzazione del messaggio di successo', 
+                'Viene mostrato un messaggio che conferma l’avvenuta autenticazione', 'Viene mostrato un messaggio che conferma l’avvenuta autenticazione', true, '', executionTime);
+        }
+    } else {
+        const endTime = new Date().getTime();
+        const executionTime = (endTime - startTime) / 1000;
+        if (reporter) {
+            reporter.addStep('UC1_TC1_ID3', 'Verifica la visualizzazione del messaggio di successo', 
+                'Viene mostrato un messaggio che conferma l’avvenuta autenticazione', `Errore: ${errorMessage}`, false, '', executionTime);
+        }
+    }
+}
+
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1 - Login test with success");
+
+    await page.goto(process.env.E2E_BASE_URL);
+
+    await loginWithCorrectCredentials(page, reporter);
+
+    await clickLoginButton(page, reporter);
+
+    await verifySuccessMessage(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });     
+});
+2025-05-18 15:50:01,195 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt template loaded from path: ./prompts/single_processing/zero_shot/raw.txt
+2025-05-18 15:50:01,195 - test_code_generator.prompt_builder.prompt_builder - INFO - Test parameters loaded from path: ./input_files/parameters/test_parameters.env
+2025-05-18 15:50:01,195 - test_code_generator.prompt_builder.prompt_builder - INFO - Test reporter loaded from path: ./input_files/reporter_minimal.js
+2025-05-18 15:50:01,195 - test_code_generator.prompt_builder.prompt_builder - INFO - Previous code section loaded from path: ./input_files/reporter_minimal.js
+2025-05-18 15:50:01,195 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt built: <|begin_of_text|><|start_header_id|>system<|end_header_id|>
+You are a testing engineer, expert in writing Javascript end-to-end tests with Playwright.
+
+Task: Analyze the test case provided below and generate a complete and working Playwright test script in Javascript, following the steps described in the test case.
+When creating the test script, use only the page object model provided for interacting with the DOM and the parameters provided.
+<|eot_id|>
+<|start_header_id|>user<|end_header_id|>
+Use only this page object models for interacting with the DOM:
+export class HomePage {
+    readonly page: Page;
+    readonly dashboardButton: Locator;
+  
+    constructor(page: Page) {
+      this.page = page;
+      this.dashboardButton = page.getByRole('link', { name: ' Dashboard' });
+    }
+
+    async navigateToDashboard() {
+        await this.dashboardButton.click();
+    }
+  }
+
+Use the following test parameters when creating test script:
+E2E_BASE_URL="http://pell-portal.bologna.enea.it/"
+E2E_LOGIN_URL="https://idp.smartcityplatform.enea.it/"
+E2E_HOME_URL="" 
+E2E_DASHBOARD_URL="" 
+E2E_CTS_URL="" 
+E2E_LOGIN_EMAIL_ADMIN="test.admin@pell.it"
+E2E_LOGIN_PASSWORD_ADMIN="Testadmin01!"
+E2E_LOGIN_EMAIL_REGION="test.region@pell.it"
+E2E_LOGIN_PASSWORD_REGION="Testregion01!"
+
+When in the test case there is a step, a precondition or a postcondition with a name of use case UC*, reuse this functions passing null as reporter parameter:
+<code>
+import { test, expect } from '@playwright/test';
+import { LoginPage } from '../models/login-page';
+import { TestResultReporter } from '../models/test-result-reporter';
+
+const loginWithCorrectCredentials = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    const loginPage = new LoginPage(page);
+    await loginPage.displayLoginForm();
+    await loginPage.enterEmail(process.env.E2E_LOGIN_EMAIL_ADMIN);
+    await loginPage.enterPassword(process.env.E2E_LOGIN_PASSWORD_ADMIN);
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID1', 'Inserisci le credenziali corrette nel form di login', 
+            'Le credenziali vengono accettate', 'Le credenziali vengono accettate', true, 
+            `Email: ${process.env.E2E_LOGIN_EMAIL_ADMIN}, Password: ${process.env.E2E_LOGIN_PASSWORD_ADMIN}`, executionTime);
+    }
+}
+
+const clickLoginButton = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    const loginPage = new LoginPage(page);
+    await loginPage.login();
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID2', 'Clicca il tasto “Login”', 
+            'Il sistema procede con l’autenticazione', 'Il sistema procede con l’autenticazione', true, '', executionTime);
+    }
+}
+
+const verifySuccessMessage = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    const loginPage = new LoginPage(page);
+    const errorMessage = await loginPage.getErrorMessage();
+    if (errorMessage === null) {
+        const endTime = new Date().getTime();
+        const executionTime = (endTime - startTime) / 1000;
+        if (reporter) {
+            reporter.addStep('UC1_TC1_ID3', 'Verifica la visualizzazione del messaggio di successo', 
+                'Viene mostrato un messaggio che conferma l’avvenuta autenticazione', 'Viene mostrato un messaggio che conferma l’avvenuta autenticazione', true, '', executionTime);
+        }
+    } else {
+        const endTime = new Date().getTime();
+        const executionTime = (endTime - startTime) / 1000;
+        if (reporter) {
+            reporter.addStep('UC1_TC1_ID3', 'Verifica la visualizzazione del messaggio di successo', 
+                'Viene mostrato un messaggio che conferma l’avvenuta autenticazione', `Errore: ${errorMessage}`, false, '', executionTime);
+        }
+    }
+}
+
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1 - Login test with success");
+
+    await page.goto(process.env.E2E_BASE_URL);
+
+    await loginWithCorrectCredentials(page, reporter);
+
+    await clickLoginButton(page, reporter);
+
+    await verifySuccessMessage(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });     
+});
+</code>
+
+Instructions:
+1. Analyze the test case provided
+2. For the test case, generate a test script in Javascript with Playwright
+3. Use only Page object model provided to interact with the DOM.
+4. Call the TestResultReporter object methods as described below.
+5. Add the required import for Playwright and TestResultReporter from "../models/test-result-reporter"
+6. Put the code in functions for reusability, with the reporter object as parameter not mandatory. If not null, call reporter methods.
+
+<example>
+const <step_description> = function(page, reporter) {
+    const startTime = DateTime.now();
+    // ... test case step 
+    
+    const endTime = DateTime.now();
+    const executionTime = endTime - startTime;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID1', 'Step 1 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+    }
+}
+
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1 - Login test with success");
+
+    step1(page, reporter);
+
+    step2(page, reporter);
+    
+    // ...
+
+    reporter.onTestEnd(test, { status: "passed" });     // status can be "passed" or "failed" 
+});
+</example>
+
+Here the test case to be converted in Playwright script:
+Test Case ID: UC2_TC1
+Title: Apertura della dashboard con utente autorizzato
+Use Case ID: UC2
+Priority: Alta
+Type: Positivo
+Preconditions: UC1
+Postconditions: L’utente visualizza la sezione relativa alla dashboard
+Test Steps:
+  1. Step: Accedi al sistema come utente registrato
+Expected: La home page del sistema viene visualizzata
+  2. Step: Seleziona la voce di menù per accedere alla dashboard
+Expected: La sezione della dashboard si apre correttamente
+
+Generate only JavaScript code. Do not include existing code implementation in the response, only reference it. Generate only one test script.
+<|eot_id|>
+<|start_header_id|>assistant<|end_header_id|>
+2025-05-18 15:50:01,195 - test_code_generator.llm_client.ollama_client - INFO - OllamaClient initialized with model: llama3.3
+2025-05-18 15:54:41,170 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/generate "HTTP/1.1 200 OK"
+2025-05-18 15:54:41,171 - test_code_generator.llm_client.ollama_client - INFO - Ollama responded with: 
+ 
+
+```javascript
+import { test, expect } from '@playwright/test';
+import { HomePage } from '../models/home-page';
+import { TestResultReporter } from '../models/test-result-reporter';
+
+const accessSystemAsRegisteredUser = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    await loginWithCorrectCredentials(page, null);
+    await clickLoginButton(page, null);
+    await verifySuccessMessage(page, null);
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC2_TC1_ID1', 'Accedi al sistema come utente registrato', 
+            'La home page del sistema viene visualizzata', 'La home page del sistema viene visualizzata', true, '', executionTime);
+    }
+}
+
+const selectDashboardMenu = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    const homePage = new HomePage(page);
+    await homePage.navigateToDashboard();
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC2_TC1_ID2', 'Seleziona la voce di menù per accedere alla dashboard', 
+            'La sezione della dashboard si apre correttamente', 'La sezione della dashboard si apre correttamente', true, '', executionTime);
+    }
+}
+
+test("UC2_TC1 - Apertura della dashboard con utente autorizzato", async ({page, browserName}) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC2_TC1 - Apertura della dashboard con utente autorizzato");
+
+    await page.goto(process.env.E2E_BASE_URL);
+
+    await accessSystemAsRegisteredUser(page, reporter);
+
+    await selectDashboardMenu(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });     
+});
+```
+2025-05-18 15:54:41,171 - test_code_generator.validator.javascript_code_validator - INFO - Starting JavaScript code cleaning
+2025-05-18 15:54:41,171 - test_code_generator.validator.javascript_code_validator - INFO - Extracting JavaScript code blocks
+2025-05-18 15:54:41,171 - test_code_generator.validator.javascript_code_validator - INFO - Found 1 JavaScript code blocks with markdown syntax
+2025-05-18 15:54:41,171 - test_code_generator.validator.javascript_code_validator - INFO - JavaScript code cleaning completed
+2025-05-18 15:54:41,171 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt template loaded from path: ./prompts/single_processing/zero_shot/raw.txt
+2025-05-18 15:54:41,171 - test_code_generator.prompt_builder.prompt_builder - INFO - Test parameters loaded from path: ./input_files/parameters/test_parameters.env
+2025-05-18 15:54:41,171 - test_code_generator.prompt_builder.prompt_builder - INFO - Test reporter loaded from path: ./input_files/reporter_minimal.js
+2025-05-18 15:54:41,171 - test_code_generator.prompt_builder.prompt_builder - INFO - Previous code section loaded from path: ./input_files/reporter_minimal.js
+2025-05-18 15:54:41,171 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt built: <|begin_of_text|><|start_header_id|>system<|end_header_id|>
+You are a testing engineer, expert in writing Javascript end-to-end tests with Playwright.
+
+Task: Analyze the test case provided below and generate a complete and working Playwright test script in Javascript, following the steps described in the test case.
+When creating the test script, use only the page object model provided for interacting with the DOM and the parameters provided.
+<|eot_id|>
+<|start_header_id|>user<|end_header_id|>
+Use only this page object models for interacting with the DOM:
+export class HomePage {
+    readonly page: Page;
+    readonly dashboardButton: Locator;
+  
+    constructor(page: Page) {
+      this.page = page;
+      this.dashboardButton = page.getByRole('link', { name: ' Dashboard' });
+    }
+
+    async navigateToDashboard() {
+        await this.dashboardButton.click();
+    }
+  }
+
+Use the following test parameters when creating test script:
+E2E_BASE_URL="http://pell-portal.bologna.enea.it/"
+E2E_LOGIN_URL="https://idp.smartcityplatform.enea.it/"
+E2E_HOME_URL="" 
+E2E_DASHBOARD_URL="" 
+E2E_CTS_URL="" 
+E2E_LOGIN_EMAIL_ADMIN="test.admin@pell.it"
+E2E_LOGIN_PASSWORD_ADMIN="Testadmin01!"
+E2E_LOGIN_EMAIL_REGION="test.region@pell.it"
+E2E_LOGIN_PASSWORD_REGION="Testregion01!"
+
+When in the test case there is a step, a precondition or a postcondition with a name of use case UC*, reuse this functions passing null as reporter parameter:
+<code>
+import { test, expect } from '@playwright/test';
+import { LoginPage } from '../models/login-page';
+import { TestResultReporter } from '../models/test-result-reporter';
+
+const loginWithCorrectCredentials = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    const loginPage = new LoginPage(page);
+    await loginPage.displayLoginForm();
+    await loginPage.enterEmail(process.env.E2E_LOGIN_EMAIL_ADMIN);
+    await loginPage.enterPassword(process.env.E2E_LOGIN_PASSWORD_ADMIN);
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID1', 'Inserisci le credenziali corrette nel form di login', 
+            'Le credenziali vengono accettate', 'Le credenziali vengono accettate', true, 
+            `Email: ${process.env.E2E_LOGIN_EMAIL_ADMIN}, Password: ${process.env.E2E_LOGIN_PASSWORD_ADMIN}`, executionTime);
+    }
+}
+
+const clickLoginButton = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    const loginPage = new LoginPage(page);
+    await loginPage.login();
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID2', 'Clicca il tasto “Login”', 
+            'Il sistema procede con l’autenticazione', 'Il sistema procede con l’autenticazione', true, '', executionTime);
+    }
+}
+
+const verifySuccessMessage = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    const loginPage = new LoginPage(page);
+    const errorMessage = await loginPage.getErrorMessage();
+    if (errorMessage === null) {
+        const endTime = new Date().getTime();
+        const executionTime = (endTime - startTime) / 1000;
+        if (reporter) {
+            reporter.addStep('UC1_TC1_ID3', 'Verifica la visualizzazione del messaggio di successo', 
+                'Viene mostrato un messaggio che conferma l’avvenuta autenticazione', 'Viene mostrato un messaggio che conferma l’avvenuta autenticazione', true, '', executionTime);
+        }
+    } else {
+        const endTime = new Date().getTime();
+        const executionTime = (endTime - startTime) / 1000;
+        if (reporter) {
+            reporter.addStep('UC1_TC1_ID3', 'Verifica la visualizzazione del messaggio di successo', 
+                'Viene mostrato un messaggio che conferma l’avvenuta autenticazione', `Errore: ${errorMessage}`, false, '', executionTime);
+        }
+    }
+}
+
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1 - Login test with success");
+
+    await page.goto(process.env.E2E_BASE_URL);
+
+    await loginWithCorrectCredentials(page, reporter);
+
+    await clickLoginButton(page, reporter);
+
+    await verifySuccessMessage(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });     
+});
+</code>
+
+Instructions:
+1. Analyze the test case provided
+2. For the test case, generate a test script in Javascript with Playwright
+3. Use only Page object model provided to interact with the DOM.
+4. Call the TestResultReporter object methods as described below.
+5. Add the required import for Playwright and TestResultReporter from "../models/test-result-reporter"
+6. Put the code in functions for reusability, with the reporter object as parameter not mandatory. If not null, call reporter methods.
+
+<example>
+const <step_description> = function(page, reporter) {
+    const startTime = DateTime.now();
+    // ... test case step 
+    
+    const endTime = DateTime.now();
+    const executionTime = endTime - startTime;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID1', 'Step 1 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+    }
+}
+
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1 - Login test with success");
+
+    step1(page, reporter);
+
+    step2(page, reporter);
+    
+    // ...
+
+    reporter.onTestEnd(test, { status: "passed" });     // status can be "passed" or "failed" 
+});
+</example>
+
+Here the test case to be converted in Playwright script:
+Test Case ID: UC2_TC2
+Title: Tentativo di accesso alla dashboard senza autorizzazione
+Use Case ID: UC2
+Priority: Media
+Type: Negativo
+Preconditions: UC1
+Postconditions: L’accesso alla dashboard viene negato
+Test Steps:
+  1. Step: Accedi al sistema come ospite o utente non registrato
+Expected: La home page del sistema viene visualizzata
+  2. Step: Tenta di accedere direttamente alla dashboard tramite URL
+Expected: Viene mostrata una pagina di accesso negato
+
+Generate only JavaScript code. Do not include existing code implementation in the response, only reference it. Generate only one test script.
+<|eot_id|>
+<|start_header_id|>assistant<|end_header_id|>
+2025-05-18 15:54:41,171 - test_code_generator.llm_client.ollama_client - INFO - OllamaClient initialized with model: llama3.3

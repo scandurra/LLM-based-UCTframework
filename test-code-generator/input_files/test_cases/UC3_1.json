@@ -1,92 +1,101 @@
 [
   {
     "test_case_id": "UC3.1_TC1",
-    "title": "Visualizzazione schede censimento corretta",
+    "title": "Visualizzazione schede censimento con dati validi e ordinamento",
     "preconditions": "UC3",
     "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
     "test_steps": [
       {
-        "step": "L’utente seleziona la scheda censimento da visualizzare",
-        "expected": "Viene visualizzata la scheda censimento in forma tabellare e paginata"
+        "step": "Accedi alla sezione di visualizzazione delle schede censimento",
+        "expected": "La tabella con i dati viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona una colonna per l’ordinamento e clicca sul nome della colonna",
+        "expected": "I dati vengono ordinati secondo la selezione"
+      },
+      {
+        "step": "Scorri lateralmente per visualizzare tutte le colonne",
+        "expected": "Tutte le colonne sono visibili e scorrevoli"
       }
     ],
     "test_type": "Positivo",
-    "priority": "Alto",
+    "priority": "Alta",
     "use_case_id": "UC3.1"
   },
   {
     "test_case_id": "UC3.1_TC2",
-    "title": "Scorrimento laterale per visualizzare colonne",
+    "title": "Visualizzazione senza ordinamento",
     "preconditions": "UC3",
-    "postconditions": "L’utente può scorrere lateralmente per visualizzare tutte le colonne",
+    "postconditions": "L’utente visualizza le informazioni nella loro disposizione predefinita",
     "test_steps": [
       {
-        "step": "L’utente scorre lateralmente la tabella",
-        "expected": "Vengono visualizzate tutte le colonne della scheda censimento"
+        "step": "Accedi alla sezione di visualizzazione delle schede censimento",
+        "expected": "La tabella con i dati viene visualizzata correttamente"
+      },
+      {
+        "step": "Non selezionare nessun ordinamento e scorri lateralmente per visualizzare tutte le colonne",
+        "expected": "Tutte le colonne sono visibili e scorrevoli senza alcun ordinamento applicato"
       }
     ],
-    "test_type": "Positivo",
-    "priority": "Medio",
+    "test_type": "Negativo",
+    "priority": "Media",
     "use_case_id": "UC3.1"
   },
   {
     "test_case_id": "UC3.1_TC3",
-    "title": "Ordinamento colonne per click sul nome",
+    "title": "Boundary test: visualizzazione con un solo elemento nella tabella",
     "preconditions": "UC3",
-    "postconditions": "Tutte le colonne visualizzabili consentono l’ordinamento con un click sul nome",
+    "postconditions": "L’utente visualizza l’elemento singolo nella tabella",
     "test_steps": [
       {
-        "step": "L’utente clicca sul nome di una colonna",
-        "expected": "La tabella viene ordinata in base alla colonna selezionata"
+        "step": "Accedi alla sezione di visualizzazione delle schede censimento con un solo elemento",
+        "expected": "La tabella contiene solo una riga"
+      },
+      {
+        "step": "Verifica la presenza di tutti i campi previsti per quell’elemento",
+        "expected": "Tutti i campi sono presenti e visibili"
       }
     ],
-    "test_type": "Positivo",
-    "priority": "Medio",
+    "test_type": "Boundary",
+    "priority": "Alta",
     "use_case_id": "UC3.1"
   },
   {
     "test_case_id": "UC3.1_TC4",
-    "title": "Visualizzazione schede censimento non esistenti",
+    "title": "Edge case: visualizzazione con colonne molto lunghe",
     "preconditions": "UC3",
-    "postconditions": "Viene visualizzato un messaggio di errore per la mancanza della scheda censimento",
+    "postconditions": "L’utente può scorrere e visualizzare tutte le informazioni",
     "test_steps": [
       {
-        "step": "L’utente seleziona una scheda censimento non esistente",
-        "expected": "Viene visualizzato un messaggio di errore"
+        "step": "Accedi alla sezione di visualizzazione delle schede censimento con colonne molto lunghe",
+        "expected": "La tabella è visibile e scorrevole"
+      },
+      {
+        "step": "Scorri lateralmente per visualizzare tutte le colonne anche quelle più lunghe",
+        "expected": "Tutte le colonne sono accessibili e leggibili"
       }
     ],
-    "test_type": "Negativo",
-    "priority": "Basso",
+    "test_type": "Edge",
+    "priority": "Media",
     "use_case_id": "UC3.1"
   },
   {
     "test_case_id": "UC3.1_TC5",
-    "title": "Paginazione non funzionante",
+    "title": "Usabilità: verifica della chiarezza dei campi e delle etichette",
     "preconditions": "UC3",
-    "postconditions": "Viene visualizzato un messaggio di errore per la paginazione non funzionante",
+    "postconditions": "L’utente comprende facilmente il contenuto della tabella",
     "test_steps": [
       {
-        "step": "L’utente seleziona una pagina non esistente",
-        "expected": "Viene visualizzato un messaggio di errore"
-      }
-    ],
-    "test_type": "Negativo",
-    "priority": "Basso",
-    "use_case_id": "UC3.1"
-  },
-  {
-    "test_case_id": "UC3.1_TC6",
-    "title": "Visualizzazione schede censimento con permessi insufficienti",
-    "preconditions": "UC3",
-    "postconditions": "Viene visualizzato un messaggio di errore per i permessi insufficienti",
-    "test_steps": [
+        "step": "Accedi alla sezione di visualizzazione delle schede censimento",
+        "expected": "Le etichette e i campi sono chiari e comprensibili"
+      },
       {
-        "step": "L’utente senza permessi sufficienti tenta di visualizzare la scheda censimento",
-        "expected": "Viene visualizzato un messaggio di errore"
+        "step": "Verifica che ogni colonna abbia un’etichetta descrittiva",
+        "expected": "Tutte le colonne hanno etichette che aiutano l’utente a capire il contenuto"
       }
     ],
-    "test_type": "Negativo",
-    "priority": "Alto",
+    "test_type": "Usabilità",
+    "priority": "Alta",
     "use_case_id": "UC3.1"
   }
 ]
