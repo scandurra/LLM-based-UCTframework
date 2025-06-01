@@ -17,6 +17,9 @@ logging.basicConfig(filename=log_filename, encoding="utf-8", level=logging.INFO,
 logger = logging.getLogger(__name__)
 
 
+def getTestCaseFilePath(folder_path: str, use_case_id) -> str:
+    return os.path.join(folder_path, f"{use_case_id}.json")
+
 def main():
     """
     Main function to orchestrate Playwright code generation
@@ -43,7 +46,7 @@ def main():
     test_parameters_path = "./input_files/parameters/test_parameters.env"
     pom_folder_path = "./input_files/pom"
     existing_code_path = "./input_files/reporter_minimal.js"
-    test_cases_path = os.path.join("./input_files/test_cases/", use_case_name + ".json")
+    test_cases_folder = "./input_files/test_cases/"
 
     # output_path = "./output/single_processing/zero_shot/" + model_name_short
     # output_path = "./output/single_processing/one_shot/" + model_name_short
@@ -56,16 +59,20 @@ def main():
     logger.info(f"Found {len(dependencies)} dependencies for use case {use_case_name}")
 
     # Read test cases file
-    test_cases = TestCaseParser.read_from_file(test_cases_path)
+    test_cases = TestCaseParser.read_from_file(getTestCaseFilePath(test_cases_folder, use_case_name))
     
     # Adding to the dependency_graph nodes the test case id of the happy path (or base sequence)
-    # for node_id, node in dependency_graph.nodes.items():
-    #     print(node_id)
-    #     test_case = next((tc for tc in test_cases if tc.use_case_id == node.id  and tc.test_type == "Positivo"), None)
-    #     if test_case == None:
-    #         continue
-    #     node.base_test_path_id = test_case.test_case_id
-    #     print(node.id + " " + test_case.test_case_id)
+    for node in dependencies:
+        if node.base_test_case_id != None:
+            print(f"Base test case id already defined for dependency {node.id}: {node.base_test_case_id}")
+            continue
+        dependant_test_cases = TestCaseParser.read_from_file(getTestCaseFilePath(test_cases_folder, node.id))
+        test_case = next((tc for tc in dependant_test_cases if tc.use_case_id == node.id  and tc.test_type == "Positivo"), None)
+        if test_case == None:
+            continue
+        node.base_test_case_id = test_case.test_case_id
+        print(node.id + " " + test_case.test_case_id)
+
 
     # Retrieving dependent code (only happy path test case for each use case)
     dependent_uc_code = ""
