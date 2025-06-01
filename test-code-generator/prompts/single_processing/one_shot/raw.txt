@@ -187,7 +187,7 @@ $pom
 Use only the following parameters from environment variables in the test scripts:
 $test_parameters
 
-$prvious_code_section
+$previous_code_section
 
 Instructions:
 1. Analyze the test case provided

@@ -40,11 +40,12 @@ class OllamaClient(BaseLLMClient):
                     "temperature": temperature
                 }
             )
-            content = ""
-            for chunk in response:
-                content += chunk['message']['content']
-                print(chunk['message']['content'], end='', flush=True)
-            #content = response["response"]
+            # content = ""
+            # for chunk in response:
+            #     chunkContent = chunk['response']
+            #     content += chunkContent
+            #     print(chunkContent, end='', flush=True)
+            content = response["response"]
             
             logger.info(f"Ollama responded with: \n {content}")
             
@@ -52,6 +53,7 @@ class OllamaClient(BaseLLMClient):
         
         except ollama.ResponseError as e:
             logger.exception(e)
+            print(e)
             raise LLMClientError(e)
 
 

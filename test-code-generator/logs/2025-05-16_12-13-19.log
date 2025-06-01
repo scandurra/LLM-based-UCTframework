@@ -682,7 +682,7 @@ E2E_LOGIN_PASSWORD_ADMIN="Testadmin01!"
 E2E_LOGIN_EMAIL_REGION="test.region@pell.it"
 E2E_LOGIN_PASSWORD_REGION="Testregion01!"
 
-$prvious_code_section
+$previous_code_section
 
 Instructions:
 1. Analyze the test case provided
@@ -851,7 +851,7 @@ E2E_LOGIN_PASSWORD_ADMIN="Testadmin01!"
 E2E_LOGIN_EMAIL_REGION="test.region@pell.it"
 E2E_LOGIN_PASSWORD_REGION="Testregion01!"
 
-$prvious_code_section
+$previous_code_section
 
 Instructions:
 1. Analyze the test case provided
@@ -1008,7 +1008,7 @@ E2E_LOGIN_PASSWORD_ADMIN="Testadmin01!"
 E2E_LOGIN_EMAIL_REGION="test.region@pell.it"
 E2E_LOGIN_PASSWORD_REGION="Testregion01!"
 
-$prvious_code_section
+$previous_code_section
 
 Instructions:
 1. Analyze the test case provided

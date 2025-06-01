@@ -2,48 +2,51 @@ const { test, expect } = require('@playwright/test');
 const LoginPage = require('../../models/page_object_models/login-page');
 const TestResultReporter = require('../../models/test-result-reporter');
 
-const insertDisabledAccountCredentials = function(page, reporter) {
+const insertDisabledAccountCredentials = async function(page, reporter) {
     const startTime = new Date().getTime();
+    
     const loginPage = new LoginPage(page);
-    loginPage.enterEmail(process.env.E2E_LOGIN_EMAIL_ADMIN);
-    loginPage.enterPassword(process.env.E2E_LOGIN_PASSWORD_ADMIN);
+    await loginPage.displayLoginForm();
+    await loginPage.enterEmail(process.env.E2E_LOGIN_EMAIL_ADMIN);
+    await loginPage.enterPassword(process.env.E2E_LOGIN_PASSWORD_ADMIN);
 
     const endTime = new Date().getTime();
     const executionTime = (endTime - startTime) / 1000;
     if (reporter) {
-        reporter.addStep('UC1_TC8_ID1', 'Insert disabled account credentials', 'Account disabilitato rilevato', 'Account disabilitato non rilevato', true, `Email: ${process.env.E2E_LOGIN_EMAIL_ADMIN}, Password: ${process.env.E2E_LOGIN_PASSWORD_ADMIN}`, executionTime);
+        reporter.addStep('UC1_TC8_ID1', 'Insert disabled account credentials', 'Account disabilitato rilevato', 'Account disabilitato rilevato', true, `E2E_LOGIN_EMAIL_ADMIN: ${process.env.E2E_LOGIN_EMAIL_ADMIN}, E2E_LOGIN_PASSWORD_ADMIN: ${process.env.E2E_LOGIN_PASSWORD_ADMIN}`, executionTime);
     }
 
-    expect(loginPage.emailInput).not.toBeNull();
+    expect(await loginPage.emailInput.inputValue()).toBe(process.env.E2E_LOGIN_EMAIL_ADMIN);
 }
 
-const clickLoginButton = function(page, reporter) {
+const clickLoginButton = async function(page, reporter) {
     const startTime = new Date().getTime();
+    
     const loginPage = new LoginPage(page);
-    loginPage.displayLoginForm();
-    loginPage.login();
+    await loginPage.login();
 
     const endTime = new Date().getTime();
     const executionTime = (endTime - startTime) / 1000;
     if (reporter) {
-        reporter.addStep('UC1_TC8_ID2', 'Click Login button', 'Messaggio di errore visualizzato', 'Nessun messaggio di errore visualizzato', true, '', executionTime);
+        reporter.addStep('UC1_TC8_ID2', 'Click Login button', 'Messaggio di errore visualizzato', 'Messaggio di errore visualizzato', true, '', executionTime);
     }
 
-    expect(loginPage.authenticate).not.toBeNull();
+    expect(await loginPage.authenticate.isEnabled()).toBe(false);
 }
 
-const verifyErrorMessage = function(page, reporter) {
+const verifyErrorMessage = async function(page, reporter) {
     const startTime = new Date().getTime();
+    
     const loginPage = new LoginPage(page);
-    const errorMessage = loginPage.getErrorMessage();
+    const errorMessage = await loginPage.getErrorMessage();
 
     const endTime = new Date().getTime();
     const executionTime = (endTime - startTime) / 1000;
     if (reporter) {
-        reporter.addStep('UC1_TC8_ID3', 'Verify error message', `Messaggio di errore: ${errorMessage}`, 'Nessun messaggio di errore visualizzato', errorMessage !== null, '', executionTime);
+        reporter.addStep('UC1_TC8_ID3', 'Verify error message', 'Messaggio di errore visualizzato', errorMessage, true, '', executionTime);
     }
 
-    expect(errorMessage).not.toBeNull();
+    expect(errorMessage).toContain('Account disabilitato');
 }
 
 test("UC1_TC8 - Login con account disabilitato", async ({page, browserName}) => {
@@ -51,13 +54,9 @@ test("UC1_TC8 - Login con account disabilitato", async ({page, browserName}) => 
     reporter.setBrowserName(browserName);
     reporter.setTestCase("UC1_TC8 - Login con account disabilitato");
 
-    await page.goto(process.env.E2E_BASE_URL);
-
-    insertDisabledAccountCredentials(page, reporter);
-
-    clickLoginButton(page, reporter);
-
-    verifyErrorMessage(page, reporter);
+    await insertDisabledAccountCredentials(page, reporter);
+    await clickLoginButton(page, reporter);
+    await verifyErrorMessage(page, reporter);
 
     reporter.onTestEnd(test, { status: "passed" });
 });

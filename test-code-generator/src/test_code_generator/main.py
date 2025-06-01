@@ -37,15 +37,17 @@ def main():
 
 
     dependency_graph_path = "./input_files/include_graph/include_graph.json"
-    prompt_template_path = f"./prompts/single_processing/zero_shot/{model_name_short}/raw.txt"
-    # prompt_template_path = f"./prompts/single_processing/one_shot/{model_name_short}/raw.txt"
+    # prompt_template_path = f"./prompts/single_processing/zero_shot/{model_name_short}"
+    # prompt_template_path = f"./prompts/single_processing/one_shot/{model_name_short}"
+    prompt_template_path = f"./prompts/single_processing/few_shot/{model_name_short}"
     test_parameters_path = "./input_files/parameters/test_parameters.env"
     pom_folder_path = "./input_files/pom"
     existing_code_path = "./input_files/reporter_minimal.js"
     test_cases_path = os.path.join("./input_files/test_cases/", use_case_name + ".json")
 
-    output_path = "./output/single_processing/zero_shot" + model_name_short
+    # output_path = "./output/single_processing/zero_shot/" + model_name_short
     # output_path = "./output/single_processing/one_shot/" + model_name_short
+    output_path = "./output/single_processing/few_shot/" + model_name_short
 
 
     # Build depdendency graph

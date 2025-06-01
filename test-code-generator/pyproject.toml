@@ -11,6 +11,7 @@ packages = [
 [tool.poetry.dependencies]
 python = "^3.12"
 ollama = "^0.4.8"
+esprima = "^4.0.1"
 
 
 [build-system]

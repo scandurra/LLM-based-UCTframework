@@ -2,49 +2,51 @@ const { test, expect } = require('@playwright/test');
 const LoginPage = require('../../models/page_object_models/login-page');
 const TestResultReporter = require('../../models/test-result-reporter');
 
-const insertSpecialCharPassword = function(page, reporter) {
+const enterSpecialCharPassword = async function(page, reporter) {
     const startTime = new Date().getTime();
+    
     const loginPage = new LoginPage(page);
-    const passwordWithSpecialChars = "Testadmin01!@#$";
-    loginPage.enterPassword(passwordWithSpecialChars);
-
+    await loginPage.enterEmail(process.env.E2E_LOGIN_EMAIL_ADMIN);
+    await loginPage.enterPassword('Testadmin01!@#$');
+    
     const endTime = new Date().getTime();
     const executionTime = (endTime - startTime) / 1000;
     if (reporter) {
-        reporter.addStep('UC1_TC10_ID1', 'Insert password with special characters', 'Password accepted', 'Password accepted', true, `Password: ${passwordWithSpecialChars}`, executionTime);
+        reporter.addStep('UC1_TC10_ID1', 'Enter password with special characters', 'Password accepted', 'Password accepted', true, 'E2E_LOGIN_EMAIL_ADMIN, E2E_LOGIN_PASSWORD_ADMIN', executionTime);
     }
 
-    expect(await loginPage.passwordInput.inputValue()).toBe(passwordWithSpecialChars);
+    await expect(loginPage.passwordInput).toBeVisible();
 }
 
-const clickLoginButton = function(page, reporter) {
+const clickLoginButton = async function(page, reporter) {
     const startTime = new Date().getTime();
+    
     const loginPage = new LoginPage(page);
-    loginPage.displayLoginForm();
-    loginPage.enterEmail(process.env.E2E_LOGIN_EMAIL_ADMIN);
-    loginPage.enterPassword("Testadmin01!@#$");
+    await loginPage.displayLoginForm();
     await loginPage.login();
-
+    
     const endTime = new Date().getTime();
     const executionTime = (endTime - startTime) / 1000;
     if (reporter) {
         reporter.addStep('UC1_TC10_ID2', 'Click Login button', 'System proceeds with authentication', 'System proceeds with authentication', true, '', executionTime);
     }
 
-    // Add expectation for successful login
+    await expect(loginPage.authenticate).toBeVisible();
 }
 
-const verifyLoginSuccess = function(page, reporter) {
+const verifyLoginSuccess = async function(page, reporter) {
     const startTime = new Date().getTime();
+    
     const loginPage = new LoginPage(page);
-
+    const errorMessage = await loginPage.getErrorMessage();
+    
     const endTime = new Date().getTime();
     const executionTime = (endTime - startTime) / 1000;
     if (reporter) {
-        reporter.addStep('UC1_TC10_ID3', 'Verify login success', 'System allows access with special characters in password', 'System allows access with special characters in password', true, '', executionTime);
+        reporter.addStep('UC1_TC10_ID3', 'Verify login success', 'System allows access with special characters in password', errorMessage ? 'Error: ' + errorMessage : 'Login successful', !errorMessage, '', executionTime);
     }
 
-    // Add expectation for successful login
+    await expect(errorMessage).toBeNull();
 }
 
 test("UC1_TC10 - Login con caratteri speciali nella password", async ({page, browserName}) => {
@@ -54,11 +56,9 @@ test("UC1_TC10 - Login con caratteri speciali nella password", async ({page, bro
 
     await page.goto(process.env.E2E_BASE_URL);
 
-    insertSpecialCharPassword(page, reporter);
+    await enterSpecialCharPassword(page, reporter);
+    await clickLoginButton(page, reporter);
+    await verifyLoginSuccess(page, reporter);
 
-    clickLoginButton(page, reporter);
-
-    verifyLoginSuccess(page, reporter);
-
-    reporter.onTestEnd(test, { status: "passed" }); 
+    reporter.onTestEnd(test, { status: "passed" });
 });

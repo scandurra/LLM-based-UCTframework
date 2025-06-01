@@ -1,4 +1,5 @@
 import logging
+import os
 from pathlib import Path
 from test_code_generator.prompt_builder.prompt_template import PromptTemplate
 from test_code_generator.prompt_builder.page_object_model_processor import PageObjectModelProcessor
@@ -40,7 +41,7 @@ class PromptBuilder:
             "test_parameters": self.test_parameters,
             "pom": pom_content,
             "existing_code": self.reporter_file,
-            "prvious_code_section": previousCodeSection
+            "previous_code_section": previousCodeSection
         }
         # Using string Template object in order to substitute only keys found and mainting the others without errors
         templateObj = PromptTemplate(self.prompt_template)
@@ -51,9 +52,10 @@ class PromptBuilder:
 
     def __load_prompt_template(self) -> None:
         try:
-            with open(self.template_path, "r") as f:
+            prompt_file_path = os.path.join(self.template_path, "raw.txt")
+            with open(prompt_file_path, "r") as f:
                 self.prompt_template = f.read()
-                logger.info(f"Prompt template loaded from path: {self.template_path}")
+                logger.info(f"Prompt template loaded from path: {prompt_file_path}")
         except FileNotFoundError as e:
             logger.exception(e)
             raise
@@ -78,9 +80,10 @@ class PromptBuilder:
 
     def __load_previous_code_section_file(self) -> None:
         try:
-            with open("./prompts/single_processing/zero_shot/codellama/previous_code_section.txt", "r") as f:
+            prompt_file_path = os.path.join(self.template_path, "previous_code_section.txt")
+            with open(prompt_file_path, "r") as f:
                 self.previous_code_section = f.read()
-                logger.info(f"Previous code section loaded from path: {self.reporter_file_path}")
+                logger.info(f"Previous code section loaded from path: {prompt_file_path}")
         except FileNotFoundError as e:
             logger.exception(e)
             raise

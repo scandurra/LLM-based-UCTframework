@@ -47,6 +47,17 @@ files = [
 ]
 
 [[package]]
+name = "esprima"
+version = "4.0.1"
+description = "ECMAScript parsing infrastructure for multipurpose analysis in Python"
+optional = false
+python-versions = "*"
+groups = ["main"]
+files = [
+    {file = "esprima-4.0.1.tar.gz", hash = "sha256:08db1a876d3c2910db9cfaeb83108193af5411fc3a3a66ebefacd390d21323ee"},
+]
+
+[[package]]
 name = "h11"
 version = "0.16.0"
 description = "A pure-Python, bring-your-own-I/O implementation of HTTP/1.1"
@@ -312,4 +323,4 @@ typing-extensions = ">=4.12.0"
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.12"
-content-hash = "c0256d0fd7736577e5e20e90f1a605dd31418b021f0781741e34db1e5bfdee80"
+content-hash = "0f9a759f65a30e7fa625eb70602fb756bf9eaadac996a6ff9fff97ddcb0991d4"

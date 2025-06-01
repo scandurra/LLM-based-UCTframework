@@ -2,6 +2,9 @@ ollama:
   model: "llama3.3:latest"
   request_timeout: 120 # Seconds
 
+dependency_graph:
+  file_path: "./input_files/include_graph/include_graph.json"
+
 parser:
   input_folder: "./input_files"
 

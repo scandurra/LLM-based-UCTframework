@@ -1,0 +1,1 @@
+Here is a Playwright script that implements the test case provided:

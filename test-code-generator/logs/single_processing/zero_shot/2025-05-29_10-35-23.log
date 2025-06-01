@@ -1,0 +1,7 @@
+2025-05-29 10:35:23,187 - __main__ - INFO - Found 0 dependencies for use case UC1
+2025-05-29 10:35:23,187 - test_code_generator.prompt_builder.prompt_builder - ERROR - [Errno 2] No such file or directory: './prompts/single_processing/few_shot/llama3.3/raw.txt/raw.txt'
+Traceback (most recent call last):
+  File "/home/sronzoni/GitHub/LLM-based-UCTframework/test-code-generator/src/test_code_generator/prompt_builder/prompt_builder.py", line 56, in __load_prompt_template
+    with open(prompt_file_path, "r") as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: './prompts/single_processing/few_shot/llama3.3/raw.txt/raw.txt'

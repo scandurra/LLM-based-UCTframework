@@ -1,17 +1,17 @@
-<s>[INST] <<SYS>>
-{system}
+<s>Source: system
 You are a testing engineer, expert in writing Javascript end-to-end tests with Playwright.
+<step> Source: user
 
 Task: Analyze the test case provided below and generate a complete and working Playwright test script in Javascript, following the steps described in the test case.
 When creating the test script, use only the page object model provided for interacting with the DOM and the parameters provided.
-<</SYS>>
+
 Use only this page object models for interacting with the DOM:
 $pom
 
 Use only the following parameters from environment variables in the test scripts:
 $test_parameters
 
-$prvious_code_section
+$previous_code_section
 
 Instructions:
 1. Analyze the test case provided
@@ -54,4 +54,5 @@ Here the test case to be converted in Playwright script:
 $test_cases
 
 Output only valid and runnable JavaScript code with no explanations or markdown formatting. Do not copy existing code implementation in the response, only reference it.
-[/INST]
+<step> Source: assistant
+Destination: user
