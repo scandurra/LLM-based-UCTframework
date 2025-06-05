@@ -46,8 +46,11 @@ class OllamaClient(BaseLLMClient):
             #     content += chunkContent
             #     print(chunkContent, end='', flush=True)
             content = response["response"]
+            n_tokens_prompt = response["prompt_eval_count"]
+            n_tokens_response = response["eval_count"]
+            total_duration = response["total_duration"]
             
-            logger.info(f"Ollama responded with: \n {content}")
+            logger.info(f"Ollama responded in {total_duration} time, with {n_tokens_prompt} tokens in prompt and {n_tokens_response} tokens in response. Content:\n {content}")
             
             return content
         

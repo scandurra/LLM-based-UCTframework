@@ -20,6 +20,7 @@ Instructions:
 4. Call the TestResultReporter object methods as described below.
 5. Add the required import for Playwright, TestResultReporter from "../../models/test-result-reporter", page object models from "../../models/page_object_models/"
 6. Put the code in functions for reusability, with the reporter object as parameter not mandatory. If not null, call reporter methods.
+7. Do not rewrite functions provided in the prompt, just refer to them.
 
 <example>
 const functionNameDescribingStep = async function(page, reporter) {
@@ -42,8 +43,8 @@ test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
     reporter.setTestCase("UC1_TC1 - Login test with success");
 
     // Call step functions in sequence
-    step1(page, reporter);
-    step2(page, reporter);
+    await step1(page, reporter);
+    await step2(page, reporter);
     // Additional steps...
 
     reporter.onTestEnd(test, { status: "passed" });     // status can be "passed" or "failed" 

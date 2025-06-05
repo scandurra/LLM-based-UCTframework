@@ -107,7 +107,7 @@ def main():
         folder_abs_path = os.path.join(output_path, use_case_name)
         if not os.path.exists(folder_abs_path):
             os.makedirs(folder_abs_path)
-        with open(os.path.join(folder_abs_path, f"{test_case.test_case_id}.js"), "w") as f:
+        with open(os.path.join(folder_abs_path, f"{test_case.test_case_id}.spec.js"), "w") as f:
             f.write(js_code)
 
 if __name__ == "__main__":
