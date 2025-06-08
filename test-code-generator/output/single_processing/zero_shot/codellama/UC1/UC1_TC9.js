@@ -1,1 +1,0 @@
-Here is a complete Playwright test script for the provided test case using the page object model and environment variables:

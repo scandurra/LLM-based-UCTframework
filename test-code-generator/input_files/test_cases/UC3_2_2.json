@@ -6,7 +6,7 @@
     "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
     "test_steps": [
       {
-        "step": "Inserisci uno stato tra i parametri di ricerca",
+        "step": "Inserisci uno stato valido tra i parametri di ricerca",
         "expected": "Il sistema accetta lo stato"
       },
       {
@@ -15,7 +15,7 @@
       },
       {
         "step": "Visualizza il risultato della ricerca",
-        "expected": "Le informazioni vengono visualizzate come previsto"
+        "expected": "Le informazioni relative allo stato selezionato vengono visualizzate"
       }
     ],
     "test_type": "Positivo",
@@ -26,19 +26,15 @@
     "test_case_id": "UC3.2.2_TC2",
     "title": "Ricerca scheda censimento senza stato",
     "preconditions": "UC3.2",
-    "postconditions": "Il sistema segnala l’errore di ricerca",
+    "postconditions": "Il sistema segnala un errore per mancanza di parametri di ricerca",
     "test_steps": [
       {
-        "step": "Lascia vuoto il campo dello stato",
-        "expected": "Il sistema segnala la mancanza di informazioni"
+        "step": "Lascia vuoto il campo relativo allo stato",
+        "expected": "Il sistema richiede l’inserimento dello stato"
       },
       {
         "step": "Tenta di confermare la ricerca",
-        "expected": "La ricerca non viene avviata"
-      },
-      {
-        "step": "Visualizza il messaggio di errore",
-        "expected": "Il sistema mostra un messaggio di stato mancante"
+        "expected": "La ricerca non viene avviata e compare un messaggio di errore"
       }
     ],
     "test_type": "Negativo",
@@ -49,19 +45,15 @@
     "test_case_id": "UC3.2.2_TC3",
     "title": "Ricerca scheda censimento con stato non valido",
     "preconditions": "UC3.2",
-    "postconditions": "Il sistema segnala l’errore di ricerca",
+    "postconditions": "Il sistema segnala un errore per stato non riconosciuto",
     "test_steps": [
       {
         "step": "Inserisci uno stato non esistente o non valido",
-        "expected": "Il sistema rileva lo stato come non valido"
+        "expected": "Il sistema segnala che lo stato non è valido"
       },
       {
         "step": "Conferma la ricerca",
-        "expected": "La ricerca non produce risultati"
-      },
-      {
-        "step": "Visualizza il messaggio di errore",
-        "expected": "Il sistema mostra un messaggio di stato non trovato"
+        "expected": "La ricerca non produce risultati e compare un messaggio di errore"
       }
     ],
     "test_type": "Negativo",
@@ -70,21 +62,17 @@
   },
   {
     "test_case_id": "UC3.2.2_TC4",
-    "title": "Boundary test: ricerca con stato al limite della lunghezza massima",
+    "title": "Boundary test: ricerca con stato al limite della lunghezza massima consentita",
     "preconditions": "UC3.2",
-    "postconditions": "Il sistema gestisce correttamente la lunghezza del campo",
+    "postconditions": "Il sistema accetta lo stato e avvia la ricerca",
     "test_steps": [
       {
-        "step": "Inserisci uno stato con il numero massimo di caratteri consentiti",
+        "step": "Inserisci uno stato con il numero massimo di caratteri consentito",
         "expected": "Il sistema accetta lo stato"
       },
       {
         "step": "Conferma la ricerca",
-        "expected": "La ricerca viene avviata senza problemi"
-      },
-      {
-        "step": "Visualizza il risultato della ricerca",
-        "expected": "Le informazioni vengono visualizzate correttamente"
+        "expected": "La ricerca viene avviata correttamente"
       }
     ],
     "test_type": "Boundary",
@@ -93,24 +81,20 @@
   },
   {
     "test_case_id": "UC3.2.2_TC5",
-    "title": "Edge case: ricerca con stato contenente caratteri speciali",
+    "title": "Usabilità: ricerca con stato contenente caratteri speciali",
     "preconditions": "UC3.2",
     "postconditions": "Il sistema gestisce correttamente i caratteri speciali",
     "test_steps": [
       {
-        "step": "Inserisci uno stato con caratteri speciali (es. !, @, #)",
-        "expected": "Il sistema gestisce i caratteri speciali senza errori"
+        "step": "Inserisci uno stato che include caratteri speciali (es. punti, virgolette)",
+        "expected": "Il sistema accetta lo stato e avvia la ricerca"
       },
       {
         "step": "Conferma la ricerca",
-        "expected": "La ricerca viene avviata correttamente"
-      },
-      {
-        "step": "Visualizza il risultato della ricerca",
-        "expected": "Le informazioni vengono visualizzate come previsto"
+        "expected": "La ricerca produce risultati coerenti con il parametro di ricerca inserito"
       }
     ],
-    "test_type": "Edge",
+    "test_type": "Usabilità",
     "priority": "Media",
     "use_case_id": "UC3.2.2"
   }

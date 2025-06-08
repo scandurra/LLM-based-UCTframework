@@ -1,14 +1,23 @@
 import logging
+import os
 import re
 from typing import Dict, List, Tuple
 
 logger = logging.getLogger(__name__)
 
 class JavascriptCodeValidator:
-    def __init__(self) -> None:
+    def __init__(self, use_case_name, test_case_id, markdown_content: str) -> None:
+        self.use_case_name = use_case_name
+        self.test_case_id = test_case_id
+        self.markdown_content = markdown_content
+        self.extracted_files = []
         pass
 
-    def extract_code_blocks(self, content: str) -> List[str]:
+    def process_content(self):
+        self.extract_code_blocks()
+
+
+    def extract_code_blocks(self) -> List[Dict[str, str]]:
         """
         Extract JavaScript code blocks from content that might have markdown code fences.
         
@@ -20,57 +29,186 @@ class JavascriptCodeValidator:
         """
         logger.info("Extracting JavaScript code blocks")
 
+        # Pattern to match filename headers (### filename.js) followed by javascript code blocks
+        # ?: makes Python not capturing the first (..) as a group. I need it only for 'OR' condition
+        # Llama3.3: ### file_name.functions.js
+        # Codellama: **file_name.functions.js** or **File: file_name.functions.js**
+        pattern = r'(?:#|\*(?:File:\s)?)+\s*([^\n]+\.js)\**\s*\n```javascript\n(.*?)\n```'
+
         # Check for markdown-style JS code blocks
-        js_blocks = re.findall(r'```(?:javascript|js)(.*?)```', content, re.DOTALL)
+        matches = re.findall(pattern, self.markdown_content, re.DOTALL)
         
-        if js_blocks:
-            logger.info(f"Found {len(js_blocks)} JavaScript code blocks with markdown syntax")
-            return [block.strip() for block in js_blocks]
-        else:
-            # If no markdown code blocks found, assume the entire content is JavaScript
-            logger.info("No markdown code blocks found, treating entire content as JavaScript")
-            return [content.strip()]
+        self.extracted_files = []
+        for filename, code in matches:
+            self.extracted_files.append({
+                'filename': filename.strip(),
+                'code': code.strip()
+            })
+
+        return self.extracted_files
     
 
-    def clean_code(self, code_content: str) -> str:
-        """
-        Clean JavaScript code by applying all fixes.
+    # def clean_code(self, code_content: str) -> str:
+    #     """
+    #     Clean JavaScript code by applying all fixes.
         
-        Args:
-            code_content: The JavaScript code content to clean
+    #     Args:
+    #         code_content: The JavaScript code content to clean
             
-        Returns:
-            Cleaned JavaScript code
-        """
-        logger.info("Starting JavaScript code cleaning")
+    #     Returns:
+    #         Cleaned JavaScript code
+    #     """
+    #     logger.info("Starting JavaScript code cleaning")
         
-        # Extract code blocks if there are markdown code fences
-        code_blocks = self.extract_code_blocks(code_content)
+    #     # Extract code blocks if there are markdown code fences
+    #     code_blocks = self.extract_code_blocks(code_content)
         
-        logger.info("JavaScript code cleaning completed")
+    #     logger.info("JavaScript code cleaning completed")
         
-        # If there was only one block, return it directly
-        if len(code_blocks) == 1:
-            return code_blocks[0]
+    #     # If there was only one block, return it directly
+    #     if len(code_blocks) == 1:
+    #         return code_blocks[0]
         
-        # If there were multiple blocks, join them with separators
-        return '\n\n// Next JavaScript Block\n\n'.join(code_blocks)
+    #     # If there were multiple blocks, join them with separators
+    #     return '\n\n// Next JavaScript Block\n\n'.join(code_blocks)
 
-    def save_to_file(self, code: str, output_path: str) -> None:
-        """
-        Save cleaned JavaScript code to a file.
+    def ensure_require_statements(self, dependencies, output_folder) -> str:
+        for file_data in self.extracted_files:
+            code = file_data['code']
         
-        Args:
-            code: Cleaned JavaScript code
-            output_path: Path to save the cleaned code to
-        """
-        self.logger.info(f"Saving cleaned code to {output_path}")
-        
-        try:
-            with open(output_path, 'w') as f:
-                f.write(code)
-            self.logger.info(f"Successfully saved cleaned code to {output_path}")
-        except Exception as e:
-            self.logger.error(f"Failed to save code: {str(e)}")
-            raise
+            # Create a copy of the code to modify
+            modified_code = code
+            
+            # Find all existing require statements
+            require_pattern = r'(?:const|let|var)\s+(?:\{[^}]*\}|\w+)\s*=\s*require\s*\(\s*[\'"]([^\'"]+)[\'"]\s*\)'
+            existing_requires = re.findall(require_pattern, code)
+            
+            # Also check for simple require() calls without assignment
+            simple_require_pattern = r'require\s*\(\s*[\'"]([^\'"]+)[\'"]\s*\)'
+            simple_requires = re.findall(simple_require_pattern, code)
+            
+            # Combine both patterns to get all required files
+            all_required_files = set(existing_requires + simple_requires)
+            
+            # Find missing require statements
+            missing_files = []
+            for dependency in dependencies:
+                # Construct the full require path: output_folder + dependency + .functions.js
+                require_path = os.path.join("..", dependency.id, dependency.base_test_case_id + '.functions.js').replace('\\', '/')
+                
+                # Check if this path is already required
+                if require_path not in all_required_files:
+                    missing_files.append((dependency, require_path))
+            
+            # Add missing require statements at the beginning of the code
+            if missing_files:
+                new_requires = []
+                for dependency, require_path in missing_files:
+                    # Generate variable name from dependency name
+                    var_name = dependency.base_test_case_id.replace('-', '_').replace('/', '_')
+                    # Clean up variable name to be valid JavaScript identifier
+                    var_name = re.sub(r'[^\w]', '_', var_name)
+                    if var_name and var_name[0].isdigit():
+                        var_name = '_' + var_name
+                    
+                    new_require = f"const {var_name} = require('{require_path}');"
+                    new_requires.append(new_require)
+                
+                # Add new requires at the top of the file
+                if new_requires:
+                    require_block = '\n'.join(new_requires) + '\n'
+                    # Find the best place to insert - after existing requires or at the beginning
+                    if existing_requires or simple_requires:
+                        # Find the last require statement and insert after it
+                        last_require_match = None
+                        for match in re.finditer(require_pattern + '|' + simple_require_pattern, code):
+                            last_require_match = match
+                        
+                        if last_require_match:
+                            insert_pos = last_require_match.end()
+                            # Find the end of the line
+                            next_newline = code.find('\n', insert_pos)
+                            if next_newline != -1:
+                                insert_pos = next_newline + 1
+                            else:
+                                insert_pos = len(code)
+                            
+                            modified_code = code[:insert_pos] + require_block + code[insert_pos:]
+                        else:
+                            modified_code = require_block + code
+                    else:
+                        # No existing requires, add at the beginning
+                        modified_code = require_block + code
+            file_data['code'] = modified_code
 
+
+    def fix_import_statements(self) -> str:
+        # Patterns to match import and require statements
+        import_patterns = [
+            # # ES6 import statements
+            # r'import\s+(?:(?:\*\s+as\s+\w+)|(?:\{[^}]*\})|(?:\w+))\s+from\s+[\'"]([^\'"]+)[\'"]',
+            # r'import\s+[\'"]([^\'"]+)[\'"]',
+            
+            # # CommonJS require statements
+            # r'(?:const|let|var)\s+(?:\{[^}]*\}|\w+)\s*=\s*require\s*\(\s*[\'"]([^\'"]+)[\'"]\s*\)',
+            # r'require\s*\(\s*[\'"]([^\'"]+)[\'"]\s*\)',
+
+            r'^(\s*)import\s+(.+?)\s+from\s+[\'"](.+?)[\'"];?\s*$'
+        ]
+
+         # Pattern to match UCxx_TCx.functions format
+        target_pattern = r'^(?:\.\/)?UC(\d+)_TC(\d+)\.functions(.js)?$'
+
+        for file_data in self.extracted_files:
+            code = file_data['code']
+        
+            # Create a copy of the code to modify
+            modified_code = code
+
+            for pattern in import_patterns: 
+                matches = re.finditer(pattern, modified_code, re.MULTILINE)
+            
+                for match in matches:
+                    indent, import_path, path = match.groups()
+                    full_statement = match.group(0)
+
+                    # Rule 1: Transform TestResultReporter destructured import
+                    if re.search(r'\{\s*TestResultReporter\s*\}', import_path):
+                        import_path = "TestResultReporter"
+
+                    path_match = re.match(r'^(?:\.\/)?UC(\d+)_TC(\d+)\.functions(.js)?$', path)
+                    if path_match:
+                        uc_num = path_match.group(1)
+                        tc_num = path_match.group(2)
+                        
+                        if f"UC{uc_num}" != self.use_case_name:
+                            # Create new path: ../UCxx/UCxx_TCx.functions
+                            path = f"../UC{uc_num}/UC{uc_num}_TC{tc_num}.functions.js"
+
+                    # Replace the path in the statement
+                    new_statement = f"{indent}import {import_path} from '{path}';\n"
+                    
+                    # Replace in the modified code
+                    modified_code = modified_code.replace(full_statement, new_statement, 1)
+                    
+
+            file_data['code'] = modified_code
+           
+
+    def save_files_to_disk(self, output_path: str) -> None:
+        if not self.extracted_files:
+            raise Exception("No extracted files found")
+
+        folder_abs_path = os.path.join(output_path, self.use_case_name)
+        if not os.path.exists(folder_abs_path):
+            os.makedirs(folder_abs_path)
+
+        for file_data in self.extracted_files:
+            if file_data['filename'].startswith(self.test_case_id):
+                filename = file_data['filename']
+            else:
+                filename = f"{self.test_case_id}.{file_data['filename']}"
+            
+            filepath = os.path.join(folder_abs_path, filename)
+            with open(filepath, 'w', encoding='utf-8') as f:
+                f.write(file_data['code'])

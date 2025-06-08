@@ -26,7 +26,7 @@ class PromptBuilder:
         self.__load_reporter_file()
         self.__load_previous_code_section_file()
 
-    def build_prompt(self, test_cases, dependent_uc_code, pom_content) -> str:
+    def build_prompt(self, test_case_name, test_cases, dependent_uc_code, pom_content) -> str:
         # building previous code section
         
         previousCodeSection = ""
@@ -37,6 +37,7 @@ class PromptBuilder:
             })
 
         placeholder_values = {
+            "test_case_name": test_case_name,
             "test_cases": test_cases,
             "test_parameters": self.test_parameters,
             "pom": pom_content,

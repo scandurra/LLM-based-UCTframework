@@ -1,17 +1,17 @@
 [
   {
     "test_case_id": "UC3.4.2_TC1",
-    "title": "Eliminazione scheda censimento con successo",
+    "title": "Elimina scheda censimento con conferma",
     "preconditions": "UC3.4",
     "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
     "test_steps": [
       {
-        "step": "L’utente seleziona l’operazione di cancellazione",
-        "expected": "All’utente viene richiesta la conferma dell’eliminazione della scheda indicata"
+        "step": "Seleziona l’operazione di cancellazione di una scheda censimento esistente",
+        "expected": "Viene richiesta la conferma dell’eliminazione"
       },
       {
-        "step": "L’utente conferma l’eliminazione della scheda",
-        "expected": "L’utente visualizza un messaggio di conferma dell’operazione"
+        "step": "Conferma l’eliminazione della scheda indicata",
+        "expected": "Il sistema elimina la scheda e visualizza un messaggio di conferma"
       }
     ],
     "test_type": "Positivo",
@@ -22,15 +22,15 @@
     "test_case_id": "UC3.4.2_TC2",
     "title": "Annullamento eliminazione scheda censimento",
     "preconditions": "UC3.4",
-    "postconditions": "L’eliminazione viene interrotta",
+    "postconditions": "L’eliminazione della scheda viene interrotta",
     "test_steps": [
       {
-        "step": "L’utente seleziona l’operazione di cancellazione",
-        "expected": "All’utente viene richiesta la conferma dell’eliminazione della scheda indicata"
+        "step": "Seleziona l’operazione di cancellazione di una scheda censimento esistente",
+        "expected": "Viene richiesta la conferma dell’eliminazione"
       },
       {
-        "step": "L’utente annulla l’eliminazione della scheda",
-        "expected": "L’eliminazione viene interrotta e non vengono apportate modifiche"
+        "step": "Annulla l’eliminazione della scheda indicata",
+        "expected": "L’operazione di eliminazione viene interrotta e la scheda rimane integra"
       }
     ],
     "test_type": "Negativo",
@@ -39,43 +39,17 @@
   },
   {
     "test_case_id": "UC3.4.2_TC3",
-    "title": "Selezione operazione di cancellazione non valida",
+    "title": "Elimina scheda censimento non esistente",
     "preconditions": "UC3.4",
-    "postconditions": "L’utente visualizza un messaggio di errore",
+    "postconditions": "Il sistema segnala l’assenza della scheda da eliminare",
     "test_steps": [
       {
-        "step": "L’utente seleziona un’operazione di cancellazione non valida",
-        "expected": "All’utente viene mostrato un messaggio di errore"
-      }
-    ],
-    "test_type": "Negativo",
-    "priority": "Bassa",
-    "use_case_id": "UC3.4.2"
-  },
-  {
-    "test_case_id": "UC3.4.2_TC4",
-    "title": "Conferma eliminazione scheda censimento senza autorizzazione",
-    "preconditions": "UC3.4",
-    "postconditions": "L’utente visualizza un messaggio di errore",
-    "test_steps": [
+        "step": "Seleziona l’operazione di cancellazione di una scheda censimento non esistente",
+        "expected": "Il sistema segnala che la scheda non è presente"
+      },
       {
-        "step": "L’utente non autorizzato tenta di confermare l’eliminazione della scheda",
-        "expected": "All’utente viene mostrato un messaggio di errore"
-      }
-    ],
-    "test_type": "Negativo",
-    "priority": "Alta",
-    "use_case_id": "UC3.4.2"
-  },
-  {
-    "test_case_id": "UC3.4.2_TC5",
-    "title": "Eliminazione scheda censimento con dati mancanti",
-    "preconditions": "UC3.4",
-    "postconditions": "L’utente visualizza un messaggio di errore",
-    "test_steps": [
-      {
-        "step": "L’utente seleziona l’operazione di cancellazione senza i dati necessari",
-        "expected": "All’utente viene mostrato un messaggio di errore"
+        "step": "Tenta di confermare l’eliminazione",
+        "expected": "L’operazione fallisce e viene visualizzato un messaggio di errore"
       }
     ],
     "test_type": "Negativo",
@@ -83,21 +57,40 @@
     "use_case_id": "UC3.4.2"
   },
   {
-    "test_case_id": "UC3.4.2_TC6",
-    "title": "Eliminazione scheda censimento con successo e notifica",
+    "test_case_id": "UC3.4.2_TC4",
+    "title": "Boundary test: eliminazione di più schede contemporaneamente",
     "preconditions": "UC3.4",
-    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine e riceve una notifica",
+    "postconditions": "Il sistema gestisce correttamente la richiesta di eliminazione multipla",
     "test_steps": [
       {
-        "step": "L’utente seleziona l’operazione di cancellazione",
-        "expected": "All’utente viene richiesta la conferma dell’eliminazione della scheda indicata"
+        "step": "Seleziona più schede censimento per l’eliminazione",
+        "expected": "Il sistema richiede conferma per ogni scheda selezionata"
       },
       {
-        "step": "L’utente conferma l’eliminazione della scheda",
-        "expected": "L’utente visualizza un messaggio di conferma dell’operazione e riceve una notifica"
+        "step": "Conferma l’eliminazione di tutte le schede indicate",
+        "expected": "Il sistema elimina tutte le schede e visualizza un messaggio di conferma"
       }
     ],
-    "test_type": "Positivo",
+    "test_type": "Boundary",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.2"
+  },
+  {
+    "test_case_id": "UC3.4.2_TC5",
+    "title": "Usabilità: eliminazione di scheda censimento con messaggio di conferma chiaro",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente comprende chiaramente l’esito dell’operazione",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di cancellazione di una scheda censimento esistente",
+        "expected": "Il messaggio di conferma è chiaro e comprensibile"
+      },
+      {
+        "step": "Conferma l’eliminazione della scheda indicata",
+        "expected": "Il sistema visualizza un messaggio di conferma dell’avvenuta eliminazione in modo chiaro e utente-friendly"
+      }
+    ],
+    "test_type": "Usabilità",
     "priority": "Alta",
     "use_case_id": "UC3.4.2"
   }

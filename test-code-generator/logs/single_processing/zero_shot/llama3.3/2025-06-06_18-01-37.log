@@ -1,0 +1,408 @@
+2025-06-06 18:01:37,297 - __main__ - INFO - Found 1 dependencies for use case UC3.3
+2025-06-06 18:01:37,297 - __main__ - INFO - Read previously generated code for use case UC3 - test case UC3_TC1
+2025-06-06 18:01:37,297 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt template loaded from path: ./prompts/single_processing/zero_shot/llama3.3/raw.txt
+2025-06-06 18:01:37,298 - test_code_generator.prompt_builder.prompt_builder - INFO - Test parameters loaded from path: ./input_files/parameters/test_parameters.env
+2025-06-06 18:01:37,298 - test_code_generator.prompt_builder.prompt_builder - INFO - Test reporter loaded from path: ./input_files/reporter_minimal.js
+2025-06-06 18:01:37,298 - test_code_generator.prompt_builder.prompt_builder - INFO - Previous code section loaded from path: ./prompts/single_processing/zero_shot/llama3.3/previous_code_section.txt
+2025-06-06 18:01:37,298 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt built: <|begin_of_text|><|start_header_id|>system<|end_header_id|>
+You are a testing engineer, expert in writing Javascript end-to-end tests with Playwright.
+
+Task: Analyze the test case provided below and generate a complete and working Playwright test script in Javascript, following the steps described in the test case.
+When creating the test script, use only the page object model provided for interacting with the DOM and the parameters provided.
+<|eot_id|>
+<|start_header_id|>user<|end_header_id|>
+Use only this page object models for interacting with the DOM:
+const { timeout } = require('../../playwright.config');
+
+class CensusSheetPage {
+  constructor(page) {
+    this.page = page;
+    this.path = require('path');
+    
+    // Locators
+    this.searchInput = page.getByPlaceholder('Cerca');
+    this.uploadButton = page.locator('#modal_upload_censustechsheet_btn');
+    this.fileInput = page.locator('input[type="file"]');
+    this.okButton = page.getByRole('button', { name: 'OK' });
+    this.actionDropdown = page.locator('.text-start > .btn').first();
+    this.downloadOption = page.locator('[data-kt-cts-table-filter="download_row"]').first();
+    this.deleteOption = page.locator('[data-kt-cts-table-filter="delete_row"]').first();
+    this.editOption = page.locator('[data-kt-cts-table-filter="edit_row"]').first();
+    this.detailOption = page.locator('a[data-kt-cts-table-filter="detail_row"]').first();
+    this.freezeOption = page.locator('a[data-action="freeze"]').first();
+    this.confirmDeleteButton = page.locator('button.swal2-confirm.btn.fw-bold.btn-danger').first();
+    this.cancelDeleteButton = page.locator('button.swal2-cancel.btn.fw-bold.btn-active-light-primary').first();
+    this.confirmButton = page.locator('button.swal2-confirm.btn.fw-bold.btn-primary').first();
+    
+    // Column headers
+    this.azioniColumn = page.getByLabel('Azioni');
+    this.schedaColumn = page.getByLabel('Scheda: attiva per ordinare');
+    this.proprietarioColumn = page.getByLabel('Proprietario: attiva per');
+    this.comuneColumn = page.getByLabel('Comune: attiva per ordinare');
+    this.statsColumn = page.getByLabel('Stats: attiva per ordinare la');
+    this.statoColumn = page.getByLabel('Stato: attiva per ordinare la');
+    this.infoColumn = page.getByLabel('Info: attiva per ordinare la');
+    this.creazioneColumn = page.getByLabel('Creazione: attiva per');
+    this.aggiornamentoColumn = page.getByLabel('Aggiornamento: attiva per');
+    this.sottomissioneColumn = page.getByLabel('Sottomissione: attiva per');
+  }
+
+  async clickAzioniColumn() {
+    await this.azioniColumn.click({timeout: 300000});
+  }
+
+  async clickSchedaColumn() {
+    await this.schedaColumn.click({timeout: 300000});
+  }
+
+  async clickProprietarioColumn() {
+    await this.proprietarioColumn.click({timeout: 300000});
+  }
+
+  async clickComuneColumn() {
+    await this.comuneColumn.click({timeout: 300000});
+  }
+
+  async clickStatsColumn() {
+    await this.statsColumn.click({timeout: 300000});
+  }
+
+  async clickStatoColumn() {
+    await this.statoColumn.click({timeout: 300000});
+  }
+
+  async clickInfoColumn() {
+    await this.infoColumn.click({timeout: 300000});
+  }
+
+  async clickCreazioneColumn() {
+    await this.creazioneColumn.click({timeout: 300000});
+  }
+
+  async clickAggiornamentoColumn() {
+    await this.aggiornamentoColumn.click({timeout: 300000});
+  }
+
+  async clickSottomissioneColumn() {
+    await this.sottomissioneColumn.click({timeout: 300000});
+  }
+
+  async searchByName(name = 'Lucania') {
+    await this.page.getByPlaceholder('Cerca').click();
+    await this.page.getByPlaceholder('Cerca').fill(name);
+    await this.page.getByPlaceholder('Cerca').press('Enter');
+  }
+
+  async clickAzioniButton() {
+    await this.page.locator('.text-start > .btn').first().waitFor({ state: 'visible' });
+
+    // Ora possiamo cliccare sul pulsante
+    await this.page.locator('.text-start > .btn').first().click();
+  }
+
+  async clickAzioneDownload() {
+    await this.page.locator('[data-kt-cts-table-filter="download_row"]').first().click();
+  }
+
+  async clickAzioneDelete() {
+    await this.page.locator('[data-kt-cts-table-filter="delete_row"]').first().click();
+  }
+
+  async clickConfirmAzioneDelete() {
+    await this.page.locator('button.swal2-confirm.btn.fw-bold.btn-danger').first().click();
+    await this.page.locator('button.swal2-confirm.btn.fw-bold.btn-primary').first().click();
+  }
+
+  async clickCancelAzioneDelete() {
+    await this.page.locator('button.swal2-cancel.btn.fw-bold.btn-active-light-primary').first().click();
+    await this.page.locator('button.swal2-confirm.btn.fw-bold.btn-primary').first().click();
+  }
+
+  async clickAzioneEdit() {
+    await this.page.locator('[data-kt-cts-table-filter="edit_row"]').first().click();
+  }
+
+  async clickAzioneCongela() {
+    await this.page.locator('a[data-action="freeze"]').first().click();
+  }
+
+  async clickAzioneDettaglio() {
+    await this.page.locator('a[data-kt-cts-table-filter="detail_row"]').first().click();
+  }
+}
+
+
+module.exports = CensusSheetPage;
+
+const { timeout } = require('../../playwright.config');
+
+class CensusSheetPageUpload {
+  constructor(page) {
+    this.page = page;
+    this.path = require('path');
+    
+    // Locators
+    this.uploadButton = page.locator('#modal_upload_censustechsheet_btn');
+    this.fileInput = page.locator('input[type="file"]');    
+  }
+
+  async waitForUploadSchedaModalButton() {
+    await this.page.waitForSelector('#modal_upload_censustechsheet_btn', { state: 'visible' }); 
+  }
+
+  async clickUploadSchedaModalButton() {
+    await this.uploadButton.click();
+  }
+
+  async waitForUploadModal() {
+    await this.page.waitForSelector('#upload_sheet_file', { state: 'visible' });
+  }
+
+  // filePath = path.join(__dirname, 'test-data/SchedaCensimentoV2_Esempio1.xml');
+  async setInputFiles(filePath) {
+    await this.fileInput.setInputFiles(filePath);
+  }
+
+  async waitForUploadApplyButton() {
+    await this.page.getByRole('button', { name: 'OK' }).waitFor({ state: 'visible' });
+  }
+
+  async clickUploadApplyButton() {
+    await this.page.getByRole('button', { name: 'OK' }).click();
+  }
+}
+
+
+module.exports = CensusSheetPageUpload;
+
+Use only the following parameters from environment variables in the test scripts:
+E2E_BASE_URL=""
+E2E_LOGIN_URL=""
+E2E_HOME_URL="" 
+E2E_DASHBOARD_URL="" 
+E2E_CTS_URL="" 
+EMAIL=""
+PASSWORD=""
+
+When in the test case there is a step, a precondition or a postcondition with a name of use case UC*, reuse this functions passing null as reporter parameter:
+<code>
+const { test, expect } = require('@playwright/test');
+const SidebarPage = require('../../models/page_object_models/sidebar-page');
+const CensusSheetPage = require('../../models/page_object_models/census-sheet-page');
+const TestResultReporter = require('../../models/test-result-reporter');
+const UC1_TC1 = require('../.././output/single_processing/zero_shot/llama3.3/UC1/UC1_TC1.spec.js');
+
+const accessPlatformAndAuthenticate = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    await fillCorrectCredentials(page, reporter);
+    await clickLoginButton(page, reporter);
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC3_TC1_ID1', 'Accedi alla piattaforma e autenticati correttamente', true, page.url() === process.env.E2E_HOME_URL, page.url() === process.env.E2E_HOME_URL, '', executionTime);
+    }
+
+    expect(page.url()).toBe(process.env.E2E_HOME_URL);
+}
+
+const selectCensusSheetMenu = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const sidebarPage = new SidebarPage(page);
+    await sidebarPage.clickCensusSheetLink();
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC3_TC1_ID2', 'Seleziona la voce del menù laterale relativa alle schede censimento', true, page.url() === process.env.E2E_CTS_URL, page.url() === process.env.E2E_CTS_URL, '', executionTime);
+    }
+
+    expect(page.url()).toBe(process.env.E2E_CTS_URL);
+}
+
+test("UC3_TC1 - Apertura interfaccia gestione schede censimento con successo", async ({page, browserName}) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC3_TC1 - Apertura interfaccia gestione schede censimento con successo");
+
+    await page.goto(process.env.E2E_BASE_URL);
+
+    await accessPlatformAndAuthenticate(page, reporter);
+    await selectCensusSheetMenu(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+</code>
+
+Instructions:
+1. Analyze the test case provided
+2. For the test case, generate a test script in Javascript with Playwright
+3. Use only Page object model provided to interact with the DOM.
+4. Call the TestResultReporter object methods as described below.
+5. Add the required import for Playwright, TestResultReporter from "../../models/test-result-reporter", page object models from "../../models/page_object_models/"
+6. Put the code in functions for reusability, with the reporter object as parameter not mandatory. If not null, call reporter methods.
+7. Do not rewrite functions provided in the prompt, just refer to them.
+
+<example>
+const functionNameDescribingStep = async function(page, reporter) {
+    const startTime = DateTime.now();
+    
+    // Put here test case step implementation
+    
+    const endTime = DateTime.now();
+    const executionTime = endTime - startTime;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID1', 'Step 1 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+    }
+
+    // Include Playwright assertions
+    expect(condition);
+}
+
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1 - Login test with success");
+
+    // Call step functions in sequence
+    await step1(page, reporter);
+    await step2(page, reporter);
+    // Additional steps...
+
+    reporter.onTestEnd(test, { status: "passed" });     // status can be "passed" or "failed" 
+});
+</example>
+
+Here the test case to be converted in Playwright script:
+Test Case ID: UC3.3_TC1
+Title: Caricamento scheda censimento con dati validi e formato supportato
+Use Case ID: UC3.3
+Priority: Alta
+Type: Positivo
+Preconditions: UC3
+Postconditions: L’utente può visualizzare le informazioni corrispondenti alla scheda censimento appena caricata
+Test Steps:
+  1. Step: Clicca sul tasto di caricamento delle schede censimento
+Expected: La finestra di caricamento si apre correttamente
+  2. Step: Seleziona un file in formato supportato (es. PDF) e compila i parametri richiesti
+Expected: Il sistema accetta il file e i parametri
+  3. Step: Procedi all’upload del file
+Expected: La barra di caricamento appare e il file viene caricato con successo
+
+Output only valid and runnable JavaScript code with no explanations or markdown formatting. Do not copy existing code implementation in the response, only reference it.
+<|eot_id|>
+<|start_header_id|>assistant<|end_header_id|>
+2025-06-06 18:01:37,298 - test_code_generator.llm_client.ollama_client - INFO - OllamaClient initialized with model: llama3.3:latest
+2025-06-06 18:06:08,645 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/generate "HTTP/1.1 200 OK"
+2025-06-06 18:06:08,645 - test_code_generator.llm_client.ollama_client - INFO - Ollama responded in 271345483770 time, with 2706 tokens in prompt and 1079 tokens in response. Content:
+ 
+
+```javascript
+const { test, expect } = require('@playwright/test');
+const CensusSheetPage = require('../../models/page_object_models/census-sheet-page');
+const CensusSheetPageUpload = require('../../models/page_object_models/census-sheet-page-upload');
+const TestResultReporter = require('../../models/test-result-reporter');
+const UC1_TC1 = require('../.././output/single_processing/zero_shot/llama3.3/UC1/UC1_TC1.spec.js');
+
+const accessPlatformAndAuthenticate = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    await fillCorrectCredentials(page, reporter);
+    await clickLoginButton(page, reporter);
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC3_TC1_ID1', 'Accedi alla piattaforma e autenticati correttamente', true, page.url() === process.env.E2E_HOME_URL, page.url() === process.env.E2E_HOME_URL, '', executionTime);
+    }
+
+    expect(page.url()).toBe(process.env.E2E_HOME_URL);
+}
+
+const selectCensusSheetMenu = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const sidebarPage = new SidebarPage(page);
+    await sidebarPage.clickCensusSheetLink();
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC3_TC1_ID2', 'Seleziona la voce del menù laterale relativa alle schede censimento', true, page.url() === process.env.E2E_CTS_URL, page.url() === process.env.E2E_CTS_URL, '', executionTime);
+    }
+
+    expect(page.url()).toBe(process.env.E2E_CTS_URL);
+}
+
+const clickUploadButton = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const censusSheetPage = new CensusSheetPage(page);
+    await censusSheetPage.clickAzioniButton();
+    await censusSheetPage.uploadButton.click();
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC3.3_TC1_ID1', 'Clicca sul tasto di caricamento delle schede censimento', true, censusSheetPage.uploadButton.isVisible(), censusSheetPage.uploadButton.isVisible(), '', executionTime);
+    }
+
+    expect(censusSheetPage.uploadButton).toBeVisible();
+}
+
+const selectFileAndCompileParameters = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const censusSheetPageUpload = new CensusSheetPageUpload(page);
+    await censusSheetPageUpload.waitForUploadSchedaModalButton();
+    await censusSheetPageUpload.clickUploadSchedaModalButton();
+    await censusSheetPageUpload.waitForUploadModal();
+    const filePath = 'path_to_your_file.pdf'; // replace with your file path
+    await censusSheetPageUpload.setInputFiles(filePath);
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC3.3_TC1_ID2', 'Seleziona un file in formato supportato e compila i parametri richiesti', true, censusSheetPageUpload.fileInput.isVisible(), censusSheetPageUpload.fileInput.isVisible(), '', executionTime);
+    }
+
+    expect(censusSheetPageUpload.fileInput).toBeVisible();
+}
+
+const uploadFile = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const censusSheetPageUpload = new CensusSheetPageUpload(page);
+    await censusSheetPageUpload.waitForUploadApplyButton();
+    await censusSheetPageUpload.clickUploadApplyButton();
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC3.3_TC1_ID3', 'Procedi all’upload del file', true, page.url() === process.env.E2E_CTS_URL, page.url() === process.env.E2E_CTS_URL, '', executionTime);
+    }
+
+    expect(page.url()).toBe(process.env.E2E_CTS_URL);
+}
+
+test("UC3.3_TC1 - Caricamento scheda censimento con dati validi e formato supportato", async ({page, browserName}) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC3.3_TC1 - Caricamento scheda censimento con dati validi e formato supportato");
+
+    await page.goto(process.env.E2E_BASE_URL);
+
+    await accessPlatformAndAuthenticate(page, reporter);
+    await selectCensusSheetMenu(page, reporter);
+    await clickUploadButton(page, reporter);
+    await selectFileAndCompileParameters(page, reporter);
+    await uploadFile(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+```
+2025-06-06 18:06:08,646 - test_code_generator.validator.javascript_code_validator - INFO - Starting JavaScript code cleaning
+2025-06-06 18:06:08,646 - test_code_generator.validator.javascript_code_validator - INFO - Extracting JavaScript code blocks
+2025-06-06 18:06:08,646 - test_code_generator.validator.javascript_code_validator - INFO - Found 1 JavaScript code blocks with markdown syntax
+2025-06-06 18:06:08,646 - test_code_generator.validator.javascript_code_validator - INFO - JavaScript code cleaning completed

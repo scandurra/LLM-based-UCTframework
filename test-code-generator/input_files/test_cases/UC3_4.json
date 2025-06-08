@@ -3,15 +3,15 @@
     "test_case_id": "UC3.4_TC1",
     "title": "Visualizzazione azioni disponibili sulla scheda censimento",
     "preconditions": "UC3",
-    "postconditions": "Le azioni sono visualizzate correttamente",
+    "postconditions": "La palette di operazioni viene visualizzata correttamente",
     "test_steps": [
       {
         "step": "Accedi alla sezione delle schede censimento",
-        "expected": "La lista delle schede è visualizzata"
+        "expected": "La lista delle schede censimento è visibile"
       },
       {
-        "step": "Clicca sul tasto azioni per una scheda specifica",
-        "expected": "Viene mostrata la palette di operazioni disponibili"
+        "step": "Clicca sul tasto azioni di una scheda censimento",
+        "expected": "Viene visualizzata la palette di operazioni disponibili"
       }
     ],
     "test_type": "Positivo",
@@ -20,17 +20,17 @@
   },
   {
     "test_case_id": "UC3.4_TC2",
-    "title": "Selezione azione non valida",
+    "title": "Selezione di un’azione non disponibile",
     "preconditions": "UC3",
-    "postconditions": "Il sistema segnala l’errore",
+    "postconditions": "Il sistema segnala che l’azione non è disponibile",
     "test_steps": [
       {
         "step": "Accedi alla sezione delle schede censimento",
-        "expected": "La lista delle schede è visualizzata"
+        "expected": "La lista delle schede censimento è visibile"
       },
       {
-        "step": "Clicca su un’azione non supportata o non visibile per l’utente",
-        "expected": "Il sistema mostra un messaggio di errore o non esegue l’azione"
+        "step": "Clicca su un’azione che non è supportata per la scheda selezionata",
+        "expected": "Il sistema mostra un messaggio di azione non disponibile"
       }
     ],
     "test_type": "Negativo",
@@ -39,59 +39,59 @@
   },
   {
     "test_case_id": "UC3.4_TC3",
-    "title": "Interazione con più azioni consecutive",
+    "title": "Esecuzione di un’azione su scheda censimento senza permessi",
     "preconditions": "UC3",
-    "postconditions": "Le azioni sono eseguite correttamente in sequenza",
+    "postconditions": "Il sistema nega l’accesso all’azione",
     "test_steps": [
       {
-        "step": "Accedi alla sezione delle schede censimento",
-        "expected": "La lista delle schede è visualizzata"
+        "step": "Accedi alla sezione delle schede censimento con un utente senza permessi",
+        "expected": "La lista delle schede censimento è visibile ma le azioni sono limitate"
       },
       {
-        "step": "Seleziona e esegui più azioni una dopo l’altra sulla stessa scheda",
-        "expected": "Ogni azione è completata con successo prima di passare alla successiva"
+        "step": "Tenta di eseguire un’azione che richiede permessi superiori",
+        "expected": "Il sistema nega l’accesso e mostra un messaggio di autorizzazione"
       }
     ],
-    "test_type": "Prestazione",
+    "test_type": "Sicurezza",
     "priority": "Alta",
     "use_case_id": "UC3.4"
   },
   {
     "test_case_id": "UC3.4_TC4",
-    "title": "Boundary test: azioni su scheda censimento con dati minimi",
+    "title": "Selezione multipla di azioni sulla stessa scheda censimento",
     "preconditions": "UC3",
-    "postconditions": "Le azioni sono disponibili anche per le schede con pochi dati",
+    "postconditions": "Il sistema gestisce la selezione multipla correttamente",
     "test_steps": [
       {
         "step": "Accedi alla sezione delle schede censimento",
-        "expected": "La lista delle schede è visualizzata"
+        "expected": "La lista delle schede censimento è visibile"
       },
       {
-        "step": "Seleziona una scheda con il minimo dei dati richiesti e clicca sul tasto azioni",
-        "expected": "Le azioni sono disponibili e funzionano correttamente"
+        "step": "Seleziona più azioni sulla stessa scheda censimento",
+        "expected": "Il sistema esegue le azioni selezionate correttamente"
       }
     ],
-    "test_type": "Boundary",
+    "test_type": "Prestazione",
     "priority": "Media",
     "use_case_id": "UC3.4"
   },
   {
     "test_case_id": "UC3.4_TC5",
-    "title": "Usabilità: navigazione e accessibilità delle azioni",
+    "title": "Annullamento dell’azione selezionata",
     "preconditions": "UC3",
-    "postconditions": "Le azioni sono facilmente raggiungibili e utilizzabili",
+    "postconditions": "L’azione selezionata viene annullata correttamente",
     "test_steps": [
       {
-        "step": "Accedi alla sezione delle schede censimento con diversi dispositivi e browser",
-        "expected": "La navigazione è agevole e le azioni sono accessibili"
+        "step": "Accedi alla sezione delle schede censimento",
+        "expected": "La lista delle schede censimento è visibile"
       },
       {
-        "step": "Verifica la presenza di etichette e descrizioni per gli elementi dell’interfaccia",
-        "expected": "Tutti gli elementi hanno etichette chiare e utili per l’accessibilità"
+        "step": "Seleziona un’azione e poi annulla la selezione",
+        "expected": "Il sistema annulla l’azione senza errori"
       }
     ],
     "test_type": "Usabilità",
-    "priority": "Alta",
+    "priority": "Media",
     "use_case_id": "UC3.4"
   }
 ]

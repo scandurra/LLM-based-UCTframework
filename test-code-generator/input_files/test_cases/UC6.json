@@ -1,21 +1,21 @@
 [
   {
     "test_case_id": "UC6_TC1",
-    "title": "Logout utente corretto",
+    "title": "Logout utente con successo",
     "preconditions": "UC1",
     "postconditions": "L’utente è non è più autenticato ed è a conoscenza che l’operazione ha avuto successo",
     "test_steps": [
       {
-        "step": "L’utente clicca sul proprio nome utente in alto a destra",
-        "expected": "Viene visualizzato il menu dell’utente"
+        "step": "Accedi al sistema come utente registrato",
+        "expected": "La dashboard dell’utente viene visualizzata"
       },
       {
-        "step": "L’utente inizia il processo di logout cliccando il tasto “Logout”",
-        "expected": "Il sistema richiede la conferma della disconnessione"
+        "step": "Clicca sul proprio nome utente in alto a destra e seleziona il tasto “Logout”",
+        "expected": "Il processo di logout inizia"
       },
       {
-        "step": "L’utente conferma la disconnessione",
-        "expected": "L’utente visualizza un messaggio di operazione completata con successo"
+        "step": "Conferma l’intenzione di effettuare il logout",
+        "expected": "Un messaggio di successo conferma la disconnessione"
       }
     ],
     "test_type": "Positivo",
@@ -24,12 +24,16 @@
   },
   {
     "test_case_id": "UC6_TC2",
-    "title": "Utente non autenticato",
+    "title": "Tentativo di logout senza essere autenticato",
     "preconditions": "",
-    "postconditions": "L’utente visualizza un messaggio di errore per mancata autenticazione",
+    "postconditions": "Il sistema non permette il logout e richiede l’autenticazione",
     "test_steps": [
       {
-        "step": "L’utente tenta di cliccare sul tasto “Logout” senza essere autenticato",
+        "step": "Accedi al sito senza effettuare il login",
+        "expected": "La pagina di login viene visualizzata"
+      },
+      {
+        "step": "Tenta di accedere alla funzione di logout",
         "expected": "Il sistema richiede l’autenticazione"
       }
     ],
@@ -39,70 +43,59 @@
   },
   {
     "test_case_id": "UC6_TC3",
-    "title": "Utente con sessione scaduta",
+    "title": "Logout con più sessioni aperte",
     "preconditions": "UC1",
-    "postconditions": "L’utente è non è più autenticato ed è a conoscenza che l’operazione ha avuto successo",
+    "postconditions": "Tutte le sessioni dell’utente vengono chiuse",
     "test_steps": [
       {
-        "step": "L’utente lascia la sessione inattiva per un periodo di tempo superiore al timeout",
-        "expected": "Il sistema disconnette automaticamente l’utente"
+        "step": "Apri più schede del browser con la stessa sessione di login",
+        "expected": "Tutte le schede mostrano il contenuto accessibile all’utente"
       },
       {
-        "step": "L’utente tenta di cliccare sul tasto “Logout” dopo il timeout",
-        "expected": "Il sistema richiede nuovamente l’autenticazione"
+        "step": "Effettua il logout da una delle schede",
+        "expected": "Tutte le altre schede non sono più autenticate e richiedono login per accedere"
       }
     ],
-    "test_type": "Negativo",
-    "priority": "Bassa",
+    "test_type": "Prestazione",
+    "priority": "Alta",
     "use_case_id": "UC6"
   },
   {
     "test_case_id": "UC6_TC4",
-    "title": "Conferma disconnessione non presente",
+    "title": "Boundary test: logout con dati di sessione scaduti",
     "preconditions": "UC1",
-    "postconditions": "L’utente visualizza un messaggio di errore per mancata conferma",
+    "postconditions": "Il sistema gestisce correttamente la sessione scaduta e richiede il login",
     "test_steps": [
       {
-        "step": "Il sistema non richiede la conferma della disconnessione",
-        "expected": "Il sistema esegue comunque il logout"
+        "step": "Lascia inattiva la sessione fino a quando non scade",
+        "expected": "La sessione viene considerata scaduta"
+      },
+      {
+        "step": "Tenta di effettuare il logout",
+        "expected": "Il sistema richiede nuovamente l’autenticazione"
       }
     ],
-    "test_type": "Negativo",
+    "test_type": "Boundary",
     "priority": "Media",
     "use_case_id": "UC6"
   },
   {
     "test_case_id": "UC6_TC5",
-    "title": "Errore tecnico durante il logout",
+    "title": "Edge case: logout da dispositivo diverso",
     "preconditions": "UC1",
-    "postconditions": "L’utente visualizza un messaggio di errore tecnico",
+    "postconditions": "Il sistema gestisce correttamente il logout anche se effettuato da un dispositivo differente",
     "test_steps": [
       {
-        "step": "Il sistema incontra un errore tecnico durante la disconnessione",
-        "expected": "Il sistema visualizza un messaggio di errore"
-      }
-    ],
-    "test_type": "Negativo",
-    "priority": "Alta",
-    "use_case_id": "UC6"
-  },
-  {
-    "test_case_id": "UC6_TC6",
-    "title": "Logout utente con dati sensibili",
-    "preconditions": "UC1",
-    "postconditions": "L’utente è non è più autenticato ed è a conoscenza che l’operazione ha avuto successo, senza perdita di dati sensibili",
-    "test_steps": [
-      {
-        "step": "L’utente ha dei dati sensibili aperti durante la sessione",
-        "expected": "Il sistema protegge i dati sensibili durante il logout"
+        "step": "Accedi al sistema da un dispositivo (es. computer)",
+        "expected": "La sessione viene avviata"
       },
       {
-        "step": "L’utente esegue il logout",
-        "expected": "I dati sensibili non sono accessibili dopo il logout"
+        "step": "Effettua il login da un altro dispositivo (es. smartphone) e tenta di eseguire il logout",
+        "expected": "Il sistema riconosce la richiesta di logout indipendentemente dal dispositivo utilizzato"
       }
     ],
-    "test_type": "Positivo",
-    "priority": "Alta",
+    "test_type": "Edge",
+    "priority": "Bassa",
     "use_case_id": "UC6"
   }
 ]

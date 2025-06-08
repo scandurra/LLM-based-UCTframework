@@ -1,25 +1,25 @@
 [
   {
     "test_case_id": "UC3.4.3.1_TC1",
-    "title": "Modifica sezione Area con successo",
+    "title": "Modifica sezione Area con dati validi",
     "preconditions": "UC3.4.3",
     "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
     "test_steps": [
       {
-        "step": "L’utente entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
-        "expected": "L’utente visualizza i dati precedenti"
+        "step": "Entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
       },
       {
-        "step": "L’utente compila il form con le informazioni desiderate",
-        "expected": "Il form viene compilato correttamente"
+        "step": "Compila il form con le informazioni desiderate",
+        "expected": "Il form viene compilato senza errori"
       },
       {
-        "step": "L’utente applica le modifiche con l’apposito tasto",
-        "expected": "Viene visualizzato un messaggio di conferma dell’operazione"
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "L’operazione va a buon fine e compare un messaggio di conferma"
       }
     ],
     "test_type": "Positivo",
-    "priority": "Alto",
+    "priority": "Alta",
     "use_case_id": "UC3.4.3.1"
   },
   {
@@ -29,20 +29,20 @@
     "postconditions": "Viene mostrato un messaggio di errore",
     "test_steps": [
       {
-        "step": "L’utente entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
-        "expected": "L’utente visualizza i dati precedenti"
+        "step": "Entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
       },
       {
-        "step": "L’utente compila il form con dati non validi",
-        "expected": "Il form non viene compilato correttamente"
+        "step": "Compila il form con informazioni non valide (es. campi obbligatori vuoti)",
+        "expected": "Il sistema segnala errori nel form"
       },
       {
-        "step": "L’utente applica le modifiche con l’apposito tasto",
-        "expected": "Viene visualizzato un messaggio di errore"
+        "step": "Tenta di applicare le modifiche con l’apposito tasto",
+        "expected": "Viene mostrato un messaggio di errore e l’operazione non va a buon fine"
       }
     ],
     "test_type": "Negativo",
-    "priority": "Medio",
+    "priority": "Media",
     "use_case_id": "UC3.4.3.1"
   },
   {
@@ -52,93 +52,66 @@
     "postconditions": "Viene mostrato un messaggio di errore",
     "test_steps": [
       {
-        "step": "L’utente entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
-        "expected": "L’utente visualizza i dati precedenti"
+        "step": "Entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
       },
       {
-        "step": "L’utente non compila il form",
-        "expected": "Il form è vuoto"
+        "step": "Lascia vuoto il form senza compilare i campi richiesti",
+        "expected": "Il sistema segnala la mancanza di informazioni necessarie"
       },
       {
-        "step": "L’utente applica le modifiche con l’apposito tasto",
-        "expected": "Viene visualizzato un messaggio di errore"
+        "step": "Tenta di applicare le modifiche con l’apposito tasto",
+        "expected": "Viene mostrato un messaggio di errore e l’operazione non va a buon fine"
       }
     ],
     "test_type": "Negativo",
-    "priority": "Basso",
+    "priority": "Media",
     "use_case_id": "UC3.4.3.1"
   },
   {
     "test_case_id": "UC3.4.3.1_TC4",
     "title": "Modifica sezione Area con dati parzialmente validi",
     "preconditions": "UC3.4.3",
-    "postconditions": "Viene mostrato un messaggio di errore",
+    "postconditions": "Viene mostrato un messaggio di errore per i campi non validi",
     "test_steps": [
       {
-        "step": "L’utente entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
-        "expected": "L’utente visualizza i dati precedenti"
+        "step": "Entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
       },
       {
-        "step": "L’utente compila parzialmente il form con dati validi e non validi",
-        "expected": "Il form è compilato parzialmente"
+        "step": "Compila parzialmente il form con alcune informazioni valide e altre non valide",
+        "expected": "Il sistema segnala errori solo per i campi non validi"
       },
       {
-        "step": "L’utente applica le modifiche con l’apposito tasto",
-        "expected": "Viene visualizzato un messaggio di errore"
+        "step": "Tenta di applicare le modifiche con l’apposito tasto",
+        "expected": "Viene mostrato un messaggio di errore per i campi non validi e l’operazione non va a buon fine"
       }
     ],
     "test_type": "Negativo",
-    "priority": "Medio",
+    "priority": "Media",
     "use_case_id": "UC3.4.3.1"
   },
   {
     "test_case_id": "UC3.4.3.1_TC5",
-    "title": "Modifica sezione Area con successo e dati già esistenti",
+    "title": "Boundary test: modifica sezione Area con dati al limite dei caratteri consentiti",
     "preconditions": "UC3.4.3",
-    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "postconditions": "L’operazione va a buon fine se i dati sono all’interno dei limiti",
     "test_steps": [
       {
-        "step": "L’utente entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
-        "expected": "L’utente visualizza i dati precedenti"
+        "step": "Entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
       },
       {
-        "step": "L’utente compila il form con dati già esistenti",
-        "expected": "Il form viene compilato correttamente"
+        "step": "Compila il form con informazioni che raggiungono esattamente i limiti dei caratteri consentiti",
+        "expected": "Il sistema accetta le informazioni senza errori"
       },
       {
-        "step": "L’utente applica le modifiche con l’apposito tasto",
-        "expected": "Viene visualizzato un messaggio di conferma dell’operazione"
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "L’operazione va a buon fine e compare un messaggio di conferma"
       }
     ],
-    "test_type": "Positivo",
-    "priority": "Alto",
-    "use_case_id": "UC3.4.3.1"
-  },
-  {
-    "test_case_id": "UC3.4.3.1_TC6",
-    "title": "Modifica sezione Area con dati non validi e successivo retry",
-    "preconditions": "UC3.4.3",
-    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
-    "test_steps": [
-      {
-        "step": "L’utente entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
-        "expected": "L’utente visualizza i dati precedenti"
-      },
-      {
-        "step": "L’utente compila il form con dati non validi",
-        "expected": "Il form non viene compilato correttamente"
-      },
-      {
-        "step": "L’utente visualizza un messaggio di errore e ritenta la modifica",
-        "expected": "Il form può essere compilato nuovamente"
-      },
-      {
-        "step": "L’utente compila il form con dati validi e applica le modifiche",
-        "expected": "Viene visualizzato un messaggio di conferma dell’operazione"
-      }
-    ],
-    "test_type": "Negativo/Positivo",
-    "priority": "Medio",
+    "test_type": "Boundary",
+    "priority": "Alta",
     "use_case_id": "UC3.4.3.1"
   }
 ]

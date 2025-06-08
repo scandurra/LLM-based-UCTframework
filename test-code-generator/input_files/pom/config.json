@@ -2,15 +2,38 @@
     "login_page.js": [
         "UC1"
     ],
-    "home_page.js": [
+    "sidebar_page.js": [
         "UC2",
-        "UC3",
-        "UC5"
+        "UC3"
     ],
-    "dashboard_page.js": [
-        "UC2.1",
-        "UC2.2",
-        "UC2.3",
+    "dashboard_page_pdf_download.js": [
+        "UC2.1"
+    ],
+    "dashboard_page_illumination_search.js": [
+        "UC2.2"
+    ],
+    "dashboard_page_general_data.js": [
+        "UC2.3"
+    ],
+    "dashboard_page_benchmarking_kpi.js": [
         "UC2.4"
+    ],
+    "census_sheet_page.js": [
+        "UC3",
+        "UC3.1",
+        "UC3.3",
+        "UC3.4",
+        "UC3.4.1",
+        "UC3.4.2",
+        "UC3.4.3",
+        "UC3.4.4",
+        "UC3.4.5"
+    ],
+    "census_sheet_page_upload.js": [
+        "UC3.3"
+    ],
+    "navbar_page.js": [
+        "UC5",
+        "UC6"
     ]
 }

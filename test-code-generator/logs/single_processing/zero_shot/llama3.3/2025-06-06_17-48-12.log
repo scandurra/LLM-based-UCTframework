@@ -1,0 +1,290 @@
+2025-06-06 17:48:12,506 - __main__ - INFO - Found 1 dependencies for use case UC2.3
+2025-06-06 17:48:12,506 - __main__ - INFO - Read previously generated code for use case UC2 - test case UC2_TC1
+2025-06-06 17:48:12,965 - __main__ - INFO - Found 1 dependencies for use case UC2.4
+2025-06-06 17:48:12,965 - __main__ - INFO - Read previously generated code for use case UC2 - test case UC2_TC1
+2025-06-06 17:48:12,965 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt template loaded from path: ./prompts/single_processing/zero_shot/llama3.3/raw.txt
+2025-06-06 17:48:12,965 - test_code_generator.prompt_builder.prompt_builder - INFO - Test parameters loaded from path: ./input_files/parameters/test_parameters.env
+2025-06-06 17:48:12,965 - test_code_generator.prompt_builder.prompt_builder - INFO - Test reporter loaded from path: ./input_files/reporter_minimal.js
+2025-06-06 17:48:12,965 - test_code_generator.prompt_builder.prompt_builder - INFO - Previous code section loaded from path: ./prompts/single_processing/zero_shot/llama3.3/previous_code_section.txt
+2025-06-06 17:48:12,965 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt built: <|begin_of_text|><|start_header_id|>system<|end_header_id|>
+You are a testing engineer, expert in writing Javascript end-to-end tests with Playwright.
+
+Task: Analyze the test case provided below and generate a complete and working Playwright test script in Javascript, following the steps described in the test case.
+When creating the test script, use only the page object model provided for interacting with the DOM and the parameters provided.
+<|eot_id|>
+<|start_header_id|>user<|end_header_id|>
+Use only this page object models for interacting with the DOM:
+class DashboardPageBenchmarkingKpi {
+  constructor(page) {
+    this.page = page;
+    
+    // City selection selectors
+    this.citySelector = this.page.getByLabel('Seleziona');
+    this.cityItems = this.page.locator('ul > li');
+    
+    // KPI selection selectors
+    this.kpiSelector = this.page.locator('#compute_apply_chart_municipality_benchmark_general_data_static');
+    
+    // Results verification selectors
+    this.chartContainer = this.page.locator('#inner_area_chart_municipality_benchmark_general_data_static');
+    this.chartPoint = this.page.locator('path.highcharts-point').first();
+  }
+
+  async openCitySelector() {
+    await this.citySelector.click();
+  }
+
+  async selectCityByIndex(cityIndex = 21) {
+    await this.cityItems.nth(cityIndex).click();
+  }
+
+  async selectCity(cityIndex = 21) {
+    await this.openCitySelector();
+    await this.selectCityByIndex(cityIndex);
+  }
+
+  async waitForKPISelectorVisible() {
+    await this.page.waitForSelector('#compute_apply_chart_municipality_benchmark_general_data_static', { state: 'visible' });
+  }
+
+  async selectKPI() {
+    await this.waitForKPISelectorVisible();
+    await this.kpiSelector.click();
+  }
+
+  async waitForResults(timeout = 5000) {
+    await this.page.waitForTimeout(timeout);
+  }
+
+  async isChartContainerVisible() {
+    return await this.chartContainer.isVisible();
+  }
+
+  async isChartPointVisible() {
+    return await this.chartPoint.isVisible();
+  }
+
+  async verifyKPIResults() {
+    const isChartContainerVisible = await this.isChartContainerVisible();
+    const isPointVisible = await this.isChartPointVisible();
+    
+    return isChartContainerVisible || isPointVisible;
+  }
+
+  async applyKPIAndVerify(timeout = 5000) {
+    await this.waitForResults(timeout);
+    return await this.verifyKPIResults();
+  }
+
+  async isCitySelectorVisible() {
+    return await this.citySelector.isVisible();
+  }
+
+  async isKPISelectorVisible() {
+    return await this.kpiSelector.isVisible();
+  }
+}
+
+module.exports = DashboardPageBenchmarkingKpi;
+
+Use only the following parameters from environment variables in the test scripts:
+E2E_BASE_URL=""
+E2E_LOGIN_URL=""
+E2E_HOME_URL="" 
+E2E_DASHBOARD_URL="" 
+E2E_CTS_URL="" 
+EMAIL=""
+PASSWORD=""
+
+When in the test case there is a step, a precondition or a postcondition with a name of use case UC*, reuse this functions passing null as reporter parameter:
+<code>
+const { test, expect } = require('@playwright/test');
+const SidebarPage = require('../../models/page_object_models/sidebar-page');
+const LoginPage = require('../../models/page_object_models/login-page');
+const TestResultReporter = require('../../models/test-result-reporter');
+const UC1_TC1 = require('../.././output/single_processing/zero_shot/llama3.3/UC1/UC1_TC1.spec.js');
+
+const accessPlatformAsRegisteredUser = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    await fillCorrectCredentials(page, null);
+    await clickLoginButton(page, null);
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC2_TC1_ID1', 'Accedi alla piattaforma come utente registrato', true, page.url() === process.env.E2E_HOME_URL, true, '', executionTime);
+    }
+
+    expect(page.url()).toBe(process.env.E2E_HOME_URL);
+}
+
+const selectDashboardMenu = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const sidebarPage = new SidebarPage(page);
+    await sidebarPage.clickDashboardLink();
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC2_TC1_ID2', 'Seleziona la voce di menù relativa alla dashboard', true, page.url() === process.env.E2E_DASHBOARD_URL, true, '', executionTime);
+    }
+
+    expect(page.url()).toBe(process.env.E2E_DASHBOARD_URL);
+}
+
+test("UC2_TC1 - Apertura della dashboard con utente autorizzato", async ({page, browserName}) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC2_TC1 - Apertura della dashboard con utente autorizzato");
+
+    await page.goto(process.env.E2E_BASE_URL);
+
+    const loginPage = new LoginPage(page);
+    await loginPage.clickLoginLink();
+
+    await accessPlatformAsRegisteredUser(page, reporter);
+    await selectDashboardMenu(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+</code>
+
+Instructions:
+1. Analyze the test case provided
+2. For the test case, generate a test script in Javascript with Playwright
+3. Use only Page object model provided to interact with the DOM.
+4. Call the TestResultReporter object methods as described below.
+5. Add the required import for Playwright, TestResultReporter from "../../models/test-result-reporter", page object models from "../../models/page_object_models/"
+6. Put the code in functions for reusability, with the reporter object as parameter not mandatory. If not null, call reporter methods.
+7. Do not rewrite functions provided in the prompt, just refer to them.
+
+<example>
+const functionNameDescribingStep = async function(page, reporter) {
+    const startTime = DateTime.now();
+    
+    // Put here test case step implementation
+    
+    const endTime = DateTime.now();
+    const executionTime = endTime - startTime;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID1', 'Step 1 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+    }
+
+    // Include Playwright assertions
+    expect(condition);
+}
+
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1 - Login test with success");
+
+    // Call step functions in sequence
+    await step1(page, reporter);
+    await step2(page, reporter);
+    // Additional steps...
+
+    reporter.onTestEnd(test, { status: "passed" });     // status can be "passed" or "failed" 
+});
+</example>
+
+Here the test case to be converted in Playwright script:
+Test Case ID: UC2.4_TC1
+Title: Selezione di comuni e KPI validi per benchmarking
+Use Case ID: UC2.4
+Priority: Alta
+Type: Positivo
+Preconditions: UC2
+Postconditions: L’utente visualizza il risultato della analisi su un grafico
+Test Steps:
+  1. Step: Seleziona due o più comuni dal menù a tendina
+Expected: I comuni vengono selezionati correttamente
+  2. Step: Scegli un KPI valido per il confronto
+Expected: Il KPI viene accettato
+  3. Step: Conferma la richiesta cliccando sul pulsante
+Expected: Il grafico con il confronto desiderato viene visualizzato
+
+Output only valid and runnable JavaScript code with no explanations or markdown formatting. Do not copy existing code implementation in the response, only reference it.
+<|eot_id|>
+<|start_header_id|>assistant<|end_header_id|>
+2025-06-06 17:48:12,965 - test_code_generator.llm_client.ollama_client - INFO - OllamaClient initialized with model: llama3.3:latest
+2025-06-06 17:51:15,969 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/generate "HTTP/1.1 200 OK"
+2025-06-06 17:51:15,969 - test_code_generator.llm_client.ollama_client - INFO - Ollama responded in 183001737435 time, with 1683 tokens in prompt and 647 tokens in response. Content:
+ 
+
+```javascript
+const { test, expect } = require('@playwright/test');
+const DashboardPageBenchmarkingKpi = require('../../models/page_object_models/dashboard-page-benchmarking-kpi');
+const TestResultReporter = require('../../models/test-result-reporter');
+
+const selectCities = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const dashboardPage = new DashboardPageBenchmarkingKpi(page);
+    await dashboardPage.selectCity(0);
+    await dashboardPage.selectCity(1);
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC2.4_TC1_ID1', 'Seleziona due o più comuni dal menù a tendina', true, await dashboardPage.isCitySelectorVisible(), true, '', executionTime);
+    }
+
+    expect(await dashboardPage.isCitySelectorVisible()).toBe(true);
+}
+
+const selectKPI = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const dashboardPage = new DashboardPageBenchmarkingKpi(page);
+    await dashboardPage.selectKPI();
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC2.4_TC1_ID2', 'Scegli un KPI valido per il confronto', true, await dashboardPage.isKPISelectorVisible(), true, '', executionTime);
+    }
+
+    expect(await dashboardPage.isKPISelectorVisible()).toBe(true);
+}
+
+const confirmRequest = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const dashboardPage = new DashboardPageBenchmarkingKpi(page);
+    await dashboardPage.applyKPIAndVerify();
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC2.4_TC1_ID3', 'Conferma la richiesta cliccando sul pulsante', true, await dashboardPage.verifyKPIResults(), true, '', executionTime);
+    }
+
+    expect(await dashboardPage.verifyKPIResults()).toBe(true);
+}
+
+test("UC2.4_TC1 - Selezione di comuni e KPI validi per benchmarking", async ({page, browserName}) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC2.4_TC1 - Selezione di comuni e KPI validi per benchmarking");
+
+    await page.goto(process.env.E2E_BASE_URL);
+
+    const loginPage = require('../../models/page_object_models/login-page');
+    const sidebarPage = require('../../models/page_object_models/sidebar-page');
+
+    await accessPlatformAsRegisteredUser(page, null);
+    await selectDashboardMenu(page, null);
+
+    await selectCities(page, reporter);
+    await selectKPI(page, reporter);
+    await confirmRequest(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+```
+2025-06-06 17:51:15,969 - test_code_generator.validator.javascript_code_validator - INFO - Starting JavaScript code cleaning
+2025-06-06 17:51:15,969 - test_code_generator.validator.javascript_code_validator - INFO - Extracting JavaScript code blocks
+2025-06-06 17:51:15,969 - test_code_generator.validator.javascript_code_validator - INFO - Found 1 JavaScript code blocks with markdown syntax
+2025-06-06 17:51:15,969 - test_code_generator.validator.javascript_code_validator - INFO - JavaScript code cleaning completed

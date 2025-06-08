@@ -1,17 +1,17 @@
 [
   {
     "test_case_id": "UC3_TC1",
-    "title": "Apertura interfaccia gestione schede censimento con utente autorizzato",
+    "title": "Apertura interfaccia gestione schede censimento con successo",
     "preconditions": "UC1",
     "postconditions": "L’utente visualizza la sezione relativa alle schede censimento",
     "test_steps": [
       {
-        "step": "Accedi al sistema come utente autorizzato",
-        "expected": "La home page del sistema viene visualizzata"
+        "step": "Accedi alla piattaforma e autenticati correttamente",
+        "expected": "La dashboard principale viene visualizzata"
       },
       {
-        "step": "Seleziona l’opzione per la gestione delle schede censimento dal menù laterale di sinistra",
-        "expected": "La sezione relativa alle schede censimento si apre correttamente"
+        "step": "Seleziona la voce del menù laterale relativa alle schede censimento",
+        "expected": "La sezione delle schede censimento si apre correttamente"
       }
     ],
     "test_type": "Positivo",
@@ -20,17 +20,17 @@
   },
   {
     "test_case_id": "UC3_TC2",
-    "title": "Tentativo di accesso alla gestione schede censimento senza autorizzazione",
+    "title": "Tentativo di accesso senza autenticazione",
     "preconditions": "UC1",
-    "postconditions": "L’accesso viene negato e viene visualizzato un messaggio di errore",
+    "postconditions": "L’accesso alla sezione viene negato",
     "test_steps": [
       {
-        "step": "Accedi al sistema come utente non autorizzato",
-        "expected": "La home page del sistema viene visualizzata"
+        "step": "Tenta di accedere direttamente all’URL della sezione schede censimento senza login",
+        "expected": "Il sistema richiede l’autenticazione"
       },
       {
-        "step": "Tenta di selezionare l’opzione per la gestione delle schede censimento dal menù laterale di sinistra",
-        "expected": "Viene visualizzato un messaggio di accesso negato"
+        "step": "Inserisci credenziali non valide o lascia i campi vuoti",
+        "expected": "L’accesso viene negato e compare un messaggio di errore"
       }
     ],
     "test_type": "Negativo",
@@ -39,40 +39,59 @@
   },
   {
     "test_case_id": "UC3_TC3",
-    "title": "Navigazione nella sezione schede censimento con dati non validi",
+    "title": "Selezione della sezione tramite menù laterale con caratteri speciali nel percorso",
     "preconditions": "UC1",
-    "postconditions": "Il sistema gestisce correttamente i dati non validi e visualizza un messaggio di errore",
+    "postconditions": "La sezione si apre correttamente nonostante i caratteri speciali",
     "test_steps": [
       {
-        "step": "Accedi al sistema come utente autorizzato",
-        "expected": "La home page del sistema viene visualizzata"
+        "step": "Accedi alla piattaforma e autenticati",
+        "expected": "La dashboard principale viene visualizzata"
       },
       {
-        "step": "Inserisci dati non validi nella sezione relativa alle schede censimento",
-        "expected": "Il sistema rileva l’errore e visualizza un messaggio di errore"
+        "step": "Modifica manualmente l’URL del menù laterale aggiungendo caratteri speciali",
+        "expected": "Il sistema gestisce correttamente i caratteri speciali e apre la sezione"
       }
     ],
-    "test_type": "Negativo",
-    "priority": "Media",
+    "test_type": "Edge",
+    "priority": "Bassa",
     "use_case_id": "UC3"
   },
   {
     "test_case_id": "UC3_TC4",
-    "title": "Test di usabilità della sezione schede censimento",
+    "title": "Verifica della presenza di tutti gli elementi nella sezione schede censimento",
     "preconditions": "UC1",
-    "postconditions": "L’utente può navigare agevolmente nella sezione relativa alle schede censimento",
+    "postconditions": "Tutti gli elementi previsti sono presenti e funzionanti",
     "test_steps": [
       {
-        "step": "Accedi al sistema come utente autorizzato",
-        "expected": "La home page del sistema viene visualizzata"
+        "step": "Accedi alla sezione delle schede censimento",
+        "expected": "La sezione si apre correttamente"
       },
       {
-        "step": "Naviga nella sezione relativa alle schede censimento e verifica la presenza di tutte le funzionalità necessarie",
-        "expected": "Tutte le funzionalità sono presenti e facilmente accessibili"
+        "step": "Verifica la presenza di tutti gli elementi previsti (es. tabella, filtri, pulsanti)",
+        "expected": "Tutti gli elementi sono presenti e funzionano come previsto"
+      }
+    ],
+    "test_type": "Funzionalità",
+    "priority": "Alta",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC5",
+    "title": "Test di usabilità della sezione schede censimento",
+    "preconditions": "UC1",
+    "postconditions": "La sezione è facile da utilizzare e comprendere",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento",
+        "expected": "La sezione si apre correttamente"
+      },
+      {
+        "step": "Esegui le principali azioni previste nella sezione (es. filtrare, ordinare)",
+        "expected": "Le operazioni sono intuitive e semplici da eseguire"
       }
     ],
     "test_type": "Usabilità",
-    "priority": "Alta",
+    "priority": "Media",
     "use_case_id": "UC3"
   }
 ]

@@ -1,1 +1,0 @@
-Here is a complete Playwright test script that follows the steps described in the test case:

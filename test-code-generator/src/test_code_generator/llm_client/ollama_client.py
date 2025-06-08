@@ -2,6 +2,7 @@ import logging
 import ollama
 from test_code_generator.llm_client.base_llm_client import BaseLLMClient
 from test_code_generator.llm_client.llm_client_error import LLMClientError
+from test_code_generator.llm_client.llm_response import LlmResponse
 
 logger = logging.getLogger(__name__)
 
@@ -21,7 +22,7 @@ class OllamaClient(BaseLLMClient):
         self.timeout = timeout
         logger.info(f"OllamaClient initialized with model: {self.model}")
 
-    def generate(self, prompt: str, temperature:float) -> str:
+    def generate(self, prompt: str, temperature:float) -> LlmResponse:
         """
         Sends a prompt to Ollama and returns the response.
         :param prompt: the prompt to be sent to Ollama
@@ -52,7 +53,7 @@ class OllamaClient(BaseLLMClient):
             
             logger.info(f"Ollama responded in {total_duration} time, with {n_tokens_prompt} tokens in prompt and {n_tokens_response} tokens in response. Content:\n {content}")
             
-            return content
+            return LlmResponse(content, prompt, n_tokens_prompt, n_tokens_prompt, total_duration)
         
         except ollama.ResponseError as e:
             logger.exception(e)

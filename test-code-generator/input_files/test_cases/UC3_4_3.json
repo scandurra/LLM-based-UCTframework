@@ -1,108 +1,86 @@
 [
   {
     "test_case_id": "UC3.4.3_TC1",
-    "title": "Modifica scheda censimento con successo",
+    "title": "Modifica scheda censimento con dati validi",
     "preconditions": "UC3.4",
     "postconditions": "L’utente visualizza le informazioni della scheda in fase di edit",
     "test_steps": [
       {
-        "step": "Seleziona l'operazione di modifica",
-        "expected": "Viene mostrata la sezione relativa alla modifica dei dati"
+        "step": "Seleziona l’operazione di modifica sulla scheda censimento",
+        "expected": "La sezione di modifica viene visualizzata correttamente"
       },
       {
-        "step": "Inserisci i nuovi dati",
-        "expected": "I dati vengono salvati correttamente"
+        "step": "Modifica i campi con dati validi",
+        "expected": "I dati vengono accettati e salvati"
+      },
+      {
+        "step": "Conferma le modifiche",
+        "expected": "Le informazioni vengono aggiornate con successo"
       }
     ],
     "test_type": "Positivo",
-    "priority": "Alto",
+    "priority": "Alta",
     "use_case_id": "UC3.4.3"
   },
   {
     "test_case_id": "UC3.4.3_TC2",
     "title": "Modifica scheda censimento con dati mancanti",
     "preconditions": "UC3.4",
-    "postconditions": "Nessuna modifica salvata",
+    "postconditions": "L’utente non può procedere senza compilare tutti i campi obbligatori",
     "test_steps": [
       {
-        "step": "Seleziona l'operazione di modifica",
-        "expected": "Viene mostrata la sezione relativa alla modifica dei dati"
+        "step": "Seleziona l’operazione di modifica sulla scheda censimento",
+        "expected": "La sezione di modifica viene visualizzata correttamente"
       },
       {
-        "step": "Lascia il campo 'nome' vuoto",
-        "expected": "Viene mostrato un messaggio di errore"
+        "step": "Lascia vuoti campi obbligatori",
+        "expected": "Il sistema segnala gli errori e richiede la compilazione dei campi mancanti"
+      },
+      {
+        "step": "Tenta di confermare le modifiche",
+        "expected": "La modifica non viene eseguita e vengono visualizzati messaggi di errore"
       }
     ],
     "test_type": "Negativo",
-    "priority": "Medio",
+    "priority": "Media",
     "use_case_id": "UC3.4.3"
   },
   {
     "test_case_id": "UC3.4.3_TC3",
     "title": "Modifica scheda censimento con dati non validi",
     "preconditions": "UC3.4",
-    "postconditions": "Nessuna modifica salvata",
+    "postconditions": "L’utente riceve un messaggio di errore per i dati non validi",
     "test_steps": [
       {
-        "step": "Seleziona l'operazione di modifica",
-        "expected": "Viene mostrata la sezione relativa alla modifica dei dati"
+        "step": "Seleziona l’operazione di modifica sulla scheda censimento",
+        "expected": "La sezione di modifica viene visualizzata correttamente"
       },
       {
-        "step": "Inserisci un valore non numerico nel campo 'età'",
-        "expected": "Viene mostrato un messaggio di errore"
+        "step": "Inserisci dati non validi in campi specifici (es. testo in un campo numerico)",
+        "expected": "Il sistema rileva l’errore e richiede la correzione dei dati"
+      },
+      {
+        "step": "Tenta di confermare le modifiche",
+        "expected": "La modifica non viene eseguita e vengono visualizzati messaggi di errore"
       }
     ],
     "test_type": "Negativo",
-    "priority": "Medio",
+    "priority": "Media",
     "use_case_id": "UC3.4.3"
   },
   {
     "test_case_id": "UC3.4.3_TC4",
-    "title": "Modifica scheda censimento senza autorizzazione",
-    "preconditions": "Utente non autenticato",
-    "postconditions": "Nessuna modifica salvata",
-    "test_steps": [
-      {
-        "step": "Tenta di selezionare l'operazione di modifica",
-        "expected": "Viene mostrato un messaggio di accesso negato"
-      }
-    ],
-    "test_type": "Negativo",
-    "priority": "Alto",
-    "use_case_id": "UC3.4.3"
-  },
-  {
-    "test_case_id": "UC3.4.3_TC5",
-    "title": "Modifica scheda censimento con dati troppo lunghi",
+    "title": "Modifica scheda censimento annullando le modifiche",
     "preconditions": "UC3.4",
-    "postconditions": "Nessuna modifica salvata",
+    "postconditions": "Le modifiche vengono annullate e la scheda rimane invariata",
     "test_steps": [
       {
-        "step": "Seleziona l'operazione di modifica",
-        "expected": "Viene mostrata la sezione relativa alla modifica dei dati"
+        "step": "Seleziona l’operazione di modifica sulla scheda censimento",
+        "expected": "La sezione di modifica viene visualizzata correttamente"
       },
       {
-        "step": "Inserisci un valore troppo lungo nel campo 'indirizzo'",
-        "expected": "Viene mostrato un messaggio di errore"
-      }
-    ],
-    "test_type": "Negativo",
-    "priority": "Basso",
-    "use_case_id": "UC3.4.3"
-  },
-  {
-    "test_case_id": "UC3.4.3_TC6",
-    "title": "Modifica scheda censimento con successo e poi annulla",
-    "preconditions": "UC3.4",
-    "postconditions": "L’utente visualizza le informazioni della scheda originale",
-    "test_steps": [
-      {
-        "step": "Seleziona l'operazione di modifica",
-        "expected": "Viene mostrata la sezione relativa alla modifica dei dati"
-      },
-      {
-        "step": "Inserisci i nuovi dati",
-        "expected": "I dati vengono salvati correttamente"
+        "step": "Apporta modifiche ai campi",
+        "expected": "I dati vengono temporaneamente aggiornati"
       },
       {
         "step": "Annulla le modifiche",
@@ -110,7 +88,7 @@
       }
     ],
     "test_type": "Positivo",
-    "priority": "Medio",
+    "priority": "Bassa",
     "use_case_id": "UC3.4.3"
   }
 ]

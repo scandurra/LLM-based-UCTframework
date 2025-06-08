@@ -1,0 +1,97 @@
+[
+  {
+    "test_case_id": "UC4_TC1",
+    "title": "Apertura modulo SAVE con successo",
+    "preconditions": "UC1",
+    "postconditions": "L’interfaccia del modulo SAVE si apre correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione relativa al modulo SAVE tramite il menù laterale di sinistra",
+        "expected": "La sezione del modulo SAVE viene visualizzata"
+      },
+      {
+        "step": "Verifica la presenza di tutti gli elementi dell’interfaccia",
+        "expected": "Tutti gli elementi sono presenti e visibili"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC4"
+  },
+  {
+    "test_case_id": "UC4_TC2",
+    "title": "Apertura modulo SAVE senza autorizzazione",
+    "preconditions": "UC1",
+    "postconditions": "L’accesso al modulo SAVE viene negato",
+    "test_steps": [
+      {
+        "step": "Tenta di accedere alla sezione del modulo SAVE senza i permessi necessari",
+        "expected": "Il sistema blocca l’accesso"
+      },
+      {
+        "step": "Verifica il messaggio di errore visualizzato",
+        "expected": "Viene mostrato un messaggio che indica la mancanza di autorizzazione"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC4"
+  },
+  {
+    "test_case_id": "UC4_TC3",
+    "title": "Navigazione nel modulo SAVE con input non validi",
+    "preconditions": "UC1",
+    "postconditions": "Il sistema gestisce correttamente gli input non validi",
+    "test_steps": [
+      {
+        "step": "Inserisci dati non validi nei campi di input del modulo SAVE",
+        "expected": "Il sistema rileva e segnala l’errore"
+      },
+      {
+        "step": "Verifica la presenza di messaggi di errore o avvisi",
+        "expected": "Sono presenti messaggi che indicano gli errori di input"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC4"
+  },
+  {
+    "test_case_id": "UC4_TC4",
+    "title": "Test di usabilità del modulo SAVE",
+    "preconditions": "UC1",
+    "postconditions": "L’interfaccia è facile da utilizzare e intuitiva",
+    "test_steps": [
+      {
+        "step": "Esegui una serie di operazioni comuni all’interno del modulo SAVE",
+        "expected": "Le operazioni vengono eseguite senza difficoltà"
+      },
+      {
+        "step": "Valuta la chiarezza e l’accessibilità delle funzionalità",
+        "expected": "Tutte le funzioni sono facilmente accessibili e comprensibili"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Alta",
+    "use_case_id": "UC4"
+  },
+  {
+    "test_case_id": "UC4_TC5",
+    "title": "Test di boundary nel modulo SAVE",
+    "preconditions": "UC1",
+    "postconditions": "Il sistema gestisce correttamente i valori limite",
+    "test_steps": [
+      {
+        "step": "Inserisci valori al limite (minimo e massimo) nei campi del modulo SAVE",
+        "expected": "Il sistema accetta e processa questi valori senza errori"
+      },
+      {
+        "step": "Verifica il comportamento del sistema con questi valori estremi",
+        "expected": "Il sistema si comporta come atteso anche con i valori di boundary"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Media",
+    "use_case_id": "UC4"
+  }
+]

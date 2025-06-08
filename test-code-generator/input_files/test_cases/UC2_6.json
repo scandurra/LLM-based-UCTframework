@@ -1,112 +1,117 @@
 [
   {
     "test_case_id": "UC2.6_TC1",
-    "title": "Selezione comune valido",
+    "title": "Analisi consumo comune con parametri validi",
     "preconditions": "UC2",
     "postconditions": "L’utente visualizza le informazioni consultando i grafici",
     "test_steps": [
       {
-        "step": "Selezionare un comune esistente",
-        "expected": "Viene visualizzato il menu di analisi dei consumi"
+        "step": "Accedi alla sezione dedicata al consumo",
+        "expected": "La sezione è visualizzata correttamente"
       },
       {
-        "step": "Specificare POD, pannello elettrico, periodo e tipo di potenza analizzata",
-        "expected": "Viene visualizzato il grafico con i dati di consumo"
+        "step": "Seleziona un comune, POD, pannello elettrico, periodo e tipo di potenza analizzata validi",
+        "expected": "I parametri vengono accettati e l’analisi viene avviata"
+      },
+      {
+        "step": "Visualizza i risultati dell’analisi",
+        "expected": "I grafici e le informazioni sono visualizzati correttamente"
       }
     ],
     "test_type": "Positivo",
-    "priority": "Alto",
+    "priority": "Alta",
     "use_case_id": "UC2.6"
   },
   {
     "test_case_id": "UC2.6_TC2",
-    "title": "Selezione comune non esistente",
+    "title": "Analisi consumo comune senza selezionare il comune",
     "preconditions": "UC2",
-    "postconditions": "Viene mostrato un messaggio di errore",
+    "postconditions": "L’analisi non viene avviata",
     "test_steps": [
       {
-        "step": "Selezionare un comune non esistente",
-        "expected": "Viene visualizzato un messaggio di errore"
+        "step": "Accedi alla sezione dedicata al consumo",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Lascia vuoto il campo relativo al comune",
+        "expected": "Il sistema segnala la mancanza di informazioni"
+      },
+      {
+        "step": "Tenta di avviare l’analisi",
+        "expected": "L’operazione non procede e viene mostrato un messaggio di errore"
       }
     ],
     "test_type": "Negativo",
-    "priority": "Medio",
+    "priority": "Media",
     "use_case_id": "UC2.6"
   },
   {
     "test_case_id": "UC2.6_TC3",
-    "title": "Selezione POD non valido",
+    "title": "Analisi consumo comune con data di inizio e fine coincidenti",
     "preconditions": "UC2",
-    "postconditions": "Viene mostrato un messaggio di errore",
+    "postconditions": "L’analisi viene avviata e visualizzano i dati del giorno selezionato",
     "test_steps": [
       {
-        "step": "Selezionare un comune esistente",
-        "expected": "Viene visualizzato il menu di analisi dei consumi"
+        "step": "Accedi alla sezione dedicata al consumo",
+        "expected": "La sezione è visualizzata correttamente"
       },
       {
-        "step": "Specificare un POD non valido",
-        "expected": "Viene visualizzato un messaggio di errore"
+        "step": "Seleziona data di inizio e fine coincidenti",
+        "expected": "Il sistema accetta la selezione"
+      },
+      {
+        "step": "Avvia l’analisi",
+        "expected": "I grafici e le informazioni sono visualizzati correttamente per il giorno selezionato"
       }
     ],
-    "test_type": "Negativo",
-    "priority": "Medio",
+    "test_type": "Boundary",
+    "priority": "Alta",
     "use_case_id": "UC2.6"
   },
   {
     "test_case_id": "UC2.6_TC4",
-    "title": "Selezione pannello elettrico non esistente",
+    "title": "Analisi consumo comune con selezione multipla di POD",
     "preconditions": "UC2",
-    "postconditions": "Viene mostrato un messaggio di errore",
+    "postconditions": "L’analisi viene avviata e visualizzano i dati per tutti i POD selezionati",
     "test_steps": [
       {
-        "step": "Selezionare un comune esistente",
-        "expected": "Viene visualizzato il menu di analisi dei consumi"
+        "step": "Accedi alla sezione dedicata al consumo",
+        "expected": "La sezione è visualizzata correttamente"
       },
       {
-        "step": "Specificare un pannello elettrico non esistente",
-        "expected": "Viene visualizzato un messaggio di errore"
+        "step": "Seleziona più POD",
+        "expected": "Il sistema accetta la selezione multipla"
+      },
+      {
+        "step": "Avvia l’analisi",
+        "expected": "I grafici e le informazioni sono visualizzati correttamente per tutti i POD selezionati"
       }
     ],
-    "test_type": "Negativo",
-    "priority": "Medio",
+    "test_type": "Positivo",
+    "priority": "Alta",
     "use_case_id": "UC2.6"
   },
   {
     "test_case_id": "UC2.6_TC5",
-    "title": "Periodo non valido",
+    "title": "Analisi consumo comune con filtro su tipo di potenza analizzata",
     "preconditions": "UC2",
-    "postconditions": "Viene mostrato un messaggio di errore",
+    "postconditions": "L’analisi viene avviata e visualizzano i dati filtrati per il tipo di potenza selezionato",
     "test_steps": [
       {
-        "step": "Selezionare un comune esistente",
-        "expected": "Viene visualizzato il menu di analisi dei consumi"
+        "step": "Accedi alla sezione dedicata al consumo",
+        "expected": "La sezione è visualizzata correttamente"
       },
       {
-        "step": "Specificare un periodo non valido",
-        "expected": "Viene visualizzato un messaggio di errore"
-      }
-    ],
-    "test_type": "Negativo",
-    "priority": "Medio",
-    "use_case_id": "UC2.6"
-  },
-  {
-    "test_case_id": "UC2.6_TC6",
-    "title": "Tipo di potenza analizzata non valido",
-    "preconditions": "UC2",
-    "postconditions": "Viene mostrato un messaggio di errore",
-    "test_steps": [
-      {
-        "step": "Selezionare un comune esistente",
-        "expected": "Viene visualizzato il menu di analisi dei consumi"
+        "step": "Seleziona un tipo di potenza analizzata specifico",
+        "expected": "Il sistema accetta la selezione"
       },
       {
-        "step": "Specificare un tipo di potenza analizzata non valido",
-        "expected": "Viene visualizzato un messaggio di errore"
+        "step": "Avvia l’analisi",
+        "expected": "I grafici e le informazioni sono visualizzati correttamente per il tipo di potenza selezionato"
       }
     ],
-    "test_type": "Negativo",
-    "priority": "Medio",
+    "test_type": "Positivo",
+    "priority": "Alta",
     "use_case_id": "UC2.6"
   }
 ]

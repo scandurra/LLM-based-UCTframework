@@ -1,0 +1,1248 @@
+2025-06-06 13:19:26,418 - __main__ - INFO - Found 1 dependencies for use case UC2.1
+2025-06-06 13:19:26,418 - __main__ - INFO - Read previously generated code for use case UC2 - test case UC2_TC1
+2025-06-06 13:19:26,418 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt template loaded from path: ./prompts/single_processing/zero_shot/llama3.3/raw.txt
+2025-06-06 13:19:26,418 - test_code_generator.prompt_builder.prompt_builder - INFO - Test parameters loaded from path: ./input_files/parameters/test_parameters.env
+2025-06-06 13:19:26,418 - test_code_generator.prompt_builder.prompt_builder - INFO - Test reporter loaded from path: ./input_files/reporter_minimal.js
+2025-06-06 13:19:26,418 - test_code_generator.prompt_builder.prompt_builder - INFO - Previous code section loaded from path: ./prompts/single_processing/zero_shot/llama3.3/previous_code_section.txt
+2025-06-06 13:19:26,418 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt built: <|begin_of_text|><|start_header_id|>system<|end_header_id|>
+You are a testing engineer, expert in writing Javascript end-to-end tests with Playwright.
+
+Task: Analyze the test case provided below and generate a complete and working Playwright test script in Javascript, following the steps described in the test case.
+When creating the test script, use only the page object model provided for interacting with the DOM and the parameters provided.
+<|eot_id|>
+<|start_header_id|>user<|end_header_id|>
+Use only this page object models for interacting with the DOM:
+class DashboardPage {
+
+  constructor(page) {
+    this.page = page;
+    this.downloadButton = page.getByRole('button', { name: 'Download PDF' });
+    this.comuneSelect = page.getByLabel('Comuni', { exact: true });
+    this.showImpiantiButton = page.locator('#compute_apply_geomap_1');
+  }
+
+  async downloadPdf() {
+    await this.downloadButton.click();
+  }
+
+  async selectComuneForImpianti(index) {
+    comuneSelect.selectOption({index: index});
+  }
+
+  async showImpianti() {
+    showImpiantiButton.click();
+  }
+
+  async isImpiantiVisible() {
+    return await page.getByText('Mappa impianti d\'illuminazioneLoading...Completa i campi della form e premi').isVisible();
+  }
+
+  async isTabellaDatiGeneraliShown() {
+    return true;
+  }
+
+  async selectComuneForBanchmarkingKPI() {
+    // Attendi che il selettore "Seleziona" sia visibile
+    await page.getByLabel('Seleziona').click();
+
+    // Seleziona il primo comune dalla lista
+    const items = page.locator('ul > li');
+    await items.nth(21).click();
+  }
+
+  async selectBanchmarkingKPI() {
+    // Attendi che il selettore KPI sia visibile
+    await page.waitForSelector('#compute_apply_chart_municipality_benchmark_general_data_static', { state: 'visible' });
+
+    // Clicca per selezionare il KPI
+    await page.locator('#compute_apply_chart_municipality_benchmark_general_data_static').click();
+  }
+
+  async applyKPIAndVerify() {
+    // Attendi l'applicazione dei risultati
+    await page.waitForTimeout(5000);
+
+    // Verifica se il container è visibile
+    const isChartContainerVisible = await page.locator('#inner_area_chart_municipality_benchmark_general_data_static').isVisible();
+
+    // Verifica se il grafico è visibile
+    const isPointVisible = await page.locator('path.highcharts-point').first().isVisible();
+
+    return isChartContainerVisible && isPointVisible;
+  }
+}
+
+module.exports = DashboardPage;
+
+Use only the following parameters from environment variables in the test scripts:
+E2E_BASE_URL=""
+E2E_LOGIN_URL=""
+E2E_HOME_URL="" 
+E2E_DASHBOARD_URL="" 
+E2E_CTS_URL="" 
+EMAIL=""
+PASSWORD=""
+
+When in the test case there is a step, a precondition or a postcondition with a name of use case UC*, reuse this functions passing null as reporter parameter:
+<code>
+const { test, expect } = require('@playwright/test');
+const HomePage = require('../../models/page_object_models/home-page');
+const TestResultReporter = require('../../models/test-result-reporter');
+const UC1_TC1 = require('../.././output/single_processing/zero_shot/llama3.3/UC1/UC1_TC1.spec.js');
+
+const accessPlatformAsRegisteredUser = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    await fillCorrectCredentials(page, null);
+    await clickLoginButton(page, null);
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC2_TC1_ID1', 'Accedi alla piattaforma come utente registrato', true, page.url() === process.env.E2E_HOME_URL, true, '', executionTime);
+    }
+
+    expect(page.url()).toBe(process.env.E2E_HOME_URL);
+}
+
+const selectDashboardMenu = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const homePage = new HomePage(page);
+    await homePage.navigateToDashboard();
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC2_TC1_ID2', 'Seleziona la voce di menù relativa alla dashboard', true, page.url() === process.env.E2E_DASHBOARD_URL, true, '', executionTime);
+    }
+
+    expect(page.url()).toBe(process.env.E2E_DASHBOARD_URL);
+}
+
+test("UC2_TC1 - Apertura della dashboard con utente autorizzato", async ({page, browserName}) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC2_TC1 - Apertura della dashboard con utente autorizzato");
+
+    await page.goto(process.env.E2E_BASE_URL);
+
+    await accessPlatformAsRegisteredUser(page, reporter);
+    await selectDashboardMenu(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+</code>
+
+Instructions:
+1. Analyze the test case provided
+2. For the test case, generate a test script in Javascript with Playwright
+3. Use only Page object model provided to interact with the DOM.
+4. Call the TestResultReporter object methods as described below.
+5. Add the required import for Playwright, TestResultReporter from "../../models/test-result-reporter", page object models from "../../models/page_object_models/"
+6. Put the code in functions for reusability, with the reporter object as parameter not mandatory. If not null, call reporter methods.
+7. Do not rewrite functions provided in the prompt, just refer to them.
+
+<example>
+const functionNameDescribingStep = async function(page, reporter) {
+    const startTime = DateTime.now();
+    
+    // Put here test case step implementation
+    
+    const endTime = DateTime.now();
+    const executionTime = endTime - startTime;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID1', 'Step 1 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+    }
+
+    // Include Playwright assertions
+    expect(condition);
+}
+
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1 - Login test with success");
+
+    // Call step functions in sequence
+    await step1(page, reporter);
+    await step2(page, reporter);
+    // Additional steps...
+
+    reporter.onTestEnd(test, { status: "passed" });     // status can be "passed" or "failed" 
+});
+</example>
+
+Here the test case to be converted in Playwright script:
+Test Case ID: UC2.1_TC1
+Title: Download PDF con successo
+Use Case ID: UC2.1
+Priority: Alta
+Type: Positivo
+Preconditions: UC2
+Postconditions: L’utente ha scaricato il file, può aprirlo dalla apposita sezione del browser utilizzato ed il file è ben formato
+Test Steps:
+  1. Step: Clicca sul tasto di download del PDF
+Expected: Il processo di download inizia
+  2. Step: Conferma la richiesta di download
+Expected: Il file inizia a scaricarsi
+  3. Step: Verifica il messaggio di completamento dell’operazione
+Expected: Messaggio di successo visualizzato
+
+Output only valid and runnable JavaScript code with no explanations or markdown formatting. Do not copy existing code implementation in the response, only reference it.
+<|eot_id|>
+<|start_header_id|>assistant<|end_header_id|>
+2025-06-06 13:19:26,418 - test_code_generator.llm_client.ollama_client - INFO - OllamaClient initialized with model: llama3.3:latest
+2025-06-06 13:22:26,859 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/generate "HTTP/1.1 200 OK"
+2025-06-06 13:22:26,859 - test_code_generator.llm_client.ollama_client - INFO - Ollama responded in 180437793679 time, with 1660 tokens in prompt and 563 tokens in response. Content:
+ 
+
+```javascript
+const { test, expect } = require('@playwright/test');
+const DashboardPage = require('../../models/page_object_models/dashboard-page');
+const TestResultReporter = require('../../models/test-result-reporter');
+
+const clickDownloadButton = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const dashboardPage = new DashboardPage(page);
+    await dashboardPage.downloadPdf();
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC2.1_TC1_ID1', 'Clicca sul tasto di download del PDF', true, page.url() === process.env.E2E_DASHBOARD_URL, true, '', executionTime);
+    }
+
+    expect(page.url()).toBe(process.env.E2E_DASHBOARD_URL);
+}
+
+const confirmDownloadRequest = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    // Playwright automatically confirms the download request
+    await page.waitForTimeout(1000);
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC2.1_TC1_ID2', 'Conferma la richiesta di download', true, true, true, '', executionTime);
+    }
+}
+
+const verifyDownloadCompletionMessage = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    // Assuming the success message is displayed on the page
+    await page.waitForSelector('text=Download completato con successo');
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC2.1_TC1_ID3', 'Verifica il messaggio di completamento dell’operazione', true, true, true, '', executionTime);
+    }
+
+    expect(await page.isVisible('text=Download completato con successo')).toBe(true);
+}
+
+test("UC2.1_TC1 - Download PDF con successo", async ({page, browserName}) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC2.1_TC1 - Download PDF con successo");
+
+    await page.goto(process.env.E2E_BASE_URL);
+
+    await accessPlatformAsRegisteredUser(page, null);
+    await selectDashboardMenu(page, null);
+
+    await clickDownloadButton(page, reporter);
+    await confirmDownloadRequest(page, reporter);
+    await verifyDownloadCompletionMessage(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+```
+2025-06-06 13:22:26,859 - test_code_generator.validator.javascript_code_validator - INFO - Starting JavaScript code cleaning
+2025-06-06 13:22:26,860 - test_code_generator.validator.javascript_code_validator - INFO - Extracting JavaScript code blocks
+2025-06-06 13:22:26,860 - test_code_generator.validator.javascript_code_validator - INFO - Found 1 JavaScript code blocks with markdown syntax
+2025-06-06 13:22:26,860 - test_code_generator.validator.javascript_code_validator - INFO - JavaScript code cleaning completed
+2025-06-06 13:22:26,860 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt template loaded from path: ./prompts/single_processing/zero_shot/llama3.3/raw.txt
+2025-06-06 13:22:26,860 - test_code_generator.prompt_builder.prompt_builder - INFO - Test parameters loaded from path: ./input_files/parameters/test_parameters.env
+2025-06-06 13:22:26,860 - test_code_generator.prompt_builder.prompt_builder - INFO - Test reporter loaded from path: ./input_files/reporter_minimal.js
+2025-06-06 13:22:26,860 - test_code_generator.prompt_builder.prompt_builder - INFO - Previous code section loaded from path: ./prompts/single_processing/zero_shot/llama3.3/previous_code_section.txt
+2025-06-06 13:22:26,860 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt built: <|begin_of_text|><|start_header_id|>system<|end_header_id|>
+You are a testing engineer, expert in writing Javascript end-to-end tests with Playwright.
+
+Task: Analyze the test case provided below and generate a complete and working Playwright test script in Javascript, following the steps described in the test case.
+When creating the test script, use only the page object model provided for interacting with the DOM and the parameters provided.
+<|eot_id|>
+<|start_header_id|>user<|end_header_id|>
+Use only this page object models for interacting with the DOM:
+class DashboardPage {
+
+  constructor(page) {
+    this.page = page;
+    this.downloadButton = page.getByRole('button', { name: 'Download PDF' });
+    this.comuneSelect = page.getByLabel('Comuni', { exact: true });
+    this.showImpiantiButton = page.locator('#compute_apply_geomap_1');
+  }
+
+  async downloadPdf() {
+    await this.downloadButton.click();
+  }
+
+  async selectComuneForImpianti(index) {
+    comuneSelect.selectOption({index: index});
+  }
+
+  async showImpianti() {
+    showImpiantiButton.click();
+  }
+
+  async isImpiantiVisible() {
+    return await page.getByText('Mappa impianti d\'illuminazioneLoading...Completa i campi della form e premi').isVisible();
+  }
+
+  async isTabellaDatiGeneraliShown() {
+    return true;
+  }
+
+  async selectComuneForBanchmarkingKPI() {
+    // Attendi che il selettore "Seleziona" sia visibile
+    await page.getByLabel('Seleziona').click();
+
+    // Seleziona il primo comune dalla lista
+    const items = page.locator('ul > li');
+    await items.nth(21).click();
+  }
+
+  async selectBanchmarkingKPI() {
+    // Attendi che il selettore KPI sia visibile
+    await page.waitForSelector('#compute_apply_chart_municipality_benchmark_general_data_static', { state: 'visible' });
+
+    // Clicca per selezionare il KPI
+    await page.locator('#compute_apply_chart_municipality_benchmark_general_data_static').click();
+  }
+
+  async applyKPIAndVerify() {
+    // Attendi l'applicazione dei risultati
+    await page.waitForTimeout(5000);
+
+    // Verifica se il container è visibile
+    const isChartContainerVisible = await page.locator('#inner_area_chart_municipality_benchmark_general_data_static').isVisible();
+
+    // Verifica se il grafico è visibile
+    const isPointVisible = await page.locator('path.highcharts-point').first().isVisible();
+
+    return isChartContainerVisible && isPointVisible;
+  }
+}
+
+module.exports = DashboardPage;
+
+Use only the following parameters from environment variables in the test scripts:
+E2E_BASE_URL=""
+E2E_LOGIN_URL=""
+E2E_HOME_URL="" 
+E2E_DASHBOARD_URL="" 
+E2E_CTS_URL="" 
+EMAIL=""
+PASSWORD=""
+
+When in the test case there is a step, a precondition or a postcondition with a name of use case UC*, reuse this functions passing null as reporter parameter:
+<code>
+const { test, expect } = require('@playwright/test');
+const HomePage = require('../../models/page_object_models/home-page');
+const TestResultReporter = require('../../models/test-result-reporter');
+const UC1_TC1 = require('../.././output/single_processing/zero_shot/llama3.3/UC1/UC1_TC1.spec.js');
+
+const accessPlatformAsRegisteredUser = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    await fillCorrectCredentials(page, null);
+    await clickLoginButton(page, null);
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC2_TC1_ID1', 'Accedi alla piattaforma come utente registrato', true, page.url() === process.env.E2E_HOME_URL, true, '', executionTime);
+    }
+
+    expect(page.url()).toBe(process.env.E2E_HOME_URL);
+}
+
+const selectDashboardMenu = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const homePage = new HomePage(page);
+    await homePage.navigateToDashboard();
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC2_TC1_ID2', 'Seleziona la voce di menù relativa alla dashboard', true, page.url() === process.env.E2E_DASHBOARD_URL, true, '', executionTime);
+    }
+
+    expect(page.url()).toBe(process.env.E2E_DASHBOARD_URL);
+}
+
+test("UC2_TC1 - Apertura della dashboard con utente autorizzato", async ({page, browserName}) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC2_TC1 - Apertura della dashboard con utente autorizzato");
+
+    await page.goto(process.env.E2E_BASE_URL);
+
+    await accessPlatformAsRegisteredUser(page, reporter);
+    await selectDashboardMenu(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+</code>
+
+Instructions:
+1. Analyze the test case provided
+2. For the test case, generate a test script in Javascript with Playwright
+3. Use only Page object model provided to interact with the DOM.
+4. Call the TestResultReporter object methods as described below.
+5. Add the required import for Playwright, TestResultReporter from "../../models/test-result-reporter", page object models from "../../models/page_object_models/"
+6. Put the code in functions for reusability, with the reporter object as parameter not mandatory. If not null, call reporter methods.
+7. Do not rewrite functions provided in the prompt, just refer to them.
+
+<example>
+const functionNameDescribingStep = async function(page, reporter) {
+    const startTime = DateTime.now();
+    
+    // Put here test case step implementation
+    
+    const endTime = DateTime.now();
+    const executionTime = endTime - startTime;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID1', 'Step 1 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+    }
+
+    // Include Playwright assertions
+    expect(condition);
+}
+
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1 - Login test with success");
+
+    // Call step functions in sequence
+    await step1(page, reporter);
+    await step2(page, reporter);
+    // Additional steps...
+
+    reporter.onTestEnd(test, { status: "passed" });     // status can be "passed" or "failed" 
+});
+</example>
+
+Here the test case to be converted in Playwright script:
+Test Case ID: UC2.1_TC2
+Title: Download PDF con errore di conferma
+Use Case ID: UC2.1
+Priority: Media
+Type: Negativo
+Preconditions: UC2
+Postconditions: L’utente visualizza un messaggio di operazione completata con un errore
+Test Steps:
+  1. Step: Clicca sul tasto di download del PDF
+Expected: Il processo di download inizia
+  2. Step: Annulla la richiesta di download
+Expected: Il file non viene scaricato e compare un messaggio di errore
+  3. Step: Verifica il messaggio di completamento dell’operazione
+Expected: Messaggio di errore visualizzato
+
+Output only valid and runnable JavaScript code with no explanations or markdown formatting. Do not copy existing code implementation in the response, only reference it.
+<|eot_id|>
+<|start_header_id|>assistant<|end_header_id|>
+2025-06-06 13:22:26,860 - test_code_generator.llm_client.ollama_client - INFO - OllamaClient initialized with model: llama3.3:latest
+2025-06-06 13:24:19,066 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/generate "HTTP/1.1 200 OK"
+2025-06-06 13:24:19,067 - test_code_generator.llm_client.ollama_client - INFO - Ollama responded in 112205038921 time, with 1656 tokens in prompt and 559 tokens in response. Content:
+ 
+
+```javascript
+const { test, expect } = require('@playwright/test');
+const DashboardPage = require('../../models/page_object_models/dashboard-page');
+const TestResultReporter = require('../../models/test-result-reporter');
+
+const clickDownloadButton = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const dashboardPage = new DashboardPage(page);
+    await dashboardPage.downloadPdf();
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC2.1_TC2_ID1', 'Clicca sul tasto di download del PDF', true, await dashboardPage.isImpiantiVisible(), true, '', executionTime);
+    }
+
+    expect(await dashboardPage.isImpiantiVisible()).toBe(true);
+}
+
+const cancelDownloadRequest = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    // Annulla la richiesta di download
+    await page.evaluate(() => { 
+        const xhr = new XMLHttpRequest();
+        xhr.abort();
+    });
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC2.1_TC2_ID2', 'Annulla la richiesta di download', true, true, true, '', executionTime);
+    }
+}
+
+const verifyErrorMessage = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    // Verifica il messaggio di errore
+    const errorMessage = await page.getByText('Errore durante il download del file').isVisible();
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC2.1_TC2_ID3', 'Verifica il messaggio di errore', true, errorMessage, true, '', executionTime);
+    }
+
+    expect(errorMessage).toBe(true);
+}
+
+test("UC2.1_TC2 - Download PDF con errore di conferma", async ({page, browserName}) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC2.1_TC2 - Download PDF con errore di conferma");
+
+    await UC1_TC1(page, null);
+    await accessPlatformAsRegisteredUser(page, reporter);
+    await selectDashboardMenu(page, reporter);
+
+    await clickDownloadButton(page, reporter);
+    await cancelDownloadRequest(page, reporter);
+    await verifyErrorMessage(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+```
+2025-06-06 13:24:19,067 - test_code_generator.validator.javascript_code_validator - INFO - Starting JavaScript code cleaning
+2025-06-06 13:24:19,067 - test_code_generator.validator.javascript_code_validator - INFO - Extracting JavaScript code blocks
+2025-06-06 13:24:19,067 - test_code_generator.validator.javascript_code_validator - INFO - Found 1 JavaScript code blocks with markdown syntax
+2025-06-06 13:24:19,067 - test_code_generator.validator.javascript_code_validator - INFO - JavaScript code cleaning completed
+2025-06-06 13:24:19,067 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt template loaded from path: ./prompts/single_processing/zero_shot/llama3.3/raw.txt
+2025-06-06 13:24:19,067 - test_code_generator.prompt_builder.prompt_builder - INFO - Test parameters loaded from path: ./input_files/parameters/test_parameters.env
+2025-06-06 13:24:19,067 - test_code_generator.prompt_builder.prompt_builder - INFO - Test reporter loaded from path: ./input_files/reporter_minimal.js
+2025-06-06 13:24:19,067 - test_code_generator.prompt_builder.prompt_builder - INFO - Previous code section loaded from path: ./prompts/single_processing/zero_shot/llama3.3/previous_code_section.txt
+2025-06-06 13:24:19,067 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt built: <|begin_of_text|><|start_header_id|>system<|end_header_id|>
+You are a testing engineer, expert in writing Javascript end-to-end tests with Playwright.
+
+Task: Analyze the test case provided below and generate a complete and working Playwright test script in Javascript, following the steps described in the test case.
+When creating the test script, use only the page object model provided for interacting with the DOM and the parameters provided.
+<|eot_id|>
+<|start_header_id|>user<|end_header_id|>
+Use only this page object models for interacting with the DOM:
+class DashboardPage {
+
+  constructor(page) {
+    this.page = page;
+    this.downloadButton = page.getByRole('button', { name: 'Download PDF' });
+    this.comuneSelect = page.getByLabel('Comuni', { exact: true });
+    this.showImpiantiButton = page.locator('#compute_apply_geomap_1');
+  }
+
+  async downloadPdf() {
+    await this.downloadButton.click();
+  }
+
+  async selectComuneForImpianti(index) {
+    comuneSelect.selectOption({index: index});
+  }
+
+  async showImpianti() {
+    showImpiantiButton.click();
+  }
+
+  async isImpiantiVisible() {
+    return await page.getByText('Mappa impianti d\'illuminazioneLoading...Completa i campi della form e premi').isVisible();
+  }
+
+  async isTabellaDatiGeneraliShown() {
+    return true;
+  }
+
+  async selectComuneForBanchmarkingKPI() {
+    // Attendi che il selettore "Seleziona" sia visibile
+    await page.getByLabel('Seleziona').click();
+
+    // Seleziona il primo comune dalla lista
+    const items = page.locator('ul > li');
+    await items.nth(21).click();
+  }
+
+  async selectBanchmarkingKPI() {
+    // Attendi che il selettore KPI sia visibile
+    await page.waitForSelector('#compute_apply_chart_municipality_benchmark_general_data_static', { state: 'visible' });
+
+    // Clicca per selezionare il KPI
+    await page.locator('#compute_apply_chart_municipality_benchmark_general_data_static').click();
+  }
+
+  async applyKPIAndVerify() {
+    // Attendi l'applicazione dei risultati
+    await page.waitForTimeout(5000);
+
+    // Verifica se il container è visibile
+    const isChartContainerVisible = await page.locator('#inner_area_chart_municipality_benchmark_general_data_static').isVisible();
+
+    // Verifica se il grafico è visibile
+    const isPointVisible = await page.locator('path.highcharts-point').first().isVisible();
+
+    return isChartContainerVisible && isPointVisible;
+  }
+}
+
+module.exports = DashboardPage;
+
+Use only the following parameters from environment variables in the test scripts:
+E2E_BASE_URL=""
+E2E_LOGIN_URL=""
+E2E_HOME_URL="" 
+E2E_DASHBOARD_URL="" 
+E2E_CTS_URL="" 
+EMAIL=""
+PASSWORD=""
+
+When in the test case there is a step, a precondition or a postcondition with a name of use case UC*, reuse this functions passing null as reporter parameter:
+<code>
+const { test, expect } = require('@playwright/test');
+const HomePage = require('../../models/page_object_models/home-page');
+const TestResultReporter = require('../../models/test-result-reporter');
+const UC1_TC1 = require('../.././output/single_processing/zero_shot/llama3.3/UC1/UC1_TC1.spec.js');
+
+const accessPlatformAsRegisteredUser = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    await fillCorrectCredentials(page, null);
+    await clickLoginButton(page, null);
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC2_TC1_ID1', 'Accedi alla piattaforma come utente registrato', true, page.url() === process.env.E2E_HOME_URL, true, '', executionTime);
+    }
+
+    expect(page.url()).toBe(process.env.E2E_HOME_URL);
+}
+
+const selectDashboardMenu = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const homePage = new HomePage(page);
+    await homePage.navigateToDashboard();
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC2_TC1_ID2', 'Seleziona la voce di menù relativa alla dashboard', true, page.url() === process.env.E2E_DASHBOARD_URL, true, '', executionTime);
+    }
+
+    expect(page.url()).toBe(process.env.E2E_DASHBOARD_URL);
+}
+
+test("UC2_TC1 - Apertura della dashboard con utente autorizzato", async ({page, browserName}) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC2_TC1 - Apertura della dashboard con utente autorizzato");
+
+    await page.goto(process.env.E2E_BASE_URL);
+
+    await accessPlatformAsRegisteredUser(page, reporter);
+    await selectDashboardMenu(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+</code>
+
+Instructions:
+1. Analyze the test case provided
+2. For the test case, generate a test script in Javascript with Playwright
+3. Use only Page object model provided to interact with the DOM.
+4. Call the TestResultReporter object methods as described below.
+5. Add the required import for Playwright, TestResultReporter from "../../models/test-result-reporter", page object models from "../../models/page_object_models/"
+6. Put the code in functions for reusability, with the reporter object as parameter not mandatory. If not null, call reporter methods.
+7. Do not rewrite functions provided in the prompt, just refer to them.
+
+<example>
+const functionNameDescribingStep = async function(page, reporter) {
+    const startTime = DateTime.now();
+    
+    // Put here test case step implementation
+    
+    const endTime = DateTime.now();
+    const executionTime = endTime - startTime;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID1', 'Step 1 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+    }
+
+    // Include Playwright assertions
+    expect(condition);
+}
+
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1 - Login test with success");
+
+    // Call step functions in sequence
+    await step1(page, reporter);
+    await step2(page, reporter);
+    // Additional steps...
+
+    reporter.onTestEnd(test, { status: "passed" });     // status can be "passed" or "failed" 
+});
+</example>
+
+Here the test case to be converted in Playwright script:
+Test Case ID: UC2.1_TC3
+Title: Download PDF senza conferma
+Use Case ID: UC2.1
+Priority: Media
+Type: Negativo
+Preconditions: UC2
+Postconditions: L’utente non può scaricare il file
+Test Steps:
+  1. Step: Clicca sul tasto di download del PDF senza confermare
+Expected: Il processo di download non inizia
+  2. Step: Verifica la presenza di un messaggio di errore
+Expected: Messaggio di richiesta di conferma visualizzato
+
+Output only valid and runnable JavaScript code with no explanations or markdown formatting. Do not copy existing code implementation in the response, only reference it.
+<|eot_id|>
+<|start_header_id|>assistant<|end_header_id|>
+2025-06-06 13:24:19,067 - test_code_generator.llm_client.ollama_client - INFO - OllamaClient initialized with model: llama3.3:latest
+2025-06-06 13:25:49,034 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/generate "HTTP/1.1 200 OK"
+2025-06-06 13:25:49,034 - test_code_generator.llm_client.ollama_client - INFO - Ollama responded in 89965724658 time, with 1619 tokens in prompt and 448 tokens in response. Content:
+ 
+
+```javascript
+const { test, expect } = require('@playwright/test');
+const DashboardPage = require('../../models/page_object_models/dashboard-page');
+const TestResultReporter = require('../../models/test-result-reporter');
+
+const clickDownloadButtonWithoutConfirmation = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const dashboardPage = new DashboardPage(page);
+    await dashboardPage.downloadPdf();
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC2.1_TC3_ID1', 'Clicca sul tasto di download del PDF senza confermare', false, await dashboardPage.isImpiantiVisible(), true, '', executionTime);
+    }
+
+    expect(await dashboardPage.isImpiantiVisible()).toBe(false);
+}
+
+const verifyErrorMessage = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const dashboardPage = new DashboardPage(page);
+    const errorMessage = await page.getByText('Mappa impianti d\'illuminazioneLoading...Completa i campi della form e premi').isVisible();
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC2.1_TC3_ID2', 'Verifica la presenza di un messaggio di errore', true, errorMessage, true, '', executionTime);
+    }
+
+    expect(errorMessage).toBe(true);
+}
+
+test("UC2.1_TC3 - Download PDF senza conferma", async ({page, browserName}) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC2.1_TC3 - Download PDF senza conferma");
+
+    await page.goto(process.env.E2E_BASE_URL);
+
+    await accessPlatformAsRegisteredUser(page, null);
+    await selectDashboardMenu(page, null);
+
+    await clickDownloadButtonWithoutConfirmation(page, reporter);
+    await verifyErrorMessage(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+```
+2025-06-06 13:25:49,034 - test_code_generator.validator.javascript_code_validator - INFO - Starting JavaScript code cleaning
+2025-06-06 13:25:49,034 - test_code_generator.validator.javascript_code_validator - INFO - Extracting JavaScript code blocks
+2025-06-06 13:25:49,034 - test_code_generator.validator.javascript_code_validator - INFO - Found 1 JavaScript code blocks with markdown syntax
+2025-06-06 13:25:49,034 - test_code_generator.validator.javascript_code_validator - INFO - JavaScript code cleaning completed
+2025-06-06 13:25:49,034 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt template loaded from path: ./prompts/single_processing/zero_shot/llama3.3/raw.txt
+2025-06-06 13:25:49,035 - test_code_generator.prompt_builder.prompt_builder - INFO - Test parameters loaded from path: ./input_files/parameters/test_parameters.env
+2025-06-06 13:25:49,035 - test_code_generator.prompt_builder.prompt_builder - INFO - Test reporter loaded from path: ./input_files/reporter_minimal.js
+2025-06-06 13:25:49,035 - test_code_generator.prompt_builder.prompt_builder - INFO - Previous code section loaded from path: ./prompts/single_processing/zero_shot/llama3.3/previous_code_section.txt
+2025-06-06 13:25:49,035 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt built: <|begin_of_text|><|start_header_id|>system<|end_header_id|>
+You are a testing engineer, expert in writing Javascript end-to-end tests with Playwright.
+
+Task: Analyze the test case provided below and generate a complete and working Playwright test script in Javascript, following the steps described in the test case.
+When creating the test script, use only the page object model provided for interacting with the DOM and the parameters provided.
+<|eot_id|>
+<|start_header_id|>user<|end_header_id|>
+Use only this page object models for interacting with the DOM:
+class DashboardPage {
+
+  constructor(page) {
+    this.page = page;
+    this.downloadButton = page.getByRole('button', { name: 'Download PDF' });
+    this.comuneSelect = page.getByLabel('Comuni', { exact: true });
+    this.showImpiantiButton = page.locator('#compute_apply_geomap_1');
+  }
+
+  async downloadPdf() {
+    await this.downloadButton.click();
+  }
+
+  async selectComuneForImpianti(index) {
+    comuneSelect.selectOption({index: index});
+  }
+
+  async showImpianti() {
+    showImpiantiButton.click();
+  }
+
+  async isImpiantiVisible() {
+    return await page.getByText('Mappa impianti d\'illuminazioneLoading...Completa i campi della form e premi').isVisible();
+  }
+
+  async isTabellaDatiGeneraliShown() {
+    return true;
+  }
+
+  async selectComuneForBanchmarkingKPI() {
+    // Attendi che il selettore "Seleziona" sia visibile
+    await page.getByLabel('Seleziona').click();
+
+    // Seleziona il primo comune dalla lista
+    const items = page.locator('ul > li');
+    await items.nth(21).click();
+  }
+
+  async selectBanchmarkingKPI() {
+    // Attendi che il selettore KPI sia visibile
+    await page.waitForSelector('#compute_apply_chart_municipality_benchmark_general_data_static', { state: 'visible' });
+
+    // Clicca per selezionare il KPI
+    await page.locator('#compute_apply_chart_municipality_benchmark_general_data_static').click();
+  }
+
+  async applyKPIAndVerify() {
+    // Attendi l'applicazione dei risultati
+    await page.waitForTimeout(5000);
+
+    // Verifica se il container è visibile
+    const isChartContainerVisible = await page.locator('#inner_area_chart_municipality_benchmark_general_data_static').isVisible();
+
+    // Verifica se il grafico è visibile
+    const isPointVisible = await page.locator('path.highcharts-point').first().isVisible();
+
+    return isChartContainerVisible && isPointVisible;
+  }
+}
+
+module.exports = DashboardPage;
+
+Use only the following parameters from environment variables in the test scripts:
+E2E_BASE_URL=""
+E2E_LOGIN_URL=""
+E2E_HOME_URL="" 
+E2E_DASHBOARD_URL="" 
+E2E_CTS_URL="" 
+EMAIL=""
+PASSWORD=""
+
+When in the test case there is a step, a precondition or a postcondition with a name of use case UC*, reuse this functions passing null as reporter parameter:
+<code>
+const { test, expect } = require('@playwright/test');
+const HomePage = require('../../models/page_object_models/home-page');
+const TestResultReporter = require('../../models/test-result-reporter');
+const UC1_TC1 = require('../.././output/single_processing/zero_shot/llama3.3/UC1/UC1_TC1.spec.js');
+
+const accessPlatformAsRegisteredUser = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    await fillCorrectCredentials(page, null);
+    await clickLoginButton(page, null);
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC2_TC1_ID1', 'Accedi alla piattaforma come utente registrato', true, page.url() === process.env.E2E_HOME_URL, true, '', executionTime);
+    }
+
+    expect(page.url()).toBe(process.env.E2E_HOME_URL);
+}
+
+const selectDashboardMenu = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const homePage = new HomePage(page);
+    await homePage.navigateToDashboard();
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC2_TC1_ID2', 'Seleziona la voce di menù relativa alla dashboard', true, page.url() === process.env.E2E_DASHBOARD_URL, true, '', executionTime);
+    }
+
+    expect(page.url()).toBe(process.env.E2E_DASHBOARD_URL);
+}
+
+test("UC2_TC1 - Apertura della dashboard con utente autorizzato", async ({page, browserName}) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC2_TC1 - Apertura della dashboard con utente autorizzato");
+
+    await page.goto(process.env.E2E_BASE_URL);
+
+    await accessPlatformAsRegisteredUser(page, reporter);
+    await selectDashboardMenu(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+</code>
+
+Instructions:
+1. Analyze the test case provided
+2. For the test case, generate a test script in Javascript with Playwright
+3. Use only Page object model provided to interact with the DOM.
+4. Call the TestResultReporter object methods as described below.
+5. Add the required import for Playwright, TestResultReporter from "../../models/test-result-reporter", page object models from "../../models/page_object_models/"
+6. Put the code in functions for reusability, with the reporter object as parameter not mandatory. If not null, call reporter methods.
+7. Do not rewrite functions provided in the prompt, just refer to them.
+
+<example>
+const functionNameDescribingStep = async function(page, reporter) {
+    const startTime = DateTime.now();
+    
+    // Put here test case step implementation
+    
+    const endTime = DateTime.now();
+    const executionTime = endTime - startTime;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID1', 'Step 1 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+    }
+
+    // Include Playwright assertions
+    expect(condition);
+}
+
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1 - Login test with success");
+
+    // Call step functions in sequence
+    await step1(page, reporter);
+    await step2(page, reporter);
+    // Additional steps...
+
+    reporter.onTestEnd(test, { status: "passed" });     // status can be "passed" or "failed" 
+});
+</example>
+
+Here the test case to be converted in Playwright script:
+Test Case ID: UC2.1_TC4
+Title: Download PDF con ripetizione della richiesta
+Use Case ID: UC2.1
+Priority: Alta
+Type: Boundary
+Preconditions: UC2
+Postconditions: L’utente può scaricare il file dopo aver ripetuto la richiesta
+Test Steps:
+  1. Step: Clicca sul tasto di download del PDF e annulla la richiesta
+Expected: Il processo di download non inizia
+  2. Step: Ripeti la richiesta di download
+Expected: Il file inizia a scaricarsi
+  3. Step: Verifica il messaggio di completamento dell’operazione
+Expected: Messaggio di successo visualizzato
+
+Output only valid and runnable JavaScript code with no explanations or markdown formatting. Do not copy existing code implementation in the response, only reference it.
+<|eot_id|>
+<|start_header_id|>assistant<|end_header_id|>
+2025-06-06 13:25:49,035 - test_code_generator.llm_client.ollama_client - INFO - OllamaClient initialized with model: llama3.3:latest
+2025-06-06 13:28:00,045 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/generate "HTTP/1.1 200 OK"
+2025-06-06 13:28:00,045 - test_code_generator.llm_client.ollama_client - INFO - Ollama responded in 131009243455 time, with 1655 tokens in prompt and 658 tokens in response. Content:
+ 
+
+```javascript
+const { test, expect } = require('@playwright/test');
+const DashboardPage = require('../../models/page_object_models/dashboard-page');
+const TestResultReporter = require('../../models/test-result-reporter');
+
+const clickDownloadButtonAndCancel = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const dashboardPage = new DashboardPage(page);
+    await dashboardPage.downloadPdf();
+
+    // Annulla la richiesta
+    page.on('filechooser', (fileChooser) => fileChooser.cancel());
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC2.1_TC4_ID1', 'Clicca sul tasto di download del PDF e annulla la richiesta', true, page.url() === process.env.E2E_DASHBOARD_URL, true, '', executionTime);
+    }
+
+    expect(page.url()).toBe(process.env.E2E_DASHBOARD_URL);
+}
+
+const repeatDownloadRequest = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const dashboardPage = new DashboardPage(page);
+    await dashboardPage.downloadPdf();
+
+    // Accetta la richiesta
+    page.on('filechooser', (fileChooser) => fileChooser.accept());
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC2.1_TC4_ID2', 'Ripeti la richiesta di download', true, page.url() === process.env.E2E_DASHBOARD_URL, true, '', executionTime);
+    }
+
+    expect(page.url()).toBe(process.env.E2E_DASHBOARD_URL);
+}
+
+const verifySuccessMessage = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    // Verifica il messaggio di completamento dell’operazione
+    await page.waitForTimeout(5000);
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC2.1_TC4_ID3', 'Verifica il messaggio di completamento dell’operazione', true, page.url() === process.env.E2E_DASHBOARD_URL, true, '', executionTime);
+    }
+
+    expect(page.url()).toBe(process.env.E2E_DASHBOARD_URL);
+}
+
+test("UC2.1_TC4 - Download PDF con ripetizione della richiesta", async ({page, browserName}) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC2.1_TC4 - Download PDF con ripetizione della richiesta");
+
+    await page.goto(process.env.E2E_BASE_URL);
+
+    await accessPlatformAsRegisteredUser(page, null);
+    await selectDashboardMenu(page, null);
+
+    await clickDownloadButtonAndCancel(page, reporter);
+    await repeatDownloadRequest(page, reporter);
+    await verifySuccessMessage(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+```
+2025-06-06 13:28:00,045 - test_code_generator.validator.javascript_code_validator - INFO - Starting JavaScript code cleaning
+2025-06-06 13:28:00,045 - test_code_generator.validator.javascript_code_validator - INFO - Extracting JavaScript code blocks
+2025-06-06 13:28:00,045 - test_code_generator.validator.javascript_code_validator - INFO - Found 1 JavaScript code blocks with markdown syntax
+2025-06-06 13:28:00,045 - test_code_generator.validator.javascript_code_validator - INFO - JavaScript code cleaning completed
+2025-06-06 13:28:00,046 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt template loaded from path: ./prompts/single_processing/zero_shot/llama3.3/raw.txt
+2025-06-06 13:28:00,046 - test_code_generator.prompt_builder.prompt_builder - INFO - Test parameters loaded from path: ./input_files/parameters/test_parameters.env
+2025-06-06 13:28:00,046 - test_code_generator.prompt_builder.prompt_builder - INFO - Test reporter loaded from path: ./input_files/reporter_minimal.js
+2025-06-06 13:28:00,046 - test_code_generator.prompt_builder.prompt_builder - INFO - Previous code section loaded from path: ./prompts/single_processing/zero_shot/llama3.3/previous_code_section.txt
+2025-06-06 13:28:00,046 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt built: <|begin_of_text|><|start_header_id|>system<|end_header_id|>
+You are a testing engineer, expert in writing Javascript end-to-end tests with Playwright.
+
+Task: Analyze the test case provided below and generate a complete and working Playwright test script in Javascript, following the steps described in the test case.
+When creating the test script, use only the page object model provided for interacting with the DOM and the parameters provided.
+<|eot_id|>
+<|start_header_id|>user<|end_header_id|>
+Use only this page object models for interacting with the DOM:
+class DashboardPage {
+
+  constructor(page) {
+    this.page = page;
+    this.downloadButton = page.getByRole('button', { name: 'Download PDF' });
+    this.comuneSelect = page.getByLabel('Comuni', { exact: true });
+    this.showImpiantiButton = page.locator('#compute_apply_geomap_1');
+  }
+
+  async downloadPdf() {
+    await this.downloadButton.click();
+  }
+
+  async selectComuneForImpianti(index) {
+    comuneSelect.selectOption({index: index});
+  }
+
+  async showImpianti() {
+    showImpiantiButton.click();
+  }
+
+  async isImpiantiVisible() {
+    return await page.getByText('Mappa impianti d\'illuminazioneLoading...Completa i campi della form e premi').isVisible();
+  }
+
+  async isTabellaDatiGeneraliShown() {
+    return true;
+  }
+
+  async selectComuneForBanchmarkingKPI() {
+    // Attendi che il selettore "Seleziona" sia visibile
+    await page.getByLabel('Seleziona').click();
+
+    // Seleziona il primo comune dalla lista
+    const items = page.locator('ul > li');
+    await items.nth(21).click();
+  }
+
+  async selectBanchmarkingKPI() {
+    // Attendi che il selettore KPI sia visibile
+    await page.waitForSelector('#compute_apply_chart_municipality_benchmark_general_data_static', { state: 'visible' });
+
+    // Clicca per selezionare il KPI
+    await page.locator('#compute_apply_chart_municipality_benchmark_general_data_static').click();
+  }
+
+  async applyKPIAndVerify() {
+    // Attendi l'applicazione dei risultati
+    await page.waitForTimeout(5000);
+
+    // Verifica se il container è visibile
+    const isChartContainerVisible = await page.locator('#inner_area_chart_municipality_benchmark_general_data_static').isVisible();
+
+    // Verifica se il grafico è visibile
+    const isPointVisible = await page.locator('path.highcharts-point').first().isVisible();
+
+    return isChartContainerVisible && isPointVisible;
+  }
+}
+
+module.exports = DashboardPage;
+
+Use only the following parameters from environment variables in the test scripts:
+E2E_BASE_URL=""
+E2E_LOGIN_URL=""
+E2E_HOME_URL="" 
+E2E_DASHBOARD_URL="" 
+E2E_CTS_URL="" 
+EMAIL=""
+PASSWORD=""
+
+When in the test case there is a step, a precondition or a postcondition with a name of use case UC*, reuse this functions passing null as reporter parameter:
+<code>
+const { test, expect } = require('@playwright/test');
+const HomePage = require('../../models/page_object_models/home-page');
+const TestResultReporter = require('../../models/test-result-reporter');
+const UC1_TC1 = require('../.././output/single_processing/zero_shot/llama3.3/UC1/UC1_TC1.spec.js');
+
+const accessPlatformAsRegisteredUser = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    await fillCorrectCredentials(page, null);
+    await clickLoginButton(page, null);
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC2_TC1_ID1', 'Accedi alla piattaforma come utente registrato', true, page.url() === process.env.E2E_HOME_URL, true, '', executionTime);
+    }
+
+    expect(page.url()).toBe(process.env.E2E_HOME_URL);
+}
+
+const selectDashboardMenu = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const homePage = new HomePage(page);
+    await homePage.navigateToDashboard();
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC2_TC1_ID2', 'Seleziona la voce di menù relativa alla dashboard', true, page.url() === process.env.E2E_DASHBOARD_URL, true, '', executionTime);
+    }
+
+    expect(page.url()).toBe(process.env.E2E_DASHBOARD_URL);
+}
+
+test("UC2_TC1 - Apertura della dashboard con utente autorizzato", async ({page, browserName}) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC2_TC1 - Apertura della dashboard con utente autorizzato");
+
+    await page.goto(process.env.E2E_BASE_URL);
+
+    await accessPlatformAsRegisteredUser(page, reporter);
+    await selectDashboardMenu(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+</code>
+
+Instructions:
+1. Analyze the test case provided
+2. For the test case, generate a test script in Javascript with Playwright
+3. Use only Page object model provided to interact with the DOM.
+4. Call the TestResultReporter object methods as described below.
+5. Add the required import for Playwright, TestResultReporter from "../../models/test-result-reporter", page object models from "../../models/page_object_models/"
+6. Put the code in functions for reusability, with the reporter object as parameter not mandatory. If not null, call reporter methods.
+7. Do not rewrite functions provided in the prompt, just refer to them.
+
+<example>
+const functionNameDescribingStep = async function(page, reporter) {
+    const startTime = DateTime.now();
+    
+    // Put here test case step implementation
+    
+    const endTime = DateTime.now();
+    const executionTime = endTime - startTime;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID1', 'Step 1 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+    }
+
+    // Include Playwright assertions
+    expect(condition);
+}
+
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1 - Login test with success");
+
+    // Call step functions in sequence
+    await step1(page, reporter);
+    await step2(page, reporter);
+    // Additional steps...
+
+    reporter.onTestEnd(test, { status: "passed" });     // status can be "passed" or "failed" 
+});
+</example>
+
+Here the test case to be converted in Playwright script:
+Test Case ID: UC2.1_TC5
+Title: Download PDF con verifica del formato del file
+Use Case ID: UC2.1
+Priority: Alta
+Type: Usabilità
+Preconditions: UC2
+Postconditions: L’utente ha scaricato il file e può aprirlo
+Test Steps:
+  1. Step: Clicca sul tasto di download del PDF
+Expected: Il processo di download inizia
+  2. Step: Verifica che il file sia stato scaricato correttamente
+Expected: Il file è presente nella cartella dei download
+  3. Step: Apri il file per verificare il contenuto
+Expected: Il file si apre e il contenuto è leggibile
+
+Output only valid and runnable JavaScript code with no explanations or markdown formatting. Do not copy existing code implementation in the response, only reference it.
+<|eot_id|>
+<|start_header_id|>assistant<|end_header_id|>
+2025-06-06 13:28:00,046 - test_code_generator.llm_client.ollama_client - INFO - OllamaClient initialized with model: llama3.3:latest

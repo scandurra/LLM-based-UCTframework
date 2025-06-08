@@ -1,0 +1,266 @@
+2025-06-06 13:30:50,702 - __main__ - INFO - Found 1 dependencies for use case UC2.3
+2025-06-06 13:30:50,702 - __main__ - INFO - Read previously generated code for use case UC2 - test case UC2_TC1
+2025-06-06 13:30:50,702 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt template loaded from path: ./prompts/single_processing/zero_shot/llama3.3/raw.txt
+2025-06-06 13:30:50,702 - test_code_generator.prompt_builder.prompt_builder - INFO - Test parameters loaded from path: ./input_files/parameters/test_parameters.env
+2025-06-06 13:30:50,703 - test_code_generator.prompt_builder.prompt_builder - INFO - Test reporter loaded from path: ./input_files/reporter_minimal.js
+2025-06-06 13:30:50,703 - test_code_generator.prompt_builder.prompt_builder - INFO - Previous code section loaded from path: ./prompts/single_processing/zero_shot/llama3.3/previous_code_section.txt
+2025-06-06 13:30:50,703 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt built: <|begin_of_text|><|start_header_id|>system<|end_header_id|>
+You are a testing engineer, expert in writing Javascript end-to-end tests with Playwright.
+
+Task: Analyze the test case provided below and generate a complete and working Playwright test script in Javascript, following the steps described in the test case.
+When creating the test script, use only the page object model provided for interacting with the DOM and the parameters provided.
+<|eot_id|>
+<|start_header_id|>user<|end_header_id|>
+Use only this page object models for interacting with the DOM:
+class DashboardPage {
+
+  constructor(page) {
+    this.page = page;
+    this.downloadButton = page.getByRole('button', { name: 'Download PDF' });
+    this.comuneSelect = page.getByLabel('Comuni', { exact: true });
+    this.showImpiantiButton = page.locator('#compute_apply_geomap_1');
+  }
+
+  async downloadPdf() {
+    await this.downloadButton.click();
+  }
+
+  async selectComuneForImpianti(index) {
+    comuneSelect.selectOption({index: index});
+  }
+
+  async showImpianti() {
+    showImpiantiButton.click();
+  }
+
+  async isImpiantiVisible() {
+    return await page.getByText('Mappa impianti d\'illuminazioneLoading...Completa i campi della form e premi').isVisible();
+  }
+
+  async isTabellaDatiGeneraliShown() {
+    return true;
+  }
+
+  async selectComuneForBanchmarkingKPI() {
+    // Attendi che il selettore "Seleziona" sia visibile
+    await page.getByLabel('Seleziona').click();
+
+    // Seleziona il primo comune dalla lista
+    const items = page.locator('ul > li');
+    await items.nth(21).click();
+  }
+
+  async selectBanchmarkingKPI() {
+    // Attendi che il selettore KPI sia visibile
+    await page.waitForSelector('#compute_apply_chart_municipality_benchmark_general_data_static', { state: 'visible' });
+
+    // Clicca per selezionare il KPI
+    await page.locator('#compute_apply_chart_municipality_benchmark_general_data_static').click();
+  }
+
+  async applyKPIAndVerify() {
+    // Attendi l'applicazione dei risultati
+    await page.waitForTimeout(5000);
+
+    // Verifica se il container è visibile
+    const isChartContainerVisible = await page.locator('#inner_area_chart_municipality_benchmark_general_data_static').isVisible();
+
+    // Verifica se il grafico è visibile
+    const isPointVisible = await page.locator('path.highcharts-point').first().isVisible();
+
+    return isChartContainerVisible && isPointVisible;
+  }
+}
+
+module.exports = DashboardPage;
+
+Use only the following parameters from environment variables in the test scripts:
+E2E_BASE_URL=""
+E2E_LOGIN_URL=""
+E2E_HOME_URL="" 
+E2E_DASHBOARD_URL="" 
+E2E_CTS_URL="" 
+EMAIL=""
+PASSWORD=""
+
+When in the test case there is a step, a precondition or a postcondition with a name of use case UC*, reuse this functions passing null as reporter parameter:
+<code>
+const { test, expect } = require('@playwright/test');
+const HomePage = require('../../models/page_object_models/home-page');
+const TestResultReporter = require('../../models/test-result-reporter');
+const UC1_TC1 = require('../.././output/single_processing/zero_shot/llama3.3/UC1/UC1_TC1.spec.js');
+
+const accessPlatformAsRegisteredUser = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    await fillCorrectCredentials(page, null);
+    await clickLoginButton(page, null);
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC2_TC1_ID1', 'Accedi alla piattaforma come utente registrato', true, page.url() === process.env.E2E_HOME_URL, true, '', executionTime);
+    }
+
+    expect(page.url()).toBe(process.env.E2E_HOME_URL);
+}
+
+const selectDashboardMenu = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const homePage = new HomePage(page);
+    await homePage.navigateToDashboard();
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC2_TC1_ID2', 'Seleziona la voce di menù relativa alla dashboard', true, page.url() === process.env.E2E_DASHBOARD_URL, true, '', executionTime);
+    }
+
+    expect(page.url()).toBe(process.env.E2E_DASHBOARD_URL);
+}
+
+test("UC2_TC1 - Apertura della dashboard con utente autorizzato", async ({page, browserName}) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC2_TC1 - Apertura della dashboard con utente autorizzato");
+
+    await page.goto(process.env.E2E_BASE_URL);
+
+    await accessPlatformAsRegisteredUser(page, reporter);
+    await selectDashboardMenu(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+</code>
+
+Instructions:
+1. Analyze the test case provided
+2. For the test case, generate a test script in Javascript with Playwright
+3. Use only Page object model provided to interact with the DOM.
+4. Call the TestResultReporter object methods as described below.
+5. Add the required import for Playwright, TestResultReporter from "../../models/test-result-reporter", page object models from "../../models/page_object_models/"
+6. Put the code in functions for reusability, with the reporter object as parameter not mandatory. If not null, call reporter methods.
+7. Do not rewrite functions provided in the prompt, just refer to them.
+
+<example>
+const functionNameDescribingStep = async function(page, reporter) {
+    const startTime = DateTime.now();
+    
+    // Put here test case step implementation
+    
+    const endTime = DateTime.now();
+    const executionTime = endTime - startTime;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID1', 'Step 1 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+    }
+
+    // Include Playwright assertions
+    expect(condition);
+}
+
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1 - Login test with success");
+
+    // Call step functions in sequence
+    await step1(page, reporter);
+    await step2(page, reporter);
+    // Additional steps...
+
+    reporter.onTestEnd(test, { status: "passed" });     // status can be "passed" or "failed" 
+});
+</example>
+
+Here the test case to be converted in Playwright script:
+Test Case ID: UC2.3_TC1
+Title: Visualizzazione tabella dati generali con impostazioni predefinite
+Use Case ID: UC2.3
+Priority: Alta
+Type: Positivo
+Preconditions: UC2
+Postconditions: L’utente visualizza le informazioni corrispondenti alla paginazione richiesta
+Test Steps:
+  1. Step: Accedi alla sezione dashboard tramite il menù apposito
+Expected: La sezione dashboard viene visualizzata correttamente
+  2. Step: Scorri nella pagina fino a visualizzare la sezione tabellare dedicata ai dati generali
+Expected: La tabella dei dati generali è visibile e contiene le informazioni attese
+  3. Step: Verifica che sia possibile scorrere tra i comuni disponibili e modificare gli elementi visualizzati per pagina
+Expected: Le funzionalità di scrolling e selezione del numero di elementi per pagina funzionano correttamente
+
+Output only valid and runnable JavaScript code with no explanations or markdown formatting. Do not copy existing code implementation in the response, only reference it.
+<|eot_id|>
+<|start_header_id|>assistant<|end_header_id|>
+2025-06-06 13:30:50,703 - test_code_generator.llm_client.ollama_client - INFO - OllamaClient initialized with model: llama3.3:latest
+2025-06-06 13:33:00,826 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/generate "HTTP/1.1 200 OK"
+2025-06-06 13:33:00,826 - test_code_generator.llm_client.ollama_client - INFO - Ollama responded in 130121288370 time, with 1715 tokens in prompt and 641 tokens in response. Content:
+ 
+
+```javascript
+const { test, expect } = require('@playwright/test');
+const DashboardPage = require('../../models/page_object_models/dashboard-page');
+const TestResultReporter = require('../../models/test-result-reporter');
+
+const accessDashboardSection = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    await selectDashboardMenu(page, null);
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC2.3_TC1_ID1', 'Accedi alla sezione dashboard tramite il menù apposito', true, page.url() === process.env.E2E_DASHBOARD_URL, true, '', executionTime);
+    }
+
+    expect(page.url()).toBe(process.env.E2E_DASHBOARD_URL);
+}
+
+const scrollAndVerifyTabellaDatiGenerali = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const dashboardPage = new DashboardPage(page);
+    await dashboardPage.isTabellaDatiGeneraliShown();
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC2.3_TC1_ID2', 'Scorri nella pagina fino a visualizzare la sezione tabellare dedicata ai dati generali', true, await dashboardPage.isTabellaDatiGeneraliShown(), true, '', executionTime);
+    }
+
+    expect(await dashboardPage.isTabellaDatiGeneraliShown()).toBe(true);
+}
+
+const verifyComuniScrollingAndPagination = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const dashboardPage = new DashboardPage(page);
+    await dashboardPage.selectComuneForImpianti(1);
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC2.3_TC1_ID3', 'Verifica che sia possibile scorrere tra i comuni disponibili e modificare gli elementi visualizzati per pagina', true, await dashboardPage.isImpiantiVisible(), true, '', executionTime);
+    }
+
+    expect(await dashboardPage.isImpiantiVisible()).toBe(true);
+}
+
+test("UC2.3_TC1 - Visualizzazione tabella dati generali con impostazioni predefinite", async ({page, browserName}) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC2.3_TC1 - Visualizzazione tabella dati generali con impostazioni predefinite");
+
+    await page.goto(process.env.E2E_BASE_URL);
+
+    await accessPlatformAsRegisteredUser(page, null);
+    await accessDashboardSection(page, reporter);
+    await scrollAndVerifyTabellaDatiGenerali(page, reporter);
+    await verifyComuniScrollingAndPagination(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+```
+2025-06-06 13:33:00,826 - test_code_generator.validator.javascript_code_validator - INFO - Starting JavaScript code cleaning
+2025-06-06 13:33:00,826 - test_code_generator.validator.javascript_code_validator - INFO - Extracting JavaScript code blocks
+2025-06-06 13:33:00,826 - test_code_generator.validator.javascript_code_validator - INFO - Found 1 JavaScript code blocks with markdown syntax
+2025-06-06 13:33:00,826 - test_code_generator.validator.javascript_code_validator - INFO - JavaScript code cleaning completed

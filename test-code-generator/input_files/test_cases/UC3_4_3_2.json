@@ -1,140 +1,117 @@
 [
   {
     "test_case_id": "UC3.4.3.2_TC1",
-    "title": "Modifica sezione PlSystemGeneralData con successo",
+    "title": "Modifica dati generali con informazioni valide",
     "preconditions": "UC3.4.3",
     "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
     "test_steps": [
       {
-        "step": "L’utente entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
-        "expected": "La sezione si apre correttamente"
+        "step": "Entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
       },
       {
-        "step": "L’utente visualizza i dati precedenti e può compilare il form con le informazioni desiderate",
-        "expected": "I dati precedenti sono visibili e il form è compilabile"
+        "step": "Compila il form con informazioni desiderate e valide",
+        "expected": "Il form viene compilato senza errori"
       },
       {
-        "step": "L’utente applica le modifiche con l’apposito tasto",
-        "expected": "Le modifiche vengono applicate correttamente"
-      },
-      {
-        "step": "In caso di conferma l’utente visualizza un messaggio di conferma dell’operazione",
-        "expected": "Il messaggio di conferma viene visualizzato"
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "L’operazione va a buon fine e compare un messaggio di conferma"
       }
     ],
     "test_type": "Positivo",
-    "priority": "Alto",
+    "priority": "Alta",
     "use_case_id": "UC3.4.3.2"
   },
   {
     "test_case_id": "UC3.4.3.2_TC2",
-    "title": "Modifica sezione PlSystemGeneralData con dati non validi",
+    "title": "Modifica dati generali con informazioni non valide",
     "preconditions": "UC3.4.3",
     "postconditions": "Viene mostrato un messaggio di errore",
     "test_steps": [
       {
-        "step": "L’utente entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
-        "expected": "La sezione si apre correttamente"
+        "step": "Entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
       },
       {
-        "step": "L’utente visualizza i dati precedenti e può compilare il form con le informazioni desiderate",
-        "expected": "I dati precedenti sono visibili e il form è compilabile"
+        "step": "Compila il form con informazioni non valide (es. campi obbligatori vuoti)",
+        "expected": "Il sistema segnala errori di compilazione"
       },
       {
-        "step": "L’utente applica le modifiche con l’apposito tasto senza compilare tutti i campi obbligatori",
-        "expected": "Viene mostrato un messaggio di errore"
+        "step": "Tenta di applicare le modifiche con l’apposito tasto",
+        "expected": "L’operazione non va a buon fine e compare un messaggio di errore"
       }
     ],
     "test_type": "Negativo",
-    "priority": "Alto",
+    "priority": "Media",
     "use_case_id": "UC3.4.3.2"
   },
   {
     "test_case_id": "UC3.4.3.2_TC3",
-    "title": "Modifica sezione PlSystemGeneralData senza autorizzazione",
-    "preconditions": "Utente non autenticato o senza permessi di modifica",
-    "postconditions": "L’utente non può accedere alla sezione",
+    "title": "Modifica dati generali senza apportare modifiche",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
     "test_steps": [
       {
-        "step": "L’utente tenta di entrare nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra senza essere autenticato",
-        "expected": "L’accesso è negato"
+        "step": "Entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
       },
       {
-        "step": "L’utente tenta di compilare il form con le informazioni desiderate senza avere i permessi necessari",
-        "expected": "Il form non è accessibile"
+        "step": "Non apportare modifiche al form",
+        "expected": "Il sistema non segnala errori"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "L’operazione va a buon fine e compare un messaggio di conferma"
       }
     ],
-    "test_type": "Negativo",
-    "priority": "Medio",
+    "test_type": "Boundary",
+    "priority": "Bassa",
     "use_case_id": "UC3.4.3.2"
   },
   {
     "test_case_id": "UC3.4.3.2_TC4",
-    "title": "Modifica sezione PlSystemGeneralData con dati già esistenti",
+    "title": "Modifica dati generali con campi obbligatori vuoti",
     "preconditions": "UC3.4.3",
-    "postconditions": "L’utente visualizza un messaggio di errore per dati duplicati",
+    "postconditions": "Viene mostrato un messaggio di errore",
     "test_steps": [
       {
-        "step": "L’utente entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
-        "expected": "La sezione si apre correttamente"
+        "step": "Entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
       },
       {
-        "step": "L’utente visualizza i dati precedenti e può compilare il form con le informazioni desiderate",
-        "expected": "I dati precedenti sono visibili e il form è compilabile"
+        "step": "Lascia vuoti i campi obbligatori del form",
+        "expected": "Il sistema segnala errori di compilazione"
       },
       {
-        "step": "L’utente applica le modifiche con l’apposito tasto utilizzando dati già esistenti",
-        "expected": "Viene mostrato un messaggio di errore per dati duplicati"
+        "step": "Tenta di applicare le modifiche con l’apposito tasto",
+        "expected": "L’operazione non va a buon fine e compare un messaggio di errore"
       }
     ],
     "test_type": "Negativo",
-    "priority": "Basso",
+    "priority": "Media",
     "use_case_id": "UC3.4.3.2"
   },
   {
     "test_case_id": "UC3.4.3.2_TC5",
-    "title": "Modifica sezione PlSystemGeneralData con campo obbligatorio vuoto",
+    "title": "Modifica dati generali con caratteri speciali nei campi di testo",
     "preconditions": "UC3.4.3",
-    "postconditions": "Viene mostrato un messaggio di errore per campo obbligatorio vuoto",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
     "test_steps": [
       {
-        "step": "L’utente entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
-        "expected": "La sezione si apre correttamente"
+        "step": "Entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
       },
       {
-        "step": "L’utente visualizza i dati precedenti e può compilare il form con le informazioni desiderate",
-        "expected": "I dati precedenti sono visibili e il form è compilabile"
+        "step": "Inserisci caratteri speciali nei campi di testo (es. @, #, $)",
+        "expected": "Il sistema accetta i caratteri speciali o li normalizza"
       },
       {
-        "step": "L’utente applica le modifiche con l’apposito tasto lasciando un campo obbligatorio vuoto",
-        "expected": "Viene mostrato un messaggio di errore per campo obbligatorio vuoto"
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "L’operazione va a buon fine e compare un messaggio di conferma"
       }
     ],
-    "test_type": "Negativo",
-    "priority": "Medio",
-    "use_case_id": "UC3.4.3.2"
-  },
-  {
-    "test_case_id": "UC3.4.3.2_TC6",
-    "title": "Modifica sezione PlSystemGeneralData con formato dati non corretto",
-    "preconditions": "UC3.4.3",
-    "postconditions": "Viene mostrato un messaggio di errore per formato dati non corretto",
-    "test_steps": [
-      {
-        "step": "L’utente entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
-        "expected": "La sezione si apre correttamente"
-      },
-      {
-        "step": "L’utente visualizza i dati precedenti e può compilare il form con le informazioni desiderate",
-        "expected": "I dati precedenti sono visibili e il form è compilabile"
-      },
-      {
-        "step": "L’utente applica le modifiche con l’apposito tasto utilizzando un formato dati non corretto",
-        "expected": "Viene mostrato un messaggio di errore per formato dati non corretto"
-      }
-    ],
-    "test_type": "Negativo",
-    "priority": "Basso",
+    "test_type": "Edge",
+    "priority": "Bassa",
     "use_case_id": "UC3.4.3.2"
   }
 ]
