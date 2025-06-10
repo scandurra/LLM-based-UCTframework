@@ -6,7 +6,9 @@ Task: Analyze the test case provided below and generate a complete and working P
 When creating the test script, use only the page object model provided for interacting with the DOM and the parameters provided.
 
 Use only this page object models for interacting with the DOM:
-class SupportPage {  
+```javascript
+// File: support_page.js
+export class SupportPage {
     constructor(page) {
       this.page = page;
       this.issueCategory = page.locator("#issue-category");
@@ -36,31 +38,36 @@ class SupportPage {
         await this.submit.click();
     }
   } 
+```
 
 Use only the following parameters from environment variables in the test scripts:
-E2E_BASE_URL="http://pell-portal.bologna.enea.it/"
-E2E_LOGIN_URL="https://idp.smartcityplatform.enea.it/"
-E2E_SUPPORT_URL="https://pell-portal.bologna.enea.it/support/result"
-E2E_SUPPORT_SUCCESS_URL = "https://pell-portal.bologna.enea.it/support/result"
+E2E_BASE_URL=""
+E2E_LOGIN_URL=""
+E2E_SUPPORT_URL=""
+E2E_SUPPORT_SUCCESS_URL = ""
 E2E_HOME_URL="" 
 E2E_DASHBOARD_URL="" 
 E2E_CTS_URL="" 
-E2E_LOGIN_EMAIL_ADMIN="test.admin@pell.it"
-E2E_LOGIN_PASSWORD_ADMIN="Testadmin01!"
-E2E_LOGIN_EMAIL_REGION="test.region@pell.it"
-E2E_LOGIN_PASSWORD_REGION="Testregion01!"
+EMAIL=""
+PASSWORD=""
 
 Instructions:
 1. Analyze the test case provided
 2. For the test case, generate a test script in Javascript with Playwright
 3. Use only Page object model provided to interact with the DOM.
 4. Call the TestResultReporter object methods as described below.
-5. Add the required import for Playwright, TestResultReporter from "../../models/test-result-reporter", page object models from "../../models/page_object_models/"
-6. Put the code in functions for reusability, with the reporter object as parameter not mandatory. If not null, call reporter methods.
+5. Put the code in functions for reusability, with the reporter object as parameter not mandatory. If not null, call reporter methods. 
+6. Put functions in a separate file called "UC10_TC1.functions.js" and the test in a file called "UC10_TC1.spec.js"
 7. Do not rewrite functions provided in the prompt, just refer to them.
+8. Add the required import for:
+    * test, expect, ... from '@playwright/test' in all files
+    * TestResultReporter from "../../models/test-result-reporter.js" 
+    * page object models from "../../models/page_object_models/<page_object_model_name>.js" 
+    * existing code from the path specified in the code snippet. Pay attention to add imports used also by the existing code. 
+    * make the generated "UC10_TC1.spec.js" file to reference functions in "UC10_TC1.functions.js" generated file
 
 <example>
-const functionNameDescribingStep = async function(page, reporter) {
+export const functionNameDescribingStep = async function(page, reporter) {
     const startTime = DateTime.now();
     
     // Put here test case step implementation
@@ -104,17 +111,17 @@ Expected: Tutte le informazioni vengono accettate
   3. Step: Invia richiesta di assistenza
 Expected: Si viene reindirizzati alla pagina di conferma
 
-Output only valid and runnable JavaScript code with no explanations or markdown formatting. Do not copy existing code implementation in the response, only reference it.
+Output only valid and runnable JavaScript code. Do not copy existing code implementation in the response, only reference it. Specify the different files using different markdown blocks.
 <|eot_id|>
 <|start_header_id|>assistant<|end_header_id|>
-const { test, expect } = require('@playwright/test');
-const SupportPage = require('../../models/page_object_models/support-page');
-const TestResultReporter = require('../../models/test-result-reporter');
-
-const reporter = new TestResultReporter();
+### UC10_TC1.functions.js
+```javascript
+import { test, expect } from '@playwright/test';
+import { SupportPage } from '../../models/page_object_models/support_page.js';
+import TestResultReporter from '../../models/test-result-reporter.js';
 
 // Step 1
-const navigateToSupportPage = async function(page, reporter) {
+export const navigateToSupportPage = async function(page, reporter) {
   const startTime = new Date().getTime();
     await page.goto(process.env.E2E_SUPPORT_URL);
     const endTime = new Date().getTime();
@@ -125,30 +132,24 @@ const navigateToSupportPage = async function(page, reporter) {
 }
 
 // Step 2
-const fillSupportForm = async function(page, reporter) {
+export const fillSupportForm = async function(page, reporter) {
   const supportPage = new SupportPage(page);
 
   let startTime = Date.now();
   const category = "Problemi account";
   const description = "Non riesco più ad accedere al mio account";
-  const email = "test.region@pell.it"
+  const email = process.env.EMAIL;
   await supportPage.selectIssueCategory();
   await supportPage.enterIssueDescription();
   await supportPage.enterEmail();
   let endTime = Date.now();
-  reporter.addStep(
-    'UC10_TC1_ID2',
-    'L'utente compila la form di assistenza',
-    `Form compilata`,
-    `Form compilata`,
-    true,
-    { category, description, email },
-    endTime - startTime
-  );
+  if (reporter) {
+    reporter.addStep('UC10_TC1_ID2','L\'utente compila la form di assistenza', `Form compilata`, `Form compilata`, true, { category, description, email }, endTime - startTime );
+  }
 }
 
 // Step 3
-const submitForm = async function (page, reporter) {
+export const submitForm = async function (page, reporter) {
   const supportPage = new SupportPage(page);
 
   startTime = date.now();
@@ -156,18 +157,21 @@ const submitForm = async function (page, reporter) {
   await page.waitForUrl(process.env.E2E_SUPPORT_SUCCESS_URL, { waitUnitl: "networkidle" });
   let testPass = page.url() == process.env.E2E_SUPPORT_SUCCESS_URL;
   endTime = date.now();
-  reporter.addStep(
-    'UC10_TC1_ID3',
-    'Invia richiesta di assistenza',
-    "L'utente viene reindirizzato alla pagina di avvenuto invio",
-    testPass ? "L'utente viene reindirizzato alla pagina di avvenuto invio" : "Nessun reindirizzamento avvenuto",
-    testPass,
-    {},
-    endTime - startTime
-  );
+  if (reporter) {
+    reporter.addStep('UC10_TC1_ID3', 'Invia richiesta di assistenza', "L'utente viene reindirizzato alla pagina di avvenuto invio", testPass ? "L'utente viene reindirizzato alla pagina di avvenuto invio" : "Nessun reindirizzamento avvenuto", testPass, {}, endTime - startTime);
+  }
 
-  expect(testPass).be(true);
 }
+```
+
+### UC10_TC1.spec.js
+```javascript
+import { test, expect } from '@playwright/test';
+import { SupportPage } from '../../models/page_object_models/support_page.js';
+import TestResultReporter from '../../models/test-result-reporter.js';
+import { navigateToSupportPage, fillSupportForm, submitForm } import './UC10_TC1.functions.js';
+
+const reporter = new TestResultReporter();
 
 test("UC10_TC1 - Invio richiesta di assistenza", async ({ page, browserName }) => {
   reporter.setBrowserName(browserName);
@@ -175,19 +179,22 @@ test("UC10_TC1 - Invio richiesta di assistenza", async ({ page, browserName }) =
 
   const supportPage = new SupportPage(page);
 
-  await navigateToSupportPage(page, reporter);
-  await fillSupportForm(page, reporter);
-  await submitForm(page, reporter);
+  navigateToSupportPage(page, reporter);
+  fillSupportForm(page, reporter);
+  submitForm(page, reporter);
 
   reporter.onTestEnd(test, { status: "passed" });
 }); 
+```
 <|eot_id|>
 <|start_header_id|>user<|end_header_id|>
 Task: Analyze the test case provided below and generate a complete and working Playwright test script in Javascript, following the steps described in the test case.
 When creating the test script, use only the page object model provided for interacting with the DOM and the parameters provided.
 
 Use only this page object models for interacting with the DOM:
-class ReportEnergeticiPage {  
+```javascript
+// File: report_energetici_page.js
+export class ReportEnergeticiPage {  
     constructor(page) {
         this.page = page;
         this.fromDateInput = page.locator("#from-date");
@@ -212,28 +219,29 @@ class ReportEnergeticiPage {
     async clickExportButton() {
         return await this.exportButton.click();
     }
-} 
+}
+```
 
 Use only the following parameters from environment variables in the test scripts:
-E2E_BASE_URL="http://pell-portal.bologna.enea.it/"
-E2E_LOGIN_URL="https://idp.smartcityplatform.enea.it/"
-E2E_SUPPORT_URL="https://pell-portal.bologna.enea.it/support/result"
-E2E_SUPPORT_SUCCESS_URL = "https://pell-portal.bologna.enea.it/support/result"
+E2E_BASE_URL=""
+E2E_LOGIN_URL=""
+E2E_SUPPORT_URL=""
+E2E_SUPPORT_SUCCESS_URL = ""
 E2E_HOME_URL="" 
 E2E_DASHBOARD_URL="" 
 E2E_CTS_URL="" 
-E2E_LOGIN_EMAIL_ADMIN="test.admin@pell.it"
-E2E_LOGIN_PASSWORD_ADMIN="Testadmin01!"
-E2E_LOGIN_EMAIL_REGION="test.region@pell.it"
-E2E_LOGIN_PASSWORD_REGION="Testregion01!"
+EMAIL=""
+PASSWORD=""
 
 When in the test case there is a step, a precondition or a postcondition with a name of use case UC*, reuse this functions passing null as reporter parameter:
-<code>
-const { test, expect } = require('@playwright/test');
-const LoginPage = require('../../models/page_object_models/login-page');
-const TestResultReporter = require('../../models/test-result-reporter');
+```javascript
+// File: UC1_TC1.functions.js
+import { test, expect } from '@playwright/test';
+import { LoginPage } from '../../models/page_object_models/login_page.js';
+import { insertCorrectCredentials, clickLoginButton, verifyAuthenticationSuccessMessage } from '../UC1/UC1_TC1.functions.js';
+import TestResultReporter from '../../models/test-result-reporter.js';
 
-const navigateToLoginPage = async function(page, reporter) {
+export const navigateToLoginPage = async function(page, reporter) {
     const startTime = new Date().getTime();
     
     await page.goto(process.env.E2E_LOGIN_URL);
@@ -247,7 +255,7 @@ const navigateToLoginPage = async function(page, reporter) {
     await expect(page).toHaveURL(process.env.E2E_LOGIN_URL);
 }
 
-const insertCorrectCredentials = async function(page, reporter) {
+export const insertCorrectCredentials = async function(page, reporter) {
     const startTime = new Date().getTime();
     
     const loginPage = new LoginPage(page);
@@ -264,7 +272,7 @@ const insertCorrectCredentials = async function(page, reporter) {
     await expect(loginPage.passwordInput).toHaveValue(process.env.E2E_LOGIN_PASSWORD_ADMIN);
 }
 
-const clickLoginButton = async function(page, reporter) {
+export const clickLoginButton = async function(page, reporter) {
     const startTime = new Date().getTime();
     
     const loginPage = new LoginPage(page);
@@ -279,7 +287,7 @@ const clickLoginButton = async function(page, reporter) {
     await expect(loginPage.authenticate).toBeDisabled();
 }
 
-const verifySuccessMessage = async function(page, reporter) {
+export const verifySuccessMessage = async function(page, reporter) {
     const startTime = new Date().getTime();
     
     const loginPage = new LoginPage(page);
@@ -294,6 +302,11 @@ const verifySuccessMessage = async function(page, reporter) {
     await expect(message).not.toBeNull();
 }
 
+// File: UC1_TC1.spec.js
+import { test, expect } from '@playwright/test';
+import { navigateToLoginPage, insertCorrectCredentials, clickLoginButton, verifySuccessMessage } from './UC1_TC1.functions.js';
+import TestResultReporter from '../../models/test-result-reporter.js';
+
 test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
     const reporter = new TestResultReporter();
     reporter.setBrowserName(browserName);
@@ -306,19 +319,25 @@ test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
 
     reporter.onTestEnd(test, { status: "passed" });
 });
-</code>
+```
 
 Instructions:
 1. Analyze the test case provided
 2. For the test case, generate a test script in Javascript with Playwright
 3. Use only Page object model provided to interact with the DOM.
 4. Call the TestResultReporter object methods as described below.
-5. Add the required import for Playwright, TestResultReporter from "../../models/test-result-reporter", page object models from "../../models/page_object_models/"
-6. Put the code in functions for reusability, with the reporter object as parameter not mandatory. If not null, call reporter methods.
+5. Put the code in functions for reusability, with the reporter object as parameter not mandatory. If not null, call reporter methods. 
+6. Put functions in a separate file called "UC8.2.3_TC1.functions.js" and the test in a file called "UC8.2.3_TC1.spec.js"
 7. Do not rewrite functions provided in the prompt, just refer to them.
+8. Add the required import for:
+    * test, expect, ... from '@playwright/test' in all files
+    * TestResultReporter from "../../models/test-result-reporter.js" 
+    * page object models from "../../models/page_object_models/<page_object_model_name>.js" 
+    * existing code from the path specified in the code snippet. Pay attention to add imports used also by the existing code. 
+    * make the generated "UC8.2.3_TC1.spec.js" file to reference functions in "UC8.2.3_TC1.functions.js" generated file
 
 <example>
-const functionNameDescribingStep = async function(page, reporter) {
+export const functionNameDescribingStep = async function(page, reporter) {
     const startTime = DateTime.now();
     
     // Put here test case step implementation
@@ -362,17 +381,17 @@ Expected: Le selezioni vengono accettate
   3. Step: Download del file
 Expected: Il file PDF viene generato e scaricato
 
-Output only valid and runnable JavaScript code with no explanations or markdown formatting. Do not copy existing code implementation in the response, only reference it.
+Output only valid and runnable JavaScript code. Do not copy existing code implementation in the response, only reference it. Specify the different files using different markdown blocks.
 <|eot_id|>
 <|start_header_id|>assistant<|end_header_id|>
-const { test, expect } = require('@playwright/test');
-const ReportEnergeticiPage = require('../../models/page_object_models/report-energetici-page');
-const TestResultReporter = require('../../models/test-result-reporter');
-
-const reporter = new TestResultReporter();
+### UC8.2.3_TC1.functions.js
+```javascript
+import { test, expect } from '@playwright/test';
+import { ReportEnergeticiPage } from '../../models/page_object_models/report_energetici_page.js';
+import TestResultReporter from '../../models/test-result-reporter.js';
 
 // Step 1
-const navigateToReportEnergeticiPage = async function(page, reporter) {
+export const navigateToReportEnergeticiPage = async function(page, reporter) {
   const startTime = new Date().getTime();
     await page.goto(process.env.E2E_REPORT_ENERGETICI_URL);
     const endTime = new Date().getTime();
@@ -383,46 +402,37 @@ const navigateToReportEnergeticiPage = async function(page, reporter) {
 }
 
 // Step 2
-const selectPeriodAndFormat = async function(page, reporter) {
-  const supportPage = new ReportEnergeticiPage(page);
+export const selectPeriodAndFormat = async function(page, reporter) {
+  const reportEnergeticiPage = new ReportEnergeticiPage(page);
 
   let startTime = Date.now();
   const fromDate = "2025-05-01";
   const toDate = "2025-05-30";
   const format = "csv"
-  await supportPage.selectIssueCategory();
-  await supportPage.enterIssueDescription();
-  await supportPage.enterEmail();
+  await reportEnergeticiPage.selectIssueCategory();
+  await reportEnergeticiPage.enterIssueDescription();
+  await reportEnergeticiPage.enterEmail();
   let endTime = Date.now();
   
   if (reporter) {
-    reporter.addStep(
-      'UC8_TC1_ID2',
-      'L'utente compila i campi',
-      `Campi compilati`,
-      `Campi compilati`,
-      true,
-      { fromDate, toDate, format },
-      endTime - startTime
-    );
+    reporter.addStep('UC8_TC1_ID2', 'L\'utente compila i campi', `Campi compilati`, `Campi compilati`, true, { fromDate, toDate, format }, endTime - startTime);
   }
 }
 
 // Step 3
-const exportFile = async function (page, reporter) {
-  const supportPage = new SupportPage(page);
+export const exportFile = async function (page, reporter) {
+  const reportEnergeticiPage = new ReportEnergeticiPage(page);
 
   let passFail = 0;  // 1 se passato, 0 se fallito
   let startTime = date.now();
-  await supportPage.clickExportButton();
+  await reportEnergeticiPage.clickExportButton();
   await page.on('download', download => download.path().then(passFail = 1));
   let endTime = date.now();
 
   if (reporter) {
-    reporter.addStep(
-      'UC8_TC1_ID3',
-      'Esportazione',
-      "Il file viene scaricato correttamente",
+    reporter.addStep('UC8_TC1_ID3', 
+      'Esportazione', 
+      "Il file viene scaricato correttamente", 
       testPass ? "Il file viene scaricato correttamente" : "Errore nello scaricare il file",
       testPass,
       {},
@@ -430,6 +440,15 @@ const exportFile = async function (page, reporter) {
     );
   }
 }
+```
+
+### UC8.2.3_TC1.spec.js
+```javascript
+import { test, expect } from '@playwright/test';
+import { ReportEnergeticiPage } from '../../models/page_object_models/report_energetici_page.js';
+import TestResultReporter from '../../models/test-result-reporter.js';
+import { navigateToReportEnergeticiPage, selectPeriodAndFormat, exportFile } from './UC8.2.3_TC1.functions.js'
+import { navigateToLoginPage, insertCorrectCredentials, clickLoginButton, verifySuccessMessage } from '../UC1/UC1_TC1.functions.js'
 
 test("UC10_TC1 - Invio richiesta di assistenza", async ({ page, browserName }) => {
   reporter.setBrowserName(browserName);
@@ -446,14 +465,17 @@ test("UC10_TC1 - Invio richiesta di assistenza", async ({ page, browserName }) =
   await exportFile(page, reporter);
 
   reporter.onTestEnd(test, { status: "passed" });
-}); 
+});
+```
 <|eot_id|>
 <|start_header_id|>user<|end_header_id|>
 Task: Analyze the test case provided below and generate a complete and working Playwright test script in Javascript, following the steps described in the test case.
 When creating the test script, use only the page object model provided for interacting with the DOM and the parameters provided.
 
 Use only this page object models for interacting with the DOM:
+```javascript
 $pom
+```
 
 Use only the following parameters from environment variables in the test scripts:
 $test_parameters
@@ -465,12 +487,18 @@ Instructions:
 2. For the test case, generate a test script in Javascript with Playwright
 3. Use only Page object model provided to interact with the DOM.
 4. Call the TestResultReporter object methods as described below.
-5. Add the required import for Playwright, TestResultReporter from "../../models/test-result-reporter", page object models from "../../models/page_object_models/"
-6. Put the code in functions for reusability, with the reporter object as parameter not mandatory. If not null, call reporter methods.
+5. Put the code in functions for reusability, with the reporter object as parameter not mandatory. If not null, call reporter methods. 
+6. Put functions in a separate file called "${test_case_name}.functions.js" and the test in a file called "${test_case_name}.spec.js"
 7. Do not rewrite functions provided in the prompt, just refer to them.
+8. Add the required import for:
+    * test, expect, ... from '@playwright/test' in all files
+    * TestResultReporter from "../../models/test-result-reporter.js" 
+    * page object models from "../../models/page_object_models/<page_object_model_name>.js" 
+    * existing code from the path specified in the code snippet. Pay attention to add imports used also by the existing code. 
+    * make the generated "${test_case_name}.spec.js" file to reference functions in "${test_case_name}.functions.js" generated file
 
 <example>
-const functionNameDescribingStep = async function(page, reporter) {
+export const functionNameDescribingStep = async function(page, reporter) {
     const startTime = DateTime.now();
     
     // Put here test case step implementation
@@ -501,6 +529,6 @@ test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
 Here the test case to be converted in Playwright script:
 $test_cases
 
-Output only valid and runnable JavaScript code with no explanations or markdown formatting. Do not copy existing code implementation in the response, only reference it.
+Output only valid and runnable JavaScript code. Do not copy existing code implementation in the response, only reference it. Specify the different files using different markdown blocks.
 <|eot_id|>
 <|start_header_id|>assistant<|end_header_id|>

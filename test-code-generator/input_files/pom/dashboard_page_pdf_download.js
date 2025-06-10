@@ -1,4 +1,4 @@
-class DashboardPagePdfDownload {
+export class DashboardPagePdfDownload {
 	constructor(page) {
 		this.page = page;
 
@@ -14,5 +14,3 @@ class DashboardPagePdfDownload {
 		return await this.downloadPDFButton.isVisible();
 	}
 }
-
-module.exports = DashboardPagePdfDownload;

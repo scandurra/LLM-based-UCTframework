@@ -1,6 +1,6 @@
 const { timeout } = require('../../playwright.config');
 
-class CensusSheetPage {
+export class CensusSheetPage {
   constructor(page) {
     this.page = page;
     this.path = require('path');
@@ -116,6 +116,3 @@ class CensusSheetPage {
     await this.page.locator('a[data-kt-cts-table-filter="detail_row"]').first().click();
   }
 }
-
-
-module.exports = CensusSheetPage;

@@ -1,4 +1,4 @@
-class DashboardPageGeneralDataTable {
+export class DashboardPageGeneralDataTable {
   constructor(page) {
     this.page = page;
     
@@ -54,6 +54,3 @@ class DashboardPageGeneralDataTable {
     return regionVisible && pointsVisible;
   }
 }
-
-
-module.exports = DashboardPageGeneralDataTable;

@@ -32,18 +32,40 @@ class JavascriptCodeValidator:
         # Pattern to match filename headers (### filename.js) followed by javascript code blocks
         # ?: makes Python not capturing the first (..) as a group. I need it only for 'OR' condition
         # Llama3.3: ### file_name.functions.js
-        # Codellama: **file_name.functions.js** or **File: file_name.functions.js**
-        pattern = r'(?:#|\*(?:File:\s)?)+\s*([^\n]+\.js)\**\s*\n```javascript\n(.*?)\n```'
+        # Codellama: **file_name.functions.js** or **File: file_name.functions.js** or File: file_name.functions.js
+        #external_name_pattern = r'(?:#|\*+(?:File:\s)?|(?:\nFile:\s))+\s*([^\n]+\.js)\**\s*\n```javascript\n(.*?)\n```'
+        # sometimes Codellama writes the file name insiede the code block as comment in the first row like "// File: UC2_TC1.functions.js"
+        #internal_name_pattern = r'```javascript\n//\s*File:\s*([^\n]+\.js)\s*\n(.*?)\n```'
 
-        # Check for markdown-style JS code blocks
-        matches = re.findall(pattern, self.markdown_content, re.DOTALL)
+        # Pattern 1: **File: filename.js** format
+        bold_file_pattern = r'\*\*File:\s*([^\n*]+\.js)\*\*\s*\n```javascript\n(.*?)\n```'
         
+        # Pattern 2: ### filename.js format  
+        header_pattern = r'#{1,6}\s*([^\n]+\.js)\s*\n```javascript\n(.*?)\n```'
+        
+        # Pattern 3: **filename.js** format (without "File:")
+        bold_name_pattern = r'\*\*([^\n*]+\.js)\*\*\s*\n```javascript\n(.*?)\n```'
+        
+        # Pattern 4: Comment-style filename inside code blocks
+        internal_pattern = r'```javascript\n//\s*File:\s*([^\n]+\.js)\s*\n(.*?)\n```'
+
+        patterns = [
+            bold_file_pattern,
+            header_pattern,
+            bold_name_pattern,
+            internal_pattern
+        ]
+
         self.extracted_files = []
-        for filename, code in matches:
-            self.extracted_files.append({
-                'filename': filename.strip(),
-                'code': code.strip()
-            })
+        for pattern in patterns:
+            matches = re.findall(pattern, self.markdown_content, re.DOTALL)
+
+            for filename, code in matches:
+                clean_filename = filename.strip().replace('*', '')
+                self.extracted_files.append({
+                    'filename': clean_filename,
+                    'code': code.strip()
+                })
 
         return self.extracted_files
     
@@ -207,7 +229,8 @@ class JavascriptCodeValidator:
             if file_data['filename'].startswith(self.test_case_id):
                 filename = file_data['filename']
             else:
-                filename = f"{self.test_case_id}.{file_data['filename']}"
+                parts = file_data['filename'].rsplit('.', 2)  # Split from right, max 2 splits
+                filename = f"{self.test_case_id}.{'.'.join(parts[1:])}"
             
             filepath = os.path.join(folder_abs_path, filename)
             with open(filepath, 'w', encoding='utf-8') as f:

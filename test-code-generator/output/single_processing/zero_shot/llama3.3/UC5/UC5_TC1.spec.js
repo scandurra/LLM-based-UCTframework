@@ -1,67 +1,26 @@
-const { test, expect } = require('@playwright/test');
-const NavbarPage = require('../../models/page_object_models/navbar-page');
-const TestResultReporter = require('../../models/test-result-reporter');
-const UC1_TC1 = require('../.././output/single_processing/zero_shot/llama3.3/UC1/UC1_TC1.spec.js');
+import { test, expect } from '@playwright/test';
 
-const clickOnUsername = async function(page, reporter) {
-    const startTime = new Date().getTime();
-    
-    const navbarPage = new NavbarPage(page);
-    await navbarPage.clickUserIcon();
+import { clickOnUsername, selectItalianLanguage, verifyPortalInItalian } from './UC5_TC1.functions.js';
 
-    const endTime = new Date().getTime();
-    const executionTime = (endTime - startTime) / 1000;
-    if (reporter) {
-        reporter.addStep('UC5_TC1_ID1', 'Accedi al portale e clicca sul proprio nome utente in alto a destra', true, await navbarPage.userIcon.isVisible(), true, '', executionTime);
-    }
+import { insertCorrectCredentials, clickLoginButton, verifyAuthenticationSuccessMessage } from '../UC1/UC1_TC1.functions.js';
 
-    expect(await navbarPage.userIcon.isVisible()).toBeTruthy();
-}
+import TestResultReporter from '../../models/test-result-reporter.js';
 
-const selectItalianLanguage = async function(page, reporter) {
-    const startTime = new Date().getTime();
-    
-    const navbarPage = new NavbarPage(page);
-    await navbarPage.selectItalianLanguage();
-
-    const endTime = new Date().getTime();
-    const executionTime = (endTime - startTime) / 1000;
-    if (reporter) {
-        reporter.addStep('UC5_TC1_ID2', 'Seleziona la lingua italiana dal menù a tendina', true, await navbarPage.italianLanguageSelection.isVisible(), true, '', executionTime);
-    }
-
-    expect(await navbarPage.italianLanguageSelection.isVisible()).toBeTruthy();
-}
-
-const verifyItalianLanguageSelected = async function(page, reporter) {
-    const startTime = new Date().getTime();
-    
-    const navbarPage = new NavbarPage(page);
-    await page.reload();
-
-    const endTime = new Date().getTime();
-    const executionTime = (endTime - startTime) / 1000;
-    if (reporter) {
-        reporter.addStep('UC5_TC1_ID3', 'Verifica che dopo il ricaricamento della pagina, il portale sia visualizzato in italiano', true, await navbarPage.isEnglishLanguageSelected(), await navbarPage.isEnglishLanguageSelected(), '', executionTime);
-    }
-
-    expect(await navbarPage.isEnglishLanguageSelected()).toBeFalsy();
-}
-
-test("UC5_TC1 - Selezione lingua italiana", async ({page, browserName}) => {
+test("UC5_TC1 - Select Italian language", async ({page, browserName}) => {
     const reporter = new TestResultReporter();
     reporter.setBrowserName(browserName);
-    reporter.setTestCase("UC5_TC1 - Selezione lingua italiana");
+    reporter.setTestCase("UC5_TC1 - Select Italian language");
 
-    await page.goto(process.env.E2E_HOME_URL);
+    // Preconditions: UC1
+    await page.goto(process.env.E2E_LOGIN_URL);
+    await insertCorrectCredentials(page, reporter);
+    await clickLoginButton(page, reporter);
+    await verifyAuthenticationSuccessMessage(page, reporter);
 
-    await fillCorrectCredentials(page, null);
-    await clickLoginButton(page, null);
-    await verifySuccessMessage(page, null);
-
+    // Test Steps
     await clickOnUsername(page, reporter);
     await selectItalianLanguage(page, reporter);
-    await verifyItalianLanguageSelected(page, reporter);
+    await verifyPortalInItalian(page, reporter);
 
-    reporter.onTestEnd(test, { status: "passed" });
+    reporter.onTestEnd(test, { status: "passed" });     // status can be "passed" or "failed" 
 });

@@ -14,8 +14,8 @@ from dataclasses import asdict
 
 
 timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-# log_filename = os.path.join("logs/single_processing/zero_shot/llama3.3", f"{timestamp}.log")
-log_filename = os.path.join("logs/single_processing/zero_shot/codellama", f"{timestamp}.log")
+log_filename = os.path.join("logs/single_processing/one_shot/llama3.3", f"{timestamp}.log")
+# log_filename = os.path.join("logs/single_processing/zero_shot/codellama", f"{timestamp}.log")
 logging.basicConfig(filename=log_filename, encoding="utf-8", level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
 logger = logging.getLogger(__name__)
@@ -47,16 +47,16 @@ def main():
 
 
     dependency_graph_path = "./input_files/include_graph/include_graph.json"
-    prompt_template_path = f"./prompts/single_processing/zero_shot/{model_name_short}"
-    # prompt_template_path = f"./prompts/single_processing/one_shot/{model_name_short}"
+    # prompt_template_path = f"./prompts/single_processing/zero_shot/{model_name_short}"
+    prompt_template_path = f"./prompts/single_processing/one_shot/{model_name_short}"
     # prompt_template_path = f"./prompts/single_processing/few_shot/{model_name_short}"
     test_parameters_path = "./input_files/parameters/test_parameters.env"
     pom_folder_path = "./input_files/pom"
     existing_code_path = "./input_files/reporter_minimal.js"
     test_cases_folder = "./input_files/test_cases/"
 
-    output_path = "./output/single_processing/zero_shot/" + model_name_short
-    # output_path = "./output/single_processing/one_shot/" + model_name_short
+    # output_path = "./output/single_processing/zero_shot/" + model_name_short
+    output_path = "./output/single_processing/one_shot/" + model_name_short
     # output_path = "./output/single_processing/few_shot/" + model_name_short
 
 

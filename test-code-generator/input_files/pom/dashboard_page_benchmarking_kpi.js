@@ -1,4 +1,4 @@
-class DashboardPageBenchmarkingKpi {
+export class DashboardPageBenchmarkingKpi {
   constructor(page) {
     this.page = page;
     
@@ -68,5 +68,3 @@ class DashboardPageBenchmarkingKpi {
     return await this.kpiSelector.isVisible();
   }
 }
-
-module.exports = DashboardPageBenchmarkingKpi;

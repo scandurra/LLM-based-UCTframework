@@ -12,7 +12,7 @@ When creating the test script, use only the page object model provided for inter
 
 Use only this page object models for interacting with the DOM:
 ```javascript
-File: login_page.js
+// File: login_page.js
 class LoginPage {
   constructor(page) {
     this.page = page;

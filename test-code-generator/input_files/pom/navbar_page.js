@@ -1,4 +1,4 @@
-class NavbarPage {
+export class NavbarPage {
   constructor(page) {
     const italianoFlagLink = ' Lingua Italiano flag';
     const ingleseFlagLink = 'flag Inglese';
@@ -31,5 +31,3 @@ class NavbarPage {
     this.logoutSelection.click();
   }
 }
-
-module.exports = NavbarPage;

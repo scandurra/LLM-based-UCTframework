@@ -1,70 +1,25 @@
-const { test, expect } = require('@playwright/test');
-const DashboardPageBenchmarkingKpi = require('../../models/page_object_models/dashboard-page-benchmarking-kpi');
-const TestResultReporter = require('../../models/test-result-reporter');
+import { test, expect } from '@playwright/test';
 
-const selectCities = async function(page, reporter) {
-    const startTime = new Date().getTime();
-    
-    const dashboardPage = new DashboardPageBenchmarkingKpi(page);
-    await dashboardPage.selectCity(0);
-    await dashboardPage.selectCity(1);
+import { selectCities, selectKPI, confirmRequest } from './UC2.4_TC1.functions.js';
 
-    const endTime = new Date().getTime();
-    const executionTime = (endTime - startTime) / 1000;
-    if (reporter) {
-        reporter.addStep('UC2.4_TC1_ID1', 'Seleziona due o più comuni dal menù a tendina', true, await dashboardPage.isCitySelectorVisible(), true, '', executionTime);
-    }
+import { accessPlatformAsRegisteredUser, selectDashboardMenu } from '../UC2/UC2_TC1.functions.js';
 
-    expect(await dashboardPage.isCitySelectorVisible()).toBe(true);
-}
+import TestResultReporter from '../../models/test-result-reporter.js';
 
-const selectKPI = async function(page, reporter) {
-    const startTime = new Date().getTime();
-    
-    const dashboardPage = new DashboardPageBenchmarkingKpi(page);
-    await dashboardPage.selectKPI();
-
-    const endTime = new Date().getTime();
-    const executionTime = (endTime - startTime) / 1000;
-    if (reporter) {
-        reporter.addStep('UC2.4_TC1_ID2', 'Scegli un KPI valido per il confronto', true, await dashboardPage.isKPISelectorVisible(), true, '', executionTime);
-    }
-
-    expect(await dashboardPage.isKPISelectorVisible()).toBe(true);
-}
-
-const confirmRequest = async function(page, reporter) {
-    const startTime = new Date().getTime();
-    
-    const dashboardPage = new DashboardPageBenchmarkingKpi(page);
-    await dashboardPage.applyKPIAndVerify();
-
-    const endTime = new Date().getTime();
-    const executionTime = (endTime - startTime) / 1000;
-    if (reporter) {
-        reporter.addStep('UC2.4_TC1_ID3', 'Conferma la richiesta cliccando sul pulsante', true, await dashboardPage.verifyKPIResults(), true, '', executionTime);
-    }
-
-    expect(await dashboardPage.verifyKPIResults()).toBe(true);
-}
-
-test("UC2.4_TC1 - Selezione di comuni e KPI validi per benchmarking", async ({page, browserName}) => {
+test("UC2.4_TC1 - Select cities and KPI for benchmarking", async ({page, browserName}) => {
     const reporter = new TestResultReporter();
     reporter.setBrowserName(browserName);
-    reporter.setTestCase("UC2.4_TC1 - Selezione di comuni e KPI validi per benchmarking");
+    reporter.setTestCase("UC2.4_TC1 - Select cities and KPI for benchmarking");
 
-    await page.goto(process.env.E2E_BASE_URL);
+    // Navigate to login page
+    await page.goto(process.env.E2E_LOGIN_URL);
 
-    const loginPage = require('../../models/page_object_models/login-page');
-    const sidebarPage = require('../../models/page_object_models/sidebar-page');
-const UC2_TC1 = require('../.././output/single_processing/zero_shot/llama3.3/UC2/UC2_TC1.spec.js');
-
-    await accessPlatformAsRegisteredUser(page, null);
-    await selectDashboardMenu(page, null);
-
+    // Call step functions in sequence
+    await accessPlatformAsRegisteredUser(page, reporter);
+    await selectDashboardMenu(page, reporter);
     await selectCities(page, reporter);
     await selectKPI(page, reporter);
     await confirmRequest(page, reporter);
 
-    reporter.onTestEnd(test, { status: "passed" });
+    reporter.onTestEnd(test, { status: "passed" });     // status can be "passed" or "failed" 
 });

@@ -37,7 +37,7 @@ export const confirmDownloadRequest = async function(page, reporter) {
 export const verifySuccessMessage = async function(page, reporter) {
     const startTime = new Date().getTime();
     
-    // This step is not possible to automate using Playwright as it requires accessing the browser's download section
+    // This step is not possible to automate using Playwright as it requires checking the browser's download section
     // However, we can check if the download button is no longer visible after clicking on it
     const dashboardPagePdfDownload = new DashboardPagePdfDownload(page);
     expect(await dashboardPagePdfDownload.isDownloadButtonVisible()).toBe(false);

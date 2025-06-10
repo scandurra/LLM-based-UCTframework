@@ -1,5 +1,10 @@
 #!/bin/sh
 model="llama3.3:latest"
+# model="codellama:70b"
+
+
+# poetry run python -m test_code_generator.main --use_case_name=UC1 --test_case_name=UC1_TC1 --model="$model"
+poetry run python -m test_code_generator.main --use_case_name=UC1 --test_case_name=UC1_TC2 --model="$model"
 
 poetry run python -m test_code_generator.main --use_case_name=UC2 --test_case_name=UC2_TC1 --model="$model"
 poetry run python -m test_code_generator.main --use_case_name=UC2.1 --test_case_name=UC2.1_TC1 --model="$model"

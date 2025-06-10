@@ -1,6 +1,6 @@
 const { timeout } = require('../../playwright.config');
 
-class CensusSheetPageUpload {
+export class CensusSheetPageUpload {
   constructor(page) {
     this.page = page;
     this.path = require('path');
@@ -35,6 +35,3 @@ class CensusSheetPageUpload {
     await this.page.getByRole('button', { name: 'OK' }).click();
   }
 }
-
-
-module.exports = CensusSheetPageUpload;

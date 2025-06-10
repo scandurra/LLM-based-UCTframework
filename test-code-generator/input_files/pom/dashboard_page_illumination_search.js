@@ -1,4 +1,4 @@
-class DashboardPageIlluminationSearch {
+export class DashboardPageIlluminationSearch {
     constructor(page) {
         this.page = page;
         
@@ -28,5 +28,3 @@ class DashboardPageIlluminationSearch {
         return await this.applyGeomapButton.isVisible();
     }
 }
-
-module.exports = DashboardPageIlluminationSearch;
