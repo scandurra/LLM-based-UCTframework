@@ -9,11 +9,12 @@ import { insertCorrectCredentials, clickLoginButton, verifySuccessMessage } from
 test("UC1_TC1 - Login con credenziali valide", async ({ page, browserName }) => {
   const reporter = new TestResultReporter();
   reporter.setBrowserName(browserName);
-  reporter.setTestCase("UC1_TC1 - Login con credenziali valide");
+  reporter.setTestCase("UC1_TC1", "Login con credenziali valide");
 
   // Navigate to login page
   await page.goto(process.env.E2E_LOGIN_URL);
 
+  // Call step functions in sequence
   await insertCorrectCredentials(page, reporter);
   await clickLoginButton(page, reporter);
   await verifySuccessMessage(page, reporter);

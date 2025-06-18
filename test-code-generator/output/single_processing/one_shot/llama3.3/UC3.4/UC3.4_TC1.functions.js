@@ -16,5 +16,5 @@ export const clickAzioniButton = async function(page, reporter) {
   if (reporter) {
     reporter.addStep('UC3.4_TC1_ID2', 'Click azioni button', 'Azioni button clicked', 'Azioni button clicked', true, '', executionTime);
   }
-  await expect(censusSheetPage.page.locator('.text-start > .btn')).toBeVisible();
+  expect(await censusSheetPage.isAzioneDownloadVisible()).toBeTruthy();
 }

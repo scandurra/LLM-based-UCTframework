@@ -16,7 +16,7 @@ export class NavbarPage {
   }
 
   async selectItalianLanguage() {
-    await this.englishItalianSelection.click();
+    await this.italianLanguageSelection.click();
   }
 
   async selectEnglishLanguage() {

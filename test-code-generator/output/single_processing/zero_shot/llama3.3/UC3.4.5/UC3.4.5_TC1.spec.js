@@ -7,7 +7,7 @@ import TestResultReporter from '../../models/test-result-reporter.js';
 test("UC3.4.5_TC1 - Visualizzazione dettaglio scheda censimento con dati validi", async ({page, browserName}) => {
     const reporter = new TestResultReporter();
     reporter.setBrowserName(browserName);
-    reporter.setTestCase("UC3.4.5_TC1 - Visualizzazione dettaglio scheda censimento con dati validi");
+    reporter.setTestCase("UC3.4.5_TC1", "Visualizzazione dettaglio scheda censimento con dati validi");
 
     // Call step functions in sequence
     await accessCensusSheetSection(page, reporter);

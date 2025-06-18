@@ -1,0 +1,506 @@
+2025-06-13 11:25:44,129 - __main__ - INFO - Found 0 dependencies for use case UC1
+2025-06-13 11:25:44,129 - test_code_generator.prompt_builder.prompt_builder - INFO - Test parameters loaded from path: ./input_files/parameters/test_parameters.env
+2025-06-13 11:25:44,129 - test_code_generator.prompt_builder.prompt_builder - INFO - Test reporter loaded from path: ./input_files/reporter_minimal.js
+2025-06-13 11:25:44,129 - test_code_generator.prompt_builder.prompt_builder - INFO - Previous code section loaded from path: ./prompts/batch_processing/zero_shot/llama3.3/previous_code_section.txt
+2025-06-13 11:25:44,129 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt built: 
+ROLE: system
+You are a testing engineer, expert in writing Javascript end-to-end tests with Playwright.
+
+Task: Analyze the test cases provided below and generate for each test case a complete and working Playwright test script in Javascript, following the steps described in each test case.
+When creating the test scripts, use only the page object model provided for interacting with the DOM and the parameters provided.
+------------------------------------------------------------------
+ROLE: user
+Use only this page object models for interacting with the DOM:
+File: login_page.js
+export class LoginPage {
+  constructor(page) {
+    this.page = page;
+    
+    // Locators
+    this.loginLink = page.getByRole('link', { name: 'Login' });
+    this.emailInput = page.getByLabel('E-mail');
+    this.passwordInput = page.getByLabel('Password', { exact: true });
+    this.loginButton = page.getByRole('button', { name: 'Login' });
+    
+    // Selectors
+    this.emailFieldSelector = 'input[name="email"]';
+  }
+
+  // Login flow methods
+  async clickLoginLink() {
+    await this.loginLink.click();
+  }
+
+  async isEmailFieldVisible() {
+    return await this.page.isVisible(this.emailFieldSelector);
+  }
+
+  async fillEmail(email) {
+    await this.emailInput.fill(email);
+  }
+
+  async fillPassword(password) {
+    await this.passwordInput.fill(password);
+  }
+
+  async clickLoginButton() {
+    await this.loginButton.click();
+  }
+}
+
+
+Use the following test parameters when creating scripts:
+E2E_BASE_URL=""
+E2E_LOGIN_URL=""
+E2E_HOME_URL="" 
+E2E_DASHBOARD_URL="" 
+E2E_CTS_URL="" 
+EMAIL=""
+PASSWORD=""
+
+
+
+Instructions:
+1. Analyze the test cases provided
+2. For each test case, generate a test script in Javascript with Playwright
+3. Use only Page object model provided to interact with the DOM.
+4. Call the TestResultReporter object methods as described below.
+5. Put the code in functions for reusability, with the reporter object as parameter not mandatory. If not null, call reporter methods. 
+6. Put functions in a separate file called "UC*_TC*.functions.js" and each test in a file called "UC*_TC*.spec.js"
+7. Do not rewrite functions provided in the prompt, just refer to them.
+8. Add the required import for:
+    * test, expect, ... from '@playwright/test' in all files
+    * TestResultReporter from "../../models/test-result-reporter.js" 
+    * page object models from "../../models/page_object_models/<page_object_model_name>.js" 
+    * existing code from the path specified in the code snippet. Pay attention to add imports used also by the existing code. 
+    * make the generated "UC*_TC*.spec.js" file to reference functions in "UC*_TC*.functions.js" generated file
+
+<example>
+export const functionNameDescribingStep = async function(page, reporter) {
+    const startTime = DateTime.now();
+    
+    // Put here test case step implementation
+    
+    const endTime = DateTime.now();
+    const executionTime = endTime - startTime;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID1', 'Step 1 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+    }
+
+    // Include Playwright assertions
+    expect(passFail).toBeTruthy();
+}
+
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1", "Login test with success");
+
+    // Eventually go to page
+
+    // Call step functions in sequence
+    await functionNameDescribingStep1(page, reporter);
+    await functionNameDescribingStep2(page, reporter);
+    // Additional steps...
+
+    reporter.onTestEnd(test, { status: "passed" });     // status can be "passed" or "failed" 
+});
+</example>
+
+Here the test cases to be converted in Playwright script:
+Test Case ID: UC1_TC1
+Title: Login con credenziali valide
+Use Case ID: UC1
+Priority: Alta
+Type: Positivo
+Preconditions: L’utente non è autenticato
+Postconditions: L’utente è autenticato ed è a conoscenza che l’operazione ha avuto successo
+Test Steps:
+  1. Step: Inserisci le credenziali corrette nel form di login
+Expected: Il sistema accetta le credenziali
+  2. Step: Clicca il tasto “Login”
+Expected: L’utente viene autenticato con successo
+  3. Step: Visualizza il messaggio di operazione completata con successo
+Expected: Il messaggio conferma l’avvenuta autenticazione
+
+Test Case ID: UC1_TC2
+Title: Login con credenziali errate
+Use Case ID: UC1
+Priority: Alta
+Type: Negativo
+Preconditions: L’utente non è autenticato
+Postconditions: L’utente visualizza un messaggio di errore
+Test Steps:
+  1. Step: Inserisci credenziali errate nel form di login
+Expected: Il sistema rileva le credenziali come non valide
+  2. Step: Clicca il tasto “Login”
+Expected: L’utente visualizza un messaggio di errore relativo alle credenziali
+  3. Step: Visualizza la possibilità di riprovare l’accesso
+Expected: Il sistema consente all’utente di ripetere il tentativo di login
+
+Test Case ID: UC1_TC3
+Title: Cambio della prima password di accesso
+Use Case ID: UC1
+Priority: Media
+Type: Positivo
+Preconditions: L’utente non è autenticato e sta effettuando il primo accesso
+Postconditions: La nuova password viene accettata e l’utente è autenticato
+Test Steps:
+  1. Step: Inserisci la nuova password richiesta al primo accesso
+Expected: Il sistema richiede la conferma della nuova password
+  2. Step: Conferma la nuova password
+Expected: Il sistema accetta la nuova password e autentica l’utente
+  3. Step: Visualizza il messaggio di operazione completata con successo
+Expected: L’utente è ora autenticato con la nuova password
+
+Test Case ID: UC1_TC4
+Title: Tentativo di login con campo username vuoto
+Use Case ID: UC1
+Priority: Media
+Type: Negativo
+Preconditions: L’utente non è autenticato
+Postconditions: Il sistema visualizza un messaggio di errore
+Test Steps:
+  1. Step: Lascia vuoto il campo username e inserisci una password
+Expected: Il sistema rileva l’assenza del username
+  2. Step: Clicca il tasto “Login”
+Expected: Il sistema visualizza un messaggio di errore relativo al campo vuoto
+  3. Step: Visualizza la possibilità di correggere l’input
+Expected: Il sistema consente all’utente di ripetere il tentativo di login
+
+Test Case ID: UC1_TC5
+Title: Inserimento di caratteri non ammessi nella password
+Use Case ID: UC1
+Priority: Media
+Type: Negativo
+Preconditions: L’utente sta cambiando la propria password
+Postconditions: Il sistema visualizza un messaggio di errore
+Test Steps:
+  1. Step: Inserisci una password con caratteri non ammessi durante il cambio password
+Expected: Il sistema rileva i caratteri non validi
+  2. Step: Conferma la password
+Expected: Il sistema visualizza un messaggio di errore relativo ai caratteri non ammessi
+  3. Step: Visualizza la possibilità di correggere la password
+Expected: Il sistema consente all’utente di ripetere il tentativo di inserimento della password
+
+Test Case ID: UC1_TC6
+Title: Tentativo di SQL injection nel campo username
+Use Case ID: UC1
+Priority: Alta
+Type: Sicurezza
+Preconditions: L’utente non è autenticato
+Postconditions: Il sistema deve essere in grado di prevenire l’iniezione di codice malevolo
+Test Steps:
+  1. Step: Inserisci una stringa di testo che simula un attacco di SQL injection nel campo username
+Expected: Il sistema deve rilevare e bloccare la possibile iniezione di codice
+  2. Step: Clicca il tasto “Login”
+Expected: Il sistema visualizza un messaggio di errore generico senza esporre informazioni sensibili
+  3. Step: Verifica che il sistema non abbia subito danni
+Expected: Il sistema rimane integro e funzionale
+
+Output format:
+* Output only valid and runnable JavaScript code
+* Do not write code implementation provided in the prompt, only reference it
+* Structure the code in files using markdown code blocks specifying the file name
+2025-06-13 11:25:44,130 - test_code_generator.llm_client.ollama_client - INFO - OllamaClient initialized with model: llama3.3:latest
+2025-06-13 11:35:31,188 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-06-13 11:35:31,188 - test_code_generator.llm_client.ollama_client - INFO - Ollama responded in 587056043097 time, with 1972 tokens in prompt and 2567 tokens in response. Content:
+ ### UC1_TC1.functions.js
+```javascript
+import { LoginPage } from "../../models/page_object_models/login_page.js";
+import { test, expect } from '@playwright/test';
+import { TestResultReporter } from "../../models/test-result-reporter.js";
+
+export const fillCorrectCredentials = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const loginPage = new LoginPage(page);
+    await loginPage.fillEmail(process.env.EMAIL);
+    await loginPage.fillPassword(process.env.PASSWORD);
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID1', 'Inserisci le credenziali corrette nel form di login', true, true, true, { email: process.env.EMAIL, password: process.env.PASSWORD }, executionTime);
+    }
+
+    expect(await loginPage.isEmailFieldVisible()).toBeTruthy();
+}
+
+export const clickLoginButton = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const loginPage = new LoginPage(page);
+    await loginPage.clickLoginButton();
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID2', 'Clicca il tasto “Login”', true, true, true, {}, executionTime);
+    }
+
+    expect(await page.url()).toBe(process.env.E2E_DASHBOARD_URL);
+}
+
+export const verifySuccessMessage = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    // Assuming the success message is visible on the dashboard page
+    const successMessage = await page.isVisible('text=Login successful');
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID3', 'Visualizza il messaggio di operazione completata con successo', true, successMessage, successMessage, {}, executionTime);
+    }
+
+    expect(successMessage).toBeTruthy();
+}
+```
+
+### UC1_TC1.spec.js
+```javascript
+import { test, expect } from '@playwright/test';
+import { TestResultReporter } from "../../models/test-result-reporter.js";
+import { fillCorrectCredentials, clickLoginButton, verifySuccessMessage } from './UC1_TC1.functions.js';
+
+test("UC1_TC1 - Login con credenziali valide", async ({ page, browserName }) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1", "Login con credenziali valide");
+
+    await page.goto(process.env.E2E_BASE_URL);
+
+    // Call step functions in sequence
+    await fillCorrectCredentials(page, reporter);
+    await clickLoginButton(page, reporter);
+    await verifySuccessMessage(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+```
+
+### UC1_TC2.functions.js
+```javascript
+import { LoginPage } from "../../models/page_object_models/login_page.js";
+import { test, expect } from '@playwright/test';
+import { TestResultReporter } from "../../models/test-result-reporter.js";
+
+export const fillIncorrectCredentials = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const loginPage = new LoginPage(page);
+    await loginPage.fillEmail('wrong-email');
+    await loginPage.fillPassword('wrong-password');
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC1_TC2_ID1', 'Inserisci credenziali errate nel form di login', true, true, true, { email: 'wrong-email', password: 'wrong-password' }, executionTime);
+    }
+
+    expect(await loginPage.isEmailFieldVisible()).toBeTruthy();
+}
+
+export const clickLoginButtonIncorrect = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const loginPage = new LoginPage(page);
+    await loginPage.clickLoginButton();
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC1_TC2_ID2', 'Clicca il tasto “Login”', true, true, true, {}, executionTime);
+    }
+
+    expect(await page.url()).not.toBe(process.env.E2E_DASHBOARD_URL);
+}
+
+export const verifyErrorMessage = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    // Assuming the error message is visible on the login page
+    const errorMessage = await page.isVisible('text=Invalid credentials');
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC1_TC2_ID3', 'Visualizza il messaggio di errore relativo alle credenziali', true, errorMessage, errorMessage, {}, executionTime);
+    }
+
+    expect(errorMessage).toBeTruthy();
+}
+```
+
+### UC1_TC2.spec.js
+```javascript
+import { test, expect } from '@playwright/test';
+import { TestResultReporter } from "../../models/test-result-reporter.js";
+import { fillIncorrectCredentials, clickLoginButtonIncorrect, verifyErrorMessage } from './UC1_TC2.functions.js';
+
+test("UC1_TC2 - Login con credenziali errate", async ({ page, browserName }) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC2", "Login con credenziali errate");
+
+    await page.goto(process.env.E2E_BASE_URL);
+
+    // Call step functions in sequence
+    await fillIncorrectCredentials(page, reporter);
+    await clickLoginButtonIncorrect(page, reporter);
+    await verifyErrorMessage(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+```
+
+### UC1_TC3.functions.js
+```javascript
+import { LoginPage } from "../../models/page_object_models/login_page.js";
+import { test, expect } from '@playwright/test';
+import { TestResultReporter } from "../../models/test-result-reporter.js";
+
+export const fillNewPassword = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const loginPage = new LoginPage(page);
+    await loginPage.fillEmail(process.env.EMAIL);
+    await loginPage.fillPassword('new-password');
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC1_TC3_ID1', 'Inserisci la nuova password richiesta al primo accesso', true, true, true, { email: process.env.EMAIL, password: 'new-password' }, executionTime);
+    }
+
+    expect(await loginPage.isEmailFieldVisible()).toBeTruthy();
+}
+
+export const confirmNewPassword = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const loginPage = new LoginPage(page);
+    await loginPage.fillPassword('new-password');
+    await loginPage.clickLoginButton();
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC1_TC3_ID2', 'Conferma la nuova password', true, true, true, {}, executionTime);
+    }
+
+    expect(await page.url()).toBe(process.env.E2E_DASHBOARD_URL);
+}
+
+export const verifySuccessMessageNewPassword = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    // Assuming the success message is visible on the dashboard page
+    const successMessage = await page.isVisible('text=Password changed successfully');
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC1_TC3_ID3', 'Visualizza il messaggio di operazione completata con successo', true, successMessage, successMessage, {}, executionTime);
+    }
+
+    expect(successMessage).toBeTruthy();
+}
+```
+
+### UC1_TC3.spec.js
+```javascript
+import { test, expect } from '@playwright/test';
+import { TestResultReporter } from "../../models/test-result-reporter.js";
+import { fillNewPassword, confirmNewPassword, verifySuccessMessageNewPassword } from './UC1_TC3.functions.js';
+
+test("UC1_TC3 - Cambio della prima password di accesso", async ({ page, browserName }) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC3", "Cambio della prima password di accesso");
+
+    await page.goto(process.env.E2E_BASE_URL);
+
+    // Call step functions in sequence
+    await fillNewPassword(page, reporter);
+    await confirmNewPassword(page, reporter);
+    await verifySuccessMessageNewPassword(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+```
+
+### UC1_TC4.functions.js
+```javascript
+import { LoginPage } from "../../models/page_object_models/login_page.js";
+import { test, expect } from '@playwright/test';
+import { TestResultReporter } from "../../models/test-result-reporter.js";
+
+export const leaveUsernameEmpty = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const loginPage = new LoginPage(page);
+    await loginPage.fillPassword(process.env.PASSWORD);
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC1_TC4_ID1', 'Lascia vuoto il campo username e inserisci una password', true, true, true, { password: process.env.PASSWORD }, executionTime);
+    }
+
+    expect(await loginPage.isEmailFieldVisible()).toBeTruthy();
+}
+
+export const clickLoginButtonEmptyUsername = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const loginPage = new LoginPage(page);
+    await loginPage.clickLoginButton();
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC1_TC4_ID2', 'Clicca il tasto “Login”', true, true, true, {}, executionTime);
+    }
+
+    expect(await page.url()).not.toBe(process.env.E2E_DASHBOARD_URL);
+}
+
+export const verifyErrorMessageEmptyUsername = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    // Assuming the error message is visible on the login page
+    const errorMessage = await page.isVisible('text=Username is required');
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC1_TC4_ID3', 'Visualizza il messaggio di errore relativo alle credenziali', true, errorMessage, errorMessage, {}, executionTime);
+    }
+
+    expect(errorMessage).toBeTruthy();
+}
+```
+
+### UC1_TC4.spec.js
+```javascript
+import { test, expect } from '@playwright/test';
+import { TestResultReporter } from "../../models/test-result-reporter.js";
+import { leaveUsernameEmpty, clickLoginButtonEmptyUsername, verifyErrorMessageEmptyUsername } from './UC1_TC4.functions.js';
+
+test("UC1_TC4 - Tentativo di login con username vuoto", async ({ page, browserName }) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC4", "Tentativo di login con username vuoto");
+
+    await page.goto(process.env.E2E_BASE_URL);
+
+    // Call step functions in sequence
+    await leaveUsernameEmpty(page, reporter);
+    await clickLoginButtonEmptyUsername(page, reporter);
+    await verifyErrorMessageEmptyUsername(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+```
+2025-06-13 11:35:31,188 - test_code_generator.validator.javascript_code_validator - INFO - Extracting JavaScript code blocks

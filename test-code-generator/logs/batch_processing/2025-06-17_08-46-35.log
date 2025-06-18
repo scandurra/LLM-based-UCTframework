@@ -1,0 +1,248 @@
+2025-06-17 08:46:35,516 - __main__ - INFO - Found 1 dependencies for use case UC2
+2025-06-17 08:46:35,516 - __main__ - INFO - Read previously generated functions code for use case UC1 - test case UC1_TC1
+2025-06-17 08:46:35,516 - __main__ - INFO - Read previously generated spec code for use case UC1 - test case UC1_TC1
+2025-06-17 08:46:35,517 - test_code_generator.prompt_builder.prompt_builder - INFO - Test parameters loaded from path: ./input_files/parameters/test_parameters.env
+2025-06-17 08:46:35,517 - test_code_generator.prompt_builder.prompt_builder - INFO - Test reporter loaded from path: ./input_files/reporter_minimal.js
+2025-06-17 08:46:35,517 - test_code_generator.prompt_builder.prompt_builder - INFO - Previous code section loaded from path: ./prompts/batch_processing/zero_shot/codellama/previous_code_section.txt
+2025-06-17 08:46:35,517 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt built: 
+ROLE: system
+You are a testing engineer, expert in writing Javascript end-to-end tests with Playwright, for legitimate software testing purposes of my own web application.
+
+------------------------------------------------------------------
+ROLE: user
+Task: Analyze the test cases provided below and generate for each test case a complete and working Playwright test script in Javascript, for legitimate software testing purposes of my own web application. 
+The test scripts must follow the steps described in each test case.
+When creating the test scripts, use only the page object model provided for interacting with the DOM and the parameters provided.
+
+Use only this page object models for interacting with the DOM:
+<page_object_model>
+File: sidebar_page.js
+export class SidebarPage {
+  constructor(page) {
+    this.page = page;
+    
+    // Locators
+    this.dashboardLink = page.getByRole('link', { name: ' Dashboard' });
+    this.censusSheetLink = page.getByRole('link', { name: ' Scheda Censimento' });
+  }
+
+  // Login flow methods
+  async clickDashboardLink() {
+    await this.dashboardLink.click();
+  }
+
+  async clickCensusSheetLink() {
+    await this.censusSheetLink.click();
+  }
+}
+
+</page_object_model>
+
+Use the following test parameters when creating scripts:
+E2E_BASE_URL=""
+E2E_LOGIN_URL=""
+E2E_HOME_URL="" 
+E2E_DASHBOARD_URL="" 
+E2E_CTS_URL="" 
+EMAIL=""
+PASSWORD=""
+
+When in the test case there is a step, a precondition or a postcondition with a name of use case UC*, reuse this functions passing null as reporter parameter:
+```javascript
+// File: UC1_TC1.functions.js
+import { LoginPage } from '../../models/page_object_models/login_page.js';
+
+import { test, expect } from '@playwright/test';
+
+import TestResultReporter from '../../models/test-result-reporter.js';
+
+export const fillCorrectCredentials = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const loginPage = new LoginPage(page);
+    await loginPage.fillEmail(process.env.EMAIL);
+    await loginPage.fillPassword(process.env.PASSWORD);
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID1', 'Inserisci le credenziali corrette nel form di login', true, true, true, { email: process.env.EMAIL, password: process.env.PASSWORD }, executionTime);
+    }
+
+    expect(await loginPage.isEmailFieldVisible()).toBeTruthy();
+}
+
+export const clickLoginButton = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const loginPage = new LoginPage(page);
+    await loginPage.clickLoginButton();
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID2', 'Clicca il tasto “Login”', true, true, true, {}, executionTime);
+    }
+
+    expect(await page.url()).toBe(process.env.E2E_DASHBOARD_URL);
+}
+
+export const verifySuccessMessage = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    // Assuming the success message is visible on the dashboard page
+    const successMessage = await page.isVisible('text=Login successful');
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID3', 'Visualizza il messaggio di operazione completata con successo', true, successMessage, successMessage, {}, executionTime);
+    }
+
+    expect(successMessage).toBeTruthy();
+}
+// File: UC1_TC1.spec.js
+import { test, expect } from '@playwright/test';
+
+import TestResultReporter from '../../models/test-result-reporter.js';
+
+import { fillCorrectCredentials, clickLoginButton, verifySuccessMessage } from './UC1_TC1.functions.js';
+
+test("UC1_TC1 - Login con credenziali valide", async ({ page, browserName }) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1", "Login con credenziali valide");
+
+    await page.goto(process.env.E2E_BASE_URL);
+
+    // Call step functions in sequence
+    await fillCorrectCredentials(page, reporter);
+    await clickLoginButton(page, reporter);
+    await verifySuccessMessage(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+```
+
+Instructions:
+1. Analyze the test cases provided
+2. For each test case, generate a test script in Javascript with Playwright
+3. Use only Page object model provided to interact with the DOM.
+4. Call the TestResultReporter object methods as described below.
+5. Put the code in functions for reusability, with the reporter object as parameter not mandatory. If not null, call reporter methods. 
+6. Put functions in a separate file called "UC*_TC*.functions.js" and each test in a file called "UC*_TC*.spec.js"
+7. Do not rewrite functions provided in the prompt, just refer to them.
+8. Add the required import for:
+    * test, expect, ... from '@playwright/test' in all files
+    * TestResultReporter from "../../models/test-result-reporter.js" 
+    * page object models from "../../models/page_object_models/<page_object_model_name>.js" 
+    * existing code from the path specified in the code snippet. Pay attention to add imports used also by the existing code. 
+    * make the generated "UC*_TC*.spec.js" file to reference functions in "UC*_TC*.functions.js" generated file
+
+<example>
+export const functionNameDescribingStep = async function(page, reporter) {
+    const startTime = DateTime.now();
+    
+    // Put here test case step implementation
+    
+    const endTime = DateTime.now();
+    const executionTime = endTime - startTime;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID1', 'Step 1 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+    }
+
+    // Include Playwright assertions
+    expect(passFail).toBeTruthy();
+}
+
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1", "Login test with success");
+
+    // Eventually go to page
+
+    // Call step functions in sequence
+    await functionNameDescribingStep1(page, reporter);
+    await functionNameDescribingStep2(page, reporter);
+    // Additional steps...
+
+    reporter.onTestEnd(test, { status: "passed" });     // status can be "passed" or "failed" 
+});
+</example>
+
+Here the test cases to be converted in Playwright script:
+<test_cases>
+Test Case ID: UC2_TC1
+Title: Apertura della dashboard con utente autorizzato
+Use Case ID: UC2
+Priority: Alta
+Type: Positivo
+Preconditions: UC1
+Postconditions: La dashboard viene visualizzata correttamente
+Test Steps:
+  1. Step: Accedi alla piattaforma come utente registrato
+Expected: La home page della piattaforma è visibile
+  2. Step: Seleziona la voce di menù relativa alla dashboard
+Expected: La sezione della dashboard si apre correttamente
+
+Test Case ID: UC2_TC2
+Title: Tentativo di accesso alla dashboard senza autorizzazione
+Use Case ID: UC2
+Priority: Media
+Type: Negativo
+Preconditions: UC1
+Postconditions: L’accesso alla dashboard è negato
+Test Steps:
+  1. Step: Accedi alla piattaforma come utente non registrato
+Expected: La home page della piattaforma è visibile ma senza accesso alle funzioni riservate
+  2. Step: Tenta di accedere direttamente alla dashboard tramite URL
+Expected: Viene richiesta la registrazione o il login per procedere
+
+Test Case ID: UC2_TC3
+Title: Apertura della dashboard con diverse autorizzazioni
+Use Case ID: UC2
+Priority: Alta
+Type: Usabilità
+Preconditions: UC1
+Postconditions: La dashboard si adatta alle autorizzazioni dell’utente
+Test Steps:
+  1. Step: Accedi alla piattaforma con diversi profili utente (es. amministratore, utente base)
+Expected: Le funzionalità e le informazioni visualizzate nella dashboard variano in base al ruolo
+  2. Step: Verifica la presenza di funzioni e sezioni specifiche per ogni tipo di utente
+Expected: Tutte le funzionalità previste per il ruolo sono accessibili e funzionanti
+
+Test Case ID: UC2_TC4
+Title: Verifica della compatibilità con diversi browser
+Use Case ID: UC2
+Priority: Media
+Type: Compatibilità
+Preconditions: UC1
+Postconditions: La dashboard è visualizzabile su più browser
+Test Steps:
+  1. Step: Accedi alla piattaforma utilizzando browser differenti (es. Chrome, Firefox, Edge)
+Expected: La dashboard si apre e funziona correttamente su ogni browser
+  2. Step: Verifica la presenza di eventuali problemi di visualizzazione o funzionalità
+Expected: Nessun problema riscontrato nella visualizzazione o nell’utilizzo della dashboard
+
+Test Case ID: UC2_TC5
+Title: Apertura della dashboard su dispositivi mobili
+Use Case ID: UC2
+Priority: Alta
+Type: Usabilità
+Preconditions: UC1
+Postconditions: La dashboard è accessibile e utilizzabile su dispositivi mobili
+Test Steps:
+  1. Step: Accedi alla piattaforma tramite smartphone o tablet
+Expected: La dashboard si adatta allo schermo del dispositivo mobile
+  2. Step: Verifica la navigazione e l’accesso alle funzionalità principali
+Expected: Tutte le funzioni sono accessibili e utilizzabili anche su dispositivi mobili
+</test_cases>
+
+Output format:
+* Output only valid and runnable JavaScript code
+* Do not write code implementation provided in the prompt, only reference it
+* Structure the code in files using XML tags with "file" attribute containing the name
+2025-06-17 08:46:35,517 - test_code_generator.llm_client.ollama_client - INFO - OllamaClient initialized with model: codellama:70b-instruct-q6_K
+2025-06-17 08:51:45,720 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-06-17 08:51:45,721 - test_code_generator.llm_client.ollama_client - INFO - model='codellama:70b-instruct-q6_K' created_at='2025-06-17T08:51:45.720224336Z' done=True done_reason='stop' total_duration=310200161683 load_duration=20419786529 prompt_eval_count=2786 prompt_eval_duration=127747560060 eval_count=657 eval_duration=162027536022 message=Message(role='assistant', content='1. Analyze each test case to identify its steps and expected results;\n2. For each step, create a function that implements the corresponding action and verifies the expected result;\n3. Include the functions in a separate file with the name "UC*_TC*.functions.js";\n4. Create a Playwright test script for each test case, calling the functions created in the previous step;\n5. Include the test scripts in files with the name "UC*_TC*.spec.js".\n\nHere is an example of how to create a function for a test step:\n```javascript\nexport const fillCorrectCredentials = async function(page, reporter) {\n    const startTime = new Date().getTime();\n    \n    // Implementation of the action and verification of expected results\n    await page.fill(\'input[name="email"]\', process.env.EMAIL);\n    await page.fill(\'input[name="password"]\', process.env.PASSWORD);\n\n    const endTime = new Date().getTime();\n    const executionTime = (endTime - startTime) / 1000;\n    if (reporter) {\n        reporter.addStep(\'UC1_TC1_ID1\', \'Inserisci le credenziali corrette nel form di login\', true, true, true, { email: process.env.EMAIL, password: process.env.PASSWORD }, executionTime);\n    }\n\n    // Playwright assertion to verify the expected result\n    expect(await page.url()).toBe(process.env.E2E_DASHBOARD_URL);\n}\n```\n\nHere is an example of how to create a test script for a test case:\n```javascript\ntest("UC1_TC1 - Login con credenziali valide", async ({ page, browserName }) => {\n    const reporter = new TestResultReporter();\n    reporter.setBrowserName(browserName);\n    reporter.setTestCase("UC1_TC1", "Login con credenziali valide");\n\n    await page.goto(process.env.E2E_BASE_URL);\n\n    // Call step functions in sequence\n    await fillCorrectCredentials(page, reporter);\n    await clickLoginButton(page, reporter);\n    await verifySuccessMessage(page, reporter);\n\n    reporter.onTestEnd(test, { status: "passed" });\n});\n```\n\nHere is an example of how to structure the code in files:\n```xml\n<file name="UC1_TC1.functions.js">\n// File content with functions for test steps\n</file>\n\n<file name="UC1_TC1.spec.js">\n// File content with Playwright test script\n</file>\n```\n\nPlease note that the code provided in the prompt is not to be rewritten, but only referenced as needed.', images=None, tool_calls=None)
+2025-06-17 08:51:45,721 - test_code_generator.validator.javascript_code_validator - INFO - Extracting JavaScript code blocks

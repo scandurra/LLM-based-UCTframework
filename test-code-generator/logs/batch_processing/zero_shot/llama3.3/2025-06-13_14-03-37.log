@@ -1,0 +1,741 @@
+2025-06-13 14:03:37,799 - __main__ - INFO - Found 1 dependencies for use case UC3.2.1
+2025-06-13 14:03:37,799 - __main__ - INFO - Read previously generated functions code for use case UC3.2 - test case UC3.2_TC1
+2025-06-13 14:03:37,800 - __main__ - INFO - Read previously generated spec code for use case UC3.2 - test case UC3.2_TC1
+2025-06-13 14:03:37,800 - test_code_generator.prompt_builder.prompt_builder - INFO - Test parameters loaded from path: ./input_files/parameters/test_parameters.env
+2025-06-13 14:03:37,800 - test_code_generator.prompt_builder.prompt_builder - INFO - Test reporter loaded from path: ./input_files/reporter_minimal.js
+2025-06-13 14:03:37,800 - test_code_generator.prompt_builder.prompt_builder - INFO - Previous code section loaded from path: ./prompts/batch_processing/zero_shot/llama3.3/previous_code_section.txt
+2025-06-13 14:03:37,800 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt built: 
+ROLE: system
+You are a testing engineer, expert in writing Javascript end-to-end tests with Playwright.
+
+Task: Analyze the test cases provided below and generate for each test case a complete and working Playwright test script in Javascript, following the steps described in each test case.
+When creating the test scripts, use only the page object model provided for interacting with the DOM and the parameters provided.
+------------------------------------------------------------------
+ROLE: user
+Use only this page object models for interacting with the DOM:
+File: census_sheet_page.js
+const { timeout } = require('../../playwright.config');
+
+export class CensusSheetPage {
+  constructor(page) {
+    this.page = page;
+    this.path = require('path');
+    
+    // Locators
+    this.searchInput = page.getByPlaceholder('Cerca');
+    this.uploadButton = page.locator('#modal_upload_censustechsheet_btn');
+    this.fileInput = page.locator('input[type="file"]');
+    this.okButton = page.getByRole('button', { name: 'OK' });
+    this.actionDropdown = page.locator('.text-start > .btn').first();
+    this.downloadOption = page.locator('[data-kt-cts-table-filter="download_row"]').first();
+    this.deleteOption = page.locator('[data-kt-cts-table-filter="delete_row"]').first();
+    this.editOption = page.locator('[data-kt-cts-table-filter="edit_row"]').first();
+    this.detailOption = page.locator('a[data-kt-cts-table-filter="detail_row"]').first();
+    this.freezeOption = page.locator('a[data-action="freeze"]').first();
+    this.confirmDeleteButton = page.locator('button.swal2-confirm.btn.fw-bold.btn-danger').first();
+    this.cancelDeleteButton = page.locator('button.swal2-cancel.btn.fw-bold.btn-active-light-primary').first();
+    this.confirmButton = page.locator('button.swal2-confirm.btn.fw-bold.btn-primary').first();
+    
+    // Column headers
+    this.azioniColumn = page.getByLabel('Azioni');
+    this.schedaColumn = page.getByLabel('Scheda: attiva per ordinare');
+    this.proprietarioColumn = page.getByLabel('Proprietario: attiva per');
+    this.comuneColumn = page.getByLabel('Comune: attiva per ordinare');
+    this.statsColumn = page.getByLabel('Stats: attiva per ordinare la');
+    this.statoColumn = page.getByLabel('Stato: attiva per ordinare la');
+    this.infoColumn = page.getByLabel('Info: attiva per ordinare la');
+    this.creazioneColumn = page.getByLabel('Creazione: attiva per');
+    this.aggiornamentoColumn = page.getByLabel('Aggiornamento: attiva per');
+    this.sottomissioneColumn = page.getByLabel('Sottomissione: attiva per');
+  }
+
+  async clickAzioniColumn() {
+    await this.azioniColumn.click({timeout: 300000});
+  }
+
+  async clickSchedaColumn() {
+    await this.schedaColumn.click({timeout: 300000});
+  }
+
+  async clickProprietarioColumn() {
+    await this.proprietarioColumn.click({timeout: 300000});
+  }
+
+  async clickComuneColumn() {
+    await this.comuneColumn.click({timeout: 300000});
+  }
+
+  async clickStatsColumn() {
+    await this.statsColumn.click({timeout: 300000});
+  }
+
+  async clickStatoColumn() {
+    await this.statoColumn.click({timeout: 300000});
+  }
+
+  async clickInfoColumn() {
+    await this.infoColumn.click({timeout: 300000});
+  }
+
+  async clickCreazioneColumn() {
+    await this.creazioneColumn.click({timeout: 300000});
+  }
+
+  async clickAggiornamentoColumn() {
+    await this.aggiornamentoColumn.click({timeout: 300000});
+  }
+
+  async clickSottomissioneColumn() {
+    await this.sottomissioneColumn.click({timeout: 300000});
+  }
+
+  async searchByName(name = 'Lucania') {
+    await this.page.getByPlaceholder('Cerca').click();
+    await this.page.getByPlaceholder('Cerca').fill(name);
+    await this.page.getByPlaceholder('Cerca').press('Enter');
+  }
+
+  async clickAzioniButton() {
+    await this.page.locator('.text-start > .btn').first().waitFor({ state: 'visible' });
+
+    // Ora possiamo cliccare sul pulsante
+    await this.page.locator('.text-start > .btn').first().click();
+  }
+
+  async clickAzioneDownload() {
+    await this.page.locator('[data-kt-cts-table-filter="download_row"]').first().click();
+  }
+
+  async clickAzioneDelete() {
+    await this.page.locator('[data-kt-cts-table-filter="delete_row"]').first().click();
+  }
+
+  async clickConfirmAzioneDelete() {
+    await this.page.locator('button.swal2-confirm.btn.fw-bold.btn-danger').first().click();
+    await this.page.locator('button.swal2-confirm.btn.fw-bold.btn-primary').first().click();
+  }
+
+  async clickCancelAzioneDelete() {
+    await this.page.locator('button.swal2-cancel.btn.fw-bold.btn-active-light-primary').first().click();
+    await this.page.locator('button.swal2-confirm.btn.fw-bold.btn-primary').first().click();
+  }
+
+  async clickAzioneEdit() {
+    await this.page.locator('[data-kt-cts-table-filter="edit_row"]').first().click();
+  }
+
+  async clickAzioneCongela() {
+    await this.page.locator('a[data-action="freeze"]').first().click();
+  }
+
+  async clickAzioneDettaglio() {
+    await this.page.locator('a[data-kt-cts-table-filter="detail_row"]').first().click();
+  }
+}
+
+Use the following test parameters when creating scripts:
+E2E_BASE_URL=""
+E2E_LOGIN_URL=""
+E2E_HOME_URL="" 
+E2E_DASHBOARD_URL="" 
+E2E_CTS_URL="" 
+EMAIL=""
+PASSWORD=""
+
+When in the test case there is a step, a precondition or a postcondition with a name of use case UC*, reuse this functions passing null as reporter parameter:
+```javascript
+// File: UC3.2_TC1.functions.js
+import { test, expect } from '@playwright/test';
+
+import TestResultReporter from '../../models/test-result-reporter.js';
+
+import { CensusSheetPage } from '../../models/page_object_models/census_sheet_page.js';
+
+import { accessPlatformAndAuthenticate, selectCensusSheetMenu } from '../UC3/UC3_TC1.functions.js';
+
+export const accessSearchSection = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    await selectCensusSheetMenu(page, null);
+    const censusSheetPage = new CensusSheetPage(page);
+    await expect(censusSheetPage.searchInput).toBeVisible();
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC3.2_TC1_ID1', 'Accedi alla sezione di ricerca schede censimento', true, true, true, {}, executionTime);
+    }
+
+    expect(await censusSheetPage.searchInput.isVisible()).toBeTruthy();
+}
+
+export const insertValidSearchParameters = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const censusSheetPage = new CensusSheetPage(page);
+    await censusSheetPage.searchByName('Lucania');
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC3.2_TC1_ID2', 'Inserisci parametri di ricerca validi', true, true, true, {}, executionTime);
+    }
+
+    expect(await censusSheetPage.searchInput.isVisible()).toBeTruthy();
+}
+
+export const executeSearch = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const censusSheetPage = new CensusSheetPage(page);
+    await censusSheetPage.searchByName('Lucania');
+    await page.waitForTimeout(1000);
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC3.2_TC1_ID3', 'Esegui la ricerca', true, true, true, {}, executionTime);
+    }
+
+    expect(await page.url()).toBe(process.env.E2E_CTS_URL);
+}
+// File: UC3.2_TC1.spec.js
+import { test, expect } from '@playwright/test';
+
+import TestResultReporter from '../../models/test-result-reporter.js';
+
+import { accessPlatformAndAuthenticate } from '../UC3/UC3_TC1.functions.js';
+
+import { accessSearchSection, insertValidSearchParameters, executeSearch } from './UC3.2_TC1.functions.js';
+
+test("UC3.2_TC1 - Ricerca con parametri validi", async ({ page, browserName }) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC3.2_TC1", "Ricerca con parametri validi");
+
+    await page.goto(process.env.E2E_BASE_URL);
+
+    // Call step functions in sequence
+    await accessPlatformAndAuthenticate(page, reporter);
+    await accessSearchSection(page, reporter);
+    await insertValidSearchParameters(page, reporter);
+    await executeSearch(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+```
+
+Instructions:
+1. Analyze the test cases provided
+2. For each test case, generate a test script in Javascript with Playwright
+3. Use only Page object model provided to interact with the DOM.
+4. Call the TestResultReporter object methods as described below.
+5. Put the code in functions for reusability, with the reporter object as parameter not mandatory. If not null, call reporter methods. 
+6. Put functions in a separate file called "UC*_TC*.functions.js" and each test in a file called "UC*_TC*.spec.js"
+7. Do not rewrite functions provided in the prompt, just refer to them.
+8. Add the required import for:
+    * test, expect, ... from '@playwright/test' in all files
+    * TestResultReporter from "../../models/test-result-reporter.js" 
+    * page object models from "../../models/page_object_models/<page_object_model_name>.js" 
+    * existing code from the path specified in the code snippet. Pay attention to add imports used also by the existing code. 
+    * make the generated "UC*_TC*.spec.js" file to reference functions in "UC*_TC*.functions.js" generated file
+
+<example>
+export const functionNameDescribingStep = async function(page, reporter) {
+    const startTime = DateTime.now();
+    
+    // Put here test case step implementation
+    
+    const endTime = DateTime.now();
+    const executionTime = endTime - startTime;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID1', 'Step 1 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+    }
+
+    // Include Playwright assertions
+    expect(passFail).toBeTruthy();
+}
+
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1", "Login test with success");
+
+    // Eventually go to page
+
+    // Call step functions in sequence
+    await functionNameDescribingStep1(page, reporter);
+    await functionNameDescribingStep2(page, reporter);
+    // Additional steps...
+
+    reporter.onTestEnd(test, { status: "passed" });     // status can be "passed" or "failed" 
+});
+</example>
+
+Here the test cases to be converted in Playwright script:
+Test Case ID: UC3.2.1_TC1
+Title: Ricerca scheda censimento per nome con risultati validi
+Use Case ID: UC3.2.1
+Priority: Alta
+Type: Positivo
+Preconditions: UC3.2
+Postconditions: L’utente visualizza le informazioni corrispondenti alla paginazione richiesta
+Test Steps:
+  1. Step: Inserisci un nome valido nella barra di ricerca
+Expected: La pagina di risultati si carica correttamente
+  2. Step: Conferma la ricerca
+Expected: I risultati della ricerca vengono visualizzati
+  3. Step: Visualizza i dettagli delle schede censimento trovate
+Expected: Le informazioni sono complete e corrette
+
+Test Case ID: UC3.2.1_TC2
+Title: Ricerca scheda censimento con nome non esistente
+Use Case ID: UC3.2.1
+Priority: Media
+Type: Negativo
+Preconditions: UC3.2
+Postconditions: Il sistema segnala che non ci sono risultati
+Test Steps:
+  1. Step: Inserisci un nome non presente nel database nella barra di ricerca
+Expected: La pagina di risultati si carica senza errori
+  2. Step: Conferma la ricerca
+Expected: Il sistema visualizza un messaggio che indica l’assenza di risultati
+  3. Step: Verifica il messaggio di feedback
+Expected: Il messaggio è chiaro e utile per l’utente
+
+Test Case ID: UC3.2.1_TC3
+Title: Ricerca scheda censimento con campo nome vuoto
+Use Case ID: UC3.2.1
+Priority: Media
+Type: Negativo
+Preconditions: UC3.2
+Postconditions: Il sistema richiede di inserire il nome
+Test Steps:
+  1. Step: Lascia vuota la barra di ricerca e conferma
+Expected: Il sistema segnala l’errore di campo obbligatorio
+  2. Step: Verifica il messaggio di errore
+Expected: Il messaggio è chiaro e indica la necessità di inserire il nome
+  3. Step: Inserisci un nome valido e ripeti la ricerca
+Expected: La ricerca procede correttamente
+
+Test Case ID: UC3.2.1_TC4
+Title: Ricerca scheda censimento con caratteri speciali nel nome
+Use Case ID: UC3.2.1
+Priority: Bassa
+Type: Edge
+Preconditions: UC3.2
+Postconditions: Il sistema gestisce correttamente i caratteri speciali
+Test Steps:
+  1. Step: Inserisci un nome contenente caratteri speciali nella barra di ricerca
+Expected: La pagina di risultati si carica senza errori
+  2. Step: Conferma la ricerca
+Expected: I risultati della ricerca vengono visualizzati correttamente
+  3. Step: Verifica l’accuratezza dei risultati
+Expected: I risultati sono pertinenti e non ci sono errori di formattazione
+
+Test Case ID: UC3.2.1_TC5
+Title: Ricerca scheda censimento con nome lungo
+Use Case ID: UC3.2.1
+Priority: Bassa
+Type: Boundary
+Preconditions: UC3.2
+Postconditions: Il sistema gestisce correttamente nomi lunghi
+Test Steps:
+  1. Step: Inserisci un nome molto lungo nella barra di ricerca
+Expected: La pagina di risultati si carica senza problemi
+  2. Step: Conferma la ricerca
+Expected: I risultati della ricerca vengono visualizzati correttamente
+  3. Step: Verifica che non ci siano errori di troncamento
+Expected: Il nome è visualizzato per intero senza troncamenti
+
+Output format:
+* Output only valid and runnable JavaScript code
+* Do not write code implementation provided in the prompt, only reference it
+* Structure the code in files using markdown code blocks specifying the file name
+2025-06-13 14:03:37,800 - test_code_generator.llm_client.ollama_client - INFO - OllamaClient initialized with model: llama3.3:latest
+2025-06-13 14:17:58,431 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-06-13 14:17:58,431 - test_code_generator.llm_client.ollama_client - INFO - Ollama responded in 860628830076 time, with 3435 tokens in prompt and 3641 tokens in response. Content:
+ ### UC3.2.1_TC1.functions.js
+```javascript
+import { test, expect } from '@playwright/test';
+import TestResultReporter from '../../models/test-result-reporter.js';
+import { CensusSheetPage } from '../../models/page_object_models/census_sheet_page.js';
+import { accessPlatformAndAuthenticate, selectCensusSheetMenu } from '../UC3/UC3_TC1.functions.js';
+
+export const insertValidSearchName = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    await selectCensusSheetMenu(page, null);
+    const censusSheetPage = new CensusSheetPage(page);
+    await censusSheetPage.searchByName('Lucania');
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC3.2.1_TC1_ID1', 'Inserisci un nome valido nella barra di ricerca', true, true, true, {}, executionTime);
+    }
+
+    expect(await censusSheetPage.searchInput.isVisible()).toBeTruthy();
+}
+
+export const confirmSearch = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    await page.waitForTimeout(1000);
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC3.2.1_TC1_ID2', 'Conferma la ricerca', true, true, true, {}, executionTime);
+    }
+
+    expect(await page.url()).toBe(process.env.E2E_CTS_URL);
+}
+
+export const viewSearchResults = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const censusSheetPage = new CensusSheetPage(page);
+    await censusSheetPage.clickAzioneDettaglio();
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC3.2.1_TC1_ID3', 'Visualizza i dettagli delle schede censimento trovate', true, true, true, {}, executionTime);
+    }
+
+    expect(await censusSheetPage.detailOption.isVisible()).toBeTruthy();
+}
+```
+
+### UC3.2.1_TC1.spec.js
+```javascript
+import { test, expect } from '@playwright/test';
+import TestResultReporter from '../../models/test-result-reporter.js';
+import { accessPlatformAndAuthenticate } from '../UC3/UC3_TC1.functions.js';
+import { insertValidSearchName, confirmSearch, viewSearchResults } from './UC3.2.1_TC1.functions.js';
+
+test("UC3.2.1_TC1 - Ricerca scheda censimento per nome con risultati validi", async ({ page, browserName }) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC3.2.1_TC1", "Ricerca scheda censimento per nome con risultati validi");
+
+    await page.goto(process.env.E2E_BASE_URL);
+
+    // Call step functions in sequence
+    await accessPlatformAndAuthenticate(page, reporter);
+    await insertValidSearchName(page, reporter);
+    await confirmSearch(page, reporter);
+    await viewSearchResults(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+```
+
+### UC3.2.1_TC2.functions.js
+```javascript
+import { test, expect } from '@playwright/test';
+import TestResultReporter from '../../models/test-result-reporter.js';
+import { CensusSheetPage } from '../../models/page_object_models/census_sheet_page.js';
+import { accessPlatformAndAuthenticate, selectCensusSheetMenu } from '../UC3/UC3_TC1.functions.js';
+
+export const insertNonExistentSearchName = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    await selectCensusSheetMenu(page, null);
+    const censusSheetPage = new CensusSheetPage(page);
+    await censusSheetPage.searchByName('NonEsistente');
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC3.2.1_TC2_ID1', 'Inserisci un nome non presente nel database nella barra di ricerca', true, true, true, {}, executionTime);
+    }
+
+    expect(await censusSheetPage.searchInput.isVisible()).toBeTruthy();
+}
+
+export const confirmNonExistentSearch = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    await page.waitForTimeout(1000);
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC3.2.1_TC2_ID2', 'Conferma la ricerca', true, true, true, {}, executionTime);
+    }
+
+    expect(await page.url()).toBe(process.env.E2E_CTS_URL);
+}
+
+export const verifyNoResultsMessage = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    // Assuming the no results message is visible
+    const noResultsMessage = await page.isVisible('text="Nessun risultato trovato"');
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC3.2.1_TC2_ID3', 'Verifica il messaggio di feedback', true, noResultsMessage, true, {}, executionTime);
+    }
+
+    expect(noResultsMessage).toBeTruthy();
+}
+```
+
+### UC3.2.1_TC2.spec.js
+```javascript
+import { test, expect } from '@playwright/test';
+import TestResultReporter from '../../models/test-result-reporter.js';
+import { accessPlatformAndAuthenticate } from '../UC3/UC3_TC1.functions.js';
+import { insertNonExistentSearchName, confirmNonExistentSearch, verifyNoResultsMessage } from './UC3.2.1_TC2.functions.js';
+
+test("UC3.2.1_TC2 - Ricerca scheda censimento con nome non esistente", async ({ page, browserName }) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC3.2.1_TC2", "Ricerca scheda censimento con nome non esistente");
+
+    await page.goto(process.env.E2E_BASE_URL);
+
+    // Call step functions in sequence
+    await accessPlatformAndAuthenticate(page, reporter);
+    await insertNonExistentSearchName(page, reporter);
+    await confirmNonExistentSearch(page, reporter);
+    await verifyNoResultsMessage(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+```
+
+### UC3.2.1_TC3.functions.js
+```javascript
+import { test, expect } from '@playwright/test';
+import TestResultReporter from '../../models/test-result-reporter.js';
+import { CensusSheetPage } from '../../models/page_object_models/census_sheet_page.js';
+import { accessPlatformAndAuthenticate, selectCensusSheetMenu } from '../UC3/UC3_TC1.functions.js';
+
+export const leaveSearchFieldEmpty = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    await selectCensusSheetMenu(page, null);
+    const censusSheetPage = new CensusSheetPage(page);
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC3.2.1_TC3_ID1', 'Lascia vuota la barra di ricerca e conferma', true, true, true, {}, executionTime);
+    }
+
+    expect(await censusSheetPage.searchInput.isVisible()).toBeTruthy();
+}
+
+export const verifyErrorFeedback = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    // Assuming the error message is visible
+    const errorMessage = await page.isVisible('text="Campo obbligatorio"');
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC3.2.1_TC3_ID2', 'Verifica il messaggio di errore', true, errorMessage, true, {}, executionTime);
+    }
+
+    expect(errorMessage).toBeTruthy();
+}
+
+export const insertValidSearchNameAgain = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const censusSheetPage = new CensusSheetPage(page);
+    await censusSheetPage.searchByName('Lucania');
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC3.2.1_TC3_ID3', 'Inserisci un nome valido e ripeti la ricerca', true, true, true, {}, executionTime);
+    }
+
+    expect(await censusSheetPage.searchInput.isVisible()).toBeTruthy();
+}
+```
+
+### UC3.2.1_TC3.spec.js
+```javascript
+import { test, expect } from '@playwright/test';
+import TestResultReporter from '../../models/test-result-reporter.js';
+import { accessPlatformAndAuthenticate } from '../UC3/UC3_TC1.functions.js';
+import { leaveSearchFieldEmpty, verifyErrorFeedback, insertValidSearchNameAgain } from './UC3.2.1_TC3.functions.js';
+
+test("UC3.2.1_TC3 - Ricerca scheda censimento con campo nome vuoto", async ({ page, browserName }) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC3.2.1_TC3", "Ricerca scheda censimento con campo nome vuoto");
+
+    await page.goto(process.env.E2E_BASE_URL);
+
+    // Call step functions in sequence
+    await accessPlatformAndAuthenticate(page, reporter);
+    await leaveSearchFieldEmpty(page, reporter);
+    await verifyErrorFeedback(page, reporter);
+    await insertValidSearchNameAgain(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+```
+
+### UC3.2.1_TC4.functions.js
+```javascript
+import { test, expect } from '@playwright/test';
+import TestResultReporter from '../../models/test-result-reporter.js';
+import { CensusSheetPage } from '../../models/page_object_models/census_sheet_page.js';
+import { accessPlatformAndAuthenticate, selectCensusSheetMenu } from '../UC3/UC3_TC1.functions.js';
+
+export const insertSearchNameWithSpecialChars = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    await selectCensusSheetMenu(page, null);
+    const censusSheetPage = new CensusSheetPage(page);
+    await censusSheetPage.searchByName('Lucania!@#$');
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC3.2.1_TC4_ID1', 'Inserisci un nome contenente caratteri speciali nella barra di ricerca', true, true, true, {}, executionTime);
+    }
+
+    expect(await censusSheetPage.searchInput.isVisible()).toBeTruthy();
+}
+
+export const confirmSearchWithSpecialChars = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    await page.waitForTimeout(1000);
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC3.2.1_TC4_ID2', 'Conferma la ricerca', true, true, true, {}, executionTime);
+    }
+
+    expect(await page.url()).toBe(process.env.E2E_CTS_URL);
+}
+
+export const verifySearchResultsWithSpecialChars = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    // Assuming the search results are visible
+    const searchResults = await page.isVisible('text="Risultati della ricerca"');
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC3.2.1_TC4_ID3', 'Verifica l\'accuratezza dei risultati', true, searchResults, true, {}, executionTime);
+    }
+
+    expect(searchResults).toBeTruthy();
+}
+```
+
+### UC3.2.1_TC4.spec.js
+```javascript
+import { test, expect } from '@playwright/test';
+import TestResultReporter from '../../models/test-result-reporter.js';
+import { accessPlatformAndAuthenticate } from '../UC3/UC3_TC1.functions.js';
+import { insertSearchNameWithSpecialChars, confirmSearchWithSpecialChars, verifySearchResultsWithSpecialChars } from './UC3.2.1_TC4.functions.js';
+
+test("UC3.2.1_TC4 - Ricerca scheda censimento con caratteri speciali", async ({ page, browserName }) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC3.2.1_TC4", "Ricerca scheda censimento con caratteri speciali");
+
+    await page.goto(process.env.E2E_BASE_URL);
+
+    // Call step functions in sequence
+    await accessPlatformAndAuthenticate(page, reporter);
+    await insertSearchNameWithSpecialChars(page, reporter);
+    await confirmSearchWithSpecialChars(page, reporter);
+    await verifySearchResultsWithSpecialChars(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+```
+
+### UC3.2.1_TC5.functions.js
+```javascript
+import { test, expect } from '@playwright/test';
+import TestResultReporter from '../../models/test-result-reporter.js';
+import { CensusSheetPage } from '../../models/page_object_models/census_sheet_page.js';
+import { accessPlatformAndAuthenticate, selectCensusSheetMenu } from '../UC3/UC3_TC1.functions.js';
+
+export const insertLongSearchName = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    await selectCensusSheetMenu(page, null);
+    const censusSheetPage = new CensusSheetPage(page);
+    await censusSheetPage.searchByName('Lucania'.repeat(100));
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC3.2.1_TC5_ID1', 'Inserisci un nome lungo nella barra di ricerca', true, true, true, {}, executionTime);
+    }
+
+    expect(await censusSheetPage.searchInput.isVisible()).toBeTruthy();
+}
+
+export const confirmLongSearch = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    await page.waitForTimeout(1000);
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC3.2.1_TC5_ID2', 'Conferma la ricerca', true, true, true, {}, executionTime);
+    }
+
+    expect(await page.url()).toBe(process.env.E2E_CTS_URL);
+}
+
+export const verifyLongSearchResults = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    // Assuming the search results are visible
+    const searchResults = await page.isVisible('text="Risultati della ricerca"');
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC3.2.1_TC5_ID3', 'Verifica l\'accuratezza dei risultati', true, searchResults, true, {}, executionTime);
+    }
+
+    expect(searchResults).toBeTruthy();
+}
+```
+
+### UC3.2.1_TC5.spec.js
+```javascript
+import { test, expect } from '@playwright/test';
+import TestResultReporter from '../../models/test-result-reporter.js';
+import { accessPlatformAndAuthenticate } from '../UC3/UC3_TC1.functions.js';
+import { insertLongSearchName, confirmLongSearch, verifyLongSearchResults } from './UC3.2.1_TC5.functions.js';
+
+test("UC3.2.1_TC5 - Ricerca scheda censimento con nome lungo", async ({ page, browserName }) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC3.2.1_TC5", "Ricerca scheda censimento con nome lungo");
+
+    await page.goto(process.env.E2E_BASE_URL);
+
+    // Call step functions in sequence
+    await accessPlatformAndAuthenticate(page, reporter);
+    await insertLongSearchName(page, reporter);
+    await confirmLongSearch(page, reporter);
+    await verifyLongSearchResults(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+```
+2025-06-13 14:17:58,432 - test_code_generator.validator.javascript_code_validator - INFO - Extracting JavaScript code blocks

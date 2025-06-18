@@ -11,14 +11,20 @@ export const accessCensusSheetSection = async function(page, reporter) {
     
     await accessPlatformAndAuthenticate(page, null);
     await selectCensusSheetMenu(page, null);
-    
+
     const endTime = new Date().getTime();
     const executionTime = (endTime - startTime) / 1000;
+    let passFail = true;
+    try {
+        await page.waitForNavigation({ url: process.env.E2E_CTS_URL });
+    } catch (error) {
+        passFail = false;
+    }
     if (reporter) {
-        reporter.addStep('UC3.4_TC1_ID1', 'Access the census sheet section', 'The list of census sheets is visible', 'The list of census sheets is visible', true, '', executionTime);
+        reporter.addStep('UC3.4_TC1_ID1', 'Access the census sheet section', 'The list of census sheets is visible', `Navigated to ${process.env.E2E_CTS_URL}`, passFail, '', executionTime);
     }
 
-    expect(await page.url()).toBe(process.env.E2E_CTS_URL);
+    expect(passFail).toBeTruthy();
 }
 
 export const clickAzioneButton = async function(page, reporter) {
@@ -26,12 +32,18 @@ export const clickAzioneButton = async function(page, reporter) {
     
     const censusSheetPage = new CensusSheetPage(page);
     await censusSheetPage.clickAzioniButton();
-    
+
     const endTime = new Date().getTime();
     const executionTime = (endTime - startTime) / 1000;
+    let passFail = true;
+    try {
+        await censusSheetPage.actionDropdown.waitFor({ state: 'visible' });
+    } catch (error) {
+        passFail = false;
+    }
     if (reporter) {
-        reporter.addStep('UC3.4_TC1_ID2', 'Click on the actions button of a census sheet', 'The operations palette is displayed correctly', 'The operations palette is displayed correctly', true, '', executionTime);
+        reporter.addStep('UC3.4_TC1_ID2', 'Click the azioni button of a census sheet', 'The palette of operations is visible', `Clicked on azioni button`, passFail, '', executionTime);
     }
 
-    expect(await censusSheetPage.actionDropdown.isVisible()).toBeTruthy();
+    expect(passFail).toBeTruthy();
 }

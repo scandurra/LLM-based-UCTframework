@@ -1,4 +1,4 @@
-class SidebarPage {
+export class SidebarPage {
   constructor(page) {
     this.page = page;
     
@@ -16,5 +16,3 @@ class SidebarPage {
     await this.censusSheetLink.click();
   }
 }
-
-module.exports = SidebarPage;

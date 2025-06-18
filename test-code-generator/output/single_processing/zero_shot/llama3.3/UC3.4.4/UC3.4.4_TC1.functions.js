@@ -6,49 +6,66 @@ import { accessCensusSheetSection, clickAzioneButton } from '../UC3/UC3_TC1.func
 
 import TestResultReporter from '../../models/test-result-reporter.js';
 
-export const selectFreezeOperation = async function(page, reporter) {
+export const selectCongelamentoOperation = async function(page, reporter) {
     const startTime = new Date().getTime();
     
     const censusSheetPage = new CensusSheetPage(page);
     await clickAzioneButton(page, null);
     await censusSheetPage.clickAzioneCongela();
-    
+
     const endTime = new Date().getTime();
     const executionTime = (endTime - startTime) / 1000;
+    let passFail = true;
+    try {
+        await page.locator('button.swal2-confirm.btn.fw-bold.btn-danger').first().waitFor({ state: 'visible' });
+    } catch (error) {
+        passFail = false;
+    }
     if (reporter) {
-        reporter.addStep('UC3.4.4_TC1_ID1', 'Select freeze operation', 'Confirmation request is displayed', 'Confirmation request is displayed', true, '', executionTime);
+        reporter.addStep('UC3.4.4_TC1_ID1', 'Select congelamento operation', 'Confirmation request is visible', `Clicked on congelamento button`, passFail, '', executionTime);
     }
 
-    expect(await censusSheetPage.confirmButton.isVisible()).toBeTruthy();
+    expect(passFail).toBeTruthy();
 }
 
-export const confirmFreezeOperation = async function(page, reporter) {
+export const confirmCongelamento = async function(page, reporter) {
     const startTime = new Date().getTime();
     
     const censusSheetPage = new CensusSheetPage(page);
-    await censusSheetPage.clickAzioneCongela();
-    await censusSheetPage.confirmButton.click();
-    
+    await censusSheetPage.clickConfirmAzioneDelete();
+
     const endTime = new Date().getTime();
     const executionTime = (endTime - startTime) / 1000;
+    let passFail = true;
+    try {
+        await page.locator('button.swal2-confirm.btn.fw-bold.btn-primary').first().waitFor({ state: 'visible' });
+    } catch (error) {
+        passFail = false;
+    }
     if (reporter) {
-        reporter.addStep('UC3.4.4_TC1_ID2', 'Confirm freeze operation', 'Confirmation message is displayed', 'Confirmation message is displayed', true, '', executionTime);
+        reporter.addStep('UC3.4.4_TC1_ID2', 'Confirm congelamento operation', 'Confirmation message is visible', `Confirmed congelamento`, passFail, '', executionTime);
     }
 
-    expect(await censusSheetPage.confirmButton.isVisible()).toBeFalsy();
+    expect(passFail).toBeTruthy();
 }
 
-export const verifySheetStatus = async function(page, reporter) {
+export const verifySchedaStato = async function(page, reporter) {
     const startTime = new Date().getTime();
     
     const censusSheetPage = new CensusSheetPage(page);
-    await censusSheetPage.clickStatoColumn();
-    
+    await censusSheetPage.clickAzioniColumn();
+
     const endTime = new Date().getTime();
     const executionTime = (endTime - startTime) / 1000;
+    let passFail = true;
+    try {
+        await page.locator('.text-start > .btn').first().waitFor({ state: 'visible' });
+    } catch (error) {
+        passFail = false;
+    }
     if (reporter) {
-        reporter.addStep('UC3.4.4_TC1_ID3', 'Verify sheet status', 'Sheet is marked as non-active', 'Sheet is marked as non-active', true, '', executionTime);
+        reporter.addStep('UC3.4.4_TC1_ID3', 'Verify scheda stato after congelamento', 'Scheda is marked as non attiva', `Verified scheda stato`, passFail, '', executionTime);
     }
 
-    expect(await censusSheetPage.statoColumn.isVisible()).toBeTruthy();
+    expect(passFail).toBeTruthy();
 }

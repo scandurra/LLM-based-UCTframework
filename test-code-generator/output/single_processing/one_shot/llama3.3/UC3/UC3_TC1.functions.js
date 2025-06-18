@@ -8,17 +8,16 @@ import TestResultReporter from '../../models/test-result-reporter.js';
 
 import { insertCorrectCredentials, clickLoginButton, verifySuccessMessage } from '../UC1/UC1_TC1.functions.js';
 
-export const openCensusSheetsInterface = async function(page, reporter) {
+export const openCensusSheetSection = async function(page, reporter) {
   const startTime = new Date().getTime();
-  await page.goto(process.env.E2E_DASHBOARD_URL);
   const sidebar = new Sidebar(page);
-  await sidebar.clickCensusSheetsButton();
+  await sidebar.clickCensusSheetsMenu();
   const endTime = new Date().getTime();
   const executionTime = (endTime - startTime) / 1000;
   if (reporter) {
-    reporter.addStep('UC3_TC1_ID2', 'Open census sheets interface', 'Census sheets interface opened', 'Census sheets interface opened', true, '', executionTime);
+    reporter.addStep('UC3_TC1_ID2', 'Open census sheet section', 'Census sheet section opened', 'Census sheet section opened', true, '', executionTime);
   }
-
+  // Include Playwright assertions
   const censusSheetPage = new CensusSheetPage(page);
-  await expect(censusSheetPage.censusSheetsHeader).toBeVisible();
+  expect(await censusSheetPage.isCensusSheetsTableVisible()).toBeTruthy();
 }

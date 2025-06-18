@@ -1,0 +1,652 @@
+2025-06-13 15:07:08,664 - __main__ - INFO - Found 1 dependencies for use case UC3.4.2
+2025-06-13 15:07:08,665 - __main__ - INFO - Read previously generated functions code for use case UC3.4 - test case UC3.4_TC1
+2025-06-13 15:07:08,665 - __main__ - INFO - Read previously generated spec code for use case UC3.4 - test case UC3.4_TC1
+2025-06-13 15:07:08,665 - test_code_generator.prompt_builder.prompt_builder - INFO - Test parameters loaded from path: ./input_files/parameters/test_parameters.env
+2025-06-13 15:07:08,665 - test_code_generator.prompt_builder.prompt_builder - INFO - Test reporter loaded from path: ./input_files/reporter_minimal.js
+2025-06-13 15:07:08,665 - test_code_generator.prompt_builder.prompt_builder - INFO - Previous code section loaded from path: ./prompts/batch_processing/zero_shot/llama3.3/previous_code_section.txt
+2025-06-13 15:07:08,665 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt built: 
+ROLE: system
+You are a testing engineer, expert in writing Javascript end-to-end tests with Playwright.
+
+Task: Analyze the test cases provided below and generate for each test case a complete and working Playwright test script in Javascript, following the steps described in each test case.
+When creating the test scripts, use only the page object model provided for interacting with the DOM and the parameters provided.
+------------------------------------------------------------------
+ROLE: user
+Use only this page object models for interacting with the DOM:
+File: census_sheet_page.js
+const { timeout } = require('../../playwright.config');
+
+export class CensusSheetPage {
+  constructor(page) {
+    this.page = page;
+    this.path = require('path');
+    
+    // Locators
+    this.searchInput = page.getByPlaceholder('Cerca');
+    this.uploadButton = page.locator('#modal_upload_censustechsheet_btn');
+    this.fileInput = page.locator('input[type="file"]');
+    this.okButton = page.getByRole('button', { name: 'OK' });
+    this.actionDropdown = page.locator('.text-start > .btn').first();
+    this.downloadOption = page.locator('[data-kt-cts-table-filter="download_row"]').first();
+    this.deleteOption = page.locator('[data-kt-cts-table-filter="delete_row"]').first();
+    this.editOption = page.locator('[data-kt-cts-table-filter="edit_row"]').first();
+    this.detailOption = page.locator('a[data-kt-cts-table-filter="detail_row"]').first();
+    this.freezeOption = page.locator('a[data-action="freeze"]').first();
+    this.confirmDeleteButton = page.locator('button.swal2-confirm.btn.fw-bold.btn-danger').first();
+    this.cancelDeleteButton = page.locator('button.swal2-cancel.btn.fw-bold.btn-active-light-primary').first();
+    this.confirmButton = page.locator('button.swal2-confirm.btn.fw-bold.btn-primary').first();
+    
+    // Column headers
+    this.azioniColumn = page.getByLabel('Azioni');
+    this.schedaColumn = page.getByLabel('Scheda: attiva per ordinare');
+    this.proprietarioColumn = page.getByLabel('Proprietario: attiva per');
+    this.comuneColumn = page.getByLabel('Comune: attiva per ordinare');
+    this.statsColumn = page.getByLabel('Stats: attiva per ordinare la');
+    this.statoColumn = page.getByLabel('Stato: attiva per ordinare la');
+    this.infoColumn = page.getByLabel('Info: attiva per ordinare la');
+    this.creazioneColumn = page.getByLabel('Creazione: attiva per');
+    this.aggiornamentoColumn = page.getByLabel('Aggiornamento: attiva per');
+    this.sottomissioneColumn = page.getByLabel('Sottomissione: attiva per');
+  }
+
+  async clickAzioniColumn() {
+    await this.azioniColumn.click({timeout: 300000});
+  }
+
+  async clickSchedaColumn() {
+    await this.schedaColumn.click({timeout: 300000});
+  }
+
+  async clickProprietarioColumn() {
+    await this.proprietarioColumn.click({timeout: 300000});
+  }
+
+  async clickComuneColumn() {
+    await this.comuneColumn.click({timeout: 300000});
+  }
+
+  async clickStatsColumn() {
+    await this.statsColumn.click({timeout: 300000});
+  }
+
+  async clickStatoColumn() {
+    await this.statoColumn.click({timeout: 300000});
+  }
+
+  async clickInfoColumn() {
+    await this.infoColumn.click({timeout: 300000});
+  }
+
+  async clickCreazioneColumn() {
+    await this.creazioneColumn.click({timeout: 300000});
+  }
+
+  async clickAggiornamentoColumn() {
+    await this.aggiornamentoColumn.click({timeout: 300000});
+  }
+
+  async clickSottomissioneColumn() {
+    await this.sottomissioneColumn.click({timeout: 300000});
+  }
+
+  async searchByName(name = 'Lucania') {
+    await this.page.getByPlaceholder('Cerca').click();
+    await this.page.getByPlaceholder('Cerca').fill(name);
+    await this.page.getByPlaceholder('Cerca').press('Enter');
+  }
+
+  async clickAzioniButton() {
+    await this.page.locator('.text-start > .btn').first().waitFor({ state: 'visible' });
+
+    // Ora possiamo cliccare sul pulsante
+    await this.page.locator('.text-start > .btn').first().click();
+  }
+
+  async clickAzioneDownload() {
+    await this.page.locator('[data-kt-cts-table-filter="download_row"]').first().click();
+  }
+
+  async clickAzioneDelete() {
+    await this.page.locator('[data-kt-cts-table-filter="delete_row"]').first().click();
+  }
+
+  async clickConfirmAzioneDelete() {
+    await this.page.locator('button.swal2-confirm.btn.fw-bold.btn-danger').first().click();
+    await this.page.locator('button.swal2-confirm.btn.fw-bold.btn-primary').first().click();
+  }
+
+  async clickCancelAzioneDelete() {
+    await this.page.locator('button.swal2-cancel.btn.fw-bold.btn-active-light-primary').first().click();
+    await this.page.locator('button.swal2-confirm.btn.fw-bold.btn-primary').first().click();
+  }
+
+  async clickAzioneEdit() {
+    await this.page.locator('[data-kt-cts-table-filter="edit_row"]').first().click();
+  }
+
+  async clickAzioneCongela() {
+    await this.page.locator('a[data-action="freeze"]').first().click();
+  }
+
+  async clickAzioneDettaglio() {
+    await this.page.locator('a[data-kt-cts-table-filter="detail_row"]').first().click();
+  }
+}
+
+Use the following test parameters when creating scripts:
+E2E_BASE_URL=""
+E2E_LOGIN_URL=""
+E2E_HOME_URL="" 
+E2E_DASHBOARD_URL="" 
+E2E_CTS_URL="" 
+EMAIL=""
+PASSWORD=""
+
+When in the test case there is a step, a precondition or a postcondition with a name of use case UC*, reuse this functions passing null as reporter parameter:
+```javascript
+// File: UC3.4_TC1.functions.js
+import { test, expect } from '@playwright/test';
+
+import TestResultReporter from '../../models/test-result-reporter.js';
+
+import { CensusSheetPage } from '../../models/page_object_models/census_sheet_page.js';
+
+import { accessPlatformAndAuthenticate, selectCensusSheetMenu } from '../UC3/UC3_TC1.functions.js';
+
+export const accessCensusSheetSection = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    await selectCensusSheetMenu(page, null);
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC3.4_TC1_ID1', 'Accedi alla sezione delle schede censimento', true, true, true, {}, executionTime);
+    }
+
+    expect(await page.url()).toBe(process.env.E2E_CTS_URL);
+}
+
+export const clickAzioneButton = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const censusSheetPage = new CensusSheetPage(page);
+    await censusSheetPage.clickAzioniButton();
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC3.4_TC1_ID2', 'Clicca sul tasto azioni di una scheda censimento', true, true, true, {}, executionTime);
+    }
+
+    expect(await censusSheetPage.actionDropdown.isVisible()).toBeTruthy();
+}
+// File: UC3.4_TC1.spec.js
+import { test, expect } from '@playwright/test';
+
+import TestResultReporter from '../../models/test-result-reporter.js';
+
+import { accessPlatformAndAuthenticate } from '../UC3/UC3_TC1.functions.js';
+
+import { accessCensusSheetSection, clickAzioneButton } from './UC3.4_TC1.functions.js';
+
+test("UC3.4_TC1 - Visualizzazione azioni disponibili sulla scheda censimento", async ({ page, browserName }) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC3.4_TC1", "Visualizzazione azioni disponibili sulla scheda censimento");
+
+    await page.goto(process.env.E2E_BASE_URL);
+
+    // Call step functions in sequence
+    await accessPlatformAndAuthenticate(page, reporter);
+    await accessCensusSheetSection(page, reporter);
+    await clickAzioneButton(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+```
+
+Instructions:
+1. Analyze the test cases provided
+2. For each test case, generate a test script in Javascript with Playwright
+3. Use only Page object model provided to interact with the DOM.
+4. Call the TestResultReporter object methods as described below.
+5. Put the code in functions for reusability, with the reporter object as parameter not mandatory. If not null, call reporter methods. 
+6. Put functions in a separate file called "UC*_TC*.functions.js" and each test in a file called "UC*_TC*.spec.js"
+7. Do not rewrite functions provided in the prompt, just refer to them.
+8. Add the required import for:
+    * test, expect, ... from '@playwright/test' in all files
+    * TestResultReporter from "../../models/test-result-reporter.js" 
+    * page object models from "../../models/page_object_models/<page_object_model_name>.js" 
+    * existing code from the path specified in the code snippet. Pay attention to add imports used also by the existing code. 
+    * make the generated "UC*_TC*.spec.js" file to reference functions in "UC*_TC*.functions.js" generated file
+
+<example>
+export const functionNameDescribingStep = async function(page, reporter) {
+    const startTime = DateTime.now();
+    
+    // Put here test case step implementation
+    
+    const endTime = DateTime.now();
+    const executionTime = endTime - startTime;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID1', 'Step 1 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+    }
+
+    // Include Playwright assertions
+    expect(passFail).toBeTruthy();
+}
+
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1", "Login test with success");
+
+    // Eventually go to page
+
+    // Call step functions in sequence
+    await functionNameDescribingStep1(page, reporter);
+    await functionNameDescribingStep2(page, reporter);
+    // Additional steps...
+
+    reporter.onTestEnd(test, { status: "passed" });     // status can be "passed" or "failed" 
+});
+</example>
+
+Here the test cases to be converted in Playwright script:
+Test Case ID: UC3.4.2_TC1
+Title: Elimina scheda censimento con conferma
+Use Case ID: UC3.4.2
+Priority: Alta
+Type: Positivo
+Preconditions: UC3.4
+Postconditions: L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine
+Test Steps:
+  1. Step: Seleziona l’operazione di cancellazione di una scheda censimento esistente
+Expected: Viene richiesta la conferma dell’eliminazione
+  2. Step: Conferma l’eliminazione della scheda indicata
+Expected: Il sistema elimina la scheda e visualizza un messaggio di conferma
+
+Test Case ID: UC3.4.2_TC2
+Title: Annullamento eliminazione scheda censimento
+Use Case ID: UC3.4.2
+Priority: Media
+Type: Negativo
+Preconditions: UC3.4
+Postconditions: L’eliminazione della scheda viene interrotta
+Test Steps:
+  1. Step: Seleziona l’operazione di cancellazione di una scheda censimento esistente
+Expected: Viene richiesta la conferma dell’eliminazione
+  2. Step: Annulla l’eliminazione della scheda indicata
+Expected: L’operazione di eliminazione viene interrotta e la scheda rimane integra
+
+Test Case ID: UC3.4.2_TC3
+Title: Elimina scheda censimento non esistente
+Use Case ID: UC3.4.2
+Priority: Media
+Type: Negativo
+Preconditions: UC3.4
+Postconditions: Il sistema segnala l’assenza della scheda da eliminare
+Test Steps:
+  1. Step: Seleziona l’operazione di cancellazione di una scheda censimento non esistente
+Expected: Il sistema segnala che la scheda non è presente
+  2. Step: Tenta di confermare l’eliminazione
+Expected: L’operazione fallisce e viene visualizzato un messaggio di errore
+
+Test Case ID: UC3.4.2_TC4
+Title: Boundary test: eliminazione di più schede contemporaneamente
+Use Case ID: UC3.4.2
+Priority: Alta
+Type: Boundary
+Preconditions: UC3.4
+Postconditions: Il sistema gestisce correttamente la richiesta di eliminazione multipla
+Test Steps:
+  1. Step: Seleziona più schede censimento per l’eliminazione
+Expected: Il sistema richiede conferma per ogni scheda selezionata
+  2. Step: Conferma l’eliminazione di tutte le schede indicate
+Expected: Il sistema elimina tutte le schede e visualizza un messaggio di conferma
+
+Test Case ID: UC3.4.2_TC5
+Title: Usabilità: eliminazione di scheda censimento con messaggio di conferma chiaro
+Use Case ID: UC3.4.2
+Priority: Alta
+Type: Usabilità
+Preconditions: UC3.4
+Postconditions: L’utente comprende chiaramente l’esito dell’operazione
+Test Steps:
+  1. Step: Seleziona l’operazione di cancellazione di una scheda censimento esistente
+Expected: Il messaggio di conferma è chiaro e comprensibile
+  2. Step: Conferma l’eliminazione della scheda indicata
+Expected: Il sistema visualizza un messaggio di conferma dell’avvenuta eliminazione in modo chiaro e utente-friendly
+
+Output format:
+* Output only valid and runnable JavaScript code
+* Do not write code implementation provided in the prompt, only reference it
+* Structure the code in files using markdown code blocks specifying the file name
+2025-06-13 15:07:08,665 - test_code_generator.llm_client.ollama_client - INFO - OllamaClient initialized with model: llama3.3:latest
+2025-06-13 15:19:52,715 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-06-13 15:19:52,715 - test_code_generator.llm_client.ollama_client - INFO - Ollama responded in 764047247787 time, with 3229 tokens in prompt and 3197 tokens in response. Content:
+ ### UC3.4.2_TC1.functions.js
+```javascript
+import { test, expect } from '@playwright/test';
+import TestResultReporter from '../../models/test-result-reporter.js';
+import { CensusSheetPage } from '../../models/page_object_models/census_sheet_page.js';
+import { accessCensusSheetSection, clickAzioneButton } from './UC3.4_TC1.functions.js';
+
+export const selectDeleteOperation = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    await clickAzioneButton(page, null);
+    const censusSheetPage = new CensusSheetPage(page);
+    await censusSheetPage.clickAzioneDelete();
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC3.4.2_TC1_ID1', 'Seleziona l\'operazione di cancellazione di una scheda censimento esistente', true, true, true, {}, executionTime);
+    }
+
+    expect(await censusSheetPage.confirmDeleteButton.isVisible()).toBeTruthy();
+}
+
+export const confirmDeletion = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const censusSheetPage = new CensusSheetPage(page);
+    await censusSheetPage.clickConfirmAzioneDelete();
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC3.4.2_TC1_ID2', 'Conferma l\'eliminazione della scheda indicata', true, true, true, {}, executionTime);
+    }
+
+    expect(await censusSheetPage.confirmButton.isVisible()).toBeFalsy();
+}
+```
+
+### UC3.4.2_TC1.spec.js
+```javascript
+import { test, expect } from '@playwright/test';
+import TestResultReporter from '../../models/test-result-reporter.js';
+import { accessPlatformAndAuthenticate } from '../UC3/UC3_TC1.functions.js';
+import { accessCensusSheetSection } from './UC3.4_TC1.functions.js';
+import { selectDeleteOperation, confirmDeletion } from './UC3.4.2_TC1.functions.js';
+
+test("UC3.4.2_TC1 - Elimina scheda censimento con conferma", async ({ page, browserName }) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC3.4.2_TC1", "Elimina scheda censimento con conferma");
+
+    await page.goto(process.env.E2E_BASE_URL);
+
+    // Call step functions in sequence
+    await accessPlatformAndAuthenticate(page, reporter);
+    await accessCensusSheetSection(page, reporter);
+    await selectDeleteOperation(page, reporter);
+    await confirmDeletion(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+```
+
+### UC3.4.2_TC2.functions.js
+```javascript
+import { test, expect } from '@playwright/test';
+import TestResultReporter from '../../models/test-result-reporter.js';
+import { CensusSheetPage } from '../../models/page_object_models/census_sheet_page.js';
+import { accessCensusSheetSection, clickAzioneButton } from './UC3.4_TC1.functions.js';
+
+export const selectDeleteOperationTC2 = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    await clickAzioneButton(page, null);
+    const censusSheetPage = new CensusSheetPage(page);
+    await censusSheetPage.clickAzioneDelete();
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC3.4.2_TC2_ID1', 'Seleziona l\'operazione di cancellazione di una scheda censimento esistente', true, true, true, {}, executionTime);
+    }
+
+    expect(await censusSheetPage.confirmDeleteButton.isVisible()).toBeTruthy();
+}
+
+export const cancelDeletion = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const censusSheetPage = new CensusSheetPage(page);
+    await censusSheetPage.clickConfirmAzioneDelete();
+
+    // Simulate click on cancel button
+    await page.click('text="Annulla"');
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC3.4.2_TC2_ID2', 'Annulla l\'eliminazione della scheda indicata', true, true, true, {}, executionTime);
+    }
+
+    expect(await censusSheetPage.confirmButton.isVisible()).toBeFalsy();
+}
+```
+
+### UC3.4.2_TC2.spec.js
+```javascript
+import { test, expect } from '@playwright/test';
+import TestResultReporter from '../../models/test-result-reporter.js';
+import { accessPlatformAndAuthenticate } from '../UC3/UC3_TC1.functions.js';
+import { accessCensusSheetSection } from './UC3.4_TC1.functions.js';
+import { selectDeleteOperationTC2, cancelDeletion } from './UC3.4.2_TC2.functions.js';
+
+test("UC3.4.2_TC2 - Annullamento eliminazione scheda censimento", async ({ page, browserName }) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC3.4.2_TC2", "Annullamento eliminazione scheda censimento");
+
+    await page.goto(process.env.E2E_BASE_URL);
+
+    // Call step functions in sequence
+    await accessPlatformAndAuthenticate(page, reporter);
+    await accessCensusSheetSection(page, reporter);
+    await selectDeleteOperationTC2(page, reporter);
+    await cancelDeletion(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+```
+
+### UC3.4.2_TC3.functions.js
+```javascript
+import { test, expect } from '@playwright/test';
+import TestResultReporter from '../../models/test-result-reporter.js';
+import { CensusSheetPage } from '../../models/page_object_models/census_sheet_page.js';
+import { accessCensusSheetSection, clickAzioneButton } from './UC3.4_TC1.functions.js';
+
+export const selectDeleteNonExistingOperation = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    await clickAzioneButton(page, null);
+    const censusSheetPage = new CensusSheetPage(page);
+    // Simulate deletion of non-existing sheet
+    await page.click('text="Elimina"');
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC3.4.2_TC3_ID1', 'Seleziona l\'operazione di cancellazione di una scheda censimento non esistente', true, true, true, {}, executionTime);
+    }
+
+    expect(await page.isVisible('text="Scheda non trovata"')).toBeTruthy();
+}
+
+export const confirmNonExistingDeletion = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    // Simulate click on confirm button
+    await page.click('text="Conferma"');
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC3.4.2_TC3_ID2', 'Tenta di confermare l\'eliminazione', true, true, true, {}, executionTime);
+    }
+
+    expect(await page.isVisible('text="Errore durante l\'eliminazione"')).toBeTruthy();
+}
+```
+
+### UC3.4.2_TC3.spec.js
+```javascript
+import { test, expect } from '@playwright/test';
+import TestResultReporter from '../../models/test-result-reporter.js';
+import { accessPlatformAndAuthenticate } from '../UC3/UC3_TC1.functions.js';
+import { accessCensusSheetSection } from './UC3.4_TC1.functions.js';
+import { selectDeleteNonExistingOperation, confirmNonExistingDeletion } from './UC3.4.2_TC3.functions.js';
+
+test("UC3.4.2_TC3 - Elimina scheda censimento non esistente", async ({ page, browserName }) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC3.4.2_TC3", "Elimina scheda censimento non esistente");
+
+    await page.goto(process.env.E2E_BASE_URL);
+
+    // Call step functions in sequence
+    await accessPlatformAndAuthenticate(page, reporter);
+    await accessCensusSheetSection(page, reporter);
+    await selectDeleteNonExistingOperation(page, reporter);
+    await confirmNonExistingDeletion(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+```
+
+### UC3.4.2_TC4.functions.js
+```javascript
+import { test, expect } from '@playwright/test';
+import TestResultReporter from '../../models/test-result-reporter.js';
+import { CensusSheetPage } from '../../models/page_object_models/census_sheet_page.js';
+import { accessCensusSheetSection, clickAzioneButton } from './UC3.4_TC1.functions.js';
+
+export const selectMultipleDeleteOperation = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    await clickAzioneButton(page, null);
+    const censusSheetPage = new CensusSheetPage(page);
+    // Simulate selection of multiple sheets
+    await page.click('text="Seleziona tutto"');
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC3.4.2_TC4_ID1', 'Seleziona più schede censimento per l\'eliminazione', true, true, true, {}, executionTime);
+    }
+
+    expect(await page.isVisible('text="Elimina selezionati"')).toBeTruthy();
+}
+
+export const confirmMultipleDeletion = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    // Simulate click on confirm button
+    await page.click('text="Conferma"');
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC3.4.2_TC4_ID2', 'Conferma l\'eliminazione di tutte le schede indicate', true, true, true, {}, executionTime);
+    }
+
+    expect(await page.isVisible('text="Eliminazione completata"')).toBeTruthy();
+}
+```
+
+### UC3.4.2_TC4.spec.js
+```javascript
+import { test, expect } from '@playwright/test';
+import TestResultReporter from '../../models/test-result-reporter.js';
+import { accessPlatformAndAuthenticate } from '../UC3/UC3_TC1.functions.js';
+import { accessCensusSheetSection } from './UC3.4_TC1.functions.js';
+import { selectMultipleDeleteOperation, confirmMultipleDeletion } from './UC3.4.2_TC4.functions.js';
+
+test("UC3.4.2_TC4 - Boundary test: eliminazione di più schede contemporaneamente", async ({ page, browserName }) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC3.4.2_TC4", "Boundary test: eliminazione di più schede contemporaneamente");
+
+    await page.goto(process.env.E2E_BASE_URL);
+
+    // Call step functions in sequence
+    await accessPlatformAndAuthenticate(page, reporter);
+    await accessCensusSheetSection(page, reporter);
+    await selectMultipleDeleteOperation(page, reporter);
+    await confirmMultipleDeletion(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+```
+
+### UC3.4.2_TC5.functions.js
+```javascript
+import { test, expect } from '@playwright/test';
+import TestResultReporter from '../../models/test-result-reporter.js';
+import { CensusSheetPage } from '../../models/page_object_models/census_sheet_page.js';
+import { accessCensusSheetSection, clickAzioneButton } from './UC3.4_TC1.functions.js';
+
+export const selectDeleteOperationTC5 = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    await clickAzioneButton(page, null);
+    const censusSheetPage = new CensusSheetPage(page);
+    await censusSheetPage.clickAzioneDelete();
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC3.4.2_TC5_ID1', 'Seleziona l\'operazione di cancellazione di una scheda censimento esistente', true, true, true, {}, executionTime);
+    }
+
+    expect(await censusSheetPage.confirmDeleteButton.isVisible()).toBeTruthy();
+}
+
+export const confirmDeletionTC5 = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const censusSheetPage = new CensusSheetPage(page);
+    await censusSheetPage.clickConfirmAzioneDelete();
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC3.4.2_TC5_ID2', 'Conferma l\'eliminazione della scheda indicata', true, true, true, {}, executionTime);
+    }
+
+    expect(await page.isVisible('text="Eliminazione completata"')).toBeTruthy();
+}
+```
+
+### UC3.4.2_TC5.spec.js
+```javascript
+import { test, expect } from '@playwright/test';
+import TestResultReporter from '../../models/test-result-reporter.js';
+import { accessPlatformAndAuthenticate } from '../UC3/UC3_TC1.functions.js';
+import { accessCensusSheetSection } from './UC3.4_TC1.functions.js';
+import { selectDeleteOperationTC5, confirmDeletionTC5 } from './UC3.4.2_TC5.functions.js';
+
+test("UC3.4.2_TC5 - Usabilità dell'interfaccia di eliminazione", async ({ page, browserName }) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC3.4.2_TC5", "Usabilità dell'interfaccia di eliminazione");
+
+    await page.goto(process.env.E2E_BASE_URL);
+
+    // Call step functions in sequence
+    await accessPlatformAndAuthenticate(page, reporter);
+    await accessCensusSheetSection(page, reporter);
+    await selectDeleteOperationTC5(page, reporter);
+    await confirmDeletionTC5(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+```
+2025-06-13 15:19:52,715 - test_code_generator.validator.javascript_code_validator - INFO - Extracting JavaScript code blocks

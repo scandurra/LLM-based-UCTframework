@@ -9,9 +9,9 @@ import TestResultReporter from '../../models/test-result-reporter.js';
 test("UC2.4_TC1 - Select cities and KPI for benchmarking", async ({page, browserName}) => {
     const reporter = new TestResultReporter();
     reporter.setBrowserName(browserName);
-    reporter.setTestCase("UC2.4_TC1 - Select cities and KPI for benchmarking");
+    reporter.setTestCase("UC2.4_TC1", "Select cities and KPI for benchmarking");
 
-    // Navigate to login page
+    // Navigate to the login page
     await page.goto(process.env.E2E_LOGIN_URL);
 
     // Call step functions in sequence

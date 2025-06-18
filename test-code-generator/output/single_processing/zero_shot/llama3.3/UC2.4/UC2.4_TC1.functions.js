@@ -12,14 +12,20 @@ export const selectCities = async function(page, reporter) {
     const dashboardPageBenchmarkingKpi = new DashboardPageBenchmarkingKpi(page);
     await dashboardPageBenchmarkingKpi.selectCity(0);
     await dashboardPageBenchmarkingKpi.selectCity(1);
-    
+
     const endTime = new Date().getTime();
     const executionTime = (endTime - startTime) / 1000;
+    let passFail = true;
+    try {
+        expect(await dashboardPageBenchmarkingKpi.isCitySelectorVisible()).toBeTruthy();
+    } catch (error) {
+        passFail = false;
+    }
     if (reporter) {
-        reporter.addStep('UC2.4_TC1_ID1', 'Select two or more cities from the dropdown menu', 'The cities are selected correctly', 'The cities are selected correctly', true, '', executionTime);
+        reporter.addStep('UC2.4_TC1_ID1', 'Select two or more cities from the dropdown menu', 'The cities are selected correctly', `Selected cities`, passFail, '', executionTime);
     }
 
-    expect(await dashboardPageBenchmarkingKpi.isCitySelectorVisible()).toBe(true);
+    expect(passFail).toBeTruthy();
 }
 
 export const selectKPI = async function(page, reporter) {
@@ -27,14 +33,20 @@ export const selectKPI = async function(page, reporter) {
     
     const dashboardPageBenchmarkingKpi = new DashboardPageBenchmarkingKpi(page);
     await dashboardPageBenchmarkingKpi.selectKPI();
-    
+
     const endTime = new Date().getTime();
     const executionTime = (endTime - startTime) / 1000;
+    let passFail = true;
+    try {
+        expect(await dashboardPageBenchmarkingKpi.isKPISelectorVisible()).toBeTruthy();
+    } catch (error) {
+        passFail = false;
+    }
     if (reporter) {
-        reporter.addStep('UC2.4_TC1_ID2', 'Choose a valid KPI for comparison', 'The KPI is accepted', 'The KPI is accepted', true, '', executionTime);
+        reporter.addStep('UC2.4_TC1_ID2', 'Choose a valid KPI for comparison', 'The KPI is accepted', `Selected KPI`, passFail, '', executionTime);
     }
 
-    expect(await dashboardPageBenchmarkingKpi.isKPISelectorVisible()).toBe(true);
+    expect(passFail).toBeTruthy();
 }
 
 export const confirmRequest = async function(page, reporter) {
@@ -42,12 +54,18 @@ export const confirmRequest = async function(page, reporter) {
     
     const dashboardPageBenchmarkingKpi = new DashboardPageBenchmarkingKpi(page);
     await dashboardPageBenchmarkingKpi.applyKPIAndVerify();
-    
+
     const endTime = new Date().getTime();
     const executionTime = (endTime - startTime) / 1000;
+    let passFail = true;
+    try {
+        expect(await dashboardPageBenchmarkingKpi.verifyKPIResults()).toBeTruthy();
+    } catch (error) {
+        passFail = false;
+    }
     if (reporter) {
-        reporter.addStep('UC2.4_TC1_ID3', 'Confirm the request by clicking on the button', 'The chart with the desired comparison is displayed', 'The chart with the desired comparison is displayed', true, '', executionTime);
+        reporter.addStep('UC2.4_TC1_ID3', 'Confirm the request by clicking on the button', 'The chart with the desired comparison is displayed', `Displayed chart`, passFail, '', executionTime);
     }
 
-    expect(await dashboardPageBenchmarkingKpi.verifyKPIResults()).toBe(true);
+    expect(passFail).toBeTruthy();
 }

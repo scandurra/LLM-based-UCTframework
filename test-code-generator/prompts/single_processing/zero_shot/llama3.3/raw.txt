@@ -44,12 +44,12 @@ export const functionNameDescribingStep = async function(page, reporter) {
     }
 
     // Include Playwright assertions
-    expect(condition);
+    expect(passFail).toBeTruthy();
 }
 
 test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
     reporter.setBrowserName(browserName);
-    reporter.setTestCase("UC1_TC1 - Login test with success");
+    reporter.setTestCase("UC1_TC1", "Login test with success");
 
     // Call step functions in sequence
     await step1(page, reporter);

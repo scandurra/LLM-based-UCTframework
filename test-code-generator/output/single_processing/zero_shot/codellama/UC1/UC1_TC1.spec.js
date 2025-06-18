@@ -1,29 +1,21 @@
-// Import necessary libraries and page object models
-const { test, expect } = require('@playwright/test');
-const TestResultReporter = require("../../models/test-result-reporter.js");
-const LoginPage = require("../../models/page_object_models/login_page.js");
+import { test, expect } from '@playwright/test';
 
-// Initialize the reporter object
-let reporter;
+import { insertCorrectCredentials, clickLoginButton, verifyAuthenticationSuccessMessage } from './UC1_TC1.functions.js';
 
-test.beforeEach(async ({ page }) => {
-  // Create a new instance of TestResultReporter for each test case
-  reporter = new TestResultReporter();
-});
+import TestResultReporter from '../../models/test-result-reporter.js';
 
-test("UC1_TC1 - Login con credenziali valide", async ({page, browserName}) => {
-    // Set the browser name and test case title in the reporter object
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    const reporter = new TestResultReporter();
     reporter.setBrowserName(browserName);
-    reporter.setTestCase("UC1_TC1 - Login con credenziali valide");
-    
-    // Create a new instance of LoginPage for each test case
-    const loginPage = new LoginPage(page);
+    reporter.setTestCase("UC1_TC1", "Login test with success");
 
-    // Call the step functions in sequence
-    await step1_InserisciCredenzialiCorretteNelFormDiLogin(loginPage, reporter);
-    await step2_CliccaTastoLogin(loginPage, reporter);
-    await step3_VisualizzaMessaggioOperazioneCompletataConSuccesso(loginPage, reporter);
-    
-    // Set the test status in the reporter object
-    reporter.onTestEnd(test, { status: "passed" }); 
+    // Navigate to the login page
+    await page.goto(process.env.E2E_LOGIN_URL);
+
+    // Call step functions in sequence
+    await insertCorrectCredentials(page, reporter);
+    await clickLoginButton(page, reporter);
+    await verifyAuthenticationSuccessMessage(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });     // status can be "passed" or "failed" 
 });

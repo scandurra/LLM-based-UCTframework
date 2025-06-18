@@ -1,0 +1,295 @@
+2025-06-13 09:28:51,247 - __main__ - INFO - Found 1 dependencies for use case UC2.2
+2025-06-13 09:28:51,247 - __main__ - INFO - Read previously generated functions code for use case UC2 - test case UC2_TC1
+2025-06-13 09:28:51,247 - __main__ - INFO - Read previously generated spec code for use case UC2 - test case UC2_TC1
+2025-06-13 09:28:51,247 - test_code_generator.prompt_builder.prompt_builder - INFO - Test parameters loaded from path: ./input_files/parameters/test_parameters.env
+2025-06-13 09:28:51,247 - test_code_generator.prompt_builder.prompt_builder - INFO - Test reporter loaded from path: ./input_files/reporter_minimal.js
+2025-06-13 09:28:51,248 - test_code_generator.prompt_builder.prompt_builder - INFO - Previous code section loaded from path: ./prompts/single_processing/zero_shot/llama3.3/previous_code_section.txt
+2025-06-13 09:28:51,248 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt built: 
+ROLE: system
+You are a testing engineer, expert in writing Javascript end-to-end tests with Playwright.
+
+Task: Analyze the test case provided below and generate a complete and working Playwright test script in Javascript, following the steps described in the test case.
+When creating the test script, use only the page object model provided for interacting with the DOM and the parameters provided.
+------------------------------------------------------------------
+ROLE: user
+Use only this page object models for interacting with the DOM:
+```javascript
+File: dashboard_page_illumination_search.js
+export class DashboardPageIlluminationSearch {
+    constructor(page) {
+        this.page = page;
+        
+        // Selectors
+        this.comuniDropdown = this.page.getByLabel('Comuni', { exact: true });
+        this.applyGeomapButton = this.page.locator('#compute_apply_geomap_1');
+        this.mapText = this.page.getByText('Mappa impianti d\'illuminazioneLoading...Completa i campi della form e premi');
+    }
+
+    async selectComune(optionIndex = 0) {
+        await this.comuniDropdown.selectOption({ index: optionIndex });
+    }
+
+    async applySearch() {
+        await this.applyGeomapButton.click();
+    }
+
+    async isMapVisible() {
+        return await this.mapText.isVisible();
+    }
+
+    async isComuniDropdownVisible() {
+        return await this.comuniDropdown.isVisible();
+    }
+
+    async isApplyButtonVisible() {
+        return await this.applyGeomapButton.isVisible();
+    }
+}
+```
+
+Use only the following parameters from environment variables in the test scripts:
+E2E_BASE_URL=""
+E2E_LOGIN_URL=""
+E2E_HOME_URL="" 
+E2E_DASHBOARD_URL="" 
+E2E_CTS_URL="" 
+EMAIL=""
+PASSWORD=""
+
+When in the test case there is a step, a precondition or a postcondition with a name of use case UC*, reuse this functions passing null as reporter parameter:
+```javascript
+// File: UC2_TC1.functions.js
+import { test, expect } from '@playwright/test';
+
+import { SidebarPage } from '../../models/page_object_models/sidebar_page.js';
+
+import { insertCorrectCredentials, clickLoginButton, verifyAuthenticationSuccessMessage } from '../UC1/UC1_TC1.functions.js';
+
+import TestResultReporter from '../../models/test-result-reporter.js';
+
+export const accessPlatformAsRegisteredUser = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    await insertCorrectCredentials(page, null);
+    await clickLoginButton(page, null);
+    await verifyAuthenticationSuccessMessage(page, null);
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    let passFail = true;
+    try {
+        await page.waitForURL(process.env.E2E_HOME_URL);
+    } catch (error) {
+        passFail = false;
+    }
+    if (reporter) {
+        reporter.addStep('UC2_TC1_ID1', 'Access the platform as a registered user', 'The home page of the platform is visible', `Navigated to ${process.env.E2E_HOME_URL}`, passFail, '', executionTime);
+    }
+
+    expect(passFail).toBeTruthy();
+}
+
+export const selectDashboardMenu = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const sidebarPage = new SidebarPage(page);
+    await sidebarPage.clickDashboardLink();
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    let passFail = true;
+    try {
+        await page.waitForURL(process.env.E2E_DASHBOARD_URL);
+    } catch (error) {
+        passFail = false;
+    }
+    if (reporter) {
+        reporter.addStep('UC2_TC1_ID2', 'Select the dashboard menu item', 'The dashboard section opens correctly', `Navigated to ${process.env.E2E_DASHBOARD_URL}`, passFail, '', executionTime);
+    }
+
+    expect(passFail).toBeTruthy();
+}
+// File: UC2_TC1.spec.js
+import { test, expect } from '@playwright/test';
+
+import { accessPlatformAsRegisteredUser, selectDashboardMenu } from './UC2_TC1.functions.js';
+
+import TestResultReporter from '../../models/test-result-reporter.js';
+
+test("UC2_TC1 - Open dashboard with authorized user", async ({page, browserName}) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC2_TC1", "Open dashboard with authorized user");
+
+    // Navigate to the login page
+    await page.goto(process.env.E2E_LOGIN_URL);
+
+    // Call step functions in sequence
+    await accessPlatformAsRegisteredUser(page, reporter);
+    await selectDashboardMenu(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });     // status can be "passed" or "failed" 
+});
+```
+
+Instructions:
+1. Analyze the test case provided
+2. For the test case, generate a test script in Javascript with Playwright
+3. Use only Page object model provided to interact with the DOM.
+4. Call the TestResultReporter object methods as described below.
+5. Put the code in functions for reusability, with the reporter object as parameter not mandatory. If not null, call reporter methods. 
+6. Put functions in a separate file called "UC2.2_TC1.functions.js" and the test in a file called "UC2.2_TC1.spec.js"
+7. Do not rewrite functions provided in the prompt, just refer to them.
+8. Add the required import for:
+    * test, expect, ... from '@playwright/test' in all files
+    * TestResultReporter from "../../models/test-result-reporter.js" 
+    * page object models from "../../models/page_object_models/<page_object_model_name>.js" 
+    * existing code from the path specified in the code snippet. Pay attention to add imports used also by the existing code. 
+    * make the generated "UC2.2_TC1.spec.js" file to reference functions in "UC2.2_TC1.functions.js" generated file
+
+
+<example>
+export const functionNameDescribingStep = async function(page, reporter) {
+    const startTime = DateTime.now();
+    
+    // Put here test case step implementation
+    
+    const endTime = DateTime.now();
+    const executionTime = endTime - startTime;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID1', 'Step 1 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+    }
+
+    // Include Playwright assertions
+    expect(passFail).toBeTruthy();
+}
+
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1", "Login test with success");
+
+    // Call step functions in sequence
+    await step1(page, reporter);
+    await step2(page, reporter);
+    // Additional steps...
+
+    reporter.onTestEnd(test, { status: "passed" });     // status can be "passed" or "failed" 
+});
+</example>
+
+Here the test case to be converted in Playwright script:
+Test Case ID: UC2.2_TC1
+Title: Ricerca impianti di illuminazione con parametri validi
+Use Case ID: UC2.2
+Priority: Alta
+Type: Positivo
+Preconditions: UC2
+Postconditions: L’utente visualizza gli impianti di illuminazione che corrispondono ai criteri di ricerca
+Test Steps:
+  1. Step: Seleziona un comune e dei parametri di ricerca validi
+Expected: I parametri vengono accettati
+  2. Step: Conferma la ricerca
+Expected: La mappa si aggiorna con gli impianti di illuminazione trovati
+  3. Step: Visualizza i dettagli degli impianti di illuminazione
+Expected: Le informazioni vengono visualizzate correttamente
+
+
+Output format:
+* Output only valid and runnable JavaScript code
+* Do not write code implementation provided in the prompt, only reference it
+* Structure the code in files using markdown code blocks specifying the file name
+2025-06-13 09:28:51,248 - test_code_generator.llm_client.ollama_client - INFO - OllamaClient initialized with model: llama3.3:latest
+2025-06-13 09:32:29,547 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-06-13 09:32:29,547 - test_code_generator.llm_client.ollama_client - INFO - Ollama responded in 218297124849 time, with 1724 tokens in prompt and 825 tokens in response. Content:
+ ### UC2.2_TC1.functions.js
+```javascript
+import { test, expect } from '@playwright/test';
+import { DashboardPageIlluminationSearch } from '../../models/page_object_models/dashboard_page_illumination_search.js';
+import { accessPlatformAsRegisteredUser, selectDashboardMenu } from './UC2_TC1.functions.js';
+import TestResultReporter from '../../models/test-result-reporter.js';
+
+export const selectComuneAndSearchParameters = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const dashboardPageIlluminationSearch = new DashboardPageIlluminationSearch(page);
+    await dashboardPageIlluminationSearch.selectComune(1);
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    let passFail = true;
+    try {
+        await dashboardPageIlluminationSearch.isComuniDropdownVisible();
+    } catch (error) {
+        passFail = false;
+    }
+    if (reporter) {
+        reporter.addStep('UC2.2_TC1_ID1', 'Select a comune and valid search parameters', 'The parameters are accepted', `Selected comune`, passFail, '', executionTime);
+    }
+
+    expect(passFail).toBeTruthy();
+}
+
+export const confirmSearch = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const dashboardPageIlluminationSearch = new DashboardPageIlluminationSearch(page);
+    await dashboardPageIlluminationSearch.applySearch();
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    let passFail = true;
+    try {
+        await dashboardPageIlluminationSearch.isMapVisible();
+    } catch (error) {
+        passFail = false;
+    }
+    if (reporter) {
+        reporter.addStep('UC2.2_TC1_ID2', 'Confirm the search', 'The map updates with the found lighting installations', `Updated map`, passFail, '', executionTime);
+    }
+
+    expect(passFail).toBeTruthy();
+}
+
+export const visualizeInstallationDetails = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    // This step is not implemented as it requires additional page object models
+    // which are not provided in the prompt.
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    let passFail = true;
+    if (reporter) {
+        reporter.addStep('UC2.2_TC1_ID3', 'Visualize the installation details', 'The information is displayed correctly', `Installation details`, passFail, '', executionTime);
+    }
+
+    expect(passFail).toBeTruthy();
+}
+```
+
+### UC2.2_TC1.spec.js
+```javascript
+import { test, expect } from '@playwright/test';
+import { selectComuneAndSearchParameters, confirmSearch, visualizeInstallationDetails } from './UC2.2_TC1.functions.js';
+import { accessPlatformAsRegisteredUser, selectDashboardMenu } from './UC2_TC1.functions.js';
+import TestResultReporter from '../../models/test-result-reporter.js';
+
+test("UC2.2_TC1 - Search for lighting installations with valid parameters", async ({page, browserName}) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC2.2_TC1", "Search for lighting installations with valid parameters");
+
+    // Navigate to the login page
+    await page.goto(process.env.E2E_LOGIN_URL);
+
+    // Call step functions in sequence
+    await accessPlatformAsRegisteredUser(page, reporter);
+    await selectDashboardMenu(page, reporter);
+    await selectComuneAndSearchParameters(page, reporter);
+    await confirmSearch(page, reporter);
+    await visualizeInstallationDetails(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });     // status can be "passed" or "failed" 
+});
+```
+2025-06-13 09:32:29,547 - test_code_generator.validator.javascript_code_validator - INFO - Extracting JavaScript code blocks

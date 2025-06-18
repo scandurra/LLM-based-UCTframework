@@ -9,9 +9,9 @@ import TestResultReporter from '../../models/test-result-reporter.js';
 test("UC2.1_TC1 - Download PDF with success", async ({page, browserName}) => {
     const reporter = new TestResultReporter();
     reporter.setBrowserName(browserName);
-    reporter.setTestCase("UC2.1_TC1 - Download PDF with success");
+    reporter.setTestCase("UC2.1_TC1", "Download PDF with success");
 
-    // Navigate to login page
+    // Navigate to the login page
     await page.goto(process.env.E2E_LOGIN_URL);
 
     // Call step functions in sequence
@@ -21,5 +21,5 @@ test("UC2.1_TC1 - Download PDF with success", async ({page, browserName}) => {
     await confirmDownloadRequest(page, reporter);
     await verifySuccessMessage(page, reporter);
 
-    reporter.onTestEnd(test, { status: "passed" });     // status can be "passed" or "failed" 
+    reporter.onTestEnd(test, { status: "passed" });     // status can be "passed" or "failed"
 });

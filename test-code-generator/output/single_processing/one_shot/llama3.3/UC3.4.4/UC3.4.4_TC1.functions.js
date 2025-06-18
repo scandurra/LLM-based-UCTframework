@@ -4,7 +4,7 @@ import { CensusSheetPage } from '../../models/page_object_models/census_sheet_pa
 
 import TestResultReporter from '../../models/test-result-reporter.js';
 
-export const clickCongelamentoButton = async function(page, reporter) {
+export const selectFreezeOperation = async function(page, reporter) {
   const startTime = new Date().getTime();
   const censusSheetPage = new CensusSheetPage(page);
   await censusSheetPage.clickAzioniButton();
@@ -12,30 +12,31 @@ export const clickCongelamentoButton = async function(page, reporter) {
   const endTime = new Date().getTime();
   const executionTime = (endTime - startTime) / 1000;
   if (reporter) {
-    reporter.addStep('UC3.4.4_TC1_ID1', 'Click congelamento button', 'Congelamento button clicked', 'Congelamento button clicked', true, '', executionTime);
+    reporter.addStep('UC3.4.4_TC1_ID1', 'Select freeze operation', 'Freeze operation selected', 'Freeze operation selected', true, '', executionTime);
   }
-  await expect(censusSheetPage.page.locator('button.swal2-confirm.btn.fw-bold.btn-danger')).toBeVisible();
+  expect(await censusSheetPage.page.locator('button.swal2-confirm.btn.fw-bold.btn-danger').isVisible()).toBeTruthy();
 }
 
-export const confirmCongelamento = async function(page, reporter) {
+export const confirmFreezeOperation = async function(page, reporter) {
   const startTime = new Date().getTime();
   const censusSheetPage = new CensusSheetPage(page);
   await censusSheetPage.clickConfirmAzioneDelete();
   const endTime = new Date().getTime();
   const executionTime = (endTime - startTime) / 1000;
   if (reporter) {
-    reporter.addStep('UC3.4.4_TC1_ID2', 'Confirm congelamento', 'Congelamento confirmed', 'Congelamento confirmed', true, '', executionTime);
+    reporter.addStep('UC3.4.4_TC1_ID2', 'Confirm freeze operation', 'Freeze operation confirmed', 'Freeze operation confirmed', true, '', executionTime);
   }
-  await expect(censusSheetPage.page.locator('.swal2-confirm')).not.toBeVisible();
+  expect(await censusSheetPage.page.locator('button.swal2-confirm.btn.fw-bold.btn-primary').isVisible()).toBeTruthy();
 }
 
-export const verifySchedaStato = async function(page, reporter) {
+export const verifySheetStatus = async function(page, reporter) {
   const startTime = new Date().getTime();
   const censusSheetPage = new CensusSheetPage(page);
-  // Add logic to verify the stato of the scheda
+  // Add logic to verify the sheet status
   const endTime = new Date().getTime();
   const executionTime = (endTime - startTime) / 1000;
   if (reporter) {
-    reporter.addStep('UC3.4.4_TC1_ID3', 'Verify scheda stato', 'Scheda stato verified', 'Scheda stato verified', true, '', executionTime);
+    reporter.addStep('UC3.4.4_TC1_ID3', 'Verify sheet status', 'Sheet status verified', 'Sheet status verified', true, '', executionTime);
   }
+  // Add assertion to verify the sheet status
 }

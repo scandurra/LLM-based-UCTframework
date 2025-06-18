@@ -14,7 +14,7 @@ export const selectDeleteOperation = async function(page, reporter) {
   if (reporter) {
     reporter.addStep('UC3.4.2_TC1_ID1', 'Select delete operation', 'Delete operation selected', 'Delete operation selected', true, '', executionTime);
   }
-  await expect(censusSheetPage.page.locator('button.swal2-confirm.btn.fw-bold.btn-danger')).toBeVisible();
+  expect(await censusSheetPage.isConfirmAzioneDeleteVisible()).toBeTruthy();
 }
 
 export const confirmDeletion = async function(page, reporter) {
@@ -26,5 +26,5 @@ export const confirmDeletion = async function(page, reporter) {
   if (reporter) {
     reporter.addStep('UC3.4.2_TC1_ID2', 'Confirm deletion', 'Deletion confirmed', 'Deletion confirmed', true, '', executionTime);
   }
-  await expect(censusSheetPage.page.locator('button.swal2-confirm.btn.fw-bold.btn-primary')).toBeVisible();
+  expect(await censusSheetPage.isDeleteConfirmationMessageVisible()).toBeTruthy();
 }

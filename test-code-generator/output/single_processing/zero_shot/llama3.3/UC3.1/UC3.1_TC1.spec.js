@@ -6,12 +6,12 @@ import { accessCensusSheetSection, selectColumnForSorting, scrollHorizontallyToV
 
 import TestResultReporter from '../../models/test-result-reporter.js';
 
-test("UC3.1_TC1 - Visualizzazione schede censimento con dati validi e ordinamento", async ({page, browserName}) => {
+test("UC3.1_TC1 - Visualize census sheets with valid data and sorting", async ({page, browserName}) => {
     const reporter = new TestResultReporter();
     reporter.setBrowserName(browserName);
-    reporter.setTestCase("UC3.1_TC1 - Visualizzazione schede censimento con dati validi e ordinamento");
+    reporter.setTestCase("UC3.1_TC1", "Visualize census sheets with valid data and sorting");
 
-    // Navigate to login page
+    // Navigate to the login page
     await page.goto(process.env.E2E_LOGIN_URL);
 
     // Call step functions in sequence

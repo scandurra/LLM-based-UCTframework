@@ -1,0 +1,7 @@
+2025-06-12 12:19:52,681 - __main__ - INFO - Found 1 dependencies for use case UC2.1
+2025-06-12 12:19:52,681 - __main__ - INFO - Read previously generated functions code for use case UC2 - test case UC2_TC1
+2025-06-12 12:19:52,681 - __main__ - INFO - Read previously generated spec code for use case UC2 - test case UC2_TC1
+2025-06-12 12:19:52,681 - test_code_generator.prompt_builder.prompt_builder - INFO - Test parameters loaded from path: ./input_files/parameters/test_parameters.env
+2025-06-12 12:19:52,681 - test_code_generator.prompt_builder.prompt_builder - INFO - Test reporter loaded from path: ./input_files/reporter_minimal.js
+2025-06-12 12:19:52,681 - test_code_generator.prompt_builder.prompt_builder - INFO - Previous code section loaded from path: ./prompts/single_processing/one_shot/codellama/previous_code_section.txt
+2025-06-12 12:19:52,681 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt built: user

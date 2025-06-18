@@ -18,7 +18,8 @@ export class SupportPage {
       this.errorMessage = page.locator('.error-message');
     }
   
-    async selectIssueCategory(cateogry) {
+    // Category values: 'missing_credentials', 'other', 
+    async selectIssueCategory(category) {
         await this.issueCategory.selectOption(category);
     }
   
@@ -79,12 +80,12 @@ export const functionNameDescribingStep = async function(page, reporter) {
     }
 
     // Include Playwright assertions
-    expect(condition);
+    expect(passFail).toBeTruthy();
 }
 
 test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
     reporter.setBrowserName(browserName);
-    reporter.setTestCase("UC1_TC1 - Login test with success");
+    reporter.setTestCase("UC1_TC1", "Login test with success");
 
     // Call step functions in sequence
     await step1(page, reporter);
@@ -136,12 +137,12 @@ export const fillSupportForm = async function(page, reporter) {
   const supportPage = new SupportPage(page);
 
   let startTime = Date.now();
-  const category = "Problemi account";
+  const category = "missing_credentials";
   const description = "Non riesco più ad accedere al mio account";
   const email = process.env.EMAIL;
-  await supportPage.selectIssueCategory();
-  await supportPage.enterIssueDescription();
-  await supportPage.enterEmail();
+  await supportPage.selectIssueCategory(category);
+  await supportPage.enterIssueDescription(description);
+  await supportPage.enterEmail(email);
   let endTime = Date.now();
   if (reporter) {
     reporter.addStep('UC10_TC1_ID2','L\'utente compila la form di assistenza', `Form compilata`, `Form compilata`, true, { category, description, email }, endTime - startTime );
@@ -161,6 +162,7 @@ export const submitForm = async function (page, reporter) {
     reporter.addStep('UC10_TC1_ID3', 'Invia richiesta di assistenza', "L'utente viene reindirizzato alla pagina di avvenuto invio", testPass ? "L'utente viene reindirizzato alla pagina di avvenuto invio" : "Nessun reindirizzamento avvenuto", testPass, {}, endTime - startTime);
   }
 
+  expect(passFail).toBeTruthy();
 }
 ```
 
@@ -175,13 +177,13 @@ const reporter = new TestResultReporter();
 
 test("UC10_TC1 - Invio richiesta di assistenza", async ({ page, browserName }) => {
   reporter.setBrowserName(browserName);
-  reporter.setTestCase("UC10_TC1 - Invio richiesta di assistenza");
+  reporter.setTestCase("UC10_TC1", "Invio richiesta di assistenza");
 
   const supportPage = new SupportPage(page);
 
-  navigateToSupportPage(page, reporter);
-  fillSupportForm(page, reporter);
-  submitForm(page, reporter);
+  await navigateToSupportPage(page, reporter);
+  await fillSupportForm(page, reporter);
+  await submitForm(page, reporter);
 
   reporter.onTestEnd(test, { status: "passed" });
 }); 
@@ -251,25 +253,23 @@ export const navigateToLoginPage = async function(page, reporter) {
     if (reporter) {
         reporter.addStep('UC1_TC1_ID1', 'Navigate to login page', 'Login page loaded', 'Login page loaded', true, `E2E_LOGIN_URL: ${process.env.E2E_LOGIN_URL}`, executionTime);
     }
-
-    await expect(page).toHaveURL(process.env.E2E_LOGIN_URL);
 }
 
 export const insertCorrectCredentials = async function(page, reporter) {
     const startTime = new Date().getTime();
     
     const loginPage = new LoginPage(page);
-    await loginPage.enterEmail(process.env.E2E_LOGIN_EMAIL_ADMIN);
-    await loginPage.enterPassword(process.env.E2E_LOGIN_PASSWORD_ADMIN);
+    await loginPage.enterEmail(process.env.EMAIL);
+    await loginPage.enterPassword(process.env.PASSWORD);
     
     const endTime = new Date().getTime();
     const executionTime = (endTime - startTime) / 1000;
     if (reporter) {
-        reporter.addStep('UC1_TC1_ID2', 'Insert correct credentials', 'Credentials accepted', 'Credentials accepted', true, `E2E_LOGIN_EMAIL_ADMIN: ${process.env.E2E_LOGIN_EMAIL_ADMIN}, E2E_LOGIN_PASSWORD_ADMIN: ${process.env.E2E_LOGIN_PASSWORD_ADMIN}`, executionTime);
+        reporter.addStep('UC1_TC1_ID2', 'Insert correct credentials', 'Credentials accepted', 'Credentials accepted', true, `EMAIL: ${process.env.EMAIL}, PASSWORD: ${process.env.PASSWORD}`, executionTime);
     }
 
-    await expect(loginPage.emailInput).toHaveValue(process.env.E2E_LOGIN_EMAIL_ADMIN);
-    await expect(loginPage.passwordInput).toHaveValue(process.env.E2E_LOGIN_PASSWORD_ADMIN);
+    await expect(loginPage.emailInput).toHaveValue(process.env.EMAIL);
+    await expect(loginPage.passwordInput).toHaveValue(process.env.PASSWORD);
 }
 
 export const clickLoginButton = async function(page, reporter) {
@@ -310,7 +310,7 @@ import TestResultReporter from '../../models/test-result-reporter.js';
 test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
     const reporter = new TestResultReporter();
     reporter.setBrowserName(browserName);
-    reporter.setTestCase("UC1_TC1 - Login test with success");
+    reporter.setTestCase("UC1_TC1", "Login test with success");
 
     await navigateToLoginPage(page, reporter);
     await insertCorrectCredentials(page, reporter);
@@ -349,12 +349,12 @@ export const functionNameDescribingStep = async function(page, reporter) {
     }
 
     // Include Playwright assertions
-    expect(condition);
+    expect(passFail).toBeTruthy();
 }
 
 test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
     reporter.setBrowserName(browserName);
-    reporter.setTestCase("UC1_TC1 - Login test with success");
+    reporter.setTestCase("UC1_TC1", "Login test with success");
 
     // Call step functions in sequence
     await step1(page, reporter);
@@ -393,12 +393,12 @@ import TestResultReporter from '../../models/test-result-reporter.js';
 // Step 1
 export const navigateToReportEnergeticiPage = async function(page, reporter) {
   const startTime = new Date().getTime();
-    await page.goto(process.env.E2E_REPORT_ENERGETICI_URL);
-    const endTime = new Date().getTime();
-    const executionTime = endTime - startTime;
-    if (reporter) {
-        reporter.addStep('UC08_TC1_ID1', 'Navigate to report energetici page', 'Support page loaded', 'Support page loaded', true, `E2E_REPORT_ENERGETICI_URL: ${process.env.E2E_REPORT_ENERGETICI_URL}`, executionTime);
-    }
+  await page.goto(process.env.E2E_REPORT_ENERGETICI_URL);
+  const endTime = new Date().getTime();
+  const executionTime = endTime - startTime;
+  if (reporter) {
+      reporter.addStep('UC08_TC1_ID1', 'Navigate to report energetici page', 'Support page loaded', 'Support page loaded', true, `E2E_REPORT_ENERGETICI_URL: ${process.env.E2E_REPORT_ENERGETICI_URL}`, executionTime);
+  }
 }
 
 // Step 2
@@ -409,9 +409,9 @@ export const selectPeriodAndFormat = async function(page, reporter) {
   const fromDate = "2025-05-01";
   const toDate = "2025-05-30";
   const format = "csv"
-  await reportEnergeticiPage.selectIssueCategory();
-  await reportEnergeticiPage.enterIssueDescription();
-  await reportEnergeticiPage.enterEmail();
+  await reportEnergeticiPage.selectFromDate(fromDate);
+  await reportEnergeticiPage.selectToDate(toDate);
+  await reportEnergeticiPage.selectExportFormat(format);
   let endTime = Date.now();
   
   if (reporter) {
@@ -452,7 +452,7 @@ import { navigateToLoginPage, insertCorrectCredentials, clickLoginButton, verify
 
 test("UC10_TC1 - Invio richiesta di assistenza", async ({ page, browserName }) => {
   reporter.setBrowserName(browserName);
-  reporter.setTestCase("UC10_TC1 - Invio richiesta di assistenza");
+  reporter.setTestCase("UC10_TC1", "Invio richiesta di assistenza");
 
   // Reuse existing method in the prompt without redefining them
   await navigateToLoginPage(page, null);
@@ -510,12 +510,12 @@ export const functionNameDescribingStep = async function(page, reporter) {
     }
 
     // Include Playwright assertions
-    expect(condition);
+    expect(passFail).toBeTruthy();
 }
 
 test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
     reporter.setBrowserName(browserName);
-    reporter.setTestCase("UC1_TC1 - Login test with success");
+    reporter.setTestCase("UC1_TC1", "Login test with success");
 
     // Call step functions in sequence
     await step1(page, reporter);

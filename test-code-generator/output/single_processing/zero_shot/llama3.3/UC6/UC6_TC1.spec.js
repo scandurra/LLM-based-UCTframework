@@ -7,9 +7,9 @@ import TestResultReporter from '../../models/test-result-reporter.js';
 test("UC6_TC1 - Logout user with success", async ({page, browserName}) => {
     const reporter = new TestResultReporter();
     reporter.setBrowserName(browserName);
-    reporter.setTestCase("UC6_TC1 - Logout user with success");
+    reporter.setTestCase("UC6_TC1", "Logout user with success");
 
-    // Navigate to login page
+    // Navigate to the login page
     await page.goto(process.env.E2E_LOGIN_URL);
 
     // Call step functions in sequence

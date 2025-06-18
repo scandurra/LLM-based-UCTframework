@@ -45,15 +45,22 @@ class JavascriptCodeValidator:
         
         # Pattern 3: **filename.js** format (without "File:")
         bold_name_pattern = r'\*\*([^\n*]+\.js)\*\*\s*\n```javascript\n(.*?)\n```'
+
+        # Pattern 4: **filename.js (Functions for Test Ste)** format (with a text after the name)
+        bold_name_with_text_pattern = r'\*\*([^\n*]+\.js)[^*]*\*\*\s*\n```javascript\n(.*?)\n```'
         
-        # Pattern 4: Comment-style filename inside code blocks
+        # Pattern 5: Comment-style filename inside code blocks
         internal_pattern = r'```javascript\n//\s*File:\s*([^\n]+\.js)\s*\n(.*?)\n```'
+
+        xml_pattern = r'<output\s+file="([^\n]+\.js)">\n(.*?)\n</output>'
 
         patterns = [
             bold_file_pattern,
             header_pattern,
             bold_name_pattern,
-            internal_pattern
+            bold_name_with_text_pattern,
+            internal_pattern,
+            xml_pattern
         ]
 
         self.extracted_files = []
@@ -226,7 +233,7 @@ class JavascriptCodeValidator:
             os.makedirs(folder_abs_path)
 
         for file_data in self.extracted_files:
-            if file_data['filename'].startswith(self.test_case_id):
+            if not self.test_case_id or file_data['filename'].startswith(self.test_case_id):
                 filename = file_data['filename']
             else:
                 parts = file_data['filename'].rsplit('.', 2)  # Split from right, max 2 splits

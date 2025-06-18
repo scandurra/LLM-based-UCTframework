@@ -1,0 +1,4 @@
+When in the test case there is a step, a precondition or a postcondition with a name of use case UC*, reuse this functions passing null as reporter parameter:
+```javascript
+$existing_code
+```

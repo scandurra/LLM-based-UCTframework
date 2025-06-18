@@ -1,0 +1,327 @@
+2025-06-11 12:24:04,172 - __main__ - INFO - Found 1 dependencies for use case UC2.1
+2025-06-11 12:24:04,172 - __main__ - INFO - Read previously generated functions code for use case UC2 - test case UC2_TC1
+2025-06-11 12:24:04,172 - __main__ - INFO - Read previously generated spec code for use case UC2 - test case UC2_TC1
+2025-06-11 12:24:04,173 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt template loaded from path: ./prompts/single_processing/zero_shot/codellama/raw.txt
+2025-06-11 12:24:04,173 - test_code_generator.prompt_builder.prompt_builder - INFO - Test parameters loaded from path: ./input_files/parameters/test_parameters.env
+2025-06-11 12:24:04,173 - test_code_generator.prompt_builder.prompt_builder - INFO - Test reporter loaded from path: ./input_files/reporter_minimal.js
+2025-06-11 12:24:04,173 - test_code_generator.prompt_builder.prompt_builder - INFO - Previous code section loaded from path: ./prompts/single_processing/zero_shot/codellama/previous_code_section.txt
+2025-06-11 12:24:04,173 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt built: <s>Source: system
+You are a testing engineer, expert in writing Javascript end-to-end tests with Playwright.
+<step> Source: user
+
+Task: Analyze the test case provided below and generate a complete and working Playwright test script in Javascript, following the steps described in the test case.
+When creating the test script, use only the page object model provided for interacting with the DOM and the parameters provided.
+
+Use only this page object models for interacting with the DOM:
+```javascript
+File: dashboard_page_pdf_download.js
+export class DashboardPagePdfDownload {
+	constructor(page) {
+		this.page = page;
+
+		// Selectors
+		this.downloadPDFButton = this.page.getByRole('button', { name: 'Download PDF' });
+	}
+
+	async downloadPDF() {
+		await this.downloadPDFButton.click();
+	}
+
+	async isDownloadButtonVisible() {
+		return await this.downloadPDFButton.isVisible();
+	}
+}
+```
+
+Use only the following parameters from environment variables in the test scripts:
+E2E_BASE_URL=""
+E2E_LOGIN_URL=""
+E2E_HOME_URL="" 
+E2E_DASHBOARD_URL="" 
+E2E_CTS_URL="" 
+EMAIL=""
+PASSWORD=""
+
+When in the test case there is a step, a precondition or a postcondition with a name of use case UC*, reuse this functions passing null as reporter parameter:
+```javascript
+// File: UC2_TC1.functions.js
+// Import necessary libraries and page object models
+import { DateTime } from 'luxon';
+
+import TestResultReporter from '../../models/test-result-reporter.js';
+
+import LoginPage from '../../models/page_object_models/login_page.js';
+
+import SidebarPage from '../../models/page_object_models/sidebar_page.js';
+
+export const step1_LoginAsRegisteredUser = async function (loginPage, sidebarPage, reporter) {
+    // Start the timer for execution time calculation
+    const startTime = DateTime.now();
+    
+    // Fill in the email and password fields with valid credentials
+    await loginPage.fillEmail(EMAIL);
+    await loginPage.fillPassword(PASSWORD);
+    
+    // Click on the Login button
+    await loginPage.clickLoginButton();
+    
+    // Verify that the home page is visible
+    await expect(page).toHaveText('Welcome to the platform!');
+    
+    // End the timer and calculate the execution time
+    const endTime = DateTime.now();
+    const executionTime = endTime - startTime;
+    
+    // Add a step to the reporter if it's not null
+    if (reporter) {
+        reporter.addStep('UC2_TC1_ID1', 'Accedi alla piattaforma come utente registrato', true, true, true, executionTime);
+    }
+    
+    // Add Playwright assertions to verify the step result
+    expect(await page.innerText('.home-page')).toBe('Welcome to the platform!');
+}
+
+export const step2_OpenDashboardSection = async function (sidebarPage, reporter) {
+    // Start the timer for execution time calculation
+    const startTime = DateTime.now();
+    
+    // Click on the Dashboard link in the sidebar menu
+    await sidebarPage.clickDashboardLink();
+    
+    // Verify that the dashboard section is visible
+    await expect(page).toHaveText('Dashboard Section');
+    
+    // End the timer and calculate the execution time
+    const endTime = DateTime.now();
+    const executionTime = endTime - startTime;
+    
+    // Add a step to the reporter if it's not null
+    if (reporter) {
+        reporter.addStep('UC2_TC1_ID2', 'Seleziona la voce di menù relativa alla dashboard', true, true, true, executionTime);
+    }
+    
+    // Add Playwright assertions to verify the step result
+    expect(await page.innerText('.dashboard-section')).toBe('Dashboard Section');
+}
+// File: UC2_TC1.spec.js
+// Import necessary libraries and page object models
+import { test, expect } from '@playwright/test';
+
+import TestResultReporter from '../../models/test-result-reporter.js';
+
+import LoginPage from '../../models/page_object_models/login_page.js';
+
+import SidebarPage from '../../models/page_object_models/sidebar_page.js';
+
+// Initialize the reporter object
+const reporter = new TestResultReporter();
+
+// Define the test case
+test("UC2_TC1 - Apertura della dashboard con utente autorizzato", async ({ page, browserName }) => {
+    // Set the browser name and test case title in the reporter
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC2_TC1", "Apertura della dashboard con utente autorizzato");
+    
+    // Initialize the LoginPage and SidebarPage objects
+    const loginPage = new LoginPage(page);
+    const sidebarPage = new SidebarPage(page);
+    
+    // Call step functions in sequence
+    await step1_LoginAsRegisteredUser(loginPage, sidebarPage, reporter);
+    await step2_OpenDashboardSection(sidebarPage, reporter);
+    
+    // Set the test status as passed and end the test
+    reporter.onTestEnd(test, { status: "passed" });
+});
+```
+
+Instructions:
+1. Analyze the test case provided
+2. For the test case, generate a test script in Javascript with Playwright
+3. Use only Page object model provided to interact with the DOM.
+4. Call the TestResultReporter object methods as described below.
+5. Put the code in functions for reusability, with the reporter object as parameter not mandatory. If not null, call reporter methods. 
+6. Put functions in a separate file called "UC2.1_TC1.functions.js" and the test in a file called "UC2.1_TC1.spec.js"
+7. Do not rewrite functions provided in the prompt, just refer to them.
+8. Add the required import for:
+    * test, expect, ... from '@playwright/test' in all files
+    * TestResultReporter from "../../models/test-result-reporter.js" 
+    * page object models from "../../models/page_object_models/<page_object_model_name>.js" 
+    * existing code from the path specified in the code snippet. Pay attention to add imports used also by the existing code. 
+    * make the generated "UC2.1_TC1.spec.js" file to reference functions in "UC2.1_TC1.functions.js" generated file
+
+<example>
+export const functionNameDescribingStep = async function(page, reporter) {
+    const startTime = DateTime.now();
+    
+    // Put here test case step implementation
+    
+    const endTime = DateTime.now();
+    const executionTime = endTime - startTime;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID1', 'Step 1 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+    }
+
+    // Include Playwright assertions
+    expect(passFail).toBeTruthy();
+}
+
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1", "Login test with success");
+
+    // Call step functions in sequence
+    await functionNameDescribingStep1(page, reporter);
+    await functionNameDescribingStep2(page, reporter);
+    // Additional steps...
+
+    reporter.onTestEnd(test, { status: "passed" });     // status can be "passed" or "failed" 
+});
+</example>
+
+Here the test case to be converted in Playwright script:
+Test Case ID: UC2.1_TC1
+Title: Download PDF con successo
+Use Case ID: UC2.1
+Priority: Alta
+Type: Positivo
+Preconditions: UC2
+Postconditions: L’utente ha scaricato il file, può aprirlo dalla apposita sezione del browser utilizzato ed il file è ben formato
+Test Steps:
+  1. Step: Clicca sul tasto di download del PDF
+Expected: Il processo di download inizia
+  2. Step: Conferma la richiesta di download
+Expected: Il file inizia a scaricarsi
+  3. Step: Verifica il messaggio di completamento dell’operazione
+Expected: Messaggio di successo visualizzato
+
+Output only valid and runnable JavaScript code. Do not copy existing code implementation in the response, only reference it. Specify the different files using different markdown blocks.
+<step> Source: assistant
+Destination: user
+
+2025-06-11 12:24:04,173 - test_code_generator.llm_client.ollama_client - INFO - OllamaClient initialized with model: codellama:70b
+2025-06-11 12:28:55,980 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/generate "HTTP/1.1 200 OK"
+2025-06-11 12:28:55,980 - test_code_generator.llm_client.ollama_client - INFO - Ollama responded in 291805321807 time, with 2172 tokens in prompt and 1258 tokens in response. Content:
+ 
+ Here is a complete Playwright test script for the provided test case:
+```javascript
+// File: UC2_TC1.functions.js
+import { DateTime } from 'luxon';
+
+import TestResultReporter from '../../models/test-result-reporter.js';
+
+export const step1_ClickDownloadPDFButton = async function (page, dashboardPagePdfDownload, reporter) {
+    // Start the timer for execution time calculation
+    const startTime = DateTime.now();
+    
+    // Click on the Download PDF button
+    await dashboardPagePdfDownload.downloadPDF();
+    
+    // Verify that the download process starts
+    await expect(page).toHaveText('Starting download...');
+    
+    // End the timer and calculate the execution time
+    const endTime = DateTime.now();
+    const executionTime = endTime - startTime;
+    
+    // Add a step to the reporter if it's not null
+    if (reporter) {
+        reporter.addStep('UC2_TC1_ID1', 'Click on Download PDF button', true, true, true, executionTime);
+    }
+    
+    // Add Playwright assertions to verify the step result
+    expect(await page.innerText('.download-pdf')).toBe('Starting download...');
+}
+
+export const step2_ConfirmDownloadRequest = async function (page, reporter) {
+    // Start the timer for execution time calculation
+    const startTime = DateTime.now();
+    
+    // Click on the Confirm button in the browser's download dialog
+    await page.click('text=Allow');
+    
+    // Verify that the file starts downloading
+    await expect(page).toHaveText('Downloading...');
+    
+    // End the timer and calculate the execution time
+    const endTime = DateTime.now();
+    const executionTime = endTime - startTime;
+    
+    // Add a step to the reporter if it's not null
+    if (reporter) {
+        reporter.addStep('UC2_TC1_ID2', 'Confirm download request', true, true, true, executionTime);
+    }
+    
+    // Add Playwright assertions to verify the step result
+    expect(await page.innerText('.download-pdf')).toBe('Downloading...');
+}
+
+export const step3_VerifySuccessMessage = async function (page, reporter) {
+    // Start the timer for execution time calculation
+    const startTime = DateTime.now();
+    
+    // Wait for the success message to appear
+    await page.waitForSelector('text=Download completed!');
+    
+    // Verify that the success message is displayed
+    await expect(page).toHaveText('Download completed!');
+    
+    // End the timer and calculate the execution time
+    const endTime = DateTime.now();
+    const executionTime = endTime - startTime;
+    
+    // Add a step to the reporter if it's not null
+    if (reporter) {
+        reporter.addStep('UC2_TC1_ID3', 'Verify success message', true, true, true, executionTime);
+    }
+    
+    // Add Playwright assertions to verify the step result
+    expect(await page.innerText('.download-pdf')).toBe('Download completed!');
+}
+```
+
+Here is the test script:
+```javascript
+// File: UC2_TC1.spec.js
+import { test, expect } from '@playwright/test';
+
+import TestResultReporter from '../../models/test-result-reporter.js';
+
+import LoginPage from '../../models/page_object_models/login_page.js';
+
+import SidebarPage from '../../models/page_object_models/sidebar_page.js';
+
+import DashboardPagePdfDownload from '../../models/page_object_models/dashboard_page_pdf_download.js';
+
+// Initialize the reporter object
+const reporter = new TestResultReporter();
+
+// Define the test case
+test("UC2_TC1 - Download PDF con successo", async ({ page, browserName }) => {
+    // Set the browser name and test case title in the reporter
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC2_TC1", "Download PDF con successo");
+    
+    // Initialize the LoginPage and SidebarPage objects
+    const loginPage = new LoginPage(page);
+    const sidebarPage = new SidebarPage(page);
+    
+    // Call step functions in sequence
+    await step1_LoginAsRegisteredUser(loginPage, sidebarPage, reporter);
+    await step2_OpenDashboardSection(sidebarPage, reporter);
+    
+    // Initialize the DashboardPagePdfDownload object
+    const dashboardPagePdfDownload = new DashboardPagePdfDownload(page);
+    
+    // Call step functions in sequence
+    await step1_ClickDownloadPDFButton(page, dashboardPagePdfDownload, reporter);
+    await step2_ConfirmDownloadRequest(page, reporter);
+    await step3_VerifySuccessMessage(page, reporter);
+    
+    // Set the test status as passed and end the test
+    reporter.onTestEnd(test, { status: "passed" });
+});
+```
+
+Please note that I have added a new page object model for the dashboard PDF download functionality.
+2025-06-11 12:28:55,980 - test_code_generator.validator.javascript_code_validator - INFO - Extracting JavaScript code blocks

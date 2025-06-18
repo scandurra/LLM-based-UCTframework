@@ -4,33 +4,33 @@ import { CensusSheetPage } from '../../models/page_object_models/census_sheet_pa
 
 import TestResultReporter from '../../models/test-result-reporter.js';
 
-import { openCensusSheetsInterface } from '../UC3/UC3_TC1.functions.js';
-
-export const visualizeCensusSheets = async function(page, reporter) {
+export const openCensusSheetsSection = async function(page, reporter) {
   const startTime = new Date().getTime();
-  await openCensusSheetsInterface(page, null);
+  // Preconditions: UC3
+  await page.goto(process.env.E2E_DASHBOARD_URL);
   const censusSheetPage = new CensusSheetPage(page);
-  await expect(censusSheetPage.censusSheetsHeader).toBeVisible();
+  await censusSheetPage.clickAzioniButton();
   const endTime = new Date().getTime();
   const executionTime = (endTime - startTime) / 1000;
   if (reporter) {
-    reporter.addStep('UC3.1_TC1_ID1', 'Visualize census sheets', 'Census sheets table is visible', 'Census sheets table is visible', true, '', executionTime);
+    reporter.addStep('UC3.1_TC1_ID1', 'Open census sheets section', 'Census sheets section opened', 'Census sheets section opened', true, '', executionTime);
   }
+  expect(await censusSheetPage.isCensusSheetsPageVisible()).toBeTruthy();
 }
 
-export const sortCensusSheets = async function(page, reporter) {
+export const sortColumns = async function(page, reporter) {
   const startTime = new Date().getTime();
   const censusSheetPage = new CensusSheetPage(page);
-  await censusSheetPage.clickAzioniColumn();
+  await censusSheetPage.clickSchedaColumn();
   const endTime = new Date().getTime();
   const executionTime = (endTime - startTime) / 1000;
   if (reporter) {
-    reporter.addStep('UC3.1_TC1_ID2', 'Sort census sheets', 'Census sheets are sorted', 'Census sheets are sorted', true, '', executionTime);
+    reporter.addStep('UC3.1_TC1_ID2', 'Sort columns', 'Columns sorted', 'Columns sorted', true, '', executionTime);
   }
-  await expect(censusSheetPage.azioniColumn).toBeVisible();
+  expect(await censusSheetPage.isCensusSheetsPageVisible()).toBeTruthy();
 }
 
-export const scrollCensusSheets = async function(page, reporter) {
+export const scrollColumns = async function(page, reporter) {
   const startTime = new Date().getTime();
   const censusSheetPage = new CensusSheetPage(page);
   await page.evaluate(() => {
@@ -39,7 +39,7 @@ export const scrollCensusSheets = async function(page, reporter) {
   const endTime = new Date().getTime();
   const executionTime = (endTime - startTime) / 1000;
   if (reporter) {
-    reporter.addStep('UC3.1_TC1_ID3', 'Scroll census sheets', 'All columns are visible and scrollable', 'All columns are visible and scrollable', true, '', executionTime);
+    reporter.addStep('UC3.1_TC1_ID3', 'Scroll columns', 'Columns scrolled', 'Columns scrolled', true, '', executionTime);
   }
-  await expect(censusSheetPage.statsColumn).toBeVisible();
+  expect(await censusSheetPage.isCensusSheetsPageVisible()).toBeTruthy();
 }

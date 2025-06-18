@@ -7,9 +7,9 @@ import TestResultReporter from '../../models/test-result-reporter.js';
 test("UC2_TC1 - Open dashboard with authorized user", async ({page, browserName}) => {
     const reporter = new TestResultReporter();
     reporter.setBrowserName(browserName);
-    reporter.setTestCase("UC2_TC1 - Open dashboard with authorized user");
+    reporter.setTestCase("UC2_TC1", "Open dashboard with authorized user");
 
-    // Navigate to login page
+    // Navigate to the login page
     await page.goto(process.env.E2E_LOGIN_URL);
 
     // Call step functions in sequence

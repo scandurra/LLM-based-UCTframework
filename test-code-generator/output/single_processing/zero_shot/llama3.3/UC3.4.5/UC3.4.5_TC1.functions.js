@@ -12,40 +12,62 @@ export const selectDettaglioOperation = async function(page, reporter) {
     await clickAzioneButton(page, null);
     const censusSheetPage = new CensusSheetPage(page);
     await censusSheetPage.clickAzioneDettaglio();
-    
+
     const endTime = new Date().getTime();
     const executionTime = (endTime - startTime) / 1000;
+    let passFail = true;
+    try {
+        await page.waitForNavigation({ waitUntil: 'networkidle' });
+    } catch (error) {
+        passFail = false;
+    }
     if (reporter) {
-        reporter.addStep('UC3.4.5_TC1_ID1', 'Select dettaglio operation on an existing census sheet', 'The detail page opens correctly', 'The detail page opens correctly', true, '', executionTime);
+        reporter.addStep('UC3.4.5_TC1_ID1', 'Select dettaglio operation on an existing census sheet', 'The detail page opens correctly', `Navigated to detail page`, passFail, '', executionTime);
     }
 
-    expect(await page.url()).toContain('dettaglio');
+    expect(passFail).toBeTruthy();
 }
 
 export const verifyGeneralData = async function(page, reporter) {
     const startTime = new Date().getTime();
     
-    // TO DO: implement verification of general data
-    // For now, just a placeholder assertion
-    expect(true).toBeTruthy();
-    
+    // Put here the logic to verify general data
+    // For example:
+    await page.waitForSelector('text=General Data');
+    const generalDataText = await page.textContent('text=General Data');
+
     const endTime = new Date().getTime();
     const executionTime = (endTime - startTime) / 1000;
-    if (reporter) {
-        reporter.addStep('UC3.4.5_TC1_ID2', 'Verify presence of general data', 'All required data is displayed correctly', 'All required data is displayed correctly', true, '', executionTime);
+    let passFail = true;
+    if (!generalDataText) {
+        passFail = false;
     }
+    if (reporter) {
+        reporter.addStep('UC3.4.5_TC1_ID2', 'Verify general data of the area and hierarchy of POD and Aree Omogenee', 'All required data is displayed correctly', `General data text: ${generalDataText}`, passFail, '', executionTime);
+    }
+
+    expect(passFail).toBeTruthy();
 }
 
 export const navigateHierarchy = async function(page, reporter) {
     const startTime = new Date().getTime();
     
-    // TO DO: implement navigation in the hierarchy
-    // For now, just a placeholder assertion
-    expect(true).toBeTruthy();
-    
+    // Put here the logic to navigate hierarchy
+    // For example:
+    await page.click('text=POD');
+    await page.click('text=Aree Omogenee');
+
     const endTime = new Date().getTime();
     const executionTime = (endTime - startTime) / 1000;
-    if (reporter) {
-        reporter.addStep('UC3.4.5_TC1_ID3', 'Navigate in the hierarchy of POD and Aree Omogenee', 'Navigation occurs without errors', 'Navigation occurs without errors', true, '', executionTime);
+    let passFail = true;
+    try {
+        await page.waitForNavigation({ waitUntil: 'networkidle' });
+    } catch (error) {
+        passFail = false;
     }
+    if (reporter) {
+        reporter.addStep('UC3.4.5_TC1_ID3', 'Navigate hierarchy of POD and Aree Omogenee', 'Navigation occurs without errors', `Navigated to hierarchy pages`, passFail, '', executionTime);
+    }
+
+    expect(passFail).toBeTruthy();
 }

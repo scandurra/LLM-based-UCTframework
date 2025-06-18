@@ -1,54 +1,67 @@
-// Import necessary libraries and page object models
-const { DateTime } = require('luxon');
-const LoginPage = require("../../models/page_object_models/login_page.js");
+import { test, expect } from '@playwright/test';
 
-async function step1_InserisciCredenzialiCorretteNelFormDiLogin(loginPage, reporter) {
-    const startTime = DateTime.now();
+import { LoginPage } from '../../models/page_object_models/login_page.js';
+
+import TestResultReporter from '../../models/test-result-reporter.js';
+
+export const insertCorrectCredentials = async function(page, reporter) {
+    const startTime = new Date().getTime();
     
-    // Step 1 implementation: Inserisci le credenziali corrette nel form di login
-    await loginPage.clickLoginLink();
-    await loginPage.fillEmail("test@example.com");
-    await loginPage.fillPassword("password");
-    
-    const endTime = DateTime.now();
-    const executionTime = endTime - startTime;
-    if (reporter) {
-        reporter.addStep('UC1_TC1_ID1', 'Inserisci le credenziali corrette nel form di login', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+    const loginPage = new LoginPage(page);
+    await loginPage.fillEmail(process.env.EMAIL);
+    await loginPage.fillPassword(process.env.PASSWORD);
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    let passFail = true;
+    if (!await loginPage.isEmailFieldVisible()) {
+        passFail = false;
     }
-    
-    // Playwright assertion: Check that the email field is visible
-    await expect(loginPage.emailFieldSelector).toBeVisible();
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID1', 'Insert correct credentials in the login form', 'The system accepts the credentials', `Filled email: ${process.env.EMAIL}, Filled password: *****`, passFail, `EMAIL: ${process.env.EMAIL}, PASSWORD: *****`, executionTime);
+    }
+
+    expect(passFail).toBeTruthy();
 }
 
-async function step2_CliccaTastoLogin(loginPage, reporter) {
-    const startTime = DateTime.now();
+export const clickLoginButton = async function(page, reporter) {
+    const startTime = new Date().getTime();
     
-    // Step 2 implementation: Clicca il tasto “Login”
+    const loginPage = new LoginPage(page);
     await loginPage.clickLoginButton();
-    
-    const endTime = DateTime.now();
-    const executionTime = endTime - startTime;
-    if (reporter) {
-        reporter.addStep('UC1_TC1_ID2', 'Clicca il tasto “Login”', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    let passFail = true;
+    // Add assertion to check if the user is authenticated
+    try {
+        await page.waitForNavigation({ url: process.env.E2E_HOME_URL });
+    } catch (error) {
+        passFail = false;
     }
-    
-    // Playwright assertion: Check that the login button is visible and enabled
-    await expect(loginPage.loginButton).toBeVisible();
-    await expect(loginPage.loginButton).not.toBeDisabled();
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID2', 'Click the “Login” button', 'The user is authenticated successfully', `Navigated to ${process.env.E2E_HOME_URL}`, passFail, '', executionTime);
+    }
+
+    expect(passFail).toBeTruthy();
 }
 
-async function step3_VisualizzaMessaggioOperazioneCompletataConSuccesso(loginPage, reporter) {
-    const startTime = DateTime.now();
+export const verifyAuthenticationSuccessMessage = async function(page, reporter) {
+    const startTime = new Date().getTime();
     
-    // Step 3 implementation: Visualizza il messaggio di operazione completata con successo
-    await loginPage.isEmailFieldVisible();
-    
-    const endTime = DateTime.now();
-    const executionTime = endTime - startTime;
-    if (reporter) {
-        reporter.addStep('UC1_TC1_ID3', 'Visualizza il messaggio di operazione completata con successo', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+    // Add assertion to check if the authentication success message is displayed
+    let authenticationSuccessMessage = 'Authentication successful';
+    try {
+        await page.waitForSelector(`text="${authenticationSuccessMessage}"`);
+    } catch (error) {
+        passFail = false;
     }
-    
-    // Playwright assertion: Check that the email field is visible after login
-    await expect(loginPage.emailFieldSelector).toBeVisible();
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    let passFail = true;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID3', 'Display the operation completion message with success', 'The message confirms the authentication', `Message: ${authenticationSuccessMessage}`, passFail, '', executionTime);
+    }
+
+    expect(passFail).toBeTruthy();
 }

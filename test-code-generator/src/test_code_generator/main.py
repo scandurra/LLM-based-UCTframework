@@ -14,8 +14,10 @@ from dataclasses import asdict
 
 
 timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-log_filename = os.path.join("logs/single_processing/one_shot/llama3.3", f"{timestamp}.log")
-# log_filename = os.path.join("logs/single_processing/zero_shot/codellama", f"{timestamp}.log")
+
+log_filename = os.path.join("logs/single_processing/few_shot/codellama", f"{timestamp}.log")
+# log_filename = os.path.join("logs/single_processing/one_shot/llama3.3", f"{timestamp}.log")
+# log_filename = os.path.join("logs/single_processing/few_shot/llama3.3", f"{timestamp}.log")
 logging.basicConfig(filename=log_filename, encoding="utf-8", level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
 logger = logging.getLogger(__name__)
@@ -38,26 +40,29 @@ def main():
     parser.add_argument("-uc", "--use_case_name", type=str, help="Name of the test case", default=None)
     parser.add_argument("-tc", "--test_case_name", action='append', help="Specify a test case")
     parser.add_argument("-m", "--model", type=str, help="Model", default="llama3.3")
+    parser.add_argument("-c", "--configuration", type=str, help="Configuration", default="zero_shot")
     args = parser.parse_args()
 
     use_case_name = args.use_case_name
     test_case_names = args.test_case_name
     model = args.model
+    configuration = args.configuration
     model_name_short = model.split(":")[0]
 
+    logger.info(f"Started execution for use case {use_case_name} - test case {test_case_names} - model {model} - configuration {configuration}")
 
     dependency_graph_path = "./input_files/include_graph/include_graph.json"
     # prompt_template_path = f"./prompts/single_processing/zero_shot/{model_name_short}"
-    prompt_template_path = f"./prompts/single_processing/one_shot/{model_name_short}"
-    # prompt_template_path = f"./prompts/single_processing/few_shot/{model_name_short}"
+    # prompt_template_path = f"./prompts/single_processing/one_shot/{model_name_short}"
+    prompt_template_path = f"./prompts/single_processing/{configuration}/{model_name_short}"
     test_parameters_path = "./input_files/parameters/test_parameters.env"
     pom_folder_path = "./input_files/pom"
     existing_code_path = "./input_files/reporter_minimal.js"
     test_cases_folder = "./input_files/test_cases/"
 
     # output_path = "./output/single_processing/zero_shot/" + model_name_short
-    output_path = "./output/single_processing/one_shot/" + model_name_short
-    # output_path = "./output/single_processing/few_shot/" + model_name_short
+    # output_path = "./output/single_processing/one_shot/" + model_name_short
+    output_path = f"./output/single_processing/{configuration}/{model_name_short}"
 
 
     # Build depdendency graph
@@ -116,9 +121,10 @@ def main():
         prompt = prompt_builder.build_prompt(test_case.test_case_id, test_case, dependent_uc_code, pom_content)
 
         llm_client = OllamaClient(model=model)
-        response = llm_client.generate(prompt, temperature=0.0)
+        response = llm_client.chat(prompt, temperature=0.0)
     
         print("---------------------------------")
+        logger.info(f"Model response:\n{response.response}")
         print(response.response)
         print("\n\n")
 
@@ -138,6 +144,8 @@ def main():
         # Save execution parameters
         with open(os.path.join(folder_abs_path, f"{test_case.test_case_id}.json"), "w") as f:
             f.write(json.dumps(asdict(response), indent=2))
+
+        logger.info("File saved")
 
 
 if __name__ == "__main__":

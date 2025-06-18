@@ -14,14 +14,15 @@ export const selectDettaglioOperation = async function(page, reporter) {
   if (reporter) {
     reporter.addStep('UC3.4.5_TC1_ID1', 'Select dettaglio operation', 'Dettaglio operation selected', 'Dettaglio operation selected', true, '', executionTime);
   }
-  await expect(censusSheetPage.page.locator('.text-start > .btn')).toBeVisible();
+  expect(await page.url()).toContain('dettaglio');
 }
 
 export const verifyGeneralData = async function(page, reporter) {
   const startTime = new Date().getTime();
   const censusSheetPage = new CensusSheetPage(page);
   // Add assertions to verify general data
-  await expect(censusSheetPage.page.locator('text=General Data')).toBeVisible();
+  await expect(page).toContainText('Area:');
+  await expect(page).toContainText('Gerarchia dei POD e Aree Omogenee:');
   const endTime = new Date().getTime();
   const executionTime = (endTime - startTime) / 1000;
   if (reporter) {
@@ -33,11 +34,12 @@ export const navigateGerarchia = async function(page, reporter) {
   const startTime = new Date().getTime();
   const censusSheetPage = new CensusSheetPage(page);
   // Add code to navigate gerarchia
-  await censusSheetPage.clickAzioniButton();
-  await censusSheetPage.clickAzioneDettaglio();
+  await page.click('text="POD"');
+  await page.click('text="Aree Omogenee"');
   const endTime = new Date().getTime();
   const executionTime = (endTime - startTime) / 1000;
   if (reporter) {
     reporter.addStep('UC3.4.5_TC1_ID3', 'Navigate gerarchia', 'Gerarchia navigated', 'Gerarchia navigated', true, '', executionTime);
   }
+  expect(page.url()).toContain('gerarchia');
 }

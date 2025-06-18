@@ -8,14 +8,27 @@ import { openCensusSheetsInterface } from '../UC3/UC3_TC1.functions.js';
 
 export const searchCensusSheets = async function(page, reporter) {
   const startTime = new Date().getTime();
+  await openCensusSheetsInterface(page, null);
   const censusSheetPage = new CensusSheetPage(page);
-  await expect(censusSheetPage.searchInput).toBeVisible();
   await censusSheetPage.searchByName('Lucania');
   const endTime = new Date().getTime();
   const executionTime = (endTime - startTime) / 1000;
   if (reporter) {
     reporter.addStep('UC3.2_TC1_ID1', 'Search census sheets', 'Census sheets searched', 'Census sheets searched', true, '', executionTime);
   }
+  expect(await censusSheetPage.isCensusSheetsPageVisible()).toBeTruthy();
+}
+
+export const insertValidSearchParameters = async function(page, reporter) {
+  const startTime = new Date().getTime();
+  const censusSheetPage = new CensusSheetPage(page);
+  await censusSheetPage.searchByName('Lucania');
+  const endTime = new Date().getTime();
+  const executionTime = (endTime - startTime) / 1000;
+  if (reporter) {
+    reporter.addStep('UC3.2_TC1_ID2', 'Insert valid search parameters', 'Valid search parameters inserted', 'Valid search parameters inserted', true, '', executionTime);
+  }
+  expect(await censusSheetPage.isSearchBarVisible()).toBeTruthy();
 }
 
 export const executeSearch = async function(page, reporter) {
@@ -26,17 +39,7 @@ export const executeSearch = async function(page, reporter) {
   const endTime = new Date().getTime();
   const executionTime = (endTime - startTime) / 1000;
   if (reporter) {
-    reporter.addStep('UC3.2_TC1_ID2', 'Execute search', 'Search executed', 'Search executed', true, '', executionTime);
+    reporter.addStep('UC3.2_TC1_ID3', 'Execute search', 'Search executed', 'Search executed', true, '', executionTime);
   }
-}
-
-export const verifySearchResults = async function(page, reporter) {
-  const startTime = new Date().getTime();
-  const censusSheetPage = new CensusSheetPage(page);
-  await expect(censusSheetPage.censusSheetsHeader).toBeVisible();
-  const endTime = new Date().getTime();
-  const executionTime = (endTime - startTime) / 1000;
-  if (reporter) {
-    reporter.addStep('UC3.2_TC1_ID3', 'Verify search results', 'Search results verified', 'Search results verified', true, '', executionTime);
-  }
+  expect(await censusSheetPage.isCensusSheetsPageVisible()).toBeTruthy();
 }

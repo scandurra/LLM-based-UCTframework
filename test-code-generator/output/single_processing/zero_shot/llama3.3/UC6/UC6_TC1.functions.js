@@ -12,14 +12,20 @@ export const accessSystemAsRegisteredUser = async function(page, reporter) {
     await insertCorrectCredentials(page, null);
     await clickLoginButton(page, null);
     await verifyAuthenticationSuccessMessage(page, null);
-    
+
     const endTime = new Date().getTime();
     const executionTime = (endTime - startTime) / 1000;
+    let passFail = true;
+    try {
+        await page.waitForURL(process.env.E2E_DASHBOARD_URL);
+    } catch (error) {
+        passFail = false;
+    }
     if (reporter) {
-        reporter.addStep('UC6_TC1_ID1', 'Access the system as a registered user', 'The user dashboard is displayed', 'The user dashboard is displayed', true, '', executionTime);
+        reporter.addStep('UC6_TC1_ID1', 'Access the system as a registered user', 'The user dashboard is displayed', `Navigated to ${process.env.E2E_DASHBOARD_URL}`, passFail, '', executionTime);
     }
 
-    expect(await page.url()).toBe(process.env.E2E_HOME_URL);
+    expect(passFail).toBeTruthy();
 }
 
 export const clickLogoutButton = async function(page, reporter) {
@@ -28,27 +34,38 @@ export const clickLogoutButton = async function(page, reporter) {
     const navbarPage = new NavbarPage(page);
     await navbarPage.clickUserIcon();
     await navbarPage.clickLogout();
-    
+
     const endTime = new Date().getTime();
     const executionTime = (endTime - startTime) / 1000;
+    let passFail = true;
+    try {
+        await page.waitForURL(process.env.E2E_LOGIN_URL);
+    } catch (error) {
+        passFail = false;
+    }
     if (reporter) {
-        reporter.addStep('UC6_TC1_ID2', 'Click on the username and select the “Logout” button', 'The logout process starts', 'The logout process starts', true, '', executionTime);
+        reporter.addStep('UC6_TC1_ID2', 'Click the logout button', 'The logout process starts', `Navigated to ${process.env.E2E_LOGIN_URL}`, passFail, '', executionTime);
     }
 
-    expect(await page.url()).not.toBe(process.env.E2E_HOME_URL);
+    expect(passFail).toBeTruthy();
 }
 
 export const confirmLogoutIntention = async function(page, reporter) {
     const startTime = new Date().getTime();
     
-    // Assuming the success message is visible after successful logout
-    const successMessage = await page.isVisible('text=Logout successful');
-    
+    // Add assertion to check if the logout success message is displayed
+    let logoutSuccessMessage = 'Logout successful';
+    try {
+        await page.waitForSelector(`text="${logoutSuccessMessage}"`);
+    } catch (error) {
+        passFail = false;
+    }
     const endTime = new Date().getTime();
     const executionTime = (endTime - startTime) / 1000;
+    let passFail = true;
     if (reporter) {
-        reporter.addStep('UC6_TC1_ID3', 'Confirm the intention to log out', 'A success message confirms the disconnection', successMessage ? 'A success message confirms the disconnection' : 'No message found', successMessage, '', executionTime);
+        reporter.addStep('UC6_TC1_ID3', 'Confirm the intention to log out', 'A success message confirms the disconnection', `Message: ${logoutSuccessMessage}`, passFail, '', executionTime);
     }
 
-    expect(successMessage).toBeTruthy();
+    expect(passFail).toBeTruthy();
 }

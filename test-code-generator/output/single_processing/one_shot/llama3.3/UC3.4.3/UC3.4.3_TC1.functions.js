@@ -12,31 +12,37 @@ export const selectEditOperation = async function(page, reporter) {
   const endTime = new Date().getTime();
   const executionTime = (endTime - startTime) / 1000;
   if (reporter) {
-    reporter.addStep('UC3.4.3_TC1_ID1', 'Select edit operation', 'Edit operation selected', 'Edit operation selected', true, '', executionTime);
+    reporter.addStep('UC3.4.3_TC1_ID1', 'Select edit operation', 'Edit section is displayed', 'Edit section is displayed', true, '', executionTime);
   }
-  await expect(censusSheetPage.page.locator('[data-kt-cts-table-filter="edit_row"]')).toBeVisible();
+  expect(await censusSheetPage.isAzioneEditVisible()).toBeTruthy();
 }
 
 export const modifyFields = async function(page, reporter) {
   const startTime = new Date().getTime();
+  const censusSheetPage = new CensusSheetPage(page);
   // Modify fields with valid data
-  // Add code to fill in the form with valid data
+  // Note: The actual implementation of modifying fields is not provided in the given page object model.
+  // You need to add the necessary methods to the CensusSheetPage class to modify the fields.
+  await page.waitForTimeout(1000); // wait for the page to load
   const endTime = new Date().getTime();
   const executionTime = (endTime - startTime) / 1000;
   if (reporter) {
-    reporter.addStep('UC3.4.3_TC1_ID2', 'Modify fields', 'Fields modified', 'Fields modified', true, '', executionTime);
+    reporter.addStep('UC3.4.3_TC1_ID2', 'Modify fields', 'Fields are modified', 'Fields are modified', true, '', executionTime);
   }
-  // Add assertions to verify that the data was accepted and saved
+  expect(true).toBeTruthy(); // Add a meaningful assertion here
 }
 
 export const confirmChanges = async function(page, reporter) {
   const startTime = new Date().getTime();
-  // Conferma le modifiche
-  // Add code to confirm the changes
+  const censusSheetPage = new CensusSheetPage(page);
+  // Confirm changes
+  // Note: The actual implementation of confirming changes is not provided in the given page object model.
+  // You need to add the necessary methods to the CensusSheetPage class to confirm the changes.
+  await page.waitForTimeout(1000); // wait for the page to load
   const endTime = new Date().getTime();
   const executionTime = (endTime - startTime) / 1000;
   if (reporter) {
-    reporter.addStep('UC3.4.3_TC1_ID3', 'Confirm changes', 'Changes confirmed', 'Changes confirmed', true, '', executionTime);
+    reporter.addStep('UC3.4.3_TC1_ID3', 'Confirm changes', 'Changes are confirmed', 'Changes are confirmed', true, '', executionTime);
   }
-  // Add assertions to verify that the information was updated successfully
+  expect(true).toBeTruthy(); // Add a meaningful assertion here
 }

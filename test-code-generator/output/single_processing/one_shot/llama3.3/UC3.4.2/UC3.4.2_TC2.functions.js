@@ -14,17 +14,16 @@ export const selectDeleteOperation = async function(page, reporter) {
   if (reporter) {
     reporter.addStep('UC3.4.2_TC2_ID1', 'Select delete operation', 'Delete operation selected', 'Delete operation selected', true, '', executionTime);
   }
-  await expect(censusSheetPage.page.locator('button.swal2-confirm.btn.fw-bold.btn-danger')).toBeVisible();
+  expect(await page.locator('button.swal2-confirm.btn.fw-bold.btn-danger').isVisible()).toBeTruthy();
 }
 
 export const cancelDeletion = async function(page, reporter) {
   const startTime = new Date().getTime();
-  const censusSheetPage = new CensusSheetPage(page);
-  await censusSheetPage.clickCancelAzioneDelete();
+  await page.locator('button.swal2-cancel.btn.fw-bold.btn-active-light-primary').click();
   const endTime = new Date().getTime();
   const executionTime = (endTime - startTime) / 1000;
   if (reporter) {
     reporter.addStep('UC3.4.2_TC2_ID2', 'Cancel deletion', 'Deletion cancelled', 'Deletion cancelled', true, '', executionTime);
   }
-  await expect(censusSheetPage.page.locator('.text-start > .btn')).toBeVisible();
+  expect(await page.locator('.text-start > .btn').first().isVisible()).toBeTruthy();
 }

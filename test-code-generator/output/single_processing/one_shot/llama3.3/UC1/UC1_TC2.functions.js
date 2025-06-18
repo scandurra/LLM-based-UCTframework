@@ -15,8 +15,6 @@ export const insertIncorrectCredentials = async function(page, reporter) {
   if (reporter) {
     reporter.addStep('UC1_TC2_ID1', 'Insert incorrect credentials', 'Credentials are not valid', 'Credentials are not valid', true, { email: 'wrong-email@example.com', password: 'wrong-password' }, executionTime);
   }
-  await expect(loginPage.emailInput).toHaveValue('wrong-email@example.com');
-  await expect(loginPage.passwordInput).toHaveValue('wrong-password');
 }
 
 // Step 2
@@ -29,18 +27,18 @@ export const clickLoginButton = async function(page, reporter) {
   if (reporter) {
     reporter.addStep('UC1_TC2_ID2', 'Click login button', 'Error message is displayed', 'Error message is displayed', true, '', executionTime);
   }
-  await expect(loginPage.loginButton).toBeDisabled();
+  await expect(loginPage.page.getByText('Invalid email or password')).toBeVisible();
 }
 
 // Step 3
-export const verifyRetryLogin = async function(page, reporter) {
+export const verifyRetryOption = async function(page, reporter) {
   const startTime = new Date().getTime();
   const loginPage = new LoginPage(page);
-  const isEmailFieldVisible = await loginPage.isEmailFieldVisible();
+  const retryButton = loginPage.page.getByRole('button', { name: 'Try again' });
   const endTime = new Date().getTime();
   const executionTime = (endTime - startTime) / 1000;
   if (reporter) {
-    reporter.addStep('UC1_TC2_ID3', 'Verify retry login', 'Login form is visible', isEmailFieldVisible ? 'Login form is visible' : 'Login form is not visible', isEmailFieldVisible, '', executionTime);
+    reporter.addStep('UC1_TC2_ID3', 'Verify retry option', 'Retry option is available', await retryButton.isVisible() ? 'Retry option is available' : 'Retry option is not available', await retryButton.isVisible(), '', executionTime);
   }
-  await expect(isEmailFieldVisible).toBe(true);
+  await expect(retryButton).toBeVisible();
 }

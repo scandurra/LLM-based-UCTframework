@@ -1,0 +1,415 @@
+2025-06-13 08:29:11,137 - __main__ - INFO - Found 0 dependencies for use case UC1
+2025-06-13 08:29:11,138 - test_code_generator.prompt_builder.prompt_builder - INFO - Test parameters loaded from path: ./input_files/parameters/test_parameters.env
+2025-06-13 08:29:11,138 - test_code_generator.prompt_builder.prompt_builder - INFO - Test reporter loaded from path: ./input_files/reporter_minimal.js
+2025-06-13 08:29:11,138 - test_code_generator.prompt_builder.prompt_builder - INFO - Previous code section loaded from path: ./prompts/batch_processing/zero_shot/llama3.3/previous_code_section.txt
+2025-06-13 08:29:11,138 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt built: 
+ROLE: system
+You are a testing engineer, expert in writing Javascript end-to-end tests with Playwright.
+
+Task: Analyze the test cases provided below and generate for each test case a complete and working Playwright test script in Javascript, following the steps described in each test case.
+When creating the test scripts, use only the page object model provided for interacting with the DOM and the parameters provided.
+------------------------------------------------------------------
+ROLE: user
+Use only this page object models for interacting with the DOM:
+File: login_page.js
+export class LoginPage {
+  constructor(page) {
+    this.page = page;
+    
+    // Locators
+    this.loginLink = page.getByRole('link', { name: 'Login' });
+    this.emailInput = page.getByLabel('E-mail');
+    this.passwordInput = page.getByLabel('Password', { exact: true });
+    this.loginButton = page.getByRole('button', { name: 'Login' });
+    
+    // Selectors
+    this.emailFieldSelector = 'input[name="email"]';
+  }
+
+  // Login flow methods
+  async clickLoginLink() {
+    await this.loginLink.click();
+  }
+
+  async isEmailFieldVisible() {
+    return await this.page.isVisible(this.emailFieldSelector);
+  }
+
+  async fillEmail(email) {
+    await this.emailInput.fill(email);
+  }
+
+  async fillPassword(password) {
+    await this.passwordInput.fill(password);
+  }
+
+  async clickLoginButton() {
+    await this.loginButton.click();
+  }
+}
+
+
+Use the following test parameters when creating scripts:
+E2E_BASE_URL=""
+E2E_LOGIN_URL=""
+E2E_HOME_URL="" 
+E2E_DASHBOARD_URL="" 
+E2E_CTS_URL="" 
+EMAIL=""
+PASSWORD=""
+
+
+
+Instructions:
+1. Analyze the test cases provided
+2. For each test case, generate a test script in Javascript with Playwright
+3. Use only Page object model provided to interact with the DOM.
+4. Call the TestResultReporter object methods as described below.
+5. Put the code in functions for reusability, with the reporter object as parameter not mandatory. If not null, call reporter methods. 
+6. Try to group steps of different test cases into common functions in a file called "UC*.functions.js" and each test in a file called "UC*_TC*.spec.js"
+7. Do not rewrite functions provided in the prompt, just refer to them.
+8. Add the required import for:
+    * test, expect, ... from '@playwright/test' in all files
+    * TestResultReporter from "../../models/test-result-reporter.js" 
+    * page object models from "../../models/page_object_models/<page_object_model_name>.js" 
+    * existing code from the path specified in the code snippet. Pay attention to add imports used also by the existing code. 
+    * make the generated "UC*_TC*.spec.js" files to reference functions in "UC*.functions.js" generated file
+
+<example>
+export const functionNameDescribingStep = async function(page, reporter) {
+    const startTime = DateTime.now();
+    
+    // Put here test case step implementation
+    
+    const endTime = DateTime.now();
+    const executionTime = endTime - startTime;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID1', 'Step 1 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+    }
+
+    // Include Playwright assertions
+    expect(passFail).toBeTruthy();
+}
+
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1", "Login test with success");
+
+    // Call step functions in sequence
+    await step1(page, reporter);
+    await step2(page, reporter);
+    // Additional steps...
+
+    reporter.onTestEnd(test, { status: "passed" });     // status can be "passed" or "failed" 
+});
+</example>
+
+Here the test cases to be converted in Playwright script:
+Test Case ID: UC1_TC1
+Title: Login con credenziali valide
+Use Case ID: UC1
+Priority: Alta
+Type: Positivo
+Preconditions: L’utente non è autenticato
+Postconditions: L’utente è autenticato ed è a conoscenza che l’operazione ha avuto successo
+Test Steps:
+  1. Step: Inserisci le credenziali corrette nel form di login
+Expected: Il sistema accetta le credenziali
+  2. Step: Clicca il tasto “Login”
+Expected: L’utente viene autenticato con successo
+  3. Step: Visualizza il messaggio di operazione completata con successo
+Expected: Il messaggio conferma l’avvenuta autenticazione
+
+Test Case ID: UC1_TC2
+Title: Login con credenziali errate
+Use Case ID: UC1
+Priority: Alta
+Type: Negativo
+Preconditions: L’utente non è autenticato
+Postconditions: L’utente visualizza un messaggio di errore
+Test Steps:
+  1. Step: Inserisci credenziali errate nel form di login
+Expected: Il sistema rileva le credenziali come non valide
+  2. Step: Clicca il tasto “Login”
+Expected: L’utente visualizza un messaggio di errore relativo alle credenziali
+  3. Step: Visualizza la possibilità di riprovare l’accesso
+Expected: Il sistema consente all’utente di ripetere il tentativo di login
+
+Test Case ID: UC1_TC3
+Title: Cambio della prima password di accesso
+Use Case ID: UC1
+Priority: Media
+Type: Positivo
+Preconditions: L’utente non è autenticato e sta effettuando il primo accesso
+Postconditions: La nuova password viene accettata e l’utente è autenticato
+Test Steps:
+  1. Step: Inserisci la nuova password richiesta al primo accesso
+Expected: Il sistema richiede la conferma della nuova password
+  2. Step: Conferma la nuova password
+Expected: Il sistema accetta la nuova password e autentica l’utente
+  3. Step: Visualizza il messaggio di operazione completata con successo
+Expected: L’utente è ora autenticato con la nuova password
+
+Test Case ID: UC1_TC4
+Title: Tentativo di login con campo username vuoto
+Use Case ID: UC1
+Priority: Media
+Type: Negativo
+Preconditions: L’utente non è autenticato
+Postconditions: Il sistema visualizza un messaggio di errore
+Test Steps:
+  1. Step: Lascia vuoto il campo username e inserisci una password
+Expected: Il sistema rileva l’assenza del username
+  2. Step: Clicca il tasto “Login”
+Expected: Il sistema visualizza un messaggio di errore relativo al campo vuoto
+  3. Step: Visualizza la possibilità di correggere l’input
+Expected: Il sistema consente all’utente di ripetere il tentativo di login
+
+Test Case ID: UC1_TC5
+Title: Inserimento di caratteri non ammessi nella password
+Use Case ID: UC1
+Priority: Media
+Type: Negativo
+Preconditions: L’utente sta cambiando la propria password
+Postconditions: Il sistema visualizza un messaggio di errore
+Test Steps:
+  1. Step: Inserisci una password con caratteri non ammessi durante il cambio password
+Expected: Il sistema rileva i caratteri non validi
+  2. Step: Conferma la password
+Expected: Il sistema visualizza un messaggio di errore relativo ai caratteri non ammessi
+  3. Step: Visualizza la possibilità di correggere la password
+Expected: Il sistema consente all’utente di ripetere il tentativo di inserimento della password
+
+Test Case ID: UC1_TC6
+Title: Tentativo di SQL injection nel campo username
+Use Case ID: UC1
+Priority: Alta
+Type: Sicurezza
+Preconditions: L’utente non è autenticato
+Postconditions: Il sistema deve essere in grado di prevenire l’iniezione di codice malevolo
+Test Steps:
+  1. Step: Inserisci una stringa di testo che simula un attacco di SQL injection nel campo username
+Expected: Il sistema deve rilevare e bloccare la possibile iniezione di codice
+  2. Step: Clicca il tasto “Login”
+Expected: Il sistema visualizza un messaggio di errore generico senza esporre informazioni sensibili
+  3. Step: Verifica che il sistema non abbia subito danni
+Expected: Il sistema rimane integro e funzionale
+
+Output format:
+* Output only valid and runnable JavaScript code
+* Do not write code implementation provided in the prompt, only reference it
+* Structure the code in files using markdown code blocks specifying the file name
+2025-06-13 08:29:11,138 - test_code_generator.llm_client.ollama_client - INFO - OllamaClient initialized with model: llama3.3:latest
+2025-06-13 08:36:13,848 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-06-13 08:36:13,849 - test_code_generator.llm_client.ollama_client - INFO - Ollama responded in 422708537409 time, with 1963 tokens in prompt and 1745 tokens in response. Content:
+ ### UC1.functions.js
+```javascript
+import { LoginPage } from "../../models/page_object_models/login_page.js";
+import { test, expect } from '@playwright/test';
+import { TestResultReporter } from "../../models/test-result-reporter.js";
+
+export const loginWithValidCredentials = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const loginPage = new LoginPage(page);
+    await loginPage.fillEmail(process.env.EMAIL);
+    await loginPage.fillPassword(process.env.PASSWORD);
+    await loginPage.clickLoginButton();
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID1', 'Login with valid credentials', true, true, true, `Email: ${process.env.EMAIL}, Password: ${process.env.PASSWORD}`, executionTime);
+    }
+
+    expect(await loginPage.isEmailFieldVisible()).toBeFalsy();
+}
+
+export const loginWithInvalidCredentials = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const loginPage = new LoginPage(page);
+    await loginPage.fillEmail('invalid-email');
+    await loginPage.fillPassword('invalid-password');
+    await loginPage.clickLoginButton();
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC1_TC2_ID1', 'Login with invalid credentials', true, true, true, `Email: invalid-email, Password: invalid-password`, executionTime);
+    }
+
+    expect(await loginPage.isEmailFieldVisible()).toBeTruthy();
+}
+
+export const changeFirstPassword = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const loginPage = new LoginPage(page);
+    await loginPage.fillEmail(process.env.EMAIL);
+    await loginPage.fillPassword('new-password');
+    await loginPage.clickLoginButton();
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC1_TC3_ID1', 'Change first password', true, true, true, `Email: ${process.env.EMAIL}, Password: new-password`, executionTime);
+    }
+
+    expect(await loginPage.isEmailFieldVisible()).toBeFalsy();
+}
+
+export const loginWithEmptyUsername = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const loginPage = new LoginPage(page);
+    await loginPage.fillEmail('');
+    await loginPage.fillPassword(process.env.PASSWORD);
+    await loginPage.clickLoginButton();
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC1_TC4_ID1', 'Login with empty username', true, true, true, `Email: , Password: ${process.env.PASSWORD}`, executionTime);
+    }
+
+    expect(await loginPage.isEmailFieldVisible()).toBeTruthy();
+}
+
+export const insertInvalidCharactersInPassword = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const loginPage = new LoginPage(page);
+    await loginPage.fillEmail(process.env.EMAIL);
+    await loginPage.fillPassword('password!@#$');
+    await loginPage.clickLoginButton();
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC1_TC5_ID1', 'Insert invalid characters in password', true, true, true, `Email: ${process.env.EMAIL}, Password: password!@#$`, executionTime);
+    }
+
+    expect(await loginPage.isEmailFieldVisible()).toBeTruthy();
+}
+
+export const sqlInjectionAttack = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const loginPage = new LoginPage(page);
+    await loginPage.fillEmail("SELECT * FROM users WHERE id = 1");
+    await loginPage.fillPassword(process.env.PASSWORD);
+    await loginPage.clickLoginButton();
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC1_TC6_ID1', 'SQL injection attack', true, true, true, `Email: SELECT * FROM users WHERE id = 1, Password: ${process.env.PASSWORD}`, executionTime);
+    }
+
+    expect(await loginPage.isEmailFieldVisible()).toBeTruthy();
+}
+```
+
+### UC1_TC1.spec.js
+```javascript
+import { test, expect } from '@playwright/test';
+import { TestResultReporter } from "../../models/test-result-reporter.js";
+import { loginWithValidCredentials } from "./UC1.functions.js";
+
+test("UC1_TC1 - Login with valid credentials", async ({ page, browserName }) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1", "Login with valid credentials");
+
+    await loginWithValidCredentials(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+```
+
+### UC1_TC2.spec.js
+```javascript
+import { test, expect } from '@playwright/test';
+import { TestResultReporter } from "../../models/test-result-reporter.js";
+import { loginWithInvalidCredentials } from "./UC1.functions.js";
+
+test("UC1_TC2 - Login with invalid credentials", async ({ page, browserName }) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC2", "Login with invalid credentials");
+
+    await loginWithInvalidCredentials(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+```
+
+### UC1_TC3.spec.js
+```javascript
+import { test, expect } from '@playwright/test';
+import { TestResultReporter } from "../../models/test-result-reporter.js";
+import { changeFirstPassword } from "./UC1.functions.js";
+
+test("UC1_TC3 - Change first password", async ({ page, browserName }) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC3", "Change first password");
+
+    await changeFirstPassword(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+```
+
+### UC1_TC4.spec.js
+```javascript
+import { test, expect } from '@playwright/test';
+import { TestResultReporter } from "../../models/test-result-reporter.js";
+import { loginWithEmptyUsername } from "./UC1.functions.js";
+
+test("UC1_TC4 - Login with empty username", async ({ page, browserName }) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC4", "Login with empty username");
+
+    await loginWithEmptyUsername(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+```
+
+### UC1_TC5.spec.js
+```javascript
+import { test, expect } from '@playwright/test';
+import { TestResultReporter } from "../../models/test-result-reporter.js";
+import { insertInvalidCharactersInPassword } from "./UC1.functions.js";
+
+test("UC1_TC5 - Insert invalid characters in password", async ({ page, browserName }) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC5", "Insert invalid characters in password");
+
+    await insertInvalidCharactersInPassword(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+```
+
+### UC1_TC6.spec.js
+```javascript
+import { test, expect } from '@playwright/test';
+import { TestResultReporter } from "../../models/test-result-reporter.js";
+import { sqlInjectionAttack } from "./UC1.functions.js";
+
+test("UC1_TC6 - SQL injection attack", async ({ page, browserName }) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC6", "SQL injection attack");
+
+    await sqlInjectionAttack(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+```
+2025-06-13 08:36:13,849 - test_code_generator.validator.javascript_code_validator - INFO - Extracting JavaScript code blocks

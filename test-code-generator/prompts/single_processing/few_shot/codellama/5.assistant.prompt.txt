@@ -1,0 +1,83 @@
+<output file="UC8.2.3_TC1.functions.js">
+import { test, expect } from '@playwright/test';
+import { ReportEnergeticiPage } from '../../models/page_object_models/report_energetici_page.js';
+import TestResultReporter from '../../models/test-result-reporter.js';
+
+// Step 1
+export const navigateToReportEnergeticiPage = async function(page, reporter) {
+  const startTime = new Date().getTime();
+    await page.goto(process.env.E2E_REPORT_ENERGETICI_URL);
+    const endTime = new Date().getTime();
+    const executionTime = endTime - startTime;
+    if (reporter) {
+        reporter.addStep('UC08_TC1_ID1', 'Navigate to report energetici page', 'Support page loaded', 'Support page loaded', true, `E2E_REPORT_ENERGETICI_URL: ${process.env.E2E_REPORT_ENERGETICI_URL}`, executionTime);
+    }
+}
+
+// Step 2
+export const selectPeriodAndFormat = async function(page, reporter) {
+  const reportEnergeticiPage = new ReportEnergeticiPage(page);
+
+  let startTime = Date.now();
+  const fromDate = "2025-05-01";
+  const toDate = "2025-05-30";
+  const format = "csv"
+  await reportEnergeticiPage.selectIssueCategory();
+  await reportEnergeticiPage.enterIssueDescription();
+  await reportEnergeticiPage.enterEmail();
+  let endTime = Date.now();
+  
+  if (reporter) {
+    reporter.addStep('UC8_TC1_ID2', 'L\'utente compila i campi', `Campi compilati`, `Campi compilati`, true, { fromDate, toDate, format }, endTime - startTime);
+  }
+}
+
+// Step 3
+export const exportFile = async function (page, reporter) {
+  const reportEnergeticiPage = new ReportEnergeticiPage(page);
+
+  let passFail = 0;  // 1 se passato, 0 se fallito
+  let startTime = date.now();
+  await reportEnergeticiPage.clickExportButton();
+  await page.on('download', download => download.path().then(passFail = 1));
+  let endTime = date.now();
+
+  if (reporter) {
+    reporter.addStep('UC8_TC1_ID3', 
+      'Esportazione', 
+      "Il file viene scaricato correttamente", 
+      testPass ? "Il file viene scaricato correttamente" : "Errore nello scaricare il file",
+      testPass,
+      {},
+      endTime - startTime
+    );
+  }
+
+  expect(testPass).toBeTruthy();
+}
+</output>
+
+<output file="UC8.2.3_TC1.spec.js">
+import { test, expect } from '@playwright/test';
+import { ReportEnergeticiPage } from '../../models/page_object_models/report_energetici_page.js';
+import TestResultReporter from '../../models/test-result-reporter.js';
+import { navigateToReportEnergeticiPage, selectPeriodAndFormat, exportFile } from './UC8.2.3_TC1.functions.js'
+import { navigateToLoginPage, insertCorrectCredentials, clickLoginButton, verifySuccessMessage } from '../UC1/UC1_TC1.functions.js'
+
+test("UC10_TC1 - Invio richiesta di assistenza", async ({ page, browserName }) => {
+  reporter.setBrowserName(browserName);
+  reporter.setTestCase("UC10_TC1", "Invio richiesta di assistenza");
+
+  // Reuse existing method in the prompt without redefining them
+  await navigateToLoginPage(page, null);
+  await insertCorrectCredentials(page, null);
+  await clickLoginButton(page, null);
+  await verifySuccessMessage(page, null);
+
+  await navigateToReportEnergeticiPage(page, reporter);
+  await selectPeriodAndFormat(page, reporter);
+  await exportFile(page, reporter);
+
+  reporter.onTestEnd(test, { status: "passed" });
+});
+</output>

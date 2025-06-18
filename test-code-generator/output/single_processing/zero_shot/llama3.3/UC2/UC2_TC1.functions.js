@@ -12,14 +12,20 @@ export const accessPlatformAsRegisteredUser = async function(page, reporter) {
     await insertCorrectCredentials(page, null);
     await clickLoginButton(page, null);
     await verifyAuthenticationSuccessMessage(page, null);
-    
+
     const endTime = new Date().getTime();
     const executionTime = (endTime - startTime) / 1000;
+    let passFail = true;
+    try {
+        await page.waitForURL(process.env.E2E_HOME_URL);
+    } catch (error) {
+        passFail = false;
+    }
     if (reporter) {
-        reporter.addStep('UC2_TC1_ID1', 'Access the platform as a registered user', 'The home page of the platform is visible', 'The home page of the platform is visible', true, '', executionTime);
+        reporter.addStep('UC2_TC1_ID1', 'Access the platform as a registered user', 'The home page of the platform is visible', `Navigated to ${process.env.E2E_HOME_URL}`, passFail, '', executionTime);
     }
 
-    expect(await page.url()).toBe(process.env.E2E_HOME_URL);
+    expect(passFail).toBeTruthy();
 }
 
 export const selectDashboardMenu = async function(page, reporter) {
@@ -27,12 +33,18 @@ export const selectDashboardMenu = async function(page, reporter) {
     
     const sidebarPage = new SidebarPage(page);
     await sidebarPage.clickDashboardLink();
-    
+
     const endTime = new Date().getTime();
     const executionTime = (endTime - startTime) / 1000;
+    let passFail = true;
+    try {
+        await page.waitForURL(process.env.E2E_DASHBOARD_URL);
+    } catch (error) {
+        passFail = false;
+    }
     if (reporter) {
-        reporter.addStep('UC2_TC1_ID2', 'Select the dashboard menu item', 'The dashboard section opens correctly', 'The dashboard section opens correctly', true, '', executionTime);
+        reporter.addStep('UC2_TC1_ID2', 'Select the dashboard menu item', 'The dashboard section opens correctly', `Navigated to ${process.env.E2E_DASHBOARD_URL}`, passFail, '', executionTime);
     }
 
-    expect(await page.url()).toBe(process.env.E2E_DASHBOARD_URL);
+    expect(passFail).toBeTruthy();
 }

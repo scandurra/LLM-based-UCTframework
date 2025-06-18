@@ -1,0 +1,655 @@
+2025-06-12 14:48:01,034 - __main__ - INFO - Found 1 dependencies for use case UC3
+2025-06-12 14:48:01,035 - __main__ - INFO - Read previously generated functions code for use case UC1 - test case UC1_TC1
+2025-06-12 14:48:01,035 - __main__ - INFO - Read previously generated spec code for use case UC1 - test case UC1_TC1
+2025-06-12 14:48:01,035 - test_code_generator.prompt_builder.prompt_builder - INFO - Test parameters loaded from path: ./input_files/parameters/test_parameters.env
+2025-06-12 14:48:01,035 - test_code_generator.prompt_builder.prompt_builder - INFO - Test reporter loaded from path: ./input_files/reporter_minimal.js
+2025-06-12 14:48:01,035 - test_code_generator.prompt_builder.prompt_builder - INFO - Previous code section loaded from path: ./prompts/single_processing/one_shot/codellama/previous_code_section.txt
+2025-06-12 14:48:01,035 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt built: 
+ROLE: system
+You are a testing engineer, expert in writing Javascript end-to-end tests with Playwright.
+------------------------------------------------------------------
+ROLE: user
+Task: Analyze the test case provided below and generate a complete and working Playwright test script in Javascript, for legitimate software testing purposes of my own web application. 
+The test script must follow the steps described in the test case.
+When creating the test script, use only the page object model provided for interacting with the DOM and the parameters provided.
+
+Use only this page object models for interacting with the DOM:
+<page_object_model>
+// File: report_energetici_page.js
+export class ReportEnergeticiPage {  
+    constructor(page) {
+        this.page = page;
+        this.fromDateInput = page.locator("#from-date");
+        this.toDateInput = page.locator("#to-date");
+        this.exportFormatSelect = page.locator("#export-format");
+        this.exportButton = page.locator("#export-button");
+    }
+  
+    async selectFromDate(date) {
+        await this.fromDateInput.fill(date);
+    }
+  
+    async selectToDate(date) {
+        await this.toDateInput.fill(date);
+    }
+  
+    // format can be 'csv' or 'pdf'
+    async selectExportFormat(format) {
+        await this.exportFormatSelect.selectOption(format);
+    }
+  
+    async clickExportButton() {
+        return await this.exportButton.click();
+    }
+}
+</page_object_model>
+
+Use only the following parameters from environment variables in the test scripts:
+E2E_BASE_URL=""
+E2E_LOGIN_URL=""
+E2E_SUPPORT_URL=""
+E2E_SUPPORT_SUCCESS_URL = ""
+E2E_HOME_URL="" 
+E2E_DASHBOARD_URL="" 
+E2E_CTS_URL="" 
+EMAIL=""
+PASSWORD=""
+
+When in the test case there is a step, a precondition or a postcondition with a name of use case UC*, reuse this functions passing null as reporter parameter:
+<code>
+// File: UC1_TC1.functions.js
+import { test, expect } from '@playwright/test';
+import { LoginPage } from '../../models/page_object_models/login_page.js';
+import { insertCorrectCredentials, clickLoginButton, verifyAuthenticationSuccessMessage } from '../UC1/UC1_TC1.functions.js';
+import TestResultReporter from '../../models/test-result-reporter.js';
+
+export const navigateToLoginPage = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    await page.goto(process.env.E2E_LOGIN_URL);
+    
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID1', 'Navigate to login page', 'Login page loaded', 'Login page loaded', true, `E2E_LOGIN_URL: ${process.env.E2E_LOGIN_URL}`, executionTime);
+    }
+}
+
+export const insertCorrectCredentials = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const loginPage = new LoginPage(page);
+    await loginPage.enterEmail(process.env.E2E_LOGIN_EMAIL_ADMIN);
+    await loginPage.enterPassword(process.env.E2E_LOGIN_PASSWORD_ADMIN);
+    
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID2', 'Insert correct credentials', 'Credentials accepted', 'Credentials accepted', true, `E2E_LOGIN_EMAIL_ADMIN: ${process.env.E2E_LOGIN_EMAIL_ADMIN}, E2E_LOGIN_PASSWORD_ADMIN: ${process.env.E2E_LOGIN_PASSWORD_ADMIN}`, executionTime);
+    }
+}
+
+export const clickLoginButton = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const loginPage = new LoginPage(page);
+    await loginPage.login();
+    
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID3', 'Click login button', 'System proceeds with authentication', 'System proceeds with authentication', true, '', executionTime);
+    }
+}
+
+export const verifySuccessMessage = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const loginPage = new LoginPage(page);
+    const message = await loginPage.getErrorMessage();
+    
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID4', 'Verify success message', 'Success message displayed', message, message !== null, '', executionTime);
+    }
+
+    await expect(message).not.toBeNull();
+}
+
+// File: UC1_TC1.spec.js
+import { test, expect } from '@playwright/test';
+import { navigateToLoginPage, insertCorrectCredentials, clickLoginButton, verifySuccessMessage } from './UC1_TC1.functions.js';
+import TestResultReporter from '../../models/test-result-reporter.js';
+
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1", "Login test with success");
+
+    await navigateToLoginPage(page, reporter);
+    await insertCorrectCredentials(page, reporter);
+    await clickLoginButton(page, reporter);
+    await verifySuccessMessage(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+</code>
+
+Instructions:
+1. Analyze the test case provided
+2. For the test case, generate a test script in Javascript with Playwright
+3. Use only Page object model provided to interact with the DOM.
+4. Call the TestResultReporter object methods as described below.
+5. Put the code in functions for reusability, with the reporter object as parameter not mandatory. If not null, call reporter methods. 
+6. Put functions in a separate file called "UC8.2.3_TC1.functions.js" and the test in a file called "UC8.2.3_TC1.spec.js"
+7. Do not rewrite functions provided in the prompt, just refer to them.
+8. Add the required import for:
+    * test, expect, ... from '@playwright/test' in all files
+    * TestResultReporter from "../../models/test-result-reporter.js" 
+    * page object models from "../../models/page_object_models/<page_object_model_name>.js" 
+    * existing code from the path specified in the code snippet. Pay attention to add imports used also by the existing code. 
+    * make the generated "UC8.2.3_TC1.spec.js" file to reference functions in "UC8.2.3_TC1.functions.js" generated file
+
+<example>
+export const functionNameDescribingStep = async function(page, reporter) {
+    const startTime = DateTime.now();
+    
+    // Put here test case step implementation
+    
+    const endTime = DateTime.now();
+    const executionTime = endTime - startTime;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID1', 'Step 1 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+    }
+
+    // Include Playwright assertions
+    expect(passFail).toBeTruthy();
+}
+
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1", "Login test with success");
+
+    // Call step functions in sequence
+    await functionNameDescribingStep1(page, reporter);
+    await functionNameDescribingStep2(page, reporter);
+    // Additional steps...
+
+    reporter.onTestEnd(test, { status: "passed" });     // status can be "passed" or "failed" 
+});
+</example>
+
+Here the test case to be converted in Playwright script:
+<test_case>
+Test Case ID: UC8.2.3_TC1
+Title: Esportazione report in PDF con dati validi
+Use Case ID: UC8.2
+Priority: Alta
+Type: Positivo
+Preconditions: UC1
+Postconditions: Il file esportato viene scaricato correttamente
+Test Steps:
+  1. Step: Accedi alla pagina dei report energetici
+Expected: La sezione viene visualizzata correttamente
+  2. Step: Seleziona un periodo valido e il formato PDF
+Expected: Le selezioni vengono accettate
+  3. Step: Download del file
+Expected: Il file PDF viene generato e scaricato
+</test_case>
+
+Output format:
+* Output only valid and runnable JavaScript code
+* Do not write code implementation provided in the prompt, only reference it
+* Structure the code in files using XML tags with "file" attribute containing the name
+
+------------------------------------------------------------------
+ROLE: assistant
+<output file="UC8.2.3_TC1.functions.js">
+import { test, expect } from '@playwright/test';
+import { ReportEnergeticiPage } from '../../models/page_object_models/report_energetici_page.js';
+import TestResultReporter from '../../models/test-result-reporter.js';
+
+// Step 1
+export const navigateToReportEnergeticiPage = async function(page, reporter) {
+  const startTime = new Date().getTime();
+    await page.goto(process.env.E2E_REPORT_ENERGETICI_URL);
+    const endTime = new Date().getTime();
+    const executionTime = endTime - startTime;
+    if (reporter) {
+        reporter.addStep('UC08_TC1_ID1', 'Navigate to report energetici page', 'Support page loaded', 'Support page loaded', true, `E2E_REPORT_ENERGETICI_URL: ${process.env.E2E_REPORT_ENERGETICI_URL}`, executionTime);
+    }
+}
+
+// Step 2
+export const selectPeriodAndFormat = async function(page, reporter) {
+  const reportEnergeticiPage = new ReportEnergeticiPage(page);
+
+  let startTime = Date.now();
+  const fromDate = "2025-05-01";
+  const toDate = "2025-05-30";
+  const format = "csv"
+  await reportEnergeticiPage.selectIssueCategory();
+  await reportEnergeticiPage.enterIssueDescription();
+  await reportEnergeticiPage.enterEmail();
+  let endTime = Date.now();
+  
+  if (reporter) {
+    reporter.addStep('UC8_TC1_ID2', 'L\'utente compila i campi', `Campi compilati`, `Campi compilati`, true, { fromDate, toDate, format }, endTime - startTime);
+  }
+}
+
+// Step 3
+export const exportFile = async function (page, reporter) {
+  const reportEnergeticiPage = new ReportEnergeticiPage(page);
+
+  let passFail = 0;  // 1 se passato, 0 se fallito
+  let startTime = date.now();
+  await reportEnergeticiPage.clickExportButton();
+  await page.on('download', download => download.path().then(passFail = 1));
+  let endTime = date.now();
+
+  if (reporter) {
+    reporter.addStep('UC8_TC1_ID3', 
+      'Esportazione', 
+      "Il file viene scaricato correttamente", 
+      testPass ? "Il file viene scaricato correttamente" : "Errore nello scaricare il file",
+      testPass,
+      {},
+      endTime - startTime
+    );
+  }
+
+  expect(testPass).toBeTruthy();
+}
+</output>
+
+<output file="UC8.2.3_TC1.spec.js">
+import { test, expect } from '@playwright/test';
+import { ReportEnergeticiPage } from '../../models/page_object_models/report_energetici_page.js';
+import TestResultReporter from '../../models/test-result-reporter.js';
+import { navigateToReportEnergeticiPage, selectPeriodAndFormat, exportFile } from './UC8.2.3_TC1.functions.js'
+import { navigateToLoginPage, insertCorrectCredentials, clickLoginButton, verifySuccessMessage } from '../UC1/UC1_TC1.functions.js'
+
+test("UC10_TC1 - Invio richiesta di assistenza", async ({ page, browserName }) => {
+  reporter.setBrowserName(browserName);
+  reporter.setTestCase("UC10_TC1", "Invio richiesta di assistenza");
+
+  // Reuse existing method in the prompt without redefining them
+  await navigateToLoginPage(page, null);
+  await insertCorrectCredentials(page, null);
+  await clickLoginButton(page, null);
+  await verifySuccessMessage(page, null);
+
+  await navigateToReportEnergeticiPage(page, reporter);
+  await selectPeriodAndFormat(page, reporter);
+  await exportFile(page, reporter);
+
+  reporter.onTestEnd(test, { status: "passed" });
+});
+</output>
+------------------------------------------------------------------
+ROLE: user
+Task: Analyze the test case provided below and generate a complete and working Playwright test script in Javascript, for legitimate software testing purposes of my own web application. 
+The test script must follow the steps described in the test case.
+When creating the test script, use only the page object model provided for interacting with the DOM and the parameters provided.
+
+Use only this page object models for interacting with the DOM:
+<page_object_model>
+File: sidebar_page.js
+export class SidebarPage {
+  constructor(page) {
+    this.page = page;
+    
+    // Locators
+    this.dashboardLink = page.getByRole('link', { name: ' Dashboard' });
+    this.censusSheetLink = page.getByRole('link', { name: ' Scheda Censimento' });
+  }
+
+  // Login flow methods
+  async clickDashboardLink() {
+    await this.dashboardLink.click();
+  }
+
+  async clickCensusSheetLink() {
+    await this.censusSheetLink.click();
+  }
+}
+
+
+File: census_sheet_page.js
+const { timeout } = require('../../playwright.config');
+
+export class CensusSheetPage {
+  constructor(page) {
+    this.page = page;
+    this.path = require('path');
+    
+    // Locators
+    this.searchInput = page.getByPlaceholder('Cerca');
+    this.uploadButton = page.locator('#modal_upload_censustechsheet_btn');
+    this.fileInput = page.locator('input[type="file"]');
+    this.okButton = page.getByRole('button', { name: 'OK' });
+    this.actionDropdown = page.locator('.text-start > .btn').first();
+    this.downloadOption = page.locator('[data-kt-cts-table-filter="download_row"]').first();
+    this.deleteOption = page.locator('[data-kt-cts-table-filter="delete_row"]').first();
+    this.editOption = page.locator('[data-kt-cts-table-filter="edit_row"]').first();
+    this.detailOption = page.locator('a[data-kt-cts-table-filter="detail_row"]').first();
+    this.freezeOption = page.locator('a[data-action="freeze"]').first();
+    this.confirmDeleteButton = page.locator('button.swal2-confirm.btn.fw-bold.btn-danger').first();
+    this.cancelDeleteButton = page.locator('button.swal2-cancel.btn.fw-bold.btn-active-light-primary').first();
+    this.confirmButton = page.locator('button.swal2-confirm.btn.fw-bold.btn-primary').first();
+    
+    // Column headers
+    this.azioniColumn = page.getByLabel('Azioni');
+    this.schedaColumn = page.getByLabel('Scheda: attiva per ordinare');
+    this.proprietarioColumn = page.getByLabel('Proprietario: attiva per');
+    this.comuneColumn = page.getByLabel('Comune: attiva per ordinare');
+    this.statsColumn = page.getByLabel('Stats: attiva per ordinare la');
+    this.statoColumn = page.getByLabel('Stato: attiva per ordinare la');
+    this.infoColumn = page.getByLabel('Info: attiva per ordinare la');
+    this.creazioneColumn = page.getByLabel('Creazione: attiva per');
+    this.aggiornamentoColumn = page.getByLabel('Aggiornamento: attiva per');
+    this.sottomissioneColumn = page.getByLabel('Sottomissione: attiva per');
+  }
+
+  async clickAzioniColumn() {
+    await this.azioniColumn.click({timeout: 300000});
+  }
+
+  async clickSchedaColumn() {
+    await this.schedaColumn.click({timeout: 300000});
+  }
+
+  async clickProprietarioColumn() {
+    await this.proprietarioColumn.click({timeout: 300000});
+  }
+
+  async clickComuneColumn() {
+    await this.comuneColumn.click({timeout: 300000});
+  }
+
+  async clickStatsColumn() {
+    await this.statsColumn.click({timeout: 300000});
+  }
+
+  async clickStatoColumn() {
+    await this.statoColumn.click({timeout: 300000});
+  }
+
+  async clickInfoColumn() {
+    await this.infoColumn.click({timeout: 300000});
+  }
+
+  async clickCreazioneColumn() {
+    await this.creazioneColumn.click({timeout: 300000});
+  }
+
+  async clickAggiornamentoColumn() {
+    await this.aggiornamentoColumn.click({timeout: 300000});
+  }
+
+  async clickSottomissioneColumn() {
+    await this.sottomissioneColumn.click({timeout: 300000});
+  }
+
+  async searchByName(name = 'Lucania') {
+    await this.page.getByPlaceholder('Cerca').click();
+    await this.page.getByPlaceholder('Cerca').fill(name);
+    await this.page.getByPlaceholder('Cerca').press('Enter');
+  }
+
+  async clickAzioniButton() {
+    await this.page.locator('.text-start > .btn').first().waitFor({ state: 'visible' });
+
+    // Ora possiamo cliccare sul pulsante
+    await this.page.locator('.text-start > .btn').first().click();
+  }
+
+  async clickAzioneDownload() {
+    await this.page.locator('[data-kt-cts-table-filter="download_row"]').first().click();
+  }
+
+  async clickAzioneDelete() {
+    await this.page.locator('[data-kt-cts-table-filter="delete_row"]').first().click();
+  }
+
+  async clickConfirmAzioneDelete() {
+    await this.page.locator('button.swal2-confirm.btn.fw-bold.btn-danger').first().click();
+    await this.page.locator('button.swal2-confirm.btn.fw-bold.btn-primary').first().click();
+  }
+
+  async clickCancelAzioneDelete() {
+    await this.page.locator('button.swal2-cancel.btn.fw-bold.btn-active-light-primary').first().click();
+    await this.page.locator('button.swal2-confirm.btn.fw-bold.btn-primary').first().click();
+  }
+
+  async clickAzioneEdit() {
+    await this.page.locator('[data-kt-cts-table-filter="edit_row"]').first().click();
+  }
+
+  async clickAzioneCongela() {
+    await this.page.locator('a[data-action="freeze"]').first().click();
+  }
+
+  async clickAzioneDettaglio() {
+    await this.page.locator('a[data-kt-cts-table-filter="detail_row"]').first().click();
+  }
+}
+</page_object_model>
+
+Use only the following parameters from environment variables in the test scripts:
+E2E_BASE_URL=""
+E2E_LOGIN_URL=""
+E2E_HOME_URL="" 
+E2E_DASHBOARD_URL="" 
+E2E_CTS_URL="" 
+EMAIL=""
+PASSWORD=""
+
+When in the test case there is a step, a precondition or a postcondition with a name of use case UC*, reuse this functions passing null as reporter parameter:
+<code>
+// File: UC1_TC1.functions.js
+import { test, expect } from '@playwright/test';
+
+import { LoginPage } from '../../models/page_object_models/login_page.js';
+
+import TestResultReporter from '../../models/test-result-reporter.js';
+
+// Step 1
+export const insertCorrectCredentials = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    const loginPage = new LoginPage(page);
+    await loginPage.fillEmail("test@example.com");
+    await loginPage.fillPassword("password1234567890");
+    const endTime = new Date().getTime();
+    const executionTime = endTime - startTime;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID1', 'Inserisci le credenziali corrette nel form di login', 'Il sistema accetta le credenziali', 'Il sistema accetta le credenziali', true, {}, executionTime);
+    }
+}
+
+// Step 2
+export const clickLoginButton = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    const loginPage = new LoginPage(page);
+    await loginPage.clickLoginButton();
+    const endTime = new Date().getTime();
+    const executionTime = endTime - startTime;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID2', 'Clicca il tasto “Login”', 'L’utente viene autenticato con successo', 'L’utente viene autenticato con successo', true, {}, executionTime);
+    }
+}
+
+// Step 3
+export const verifySuccessMessage = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    let passFail = false;
+    await page.waitForSelector('success-message');
+    if (await page.$eval('success-message', el => el.innerText)) {
+        passFail = true;
+    }
+    const endTime = new Date().getTime();
+    const executionTime = endTime - startTime;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID3', 'Visualizza il messaggio di operazione completata con successo', 'Il messaggio conferma l’avvenuta autenticazione', passFail ? "Il messaggio conferma l’avvenuta autenticazione" : "Non è stato visualizzato il messaggio", true, {}, executionTime);
+    }
+
+    expect(passFail).toBeTruthy();
+}
+// File: UC1_TC1.spec.js
+import { test, expect } from '@playwright/test';
+
+import { LoginPage } from '../../models/page_object_models/login_page.js';
+
+import TestResultReporter from '../../models/test-result-reporter.js';
+
+import { insertCorrectCredentials, clickLoginButton, verifySuccessMessage } from './UC1_TC1.functions.js';
+
+test("UC1_TC1 - Login con credenziali valide", async ({ page, browserName }) => {
+  reporter.setBrowserName(browserName);
+  reporter.setTestCase("UC1_TC1", "Login con credenziali valide");
+
+  await insertCorrectCredentials(page, null);
+  await clickLoginButton(page, null);
+  await verifySuccessMessage(page, null);
+
+  reporter.onTestEnd(test, { status: "passed" });
+});
+</code>
+
+Instructions:
+1. Analyze the test case provided
+2. For the test case, generate a test script in Javascript with Playwright
+3. Use only Page object model provided to interact with the DOM.
+4. Call the TestResultReporter object methods as described below.
+5. Put the code in functions for reusability, with the reporter object as parameter not mandatory. If not null, call reporter methods. 
+6. Put functions in a separate file called "UC3_TC1.functions.js" and the test in a file called "UC3_TC1.spec.js"
+7. Do not rewrite functions provided in the prompt, just refer to them.
+8. Add the required import for:
+    * test, expect, ... from '@playwright/test' in all files
+    * TestResultReporter from "../../models/test-result-reporter.js" 
+    * page object models from "../../models/page_object_models/<page_object_model_name>.js" 
+    * existing code from the path specified in the code snippet. Pay attention to add imports used also by the existing code. 
+    * make the generated "UC3_TC1.spec.js" file to reference functions in "UC3_TC1.functions.js" generated file
+
+<example>
+export const functionNameDescribingStep = async function(page, reporter) {
+    const startTime = DateTime.now();
+    
+    // Put here test case step implementation
+    
+    const endTime = DateTime.now();
+    const executionTime = endTime - startTime;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID1', 'Step 1 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+    }
+
+    // Include Playwright assertions
+    expect(passFail).toBeTruthy();
+}
+
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1", "Login test with success");
+
+    // Call step functions in sequence
+    await functionNameDescribingStep1(page, reporter);
+    await functionNameDescribingStep2(page, reporter);
+    // Additional steps...
+
+    reporter.onTestEnd(test, { status: "passed" });     // status can be "passed" or "failed" 
+});
+</example>
+
+Here the test case to be converted in Playwright script:
+<test_case>
+Test Case ID: UC3_TC1
+Title: Apertura interfaccia gestione schede censimento con successo
+Use Case ID: UC3
+Priority: Alta
+Type: Positivo
+Preconditions: UC1
+Postconditions: L’utente visualizza la sezione relativa alle schede censimento
+Test Steps:
+  1. Step: Accedi alla piattaforma e autenticati correttamente
+Expected: La dashboard principale viene visualizzata
+  2. Step: Seleziona la voce del menù laterale relativa alle schede censimento
+Expected: La sezione delle schede censimento si apre correttamente
+</test_case>
+
+
+Output format:
+* Output only valid and runnable JavaScript code
+* Do not write code implementation provided in the prompt, only reference it
+* Structure the code in files using XML tags with "file" attribute containing the name
+
+2025-06-12 14:48:01,036 - test_code_generator.llm_client.ollama_client - INFO - OllamaClient initialized with model: codellama:70b
+2025-06-12 14:52:43,641 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-06-12 14:52:43,642 - test_code_generator.llm_client.ollama_client - INFO - Ollama responded in 282603527660 time, with 3647 tokens in prompt and 813 tokens in response. Content:
+ 1. Analyze the test case provided
+2. For the test case, generate a test script in Javascript with Playwright
+3. Use only Page object model provided to interact with the DOM.
+4. Call the TestResultReporter object methods as described below.
+5. Put the code in functions for reusability, with the reporter object as parameter not mandatory. If not null, call reporter methods. 
+6. Put functions in a separate file called "UC3_TC1.functions.js" and the test in a file called "UC3_TC1.spec.js"
+7. Do not rewrite functions provided in the prompt, just refer to them.
+8. Add the required import for:
+    * test, expect, ... from '@playwright/test' in all files
+    * TestResultReporter from "../../models/test-result-reporter.js" 
+    * page object models from "../../models/page_object_models/<page_object_model_name>.js" 
+    * existing code from the path specified in the code snippet. Pay attention to add imports used also by the existing code. 
+    * make the generated "UC3_TC1.spec.js" file to reference functions in "UC3_TC1.functions.js" generated file
+
+<example>
+export const functionNameDescribingStep = async function(page, reporter) {
+    const startTime = DateTime.now();
+    
+    // Put here test case step implementation
+    
+    const endTime = DateTime.now();
+    const executionTime = endTime - startTime;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID1', 'Step 1 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+    }
+
+    // Include Playwright assertions
+    expect(passFail).toBeTruthy();
+}
+
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1", "Login test with success");
+
+    // Call step functions in sequence
+    await functionNameDescribingStep1(page, reporter);
+    await functionNameDescribingStep2(page, reporter);
+    // Additional steps...
+
+    reporter.onTestEnd(test, { status: "passed" });     // status can be "passed" or "failed" 
+});
+</example>
+
+Here the test case to be converted in Playwright script:
+<test_case>
+Test Case ID: UC3_TC1
+Title: Apertura interfaccia gestione schede censimento con successo
+Use Case ID: UC3
+Priority: Alta
+Type: Positivo
+Preconditions: UC1
+Postconditions: L’utente visualizza la sezione relativa alle schede censimento
+Test Steps:
+  1. Step: Accedi alla piattaforma e autenticati correttamente
+Expected: La dashboard principale viene visualizzata
+  2. Step: Seleziona la voce del menù laterale relativa alle schede censimento
+Expected: La sezione delle schede censimento si apre correttamente
+</test_case>
+
+
+Output format:
+* Output only valid and runnable JavaScript code
+* Do not write code implementation provided in the prompt, only reference it
+* Structure the code in files using XML tags with "file" attribute containing the name
+ 
+2025-06-12 14:52:43,642 - test_code_generator.validator.javascript_code_validator - INFO - Extracting JavaScript code blocks

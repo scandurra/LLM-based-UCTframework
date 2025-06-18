@@ -6,12 +6,12 @@ import { openCensusSheetsInterface } from '../UC3/UC3_TC1.functions.js';
 
 import { insertCorrectCredentials, clickLoginButton, verifySuccessMessage } from '../UC1/UC1_TC1.functions.js';
 
-import { clickCongelamentoButton, confirmCongelamento, verifySchedaStato } from './UC3.4.4_TC1.functions.js';
+import { selectFreezeOperation, confirmFreezeOperation, verifySheetStatus } from './UC3.4.4_TC1.functions.js';
 
 test("UC3.4.4_TC1 - Congelamento scheda censimento con conferma", async ({ page, browserName }) => {
   const reporter = new TestResultReporter();
   reporter.setBrowserName(browserName);
-  reporter.setTestCase("UC3.4.4_TC1 - Congelamento scheda censimento con conferma");
+  reporter.setTestCase("UC3.4.4_TC1", "Congelamento scheda censimento con conferma");
 
   // Preconditions: UC1
   await page.goto(process.env.E2E_LOGIN_URL);
@@ -19,13 +19,13 @@ test("UC3.4.4_TC1 - Congelamento scheda censimento con conferma", async ({ page,
   await clickLoginButton(page, null);
   await verifySuccessMessage(page, null);
 
-  // Preconditions: UC3.4
+  // Preconditions: UC3
   await openCensusSheetsInterface(page, null);
 
-  // Test Steps
-  await clickCongelamentoButton(page, reporter);
-  await confirmCongelamento(page, reporter);
-  await verifySchedaStato(page, reporter);
+  // Call step functions in sequence
+  await selectFreezeOperation(page, reporter);
+  await confirmFreezeOperation(page, reporter);
+  await verifySheetStatus(page, reporter);
 
   reporter.onTestEnd(test, { status: "passed" });
 });

@@ -1,10 +1,10 @@
 import { test, expect } from '@playwright/test';
 
-import { CensusSheetPageUpload } from '../../models/page_object_models/census_sheet_page_upload.js';
-
 import TestResultReporter from '../../models/test-result-reporter.js';
 
-export const clickCensusSheetsUploadButton = async function(page, reporter) {
+import { CensusSheetPageUpload } from '../../models/page_object_models/census_sheet_page_upload.js';
+
+export const clickUploadSchedaButton = async function(page, reporter) {
     const startTime = new Date().getTime();
     const censusSheetPageUpload = new CensusSheetPageUpload(page);
     await censusSheetPageUpload.waitForUploadSchedaModalButton();
@@ -12,9 +12,9 @@ export const clickCensusSheetsUploadButton = async function(page, reporter) {
     const endTime = new Date().getTime();
     const executionTime = (endTime - startTime) / 1000;
     if (reporter) {
-        reporter.addStep('UC3.3_TC1_ID1', 'Click on upload census sheets button', 'Upload modal opens correctly', 'Upload modal opens correctly', true, '', executionTime);
+        reporter.addStep('UC3.3_TC1_ID1', 'Click upload scheda button', 'Upload scheda modal opens correctly', 'Upload scheda modal opened correctly', true, '', executionTime);
     }
-    await expect(censusSheetPageUpload.uploadButton).toBeVisible();
+    expect(await censusSheetPageUpload.uploadButton.isVisible()).toBeFalsy();
 }
 
 export const selectFileAndCompileParameters = async function(page, reporter) {
@@ -26,9 +26,9 @@ export const selectFileAndCompileParameters = async function(page, reporter) {
     const endTime = new Date().getTime();
     const executionTime = (endTime - startTime) / 1000;
     if (reporter) {
-        reporter.addStep('UC3.3_TC1_ID2', 'Select file and compile parameters', 'File and parameters are accepted', 'File and parameters are accepted', true, '', executionTime);
+        reporter.addStep('UC3.3_TC1_ID2', 'Select file and compile parameters', 'File and parameters accepted by the system', 'File and parameters accepted', true, '', executionTime);
     }
-    await expect(censusSheetPageUpload.fileInput).toHaveValue(filePath);
+    expect(await censusSheetPageUpload.fileInput.isVisible()).toBeFalsy();
 }
 
 export const uploadFile = async function(page, reporter) {
@@ -39,7 +39,7 @@ export const uploadFile = async function(page, reporter) {
     const endTime = new Date().getTime();
     const executionTime = (endTime - startTime) / 1000;
     if (reporter) {
-        reporter.addStep('UC3.3_TC1_ID3', 'Upload file', 'File is uploaded successfully', 'File is uploaded successfully', true, '', executionTime);
+        reporter.addStep('UC3.3_TC1_ID3', 'Upload file', 'File uploaded successfully', 'File uploaded', true, '', executionTime);
     }
     // Add assertion to check if the file is uploaded successfully
 }

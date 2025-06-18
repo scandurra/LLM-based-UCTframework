@@ -14,20 +14,17 @@ export const clickOnUsernameAndSelectLogout = async function(page, reporter) {
   if (reporter) {
     reporter.addStep('UC6_TC1_ID2', 'Click on username and select logout', 'Logout process starts', 'Logout process starts', true, '', executionTime);
   }
-
-  // Include Playwright assertions
-  await expect(page).toHaveURL(process.env.E2E_LOGIN_URL);
 }
 
 export const verifyLogoutSuccessMessage = async function(page, reporter) {
   const startTime = new Date().getTime();
-  // Assuming there's a way to get the success message
-  // For demonstration purposes, let's assume it's an element with the text "Logout successful"
-  const successMessage = page.locator('text="Logout successful"');
-  await expect(successMessage).toBeVisible();
+  // Assuming the success message is visible after successful logout
+  const successMessageLocator = page.locator('text="Logout successful"');
+  const isSuccessMessageVisible = await successMessageLocator.isVisible();
   const endTime = new Date().getTime();
   const executionTime = (endTime - startTime) / 1000;
   if (reporter) {
-    reporter.addStep('UC6_TC1_ID3', 'Verify logout success message', 'Success message displayed', 'Success message displayed', true, '', executionTime);
+    reporter.addStep('UC6_TC1_ID3', 'Verify logout success message', 'Success message displayed', isSuccessMessageVisible ? 'Success message displayed' : 'Success message not displayed', isSuccessMessageVisible, '', executionTime);
   }
+  expect(isSuccessMessageVisible).toBeTruthy();
 }

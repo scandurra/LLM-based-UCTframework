@@ -11,7 +11,7 @@ import { selectDeleteOperation, cancelDeletion } from './UC3.4.2_TC2.functions.j
 test("UC3.4.2_TC2 - Annullamento eliminazione scheda censimento", async ({ page, browserName }) => {
   const reporter = new TestResultReporter();
   reporter.setBrowserName(browserName);
-  reporter.setTestCase("UC3.4.2_TC2 - Annullamento eliminazione scheda censimento");
+  reporter.setTestCase("UC3.4.2_TC2", "Annullamento eliminazione scheda censimento");
 
   // Preconditions: UC1
   await page.goto(process.env.E2E_LOGIN_URL);
@@ -22,7 +22,7 @@ test("UC3.4.2_TC2 - Annullamento eliminazione scheda censimento", async ({ page,
   // Preconditions: UC3
   await openCensusSheetsInterface(page, null);
 
-  // Test Steps
+  // Call step functions in sequence
   await selectDeleteOperation(page, reporter);
   await cancelDeletion(page, reporter);
 
