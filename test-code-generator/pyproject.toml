@@ -12,6 +12,16 @@ packages = [
 python = "^3.12"
 ollama = "^0.4.8"
 esprima = "^4.0.1"
+# Needed for BLEU score
+nltk = "^3.9.1"
+codebleu = "^0.7.0"
+# Needed for codebleu to support Javascript language. Version 0.21 avoids conflicts
+tree-sitter-javascript = "0.21"
+# Needed for cosine similarity
+scikit-learn = "^1.7.0"
+numpy = "^2.3.0"
+# For Fleiss Kappa
+statsmodels = "^0.14.4"
 
 
 [build-system]

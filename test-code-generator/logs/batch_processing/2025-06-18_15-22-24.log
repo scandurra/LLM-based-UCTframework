@@ -1,0 +1,681 @@
+2025-06-18 15:22:24,256 - __main__ - INFO - Found 1 dependencies for use case UC3.4.4
+2025-06-18 15:22:24,256 - __main__ - INFO - Read previously generated functions code for use case UC3.4 - test case UC3.4_TC1
+2025-06-18 15:22:24,256 - __main__ - INFO - Read previously generated spec code for use case UC3.4 - test case UC3.4_TC1
+2025-06-18 15:22:24,256 - test_code_generator.prompt_builder.prompt_builder - INFO - Test parameters loaded from path: ./input_files/parameters/test_parameters.env
+2025-06-18 15:22:24,256 - test_code_generator.prompt_builder.prompt_builder - INFO - Test reporter loaded from path: ./input_files/reporter_minimal.js
+2025-06-18 15:22:24,256 - test_code_generator.prompt_builder.prompt_builder - INFO - Previous code section loaded from path: ./prompts/batch_processing/zero_shot/llama3.3/previous_code_section.txt
+2025-06-18 15:22:24,257 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt built: 
+ROLE: system
+You are a testing engineer, expert in writing Javascript end-to-end tests with Playwright.
+
+Task: Analyze the test cases provided below and generate for each test case a complete and working Playwright test script in Javascript, following the steps described in each test case.
+When creating the test scripts, use only the page object model provided for interacting with the DOM and the parameters provided.
+------------------------------------------------------------------
+ROLE: user
+Use only this page object models for interacting with the DOM:
+```javascript
+File: census_sheet_page.js
+const { timeout } = require('../../playwright.config');
+
+export class CensusSheetPage {
+  constructor(page) {
+    this.page = page;
+    this.path = require('path');
+    
+    // Locators
+    this.searchInput = page.getByPlaceholder('Cerca');
+    this.uploadButton = page.locator('#modal_upload_censustechsheet_btn');
+    this.fileInput = page.locator('input[type="file"]');
+    this.okButton = page.getByRole('button', { name: 'OK' });
+    this.actionDropdown = page.locator('.text-start > .btn').first();
+    this.downloadOption = page.locator('[data-kt-cts-table-filter="download_row"]').first();
+    this.deleteOption = page.locator('[data-kt-cts-table-filter="delete_row"]').first();
+    this.editOption = page.locator('[data-kt-cts-table-filter="edit_row"]').first();
+    this.detailOption = page.locator('a[data-kt-cts-table-filter="detail_row"]').first();
+    this.freezeOption = page.locator('a[data-action="freeze"]').first();
+    this.confirmDeleteButton = page.locator('button.swal2-confirm.btn.fw-bold.btn-danger').first();
+    this.cancelDeleteButton = page.locator('button.swal2-cancel.btn.fw-bold.btn-active-light-primary').first();
+    this.confirmButton = page.locator('button.swal2-confirm.btn.fw-bold.btn-primary').first();
+    
+    // Column headers
+    this.azioniColumn = page.getByLabel('Azioni');
+    this.schedaColumn = page.getByLabel('Scheda: attiva per ordinare');
+    this.proprietarioColumn = page.getByLabel('Proprietario: attiva per');
+    this.comuneColumn = page.getByLabel('Comune: attiva per ordinare');
+    this.statsColumn = page.getByLabel('Stats: attiva per ordinare la');
+    this.statoColumn = page.getByLabel('Stato: attiva per ordinare la');
+    this.infoColumn = page.getByLabel('Info: attiva per ordinare la');
+    this.creazioneColumn = page.getByLabel('Creazione: attiva per');
+    this.aggiornamentoColumn = page.getByLabel('Aggiornamento: attiva per');
+    this.sottomissioneColumn = page.getByLabel('Sottomissione: attiva per');
+  }
+
+  async clickAzioniColumn() {
+    await this.azioniColumn.click({timeout: 300000});
+  }
+
+  async clickSchedaColumn() {
+    await this.schedaColumn.click({timeout: 300000});
+  }
+
+  async clickProprietarioColumn() {
+    await this.proprietarioColumn.click({timeout: 300000});
+  }
+
+  async clickComuneColumn() {
+    await this.comuneColumn.click({timeout: 300000});
+  }
+
+  async clickStatsColumn() {
+    await this.statsColumn.click({timeout: 300000});
+  }
+
+  async clickStatoColumn() {
+    await this.statoColumn.click({timeout: 300000});
+  }
+
+  async clickInfoColumn() {
+    await this.infoColumn.click({timeout: 300000});
+  }
+
+  async clickCreazioneColumn() {
+    await this.creazioneColumn.click({timeout: 300000});
+  }
+
+  async clickAggiornamentoColumn() {
+    await this.aggiornamentoColumn.click({timeout: 300000});
+  }
+
+  async clickSottomissioneColumn() {
+    await this.sottomissioneColumn.click({timeout: 300000});
+  }
+
+  async searchByName(name = 'Lucania') {
+    await this.page.getByPlaceholder('Cerca').click();
+    await this.page.getByPlaceholder('Cerca').fill(name);
+    await this.page.getByPlaceholder('Cerca').press('Enter');
+  }
+
+  async clickAzioniButton() {
+    await this.page.locator('.text-start > .btn').first().waitFor({ state: 'visible' });
+
+    // Ora possiamo cliccare sul pulsante
+    await this.page.locator('.text-start > .btn').first().click();
+  }
+
+  async clickAzioneDownload() {
+    await this.page.locator('[data-kt-cts-table-filter="download_row"]').first().click();
+  }
+
+  async clickAzioneDelete() {
+    await this.page.locator('[data-kt-cts-table-filter="delete_row"]').first().click();
+  }
+
+  async clickConfirmAzioneDelete() {
+    await this.page.locator('button.swal2-confirm.btn.fw-bold.btn-danger').first().click();
+    await this.page.locator('button.swal2-confirm.btn.fw-bold.btn-primary').first().click();
+  }
+
+  async clickCancelAzioneDelete() {
+    await this.page.locator('button.swal2-cancel.btn.fw-bold.btn-active-light-primary').first().click();
+    await this.page.locator('button.swal2-confirm.btn.fw-bold.btn-primary').first().click();
+  }
+
+  async clickAzioneEdit() {
+    await this.page.locator('[data-kt-cts-table-filter="edit_row"]').first().click();
+  }
+
+  async clickAzioneCongela() {
+    await this.page.locator('a[data-action="freeze"]').first().click();
+  }
+
+  async clickAzioneDettaglio() {
+    await this.page.locator('a[data-kt-cts-table-filter="detail_row"]').first().click();
+  }
+}
+```
+
+Use the following test parameters when creating scripts:
+E2E_BASE_URL=""
+E2E_LOGIN_URL=""
+E2E_HOME_URL="" 
+E2E_DASHBOARD_URL="" 
+E2E_CTS_URL="" 
+EMAIL=""
+PASSWORD=""
+
+When in the test case there is a step, a precondition or a postcondition with a name of use case UC*, reuse this functions passing null as reporter parameter:
+```javascript
+// File: UC3.4_TC1.functions.js
+import { test, expect } from '@playwright/test';
+
+import TestResultReporter from '../../models/test-result-reporter.js';
+
+import { CensusSheetPage } from '../../models/page_object_models/census_sheet_page.js';
+
+import { accessPlatformAndAuthenticate, selectCensusSheetMenu } from '../UC3/UC3_TC1.functions.js';
+
+export const accessCensusSheetSection = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    await selectCensusSheetMenu(page, null);
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC3.4_TC1_ID1', 'Accedi alla sezione delle schede censimento', true, true, true, {}, executionTime);
+    }
+
+    expect(await page.url()).toBe(process.env.E2E_CTS_URL);
+}
+
+export const clickAzioneButton = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const censusSheetPage = new CensusSheetPage(page);
+    await censusSheetPage.clickAzioniButton();
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC3.4_TC1_ID2', 'Clicca sul tasto azioni di una scheda censimento', true, true, true, {}, executionTime);
+    }
+
+    expect(await censusSheetPage.actionDropdown.isVisible()).toBeTruthy();
+}
+// File: UC3.4_TC1.spec.js
+import { test, expect } from '@playwright/test';
+
+import TestResultReporter from '../../models/test-result-reporter.js';
+
+import { accessPlatformAndAuthenticate } from '../UC3/UC3_TC1.functions.js';
+
+import { accessCensusSheetSection, clickAzioneButton } from './UC3.4_TC1.functions.js';
+
+test("UC3.4_TC1 - Visualizzazione azioni disponibili sulla scheda censimento", async ({ page, browserName }) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC3.4_TC1", "Visualizzazione azioni disponibili sulla scheda censimento");
+
+    await page.goto(process.env.E2E_BASE_URL);
+
+    // Call step functions in sequence
+    await accessPlatformAndAuthenticate(page, reporter);
+    await accessCensusSheetSection(page, reporter);
+    await clickAzioneButton(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+```
+
+Instructions:
+1. Analyze the test cases provided
+2. For each test case, generate a test script in Javascript with Playwright
+3. Use only Page object model provided to interact with the DOM.
+4. Call the TestResultReporter object methods as described below.
+5. Put the code in functions for reusability, with the reporter object as parameter not mandatory. If not null, call reporter methods. 
+6. Put functions in a separate file called "UC*_TC*.functions.js" and each test in a file called "UC*_TC*.spec.js"
+7. Do not rewrite functions provided in the prompt, just refer to them.
+8. Add the required import for:
+    * test, expect, ... from '@playwright/test' in all files
+    * TestResultReporter from "../../models/test-result-reporter.js" 
+    * page object models from "../../models/page_object_models/<page_object_model_name>.js" 
+    * existing code from the path specified in the code snippet. Pay attention to add imports used also by the existing code. 
+    * make the generated "UC*_TC*.spec.js" file to reference functions in "UC*_TC*.functions.js" generated file
+
+<example>
+export const functionNameDescribingStep = async function(page, reporter) {
+    const startTime = DateTime.now();
+    
+    // Eventually go to page
+    // Put here test case step implementation
+    
+    const endTime = DateTime.now();
+    const executionTime = endTime - startTime;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID1', 'Step 1 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+    }
+
+    // Include Playwright assertions
+    expect(passFail).toBeTruthy();
+}
+
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1", "Login test with success");
+
+    // Call step functions in sequence
+    await functionNameDescribingStep1(page, reporter);
+    await functionNameDescribingStep2(page, reporter);
+    // Additional steps...
+
+    reporter.onTestEnd(test, { status: "passed" });     // status can be "passed" or "failed" 
+});
+</example>
+
+Here the test cases to be converted in Playwright script:
+Test Case ID: UC3.4.4_TC1
+Title: Congelamento scheda censimento con conferma
+Use Case ID: UC3.4.4
+Priority: Alta
+Type: Positivo
+Preconditions: UC3.4
+Postconditions: La scheda viene congelata e lo stato è aggiornato a non attivo
+Test Steps:
+  1. Step: Seleziona l’operazione di congelamento della scheda
+Expected: Viene visualizzata la richiesta di conferma
+  2. Step: Conferma il congelamento della scheda
+Expected: Viene visualizzato un messaggio di conferma dell’operazione
+  3. Step: Verifica lo stato della scheda dopo il congelamento
+Expected: La scheda è contrassegnata come non attiva
+
+Test Case ID: UC3.4.4_TC2
+Title: Congelamento scheda censimento con annullamento
+Use Case ID: UC3.4.4
+Priority: Media
+Type: Negativo
+Preconditions: UC3.4
+Postconditions: Il congelamento della scheda non viene eseguito
+Test Steps:
+  1. Step: Seleziona l’operazione di congelamento della scheda
+Expected: Viene visualizzata la richiesta di conferma
+  2. Step: Annulla il congelamento della scheda
+Expected: Il processo di congelamento viene interrotto
+  3. Step: Verifica lo stato della scheda dopo l’annullamento
+Expected: La scheda rimane nello stato precedente
+
+Test Case ID: UC3.4.4_TC3
+Title: Congelamento di più schede censimento
+Use Case ID: UC3.4.4
+Priority: Alta
+Type: Prestazione
+Preconditions: UC3.4
+Postconditions: Tutte le schede selezionate vengono congelate
+Test Steps:
+  1. Step: Seleziona più schede per il congelamento
+Expected: Viene richiesta la conferma per ogni scheda
+  2. Step: Conferma il congelamento delle schede selezionate
+Expected: Tutte le schede vengono congelate e contrassegnate come non attive
+  3. Step: Verifica lo stato di tutte le schede dopo il congelamento
+Expected: Tutte le schede sono aggiornate a non attive
+
+Test Case ID: UC3.4.4_TC4
+Title: Congelamento scheda censimento senza selezione
+Use Case ID: UC3.4.4
+Priority: Media
+Type: Negativo
+Preconditions: UC3.4
+Postconditions: Il congelamento non viene eseguito
+Test Steps:
+  1. Step: Tenta di avviare il congelamento senza selezionare una scheda
+Expected: Viene visualizzato un messaggio di errore per la mancanza di selezione
+  2. Step: Verifica lo stato delle schede
+Expected: Nessuna scheda è stata modificata
+
+Test Case ID: UC3.4.4_TC5
+Title: Congelamento scheda censimento con dati non validi
+Use Case ID: UC3.4.4
+Priority: Media
+Type: Negativo
+Preconditions: UC3.4
+Postconditions: Il congelamento non viene eseguito
+Test Steps:
+  1. Step: Inserisci dati non validi durante la procedura di congelamento
+Expected: Viene visualizzato un messaggio di errore per i dati non validi
+  2. Step: Verifica lo stato delle schede
+Expected: Nessuna scheda è stata modificata
+
+Test Case ID: UC3.4.4_TC6
+Title: Congelamento scheda censimento con utente non autorizzato
+Use Case ID: UC3.4.4
+Priority: Alta
+Type: Sicurezza
+Preconditions: UC3.4
+Postconditions: Il congelamento non viene eseguito
+Test Steps:
+  1. Step: Tenta di congelare una scheda come utente non autorizzato
+Expected: Viene visualizzato un messaggio di accesso negato
+  2. Step: Verifica lo stato delle schede
+Expected: Nessuna scheda è stata modificata
+
+Output format:
+* Output only valid and runnable JavaScript code
+* Do not write code implementation provided in the prompt, only reference it
+* Structure the code in files using markdown code blocks specifying the file name
+2025-06-18 15:22:24,257 - test_code_generator.llm_client.ollama_client - INFO - OllamaClient initialized with model: llama3.3:latest
+2025-06-18 15:22:24,657 - __main__ - INFO - Found 1 dependencies for use case UC3.4.5
+2025-06-18 15:22:24,657 - __main__ - INFO - Read previously generated functions code for use case UC3.4 - test case UC3.4_TC1
+2025-06-18 15:22:24,657 - __main__ - INFO - Read previously generated spec code for use case UC3.4 - test case UC3.4_TC1
+2025-06-18 15:22:24,658 - test_code_generator.prompt_builder.prompt_builder - INFO - Test parameters loaded from path: ./input_files/parameters/test_parameters.env
+2025-06-18 15:22:24,658 - test_code_generator.prompt_builder.prompt_builder - INFO - Test reporter loaded from path: ./input_files/reporter_minimal.js
+2025-06-18 15:22:24,658 - test_code_generator.prompt_builder.prompt_builder - INFO - Previous code section loaded from path: ./prompts/batch_processing/zero_shot/llama3.3/previous_code_section.txt
+2025-06-18 15:22:24,658 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt built: 
+ROLE: system
+You are a testing engineer, expert in writing Javascript end-to-end tests with Playwright.
+
+Task: Analyze the test cases provided below and generate for each test case a complete and working Playwright test script in Javascript, following the steps described in each test case.
+When creating the test scripts, use only the page object model provided for interacting with the DOM and the parameters provided.
+------------------------------------------------------------------
+ROLE: user
+Use only this page object models for interacting with the DOM:
+```javascript
+File: census_sheet_page.js
+const { timeout } = require('../../playwright.config');
+
+export class CensusSheetPage {
+  constructor(page) {
+    this.page = page;
+    this.path = require('path');
+    
+    // Locators
+    this.searchInput = page.getByPlaceholder('Cerca');
+    this.uploadButton = page.locator('#modal_upload_censustechsheet_btn');
+    this.fileInput = page.locator('input[type="file"]');
+    this.okButton = page.getByRole('button', { name: 'OK' });
+    this.actionDropdown = page.locator('.text-start > .btn').first();
+    this.downloadOption = page.locator('[data-kt-cts-table-filter="download_row"]').first();
+    this.deleteOption = page.locator('[data-kt-cts-table-filter="delete_row"]').first();
+    this.editOption = page.locator('[data-kt-cts-table-filter="edit_row"]').first();
+    this.detailOption = page.locator('a[data-kt-cts-table-filter="detail_row"]').first();
+    this.freezeOption = page.locator('a[data-action="freeze"]').first();
+    this.confirmDeleteButton = page.locator('button.swal2-confirm.btn.fw-bold.btn-danger').first();
+    this.cancelDeleteButton = page.locator('button.swal2-cancel.btn.fw-bold.btn-active-light-primary').first();
+    this.confirmButton = page.locator('button.swal2-confirm.btn.fw-bold.btn-primary').first();
+    
+    // Column headers
+    this.azioniColumn = page.getByLabel('Azioni');
+    this.schedaColumn = page.getByLabel('Scheda: attiva per ordinare');
+    this.proprietarioColumn = page.getByLabel('Proprietario: attiva per');
+    this.comuneColumn = page.getByLabel('Comune: attiva per ordinare');
+    this.statsColumn = page.getByLabel('Stats: attiva per ordinare la');
+    this.statoColumn = page.getByLabel('Stato: attiva per ordinare la');
+    this.infoColumn = page.getByLabel('Info: attiva per ordinare la');
+    this.creazioneColumn = page.getByLabel('Creazione: attiva per');
+    this.aggiornamentoColumn = page.getByLabel('Aggiornamento: attiva per');
+    this.sottomissioneColumn = page.getByLabel('Sottomissione: attiva per');
+  }
+
+  async clickAzioniColumn() {
+    await this.azioniColumn.click({timeout: 300000});
+  }
+
+  async clickSchedaColumn() {
+    await this.schedaColumn.click({timeout: 300000});
+  }
+
+  async clickProprietarioColumn() {
+    await this.proprietarioColumn.click({timeout: 300000});
+  }
+
+  async clickComuneColumn() {
+    await this.comuneColumn.click({timeout: 300000});
+  }
+
+  async clickStatsColumn() {
+    await this.statsColumn.click({timeout: 300000});
+  }
+
+  async clickStatoColumn() {
+    await this.statoColumn.click({timeout: 300000});
+  }
+
+  async clickInfoColumn() {
+    await this.infoColumn.click({timeout: 300000});
+  }
+
+  async clickCreazioneColumn() {
+    await this.creazioneColumn.click({timeout: 300000});
+  }
+
+  async clickAggiornamentoColumn() {
+    await this.aggiornamentoColumn.click({timeout: 300000});
+  }
+
+  async clickSottomissioneColumn() {
+    await this.sottomissioneColumn.click({timeout: 300000});
+  }
+
+  async searchByName(name = 'Lucania') {
+    await this.page.getByPlaceholder('Cerca').click();
+    await this.page.getByPlaceholder('Cerca').fill(name);
+    await this.page.getByPlaceholder('Cerca').press('Enter');
+  }
+
+  async clickAzioniButton() {
+    await this.page.locator('.text-start > .btn').first().waitFor({ state: 'visible' });
+
+    // Ora possiamo cliccare sul pulsante
+    await this.page.locator('.text-start > .btn').first().click();
+  }
+
+  async clickAzioneDownload() {
+    await this.page.locator('[data-kt-cts-table-filter="download_row"]').first().click();
+  }
+
+  async clickAzioneDelete() {
+    await this.page.locator('[data-kt-cts-table-filter="delete_row"]').first().click();
+  }
+
+  async clickConfirmAzioneDelete() {
+    await this.page.locator('button.swal2-confirm.btn.fw-bold.btn-danger').first().click();
+    await this.page.locator('button.swal2-confirm.btn.fw-bold.btn-primary').first().click();
+  }
+
+  async clickCancelAzioneDelete() {
+    await this.page.locator('button.swal2-cancel.btn.fw-bold.btn-active-light-primary').first().click();
+    await this.page.locator('button.swal2-confirm.btn.fw-bold.btn-primary').first().click();
+  }
+
+  async clickAzioneEdit() {
+    await this.page.locator('[data-kt-cts-table-filter="edit_row"]').first().click();
+  }
+
+  async clickAzioneCongela() {
+    await this.page.locator('a[data-action="freeze"]').first().click();
+  }
+
+  async clickAzioneDettaglio() {
+    await this.page.locator('a[data-kt-cts-table-filter="detail_row"]').first().click();
+  }
+}
+```
+
+Use the following test parameters when creating scripts:
+E2E_BASE_URL=""
+E2E_LOGIN_URL=""
+E2E_HOME_URL="" 
+E2E_DASHBOARD_URL="" 
+E2E_CTS_URL="" 
+EMAIL=""
+PASSWORD=""
+
+When in the test case there is a step, a precondition or a postcondition with a name of use case UC*, reuse this functions passing null as reporter parameter:
+```javascript
+// File: UC3.4_TC1.functions.js
+import { test, expect } from '@playwright/test';
+
+import TestResultReporter from '../../models/test-result-reporter.js';
+
+import { CensusSheetPage } from '../../models/page_object_models/census_sheet_page.js';
+
+import { accessPlatformAndAuthenticate, selectCensusSheetMenu } from '../UC3/UC3_TC1.functions.js';
+
+export const accessCensusSheetSection = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    await selectCensusSheetMenu(page, null);
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC3.4_TC1_ID1', 'Accedi alla sezione delle schede censimento', true, true, true, {}, executionTime);
+    }
+
+    expect(await page.url()).toBe(process.env.E2E_CTS_URL);
+}
+
+export const clickAzioneButton = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const censusSheetPage = new CensusSheetPage(page);
+    await censusSheetPage.clickAzioniButton();
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC3.4_TC1_ID2', 'Clicca sul tasto azioni di una scheda censimento', true, true, true, {}, executionTime);
+    }
+
+    expect(await censusSheetPage.actionDropdown.isVisible()).toBeTruthy();
+}
+// File: UC3.4_TC1.spec.js
+import { test, expect } from '@playwright/test';
+
+import TestResultReporter from '../../models/test-result-reporter.js';
+
+import { accessPlatformAndAuthenticate } from '../UC3/UC3_TC1.functions.js';
+
+import { accessCensusSheetSection, clickAzioneButton } from './UC3.4_TC1.functions.js';
+
+test("UC3.4_TC1 - Visualizzazione azioni disponibili sulla scheda censimento", async ({ page, browserName }) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC3.4_TC1", "Visualizzazione azioni disponibili sulla scheda censimento");
+
+    await page.goto(process.env.E2E_BASE_URL);
+
+    // Call step functions in sequence
+    await accessPlatformAndAuthenticate(page, reporter);
+    await accessCensusSheetSection(page, reporter);
+    await clickAzioneButton(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+```
+
+Instructions:
+1. Analyze the test cases provided
+2. For each test case, generate a test script in Javascript with Playwright
+3. Use only Page object model provided to interact with the DOM.
+4. Call the TestResultReporter object methods as described below.
+5. Put the code in functions for reusability, with the reporter object as parameter not mandatory. If not null, call reporter methods. 
+6. Put functions in a separate file called "UC*_TC*.functions.js" and each test in a file called "UC*_TC*.spec.js"
+7. Do not rewrite functions provided in the prompt, just refer to them.
+8. Add the required import for:
+    * test, expect, ... from '@playwright/test' in all files
+    * TestResultReporter from "../../models/test-result-reporter.js" 
+    * page object models from "../../models/page_object_models/<page_object_model_name>.js" 
+    * existing code from the path specified in the code snippet. Pay attention to add imports used also by the existing code. 
+    * make the generated "UC*_TC*.spec.js" file to reference functions in "UC*_TC*.functions.js" generated file
+
+<example>
+export const functionNameDescribingStep = async function(page, reporter) {
+    const startTime = DateTime.now();
+    
+    // Eventually go to page
+    // Put here test case step implementation
+    
+    const endTime = DateTime.now();
+    const executionTime = endTime - startTime;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID1', 'Step 1 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+    }
+
+    // Include Playwright assertions
+    expect(passFail).toBeTruthy();
+}
+
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1", "Login test with success");
+
+    // Call step functions in sequence
+    await functionNameDescribingStep1(page, reporter);
+    await functionNameDescribingStep2(page, reporter);
+    // Additional steps...
+
+    reporter.onTestEnd(test, { status: "passed" });     // status can be "passed" or "failed" 
+});
+</example>
+
+Here the test cases to be converted in Playwright script:
+Test Case ID: UC3.4.5_TC1
+Title: Visualizzazione dettaglio scheda censimento con dati validi
+Use Case ID: UC3.4.5
+Priority: Alta
+Type: Positivo
+Preconditions: UC3.4
+Postconditions: L’utente visualizza le informazioni relative alla scheda censimento
+Test Steps:
+  1. Step: Seleziona l’operazione di dettaglio su una scheda esistente
+Expected: La pagina di dettaglio si apre correttamente
+  2. Step: Verifica la presenza dei dati generali dell’area e della gerarchia dei POD e Aree Omogenee
+Expected: Tutti i dati richiesti sono visualizzati correttamente
+  3. Step: Prova a navigare nella gerarchia dei POD e Aree Omogenee
+Expected: La navigazione avviene senza errori
+
+Test Case ID: UC3.4.5_TC2
+Title: Tentativo di modifica dei dati in pagina di dettaglio
+Use Case ID: UC3.4.5
+Priority: Media
+Type: Negativo
+Preconditions: UC3.4
+Postconditions: L’utente non può modificare i dati
+Test Steps:
+  1. Step: Apri la pagina di dettaglio di una scheda censimento
+Expected: La pagina si apre in modalità sola lettura
+  2. Step: Tenta di modificare un campo dei dati generali dell’area
+Expected: Il sistema non permette la modifica e visualizza un messaggio di errore
+  3. Step: Verifica che non ci siano opzioni di editing disponibili
+Expected: Non sono presenti pulsanti o link per modificare i dati
+
+Test Case ID: UC3.4.5_TC3
+Title: Visualizzazione dettaglio scheda censimento con dati mancanti
+Use Case ID: UC3.4.5
+Priority: Media
+Type: Negativo
+Preconditions: UC3.4
+Postconditions: L’utente visualizza un messaggio di dati non disponibili
+Test Steps:
+  1. Step: Seleziona l’operazione di dettaglio su una scheda con dati parziali o mancanti
+Expected: La pagina di dettaglio si apre ma segnala la mancanza di informazioni
+  2. Step: Verifica la presenza di un messaggio che indica la mancanza di dati
+Expected: Il messaggio è chiaro e visibile all’utente
+  3. Step: Controlla se sono presenti link o opzioni per aggiungere i dati mancanti
+Expected: Sono disponibili opzioni per aggiungere o completare le informazioni
+
+Test Case ID: UC3.4.5_TC4
+Title: Navigazione nella gerarchia dei POD e Aree Omogenee
+Use Case ID: UC3.4.5
+Priority: Alta
+Type: Positivo
+Preconditions: UC3.4
+Postconditions: L’utente naviga correttamente nella gerarchia
+Test Steps:
+  1. Step: Apri la pagina di dettaglio di una scheda censimento
+Expected: La gerarchia dei POD e Aree Omogenee è visibile
+  2. Step: Seleziona un nodo della gerarchia per visualizzare i dettagli
+Expected: I dettagli del nodo selezionato sono visualizzati correttamente
+  3. Step: Prova a tornare indietro nella gerarchia e selezionare un altro nodo
+Expected: La navigazione avviene senza errori e i dati sono coerenti
+
+Test Case ID: UC3.4.5_TC5
+Title: Boundary test: selezione di un nodo gerarchico non esistente
+Use Case ID: UC3.4.5
+Priority: Media
+Type: Boundary
+Preconditions: UC3.4
+Postconditions: L’utente visualizza un messaggio di errore
+Test Steps:
+  1. Step: Apri la pagina di dettaglio di una scheda censimento
+Expected: La gerarchia dei POD e Aree Omogenee è visibile
+  2. Step: Inserisci manualmente un ID o percorso non valido nella URL per accedere a un nodo non esistente
+Expected: Il sistema visualizza un messaggio di errore indicando che il nodo non esiste
+  3. Step: Verifica che non ci siano dati visualizzati relativi al nodo inesistente
+Expected: Non sono presenti informazioni relative al nodo
+
+Output format:
+* Output only valid and runnable JavaScript code
+* Do not write code implementation provided in the prompt, only reference it
+* Structure the code in files using markdown code blocks specifying the file name
+2025-06-18 15:22:24,658 - test_code_generator.llm_client.ollama_client - INFO - OllamaClient initialized with model: llama3.3:latest

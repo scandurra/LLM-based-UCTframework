@@ -1,0 +1,541 @@
+2025-06-18 15:22:18,249 - __main__ - INFO - Found 1 dependencies for use case UC2.2
+2025-06-18 15:22:18,249 - __main__ - INFO - Read previously generated functions code for use case UC2 - test case UC2_TC1
+2025-06-18 15:22:18,249 - __main__ - INFO - Read previously generated spec code for use case UC2 - test case UC2_TC1
+2025-06-18 15:22:18,249 - test_code_generator.prompt_builder.prompt_builder - INFO - Test parameters loaded from path: ./input_files/parameters/test_parameters.env
+2025-06-18 15:22:18,249 - test_code_generator.prompt_builder.prompt_builder - INFO - Test reporter loaded from path: ./input_files/reporter_minimal.js
+2025-06-18 15:22:18,249 - test_code_generator.prompt_builder.prompt_builder - INFO - Previous code section loaded from path: ./prompts/batch_processing/zero_shot/llama3.3/previous_code_section.txt
+2025-06-18 15:22:18,249 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt built: 
+ROLE: system
+You are a testing engineer, expert in writing Javascript end-to-end tests with Playwright.
+
+Task: Analyze the test cases provided below and generate for each test case a complete and working Playwright test script in Javascript, following the steps described in each test case.
+When creating the test scripts, use only the page object model provided for interacting with the DOM and the parameters provided.
+------------------------------------------------------------------
+ROLE: user
+Use only this page object models for interacting with the DOM:
+```javascript
+File: dashboard_page_illumination_search.js
+export class DashboardPageIlluminationSearch {
+    constructor(page) {
+        this.page = page;
+        
+        // Selectors
+        this.comuniDropdown = this.page.getByLabel('Comuni', { exact: true });
+        this.applyGeomapButton = this.page.locator('#compute_apply_geomap_1');
+        this.mapText = this.page.getByText('Mappa impianti d\'illuminazioneLoading...Completa i campi della form e premi');
+    }
+
+    async selectComune(optionIndex = 0) {
+        await this.comuniDropdown.selectOption({ index: optionIndex });
+    }
+
+    async applySearch() {
+        await this.applyGeomapButton.click();
+    }
+
+    async isMapVisible() {
+        return await this.mapText.isVisible();
+    }
+
+    async isComuniDropdownVisible() {
+        return await this.comuniDropdown.isVisible();
+    }
+
+    async isApplyButtonVisible() {
+        return await this.applyGeomapButton.isVisible();
+    }
+}
+```
+
+Use the following test parameters when creating scripts:
+E2E_BASE_URL=""
+E2E_LOGIN_URL=""
+E2E_HOME_URL="" 
+E2E_DASHBOARD_URL="" 
+E2E_CTS_URL="" 
+EMAIL=""
+PASSWORD=""
+
+When in the test case there is a step, a precondition or a postcondition with a name of use case UC*, reuse this functions passing null as reporter parameter:
+```javascript
+// File: UC2_TC1.functions.js
+import { SidebarPage } from '../../models/page_object_models/sidebar_page.js';
+
+import { test, expect } from '@playwright/test';
+
+import TestResultReporter from '../../models/test-result-reporter.js';
+
+export const accessPlatformAsRegisteredUser = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    await fillCorrectCredentials(page, null);
+    await clickLoginButton(page, null);
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC2_TC1_ID1', 'Accedi alla piattaforma come utente registrato', true, await page.url() === process.env.E2E_HOME_URL, true, {}, executionTime);
+    }
+
+    expect(await page.url()).toBe(process.env.E2E_HOME_URL);
+}
+
+export const selectDashboardMenu = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const sidebarPage = new SidebarPage(page);
+    await sidebarPage.clickDashboardLink();
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC2_TC1_ID2', 'Seleziona la voce di menù relativa alla dashboard', true, await page.url() === process.env.E2E_DASHBOARD_URL, true, {}, executionTime);
+    }
+
+    expect(await page.url()).toBe(process.env.E2E_DASHBOARD_URL);
+}
+// File: UC2_TC1.spec.js
+import { test, expect } from '@playwright/test';
+
+import TestResultReporter from '../../models/test-result-reporter.js';
+
+import { accessPlatformAsRegisteredUser, selectDashboardMenu } from './UC2_TC1.functions.js';
+
+import { fillCorrectCredentials, clickLoginButton } from '../UC1_TC1/UC1_TC1.functions.js';
+
+test("UC2_TC1 - Apertura della dashboard con utente autorizzato", async ({ page, browserName }) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC2_TC1", "Apertura della dashboard con utente autorizzato");
+
+    await page.goto(process.env.E2E_BASE_URL);
+
+    // Call step functions in sequence
+    await accessPlatformAsRegisteredUser(page, reporter);
+    await selectDashboardMenu(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+```
+
+Instructions:
+1. Analyze the test cases provided
+2. For each test case, generate a test script in Javascript with Playwright
+3. Use only Page object model provided to interact with the DOM.
+4. Call the TestResultReporter object methods as described below.
+5. Put the code in functions for reusability, with the reporter object as parameter not mandatory. If not null, call reporter methods. 
+6. Put functions in a separate file called "UC*_TC*.functions.js" and each test in a file called "UC*_TC*.spec.js"
+7. Do not rewrite functions provided in the prompt, just refer to them.
+8. Add the required import for:
+    * test, expect, ... from '@playwright/test' in all files
+    * TestResultReporter from "../../models/test-result-reporter.js" 
+    * page object models from "../../models/page_object_models/<page_object_model_name>.js" 
+    * existing code from the path specified in the code snippet. Pay attention to add imports used also by the existing code. 
+    * make the generated "UC*_TC*.spec.js" file to reference functions in "UC*_TC*.functions.js" generated file
+
+<example>
+export const functionNameDescribingStep = async function(page, reporter) {
+    const startTime = DateTime.now();
+    
+    // Eventually go to page
+    // Put here test case step implementation
+    
+    const endTime = DateTime.now();
+    const executionTime = endTime - startTime;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID1', 'Step 1 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+    }
+
+    // Include Playwright assertions
+    expect(passFail).toBeTruthy();
+}
+
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1", "Login test with success");
+
+    // Call step functions in sequence
+    await functionNameDescribingStep1(page, reporter);
+    await functionNameDescribingStep2(page, reporter);
+    // Additional steps...
+
+    reporter.onTestEnd(test, { status: "passed" });     // status can be "passed" or "failed" 
+});
+</example>
+
+Here the test cases to be converted in Playwright script:
+Test Case ID: UC2.2_TC1
+Title: Ricerca impianti di illuminazione con parametri validi
+Use Case ID: UC2.2
+Priority: Alta
+Type: Positivo
+Preconditions: UC2
+Postconditions: L’utente visualizza gli impianti di illuminazione che corrispondono ai criteri di ricerca
+Test Steps:
+  1. Step: Seleziona un comune e dei parametri di ricerca validi
+Expected: I parametri vengono accettati
+  2. Step: Conferma la ricerca
+Expected: La mappa si aggiorna con gli impianti di illuminazione trovati
+  3. Step: Visualizza i dettagli degli impianti di illuminazione
+Expected: Le informazioni vengono visualizzate correttamente
+
+Test Case ID: UC2.2_TC2
+Title: Ricerca senza selezionare il comune
+Use Case ID: UC2.2
+Priority: Media
+Type: Negativo
+Preconditions: UC2
+Postconditions: Il sistema segnala l’errore di ricerca
+Test Steps:
+  1. Step: Lascia vuoto il campo del comune
+Expected: Il sistema richiede la selezione del comune
+  2. Step: Tenta di confermare la ricerca
+Expected: La ricerca non procede e viene mostrato un messaggio di errore
+
+Test Case ID: UC2.2_TC3
+Title: Ricerca con parametri non validi
+Use Case ID: UC2.2
+Priority: Media
+Type: Negativo
+Preconditions: UC2
+Postconditions: Il sistema segnala l’errore di ricerca
+Test Steps:
+  1. Step: Inserisci dei parametri di ricerca non validi (es. testo al posto di numeri)
+Expected: Il sistema rileva l’errore e richiede la correzione
+  2. Step: Tenta di confermare la ricerca
+Expected: La ricerca non procede e viene mostrato un messaggio di errore
+
+Test Case ID: UC2.2_TC4
+Title: Ricerca con selezione multipla di comuni
+Use Case ID: UC2.2
+Priority: Alta
+Type: Positivo
+Preconditions: UC2
+Postconditions: Il sistema visualizza gli impianti di illuminazione per tutti i comuni selezionati
+Test Steps:
+  1. Step: Seleziona più comuni
+Expected: I comuni vengono aggiunti alla lista di ricerca
+  2. Step: Conferma la ricerca
+Expected: La mappa si aggiorna con gli impianti di illuminazione trovati per tutti i comuni selezionati
+
+Test Case ID: UC2.2_TC5
+Title: Boundary test: ricerca con il massimo numero di parametri
+Use Case ID: UC2.2
+Priority: Alta
+Type: Boundary
+Preconditions: UC2
+Postconditions: Il sistema gestisce correttamente tutti i parametri
+Test Steps:
+  1. Step: Seleziona il massimo numero di parametri disponibili
+Expected: Tutti i parametri vengono accettati
+  2. Step: Conferma la ricerca
+Expected: La mappa si aggiorna con gli impianti di illuminazione trovati in base a tutti i parametri
+
+Output format:
+* Output only valid and runnable JavaScript code
+* Do not write code implementation provided in the prompt, only reference it
+* Structure the code in files using markdown code blocks specifying the file name
+2025-06-18 15:22:18,249 - test_code_generator.llm_client.ollama_client - INFO - OllamaClient initialized with model: llama3.3:latest
+2025-06-18 15:22:18,646 - __main__ - INFO - Found 1 dependencies for use case UC2.3
+2025-06-18 15:22:18,647 - __main__ - INFO - Read previously generated functions code for use case UC2 - test case UC2_TC1
+2025-06-18 15:22:18,647 - __main__ - INFO - Read previously generated spec code for use case UC2 - test case UC2_TC1
+2025-06-18 15:22:18,647 - test_code_generator.prompt_builder.prompt_builder - INFO - Test parameters loaded from path: ./input_files/parameters/test_parameters.env
+2025-06-18 15:22:18,647 - test_code_generator.prompt_builder.prompt_builder - INFO - Test reporter loaded from path: ./input_files/reporter_minimal.js
+2025-06-18 15:22:18,647 - test_code_generator.prompt_builder.prompt_builder - INFO - Previous code section loaded from path: ./prompts/batch_processing/zero_shot/llama3.3/previous_code_section.txt
+2025-06-18 15:22:18,647 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt built: 
+ROLE: system
+You are a testing engineer, expert in writing Javascript end-to-end tests with Playwright.
+
+Task: Analyze the test cases provided below and generate for each test case a complete and working Playwright test script in Javascript, following the steps described in each test case.
+When creating the test scripts, use only the page object model provided for interacting with the DOM and the parameters provided.
+------------------------------------------------------------------
+ROLE: user
+Use only this page object models for interacting with the DOM:
+```javascript
+File: dashboard_page_general_data_table.js
+export class DashboardPageGeneralDataTable {
+  constructor(page) {
+    this.page = page;
+    
+    // Table navigation selectors
+    this.generalDataTable = this.page.getByText('Tabella Dati generaliNessun datoLoading...ComuneRegioneN° di Punti LuceConsumo');
+    this.nextButton = this.page.getByLabel('Successivo');
+    this.pageOneLink = this.page.getByRole('link', { name: '1' });
+    this.elementsDropdown = this.page.getByLabel('Mostra 102550100 elementi');
+    this.regionSortButton = this.page.getByLabel('Regione: attiva per ordinare');
+    this.pointsLightSortButton = this.page.getByLabel('N° di Punti Luce: attiva per');
+  }
+
+  async getTableContent() {
+    const content = await this.generalDataTable.allTextContents();
+    return content[0];
+  }
+
+  async navigateToNextPage() {
+    await this.nextButton.click();
+  }
+
+  async navigateToPageOne() {
+    await this.pageOneLink.click();
+  }
+
+  async changeElementsPerPage(value = '25') {
+    await this.elementsDropdown.selectOption(value);
+  }
+
+  async sortByRegion() {
+    await this.regionSortButton.click();
+  }
+
+  async sortByPointsOfLight() {
+    await this.pointsLightSortButton.click();
+  }
+
+  async isTableVisible() {
+    return await this.generalDataTable.isVisible();
+  }
+
+  async isNextButtonVisible() {
+    return await this.nextButton.isVisible();
+  }
+
+  async isElementsDropdownVisible() {
+    return await this.elementsDropdown.isVisible();
+  }
+
+  async isSortButtonsVisible() {
+    const regionVisible = await this.regionSortButton.isVisible();
+    const pointsVisible = await this.pointsLightSortButton.isVisible();
+    return regionVisible && pointsVisible;
+  }
+}
+
+```
+
+Use the following test parameters when creating scripts:
+E2E_BASE_URL=""
+E2E_LOGIN_URL=""
+E2E_HOME_URL="" 
+E2E_DASHBOARD_URL="" 
+E2E_CTS_URL="" 
+EMAIL=""
+PASSWORD=""
+
+When in the test case there is a step, a precondition or a postcondition with a name of use case UC*, reuse this functions passing null as reporter parameter:
+```javascript
+// File: UC2_TC1.functions.js
+import { SidebarPage } from '../../models/page_object_models/sidebar_page.js';
+
+import { test, expect } from '@playwright/test';
+
+import TestResultReporter from '../../models/test-result-reporter.js';
+
+export const accessPlatformAsRegisteredUser = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    await fillCorrectCredentials(page, null);
+    await clickLoginButton(page, null);
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC2_TC1_ID1', 'Accedi alla piattaforma come utente registrato', true, await page.url() === process.env.E2E_HOME_URL, true, {}, executionTime);
+    }
+
+    expect(await page.url()).toBe(process.env.E2E_HOME_URL);
+}
+
+export const selectDashboardMenu = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const sidebarPage = new SidebarPage(page);
+    await sidebarPage.clickDashboardLink();
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC2_TC1_ID2', 'Seleziona la voce di menù relativa alla dashboard', true, await page.url() === process.env.E2E_DASHBOARD_URL, true, {}, executionTime);
+    }
+
+    expect(await page.url()).toBe(process.env.E2E_DASHBOARD_URL);
+}
+// File: UC2_TC1.spec.js
+import { test, expect } from '@playwright/test';
+
+import TestResultReporter from '../../models/test-result-reporter.js';
+
+import { accessPlatformAsRegisteredUser, selectDashboardMenu } from './UC2_TC1.functions.js';
+
+import { fillCorrectCredentials, clickLoginButton } from '../UC1_TC1/UC1_TC1.functions.js';
+
+test("UC2_TC1 - Apertura della dashboard con utente autorizzato", async ({ page, browserName }) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC2_TC1", "Apertura della dashboard con utente autorizzato");
+
+    await page.goto(process.env.E2E_BASE_URL);
+
+    // Call step functions in sequence
+    await accessPlatformAsRegisteredUser(page, reporter);
+    await selectDashboardMenu(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+```
+
+Instructions:
+1. Analyze the test cases provided
+2. For each test case, generate a test script in Javascript with Playwright
+3. Use only Page object model provided to interact with the DOM.
+4. Call the TestResultReporter object methods as described below.
+5. Put the code in functions for reusability, with the reporter object as parameter not mandatory. If not null, call reporter methods. 
+6. Put functions in a separate file called "UC*_TC*.functions.js" and each test in a file called "UC*_TC*.spec.js"
+7. Do not rewrite functions provided in the prompt, just refer to them.
+8. Add the required import for:
+    * test, expect, ... from '@playwright/test' in all files
+    * TestResultReporter from "../../models/test-result-reporter.js" 
+    * page object models from "../../models/page_object_models/<page_object_model_name>.js" 
+    * existing code from the path specified in the code snippet. Pay attention to add imports used also by the existing code. 
+    * make the generated "UC*_TC*.spec.js" file to reference functions in "UC*_TC*.functions.js" generated file
+
+<example>
+export const functionNameDescribingStep = async function(page, reporter) {
+    const startTime = DateTime.now();
+    
+    // Eventually go to page
+    // Put here test case step implementation
+    
+    const endTime = DateTime.now();
+    const executionTime = endTime - startTime;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID1', 'Step 1 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+    }
+
+    // Include Playwright assertions
+    expect(passFail).toBeTruthy();
+}
+
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1", "Login test with success");
+
+    // Call step functions in sequence
+    await functionNameDescribingStep1(page, reporter);
+    await functionNameDescribingStep2(page, reporter);
+    // Additional steps...
+
+    reporter.onTestEnd(test, { status: "passed" });     // status can be "passed" or "failed" 
+});
+</example>
+
+Here the test cases to be converted in Playwright script:
+Test Case ID: UC2.3_TC1
+Title: Visualizzazione tabella dati generali con impostazioni predefinite
+Use Case ID: UC2.3
+Priority: Alta
+Type: Positivo
+Preconditions: UC2
+Postconditions: L’utente visualizza le informazioni corrispondenti alla paginazione richiesta
+Test Steps:
+  1. Step: Accedi alla sezione dashboard tramite il menù apposito
+Expected: La sezione dashboard viene visualizzata correttamente
+  2. Step: Scorri nella pagina fino a visualizzare la sezione tabellare dedicata ai dati generali
+Expected: La tabella dei dati generali è visibile e contiene le informazioni attese
+  3. Step: Verifica che sia possibile scorrere tra i comuni disponibili e modificare gli elementi visualizzati per pagina
+Expected: Le funzionalità di scrolling e selezione del numero di elementi per pagina funzionano correttamente
+
+Test Case ID: UC2.3_TC2
+Title: Visualizzazione tabella dati generali con ordinamento personalizzato
+Use Case ID: UC2.3
+Priority: Media
+Type: Positivo
+Preconditions: UC2
+Postconditions: L’utente visualizza le informazioni corrispondenti alla paginazione richiesta
+Test Steps:
+  1. Step: Accedi alla sezione dashboard e scorri fino alla tabella dei dati generali
+Expected: La tabella è visibile
+  2. Step: Clicca sul nome di una colonna per ordinare i dati
+Expected: I dati vengono ordinati correttamente secondo la colonna selezionata
+  3. Step: Verifica che l’ordinamento funzioni anche con più clic (ascendente e discendente)
+Expected: L’ordinamento dei dati si alterna correttamente tra ascendente e discendente
+
+Test Case ID: UC2.3_TC3
+Title: Visualizzazione tabella dati generali con selezione di comune non disponibile
+Use Case ID: UC2.3
+Priority: Media
+Type: Negativo
+Preconditions: UC2
+Postconditions: L’utente visualizza un messaggio di errore o una pagina non trovata
+Test Steps:
+  1. Step: Accedi alla sezione dashboard e scorri fino alla tabella dei dati generali
+Expected: La tabella è visibile
+  2. Step: Seleziona un comune che non esiste o non è disponibile
+Expected: Il sistema visualizza un messaggio di errore o una pagina di default per comuni non trovati
+  3. Step: Verifica che il messaggio di errore sia chiaro e utile per l’utente
+Expected: Il messaggio di errore fornisce informazioni utili all’utente su come procedere
+
+Test Case ID: UC2.3_TC4
+Title: Visualizzazione tabella dati generali con numero di elementi per pagina non valido
+Use Case ID: UC2.3
+Priority: Bassa
+Type: Negativo
+Preconditions: UC2
+Postconditions: L’utente visualizza un messaggio di errore o una pagina con impostazioni predefinite
+Test Steps:
+  1. Step: Accedi alla sezione dashboard e scorri fino alla tabella dei dati generali
+Expected: La tabella è visibile
+  2. Step: Inserisci un numero di elementi per pagina non valido (ad esempio, un valore alfanumerico)
+Expected: Il sistema visualizza un messaggio di errore o reimposta il numero di elementi per pagina alle impostazioni predefinite
+  3. Step: Verifica che il sistema gestisca correttamente l’input non valido
+Expected: Il sistema si comporta come atteso in caso di input non valido
+
+Test Case ID: UC2.3_TC5
+Title: Visualizzazione tabella dati generali con ordinamento su più colonne
+Use Case ID: UC2.3
+Priority: Alta
+Type: Positivo
+Preconditions: UC2
+Postconditions: L’utente visualizza le informazioni corrispondenti alla paginazione richiesta
+Test Steps:
+  1. Step: Accedi alla sezione dashboard e scorri fino alla tabella dei dati generali
+Expected: La tabella è visibile
+  2. Step: Clicca su più colonne per ordinare i dati in base a più criteri
+Expected: I dati vengono ordinati correttamente secondo le colonne selezionate
+  3. Step: Verifica che l’ordinamento funzioni come atteso anche con più clic
+Expected: L’ordinamento dei dati si alterna correttamente tra ascendente e discendente per ogni colonna selezionata
+
+Test Case ID: UC2.3_TC6
+Title: Visualizzazione tabella dati generali con selezione rapida di comuni
+Use Case ID: UC2.3
+Priority: Media
+Type: Positivo
+Preconditions: UC2
+Postconditions: L’utente visualizza le informazioni corrispondenti alla paginazione richiesta
+Test Steps:
+  1. Step: Accedi alla sezione dashboard e scorri fino alla tabella dei dati generali
+Expected: La tabella è visibile
+  2. Step: Utilizza la funzionalità di selezione rapida per passare direttamente a un comune specifico
+Expected: Il sistema visualizza i dati del comune selezionato
+  3. Step: Verifica che la funzionalità di selezione rapida funzioni correttamente e sia utile
+Expected: La funzionalità di selezione rapida è facile da usare e risparmia tempo all’utente
+
+Test Case ID: UC2.3_TC7
+Title: Visualizzazione tabella dati generali con accessibilità per utenti disabili
+Use Case ID: UC2.3
+Priority: Alta
+Type: Positivo
+Preconditions: UC2
+Postconditions: L’utente visualizza le informazioni corrispondenti alla paginazione richiesta
+Test Steps:
+  1. Step: Accedi alla sezione dashboard e scorri fino alla tabella dei dati generali utilizzando strumenti di accessibilità (ad esempio, lettore dello schermo)
+Expected: La tabella è accessibile e leggibile
+  2. Step: Verifica che tutte le funzionalità della tabella siano accessibili
+Expected: Tutte le funzionalità sono accessibili e utilizzabili anche con strumenti di accessibilità
+  3. Step: Controlla che il sito web sia conforme agli standard di accessibilità (WCAG 2.1)
+Expected: Il sito web soddisfa gli standard di accessibilità richiesti
+
+Output format:
+* Output only valid and runnable JavaScript code
+* Do not write code implementation provided in the prompt, only reference it
+* Structure the code in files using markdown code blocks specifying the file name
+2025-06-18 15:22:18,647 - test_code_generator.llm_client.ollama_client - INFO - OllamaClient initialized with model: llama3.3:latest

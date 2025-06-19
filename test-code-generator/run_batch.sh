@@ -15,5 +15,5 @@ use_cases=(
 # Iterate over each use case
 for use_case in "${use_cases[@]}"; do
     echo "Running test for use case: $use_case"
-    poetry run python -m $executable_file --use_case_name="$use_case" --configuration="few_shot" --model="$model"
+    poetry run python -m $executable_file --use_case_name="$use_case" --configuration="zero_shot" --model="$model"
 done
