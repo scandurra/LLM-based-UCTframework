@@ -1,0 +1,139 @@
+<output file="UC10_TC1.functions.js">
+import { test, expect } from '@playwright/test';
+import { SupportPage } from '../../models/page_object_models/support_page.js';
+import TestResultReporter from '../../models/test-result-reporter.js';
+
+// Step 1
+export const navigateToSupportPage = async function(page, reporter) {
+  const startTime = new Date().getTime();
+    await page.goto(process.env.E2E_SUPPORT_URL);
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('U101_TC1_ID1', 'Navigate to support page', 'Support page loaded', 'Support page loaded', true, `E2E_SUPPORT_URL: ${process.env.E2E_SUPPORT_URL}`, executionTime);
+    }
+}
+
+// Step 2
+export const fillSupportForm = async function(page, reporter) {
+  const supportPage = new SupportPage(page);
+
+  let startTime = Date.now();
+  const category = "missing_credentials";
+  const description = "Non riesco più ad accedere al mio account";
+  const email = process.env.EMAIL;
+  await supportPage.selectIssueCategory(category);
+  await supportPage.enterIssueDescription(description);
+  await supportPage.enterEmail(email);
+  let endTime = Date.now();
+  if (reporter) {
+    reporter.addStep('UC10_TC1_ID2','L\'utente compila la form di assistenza', `Form compilata`, `Form compilata`, true, { category, description, email }, endTime - startTime );
+  }
+}
+
+// Step 3
+export const submitForm = async function (page, reporter) {
+  const supportPage = new SupportPage(page);
+
+  startTime = date.now();
+  await supportPage.submitIssue();
+  await page.waitForUrl(process.env.E2E_SUPPORT_SUCCESS_URL, { waitUnitl: "networkidle" });
+  let testPass = page.url() == process.env.E2E_SUPPORT_SUCCESS_URL;
+  endTime = date.now();
+  if (reporter) {
+    reporter.addStep('UC10_TC1_ID3', 'Invia richiesta di assistenza', "L'utente viene reindirizzato alla pagina di avvenuto invio", testPass ? "L'utente viene reindirizzato alla pagina di avvenuto invio" : "Nessun reindirizzamento avvenuto", testPass, {}, endTime - startTime);
+  }
+
+  expect(passFail).toBeTruthy();
+}
+</output>
+
+<output file="UC10_TC2.functions.js">
+import { test, expect } from '@playwright/test';
+import { SupportPage } from '../../models/page_object_models/support_page.js';
+import TestResultReporter from '../../models/test-result-reporter.js';
+
+// Step 1
+export const navigateToSupportPage = async function(page, reporter) {
+  const startTime = new Date().getTime();
+    await page.goto(process.env.E2E_SUPPORT_URL);
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('U101_TC1_ID1', 'Navigate to support page', 'Support page loaded', 'Support page loaded', true, `E2E_SUPPORT_URL: ${process.env.E2E_SUPPORT_URL}`, executionTime);
+    }
+}
+
+// Step 2
+export const fillSupportFormWithWrongEmail = async function(page, reporter) {
+  const supportPage = new SupportPage(page);
+
+  let startTime = Date.now();
+  const category = "missing_credentials";
+  const description = "Non riesco più ad accedere al mio account";
+  const email = "wrong email field";
+  await supportPage.selectIssueCategory(category);
+  await supportPage.enterIssueDescription(description);
+  await supportPage.enterEmail(email);
+  let endTime = Date.now();
+  if (reporter) {
+    reporter.addStep('UC10_TC1_ID2','L\'utente compila la form di assistenza', `Form compilata`, `Form compilata`, true, { category, description, email }, endTime - startTime );
+  }
+}
+
+// Step 3
+export const submitForm = async function (page, reporter) {
+  const supportPage = new SupportPage(page);
+
+  startTime = date.now();
+  await supportPage.submitIssue();
+  await supportPage.waitForErrorMessage();
+  let testPass = await supportPage.getErrorMessage() != '';
+  endTime = date.now();
+  if (reporter) {
+    reporter.addStep('UC10_TC1_ID3', 'Invia richiesta di assistenza', "Viene mostrato all'utente un messaggio di errore", testPass ? "Viene mostrato all'utente un messaggio di errore" : "Nessun messaggio mostrato", testPass, {}, endTime - startTime);
+  }
+
+  expect(passFail).toBeTruthy();
+}
+</output>
+
+<output file="UC10_TC1.spec.js">
+import { test, expect } from '@playwright/test';
+import { SupportPage } from '../../models/page_object_models/support_page.js';
+import TestResultReporter from '../../models/test-result-reporter.js';
+import { navigateToSupportPage, fillSupportForm, submitForm } import './UC10_TC1.functions.js';
+
+const reporter = new TestResultReporter();
+
+test("UC10_TC1 - Invio richiesta di assistenza", async ({ page, browserName }) => {
+  reporter.setBrowserName(browserName);
+  reporter.setTestCase("UC10_TC1", "Invio richiesta di assistenza");
+
+  await navigateToSupportPage(page, reporter);
+  await fillSupportForm(page, reporter);
+  await submitForm(page, reporter);
+
+  reporter.onTestEnd(test, { status: "passed" });
+}); 
+</output>
+
+<output file="UC10_TC2.spec.js">
+import { test, expect } from '@playwright/test';
+import { SupportPage } from '../../models/page_object_models/support_page.js';
+import TestResultReporter from '../../models/test-result-reporter.js';
+import { navigateToSupportPage, fillSupportFormWithWrongEmail, submitForm } import './UC10_TC2.functions.js';
+
+const reporter = new TestResultReporter();
+
+test("UC10_TC1 - Invio richiesta di assistenza", async ({ page, browserName }) => {
+  reporter.setBrowserName(browserName);
+  reporter.setTestCase("UC10_TC1", "Invio richiesta di assistenza");
+
+  await navigateToSupportPage(page, reporter);
+  await fillSupportFormWithWrongEmail(page, reporter);
+  await submitForm(page, reporter);
+
+  reporter.onTestEnd(test, { status: "passed" });
+}); 
+</output>
