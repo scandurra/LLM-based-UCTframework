@@ -1,0 +1,2 @@
+Questa cartella contiene i file xlsx contenenti la valutazione quantitativa di tutti i test di cui esiste la baseline.
+Nella cartella others sono presenti test generati necessari (ad esempio quelli generici) di cui però non esiste una corrispondenza nella baseline

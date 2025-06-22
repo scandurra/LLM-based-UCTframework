@@ -1,6 +1,6 @@
-from evaluation.bleu import calculate_bleu
-from evaluation.code_bleu import calculate_code_bleu
-from evaluation.cosine_similarity import calculate_cosine_similarity
+from evaluation.functions.bleu import calculate_bleu
+from evaluation.functions.code_bleu import calculate_code_bleu
+from evaluation.functions.cosine_similarity import calculate_cosine_similarity
 
 
 

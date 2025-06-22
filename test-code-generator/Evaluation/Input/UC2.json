@@ -1,0 +1,97 @@
+[
+  {
+    "test_case_id": "UC2_TC1",
+    "title": "Apertura della dashboard con utente autorizzato",
+    "preconditions": "UC1",
+    "postconditions": "La dashboard viene visualizzata correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla piattaforma come utente registrato",
+        "expected": "La home page della piattaforma è visibile"
+      },
+      {
+        "step": "Seleziona la voce di menù relativa alla dashboard",
+        "expected": "La sezione della dashboard si apre correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC2",
+    "title": "Tentativo di accesso alla dashboard senza autorizzazione",
+    "preconditions": "UC1",
+    "postconditions": "L’accesso alla dashboard è negato",
+    "test_steps": [
+      {
+        "step": "Accedi alla piattaforma come utente non registrato",
+        "expected": "La home page della piattaforma è visibile ma senza accesso alle funzioni riservate"
+      },
+      {
+        "step": "Tenta di accedere direttamente alla dashboard tramite URL",
+        "expected": "Viene richiesta la registrazione o il login per procedere"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC3",
+    "title": "Apertura della dashboard con diverse autorizzazioni",
+    "preconditions": "UC1",
+    "postconditions": "La dashboard si adatta alle autorizzazioni dell’utente",
+    "test_steps": [
+      {
+        "step": "Accedi alla piattaforma con diversi profili utente (es. amministratore, utente base)",
+        "expected": "Le funzionalità e le informazioni visualizzate nella dashboard variano in base al ruolo"
+      },
+      {
+        "step": "Verifica la presenza di funzioni e sezioni specifiche per ogni tipo di utente",
+        "expected": "Tutte le funzionalità previste per il ruolo sono accessibili e funzionanti"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Alta",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC4",
+    "title": "Verifica della compatibilità con diversi browser",
+    "preconditions": "UC1",
+    "postconditions": "La dashboard è visualizzabile su più browser",
+    "test_steps": [
+      {
+        "step": "Accedi alla piattaforma utilizzando browser differenti (es. Chrome, Firefox, Edge)",
+        "expected": "La dashboard si apre e funziona correttamente su ogni browser"
+      },
+      {
+        "step": "Verifica la presenza di eventuali problemi di visualizzazione o funzionalità",
+        "expected": "Nessun problema riscontrato nella visualizzazione o nell’utilizzo della dashboard"
+      }
+    ],
+    "test_type": "Compatibilità",
+    "priority": "Media",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC5",
+    "title": "Apertura della dashboard su dispositivi mobili",
+    "preconditions": "UC1",
+    "postconditions": "La dashboard è accessibile e utilizzabile su dispositivi mobili",
+    "test_steps": [
+      {
+        "step": "Accedi alla piattaforma tramite smartphone o tablet",
+        "expected": "La dashboard si adatta allo schermo del dispositivo mobile"
+      },
+      {
+        "step": "Verifica la navigazione e l’accesso alle funzionalità principali",
+        "expected": "Tutte le funzioni sono accessibili e utilizzabili anche su dispositivi mobili"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Alta",
+    "use_case_id": "UC2"
+  }
+]

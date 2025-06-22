@@ -1,0 +1,117 @@
+[
+  {
+    "test_case_id": "UC3.4.3.2_TC1",
+    "title": "Modifica dati generali con informazioni valide",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Compila il form con informazioni desiderate e valide",
+        "expected": "Il form viene compilato senza errori"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "L’operazione va a buon fine e compare un messaggio di conferma"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.2"
+  },
+  {
+    "test_case_id": "UC3.4.3.2_TC2",
+    "title": "Modifica dati generali con informazioni non valide",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Compila il form con informazioni non valide (es. campi obbligatori vuoti)",
+        "expected": "Il sistema segnala errori di compilazione"
+      },
+      {
+        "step": "Tenta di applicare le modifiche con l’apposito tasto",
+        "expected": "L’operazione non va a buon fine e compare un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.2"
+  },
+  {
+    "test_case_id": "UC3.4.3.2_TC3",
+    "title": "Modifica dati generali senza apportare modifiche",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Non apportare modifiche al form",
+        "expected": "Il sistema non segnala errori"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "L’operazione va a buon fine e compare un messaggio di conferma"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.2"
+  },
+  {
+    "test_case_id": "UC3.4.3.2_TC4",
+    "title": "Modifica dati generali con campi obbligatori vuoti",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Lascia vuoti i campi obbligatori del form",
+        "expected": "Il sistema segnala errori di compilazione"
+      },
+      {
+        "step": "Tenta di applicare le modifiche con l’apposito tasto",
+        "expected": "L’operazione non va a buon fine e compare un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.2"
+  },
+  {
+    "test_case_id": "UC3.4.3.2_TC5",
+    "title": "Modifica dati generali con caratteri speciali nei campi di testo",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci caratteri speciali nei campi di testo (es. @, #, $)",
+        "expected": "Il sistema accetta i caratteri speciali o li normalizza"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "L’operazione va a buon fine e compare un messaggio di conferma"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.2"
+  }
+]

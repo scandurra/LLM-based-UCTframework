@@ -1,0 +1,10 @@
+{
+    "username" : {
+        "type"          : "text",
+        "validation"    : "email|min:3|max:30"
+    },
+    "password" : {
+        "type"          : "text",
+        "validation"    : "string|min:8|max:30"
+    }
+}

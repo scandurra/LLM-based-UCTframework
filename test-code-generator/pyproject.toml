@@ -22,6 +22,9 @@ scikit-learn = "^1.7.0"
 numpy = "^2.3.0"
 # For Fleiss Kappa
 statsmodels = "^0.14.4"
+pandas = "^2.3.0"
+openpyxl = "^3.1.5"
+scipy = "^1.15.3"
 
 
 [build-system]

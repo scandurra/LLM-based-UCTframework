@@ -32,7 +32,6 @@ class OllamaClient(BaseLLMClient):
                 "role": message.role,
                 "content": message.content
             })
-        print(messages)
         
         try:
             options = {

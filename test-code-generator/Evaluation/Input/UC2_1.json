@@ -1,0 +1,113 @@
+[
+  {
+    "test_case_id": "UC2.1_TC1",
+    "title": "Download PDF con successo",
+    "preconditions": "UC2",
+    "postconditions": "L’utente ha scaricato il file, può aprirlo dalla apposita sezione del browser utilizzato ed il file è ben formato",
+    "test_steps": [
+      {
+        "step": "Clicca sul tasto di download del PDF",
+        "expected": "Il processo di download inizia"
+      },
+      {
+        "step": "Conferma la richiesta di download",
+        "expected": "Il file inizia a scaricarsi"
+      },
+      {
+        "step": "Verifica il messaggio di completamento dell’operazione",
+        "expected": "Messaggio di successo visualizzato"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC2",
+    "title": "Download PDF con errore di conferma",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di operazione completata con un errore",
+    "test_steps": [
+      {
+        "step": "Clicca sul tasto di download del PDF",
+        "expected": "Il processo di download inizia"
+      },
+      {
+        "step": "Annulla la richiesta di download",
+        "expected": "Il file non viene scaricato e compare un messaggio di errore"
+      },
+      {
+        "step": "Verifica il messaggio di completamento dell’operazione",
+        "expected": "Messaggio di errore visualizzato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC3",
+    "title": "Download PDF senza conferma",
+    "preconditions": "UC2",
+    "postconditions": "L’utente non può scaricare il file",
+    "test_steps": [
+      {
+        "step": "Clicca sul tasto di download del PDF senza confermare",
+        "expected": "Il processo di download non inizia"
+      },
+      {
+        "step": "Verifica la presenza di un messaggio di errore",
+        "expected": "Messaggio di richiesta di conferma visualizzato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC4",
+    "title": "Download PDF con ripetizione della richiesta",
+    "preconditions": "UC2",
+    "postconditions": "L’utente può scaricare il file dopo aver ripetuto la richiesta",
+    "test_steps": [
+      {
+        "step": "Clicca sul tasto di download del PDF e annulla la richiesta",
+        "expected": "Il processo di download non inizia"
+      },
+      {
+        "step": "Ripeti la richiesta di download",
+        "expected": "Il file inizia a scaricarsi"
+      },
+      {
+        "step": "Verifica il messaggio di completamento dell’operazione",
+        "expected": "Messaggio di successo visualizzato"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Alta",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC5",
+    "title": "Download PDF con verifica del formato del file",
+    "preconditions": "UC2",
+    "postconditions": "L’utente ha scaricato il file e può aprirlo",
+    "test_steps": [
+      {
+        "step": "Clicca sul tasto di download del PDF",
+        "expected": "Il processo di download inizia"
+      },
+      {
+        "step": "Verifica che il file sia stato scaricato correttamente",
+        "expected": "Il file è presente nella cartella dei download"
+      },
+      {
+        "step": "Apri il file per verificare il contenuto",
+        "expected": "Il file si apre e il contenuto è leggibile"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Alta",
+    "use_case_id": "UC2.1"
+  }
+]

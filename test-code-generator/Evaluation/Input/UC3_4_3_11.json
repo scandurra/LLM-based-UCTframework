@@ -1,0 +1,79 @@
+[
+  {
+    "test_case_id": "UC3.4.3.11_T1",
+    "title": "Modifica LightSource con dati validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "steps": [
+      "L’utente seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+      "L’utente espande la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD",
+      "L’utente seleziona il pannello elettrico ed espande la visione ad albero del pannello selezionato per visionare i punti luce che appartengono al pannello elettrico",
+      "L’utente seleziona il punto luce ed espande la visione ad albero del punto luce selezionato per visionare i dispositivi punti luce che appartengono al punto luce",
+      "L’utente seleziona il dispositivo punto luce ed espande la visione ad albero del dispositivo punto luce selezionato per visionare le sorgenti di luce che appartengono al dispositivo punto luce",
+      "L’utente seleziona il tab relativo ai dati apparecchio",
+      "L’utente visualizza i dati precedenti e compila il form con informazioni valide",
+      "L’utente applica le modifiche con l’apposito tasto"
+    ],
+    "test_type": "Positivo"
+  },
+  {
+    "test_case_id": "UC3.4.3.11_T2",
+    "title": "Modifica LightSource con dati non validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "steps": [
+      "L’utente seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+      "L’utente espande la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD",
+      "L’utente seleziona il pannello elettrico ed espande la visione ad albero del pannello selezionato per visionare i punti luce che appartengono al pannello elettrico",
+      "L’utente seleziona il punto luce ed espande la visione ad albero del punto luce selezionato per visionare i dispositivi punti luce che appartengono al punto luce",
+      "L’utente seleziona il dispositivo punto luce ed espande la visione ad albero del dispositivo punto luce selezionato per visionare le sorgenti di luce che appartengono al dispositivo punto luce",
+      "L’utente seleziona il tab relativo ai dati apparecchio",
+      "L’utente visualizza i dati precedenti e compila il form con informazioni non valide",
+      "L’utente applica le modifiche con l’apposito tasto"
+    ],
+    "test_type": "Negativo"
+  },
+  {
+    "test_case_id": "UC3.4.3.11_T3",
+    "title": "Modifica LightSource senza selezionare il POD",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente non può procedere con la modifica",
+    "steps": [
+      "L’utente non seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+      "L’utente tenta di accedere direttamente alla sezione dei dati apparecchio"
+    ],
+    "test_type": "Negativo"
+  },
+  {
+    "test_case_id": "UC3.4.3.11_T4",
+    "title": "Modifica LightSource con campi obbligatori vuoti",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "steps": [
+      "L’utente seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+      "L’utente espande la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD",
+      "L’utente seleziona il pannello elettrico ed espande la visione ad albero del pannello selezionato per visionare i punti luce che appartengono al pannello elettrico",
+      "L’utente seleziona il punto luce ed espande la visione ad albero del punto luce selezionato per visionare i dispositivi punti luce che appartengono al punto luce",
+      "L’utente seleziona il dispositivo punto luce ed espande la visione ad albero del dispositivo punto luce selezionato per visionare le sorgenti di luce che appartengono al dispositivo punto luce",
+      "L’utente seleziona il tab relativo ai dati apparecchio",
+      "L’utente lascia vuoti i campi obbligatori e applica le modifiche con l’apposito tasto"
+    ],
+    "test_type": "Negativo"
+  },
+  {
+    "test_case_id": "UC3.4.3.11_T5",
+    "title": "Modifica LightSource con dati troppo lunghi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "steps": [
+      "L’utente seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+      "L’utente espande la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD",
+      "L’utente seleziona il pannello elettrico ed espande la visione ad albero del pannello selezionato per visionare i punti luce che appartengono al pannello elettrico",
+      "L’utente seleziona il punto luce ed espande la visione ad albero del punto luce selezionato per visionare i dispositivi punti luce che appartengono al punto luce",
+      "L’utente seleziona il dispositivo punto luce ed espande la visione ad albero del dispositivo punto luce selezionato per visionare le sorgenti di luce che appartengono al dispositivo punto luce",
+      "L’utente seleziona il tab relativo ai dati apparecchio",
+      "L’utente inserisce dati troppo lunghi nei campi e applica le modifiche con l’apposito tasto"
+    ],
+    "test_type": "Negativo"
+  }
+]

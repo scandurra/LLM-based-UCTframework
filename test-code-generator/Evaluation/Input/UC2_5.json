@@ -1,0 +1,117 @@
+[
+  {
+    "test_case_id": "UC2.5_TC1",
+    "title": "Visualizzazione grafici con dati validi",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza le informazioni consultando i grafici",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard",
+        "expected": "La dashboard viene caricata correttamente"
+      },
+      {
+        "step": "Scorri nella pagina fino a raggiungere la sezione dei grafici",
+        "expected": "I grafici vengono visualizzati correttamente"
+      },
+      {
+        "step": "Osserva i grafici per regione e tipo di apparecchio",
+        "expected": "Le informazioni sono coerenti e facili da comprendere"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC2",
+    "title": "Visualizzazione grafici con dati parzialmente mancanti",
+    "preconditions": "UC2",
+    "postconditions": "I grafici vengono visualizzati con messaggi di dati mancanti",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard",
+        "expected": "La dashboard viene caricata correttamente"
+      },
+      {
+        "step": "Scorri nella pagina fino a raggiungere la sezione dei grafici",
+        "expected": "I grafici vengono visualizzati ma con indicatori di dati mancanti"
+      },
+      {
+        "step": "Verifica la presenza di messaggi che indicano la mancanza di dati",
+        "expected": "Sono presenti avvisi sulla mancanza di informazioni per alcune regioni o tipi di apparecchi"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC3",
+    "title": "Interazione con i grafici",
+    "preconditions": "UC2",
+    "postconditions": "L’utente può interagire correttamente con i grafici",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e scorri fino ai grafici",
+        "expected": "I grafici sono visibili"
+      },
+      {
+        "step": "Clicca su un grafico per ingrandirlo o visualizzare dettagli",
+        "expected": "Il grafico si ingrandisce o mostra ulteriori informazioni"
+      },
+      {
+        "step": "Verifica la possibilità di navigare tra i diversi tipi di grafici",
+        "expected": "È possibile passare da un tipo di grafico all’altro senza problemi"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Alta",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC4",
+    "title": "Visualizzazione su dispositivi mobili",
+    "preconditions": "UC2",
+    "postconditions": "I grafici sono visualizzabili correttamente anche su dispositivi mobili",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard da un dispositivo mobile",
+        "expected": "La dashboard si adatta allo schermo del dispositivo"
+      },
+      {
+        "step": "Scorri fino ai grafici",
+        "expected": "I grafici sono visibili e leggibili sullo schermo mobile"
+      },
+      {
+        "step": "Verifica la possibilità di interagire con i grafici sul dispositivo mobile",
+        "expected": "È possibile ingrandire o visualizzare dettagli dei grafici anche sul dispositivo mobile"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Alta",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC5",
+    "title": "Boundary test: visualizzazione con dati al limite",
+    "preconditions": "UC2",
+    "postconditions": "I grafici sono visualizzati correttamente anche con dati al limite",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard con un set di dati che raggiunge il limite massimo previsto",
+        "expected": "La dashboard carica senza problemi"
+      },
+      {
+        "step": "Scorri fino ai grafici",
+        "expected": "I grafici sono visualizzati correttamente e non presentano errori"
+      },
+      {
+        "step": "Verifica che le informazioni siano coerenti e complete",
+        "expected": "Tutti i dati sono rappresentati in modo chiaro e senza omissioni"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Media",
+    "use_case_id": "UC2.5"
+  }
+]

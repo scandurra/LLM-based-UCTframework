@@ -1,0 +1,746 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="xsl/xsltSchedaCensimento.xsl"?>
+
+<!-- 
+    Esempio di Scheda Censimento valida rispetto alle Specifiche PELL
+    Ultimo aggiornamento: 09 luglio 2021
+    Autore: PELL Team
+
+-->
+
+<CensusTechSheet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../xsd/CensusTechSheet.xsd"
+    xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <Area>
+        <gml:Polygon srsName="http://www.opengis.net/def/crs/EPSG/0/4936" gml:id="POL1">
+            <gml:exterior>
+                <gml:LinearRing>
+                    <gml:posList srsDimension="2">45.256 -110.45 46.46 -109.48 43.84 -109.86 45.256
+                        -110.45 </gml:posList>
+                </gml:LinearRing>
+            </gml:exterior>
+        </gml:Polygon>
+        <!--  META_ES -->
+        <Extension>95</Extension>
+        <!--   META_NC -->
+        <AreaID>Area Test</AreaID>
+        <!--  META_SC -->
+        <Scale>04</Scale>
+    </Area>
+
+    <!-- Inizio blocco dati "Anagrafica illuminazione pubblica" -->
+    <PLSystemGeneralData>
+        <!--  DATA_INI -->
+        <ValidityStartDate>2019-05-03</ValidityStartDate>
+        <!--   DATA_FIN -->
+        <ValidityEndDate>2019-06-02</ValidityEndDate>
+        <!--  FONTE -->
+        <Source>01</Source>
+        <!-- SCALA -->
+        <Scale>04</Scale>
+        <!--  AN_IP_EXT -->
+        <gml:Polygon srsName="http://www.opengis.net/def/crs/EPSG/0/4936" gml:id="POL2">
+            <gml:exterior>
+                <gml:LinearRing>
+                    <gml:posList srsDimension="2">45.256 -110.45 46.46 -109.48 43.84 -109.86 45.256
+                        -110.45</gml:posList>
+                </gml:LinearRing>
+            </gml:exterior>
+        </gml:Polygon>
+        <!-- 2.0: Tipologia di rilevamento dell’impianto censito - AN_IP_ANT -->
+        <PlantStatus>01</PlantStatus>
+        <!--  Codice ISTAT comune - AN_IP_IST -->
+        <ISTATCode>12058091</ISTATCode>
+        <!--  Nome del Comune  - AN_IP_NOM -->
+        <City ln="10">Cesano di Roma</City>
+        <!--  regione - AN_IP_REG -->
+        <Region>Lazio</Region>
+        <!--  numero di abitanti - AN_IP_N_AB -->
+        <NumberOfCitizens>1000</NumberOfCitizens>
+        <!--  superficie (km2) - AN_IP_SUP -->
+        <Surface uom="km2">5</Surface>
+        <!--  responsabile comunale - AN_IP_RE_C -->
+        <PersonInCharge>Mario Rossi</PersonInCharge>
+        <!--  nome gestore - AN_IP_GEST -->
+        <Overseer>Pippo</Overseer>
+        <!--   gestione impianto a forfait - AN_IP_GE_F -->
+        <ForfaitSystemFlag>false</ForfaitSystemFlag>
+        <!--  punti luce totali - AN_IP_N_PL -->
+        <NumberOfConnectedLightSpots>2</NumberOfConnectedLightSpots>
+        <!--   numero di punti luce di proprietà - AN_IP_N_PR-->
+        <NumberOfOwnedLightSpots>2</NumberOfOwnedLightSpots>
+        <!-- 2.0: Censimento IP intero comune - AN_IP_PL_C  -->
+        <WholeCityFlag>false</WholeCityFlag>
+        <!-- 2.0: Percentuale punti luce rispetto al totale comunale  - AN_IP_NTPL  -->
+        <PercentageOfConnectedLightSpots>10</PercentageOfConnectedLightSpots>
+        <!-- 2.0: Numero Totale Punti Luce comunali  - AN_IP_T_PL  -->
+        <NumberOfTotalLightSpots>20</NumberOfTotalLightSpots>
+    </PLSystemGeneralData>
+    <!-- fine blocco dati "Anagrafica illuminazione pubblica" -->
+
+    <!-- Inizio blocco dati primo POD -->
+    <POD>
+        <!--  codice pod - POD_COD  -->
+        <PODCode>IT012345678901</PODCode>
+        <!-- Inizio blocco dati "POD - Anagrafica " -->
+        <PODGeneralData>
+            <!--  DATA_INI -->
+            <ValidityStartDate>2019-05-03</ValidityStartDate>
+            <!--   DATA_FIN -->
+            <ValidityEndDate>2019-06-02</ValidityEndDate>
+            <!--  FONTE -->
+            <Source>01</Source>
+            <!--  SCALA -->
+            <Scale>04</Scale>
+            <gml:Point gml:id="PT01" srsName="http://www.opengis.net/def/crs/EPSG/0/4936"
+                srsDimension="2">
+                <gml:pos>-30.7 134.1</gml:pos>
+            </gml:Point>
+            <!--   toponimo stradale pod - POD_A_TOP-->
+            <Toponym>Via Roma</Toponym>
+            <!--  riferimento localizzazione - POD_A_RIF -->
+            <LocationReference>secondo incrocio</LocationReference>
+            <!--   data del rilievo - POD_A_RIL-->
+            <DetectionDate>2019-03-23</DetectionDate>
+            <!--  promiscuita' - POD_A_PR -->
+            <VarietyFlag>false</VarietyFlag>
+            <!--  numero quadri elettrici - POD_A_N_Q -->
+            <NumberOfElectricPanels>2</NumberOfElectricPanels>
+            <!--  numero quadri elettrici da sostituire - POD_A_N_QS -->
+            <NumberOfElectricPanelsToBeChanged>1</NumberOfElectricPanelsToBeChanged>
+            <!--  numero quadri elettrici da ricondizionare - POD_A_N_QR -->
+            <NumberOfElectricPanelsToBeReconditioned>0</NumberOfElectricPanelsToBeReconditioned>
+            <!--  stato di conservazione del manufatto contenente il pod - POD_A_MAN -->
+            <PODPreservationStatus>02</PODPreservationStatus>
+            <!-- codice cliente - POD_A_CLIE -->
+            <CustomerID>Paperino 1135</CustomerID>
+        </PODGeneralData>
+        <!-- Fine blocco dati "POD - Anagrafica " -->
+        <!-- Inizio blocco dati "Pod - consumi " -->
+        <PODConsumptionData>
+            <!--  DATA_INI -->
+            <ValidityStartDate>2019-05-03</ValidityStartDate>
+            <!--   DATA_FIN -->
+            <ValidityEndDate>2019-06-02</ValidityEndDate>
+            <!--  FONTE -->
+            <Source>01</Source>
+            <!--  SCALA -->
+            <Scale>04</Scale>
+            <!--   anno di riferimento consumi - POD_C_DAT-->
+            <ReportingYear>2018</ReportingYear>
+            <!--   tipologia contratto - POD_C_TY-->
+            <ContractType>02</ContractType>
+            <!--  denominazione del distributore - POD_C_DIS -->
+            <DistributorName>Pippo 2</DistributorName>
+            <!--  denominazione del fornitore - POD_C_FOR -->
+            <SupplierName>Pippo 3</SupplierName>
+            <!--  potenza installata - POD_C_KWI -->
+            <InstalledPower uom="kW">0.8</InstalledPower>
+            <!--  consumo annuale (anno precedente) - POD_C_CON -->
+            <PreviousYearAnnualConsumption uom="kWh">302</PreviousYearAnnualConsumption>
+            <!--  costo annuale (anno precedente) per la sola fornitura di energia elettrica per pubblica illuminazione - POD_C_COS -->
+            <PreviousYearElectricEnergyAnnualAmount currency="EUR">6000</PreviousYearElectricEnergyAnnualAmount>
+            <!--   potenza contrattuale impegnata - POD_C_KWC-->
+            <ContractuallyCommittedPower uom="kW">1.2</ContractuallyCommittedPower>
+            <!--  cosφ tipico - POD_C_COST -->
+            <PowerFactor>0.9</PowerFactor>
+            <!--  consumo annuale (anno attuale) - POD_C_CN_A -->
+            <CurrentYearAnnualConsumption uom="kWh">200</CurrentYearAnnualConsumption>
+            <!-- costo annuale (anno attuale), per la sola fornitura di energia elettrica per pubblica illuminazione - POD_C_CS_A -->
+            <CurrentYearElectricEnergyAnnualAmount currency="EUR">6300</CurrentYearElectricEnergyAnnualAmount>
+            <!-- 2.0: cig di gara - POD_C_CIG  -->
+            <PublicTenderID>Q123B456L134</PublicTenderID>
+            <PreRenewalConsumptions>
+                <MonthlyConsumption yearMonth="2017-03" uom="kWh">17</MonthlyConsumption>
+                <MonthlyConsumption yearMonth="2017-04" uom="kWh">18</MonthlyConsumption>
+                <MonthlyConsumption yearMonth="2017-05" uom="kWh">22</MonthlyConsumption>
+                <MonthlyConsumption yearMonth="2017-06" uom="kWh">16</MonthlyConsumption>
+                <MonthlyConsumption yearMonth="2017-07" uom="kWh">15</MonthlyConsumption>
+                <MonthlyConsumption yearMonth="2017-08" uom="kWh">17</MonthlyConsumption>
+                <MonthlyConsumption yearMonth="2017-09" uom="kWh">19</MonthlyConsumption>
+                <MonthlyConsumption yearMonth="2017-10" uom="kWh">18</MonthlyConsumption>
+                <MonthlyConsumption yearMonth="2017-11" uom="kWh">17</MonthlyConsumption>
+                <MonthlyConsumption yearMonth="2017-12" uom="kWh">21</MonthlyConsumption>
+                <MonthlyConsumption yearMonth="2018-01" uom="kWh">22</MonthlyConsumption>
+                <MonthlyConsumption yearMonth="2018-02" uom="kWh">22</MonthlyConsumption>
+            </PreRenewalConsumptions>
+            <NumberOfCorrespondingOperatingHours>4300</NumberOfCorrespondingOperatingHours>
+        </PODConsumptionData>
+        <!-- Fine blocco dati "POD Consumi " -->
+    </POD>
+    <!-- fine blocco dati relativo "POD" 1 -->
+
+
+    <!-- Inizio blocco dati secondo  "Quadro elettrico" -->
+    <ElectricPanel>
+        <!-- id quadro elettrico - QE_ID -->
+        <ElectricPanelID>QE_01</ElectricPanelID>
+        <!--   identificativo del pod a cui afferisce il quadro elettrico - QE_A_POD -->
+        <PODCode>IT012345678901</PODCode>
+
+        <!-- Inizio blocco dati "Anagrafica Quadro elettrico" -->
+        <ElectricPanelGeneralData>
+            <!--  DATA_INI -->
+            <ValidityStartDate>2019-05-03</ValidityStartDate>
+            <!--   DATA_FIN -->
+            <ValidityEndDate>2019-06-02</ValidityEndDate>
+            <!--  FONTE -->
+            <Source>01</Source>
+            <!--  SCALA -->
+            <Scale>04</Scale>
+            <!-- posizione - QE_A_POS -->
+            <gml:Point gml:id="PT05" srsName="http://www.opengis.net/def/crs/EPSG/0/4936"
+                srsDimension="2">
+                <gml:pos>-30.7 134.5</gml:pos>
+            </gml:Point>
+            <!--   data del rilievo quadro elettrico - QE_A_RIL -->
+            <DetectionDate>2019-03-22</DetectionDate>
+            <!--  quadro misto - QE_A_PR -->
+            <OnlyPublicLighitingFlag>true</OnlyPublicLighitingFlag>
+            <!--  anno di costruzione - QE_A_COS -->
+            <ConstructionYear>1970</ConstructionYear>
+            <!--  tipologia accessibilita' - QE_A_TIP -->
+            <AccessibilityType>91</AccessibilityType>
+            <!--   chiusura a chiave dell'involucro - QE_A_CHIU-->
+            <KeyLockFlag>true</KeyLockFlag>
+            <!--  stato di conservazione - QE_A_CONS -->
+            <PreservationStatus>04</PreservationStatus>
+            <!--  stato di conservazione armadio - QE_A_ARM -->
+            <BoxPreservationStatus>02</BoxPreservationStatus>
+            <!--  potenza installata - QE_A_KW -->
+            <ElectricPanelInstalledPower uom="kW">0.2</ElectricPanelInstalledPower>
+            <!--  stato funzionamento - QE_A_STAT -->
+            <OperatingStatus>01</OperatingStatus>
+            <!--  stato dell'impianto elettrico da riqualificare - QE_A_ST_IM -->
+            <ElectricSystemStatus>03</ElectricSystemStatus>
+            <!--  numero totale di punti luce - QE_A_NAPT -->
+            <NumberOfConnectedLightSpots>2</NumberOfConnectedLightSpots>
+            <!--   numero di punti luce di proprieta' - QE_A_NAPP-->
+            <NumberOfOwnedLightSpots>2</NumberOfOwnedLightSpots>
+            <!--   numero di punti luce non di proprieta' - QE_A_NAPNP-->
+            <NumberOfNotOwnedLightSpots>0</NumberOfNotOwnedLightSpots>
+            <!--   carichi esogeni elettrici - QE_A_CAR_E-->
+            <ExogenousElectricalLoads>01</ExogenousElectricalLoads>
+            <!--  sostegni da riqualificare - QE_A_ST_RQ -->
+            <SupportRedevelopingNeeds>02</SupportRedevelopingNeeds>
+            <!--  numero linee aeree - QE_A_N_LA -->
+            <NumberOfOverheadLines>1</NumberOfOverheadLines>
+            <!--   percentuale di linee aeree sul totale delle linee - QE_A_PE_LA-->
+            <PercentageOfOverheadLines>50</PercentageOfOverheadLines>
+            <!--   numero sostegni - QE_A_N_SO-->
+            <NumberOfSupports>2</NumberOfSupports>
+        </ElectricPanelGeneralData>
+        <!-- Fine  blocco dati "Anagrafica "Quadro elettrico" -->
+
+        <!-- Inizio blocco dati "Dati tecnici "Quadro elettrico" -->
+        <ElectricPanelTechnicalData>
+            <!--  DATA_INI -->
+            <ValidityStartDate>2019-05-03</ValidityStartDate>
+            <!--   DATA_FIN -->
+            <ValidityEndDate>2019-06-02</ValidityEndDate>
+            <!--  FONTE -->
+            <Source>01</Source>
+            <!--  SCALA -->
+            <Scale>04</Scale>
+            <!--   numero fasi - QE_DT_FASI-->
+            <ElectricPhases>03</ElectricPhases>
+            <!--   numero circuiti in uscita dal quadro elettrico - QE_DT_CIR-->
+            <NumberOfOutgoingCircuits>1</NumberOfOutgoingCircuits>
+            <!--  tipo di protezione generale - QE_DT_PROT -->
+            <ProtectionSystemType>04</ProtectionSystemType>
+            <!--   tensione nominale del quadro elettrico - QE_DT_TEN-->
+            <NominalVoltage uom="V">230</NominalVoltage>
+            <!--  numero sottoquadri - QE_DT_NSQ -->
+            <NumberOfElectricSubPanels>1</NumberOfElectricSubPanels>
+            <!--  indice ipei (cam 2013) - QE_DT_IP13 -->
+            <Ipei2013>94</Ipei2013>
+            <!--  indice ipei* (cam 2018)- QE_DT_IP18 -->
+            <Ipei2018>94</Ipei2018>
+            <!--  tipo di linea - QE_DT_TY_L -->
+            <LineType>aerea</LineType>
+            <!--  presenza di trasformatore di tensione in cabina elettrica - QE_DT_TRAS -->
+            <TransformerFlag>false</TransformerFlag>
+            <!-- potenza del trasformatore - QE_DT_PW_T -->
+            <TransformerPower xsi:nil="true"/>
+            <!--  tipo di impianto - QE_DT_TY_I -->
+            <SystemType>02</SystemType>
+            <!--   presenza impianto in media tensione - QE_DT_MT-->
+            <MediumVoltageSystemFlag>false</MediumVoltageSystemFlag>
+            <!--   presenza di spd - QE_DT_SPD-->
+            <SpdFlag xsi:nil="true"/>
+            <!--  presenza di impianto di terra - QE_DT_TER -->
+            <GroundingSystemFlag>false</GroundingSystemFlag>
+        </ElectricPanelTechnicalData>
+        <!-- Fine  blocco dati "Dati tecnici "Quadro elettrico" -->
+
+        <!-- Inizio blocco dati "Dati funzionamento e gestione "Quadro elettrico" -->
+        <ElectricPanelOperatingData>
+            <!--  DATA_INI -->
+            <ValidityStartDate>2019-05-03</ValidityStartDate>
+            <!--   DATA_FIN -->
+            <ValidityEndDate>2019-06-02</ValidityEndDate>
+            <!--  FONTE -->
+            <Source>01</Source>
+            <!--  SCALA -->
+            <Scale>04</Scale>
+            <!--  tipo di accensione - QE_FG_ACC -->
+            <PowerOnMeans>04</PowerOnMeans>
+            <!--   ore di accensione dell'impianto (ore/anno) - QE_FG_ORE-->
+            <NumberOfOperatingHours>4000</NumberOfOperatingHours>
+            <!--   parzializzazione accensione (tutta notte – mezza notte) - QE_FG_PAR-->
+            <PowerOnPartializationFlag>true</PowerOnPartializationFlag>
+            <!--   durata accensione parzializzata (ore/anno) - QE_FG_PARD-->
+            <NumberOfPartialOperatingHours>1500</NumberOfPartialOperatingHours>
+            <!--  riduzione del flusso luminoso - QE_FG_RID -->
+            <LuminousFluxReducingFlag xsi:nil="true"/>
+            <!--  durata di riduzione del flusso luminoso (ore/anno) - QE_FG_RIDD -->
+            <NumberOfReducedFluxOperatingHours xsi:nil="true"/>
+            <!--   valore medio di riduzione del flusso luminoso (%)< - QE_FG_RIDP-->
+            <ReductionRate xsi:nil="true"/>
+            <!--  tipo di regolazione del flusso luminoso - QE_FG_REGF -->
+            <LightFluxRegulationType>94</LightFluxRegulationType>
+            <!-- percentuale di riduzione della potenza - QE_FG_POW-->
+            <PowerReductionRate>30</PowerReductionRate>
+            <!-- percentuale di riduzione media della potenza - QE_FG_RIMP -->
+            <PowerAverageReductionRate xsi:nil="true"/>
+            <!--   sistema di telegestione (gestione real-time) - QE_FG_TELG-->
+            <RemoteAccessFlag>false</RemoteAccessFlag>
+            <!--   telecontrollo su quadro elettrico - QE_FG_TELQ-->
+            <RemoteControl>02</RemoteControl>
+            <!--   sistema di telediagnosi remota - QE_FG_TELR-->
+            <RemoteDiagnosisFlag>false</RemoteDiagnosisFlag>
+            <!--  id meter - QE_FG_IDME -->
+            <MeterID>AA45600</MeterID>
+            <!--  classe del meter - QE_FG_CLME-->
+            <MeterClass>02</MeterClass>
+        </ElectricPanelOperatingData>
+        <!-- Fine  blocco dati "Dati funzionamento e gestione "Quadro elettrico" -->
+
+        <!-- Inizio blocco dati "Manutenzione  "Quadro elettrico" -->
+        <ElectricPanelMaintenance>
+            <!--  DATA_INI -->
+            <ValidityStartDate>2019-05-03</ValidityStartDate>
+            <!--   DATA_FIN -->
+            <ValidityEndDate>2019-06-02</ValidityEndDate>
+            <!--  FONTE -->
+            <Source>01</Source>
+            <!--  SCALA -->
+            <Scale>04</Scale>
+            <!--   anno di riferimento manutenzione - QE_M_DAT-->
+            <MaintenanceYear>1990</MaintenanceYear>
+            <!--   voce di spesa - QE_M_SP -->
+            <ItemOfExpenditure>Bilancio triennio 2019-2021</ItemOfExpenditure>
+            <!--   tipologia di contratto - QE_M_AF-->
+            <ServiceContractType>02</ServiceContractType>
+            <!--   denominazione affidatario - QE_M_DAF-->
+            <ServiceOperatorName>Pippo 4</ServiceOperatorName>
+            <!--   attivita' - QE_M_AT -->
+            <TaskDescription>Manutenzione da contratto 123</TaskDescription>
+            <!--   remunerazione - QE_M_REM-->
+            <PaymentMode>02</PaymentMode>
+            <!--   approvvigionamento materiali - QE_M_APM -->
+            <MaterialProcurementInclusionFlag>true</MaterialProcurementInclusionFlag>
+
+            <!--   importo manutenzione ordinaria annua per impianti di proprieta' laddove disponibile (anno precedente) - QE_M_IMO-->
+            <PreviousYearOrdinaryMaintenanceAmount currency="EUR"
+                >15000</PreviousYearOrdinaryMaintenanceAmount>
+            <!--   importo manutenzione ordinaria annua per impianti non di  proprieta' (anno precedente) - QE_M_IONPP-->
+            <PreviousYearOtherOrdinaryMaintenanceAmount currency="EUR"
+                >5000</PreviousYearOtherOrdinaryMaintenanceAmount>
+            <!--   importo manutenzione straordinaria annua (anno precedente) - QE_M_IMS-->
+            <PreviousYearExtraordinaryMaintenanceAmount currency="EUR"
+                >4000</PreviousYearExtraordinaryMaintenanceAmount>
+            <!--   importo manutenzione ordinaria annua per impianti di proprieta' (anno attuale) - QE_M_IOPA-->
+            <CurrentYearOrdinaryMaintenanceAmount currency="EUR"
+                >8000</CurrentYearOrdinaryMaintenanceAmount>
+            <!--   importo manutenzione ordinaria annua per impianti non di  proprieta' (anno attuale) - QE_M_IONPA-->
+            <CurrentYearOtherOrdinaryMaintenanceAmount currency="EUR"
+                >2000</CurrentYearOtherOrdinaryMaintenanceAmount>
+            <!--   importo manutenzione straordinaria annua (anno  attuale) - QE_M_ISA-->
+            <CurrentYearExtraordinaryMaintenanceAmount currency="EUR"
+                >3000</CurrentYearExtraordinaryMaintenanceAmount>
+        </ElectricPanelMaintenance>
+        <!-- fine blocco dati "Manutenzione Quadro elettrico" -->
+    </ElectricPanel>
+    <!-- fine blocco dati "Quadro elettrico" 1 -->
+
+    <!-- Inizio blocco dati primo "Quadro elettrico" -->
+    <ElectricPanel>
+        <!-- id quadro elettrico - QE_ID -->
+        <ElectricPanelID>QE_02</ElectricPanelID>
+        <!--   identificativo del pod a cui afferisce il quadro elettrico - QE_A_POD -->
+        <PODCode>IT012345678901</PODCode>
+
+        <!-- Inizio blocco dati "Anagrafica Quadro elettrico" -->
+        <ElectricPanelGeneralData>
+            <!--  DATA_INI -->
+            <ValidityStartDate>2019-05-03</ValidityStartDate>
+            <!--   DATA_FIN -->
+            <ValidityEndDate>2019-06-02</ValidityEndDate>
+            <!--  FONTE -->
+            <Source>01</Source>
+            <!--  SCALA -->
+            <Scale>04</Scale>
+            <!-- posizione - QE_A_POS -->
+            <gml:Point gml:id="PT06" srsName="http://www.opengis.net/def/crs/EPSG/0/4936"
+                srsDimension="2">
+                <gml:pos>-30.7 134.6</gml:pos>
+            </gml:Point>
+            <!--   data del rilievo quadro elettrico - QE_A_RIL -->
+            <DetectionDate>2019-03-22</DetectionDate>
+            <!--  quadro misto - QE_A_PR -->
+            <OnlyPublicLighitingFlag>false</OnlyPublicLighitingFlag>
+            <!--  anno di costruzione - QE_A_COS -->
+            <ConstructionYear xsi:nil="true"/>
+            <!--  tipologia accessibilita' - QE_A_TIP -->
+            <AccessibilityType>02</AccessibilityType>
+            <!--   chiusura a chiave dell'involucro - QE_A_CHIU-->
+            <KeyLockFlag>true</KeyLockFlag>
+            <!--  stato di conservazione - QE_A_CONS -->
+            <PreservationStatus>01</PreservationStatus>
+            <!--  stato di conservazione armadio - QE_A_ARM -->
+            <BoxPreservationStatus>02</BoxPreservationStatus>
+            <!--  potenza installata - QE_A_KW -->
+            <ElectricPanelInstalledPower xsi:nil="true"/>
+            <!--  stato funzionamento - QE_A_STAT -->
+            <OperatingStatus>03</OperatingStatus>
+            <!--  stato dell'impianto elettrico da riqualificare - QE_A_ST_IM -->
+            <ElectricSystemStatus>94</ElectricSystemStatus>
+            <!--  numero totale di punti luce - QE_A_NAPT -->
+            <NumberOfConnectedLightSpots>5</NumberOfConnectedLightSpots>
+            <!--   numero di punti luce di proprieta' - QE_A_NAPP-->
+            <NumberOfOwnedLightSpots>5</NumberOfOwnedLightSpots>
+            <!--   numero di punti luce non di proprieta' - QE_A_NAPNP-->
+            <NumberOfNotOwnedLightSpots>0</NumberOfNotOwnedLightSpots>
+            <!--   carichi esogeni elettrici - QE_A_CAR_E-->
+            <ExogenousElectricalLoads>94</ExogenousElectricalLoads>
+            <!--  sostegni da riqualificare - QE_A_ST_RQ -->
+            <SupportRedevelopingNeeds>94</SupportRedevelopingNeeds>
+            <!--  numero linee aeree - QE_A_N_LA -->
+            <NumberOfOverheadLines>0</NumberOfOverheadLines>
+            <!--   percentuale di linee aeree sul totale delle linee - QE_A_PE_LA-->
+            <PercentageOfOverheadLines>0</PercentageOfOverheadLines>
+            <!--   numero sostegni - QE_A_N_SO-->
+            <NumberOfSupports>0</NumberOfSupports>
+        </ElectricPanelGeneralData>
+        <!-- Fine  blocco dati "Anagrafica "Quadro elettrico" -->
+
+
+    </ElectricPanel>
+    <!-- fine blocco dati "Quadro elettrico" 2 -->
+
+    <!-- Inizio blocco dati "Punto luce" 1 -->
+    <LightSpot>
+        <!--   id punto luce - PL_ID-->
+        <LightSpotID>PL001</LightSpotID>
+        <!--   id quadro elettrico - PL_IS_QE-->
+        <ElectricPanelID>QE_01</ElectricPanelID>
+        <!-- inizio blocco dati "Punto luce - installazione"  -->
+        <LightSpotEquipment>
+            <!--  DATA_INI -->
+            <ValidityStartDate>2019-05-03</ValidityStartDate>
+            <!--   DATA_FIN -->
+            <ValidityEndDate>2019-06-02</ValidityEndDate>
+            <!--  FONTE -->
+            <Source>01</Source>
+            <!--  SCALA -->
+            <Scale>04</Scale>
+            <!-- PL_IS_POS -->
+            <gml:Point gml:id="PTLS1" srsName="http://www.opengis.net/def/crs/EPSG/0/4936"
+                srsDimension="2">
+                <gml:pos>-30.7 134.2</gml:pos>
+            </gml:Point>
+            <!--   tipologia installazione - PL_IS_SOS-->
+            <EquipmentType>03</EquipmentType>
+            <!--  altezza apparecchio (m) - PL_IS_ALT -->
+            <Height uom="m">7</Height>
+            <!--  inclinazione (gradi) - PL_IS_TILT  -->
+            <!-- <Incline/> -->
+            <!--  distanza sostegno dall'inizio della carreggiata - PL_IS_CAR -->
+            <Distance uom="m">1</Distance>
+            <!--  lunghezza braccio (m) - PL_IS_BRA -->
+            <Length uom="m">4</Length>
+            <!--  eta' sostegno - PL_IS_AGE -->
+            <Age>03</Age>
+            <!--   materiale sostegno - PL_IS_MAT-->
+            <SupportMaterial>04</SupportMaterial>
+            <!--   altri elementi sul sostegno - PL_IS_ELE-->
+            <AdditionalDevice>04</AdditionalDevice>
+            <!--   installazione altri elementi sul palo - PL_IS_AEP-->
+            <AdditionalElement>02</AdditionalElement>
+            <!--  stato del sostegno - PL_IS_STS -->
+            <SupportStatus>03</SupportStatus>
+        </LightSpotEquipment>
+        <!-- fine  blocco dati "Punto luce - installazione"  -->
+
+        <!-- inizio blocco dati "Punto luce - apparecchio"  -->
+        <LightSpotDevice>
+            <!--  DATA_INI -->
+            <ValidityStartDate>2019-05-03</ValidityStartDate>
+            <!--   DATA_FIN -->
+            <ValidityEndDate>2019-06-02</ValidityEndDate>
+            <!--  FONTE -->
+            <Source>01</Source>
+            <!--  SCALA -->
+            <Scale>04</Scale>
+            <!-- ID Apparecchio - PL_AP_ID  -->
+            <LightSpotDeviceID>AP_01</LightSpotDeviceID>
+            <!--   tipologia di apparecchio - PL_AP_TY-->
+            <LightSpotType>06</LightSpotType>
+            <!--   eta' operativa in impianto dell'apparecchio alla data del rilievo - PL_AP_AGE-->
+            <LightSpotAge>03</LightSpotAge>
+            <!--  marca dell'apparecchio - PL_AP_MAR -->
+            <LightSpotBrand>13</LightSpotBrand>
+            <!--  modello apparecchio - PL_AP_MOD -->
+            <LightSpotModel>XKYQ</LightSpotModel>
+            <!--  tipo di chiusura dell'apparecchio - PL_AP_CHIU -->
+            <Lock>02</Lock>
+            <!--   numero di lampade o moduli per singolo apparecchio - PL_AP_LAMP-->
+            <NumberOfLamps>1</NumberOfLamps>
+            <!--  potenza ai morsetti dell'apparecchio - PL_AP_MOR -->
+            <TerminalPower uom="W">450</TerminalPower>
+            <!--  stato dell'apparecchio alla data del rilievo - PL_AP_ST -->
+            <Status>03</Status>
+            <!--   proprietà del punto luce - PL_AP_PRO-->
+            <Owner>01</Owner>
+            <!--   indice ipea (cam 2013) - PL_AP_IP13-->
+            <Ipea2013>94</Ipea2013>
+            <!--  indice ipea* (cam 2018) - PL_AP_IP18 -->
+            <Ipea2018>94</Ipea2018>
+            <!--   emissione diretta verso l'alto dell'apparecchio - PL_AP_EM  -->
+            <UpwardEmission xsi:nil="true"/>
+            <!--   apparecchio cut off - PL_AP_C_O-->
+            <!--  flusso caratteristico dell'apparecchio - PL_AP_FLU -->
+            <Flux xsi:nil="true"/>
+        </LightSpotDevice>
+        <!-- fine blocco dati "Punto luce - apparecchio"  -->
+
+        <!-- inizio blocco dati "Punto luce - sorgente luminosa"  -->
+        <LightSource>
+            <!--  DATA_INI -->
+            <ValidityStartDate>2019-05-03</ValidityStartDate>
+            <!--   DATA_FIN -->
+            <ValidityEndDate>2019-06-02</ValidityEndDate>
+            <!--  FONTE -->
+            <Source>01</Source>
+            <!--  SCALA -->
+            <Scale>04</Scale>
+            <!--   id sorgente luminosa - PL_ID-->
+            <LightSourceID>SORG01</LightSourceID>
+            <!-- Rif. Apparecchio - PL_SL_AP  -->
+            <LightSpotDeviceID>AP_01</LightSpotDeviceID>
+            <!--   tipologia sorgente luminosa - PL_SL_TY-->
+            <LightSourceType>05</LightSourceType>
+            <!--  potenza caratteristica della sorgente luminosa (lampada o modulo provvisto di attacco - intercambiabile) - PL_SL_POW -->
+            <NominalPower uom="W">400</NominalPower>
+            <!--   lusso luminoso caratteristico della sorgente luminosa (lampada o modulo provvisto di attacco – intercambiabile) - PL_SL_FLU-->
+            <NominalLuminousFlux xsi:nil="true"/>
+            <!--   marca sorgente luminosa - PL_SL_MAR-->
+            <LightSourceBrand>Pluto</LightSourceBrand>
+            <!--   modello sorgente luminosa - PL_SL_MOD-->
+            <LightSourceModel>Topolino</LightSourceModel>
+            <!--   temperatura correlata di colore cct [k] - PL_SL_TEMP -->
+            <CCT uom="k">2200</CCT>
+        </LightSource>
+        <!-- fine blocco dati "Punto luce - sorgente luminosa"  -->
+    </LightSpot>
+    <!-- fine blocco dati "Punto luce" 1 -->
+
+    <!-- Inizio blocco dati "Punto luce" 2 -->
+    <LightSpot>
+        <!--   id punto luce - PL_ID-->
+        <LightSpotID>PL002</LightSpotID>
+        <!--   id quadro elettrico - PL_IS_QE-->
+        <ElectricPanelID>QE_01</ElectricPanelID>
+        <!-- inizio blocco dati "Punto luce - installazione"  -->
+        <LightSpotEquipment>
+            <!--  DATA_INI -->
+            <ValidityStartDate>2019-05-03</ValidityStartDate>
+            <!--   DATA_FIN -->
+            <ValidityEndDate>2019-06-02</ValidityEndDate>
+            <!--  FONTE -->
+            <Source>01</Source>
+            <!--  SCALA -->
+            <Scale>04</Scale>
+            <!-- PL_IS_POS -->
+            <gml:Point gml:id="PTLS2" srsName="http://www.opengis.net/def/crs/EPSG/0/4936"
+                srsDimension="2">
+                <gml:pos>-30.7 134.2</gml:pos>
+            </gml:Point>
+            <!--   tipologia installazione - PL_IS_SOS-->
+            <EquipmentType>03</EquipmentType>
+            <!--  altezza apparecchio (m) - PL_IS_ALT -->
+            <Height uom="m">7</Height>
+            <!--  inclinazione (gradi) - PL_IS_TILT  -->
+            <!-- <Incline/> -->
+            <!--  distanza sostegno dall'inizio della carreggiata - PL_IS_CAR -->
+            <Distance uom="m">1</Distance>
+            <!--  lunghezza braccio (m) - PL_IS_BRA -->
+            <Length uom="m">4</Length>
+            <!--  eta' sostegno - PL_IS_AGE -->
+            <Age>03</Age>
+            <!--   materiale sostegno - PL_IS_MAT-->
+            <SupportMaterial>04</SupportMaterial>
+            <!--   altri elementi sul sostegno - PL_IS_ELE-->
+            <AdditionalDevice>04</AdditionalDevice>
+            <!--   installazione altri elementi sul palo - PL_IS_AEP-->
+            <AdditionalElement>02</AdditionalElement>
+            <!--  stato del sostegno - PL_IS_STS -->
+            <SupportStatus>03</SupportStatus>
+        </LightSpotEquipment>
+        <!-- fine  blocco dati "Punto luce - installazione"  -->
+
+        <!-- inizio blocco dati "Punto luce - apparecchio"  -->
+        <LightSpotDevice>
+            <!--  DATA_INI -->
+            <ValidityStartDate>2019-05-03</ValidityStartDate>
+            <!--   DATA_FIN -->
+            <ValidityEndDate>2019-06-02</ValidityEndDate>
+            <!--  FONTE -->
+            <Source>01</Source>
+            <!--  SCALA -->
+            <Scale>04</Scale>
+            <!-- ID Apparecchio - PL_AP_ID  -->
+            <LightSpotDeviceID>AP_02</LightSpotDeviceID>
+            <!--   tipologia di apparecchio - PL_AP_TY-->
+            <LightSpotType>06</LightSpotType>
+            <!--   eta' operativa in impianto dell'apparecchio alla data del rilievo - PL_AP_AGE-->
+            <LightSpotAge>03</LightSpotAge>
+            <!--  marca dell'apparecchio - PL_AP_MAR -->
+            <LightSpotBrand>13</LightSpotBrand>
+            <!--  modello apparecchio - PL_AP_MOD -->
+            <LightSpotModel>XKYQ</LightSpotModel>
+            <!--  tipo di chiusura dell'apparecchio - PL_AP_CHIU -->
+            <Lock>02</Lock>
+            <!--   numero di lampade o moduli per singolo apparecchio - PL_AP_LAMP-->
+            <NumberOfLamps>1</NumberOfLamps>
+            <!--  potenza ai morsetti dell'apparecchio - PL_AP_MOR -->
+            <TerminalPower uom="W">450</TerminalPower>
+            <!--  stato dell'apparecchio alla data del rilievo - PL_AP_ST -->
+            <Status>03</Status>
+            <!--   proprietà del punto luce - PL_AP_PRO-->
+            <Owner>01</Owner>
+            <!--   indice ipea (cam 2013) - PL_AP_IP13-->
+            <Ipea2013>94</Ipea2013>
+            <!--  indice ipea* (cam 2018) - PL_AP_IP18 -->
+            <Ipea2018>94</Ipea2018>
+            <!--   emissione diretta verso l'alto dell'apparecchio - PL_AP_EM  -->
+            <UpwardEmission xsi:nil="true"/>
+            <!--   apparecchio cut off - PL_AP_C_O-->
+            <!--  flusso caratteristico dell'apparecchio - PL_AP_FLU -->
+            <Flux xsi:nil="true"/>
+        </LightSpotDevice>
+        <!-- fine blocco dati "Punto luce - apparecchio"  -->
+
+        <!-- inizio blocco dati "Punto luce - sorgente luminosa"  -->
+        <LightSource>
+            <!--  DATA_INI -->
+            <ValidityStartDate>2019-05-03</ValidityStartDate>
+            <!--   DATA_FIN -->
+            <ValidityEndDate>2019-06-02</ValidityEndDate>
+            <!--  FONTE -->
+            <Source>01</Source>
+            <!--  SCALA -->
+            <Scale>04</Scale>
+            <!--   id sorgente luminosa - PL_ID-->
+            <LightSourceID>SORG02</LightSourceID>
+            <!-- Rif. Apparecchio - PL_SL_AP  -->
+            <LightSpotDeviceID>AP_02</LightSpotDeviceID>
+            <!--   tipologia sorgente luminosa - PL_SL_TY-->
+            <LightSourceType>05</LightSourceType>
+            <!--  potenza caratteristica della sorgente luminosa (lampada o modulo provvisto di attacco - intercambiabile) - PL_SL_POW -->
+            <NominalPower uom="W">400</NominalPower>
+            <!--   lusso luminoso caratteristico della sorgente luminosa (lampada o modulo provvisto di attacco – intercambiabile) - PL_SL_FLU-->
+            <NominalLuminousFlux xsi:nil="true"/>
+            <!--   marca sorgente luminosa - PL_SL_MAR-->
+            <LightSourceBrand>Pluto</LightSourceBrand>
+            <!--   modello sorgente luminosa - PL_SL_MOD-->
+            <LightSourceModel>Topolino</LightSourceModel>
+            <!--   temperatura correlata di colore cct [k] - PL_SL_TEMP -->
+            <CCT uom="k">2200</CCT>
+        </LightSource>
+        <!-- fine blocco dati "Punto luce - sorgente luminosa"  -->
+    </LightSpot>
+    <!-- fine blocco dati "Punto luce" 2 -->
+
+    <!-- Inizio di un blocco dati "Zona omogenea"  -->
+    <HomogeneousArea>
+        <!--  DATA_INI -->
+        <ValidityStartDate>2019-05-03</ValidityStartDate>
+        <!--   DATA_FIN -->
+        <ValidityEndDate>2019-06-02</ValidityEndDate>
+        <!--  FONTE -->
+        <Source>01</Source>
+        <!--  SCALA -->
+        <Scale>04</Scale>
+        <!--   identificativo univoco zona omogenea - ZO_ID-->
+        <HomogeneousAreaID>ZO0001</HomogeneousAreaID>
+        <LightSpotDeviceRefs>
+            <!--   identificativi apparecchi afferenti alla omogenea - PL_AP_ID -->
+            <LightSpotDeviceID>AP_01</LightSpotDeviceID>
+            <LightSpotDeviceID>AP_02</LightSpotDeviceID>
+        </LightSpotDeviceRefs>
+        <!--   data del rilievo zona omogenea - ZO_RIL-->
+        <DetectionDate>2019-04-23</DetectionDate>
+        <!--   tipologia di area illuminata - ZO_TY-->
+        <AreaTypology>01</AreaTypology>
+        <!--   altra tipologia di area illuminata - ZO_TY_A -->
+        <OtherAreaTypology>01</OtherAreaTypology>
+        <!--   classificazione della strada e categoria illuminotecnica di progetto - ZO_CS_CI-->
+        <RoadClassificationCode>50</RoadClassificationCode>
+        <!--   tipologia manto stradale - ZO_TY_MS-->
+        <RoadBlanketType>02</RoadBlanketType>
+        <!--  altra tipologia di manto stradale  - ZO_TY_MS_A -->
+        <OtherRoadBlanketType xsi:nil="true"/>
+        <!--   lunghezza del reticolo di riferimento (m) - ZO_LUNG-->
+        <GridLength uom="m">20</GridLength>
+        <!--   larghezza del reticolo di riferimento (m) - ZO_LARG-->
+        <GridWidth uom="m">6</GridWidth>
+        <!--  tipo carreggiata - ZO_TY_CAR -->
+        <RoadwayType>02</RoadwayType>
+        <!--   numero di corsie prima carreggiata - ZO_NC_PCAR-->
+        <NumberOfFirstRoadwayLanes>1</NumberOfFirstRoadwayLanes>
+        <!--  numero di corsie seconda carreggiata - ZO_NC_SCAR -->
+        <NumberOfSecondRoadwayLanes>1</NumberOfSecondRoadwayLanes>
+        <!--   presenza di marciapiede  - ZO_MAR-->
+        <Footpath>02</Footpath>
+        <!--  larghezza marciapiede (m) - ZO_MAR_LAR -->
+        <FootpathWidth uom="m">2</FootpathWidth>
+        <!--  distribuzione stradale degli apparecchi - ZO_DS_S -->
+        <RoadLightSpotAllocation>01</RoadLightSpotAllocation>
+        <!--   distanza longitudinale tra gli apparecchi (m) - ZO_DIS_AP-->
+        <DistanceBetweenLightSpots uom="m">15</DistanceBetweenLightSpots>
+        <!--   numero totale sostegni - ZO_NUM_SOS-->
+        <NumberOfSupports>2</NumberOfSupports>
+        <!--  numero totale apparecchi - ZO_NUM_AP -->
+        <NumberOfLightSpotDevices>2</NumberOfLightSpotDevices>
+        <!--  classificazione stradale da piano urbano del traffico - ZO_TY_PUT -->
+        <RoadCategoryCode>06</RoadCategoryCode>
+        <!--  IlluminanceLevelValue - ZO_VAL_EM -->
+        <IlluminanceLevelValue xsi:nil="true"/>
+        <!--  valore di luminanza di progetto - ZO_VAL_LM -->
+        <LuminanceValue xsi:nil="true"/>
+        <!-- larghezza della carreggiata - ZO_LARG_CA -->
+        <RoadwayWidth>6</RoadwayWidth>
+        <!-- lunghezza della carreggiata - ZO_LUNG_CA -->
+        <RoadwayLength>100</RoadwayLength>
+        <LightingCalculationName>xxxxx</LightingCalculationName>
+        <HomogeneousAreaExt xsi:nil="true"/>
+        <SubHomogArea>
+            <SubHomogeneousAreaName>Attraversamenti pedonali</SubHomogeneousAreaName>
+            <NumberOfSubHomogeneousAreas>4</NumberOfSubHomogeneousAreas>
+            <SubHomogeneousAreaType>02</SubHomogeneousAreaType>
+            <IlluminanceLevelValue uom="lx">5</IlluminanceLevelValue>
+            <AreaSurface uom="m2">7</AreaSurface>
+        </SubHomogArea>
+        <SubHomogArea>
+            <SubHomogeneousAreaName>Marciapiede</SubHomogeneousAreaName>
+            <NumberOfSubHomogeneousAreas>2</NumberOfSubHomogeneousAreas>
+            <SubHomogeneousAreaType>01</SubHomogeneousAreaType>
+            <IlluminanceLevelValue uom="lx">7</IlluminanceLevelValue>
+            <AreaSurface uom="m2">25</AreaSurface>
+        </SubHomogArea>
+    </HomogeneousArea>
+    <!-- fine blocco dati "Zona omogenea"  -->
+
+</CensusTechSheet>
