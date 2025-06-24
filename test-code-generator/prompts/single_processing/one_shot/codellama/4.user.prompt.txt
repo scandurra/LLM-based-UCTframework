@@ -29,6 +29,8 @@ Instructions:
 
 <example>
 export const functionNameDescribingStep = async function(page, reporter) {
+    // Eventually go to page
+    
     const startTime = DateTime.now();
     
     // Put here test case step implementation
@@ -44,6 +46,7 @@ export const functionNameDescribingStep = async function(page, reporter) {
 }
 
 test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    const reporter = new TestResultReporter();
     reporter.setBrowserName(browserName);
     reporter.setTestCase("UC1_TC1", "Login test with success");
 

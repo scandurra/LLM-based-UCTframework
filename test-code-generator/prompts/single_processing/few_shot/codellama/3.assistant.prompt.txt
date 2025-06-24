@@ -57,6 +57,7 @@ import { navigateToSupportPage, fillSupportForm, submitForm } import './UC10_TC1
 const reporter = new TestResultReporter();
 
 test("UC10_TC1 - Invio richiesta di assistenza", async ({ page, browserName }) => {
+  const reporter = new TestResultReporter();
   reporter.setBrowserName(browserName);
   reporter.setTestCase("UC10_TC1", "Invio richiesta di assistenza");
 

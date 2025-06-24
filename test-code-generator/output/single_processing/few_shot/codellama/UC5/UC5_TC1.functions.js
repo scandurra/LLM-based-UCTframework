@@ -2,14 +2,15 @@ import { test, expect } from '@playwright/test';
 
 import TestResultReporter from '../../models/test-result-reporter.js';
 
+import { LoginPage } from '../../models/page_object_models/login_page.js';
+
 import { NavbarPage } from '../../models/page_object_models/navbar_page.js';
 
 // Step 1
-export const accessPortalAndClickUserIcon = async function(page, reporter) {
+export const navigateToUserIcon = async function(page, reporter) {
     const navbarPage = new NavbarPage(page);
     
     let startTime = Date.now();
-    await page.goto(process.env.E2E_BASE_URL);
     await navbarPage.clickUserIcon();
     let endTime = Date.now();
     const executionTime = endTime - startTime;
@@ -32,11 +33,9 @@ export const selectItalianLanguage = async function(page, reporter) {
 }
 
 // Step 3
-export const verifyItalianLanguageSelected = async function(page, reporter) {
-    const navbarPage = new NavbarPage(page);
-    
+export const verifyItalianLanguage = async function(page, reporter) {
     let startTime = Date.now();
-    // Verify language is selected correctly
+    // Verify italian language here
     let endTime = Date.now();
     const executionTime = endTime - startTime;
     if (reporter) {

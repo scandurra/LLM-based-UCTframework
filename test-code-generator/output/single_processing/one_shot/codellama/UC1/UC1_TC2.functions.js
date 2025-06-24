@@ -12,7 +12,7 @@ export const insertWrongCredentials = async function(page, reporter) {
     await loginPage.fillEmail("wrong@email.com");
     await loginPage.fillPassword("wrongpassword");
     let endTime = Date.now();
-    let executionTime = endTime - startTime;
+    const executionTime = endTime - startTime;
     if (reporter) {
         reporter.addStep('UC1_TC2_ID1', 'Inserisci credenziali errate nel form di login', expectedResults, actualResults, passFail, parametersUsed, executionTime);
     }
@@ -25,7 +25,7 @@ export const clickLoginButton = async function(page, reporter) {
     let startTime = Date.now();
     await loginPage.clickLoginButton();
     let endTime = Date.now();
-    let executionTime = endTime - startTime;
+    const executionTime = endTime - startTime;
     if (reporter) {
         reporter.addStep('UC1_TC2_ID2', 'Clicca il tasto “Login”', expectedResults, actualResults, passFail, parametersUsed, executionTime);
     }
@@ -34,9 +34,9 @@ export const clickLoginButton = async function(page, reporter) {
 // Step 3
 export const verifyErrorMessage = async function(page, reporter) {
     let startTime = Date.now();
-    // Verify error message is displayed
+    await page.waitForSelector('error-message');
     let endTime = Date.now();
-    let executionTime = endTime - startTime;
+    const executionTime = endTime - startTime;
     if (reporter) {
         reporter.addStep('UC1_TC2_ID3', 'Visualizza la possibilità di riprovare l’accesso', expectedResults, actualResults, passFail, parametersUsed, executionTime);
     }

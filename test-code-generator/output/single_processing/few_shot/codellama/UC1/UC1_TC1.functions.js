@@ -1,5 +1,3 @@
-import { test, expect } from '@playwright/test';
-
 import { LoginPage } from '../../models/page_object_models/login_page.js';
 
 import TestResultReporter from '../../models/test-result-reporter.js';
@@ -34,7 +32,7 @@ export const clickLoginButton = async function(page, reporter) {
 // Step 3
 export const verifySuccessMessage = async function(page, reporter) {
     let startTime = Date.now();
-    // Verify success message is displayed
+    // Verify success message here
     let endTime = Date.now();
     const executionTime = endTime - startTime;
     if (reporter) {

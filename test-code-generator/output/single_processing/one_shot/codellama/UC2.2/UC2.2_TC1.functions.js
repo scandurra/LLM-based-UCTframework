@@ -2,39 +2,73 @@ import { test, expect } from '@playwright/test';
 
 import TestResultReporter from '../../models/test-result-reporter.js';
 
-import { DashboardPageIlluminationSearch } from '../../models/page_object_models/dashboard_page_illumination_search.js';
+import { LoginPage } from '../../models/page_object_models/login_page.js';
+
+import { SidebarPage } from '../../models/page_object_models/sidebar_page.js';
 
 // Step 1
-export const selectComuneAndParameters = async function(page, reporter) {
-    const startTime = new Date().getTime();
-    const dashboardPageIlluminationSearch = new DashboardPageIlluminationSearch(page);
-    await dashboardPageIlluminationSearch.selectComune(0); // Select the first comune from the dropdown list
-    // TODO: Add code to select valid parameters for search
-    const endTime = new Date().getTime();
+export const navigateToLoginPage = async function(page, reporter) {
+    let startTime = Date.now();
+    await page.goto("https://www.example.com");
+    let endTime = Date.now();
     const executionTime = endTime - startTime;
+    
     if (reporter) {
-        reporter.addStep('UC2_TC1_ID1', 'Seleziona un comune e dei parametri di ricerca validi', 'I parametri vengono accettati', 'I parametri vengono accettati', true, {}, executionTime);
+        reporter.addStep('UC2_TC1_ID1', 'Navigate to login page', expectedResults, actualResults, passFail, parametersUsed, executionTime);
     }
 }
 
 // Step 2
-export const confirmSearch = async function(page, reporter) {
-    const startTime = new Date().getTime();
-    await dashboardPageIlluminationSearch.applySearch(); // Click on the apply button to perform search
-    const endTime = new Date().getTime();
+export const insertCorrectCredentials = async function(page, reporter) {
+    const loginPage = new LoginPage(page);
+    
+    let startTime = Date.now();
+    await loginPage.fillEmail("test@example.com");
+    await loginPage.fillPassword("password1234567890");
+    let endTime = Date.now();
     const executionTime = endTime - startTime;
+    
     if (reporter) {
-        reporter.addStep('UC2_TC1_ID2', 'Conferma la ricerca', 'La mappa si aggiorna con gli impianti di illuminazione trovati', 'La mappa si aggiorna con gli impianti di illuminazione trovati', true, {}, executionTime);
+        reporter.addStep('UC2_TC1_ID2', 'Inserisci le credenziali corrette nel form della login', expectedResults, actualResults, passFail, parametersUsed, executionTime);
     }
 }
 
 // Step 3
-export const viewDetails = async function(page, reporter) {
-    const startTime = new Date().getTime();
-    // TODO: Add code to visualize details of the impianti di illuminazione found in step 2
-    const endTime = new Date().getTime();
+export const clickLoginButton = async function(page, reporter) {
+    const loginPage = new LoginPage(page);
+    
+    let startTime = Date.now();
+    await loginPage.clickLoginButton();
+    let endTime = Date.now();
     const executionTime = endTime - startTime;
+    
     if (reporter) {
-        reporter.addStep('UC2_TC1_ID3', 'Visualizza i dettagli degli impianti di illuminazione', 'Le informazioni vengono visualizzate correttamente', 'Le informazioni vengono visualizzate correttamente', true, {}, executionTime);
+        reporter.addStep('UC2_TC1_ID3', 'Clicca il tasto “Login”', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+    }
+}
+
+// Step 4
+export const navigateToDashboard = async function(page, reporter) {
+    let startTime = Date.now();
+    await page.goto("https://www.example.com/dashboard");
+    let endTime = Date.now();
+    const executionTime = endTime - startTime;
+    
+    if (reporter) {
+        reporter.addStep('UC2_TC1_ID4', 'Navigate to dashboard page', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+    }
+}
+
+// Step 5
+export const selectDashboardLink = async function(page, reporter) {
+    const sidebarPage = new SidebarPage(page);
+    
+    let startTime = Date.now();
+    await sidebarPage.clickDashboardLink();
+    let endTime = Date.now();
+    const executionTime = endTime - startTime;
+    
+    if (reporter) {
+        reporter.addStep('UC2_TC1_ID5', 'Seleziona la voce di menu relativa alla dashboard', expectedResults, actualResults, passFail, parametersUsed, executionTime);
     }
 }

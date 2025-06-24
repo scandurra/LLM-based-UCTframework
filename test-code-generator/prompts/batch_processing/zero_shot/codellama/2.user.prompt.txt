@@ -43,11 +43,10 @@ export const functionNameDescribingStep = async function(page, reporter) {
     expect(passFail).toBeTruthy();
 }
 
-test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+test("UC1_TC1 - Test functionality name", async ({page, browserName}) => {
+    const reporter = new TestResultReporter();
     reporter.setBrowserName(browserName);
-    reporter.setTestCase("UC1_TC1", "Login test with success");
-
-    // Eventually go to page
+    reporter.setTestCase("UC1_TC1", "Test functionality name");
 
     // Call step functions in sequence
     await functionNameDescribingStep1(page, reporter);

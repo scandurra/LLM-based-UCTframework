@@ -2,19 +2,20 @@ import { test, expect } from '@playwright/test';
 
 import TestResultReporter from '../../models/test-result-reporter.js';
 
-import { loginAsRegisteredUser, selectDashboard } from '../UC2/UC2_TC1.functions.js';
+import { navigateToLoginPage, insertCorrectCredentials, clickLoginButton } from '../UC1/UC1_TC1.functions.js';
 
-import { insertCorrectCredentials, clickLoginButton } from '../UC1/UC1_TC1.functions.js';
+import { navigateToDashboard, selectDashboardLink } from './UC2.2_TC1.functions.js';
 
-test("UC2_TC1 - Ricerca impianti di illuminazione con parametri validi", async ({ page, browserName }) => {
+test("UC2_TC1 - Apertura della dashboard con utente autorizzato", async ({ page, browserName }) => {
+  const reporter = new TestResultReporter();
   reporter.setBrowserName(browserName);
-  reporter.setTestCase("UC2_TC1", "Ricerca impianti di illuminazione con parametri validi");
-
-  await loginAsRegisteredUser(page, null);
-  await selectDashboard(page, null);
-  await selectComuneAndParameters(page, reporter);
-  await confirmSearch(page, reporter);
-  await viewDetails(page, reporter);
-
+  reporter.setTestCase("UC2_TC1", "Apertura della dashboard con utente autorizzato");
+  
+  await navigateToLoginPage(page, null);
+  await insertCorrectCredentials(page, null);
+  await clickLoginButton(page, null);
+  await navigateToDashboard(page, null);
+  await selectDashboardLink(page, null);
+  
   reporter.onTestEnd(test, { status: "passed" });
 });

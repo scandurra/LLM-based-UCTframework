@@ -123,6 +123,7 @@ import { navigateToReportEnergeticiPage, selectPeriodAndFormat, exportFile } fro
 import { navigateToLoginPage, insertCorrectCredentials, clickLoginButton, verifySuccessMessage } from '../UC1/UC1_TC1.functions.js'
 
 test("UC8.2.3_TC1 - Esportazione report in PDF con dati validi", async ({ page, browserName }) => {
+  const reporter = new TestResultReporter();
   reporter.setBrowserName(browserName);
   reporter.setTestCase("UC8.2.3_TC1", "Esportazione report in PDF con dati validi");
 
@@ -148,6 +149,7 @@ import { navigateToReportEnergeticiPage, selectWrongPeriodAndFormat, tryToClickB
 import { navigateToLoginPage, insertCorrectCredentials, clickLoginButton, verifySuccessMessage } from '../UC1/UC1_TC1.functions.js'
 
 test("UC8.2.3_TC2 - Esportazione report in PDF con dati validi", async ({ page, browserName }) => {
+  const reporter = new TestResultReporter();
   reporter.setBrowserName(browserName);
   reporter.setTestCase("UC8.2.3_TC2", "Esportazione report in PDF con periodo non valido");
 

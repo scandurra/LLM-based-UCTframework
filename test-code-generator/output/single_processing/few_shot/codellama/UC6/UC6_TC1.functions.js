@@ -1,21 +1,17 @@
-import { test, expect } from '@playwright/test';
+import { LoginPage } from '../../models/page_object_models/login_page.js';
 
 import TestResultReporter from '../../models/test-result-reporter.js';
 
-import { LoginPage } from '../../models/page_object_models/login_page.js';
-
-import { NavbarPage } from '../../models/page_object_models/navbar_page.js';
-
 // Step 1
 export const navigateToLoginPage = async function(page, reporter) {
-    const startTime = Date.now();
+    let startTime = Date.now();
     await page.goto(process.env.E2E_LOGIN_URL);
-    const endTime = Date.now();
+    let endTime = Date.now();
     const executionTime = endTime - startTime;
     if (reporter) {
         reporter.addStep('UC6_TC1_ID1', 'Navigate to login page', 'Login page loaded', 'Login page loaded', true, `E2E_LOGIN_URL: ${process.env.E2E_LOGIN_URL}`, executionTime);
     }
-};
+}
 
 // Step 2
 export const insertCorrectCredentials = async function(page, reporter) {
@@ -45,15 +41,15 @@ export const clickLoginButton = async function(page, reporter) {
 }
 
 // Step 4
-export const navigateToDashboard = async function(page, reporter) {
-    const startTime = Date.now();
+export const navigateToUserIcon = async function(page, reporter) {
+    let startTime = Date.now();
     await page.goto(process.env.E2E_HOME_URL);
-    const endTime = Date.now();
+    let endTime = Date.now();
     const executionTime = endTime - startTime;
     if (reporter) {
-        reporter.addStep('UC6_TC1_ID4', 'Navigate to dashboard page', 'Dashboard page loaded', 'Dashboard page loaded', true, `E2E_HOME_URL: ${process.env.E2E_HOME_URL}`, executionTime);
+        reporter.addStep('UC6_TC1_ID4', 'Navigate to home page', 'Home page loaded', 'Home page loaded', true, `E2E_HOME_URL: ${process.env.E2E_HOME_URL}`, executionTime);
     }
-};
+}
 
 // Step 5
 export const clickUserIcon = async function(page, reporter) {
@@ -69,27 +65,23 @@ export const clickUserIcon = async function(page, reporter) {
 }
 
 // Step 6
-export const selectLogout = async function(page, reporter) {
-    const navbarPage = new NavbarPage(page);
-    
+export const clickLogoutButton = async function(page, reporter) {
     let startTime = Date.now();
-    await navbarPage.clickLogoutButton();
+    await page.click('text=" Logout"');
     let endTime = Date.now();
     const executionTime = endTime - startTime;
     if (reporter) {
-        reporter.addStep('UC6_TC1_ID6', 'Seleziona il tasto "Logout"', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+        reporter.addStep('UC6_TC1_ID6', 'Clicca sul tasto "Logout"', expectedResults, actualResults, passFail, parametersUsed, executionTime);
     }
 }
 
 // Step 7
 export const confirmLogout = async function(page, reporter) {
-    // TODO: Implement step logic here
-    
     let startTime = Date.now();
-    // TODO: Add Playwright assertions to verify expected results
+    await page.click('text="Conferma"');
     let endTime = Date.now();
     const executionTime = endTime - startTime;
     if (reporter) {
-        reporter.addStep('UC6_TC1_ID7', 'Conferma l\'intenzione di effettuare il logout', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+        reporter.addStep('UC6_TC1_ID7', 'Conferma il logout', expectedResults, actualResults, passFail, parametersUsed, executionTime);
     }
 }

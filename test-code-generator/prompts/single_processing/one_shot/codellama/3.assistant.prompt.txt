@@ -65,6 +65,7 @@ import { navigateToReportEnergeticiPage, selectPeriodAndFormat, exportFile } fro
 import { navigateToLoginPage, insertCorrectCredentials, clickLoginButton, verifySuccessMessage } from '../UC1/UC1_TC1.functions.js'
 
 test("UC10_TC1 - Invio richiesta di assistenza", async ({ page, browserName }) => {
+  const reporter = new TestResultReporter();
   reporter.setBrowserName(browserName);
   reporter.setTestCase("UC10_TC1", "Invio richiesta di assistenza");
 

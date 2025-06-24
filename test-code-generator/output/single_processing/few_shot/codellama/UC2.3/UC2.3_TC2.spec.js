@@ -2,22 +2,24 @@ import { test, expect } from '@playwright/test';
 
 import TestResultReporter from '../../models/test-result-reporter.js';
 
-import { SidebarPage } from '../../models/page_object_models/sidebar_page.js';
+import { navigateToDashboardAndScroll, sortTableByColumn, verifySorting } from './UC2.3_TC2.functions.js';
 
-import { LoginPage } from '../../models/page_object_models/login_page.js';
+import { insertCorrectCredentials, clickLoginButton, verifySuccessMessage } from '../UC1/UC1_TC1.functions.js';
 
-import { DashboardPageGeneralDataTable } from '../../models/page_object_models/dashboard_page_general_data_table.js';
-
-import { navigateToDashboardAndScrollDown, sortTableByColumn, verifySorting } from './UC2.3_TC2.functions.js';
-
-test("UC2_TC1 - Visualizzazione tabella dati generali con ordinamento personalizzato", async ({page, browserName}) => {
+test("UC2_TC2 - Visualizzazione tabella dati generali con ordinamento personalizzato", async ({ page, browserName }) => {
+    const reporter = new TestResultReporter();
     reporter.setBrowserName(browserName);
-    reporter.setTestCase("UC2_TC1", "Visualizzazione tabella dati generali con ordinamento personalizzato");
+    reporter.setTestCase("UC2_TC2", "Visualizzazione tabella dati generali con ordinamento personalizzato");
     
-    // Call step functions in sequence
-    await navigateToDashboardAndScrollDown(page, reporter);
+    // Reuse existing method in the prompt without redefining them
+    await insertCorrectCredentials(page, null);
+    await clickLoginButton(page, null);
+    await verifySuccessMessage(page, null);
+    
+    await navigateToDashboardAndScroll(page, reporter);
     await sortTableByColumn(page, reporter);
     await verifySorting(page, reporter);
     
-    reporter.onTestEnd(test, { status: "passed" });     // status can be "passed" or "failed" 
-});
+    // Include Playwright assertions
+    expect(passFail).toBeTruthy();
+})

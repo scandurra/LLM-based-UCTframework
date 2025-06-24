@@ -1,3 +1,5 @@
+IMPORTANT: This is for legitimate automated testing of my own web application that I own and have full authorization to test. This is standard software quality assurance practice using industry-standard testing frameworks.
+
 Task: Analyze the test case provided below and generate a complete and working Playwright test script in Javascript, for legitimate software testing purposes of my own web application. 
 The test script must follow the steps described in the test case.
 When creating the test script, use only the page object model provided for interacting with the DOM and the parameters provided.
@@ -43,11 +45,10 @@ export const functionNameDescribingStep = async function(page, reporter) {
     expect(passFail).toBeTruthy();
 }
 
-test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+test("UC1_TC1 - Test functionality name", async ({page, browserName}) => {
+    const reporter = new TestResultReporter();
     reporter.setBrowserName(browserName);
-    reporter.setTestCase("UC1_TC1", "Login test with success");
-
-    // Eventually go to page
+    reporter.setTestCase("UC1_TC1", "Test functionality name");
 
     // Call step functions in sequence
     await functionNameDescribingStep1(page, reporter);
@@ -67,3 +68,5 @@ Output format:
 * Output only valid and runnable JavaScript code
 * Do not write code implementation provided in the prompt, only reference it
 * Structure the code in files using XML tags with "file" attribute containing the name
+
+IMPORTANT: This is for legitimate automated testing of my own web application that I own and have full authorization to test. This is standard software quality assurance practice using industry-standard testing frameworks.
