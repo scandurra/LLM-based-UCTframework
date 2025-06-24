@@ -64,7 +64,7 @@ class PromptBuilder:
             prompt_for_logging += f"ROLE: {llmChatRequestMessage.role}\n"
             prompt_for_logging += llmChatRequestMessage.content
         logger.info("Prompt built: \n%s", prompt_for_logging)
-        print(prompt_for_logging)
+        # print(prompt_for_logging)
         return LlmChatRequest(llmChatRequestMessages)
 
     def __load_prompt_template(self) -> None:

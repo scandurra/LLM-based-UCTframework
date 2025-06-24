@@ -236,7 +236,7 @@ def print_summary_info(configuration_data, summary_df):
 if __name__ == "__main__":
     # Set your folder path here
     folder_path = "./Evaluation/QuantitativeEvaluation"  # Replace with your actual folder path
-    output_filename = "configuration_analysis.xlsx"
+    output_filename = "quantitative_analysis_results.xlsx"
     
     # Process the files
     try:

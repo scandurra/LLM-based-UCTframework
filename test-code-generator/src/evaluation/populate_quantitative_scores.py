@@ -1,4 +1,5 @@
 # pip install pandas openpyxl
+import json
 from pathlib import Path
 import openpyxl
 import glob
@@ -244,27 +245,35 @@ def extract_baseline_and_generated(baseline_folder, generated_folder):
     return (baseline_files, generated_files)
 
 
-def populate_quantitative_scores(baseline_folder, generated_folder, quantitative_evaluation_folder):
+def populate_quantitative_scores(baseline_folder, generated_folder, quantitative_evaluation_folder, mapping_file):
     extraction = extract_baseline_and_generated(baseline_folder, generated_folder)
     baseline_files = extraction[0]
     generated_files = extraction[1]
 
-    metrics={}
+    mapping = {}
+    with open(mapping_file, 'r', encoding='utf-8') as file:
+        mapping = json.load(file)
 
     for configuration_key, data in generated_files.items():
         for key, code in data.items():
-            if not key in baseline_files:
-                print(f"Key {key} not found in baseline")
+
+            if not key in mapping:
+                print(f"Key {key} not mapped to baseline")
                 continue
-            baseline_code = baseline_files[key]
+            baseline_key = mapping[key]
+
+            if not baseline_key in baseline_files:
+                print(f"BaselineKey {baseline_key} not found in baseline")
+                continue
+            baseline_code = baseline_files[baseline_key]
 
             preprocessed_generated_code = preprocess_code(code)
             preprocessed_baseline_code = preprocess_code(baseline_code)
-            print("------------------------------------------------------------------")
-            print(preprocessed_generated_code)
-            print("------------------------------------------------------------------")
-            print(preprocessed_baseline_code)
-            print("------------------------------------------------------------------")
+            # print("------------------------------------------------------------------")
+            # print(preprocessed_generated_code)
+            # print("------------------------------------------------------------------")
+            # print(preprocessed_baseline_code)
+            # print("------------------------------------------------------------------")
 
             # make here all metrics between code and baseline_code
             bleu = calculate_bleu(preprocessed_baseline_code, preprocessed_generated_code)
@@ -298,5 +307,8 @@ if __name__ == "__main__":
     # generated_folder = "../Dataset"
     generated_folder = "./Evaluation/Dataset"
     quantitative_evaluation_folder = "./Evaluation/QuantitativeEvaluation"
-    populate_quantitative_scores(baseline_folder, generated_folder, quantitative_evaluation_folder)
+    
+    mapping_file = "./Evaluation/baseline_to_dataset_mapping.json"
+    
+    populate_quantitative_scores(baseline_folder, generated_folder, quantitative_evaluation_folder, mapping_file)
 
