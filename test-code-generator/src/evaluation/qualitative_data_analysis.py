@@ -44,45 +44,50 @@ def calculate_fleiss_kappa(ratings_matrix):
     if len(clean_matrix) == 0:
         return np.nan
     
-    n, k = clean_matrix.shape  # n subjects, k raters
-    
-    # Categories (1-5 for Poor to Excellent)
-    categories = [1, 2, 3, 4, 5]
-    
-    # Calculate proportion of pairs in each category
-    P_j = np.zeros(len(categories))
-    
-    for j, cat in enumerate(categories):
-        total_pairs = 0
-        agreement_pairs = 0
+    try:
+        n, k = clean_matrix.shape  # n subjects, k raters
         
-        for i in range(n):
-            ratings_for_subject = clean_matrix[i, :]
-            count_cat = np.sum(ratings_for_subject == cat)
-            total_pairs += k * (k - 1)
-            agreement_pairs += count_cat * (count_cat - 1)
+        # Categories (1-5 for Poor to Excellent)
+        categories = [1, 2, 3, 4, 5]
         
-        if total_pairs > 0:
-            P_j[j] = agreement_pairs / total_pairs
-    
-    # Calculate observed agreement
-    P_o = np.sum(P_j)
-    
-    # Calculate expected agreement
-    p_j = np.zeros(len(categories))
-    total_ratings = n * k
-    
-    for j, cat in enumerate(categories):
-        p_j[j] = np.sum(clean_matrix == cat) / total_ratings
-    
-    P_e = np.sum(p_j ** 2)
-    
-    # Calculate Fleiss' Kappa
-    if P_e == 1:
+        # Calculate proportion of pairs in each category
+        P_j = np.zeros(len(categories))
+        
+        for j, cat in enumerate(categories):
+            total_pairs = 0
+            agreement_pairs = 0
+            
+            for i in range(n):
+                ratings_for_subject = clean_matrix[i, :]
+                count_cat = np.sum(ratings_for_subject == cat)
+                total_pairs += k * (k - 1)
+                agreement_pairs += count_cat * (count_cat - 1)
+            
+            if total_pairs > 0:
+                P_j[j] = agreement_pairs / total_pairs
+        
+        # Calculate observed agreement
+        P_o = np.sum(P_j)
+        
+        # Calculate expected agreement
+        p_j = np.zeros(len(categories))
+        total_ratings = n * k
+        
+        for j, cat in enumerate(categories):
+            p_j[j] = np.sum(clean_matrix == cat) / total_ratings
+        
+        P_e = np.sum(p_j ** 2)
+        
+        # Calculate Fleiss' Kappa
+        if P_e == 1:
+            return np.nan
+        
+        kappa = (P_o - P_e) / (1 - P_e)
+        return kappa
+        
+    except Exception as e:
+        print(f"    Error in Fleiss Kappa calculation: {str(e)}")
         return np.nan
-    
-    kappa = (P_o - P_e) / (1 - P_e)
-    return kappa
 
 def process_excel_files(base_path):
     """
@@ -142,10 +147,7 @@ def process_excel_files(base_path):
                 if len(expert_sheets) == 0:
                     print(f"    No expert sheets found in {excel_file}")
                     continue
-
-                if len(expert_sheets) > 4:
-                    raise Exception("dasdasd")
-
+                
                 # Initialize data structure for this configuration
                 config_key = f"{output_name}_{config_name}"
                 if config_key not in configuration_tables:
@@ -305,6 +307,79 @@ def create_aggregated_table(all_data):
     
     return pd.DataFrame(stats_rows)
 
+def create_configuration_metrics_summary(df_aggregated, kappa_df):
+    """
+    Create a summary table with configurations as rows and metrics as columns
+    Each metric shows mean and std dev calculated over all outputs and experts
+    """
+    # Group by configuration and variable, then calculate overall stats
+    config_metrics = []
+    
+    configurations = df_aggregated['Configuration'].unique()
+    variables = df_aggregated['Variable'].unique()
+    
+    for config in configurations:
+        config_data = df_aggregated[df_aggregated['Configuration'] == config]
+        
+        row = {'Configuration': config}
+        
+        for variable in variables:
+            var_data = config_data[config_data['Variable'] == variable]
+            
+            if len(var_data) > 0:
+                # Calculate mean and std across all outputs for this configuration-variable combination
+                means = var_data['Mean'].dropna()
+                
+                if len(means) > 0:
+                    overall_mean = means.mean()
+                    overall_std = means.std() if len(means) > 1 else 0
+                    
+                    # Clean variable name for column headers
+                    clean_var_name = variable.replace('_', ' ').title()
+                    row[f'{clean_var_name}_Mean'] = round(overall_mean, 3)
+                    row[f'{clean_var_name}_StdDev'] = round(overall_std, 3)
+                else:
+                    clean_var_name = variable.replace('_', ' ').title()
+                    row[f'{clean_var_name}_Mean'] = np.nan
+                    row[f'{clean_var_name}_StdDev'] = np.nan
+            else:
+                clean_var_name = variable.replace('_', ' ').title()
+                row[f'{clean_var_name}_Mean'] = np.nan
+                row[f'{clean_var_name}_StdDev'] = np.nan
+        
+        # Calculate overall configuration statistics
+        config_means = config_data['Mean'].dropna()
+        if len(config_means) > 0:
+            row['Overall_Mean'] = round(config_means.mean(), 3)
+            row['Overall_StdDev'] = round(config_means.std(), 3) if len(config_means) > 1 else 0
+        else:
+            row['Overall_Mean'] = np.nan
+            row['Overall_StdDev'] = np.nan
+        
+        # Calculate Fleiss Kappa for this configuration across all variables
+        config_kappa_values = []
+        for variable in variables:
+            kappa_row = kappa_df[kappa_df['Variable'] == variable]
+            if len(kappa_row) > 0 and not pd.isna(kappa_row.iloc[0]['Fleiss_Kappa']):
+                config_kappa_values.append(kappa_row.iloc[0]['Fleiss_Kappa'])
+        
+        if len(config_kappa_values) > 0:
+            row['Average_Fleiss_Kappa'] = round(np.mean(config_kappa_values), 3)
+        else:
+            row['Average_Fleiss_Kappa'] = np.nan
+        
+        # Add completion statistics
+        row['Total_Valid_Evaluations'] = config_data['Valid_Count'].sum()
+        row['Total_Missing_Evaluations'] = config_data['Missing_Evaluations'].sum()
+        row['Completion_Rate_Percent'] = round(
+            (config_data['Valid_Count'].sum() / config_data['Total_Count'].sum() * 100) 
+            if config_data['Total_Count'].sum() > 0 else 0, 2
+        )
+        
+        config_metrics.append(row)
+    
+    return pd.DataFrame(config_metrics)
+
 def create_violin_plot_tables(df_aggregated):
     """Create tables optimized for violin plots and box plots"""
     
@@ -389,26 +464,60 @@ def calculate_fleiss_kappa_by_variable(all_data):
     for variable in df['variable'].unique():
         var_data = df[df['variable'] == variable]
         
-        # Create matrix: rows = configuration-output combinations, columns = experts
-        ratings_matrix = []
+        # Find the maximum number of experts across all configurations
+        max_experts = 0
+        valid_rows = []
         config_output_names = []
         
         for _, row in var_data.iterrows():
             values = np.array(row['values'])
             if len(values) >= 2:  # Need at least 2 raters
-                ratings_matrix.append(values)
+                max_experts = max(max_experts, len(values))
+                valid_rows.append(row)
                 config_output_names.append(f"{row['configuration']}_{row['output']}")
         
-        print(ratings_matrix)
-        if len(ratings_matrix) > 0:
-            ratings_matrix = np.array(ratings_matrix)
-            kappa = calculate_fleiss_kappa(ratings_matrix)
+        if len(valid_rows) > 0 and max_experts > 1:
+            # Create matrix with consistent dimensions
+            ratings_matrix = []
             
+            for row in valid_rows:
+                values = np.array(row['values'])
+                # Pad with NaN if necessary to make all rows the same length
+                if len(values) < max_experts:
+                    padded_values = np.full(max_experts, np.nan)
+                    padded_values[:len(values)] = values
+                    ratings_matrix.append(padded_values)
+                else:
+                    ratings_matrix.append(values[:max_experts])  # Truncate if longer
+            
+            try:
+                ratings_matrix = np.array(ratings_matrix)
+                kappa = calculate_fleiss_kappa(ratings_matrix)
+                
+                kappa_results.append({
+                    'Variable': variable,
+                    'Fleiss_Kappa': kappa,
+                    'N_Subjects': len(ratings_matrix),
+                    'N_Raters': max_experts,
+                    'Valid_Subjects': len(valid_rows)
+                })
+            except Exception as e:
+                print(f"    ⚠️  Error calculating Fleiss Kappa for {variable}: {str(e)}")
+                kappa_results.append({
+                    'Variable': variable,
+                    'Fleiss_Kappa': np.nan,
+                    'N_Subjects': len(valid_rows),
+                    'N_Raters': max_experts,
+                    'Valid_Subjects': len(valid_rows)
+                })
+        else:
+            print(f"    ⚠️  Insufficient data for Fleiss Kappa calculation for {variable}")
             kappa_results.append({
                 'Variable': variable,
-                'Fleiss_Kappa': kappa,
-                'N_Subjects': len(ratings_matrix),
-                'N_Raters': ratings_matrix.shape[1] if len(ratings_matrix) > 0 else 0
+                'Fleiss_Kappa': np.nan,
+                'N_Subjects': len(valid_rows),
+                'N_Raters': max_experts,
+                'Valid_Subjects': len(valid_rows)
             })
     
     return pd.DataFrame(kappa_results)
@@ -437,7 +546,21 @@ def main(base_path, output_file):
     config_violin_df, variable_violin_df, raw_violin_df = create_violin_plot_tables(df_aggregated)
     
     print("Calculating Fleiss Kappa by variable...")
-    kappa_df = calculate_fleiss_kappa_by_variable(all_data)
+    try:
+        kappa_df = calculate_fleiss_kappa_by_variable(all_data)
+    except Exception as e:
+        print(f"    ⚠️  Error in Fleiss Kappa calculation: {str(e)}")
+        print("    Creating empty Kappa results...")
+        kappa_df = pd.DataFrame({
+            'Variable': df_aggregated['Variable'].unique(),
+            'Fleiss_Kappa': [np.nan] * len(df_aggregated['Variable'].unique()),
+            'N_Subjects': [0] * len(df_aggregated['Variable'].unique()),
+            'N_Raters': [0] * len(df_aggregated['Variable'].unique()),
+            'Valid_Subjects': [0] * len(df_aggregated['Variable'].unique())
+        })
+    
+    print("Creating configuration metrics summary...")
+    config_metrics_df = create_configuration_metrics_summary(df_aggregated, kappa_df)
     
     # Save all tables to Excel file
     print(f"Saving results to {output_file}...")
@@ -445,6 +568,9 @@ def main(base_path, output_file):
     with pd.ExcelWriter(output_file, engine='openpyxl') as writer:
         # Main aggregated table
         df_aggregated.to_excel(writer, sheet_name='Aggregated_Statistics', index=False)
+        
+        # Configuration metrics summary table
+        config_metrics_df.to_excel(writer, sheet_name='Configuration_Metrics', index=False)
         
         # Individual configuration tables
         for config_name, config_df in config_dfs.items():

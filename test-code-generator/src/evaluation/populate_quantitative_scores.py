@@ -253,14 +253,16 @@ def populate_quantitative_scores(baseline_folder, generated_folder, quantitative
     mapping = {}
     with open(mapping_file, 'r', encoding='utf-8') as file:
         mapping = json.load(file)
+    # Since mapping contains the mapping baseline -> dataset, for performance is neede dataset -> baseline.
+    dataset_to_baseline = {v: k for k, v in mapping.items()}    # Inverting dictionary
 
     for configuration_key, data in generated_files.items():
         for key, code in data.items():
 
-            if not key in mapping:
+            if not key in dataset_to_baseline:
                 print(f"Key {key} not mapped to baseline")
                 continue
-            baseline_key = mapping[key]
+            baseline_key = dataset_to_baseline[key]
 
             if not baseline_key in baseline_files:
                 print(f"BaselineKey {baseline_key} not found in baseline")

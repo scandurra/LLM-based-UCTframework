@@ -2,19 +2,18 @@ import { test, expect } from '@playwright/test';
 
 import TestResultReporter from '../../models/test-result-reporter.js';
 
-import { loginAsRegisteredUser, selectDashboard } from '../UC2/UC2_TC1.functions.js';
+import { selectDashboard } from '../UC2/UC2_TC1.functions.js' // Reuse existing function to navigate to dashboard page
+import { selectComuneAndParameters, confirmSearch, visualizeDetails } from './UC2.2_TC1.functions.js';
 
-import { insertCorrectCredentials, clickLoginButton } from '../UC1/UC1_TC1.functions.js';
-
-test("UC2_TC1 - Ricerca impianti di illuminazione con parametri validi", async ({ page, browserName }) => {
+test("UC2.2_TC1 - Ricerca impianti di illuminazione con parametri validi", async ({ page, browserName }) => {
+  const reporter = new TestResultReporter();
   reporter.setBrowserName(browserName);
-  reporter.setTestCase("UC2_TC1", "Ricerca impianti di illuminazione con parametri validi");
+  reporter.setTestCase("UC2.2_TC1", "Ricerca impianti di illuminazione con parametri validi");
 
-  await loginAsRegisteredUser(page, null);
-  await selectDashboard(page, null);
+  await selectDashboard(page, null); // Reuse existing function to navigate to dashboard page
   await selectComuneAndParameters(page, reporter);
   await confirmSearch(page, reporter);
-  await viewDetails(page, reporter);
+  await visualizeDetails(page, reporter);
 
   reporter.onTestEnd(test, { status: "passed" });
 });

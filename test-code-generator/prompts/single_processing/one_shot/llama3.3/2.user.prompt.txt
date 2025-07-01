@@ -160,8 +160,6 @@ test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
     reporter.setBrowserName(browserName);
     reporter.setTestCase("UC1_TC1", "Login test with success");
 
-    // Eventually go to page
-
     // Call step functions in sequence
     await step1(page, reporter);
     await step2(page, reporter);

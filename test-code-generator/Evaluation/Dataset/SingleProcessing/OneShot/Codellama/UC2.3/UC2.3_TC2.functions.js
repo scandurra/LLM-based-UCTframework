@@ -53,15 +53,15 @@ export const sortGeneralDataTableByColumn = async function(page, reporter) {
     const endTime = new Date().getTime();
     const executionTime = endTime - startTime;
     if (reporter) {
-        reporter.addStep('UC2_TC1_ID4', 'Clicca sul nome di una colonna per ordinare i dati', 'I dati vengono ordinati correttamente secondo la colonna selezionata', 'I dati vengono ordinati correttamente secondo la colonna selezionata', true, {}, executionTime);
+        reporter.addStep('UC2_TC1_ID4', 'Clicca sul nome della colonna per ordinare i dati', 'I dati vengono ordinati correttamente secondo la colonna selezionata', 'I dati vengono ordinati correttamente secondo la colonna selezionata', true, {}, executionTime);
     }
 }
 
 // Step 5
-export const verifySortingByColumn = async function(page, reporter) {
+export const verifyGeneralDataTableSorting = async function(page, reporter) {
     const startTime = new Date().getTime();
     const dashboardPageGeneralDataTable = new DashboardPageGeneralDataTable(page);
-    await dashboardPageGeneralDataTable.verifySorted('nome_colonna'); // Replace 'nome_colonna' with the actual column name
+    await dashboardPageGeneralDataTable.verifySortedColumn('nome_colonna'); // Replace 'nome_colonna' with the actual column name
     const endTime = new Date().getTime();
     const executionTime = endTime - startTime;
     if (reporter) {

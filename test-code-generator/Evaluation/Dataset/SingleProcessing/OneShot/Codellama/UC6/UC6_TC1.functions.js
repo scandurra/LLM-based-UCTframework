@@ -43,7 +43,7 @@ export const confirmLogout = async function(page, reporter) {
     const endTime = new Date().getTime();
     const executionTime = endTime - startTime;
     if (reporter) {
-        reporter.addStep('UC6_TC1_ID3', 'Conferma l’intenzione di effettuare il logout', 'Un messaggio di successo conferma la disconnessione', passFail ? "Il processo di logout è avvenuto con successo" : "Non è stato visualizzato il messaggio", true, {}, executionTime);
+        reporter.addStep('UC6_TC1_ID3', 'Conferma l’intenzione di effettuare il logout', 'Un messaggio di successo conferma la disconnessione', passFail ? "Il processo di logout inizia" : "Non è stato visualizzato il messaggio", true, {}, executionTime);
     }
 
     expect(passFail).toBeTruthy();

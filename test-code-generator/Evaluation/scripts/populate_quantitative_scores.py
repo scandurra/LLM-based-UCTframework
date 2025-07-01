@@ -39,7 +39,6 @@ def normalize_filename(filename:str)->str:
     """
     normalized = re.sub(r'\.(functions\.js|spec\.js)$', '', filename)
 
-    print(filename)
     # Extract UC part and TC part
     match = re.match(r'^UC(\d+)_TC(\d+)$', normalized)
     if not match:
@@ -140,16 +139,63 @@ def extract_baseline_and_generated():
     baseline_path = Path("../Baseline")
 
     # Read baseline
-    for file_path in baseline_path.rglob('*'):
-        if file_path.is_file() and (file_path.name.endswith('functions.js') or file_path.name.endswith('spec.js')):
+    # I iterate over all sub folders.
+    # When i see .functions.js file, i save the content. This content must be prepend to all test cases file content when saved
+    for current_dir in baseline_path.rglob('*'):
+        if not current_dir.is_dir():
+            continue
+
+        # Check if any file ending with .functions.js exists in current directory
+        functions_content = ""
+        functions_file = None
+        
+        for file_path in current_dir.iterdir():
+            if not file_path.is_file() or not file_path.name.endswith('.functions.js'):
+                continue
+
+            functions_file = file_path
+            try:
+                with open(functions_file, 'r', encoding='utf-8') as f:
+                    functions_content = f.read()
+                    print(f"Found {functions_file.name} in: {current_dir}")
+                break  # Use the first .functions.js file found
+            except Exception as e:
+                print(f"Error reading {functions_file.name} in {current_dir}: {e}")
+
+        # Process all files in current directory
+        for file_path in current_dir.iterdir():
+            if not file_path.is_file() or not file_path.name.endswith('spec.js'):
+                continue
+
             filename = file_path.name
             key = normalize_filename(filename)
             try:
                 with open(file_path, 'r', encoding='utf-8') as f:
-                    print(f"Retrieving baseline file with key: [{key}]")
-                    baseline_files[key] = f.read()
+                    content = f.read()
+                
+                print(f"Retrieving baseline file with key: [{key}]")
+
+                # Prepend functions content if it exists and this isn't a functions file itself
+                if functions_content and not file_path.name.endswith('.functions.js'):
+                    baseline_files[key] = functions_content + "\n\n" + content
+                else:
+                    baseline_files[key] = content
+                    
             except Exception as e:
-                print(f"Error reading baseline file {file_path}: {e}")
+                print(f"Error reading file {file_path}: {e}")
+                continue
+
+
+    # for file_path in baseline_path.rglob('*'):
+    #     if file_path.is_file() and (file_path.name.endswith('functions.js') or file_path.name.endswith('spec.js')):
+    #         filename = file_path.name
+    #         key = normalize_filename(filename)
+    #         try:
+    #             with open(file_path, 'r', encoding='utf-8') as f:
+    #                 print(f"Retrieving baseline file with key: [{key}]")
+    #                 baseline_files[key] = f.read()
+    #         except Exception as e:
+    #             print(f"Error reading baseline file {file_path}: {e}")
 
     # Read all generated
     generated_files = {
@@ -189,6 +235,8 @@ def extract_baseline_and_generated():
             except Exception as e:
                 print(f"Error reading generated file {file_path}: {e}")
                 raise
+
+    print(baseline_files["UC2.1_TC1"])
 
     return (baseline_files, generated_files)
 

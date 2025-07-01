@@ -1,0 +1,23 @@
+{
+  "test_case_id": "UC1_TC4",
+  "title": "Tentativo di login con campo username vuoto",
+  "preconditions": "L’utente non è autenticato",
+  "postconditions": "Il sistema visualizza un messaggio di errore",
+  "test_steps": [
+    {
+      "step": "Lascia vuoto il campo username e inserisci una password",
+      "expected": "Il sistema rileva l’assenza del username"
+    },
+    {
+      "step": "Clicca il tasto “Login”",
+      "expected": "Il sistema visualizza un messaggio di errore relativo al campo vuoto"
+    },
+    {
+      "step": "Visualizza la possibilità di correggere l’input",
+      "expected": "Il sistema consente all’utente di ripetere il tentativo di login"
+    }
+  ],
+  "test_type": "Negativo",
+  "priority": "Media",
+  "use_case_id": "UC1"
+}

@@ -1,0 +1,262 @@
+2025-06-19 21:34:08,398 - __main__ - INFO - Found 1 dependencies for use case UC6
+2025-06-19 21:34:08,398 - __main__ - INFO - Read previously generated functions code for use case UC1 - test case UC1_TC1
+2025-06-19 21:34:08,398 - __main__ - INFO - Read previously generated spec code for use case UC1 - test case UC1_TC1
+2025-06-19 21:34:08,398 - test_code_generator.prompt_builder.prompt_builder - INFO - Test parameters loaded from path: ./input_files/parameters/test_parameters.env
+2025-06-19 21:34:08,398 - test_code_generator.prompt_builder.prompt_builder - INFO - Test reporter loaded from path: ./input_files/reporter_minimal.js
+2025-06-19 21:34:08,398 - test_code_generator.prompt_builder.prompt_builder - INFO - Previous code section loaded from path: ./prompts/batch_processing/zero_shot/codellama/previous_code_section.txt
+2025-06-19 21:34:08,399 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt built: 
+ROLE: system
+You are a testing engineer, expert in writing Javascript end-to-end tests with Playwright, for legitimate software testing purposes of my own web application.
+
+------------------------------------------------------------------
+ROLE: user
+Task: Analyze the test cases provided below and generate for each test case a complete and working Playwright test script in Javascript, for legitimate software testing purposes of my own web application. 
+The test scripts must follow the steps described in each test case.
+When creating the test scripts, use only the page object model provided for interacting with the DOM and the parameters provided.
+
+Use only this page object models for interacting with the DOM:
+<page_object_model>
+File: navbar_page.js
+export class NavbarPage {
+  constructor(page) {
+    const italianoFlagLink = ' Lingua Italiano flag';
+    const ingleseFlagLink = 'flag Inglese';
+
+    this.page = page;
+
+    this.userIcon = page.getByLabel('user_data');
+    this.englishLanguageSelection = page.getByRole('link', { name: italianoFlagLink });
+    this.italianLanguageSelection = page.getByRole('link', { name: ingleseFlagLink });
+    this.logoutSelection = page.getByRole('link', { name: ' Logout' });
+  }
+
+  async clickUserIcon() {
+    await this.userIcon.click();
+  }
+
+  async selectItalianLanguage() {
+    await this.italianLanguageSelection.click();
+  }
+
+  async selectEnglishLanguage() {
+    await this.englishLanguageSelection.click();
+  }
+
+  async isEnglishLanguageSelected() {
+    return await this.englishLanguageSelection.isVisible();
+  }
+
+  async clickLogout() {
+    this.logoutSelection.click();
+  }
+}
+</page_object_model>
+
+Use the following test parameters when creating scripts:
+E2E_BASE_URL=""
+E2E_LOGIN_URL=""
+E2E_HOME_URL="" 
+E2E_DASHBOARD_URL="" 
+E2E_CTS_URL="" 
+EMAIL=""
+PASSWORD=""
+
+When in the test case there is a step, a precondition or a postcondition with a name of use case UC*, reuse this functions passing null as reporter parameter:
+<code>
+// File: UC1_TC1.functions.js
+import { LoginPage } from '../../models/page_object_models/login_page.js';
+
+import { test, expect } from '@playwright/test';
+
+import TestResultReporter from '../../models/test-result-reporter.js';
+
+export const fillCorrectCredentials = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const loginPage = new LoginPage(page);
+    await loginPage.fillEmail(process.env.EMAIL);
+    await loginPage.fillPassword(process.env.PASSWORD);
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID1', 'Inserisci le credenziali corrette nel form di login', true, true, true, { email: process.env.EMAIL, password: process.env.PASSWORD }, executionTime);
+    }
+
+    expect(await loginPage.isEmailFieldVisible()).toBeTruthy();
+}
+
+export const clickLoginButton = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const loginPage = new LoginPage(page);
+    await loginPage.clickLoginButton();
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID2', 'Clicca il tasto “Login”', true, true, true, {}, executionTime);
+    }
+
+    expect(await page.url()).toBe(process.env.E2E_DASHBOARD_URL);
+}
+
+export const verifySuccessMessage = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    // Assuming the success message is visible on the dashboard page
+    const successMessage = await page.isVisible('text=Login successful');
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID3', 'Visualizza il messaggio di operazione completata con successo', true, successMessage, successMessage, {}, executionTime);
+    }
+
+    expect(successMessage).toBeTruthy();
+}
+// File: UC1_TC1.spec.js
+import { test, expect } from '@playwright/test';
+
+import TestResultReporter from '../../models/test-result-reporter.js';
+
+import { fillCorrectCredentials, clickLoginButton, verifySuccessMessage } from './UC1_TC1.functions.js';
+
+test("UC1_TC1 - Login con credenziali valide", async ({ page, browserName }) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1", "Login con credenziali valide");
+
+    await page.goto(process.env.E2E_BASE_URL);
+
+    // Call step functions in sequence
+    await fillCorrectCredentials(page, reporter);
+    await clickLoginButton(page, reporter);
+    await verifySuccessMessage(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+</code>
+
+Instructions:
+1. Analyze the test cases provided
+2. For each test case, generate a test script in Javascript with Playwright
+3. Use only Page object model provided to interact with the DOM.
+4. Call the TestResultReporter object methods as described below.
+5. Put the code in functions for reusability, with the reporter object as parameter not mandatory. If not null, call reporter methods. 
+6. Put functions in a separate file called "UC*_TC*.functions.js" and each test in a file called "UC*_TC*.spec.js"
+7. Do not rewrite functions provided in the prompt, just refer to them.
+8. Add the required import for:
+    * test, expect, ... from '@playwright/test' in all files
+    * TestResultReporter from "../../models/test-result-reporter.js" 
+    * page object models from "../../models/page_object_models/<page_object_model_name>.js" 
+    * existing code from the path specified in the code snippet. Pay attention to add imports used also by the existing code. 
+    * make the generated "UC*_TC*.spec.js" file to reference functions in "UC*_TC*.functions.js" generated file
+
+<example>
+export const functionNameDescribingStep = async function(page, reporter) {
+    const startTime = DateTime.now();
+    
+    // Put here test case step implementation
+    
+    const endTime = DateTime.now();
+    const executionTime = endTime - startTime;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID1', 'Step 1 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+    }
+
+    // Include Playwright assertions
+    expect(passFail).toBeTruthy();
+}
+
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1", "Login test with success");
+
+    // Call step functions in sequence
+    await functionNameDescribingStep1(page, reporter);
+    await functionNameDescribingStep2(page, reporter);
+    // Additional steps...
+
+    reporter.onTestEnd(test, { status: "passed" });     // status can be "passed" or "failed" 
+});
+</example>
+
+Here the test cases to be converted in Playwright script:
+<test_cases>
+Test Case ID: UC6_TC1
+Title: Logout utente con successo
+Use Case ID: UC6
+Priority: Alta
+Type: Positivo
+Preconditions: UC1
+Postconditions: L’utente è non è più autenticato ed è a conoscenza che l’operazione ha avuto successo
+Test Steps:
+  1. Step: Accedi al sistema come utente registrato
+Expected: La dashboard dell’utente viene visualizzata
+  2. Step: Clicca sul proprio nome utente in alto a destra e seleziona il tasto “Logout”
+Expected: Il processo di logout inizia
+  3. Step: Conferma l’intenzione di effettuare il logout
+Expected: Un messaggio di successo conferma la disconnessione
+
+Test Case ID: UC6_TC2
+Title: Tentativo di logout senza essere autenticato
+Use Case ID: UC6
+Priority: Media
+Type: Negativo
+Preconditions: 
+Postconditions: Il sistema non permette il logout e richiede l’autenticazione
+Test Steps:
+  1. Step: Accedi al sito senza effettuare il login
+Expected: La pagina di login viene visualizzata
+  2. Step: Tenta di accedere alla funzione di logout
+Expected: Il sistema richiede l’autenticazione
+
+Test Case ID: UC6_TC3
+Title: Logout con più sessioni aperte
+Use Case ID: UC6
+Priority: Alta
+Type: Prestazione
+Preconditions: UC1
+Postconditions: Tutte le sessioni dell’utente vengono chiuse
+Test Steps:
+  1. Step: Apri più schede del browser con la stessa sessione di login
+Expected: Tutte le schede mostrano il contenuto accessibile all’utente
+  2. Step: Effettua il logout da una delle schede
+Expected: Tutte le altre schede non sono più autenticate e richiedono login per accedere
+
+Test Case ID: UC6_TC4
+Title: Boundary test: logout con dati di sessione scaduti
+Use Case ID: UC6
+Priority: Media
+Type: Boundary
+Preconditions: UC1
+Postconditions: Il sistema gestisce correttamente la sessione scaduta e richiede il login
+Test Steps:
+  1. Step: Lascia inattiva la sessione fino a quando non scade
+Expected: La sessione viene considerata scaduta
+  2. Step: Tenta di effettuare il logout
+Expected: Il sistema richiede nuovamente l’autenticazione
+
+Test Case ID: UC6_TC5
+Title: Edge case: logout da dispositivo diverso
+Use Case ID: UC6
+Priority: Bassa
+Type: Edge
+Preconditions: UC1
+Postconditions: Il sistema gestisce correttamente il logout anche se effettuato da un dispositivo differente
+Test Steps:
+  1. Step: Accedi al sistema da un dispositivo (es. computer)
+Expected: La sessione viene avviata
+  2. Step: Effettua il login da un altro dispositivo (es. smartphone) e tenta di eseguire il logout
+Expected: Il sistema riconosce la richiesta di logout indipendentemente dal dispositivo utilizzato
+</test_cases>
+
+Output format:
+* Output only valid and runnable JavaScript code
+* Do not write code implementation provided in the prompt, only reference it
+* Structure the code in files using XML tags with "file" attribute containing the name
+2025-06-19 21:34:08,399 - test_code_generator.llm_client.ollama_client - INFO - OllamaClient initialized with model: codellama:70b
+2025-06-19 21:35:53,504 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-06-19 21:35:53,505 - test_code_generator.llm_client.ollama_client - INFO - model='codellama:70b' created_at='2025-06-19T21:35:53.504372918Z' done=True done_reason='stop' total_duration=105104039671 load_duration=3694233 prompt_eval_count=2905 prompt_eval_duration=7118500430 eval_count=874 eval_duration=97977277282 message=Message(role='assistant', content='1. Analyze each test case and identify its steps, preconditions, postconditions, and expected results.\n2. For each test case, create a separate Playwright script file (e.g., "UC6_TC1.spec.js") with the following structure:\n```javascript\nimport { test, expect } from \'@playwright/test\';\n\n// Import page object models and other necessary files here\n\ntest("UC6_TC1 - Logout utente con successo", async ({page, browserName}) => {\n    // Initialize TestResultReporter if needed\n    \n    // Set the test case title and description in the reporter\n    \n    // Implement each step of the test case as a separate function (e.g., "step1_login")\n    await step1_login(page, reporter);\n    await step2_clickLogoutButton(page, reporter);\n    await step3_confirmLogout(page, reporter);\n    \n    // Call the TestResultReporter\'s onTestEnd method to mark the test as passed or failed based on the actual results\n});\n```\n3. For each step of a test case, create a separate function (e.g., "step1_login") with the following structure:\n```javascript\nasync function step1_login(page, reporter) {\n    const startTime = new Date().getTime();\n    \n    // Implement the step logic here using Playwright APIs and page object models\n    \n    const endTime = new Date().getTime();\n    const executionTime = (endTime - startTime) / 1000;\n    \n    if (reporter) {\n        reporter.addStep(\'UC6_TC1_ID1\', \'Accedi al sistema come utente registrato\', expectedResults, actualResults, passFail, parametersUsed, executionTime);\n    }\n    \n    // Include Playwright assertions to verify the step results\n    expect(passFail).toBeTruthy();\n}\n```\n4. For each precondition and postcondition of a test case, create a separate function (e.g., "precondition1_login") with the following structure:\n```javascript\nasync function precondition1_login(page, reporter) {\n    const startTime = new Date().getTime();\n    \n    // Implement the precondition logic here using Playwright APIs and page object models\n    \n    const endTime = new Date().getTime();\n    const executionTime = (endTime - startTime) / 1000;\n    \n    if (reporter) {\n        reporter.addStep(\'UC6_TC1_ID1\', \'Accedi al sistema come utente registrato\', expectedResults, actualResults, passFail, parametersUsed, executionTime);\n    }\n    \n    // Include Playwright assertions to verify the precondition results\n    expect(passFail).toBeTruthy();\n}\n```\n5. For each test case, create a separate file (e.g., "UC6_TC1.functions.js") with all step and precondition functions for that test case.\n6. In the Playwright script file ("UC6_TC1.spec.js"), import the necessary page object models and other files from the "models" folder, as well as the TestResultReporter class.\n7. In each step function, use the imported page object models to interact with the DOM elements and perform actions on them.\n8. In each precondition or postcondition function, include Playwright assertions to verify the expected results.\n9. For each test case, create a separate file (e.g., "UC6_TC1.spec.js") with the Playwright script for that test case.\n10. Include all necessary imports and references in each file.\n11. Run the generated scripts to verify their functionality. ', images=None, tool_calls=None)
+2025-06-19 21:35:53,505 - test_code_generator.validator.javascript_code_validator - INFO - Extracting JavaScript code blocks

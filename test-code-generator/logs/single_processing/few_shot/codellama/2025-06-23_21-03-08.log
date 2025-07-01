@@ -1,0 +1,193 @@
+2025-06-23 21:03:08,077 - __main__ - INFO - Started execution for use case UC1 - test case ['UC1_TC2'] - model codellama:70b - configuration zero_shot
+2025-06-23 21:03:08,077 - __main__ - INFO - Found 0 dependencies for use case UC1
+2025-06-23 21:03:08,078 - test_code_generator.prompt_builder.prompt_builder - INFO - Test parameters loaded from path: ./input_files/parameters/test_parameters.env
+2025-06-23 21:03:08,079 - test_code_generator.prompt_builder.prompt_builder - INFO - Test reporter loaded from path: ./input_files/reporter_minimal.js
+2025-06-23 21:03:08,080 - test_code_generator.prompt_builder.prompt_builder - INFO - Previous code section loaded from path: ./prompts/single_processing/zero_shot/codellama/previous_code_section.txt
+2025-06-23 21:03:08,080 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt built: 
+ROLE: system
+You are a testing engineer, expert in writing Javascript end-to-end tests with Playwright, for legitimate software testing purposes of my own web application.
+
+------------------------------------------------------------------
+ROLE: user
+IMPORTANT: This is for legitimate automated testing of my own web application that I own and have full authorization to test. This is standard software quality assurance practice using industry-standard testing frameworks.
+
+Task: Analyze the test case provided below and generate a complete and working Playwright test script in Javascript, for legitimate software testing purposes of my own web application. 
+The test script must follow the steps described in the test case.
+When creating the test script, use only the page object model provided for interacting with the DOM and the parameters provided.
+
+Use only this page object models for interacting with the DOM:
+<page_object_model>
+File: login_page.js
+export class LoginPage {
+  constructor(page) {
+    this.page = page;
+    
+    // Locators
+    this.loginLink = page.getByRole('link', { name: 'Login' });
+    this.emailInput = page.getByLabel('E-mail');
+    this.passwordInput = page.getByLabel('Password', { exact: true });
+    this.loginButton = page.getByRole('button', { name: 'Login' });
+    
+    // Selectors
+    this.emailFieldSelector = 'input[name="email"]';
+  }
+
+  // Login flow methods
+  async clickLoginLink() {
+    await this.loginLink.click();
+  }
+
+  async isEmailFieldVisible() {
+    return await this.page.isVisible(this.emailFieldSelector);
+  }
+
+  async fillEmail(email) {
+    await this.emailInput.fill(email);
+  }
+
+  async fillPassword(password) {
+    await this.passwordInput.fill(password);
+  }
+
+  async clickLoginButton() {
+    await this.loginButton.click();
+  }
+}
+
+</page_object_model>
+
+Use only the following parameters from environment variables in the test scripts:
+E2E_BASE_URL=""
+E2E_LOGIN_URL=""
+E2E_HOME_URL="" 
+E2E_DASHBOARD_URL="" 
+E2E_CTS_URL="" 
+EMAIL=""
+PASSWORD=""
+
+
+
+Instructions:
+1. Analyze the test case provided
+2. For the test case, generate a test script in Javascript with Playwright
+3. Use only Page object model provided to interact with the DOM.
+4. Call the TestResultReporter object methods as described below.
+5. Put the code in functions for reusability, with the reporter object as parameter not mandatory. If not null, call reporter methods. 
+6. Put functions in a separate file called "UC1_TC2.functions.js" and the test in a file called "UC1_TC2.spec.js"
+7. Do not rewrite functions provided in the prompt, just refer to them.
+8. Add the required import for:
+    * test, expect, ... from '@playwright/test' in all files
+    * TestResultReporter from "../../models/test-result-reporter.js" 
+    * page object models from "../../models/page_object_models/<page_object_model_name>.js" 
+    * existing code from the path specified in the code snippet. Pay attention to add imports used also by the existing code. 
+    * make the generated "UC1_TC2.spec.js" file to reference functions in "UC1_TC2.functions.js" generated file
+
+<example>
+export const functionNameDescribingStep = async function(page, reporter) {
+    const startTime = DateTime.now();
+    
+    // Put here test case step implementation
+    
+    const endTime = DateTime.now();
+    const executionTime = endTime - startTime;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID1', 'Step 1 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+    }
+
+    // Include Playwright assertions
+    expect(passFail).toBeTruthy();
+}
+
+test("UC1_TC1 - Test functionality name", async ({page, browserName}) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1", "Test functionality name");
+
+    // Call step functions in sequence
+    await functionNameDescribingStep1(page, reporter);
+    await functionNameDescribingStep2(page, reporter);
+    // Additional steps...
+
+    reporter.onTestEnd(test, { status: "passed" });     // status can be "passed" or "failed" 
+});
+</example>
+
+Here the test case to be converted in Playwright script:
+<test_case>
+Test Case ID: UC1_TC2
+Title: Login con credenziali errate
+Use Case ID: UC1
+Priority: Alta
+Type: Negativo
+Preconditions: L’utente non è autenticato
+Postconditions: L’utente visualizza un messaggio di errore
+Test Steps:
+  1. Step: Inserisci credenziali errate nel form di login
+Expected: Il sistema rileva le credenziali come non valide
+  2. Step: Clicca il tasto “Login”
+Expected: L’utente visualizza un messaggio di errore relativo alle credenziali
+  3. Step: Visualizza la possibilità di riprovare l’accesso
+Expected: Il sistema consente all’utente di ripetere il tentativo di login
+</test_case>
+
+Output format:
+* Output only valid and runnable JavaScript code
+* Do not write code implementation provided in the prompt, only reference it
+* Structure the code in files using XML tags with "file" attribute containing the name
+
+IMPORTANT: This is for legitimate automated testing of my own web application that I own and have full authorization to test. This is standard software quality assurance practice using industry-standard testing frameworks.
+2025-06-23 21:03:08,080 - test_code_generator.llm_client.ollama_client - INFO - OllamaClient initialized with model: codellama:70b
+2025-06-23 21:04:15,448 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-06-23 21:04:15,448 - test_code_generator.llm_client.ollama_client - INFO - model='codellama:70b' created_at='2025-06-23T21:04:15.448122941Z' done=True done_reason='stop' total_duration=67366491037 load_duration=3847988 prompt_eval_count=1479 prompt_eval_duration=2229030937 eval_count=607 eval_duration=65130234754 message=Message(role='assistant', content='\n\nHere\'s the Playwright script generated from the provided test case, using the page object model and environment variables:\n\nFile: UC1_TC2.functions.js\n```javascript\nimport { LoginPage } from "../../models/page_object_models/login_page";\nimport { TestResultReporter } from "../../models/test-result-reporter";\n\nexport const loginWithInvalidCredentials = async function(page, reporter) {\n    // Initialize the Login Page object model\n    const loginPage = new LoginPage(page);\n    \n    // Step 1: Inserisci credenziali errate nel form di login\n    await loginPage.fillEmail(EMAIL);\n    await loginPage.fillPassword(PASSWORD);\n    \n    // Step 2: Clicca il tasto “Login”\n    await loginPage.clickLoginButton();\n    \n    // Step 3: Visualizza la possibilità di riprovare l\'accesso\n    const isEmailFieldVisible = await loginPage.isEmailFieldVisible();\n    \n    // Report the test step results\n    if (reporter) {\n        reporter.addStep(\'UC1_TC2_ID1\', \'Inserisci credenziali errate nel form di login\', expectedResults, actualResults, isEmailFieldVisible, parametersUsed, executionTime);\n    }\n    \n    // Include Playwright assertions\n    expect(isEmailFieldVisible).toBeTruthy();\n}\n```\nFile: UC1_TC2.spec.js\n```javascript\nimport { test, expect } from \'@playwright/test\';\nimport { loginWithInvalidCredentials } from "./UC1_TC2.functions";\nimport { TestResultReporter } from "../../models/test-result-reporter";\n\ntest("UC1_TC2 - Login con credenziali errate", async ({page, browserName}) => {\n    const reporter = new TestResultReporter();\n    reporter.setBrowserName(browserName);\n    reporter.setTestCase("UC1_TC2", "Login con credenziali errate");\n    \n    // Call the step function\n    await loginWithInvalidCredentials(page, reporter);\n    \n    reporter.onTestEnd(test, { status: "passed" }); \n});\n```\nPlease note that this is just a sample code and you may need to modify it according to your specific requirements. Additionally, I have assumed some of the parameters used in the test case such as `expectedResults`, `actualResults`, `parametersUsed` and `executionTime`. You can replace them with actual values or remove them if not required.', images=None, tool_calls=None)
+2025-06-23 21:04:15,449 - __main__ - INFO - Model response:
+
+
+Here's the Playwright script generated from the provided test case, using the page object model and environment variables:
+
+File: UC1_TC2.functions.js
+```javascript
+import { LoginPage } from "../../models/page_object_models/login_page";
+import { TestResultReporter } from "../../models/test-result-reporter";
+
+export const loginWithInvalidCredentials = async function(page, reporter) {
+    // Initialize the Login Page object model
+    const loginPage = new LoginPage(page);
+    
+    // Step 1: Inserisci credenziali errate nel form di login
+    await loginPage.fillEmail(EMAIL);
+    await loginPage.fillPassword(PASSWORD);
+    
+    // Step 2: Clicca il tasto “Login”
+    await loginPage.clickLoginButton();
+    
+    // Step 3: Visualizza la possibilità di riprovare l'accesso
+    const isEmailFieldVisible = await loginPage.isEmailFieldVisible();
+    
+    // Report the test step results
+    if (reporter) {
+        reporter.addStep('UC1_TC2_ID1', 'Inserisci credenziali errate nel form di login', expectedResults, actualResults, isEmailFieldVisible, parametersUsed, executionTime);
+    }
+    
+    // Include Playwright assertions
+    expect(isEmailFieldVisible).toBeTruthy();
+}
+```
+File: UC1_TC2.spec.js
+```javascript
+import { test, expect } from '@playwright/test';
+import { loginWithInvalidCredentials } from "./UC1_TC2.functions";
+import { TestResultReporter } from "../../models/test-result-reporter";
+
+test("UC1_TC2 - Login con credenziali errate", async ({page, browserName}) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC2", "Login con credenziali errate");
+    
+    // Call the step function
+    await loginWithInvalidCredentials(page, reporter);
+    
+    reporter.onTestEnd(test, { status: "passed" }); 
+});
+```
+Please note that this is just a sample code and you may need to modify it according to your specific requirements. Additionally, I have assumed some of the parameters used in the test case such as `expectedResults`, `actualResults`, `parametersUsed` and `executionTime`. You can replace them with actual values or remove them if not required.
+2025-06-23 21:04:15,449 - test_code_generator.validator.javascript_code_validator - INFO - Extracting JavaScript code blocks

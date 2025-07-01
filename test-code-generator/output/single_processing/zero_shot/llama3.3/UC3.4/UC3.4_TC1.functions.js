@@ -21,7 +21,7 @@ export const accessCensusSheetSection = async function(page, reporter) {
         passFail = false;
     }
     if (reporter) {
-        reporter.addStep('UC3.4_TC1_ID1', 'Access the census sheet section', 'The list of census sheets is visible', `Navigated to ${process.env.E2E_CTS_URL}`, passFail, '', executionTime);
+        reporter.addStep('UC3.4_TC1_ID1', 'Access the census sheet section', 'The census sheet list is visible', `Navigated to ${process.env.E2E_CTS_URL}`, passFail, '', executionTime);
     }
 
     expect(passFail).toBeTruthy();
@@ -42,7 +42,7 @@ export const clickAzioneButton = async function(page, reporter) {
         passFail = false;
     }
     if (reporter) {
-        reporter.addStep('UC3.4_TC1_ID2', 'Click the azioni button of a census sheet', 'The palette of operations is visible', `Clicked on azioni button`, passFail, '', executionTime);
+        reporter.addStep('UC3.4_TC1_ID2', 'Click the azioni button', 'The operations palette is visible', `Clicked on azioni button`, passFail, '', executionTime);
     }
 
     expect(passFail).toBeTruthy();

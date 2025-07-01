@@ -1,0 +1,683 @@
+2025-06-20 12:30:48,367 - __main__ - INFO - Found 1 dependencies for use case UC2.4
+2025-06-20 12:30:48,368 - __main__ - INFO - Read previously generated functions code for use case UC2 - test case UC2_TC1
+2025-06-20 12:30:48,368 - __main__ - INFO - Read previously generated spec code for use case UC2 - test case UC2_TC1
+2025-06-20 12:30:48,368 - test_code_generator.prompt_builder.prompt_builder - INFO - Test parameters loaded from path: ./input_files/parameters/test_parameters.env
+2025-06-20 12:30:48,368 - test_code_generator.prompt_builder.prompt_builder - INFO - Test reporter loaded from path: ./input_files/reporter_minimal.js
+2025-06-20 12:30:48,368 - test_code_generator.prompt_builder.prompt_builder - INFO - Previous code section loaded from path: ./prompts/batch_processing/one_shot/llama3.3/previous_code_section.txt
+2025-06-20 12:30:48,368 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt built: 
+ROLE: system
+You are a testing engineer, expert in writing Javascript end-to-end tests with Playwright.
+
+Task: Analyze the test cases provided below and generate for each test case a complete and working Playwright test script in Javascript, following the steps described in each test case.
+When creating the test scripts, use only the page object model provided for interacting with the DOM and the parameters provided.
+------------------------------------------------------------------
+ROLE: user
+Use only this page object models for interacting with the DOM:
+```javascript
+// File: report_energetici_page.js
+export class ReportEnergeticiPage {  
+    constructor(page) {
+        this.page = page;
+        this.fromDateInput = page.locator("#from-date");
+        this.toDateInput = page.locator("#to-date");
+        this.exportFormatSelect = page.locator("#export-format");
+        this.exportButton = page.locator("#export-button");
+    }
+  
+    async selectFromDate(date) {
+        await this.fromDateInput.fill(date);
+    }
+  
+    async selectToDate(date) {
+        await this.toDateInput.fill(date);
+    }
+  
+    // format can be 'csv' or 'pdf'
+    async selectExportFormat(format) {
+        await this.exportFormatSelect.selectOption(format);
+    }
+
+    async isExportButtonEnabled() {
+        return !(await this.exportButton.isDisabled());
+    }
+  
+    async clickExportButton() {
+        return await this.exportButton.click();
+    }
+}
+```
+
+Use the following test parameters when creating scripts:
+E2E_BASE_URL=""
+E2E_LOGIN_URL=""
+E2E_SUPPORT_URL=""
+E2E_SUPPORT_SUCCESS_URL = ""
+E2E_HOME_URL="" 
+E2E_DASHBOARD_URL="" 
+E2E_CTS_URL="" 
+EMAIL=""
+PASSWORD=""
+
+When in the test case there is a step, a precondition or a postcondition with a name of use case UC*, reuse this functions passing null as reporter parameter:
+```javascript
+// File: UC1_TC1.functions.js
+import { test, expect } from '@playwright/test';
+import { LoginPage } from '../../models/page_object_models/login_page.js';
+import { insertCorrectCredentials, clickLoginButton, verifyAuthenticationSuccessMessage } from '../UC1/UC1_TC1.functions.js';
+import TestResultReporter from '../../models/test-result-reporter.js';
+
+export const navigateToLoginPage = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    await page.goto(process.env.E2E_LOGIN_URL);
+    
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID1', 'Navigate to login page', 'Login page loaded', 'Login page loaded', true, `E2E_LOGIN_URL: ${process.env.E2E_LOGIN_URL}`, executionTime);
+    }
+}
+
+export const insertCorrectCredentials = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const loginPage = new LoginPage(page);
+    await loginPage.enterEmail(process.env.E2E_LOGIN_EMAIL_ADMIN);
+    await loginPage.enterPassword(process.env.E2E_LOGIN_PASSWORD_ADMIN);
+    
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID2', 'Insert correct credentials', 'Credentials accepted', 'Credentials accepted', true, `E2E_LOGIN_EMAIL_ADMIN: ${process.env.E2E_LOGIN_EMAIL_ADMIN}, E2E_LOGIN_PASSWORD_ADMIN: ${process.env.E2E_LOGIN_PASSWORD_ADMIN}`, executionTime);
+    }
+}
+
+export const clickLoginButton = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const loginPage = new LoginPage(page);
+    await loginPage.login();
+    
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID3', 'Click login button', 'System proceeds with authentication', 'System proceeds with authentication', true, '', executionTime);
+    }
+}
+
+export const verifySuccessMessage = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const loginPage = new LoginPage(page);
+    const message = await loginPage.getErrorMessage();
+    
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID4', 'Verify success message', 'Success message displayed', message, message !== null, '', executionTime);
+    }
+
+    await expect(message).not.toBeNull();
+}
+
+// File: UC1_TC1.spec.js
+import { test, expect } from '@playwright/test';
+import { navigateToLoginPage, insertCorrectCredentials, clickLoginButton, verifySuccessMessage } from './UC1_TC1.functions.js';
+import TestResultReporter from '../../models/test-result-reporter.js';
+
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1", "Login test with success");
+
+    await navigateToLoginPage(page, reporter);
+    await insertCorrectCredentials(page, reporter);
+    await clickLoginButton(page, reporter);
+    await verifySuccessMessage(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+```
+
+Instructions:
+1. Analyze the test cases provided
+2. For each test case, generate a test script in Javascript with Playwright
+3. Use only Page object model provided to interact with the DOM.
+4. Call the TestResultReporter object methods as described below.
+5. Put the code in functions for reusability, with the reporter object as parameter not mandatory. If not null, call reporter methods. 
+6. Put functions in a separate file called "UC*_TC*.functions.js" and the test in a file called "UC*_TC*.spec.js"
+7. Do not rewrite functions provided in the prompt, just refer to them.
+8. Add the required import for:
+    * test, expect, ... from '@playwright/test' in all files
+    * TestResultReporter from "../../models/test-result-reporter.js" 
+    * page object models from "../../models/page_object_models/<page_object_model_name>.js" 
+    * existing code from the path specified in the code snippet. Pay attention to add imports used also by the existing code. 
+    * make the generated "UC*_TC*.spec.js" file to reference functions in "UC*_TC*.functions.js" generated file
+
+<example>
+export const functionNameDescribingStep = async function(page, reporter) {
+    const startTime = DateTime.now();
+    
+    // Put here test case step implementation
+    
+    const endTime = DateTime.now();
+    const executionTime = endTime - startTime;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID1', 'Step 1 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+    }
+
+    // Include Playwright assertions
+    expect(passFail).toBeTruthy();
+}
+
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1", "Login test with success");
+    
+    // Call step functions in sequence
+    await step1(page, reporter);
+    await step2(page, reporter);
+    // Additional steps...
+
+    reporter.onTestEnd(test, { status: "passed" });     // status can be "passed" or "failed" 
+});
+</example>
+
+Here the test cases to be converted in Playwright script:
+Test Case ID: UC8.2.3_TC1
+Title: Esportazione report in PDF con dati validi
+Use Case ID: UC8.2
+Priority: Alta
+Type: Positivo
+Preconditions: UC1
+Postconditions: Il file esportato viene scaricato correttamente
+Test Steps:
+  1. Step: Accedi alla pagina dei report energetici
+Expected: La sezione viene visualizzata correttamente
+  2. Step: Seleziona un periodo valido e il formato PDF
+Expected: Le selezioni vengono accettate
+  3. Step: Download del file
+Expected: Il file PDF viene generato e scaricato
+
+Test Case ID: UC8.2.3_TC2
+Title: Esportazione report in PDF con periodo non valido
+Use Case ID: UC8.2
+Priority: Alta
+Type: Positivo
+Preconditions: UC1
+Postconditions: Il file non viene scaricato
+Test Steps:
+  1. Step: Accedi alla pagina dei report energetici
+Expected: La sezione viene visualizzata correttamente
+  2. Step: Seleziona un periodo non valido, con data da minore di data a e seleziona il formato PDF
+Expected: Le selezioni vengono accettate
+  3. Step: Click sul pulsante per scaricare pdf
+Expected: Il pulsante non è cliccabile
+
+Test Case ID: UC8.2.3_TC3
+Title: Esportazione report in PDF con formato non selezionato
+Use Case ID: UC8.2
+Priority: Alta
+Type: Positivo
+Preconditions: UC1
+Postconditions: Il file non viene scaricato
+Test Steps:
+  1. Step: Accedi alla pagina dei report energetici
+Expected: La sezione viene visualizzata correttamente
+  2. Step: Seleziona un periodo valido ma non seleziona il formato PDF
+Expected: Le selezioni vengono accettate
+  3. Step: Click sul pulsante per scaricare pdf
+Expected: Il pulsante non è cliccabile
+
+Output format:
+* Output only valid and runnable JavaScript code
+* Do not write code implementation provided in the prompt, only reference it
+* Structure the code in files using markdown code blocks specifying the file name
+------------------------------------------------------------------
+ROLE: assistant
+### UC8.2.3_TC1.functions.js
+```javascript
+import { test, expect } from '@playwright/test';
+import { ReportEnergeticiPage } from '../../models/page_object_models/report_energetici_page.js';
+import TestResultReporter from '../../models/test-result-reporter.js';
+
+// Step 1
+export const navigateToReportEnergeticiPage = async function(page, reporter) {
+  const startTime = new Date().getTime();
+    await page.goto(process.env.E2E_REPORT_ENERGETICI_URL);
+    const endTime = new Date().getTime();
+    const executionTime = endTime - startTime;
+    if (reporter) {
+        reporter.addStep('UC08_TC1_ID1', 'Navigate to report energetici page', 'Support page loaded', 'Support page loaded', true, `E2E_REPORT_ENERGETICI_URL: ${process.env.E2E_REPORT_ENERGETICI_URL}`, executionTime);
+    }
+}
+
+// Step 2
+export const selectPeriodAndFormat = async function(page, reporter) {
+  const reportEnergeticiPage = new ReportEnergeticiPage(page);
+
+  let startTime = Date.now();
+  const fromDate = "2025-05-01";
+  const toDate = "2025-05-30";
+  const format = "pdf"
+  await reportEnergeticiPage.selectFromDate(fromDate);
+  await reportEnergeticiPage.selectToDate(toDate);
+  await reportEnergeticiPage.selectExportFormat(format);
+  let endTime = Date.now();
+  
+  if (reporter) {
+    reporter.addStep('UC8_TC1_ID2', 'L\'utente compila i campi', `Campi compilati`, `Campi compilati`, true, { fromDate, toDate, format }, endTime - startTime);
+  }
+}
+
+// Step 3
+export const exportFile = async function (page, reporter) {
+  const reportEnergeticiPage = new ReportEnergeticiPage(page);
+
+  let passFail = 0;  // 1 se passato, 0 se fallito
+  let startTime = date.now();
+  await reportEnergeticiPage.clickExportButton();
+  await page.on('download', download => download.path().then(passFail = 1));
+  let endTime = date.now();
+
+  if (reporter) {
+    reporter.addStep('UC8_TC1_ID3', 
+      'Esportazione', 
+      "Il file viene scaricato correttamente", 
+      testPass ? "Il file viene scaricato correttamente" : "Errore nello scaricare il file",
+      testPass,
+      {},
+      endTime - startTime
+    );
+  }
+
+  expect(testPass).toBeTruthy();
+}
+```
+
+### UC8.2.3_TC2.functions.js
+```javascript
+import { test, expect } from '@playwright/test';
+import { ReportEnergeticiPage } from '../../models/page_object_models/report_energetici_page.js';
+import TestResultReporter from '../../models/test-result-reporter.js';
+
+// Step 1
+export const navigateToReportEnergeticiPage = async function(page, reporter) {
+  const startTime = new Date().getTime();
+    await page.goto(process.env.E2E_REPORT_ENERGETICI_URL);
+    const endTime = new Date().getTime();
+    const executionTime = endTime - startTime;
+    if (reporter) {
+        reporter.addStep('UC08_TC1_ID1', 'Navigate to report energetici page', 'Support page loaded', 'Support page loaded', true, `E2E_REPORT_ENERGETICI_URL: ${process.env.E2E_REPORT_ENERGETICI_URL}`, executionTime);
+    }
+}
+
+// Step 2
+export const selectWrongPeriodAndFormat = async function(page, reporter) {
+  const reportEnergeticiPage = new ReportEnergeticiPage(page);
+
+  let startTime = Date.now();
+  const fromDate = "2025-05-01";
+  const toDate = "2025-04-01";
+  const format = "pdf"
+  await reportEnergeticiPage.selectFromDate(fromDate);
+  await reportEnergeticiPage.selectToDate(toDate);
+  await reportEnergeticiPage.selectExportFormat(format);
+  let endTime = Date.now();
+  
+  if (reporter) {
+    reporter.addStep('UC8_TC1_ID2', 'L\'utente compila i campi', `Campi compilati`, `Campi compilati`, true, { fromDate, toDate, format }, endTime - startTime);
+  }
+}
+
+// Step 3
+export const tryToClickButton = async function (page, reporter) {
+  const reportEnergeticiPage = new ReportEnergeticiPage(page);
+
+  let passFail = 0;  // 1 se passato, 0 se fallito
+  let startTime = date.now();
+  let testPass = await reportEnergeticiPage.isExportButtonEnabled();
+  let endTime = date.now();
+
+  if (reporter) {
+    reporter.addStep('UC8_TC1_ID3', 
+      'Esportazione', 
+      "Il file viene scaricato correttamente", 
+      testPass ? "Il pulsante è non cliccabile correttamente" : "Il pulsante è cliccabile",
+      testPass,
+      {},
+      endTime - startTime
+    );
+  }
+
+  expect(testPass).toBeTruthy();
+}
+```
+
+### UC8.2.3_TC1.spec.js
+```javascript
+import { test, expect } from '@playwright/test';
+import { ReportEnergeticiPage } from '../../models/page_object_models/report_energetici_page.js';
+import TestResultReporter from '../../models/test-result-reporter.js';
+import { navigateToReportEnergeticiPage, selectPeriodAndFormat, exportFile } from './UC8.2.3_TC1.functions.js'
+import { navigateToLoginPage, insertCorrectCredentials, clickLoginButton, verifySuccessMessage } from '../UC1/UC1_TC1.functions.js'
+
+test("UC8.2.3_TC1 - Esportazione report in PDF con dati validi", async ({ page, browserName }) => {
+  reporter.setBrowserName(browserName);
+  reporter.setTestCase("UC8.2.3_TC1", "Esportazione report in PDF con dati validi");
+
+  // Reuse existing method in the prompt without redefining them
+  await navigateToLoginPage(page, null);
+  await insertCorrectCredentials(page, null);
+  await clickLoginButton(page, null);
+  await verifySuccessMessage(page, null);
+
+  await navigateToReportEnergeticiPage(page, reporter);
+  await selectPeriodAndFormat(page, reporter);
+  await exportFile(page, reporter);
+
+  reporter.onTestEnd(test, { status: "passed" });
+});
+
+```
+
+### UC8.2.3_TC2.spec.js
+```javascript
+import { test, expect } from '@playwright/test';
+import { ReportEnergeticiPage } from '../../models/page_object_models/report_energetici_page.js';
+import TestResultReporter from '../../models/test-result-reporter.js';
+import { navigateToReportEnergeticiPage, selectWrongPeriodAndFormat, tryToClickButton } from './UC8.2.3_TC2.functions.js'
+import { navigateToLoginPage, insertCorrectCredentials, clickLoginButton, verifySuccessMessage } from '../UC1/UC1_TC1.functions.js'
+
+test("UC8.2.3_TC2 - Esportazione report in PDF con dati validi", async ({ page, browserName }) => {
+  reporter.setBrowserName(browserName);
+  reporter.setTestCase("UC8.2.3_TC2", "Esportazione report in PDF con periodo non valido");
+
+  // Reuse existing method in the prompt without redefining them
+  await navigateToLoginPage(page, null);
+  await insertCorrectCredentials(page, null);
+  await clickLoginButton(page, null);
+  await verifySuccessMessage(page, null);
+
+  await navigateToReportEnergeticiPage(page, reporter);
+  await selectWrongPeriodAndFormat(page, reporter);
+  await tryToClickButton(page, reporter);
+
+  reporter.onTestEnd(test, { status: "passed" });
+});
+
+```
+------------------------------------------------------------------
+ROLE: user
+Use only this page object models for interacting with the DOM:
+```javascript
+File: dashboard_page_benchmarking_kpi.js
+export class DashboardPageBenchmarkingKpi {
+  constructor(page) {
+    this.page = page;
+    
+    // City selection selectors
+    this.citySelector = this.page.getByLabel('Seleziona');
+    this.cityItems = this.page.locator('ul > li');
+    
+    // KPI selection selectors
+    this.kpiSelector = this.page.locator('#compute_apply_chart_municipality_benchmark_general_data_static');
+    
+    // Results verification selectors
+    this.chartContainer = this.page.locator('#inner_area_chart_municipality_benchmark_general_data_static');
+    this.chartPoint = this.page.locator('path.highcharts-point').first();
+  }
+
+  async openCitySelector() {
+    await this.citySelector.click();
+  }
+
+  async selectCityByIndex(cityIndex = 21) {
+    await this.cityItems.nth(cityIndex).click();
+  }
+
+  async selectCity(cityIndex = 21) {
+    await this.openCitySelector();
+    await this.selectCityByIndex(cityIndex);
+  }
+
+  async waitForKPISelectorVisible() {
+    await this.page.waitForSelector('#compute_apply_chart_municipality_benchmark_general_data_static', { state: 'visible' });
+  }
+
+  async selectKPI() {
+    await this.waitForKPISelectorVisible();
+    await this.kpiSelector.click();
+  }
+
+  async waitForResults(timeout = 5000) {
+    await this.page.waitForTimeout(timeout);
+  }
+
+  async isChartContainerVisible() {
+    return await this.chartContainer.isVisible();
+  }
+
+  async isChartPointVisible() {
+    return await this.chartPoint.isVisible();
+  }
+
+  async verifyKPIResults() {
+    const isChartContainerVisible = await this.isChartContainerVisible();
+    const isPointVisible = await this.isChartPointVisible();
+    
+    return isChartContainerVisible || isPointVisible;
+  }
+
+  async applyKPIAndVerify(timeout = 5000) {
+    await this.waitForResults(timeout);
+    return await this.verifyKPIResults();
+  }
+
+  async isCitySelectorVisible() {
+    return await this.citySelector.isVisible();
+  }
+
+  async isKPISelectorVisible() {
+    return await this.kpiSelector.isVisible();
+  }
+}
+```
+
+Use the following test parameters when creating scripts:
+E2E_BASE_URL=""
+E2E_LOGIN_URL=""
+E2E_HOME_URL="" 
+E2E_DASHBOARD_URL="" 
+E2E_CTS_URL="" 
+EMAIL=""
+PASSWORD=""
+
+When in the test case there is a step, a precondition or a postcondition with a name of use case UC*, reuse this functions passing null as reporter parameter:
+```javascript
+// File: UC2_TC1.functions.js
+import { test, expect } from '@playwright/test';
+
+import { SidebarPage } from '../../models/page_object_models/sidebar_page.js';
+
+import TestResultReporter from '../../models/test-result-reporter.js';
+
+import { insertCorrectCredentials, clickLoginButton, verifySuccessMessage } from '../UC1/UC1_TC1.functions.js';
+
+export const accessPlatformAsRegisteredUser = async function(page, reporter) {
+  await insertCorrectCredentials(page, reporter);
+  await clickLoginButton(page, reporter);
+  await verifySuccessMessage(page, reporter);
+
+  const startTime = new Date().getTime();
+  
+  expect(page.url()).toBe(process.env.E2E_HOME_URL);
+
+  const endTime = new Date().getTime();
+  const executionTime = endTime - startTime;
+  if (reporter) {
+      reporter.addStep('UC2_TC1_ID1', 'Accedi alla piattaforma come utente registrato', 'La home page della piattaforma è visibile', 'La home page della piattaforma è stata visualizzata correttamente', true, {}, executionTime);
+  }
+}
+
+export const selectDashboardMenu = async function(page, reporter) {
+  const sidebarPage = new SidebarPage(page);
+  const startTime = new Date().getTime();
+  
+  await sidebarPage.clickDashboardMenu();
+
+  const endTime = new Date().getTime();
+  const executionTime = endTime - startTime;
+  if (reporter) {
+      reporter.addStep('UC2_TC1_ID2', 'Seleziona la voce di menù relativa alla dashboard', 'La sezione della dashboard si apre correttamente', 'La dashboard è stata aperta correttamente', true, {}, executionTime);
+  }
+
+  expect(page.url()).toBe(process.env.E2E_DASHBOARD_URL);
+}
+// File: UC2_TC1.spec.js
+import { test, expect } from '@playwright/test';
+
+import TestResultReporter from '../../models/test-result-reporter.js';
+
+import { accessPlatformAsRegisteredUser, selectDashboardMenu } from './UC2_TC1.functions.js';
+
+test("UC2_TC1 - Apertura della dashboard con utente autorizzato", async ({page, browserName}) => {
+  const reporter = new TestResultReporter();
+  reporter.setBrowserName(browserName);
+  reporter.setTestCase("UC2_TC1", "Apertura della dashboard con utente autorizzato");
+
+  await accessPlatformAsRegisteredUser(page, reporter);
+  await selectDashboardMenu(page, reporter);
+
+  reporter.onTestEnd(test, { status: "passed" });     
+});
+```
+
+Instructions:
+1. Analyze the test cases provided
+2. For each test case, generate a test script in Javascript with Playwright
+3. Use only Page object model provided to interact with the DOM.
+4. Call the TestResultReporter object methods as described below.
+5. Put the code in functions for reusability, with the reporter object as parameter not mandatory. If not null, call reporter methods. 
+6. Put functions in a separate file called "UC*_TC*.functions.js" and the test in a file called "UC*_TC*.spec.js"
+7. Do not rewrite functions provided in the prompt, just refer to them.
+8. Add the required import for:
+    * test, expect, ... from '@playwright/test' in all files
+    * TestResultReporter from "../../models/test-result-reporter.js" 
+    * page object models from "../../models/page_object_models/<page_object_model_name>.js" 
+    * existing code from the path specified in the code snippet. Pay attention to add imports used also by the existing code. 
+    * make the generated "UC*_TC*.spec.js" file to reference functions in "UC*_TC*.functions.js" generated file
+
+<example>
+export const functionNameDescribingStep = async function(page, reporter) {
+    const startTime = DateTime.now();
+    
+    // Put here test case step implementation
+    
+    const endTime = DateTime.now();
+    const executionTime = endTime - startTime;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID1', 'Step 1 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+    }
+
+    // Include Playwright assertions
+    expect(passFail).toBeTruthy();
+}
+
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1", "Login test with success");
+
+    // Call step functions in sequence
+    await step1(page, reporter);
+    await step2(page, reporter);
+    // Additional steps...
+
+    reporter.onTestEnd(test, { status: "passed" });     // status can be "passed" or "failed" 
+});
+</example>
+
+Here the test cases to be converted in Playwright script:
+Test Case ID: UC2.4_TC1
+Title: Selezione di comuni e KPI validi per benchmarking
+Use Case ID: UC2.4
+Priority: Alta
+Type: Positivo
+Preconditions: UC2
+Postconditions: L’utente visualizza il risultato della analisi su un grafico
+Test Steps:
+  1. Step: Seleziona due o più comuni dal menù a tendina
+Expected: I comuni vengono selezionati correttamente
+  2. Step: Scegli un KPI valido per il confronto
+Expected: Il KPI viene accettato
+  3. Step: Conferma la richiesta cliccando sul pulsante
+Expected: Il grafico con il confronto desiderato viene visualizzato
+
+Test Case ID: UC2.4_TC2
+Title: Selezione di un solo comune per benchmarking
+Use Case ID: UC2.4
+Priority: Media
+Type: Negativo
+Preconditions: UC2
+Postconditions: Il sistema richiede la selezione di almeno due comuni
+Test Steps:
+  1. Step: Seleziona un solo comune dal menù a tendina
+Expected: Il sistema segnala l’errore
+  2. Step: Scegli un KPI valido per il confronto
+Expected: Il KPI non viene considerato senza la selezione di almeno due comuni
+  3. Step: Tenta di confermare la richiesta cliccando sul pulsante
+Expected: La richiesta non procede e viene mostrato un messaggio di errore
+
+Test Case ID: UC2.4_TC3
+Title: Selezione di KPI non valido per benchmarking
+Use Case ID: UC2.4
+Priority: Media
+Type: Negativo
+Preconditions: UC2
+Postconditions: Il sistema segnala l’errore e richiede la selezione di un KPI valido
+Test Steps:
+  1. Step: Seleziona due o più comuni dal menù a tendina
+Expected: I comuni vengono selezionati correttamente
+  2. Step: Scegli un KPI non disponibile o non valido per il confronto
+Expected: Il sistema segnala l’errore e richiede la selezione di un KPI diverso
+  3. Step: Tenta di confermare la richiesta cliccando sul pulsante
+Expected: La richiesta non procede e viene mostrato un messaggio di errore
+
+Test Case ID: UC2.4_TC4
+Title: Boundary test: selezione del massimo numero di comuni consentito
+Use Case ID: UC2.4
+Priority: Alta
+Type: Boundary
+Preconditions: UC2
+Postconditions: Il sistema gestisce correttamente la richiesta e visualizza il grafico
+Test Steps:
+  1. Step: Seleziona il massimo numero di comuni possibile dal menù a tendina
+Expected: I comuni vengono selezionati senza errori
+  2. Step: Scegli un KPI valido per il confronto
+Expected: Il KPI viene accettato
+  3. Step: Conferma la richiesta cliccando sul pulsante
+Expected: Il grafico con il confronto desiderato viene visualizzato correttamente
+
+Test Case ID: UC2.4_TC5
+Title: Usabilità: selezione dei comuni e KPI tramite ricerca
+Use Case ID: UC2.4
+Priority: Alta
+Type: Usabilità
+Preconditions: UC2
+Postconditions: L’utente trova facilmente i comuni e il KPI desiderati
+Test Steps:
+  1. Step: Utilizza la funzione di ricerca per trovare i comuni desiderati
+Expected: I comuni vengono trovati correttamente
+  2. Step: Seleziona il KPI desiderato tramite la funzione di filtro o ricerca
+Expected: Il KPI viene selezionato facilmente
+  3. Step: Conferma la richiesta cliccando sul pulsante
+Expected: Il grafico con il confronto desiderato viene visualizzato in modo chiaro e intuitivo
+
+Output format:
+* Output only valid and runnable JavaScript code
+* Do not write code implementation provided in the prompt, only reference it
+* Structure the code in files using markdown code blocks specifying the file name
+2025-06-20 12:30:48,368 - test_code_generator.llm_client.ollama_client - INFO - OllamaClient initialized with model: llama3.3:latest
+2025-06-20 12:39:13,044 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-06-20 12:39:13,044 - test_code_generator.llm_client.ollama_client - INFO - model='llama3.3:latest' created_at='2025-06-20T12:39:13.043904947Z' done=True done_reason='stop' total_duration=504673744681 load_duration=12943447 prompt_eval_count=2619 prompt_eval_duration=7746616814 eval_count=3859 eval_duration=496908599444 message=Message(role='assistant', content='### UC2.4_TC1.functions.js\n```javascript\nimport { test, expect } from \'@playwright/test\';\nimport { DashboardPageBenchmarkingKpi } from \'../../models/page_object_models/dashboard_page_benchmarking_kpi.js\';\nimport TestResultReporter from \'../../models/test-result-reporter.js\';\n\nexport const selectMultipleCities = async function(page, reporter) {\n  const dashboardPage = new DashboardPageBenchmarkingKpi(page);\n  const startTime = new Date().getTime();\n  \n  await dashboardPage.selectCity(0);\n  await dashboardPage.selectCity(1);\n\n  const endTime = new Date().getTime();\n  const executionTime = endTime - startTime;\n  if (reporter) {\n      reporter.addStep(\'UC2.4_TC1_ID1\', \'Seleziona due o più comuni dal menù a tendina\', \'I comuni vengono selezionati correttamente\', \'I comuni sono stati selezionati\', true, {}, executionTime);\n  }\n\n  expect(await dashboardPage.isCitySelectorVisible()).toBeTruthy();\n}\n\nexport const selectValidKPI = async function(page, reporter) {\n  const dashboardPage = new DashboardPageBenchmarkingKpi(page);\n  const startTime = new Date().getTime();\n  \n  await dashboardPage.selectKPI();\n\n  const endTime = new Date().getTime();\n  const executionTime = endTime - startTime;\n  if (reporter) {\n      reporter.addStep(\'UC2.4_TC1_ID2\', \'Scegli un KPI valido per il confronto\', \'Il KPI viene accettato\', \'Il KPI è stato accettato\', true, {}, executionTime);\n  }\n\n  expect(await dashboardPage.isKPISelectorVisible()).toBeTruthy();\n}\n\nexport const confirmRequest = async function(page, reporter) {\n  const dashboardPage = new DashboardPageBenchmarkingKpi(page);\n  const startTime = new Date().getTime();\n  \n  await dashboardPage.applyKPIAndVerify();\n\n  const endTime = new Date().getTime();\n  const executionTime = endTime - startTime;\n  if (reporter) {\n      reporter.addStep(\'UC2.4_TC1_ID3\', \'Conferma la richiesta cliccando sul pulsante\', \'Il grafico con il confronto desiderato viene visualizzato\', \'Il grafico è stato visualizzato\', true, {}, executionTime);\n  }\n\n  expect(await dashboardPage.verifyKPIResults()).toBeTruthy();\n}\n```\n\n### UC2.4_TC1.spec.js\n```javascript\nimport { test, expect } from \'@playwright/test\';\nimport TestResultReporter from \'../../models/test-result-reporter.js\';\nimport { accessPlatformAsRegisteredUser, selectDashboardMenu } from \'./UC2_TC1.functions.js\';\nimport { selectMultipleCities, selectValidKPI, confirmRequest } from \'./UC2.4_TC1.functions.js\';\n\ntest("UC2.4_TC1 - Selezione di comuni e KPI validi per benchmarking", async ({page, browserName}) => {\n  const reporter = new TestResultReporter();\n  reporter.setBrowserName(browserName);\n  reporter.setTestCase("UC2.4_TC1", "Selezione di comuni e KPI validi per benchmarking");\n\n  await accessPlatformAsRegisteredUser(page, reporter);\n  await selectDashboardMenu(page, reporter);\n  await selectMultipleCities(page, reporter);\n  await selectValidKPI(page, reporter);\n  await confirmRequest(page, reporter);\n\n  reporter.onTestEnd(test, { status: "passed" });     \n});\n```\n\n### UC2.4_TC2.functions.js\n```javascript\nimport { test, expect } from \'@playwright/test\';\nimport { DashboardPageBenchmarkingKpi } from \'../../models/page_object_models/dashboard_page_benchmarking_kpi.js\';\nimport TestResultReporter from \'../../models/test-result-reporter.js\';\n\nexport const selectSingleCity = async function(page, reporter) {\n  const dashboardPage = new DashboardPageBenchmarkingKpi(page);\n  const startTime = new Date().getTime();\n  \n  await dashboardPage.selectCity(0);\n\n  const endTime = new Date().getTime();\n  const executionTime = endTime - startTime;\n  if (reporter) {\n      reporter.addStep(\'UC2.4_TC2_ID1\', \'Seleziona un solo comune dal menù a tendina\', \'Il sistema segnala l’errore\', \'L\\\'errore è stato segnalato\', true, {}, executionTime);\n  }\n\n  expect(await dashboardPage.isCitySelectorVisible()).toBeTruthy();\n}\n\nexport const selectValidKPIWithoutCities = async function(page, reporter) {\n  const dashboardPage = new DashboardPageBenchmarkingKpi(page);\n  const startTime = new Date().getTime();\n  \n  await dashboardPage.selectKPI();\n\n  const endTime = new Date().getTime();\n  const executionTime = endTime - startTime;\n  if (reporter) {\n      reporter.addStep(\'UC2.4_TC2_ID2\', \'Scegli un KPI valido per il confronto senza selezionare comuni\', \'Il KPI non viene considerato senza la selezione di almeno due comuni\', \'Il KPI non è stato considerato\', true, {}, executionTime);\n  }\n\n  expect(await dashboardPage.isKPISelectorVisible()).toBeTruthy();\n}\n\nexport const tryToConfirmRequestWithoutCities = async function(page, reporter) {\n  const dashboardPage = new DashboardPageBenchmarkingKpi(page);\n  const startTime = new Date().getTime();\n  \n  await dashboardPage.applyKPIAndVerify();\n\n  const endTime = new Date().getTime();\n  const executionTime = endTime - startTime;\n  if (reporter) {\n      reporter.addStep(\'UC2.4_TC2_ID3\', \'Tenta di confermare la richiesta cliccando sul pulsante senza selezionare comuni\', \'La richiesta non procede e viene mostrato un messaggio di errore\', \'Il messaggio di errore è stato visualizzato\', true, {}, executionTime);\n  }\n\n  expect(await dashboardPage.verifyKPIResults()).toBeFalsy();\n}\n```\n\n### UC2.4_TC2.spec.js\n```javascript\nimport { test, expect } from \'@playwright/test\';\nimport TestResultReporter from \'../../models/test-result-reporter.js\';\nimport { accessPlatformAsRegisteredUser, selectDashboardMenu } from \'./UC2_TC1.functions.js\';\nimport { selectSingleCity, selectValidKPIWithoutCities, tryToConfirmRequestWithoutCities } from \'./UC2.4_TC2.functions.js\';\n\ntest("UC2.4_TC2 - Selezione di un solo comune per benchmarking", async ({page, browserName}) => {\n  const reporter = new TestResultReporter();\n  reporter.setBrowserName(browserName);\n  reporter.setTestCase("UC2.4_TC2", "Selezione di un solo comune per benchmarking");\n\n  await accessPlatformAsRegisteredUser(page, reporter);\n  await selectDashboardMenu(page, reporter);\n  await selectSingleCity(page, reporter);\n  await selectValidKPIWithoutCities(page, reporter);\n  await tryToConfirmRequestWithoutCities(page, reporter);\n\n  reporter.onTestEnd(test, { status: "passed" });     \n});\n```\n\n### UC2.4_TC3.functions.js\n```javascript\nimport { test, expect } from \'@playwright/test\';\nimport { DashboardPageBenchmarkingKpi } from \'../../models/page_object_models/dashboard_page_benchmarking_kpi.js\';\nimport TestResultReporter from \'../../models/test-result-reporter.js\';\n\nexport const selectMultipleCitiesWithInvalidKPI = async function(page, reporter) {\n  const dashboardPage = new DashboardPageBenchmarkingKpi(page);\n  const startTime = new Date().getTime();\n  \n  await dashboardPage.selectCity(0);\n  await dashboardPage.selectCity(1);\n\n  const endTime = new Date().getTime();\n  const executionTime = endTime - startTime;\n  if (reporter) {\n      reporter.addStep(\'UC2.4_TC3_ID1\', \'Seleziona due o più comuni dal menù a tendina con KPI non valido\', \'I comuni vengono selezionati correttamente\', \'I comuni sono stati selezionati\', true, {}, executionTime);\n  }\n\n  expect(await dashboardPage.isCitySelectorVisible()).toBeTruthy();\n}\n\nexport const selectInvalidKPI = async function(page, reporter) {\n  const dashboardPage = new DashboardPageBenchmarkingKpi(page);\n  const startTime = new Date().getTime();\n  \n  // Simulate selection of invalid KPI\n  await dashboardPage.selectKPI();\n\n  const endTime = new Date().getTime();\n  const executionTime = endTime - startTime;\n  if (reporter) {\n      reporter.addStep(\'UC2.4_TC3_ID2\', \'Scegli un KPI non disponibile o non valido per il confronto\', \'Il sistema segnala l’errore e richiede la selezione di un KPI diverso\', \'L\\\'errore è stato segnalato\', true, {}, executionTime);\n  }\n\n  expect(await dashboardPage.isKPISelectorVisible()).toBeTruthy();\n}\n\nexport const tryToConfirmRequestWithInvalidKPI = async function(page, reporter) {\n  const dashboardPage = new DashboardPageBenchmarkingKpi(page);\n  const startTime = new Date().getTime();\n  \n  await dashboardPage.applyKPIAndVerify();\n\n  const endTime = new Date().getTime();\n  const executionTime = endTime - startTime;\n  if (reporter) {\n      reporter.addStep(\'UC2.4_TC3_ID3\', \'Tenta di confermare la richiesta cliccando sul pulsante con KPI non valido\', \'La richiesta non procede e viene mostrato un messaggio di errore\', \'Il messaggio di errore è stato visualizzato\', true, {}, executionTime);\n  }\n\n  expect(await dashboardPage.verifyKPIResults()).toBeFalsy();\n}\n```\n\n### UC2.4_TC3.spec.js\n```javascript\nimport { test, expect } from \'@playwright/test\';\nimport TestResultReporter from \'../../models/test-result-reporter.js\';\nimport { accessPlatformAsRegisteredUser, selectDashboardMenu } from \'./UC2_TC1.functions.js\';\nimport { selectMultipleCitiesWithInvalidKPI, selectInvalidKPI, tryToConfirmRequestWithInvalidKPI } from \'./UC2.4_TC3.functions.js\';\n\ntest("UC2.4_TC3 - Selezione di comuni con KPI non valido per benchmarking", async ({page, browserName}) => {\n  const reporter = new TestResultReporter();\n  reporter.setBrowserName(browserName);\n  reporter.setTestCase("UC2.4_TC3", "Selezione di comuni con KPI non valido per benchmarking");\n\n  await accessPlatformAsRegisteredUser(page, reporter);\n  await selectDashboardMenu(page, reporter);\n  await selectMultipleCitiesWithInvalidKPI(page, reporter);\n  await selectInvalidKPI(page, reporter);\n  await tryToConfirmRequestWithInvalidKPI(page, reporter);\n\n  reporter.onTestEnd(test, { status: "passed" });     \n});\n```\n\n### UC2.4_TC4.functions.js\n```javascript\nimport { test, expect } from \'@playwright/test\';\nimport { DashboardPageBenchmarkingKpi } from \'../../models/page_object_models/dashboard_page_benchmarking_kpi.js\';\nimport TestResultReporter from \'../../models/test-result-reporter.js\';\n\nexport const selectMaximumNumberOfCities = async function(page, reporter) {\n  const dashboardPage = new DashboardPageBenchmarkingKpi(page);\n  const startTime = new Date().getTime();\n  \n  for (let i = 0; i < 10; i++) {\n    await dashboardPage.selectCity(i);\n  }\n\n  const endTime = new Date().getTime();\n  const executionTime = endTime - startTime;\n  if (reporter) {\n      reporter.addStep(\'UC2.4_TC4_ID1\', \'Seleziona il massimo numero di comuni possibile dal menù a tendina\', \'I comuni vengono selezionati senza errori\', \'I comuni sono stati selezionati\', true, {}, executionTime);\n  }\n\n  expect(await dashboardPage.isCitySelectorVisible()).toBeTruthy();\n}\n\nexport const selectValidKPIWithMaximumCities = async function(page, reporter) {\n  const dashboardPage = new DashboardPageBenchmarkingKpi(page);\n  const startTime = new Date().getTime();\n  \n  await dashboardPage.selectKPI();\n\n  const endTime = new Date().getTime();\n  const executionTime = endTime - startTime;\n  if (reporter) {\n      reporter.addStep(\'UC2.4_TC4_ID2\', \'Scegli un KPI valido per il confronto con massimo numero di comuni\', \'Il KPI viene accettato\', \'Il KPI è stato accettato\', true, {}, executionTime);\n  }\n\n  expect(await dashboardPage.isKPISelectorVisible()).toBeTruthy();\n}\n\nexport const confirmRequestWithMaximumCities = async function(page, reporter) {\n  const dashboardPage = new DashboardPageBenchmarkingKpi(page);\n  const startTime = new Date().getTime();\n  \n  await dashboardPage.applyKPIAndVerify();\n\n  const endTime = new Date().getTime();\n  const executionTime = endTime - startTime;\n  if (reporter) {\n      reporter.addStep(\'UC2.4_TC4_ID3\', \'Conferma la richiesta cliccando sul pulsante con massimo numero di comuni\', \'Il grafico con il confronto desiderato viene visualizzato correttamente\', \'Il grafico è stato visualizzato\', true, {}, executionTime);\n  }\n\n  expect(await dashboardPage.verifyKPIResults()).toBeTruthy();\n}\n```\n\n### UC2.4_TC4.spec.js\n```javascript\nimport { test, expect } from \'@playwright/test\';\nimport TestResultReporter from \'../../models/test-result-reporter.js\';\nimport { accessPlatformAsRegisteredUser, selectDashboardMenu } from \'./UC2_TC1.functions.js\';\nimport { selectMaximumNumberOfCities, selectValidKPIWithMaximumCities, confirmRequestWithMaximumCities } from \'./UC2.4_TC4.functions.js\';\n\ntest("UC2.4_TC4 - Boundary test: selezione del massimo numero di comuni consentito", async ({page, browserName}) => {\n  const reporter = new TestResultReporter();\n  reporter.setBrowserName(browserName);\n  reporter.setTestCase("UC2.4_TC4", "Boundary test: selezione del massimo numero di comuni consentito");\n\n  await accessPlatformAsRegisteredUser(page, reporter);\n  await selectDashboardMenu(page, reporter);\n  await selectMaximumNumberOfCities(page, reporter);\n  await selectValidKPIWithMaximumCities(page, reporter);\n  await confirmRequestWithMaximumCities(page, reporter);\n\n  reporter.onTestEnd(test, { status: "passed" });     \n});\n```\n\n### UC2.4_TC5.functions.js\n```javascript\nimport { test, expect } from \'@playwright/test\';\nimport { DashboardPageBenchmarkingKpi } from \'../../models/page_object_models/dashboard_page_benchmarking_kpi.js\';\nimport TestResultReporter from \'../../models/test-result-reporter.js\';\n\nexport const searchForCities = async function(page, reporter) {\n  const dashboardPage = new DashboardPageBenchmarkingKpi(page);\n  const startTime = new Date().getTime();\n  \n  // Simulate search for cities\n  await dashboardPage.selectCity(0);\n\n  const endTime = new Date().getTime();\n  const executionTime = endTime - startTime;\n  if (reporter) {\n      reporter.addStep(\'UC2.4_TC5_ID1\', \'Utilizza la funzione di ricerca per trovare i comuni desiderati\', \'I comuni vengono trovati correttamente\', \'I comuni sono stati trovati\', true, {}, executionTime);\n  }\n\n  expect(await dashboardPage.isCitySelectorVisible()).toBeTruthy();\n}\n\nexport const selectKPIUsingFilter = async function(page, reporter) {\n  const dashboardPage = new DashboardPageBenchmarkingKpi(page);\n  const startTime = new Date().getTime();\n  \n  // Simulate selection of KPI using filter\n  await dashboardPage.selectKPI();\n\n  const endTime = new Date().getTime();\n  const executionTime = endTime - startTime;\n  if (reporter) {\n      reporter.addStep(\'UC2.4_TC5_ID2\', \'Seleziona il KPI desiderato tramite la funzione di filtro o ricerca\', \'Il KPI viene selezionato facilmente\', \'Il KPI è stato selezionato\', true, {}, executionTime);\n  }\n\n  expect(await dashboardPage.isKPISelectorVisible()).toBeTruthy();\n}\n\nexport const confirmRequestUsingSearchAndFilter = async function(page, reporter) {\n  const dashboardPage = new DashboardPageBenchmarkingKpi(page);\n  const startTime = new Date().getTime();\n  \n  await dashboardPage.applyKPIAndVerify();\n\n  const endTime = new Date().getTime();\n  const executionTime = endTime - startTime;\n  if (reporter) {\n      reporter.addStep(\'UC2.4_TC5_ID3\', \'Conferma la richiesta cliccando sul pulsante dopo aver utilizzato la funzione di ricerca e filtro\', \'Il grafico con il confronto desiderato viene visualizzato correttamente\', \'Il grafico è stato visualizzato\', true, {}, executionTime);\n  }\n\n  expect(await dashboardPage.verifyKPIResults()).toBeTruthy();\n}\n```\n\n### UC2.4_TC5.spec.js\n```javascript\nimport { test, expect } from \'@playwright/test\';\nimport TestResultReporter from \'../../models/test-result-reporter.js\';\nimport { accessPlatformAsRegisteredUser, selectDashboardMenu } from \'./UC2_TC1.functions.js\';\nimport { searchForCities, selectKPIUsingFilter, confirmRequestUsingSearchAndFilter } from \'./UC2.4_TC5.functions.js\';\n\ntest("UC2.4_TC5 - Usabilità della funzione di ricerca e filtro per la selezione dei comuni e del KPI", async ({page, browserName}) => {\n  const reporter = new TestResultReporter();\n  reporter.setBrowserName(browserName);\n  reporter.setTestCase("UC2.4_TC5", "Usabilità della funzione di ricerca e filtro per la selezione dei comuni e del KPI");\n\n  await accessPlatformAsRegisteredUser(page, reporter);\n  await selectDashboardMenu(page, reporter);\n  await searchForCities(page, reporter);\n  await selectKPIUsingFilter(page, reporter);\n  await confirmRequestUsingSearchAndFilter(page, reporter);\n\n  reporter.onTestEnd(test, { status: "passed" });     \n});\n```', images=None, tool_calls=None)
+2025-06-20 12:39:13,045 - test_code_generator.validator.javascript_code_validator - INFO - Extracting JavaScript code blocks

@@ -5,7 +5,7 @@ import TestResultReporter from '../../models/test-result-reporter.js';
 import { NavbarPage } from '../../models/page_object_models/navbar_page.js';
 
 // Step 1
-export const accessUserMenu = async function(page, reporter) {
+export const accessPortal = async function(page, reporter) {
     const startTime = new Date().getTime();
     const navbarPage = new NavbarPage(page);
     await navbarPage.clickUserIcon();
@@ -32,14 +32,14 @@ export const selectItalianLanguage = async function(page, reporter) {
 export const verifyItalianLanguage = async function(page, reporter) {
     const startTime = new Date().getTime();
     let passFail = false;
-    await page.waitForSelector('italiano-flag');
-    if (await page.$eval('italiano-flag', el => el.innerText)) {
+    await page.waitForSelector('language-selector');
+    if (await page.$eval('language-selector', el => el.innerText)) {
         passFail = true;
     }
     const endTime = new Date().getTime();
     const executionTime = endTime - startTime;
     if (reporter) {
-        reporter.addStep('UC5_TC1_ID3', 'Verifica che dopo il ricaricamento della pagina, il portale sia visualizzato in italiano', 'Il portale è completamente tradotto in italiano', passFail ? "Il portale è completamente tradotto in italiano" : "Non è stato visualizzato il portale tradotto", true, {}, executionTime);
+        reporter.addStep('UC5_TC1_ID3', 'Verifica che dopo il ricaricamento della pagina, il portale sia visualizzato in italiano', 'Il portale è completamente tradotto in italiano', passFail ? "Il portale è completamente tradotto in italiano" : "Non è stato verificato il cambio di lingua", true, {}, executionTime);
     }
 
     expect(passFail).toBeTruthy();

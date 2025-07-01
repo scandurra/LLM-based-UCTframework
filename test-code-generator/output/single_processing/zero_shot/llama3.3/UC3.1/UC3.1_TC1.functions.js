@@ -45,15 +45,25 @@ export const selectColumnForSorting = async function(page, reporter) {
 export const scrollHorizontallyToViewAllColumns = async function(page, reporter) {
     const startTime = new Date().getTime();
     
-    // Since there's no specific method to check if all columns are visible and scrollable,
-    // we'll assume this step is more about verifying the UI behavior which can be visually confirmed.
-    // For automation purposes, we might need to add more specific checks or interactions.
+    // This step is more about verifying that all columns are visible and can be scrolled
+    // Since we don't have a specific action to perform here, we'll just verify the presence of all column headers
+    const censusSheetPage = new CensusSheetPage(page);
+    await expect(censusSheetPage.azioniColumn).toBeVisible();
+    await expect(censusSheetPage.schedaColumn).toBeVisible();
+    await expect(censusSheetPage.proprietarioColumn).toBeVisible();
+    await expect(censusSheetPage.comuneColumn).toBeVisible();
+    await expect(censusSheetPage.statsColumn).toBeVisible();
+    await expect(censusSheetPage.statoColumn).toBeVisible();
+    await expect(censusSheetPage.infoColumn).toBeVisible();
+    await expect(censusSheetPage.creazioneColumn).toBeVisible();
+    await expect(censusSheetPage.aggiornamentoColumn).toBeVisible();
+    await expect(censusSheetPage.sottomissioneColumn).toBeVisible();
 
     const endTime = new Date().getTime();
     const executionTime = (endTime - startTime) / 1000;
     let passFail = true;
     if (reporter) {
-        reporter.addStep('UC3.1_TC1_ID3', 'Scroll horizontally to view all columns', 'All columns are visible and scrollable', '', passFail, '', executionTime);
+        reporter.addStep('UC3.1_TC1_ID3', 'Scroll horizontally to view all columns', 'All columns are visible and can be scrolled', '', passFail, '', executionTime);
     }
 
     expect(passFail).toBeTruthy();

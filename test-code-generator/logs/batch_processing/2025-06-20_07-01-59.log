@@ -1,0 +1,314 @@
+2025-06-20 07:01:59,238 - __main__ - INFO - Found 1 dependencies for use case UC3.4
+2025-06-20 07:01:59,238 - __main__ - INFO - Read previously generated functions code for use case UC3 - test case UC3_TC1
+2025-06-20 07:01:59,238 - __main__ - INFO - Read previously generated spec code for use case UC3 - test case UC3_TC1
+2025-06-20 07:01:59,239 - test_code_generator.prompt_builder.prompt_builder - INFO - Test parameters loaded from path: ./input_files/parameters/test_parameters.env
+2025-06-20 07:01:59,239 - test_code_generator.prompt_builder.prompt_builder - INFO - Test reporter loaded from path: ./input_files/reporter_minimal.js
+2025-06-20 07:01:59,239 - test_code_generator.prompt_builder.prompt_builder - INFO - Previous code section loaded from path: ./prompts/batch_processing/zero_shot/llama3.3/previous_code_section.txt
+2025-06-20 07:01:59,239 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt built: 
+ROLE: system
+You are a testing engineer, expert in writing Javascript end-to-end tests with Playwright.
+
+Task: Analyze the test cases provided below and generate for each test case a complete and working Playwright test script in Javascript, following the steps described in each test case.
+When creating the test scripts, use only the page object model provided for interacting with the DOM and the parameters provided.
+------------------------------------------------------------------
+ROLE: user
+Use only this page object models for interacting with the DOM:
+```javascript
+File: census_sheet_page.js
+const { timeout } = require('../../playwright.config');
+
+export class CensusSheetPage {
+  constructor(page) {
+    this.page = page;
+    this.path = require('path');
+    
+    // Locators
+    this.searchInput = page.getByPlaceholder('Cerca');
+    this.uploadButton = page.locator('#modal_upload_censustechsheet_btn');
+    this.fileInput = page.locator('input[type="file"]');
+    this.okButton = page.getByRole('button', { name: 'OK' });
+    this.actionDropdown = page.locator('.text-start > .btn').first();
+    this.downloadOption = page.locator('[data-kt-cts-table-filter="download_row"]').first();
+    this.deleteOption = page.locator('[data-kt-cts-table-filter="delete_row"]').first();
+    this.editOption = page.locator('[data-kt-cts-table-filter="edit_row"]').first();
+    this.detailOption = page.locator('a[data-kt-cts-table-filter="detail_row"]').first();
+    this.freezeOption = page.locator('a[data-action="freeze"]').first();
+    this.confirmDeleteButton = page.locator('button.swal2-confirm.btn.fw-bold.btn-danger').first();
+    this.cancelDeleteButton = page.locator('button.swal2-cancel.btn.fw-bold.btn-active-light-primary').first();
+    this.confirmButton = page.locator('button.swal2-confirm.btn.fw-bold.btn-primary').first();
+    
+    // Column headers
+    this.azioniColumn = page.getByLabel('Azioni');
+    this.schedaColumn = page.getByLabel('Scheda: attiva per ordinare');
+    this.proprietarioColumn = page.getByLabel('Proprietario: attiva per');
+    this.comuneColumn = page.getByLabel('Comune: attiva per ordinare');
+    this.statsColumn = page.getByLabel('Stats: attiva per ordinare la');
+    this.statoColumn = page.getByLabel('Stato: attiva per ordinare la');
+    this.infoColumn = page.getByLabel('Info: attiva per ordinare la');
+    this.creazioneColumn = page.getByLabel('Creazione: attiva per');
+    this.aggiornamentoColumn = page.getByLabel('Aggiornamento: attiva per');
+    this.sottomissioneColumn = page.getByLabel('Sottomissione: attiva per');
+  }
+
+  async clickAzioniColumn() {
+    await this.azioniColumn.click({timeout: 300000});
+  }
+
+  async clickSchedaColumn() {
+    await this.schedaColumn.click({timeout: 300000});
+  }
+
+  async clickProprietarioColumn() {
+    await this.proprietarioColumn.click({timeout: 300000});
+  }
+
+  async clickComuneColumn() {
+    await this.comuneColumn.click({timeout: 300000});
+  }
+
+  async clickStatsColumn() {
+    await this.statsColumn.click({timeout: 300000});
+  }
+
+  async clickStatoColumn() {
+    await this.statoColumn.click({timeout: 300000});
+  }
+
+  async clickInfoColumn() {
+    await this.infoColumn.click({timeout: 300000});
+  }
+
+  async clickCreazioneColumn() {
+    await this.creazioneColumn.click({timeout: 300000});
+  }
+
+  async clickAggiornamentoColumn() {
+    await this.aggiornamentoColumn.click({timeout: 300000});
+  }
+
+  async clickSottomissioneColumn() {
+    await this.sottomissioneColumn.click({timeout: 300000});
+  }
+
+  async searchByName(name = 'Lucania') {
+    await this.page.getByPlaceholder('Cerca').click();
+    await this.page.getByPlaceholder('Cerca').fill(name);
+    await this.page.getByPlaceholder('Cerca').press('Enter');
+  }
+
+  async clickAzioniButton() {
+    await this.page.locator('.text-start > .btn').first().waitFor({ state: 'visible' });
+
+    // Ora possiamo cliccare sul pulsante
+    await this.page.locator('.text-start > .btn').first().click();
+  }
+
+  async clickAzioneDownload() {
+    await this.page.locator('[data-kt-cts-table-filter="download_row"]').first().click();
+  }
+
+  async clickAzioneDelete() {
+    await this.page.locator('[data-kt-cts-table-filter="delete_row"]').first().click();
+  }
+
+  async clickConfirmAzioneDelete() {
+    await this.page.locator('button.swal2-confirm.btn.fw-bold.btn-danger').first().click();
+    await this.page.locator('button.swal2-confirm.btn.fw-bold.btn-primary').first().click();
+  }
+
+  async clickCancelAzioneDelete() {
+    await this.page.locator('button.swal2-cancel.btn.fw-bold.btn-active-light-primary').first().click();
+    await this.page.locator('button.swal2-confirm.btn.fw-bold.btn-primary').first().click();
+  }
+
+  async clickAzioneEdit() {
+    await this.page.locator('[data-kt-cts-table-filter="edit_row"]').first().click();
+  }
+
+  async clickAzioneCongela() {
+    await this.page.locator('a[data-action="freeze"]').first().click();
+  }
+
+  async clickAzioneDettaglio() {
+    await this.page.locator('a[data-kt-cts-table-filter="detail_row"]').first().click();
+  }
+}
+```
+
+Use the following test parameters when creating scripts:
+E2E_BASE_URL=""
+E2E_LOGIN_URL=""
+E2E_HOME_URL="" 
+E2E_DASHBOARD_URL="" 
+E2E_CTS_URL="" 
+EMAIL=""
+PASSWORD=""
+
+When in the test case there is a step, a precondition or a postcondition with a name of use case UC*, reuse this functions passing null as reporter parameter:
+```javascript
+// File: UC3_TC1.functions.js
+import { SidebarPage } from '../../models/page_object_models/sidebar_page.js';
+
+import { CensusSheetPage } from '../../models/page_object_models/census_sheet_page.js';
+
+export const accessPlatformAndAuthenticate = async function(page, reporter) {
+    await fillCorrectCredentials(page, null);
+    await clickLoginButton(page, null);
+
+    if (reporter) {
+        reporter.addStep('UC3_TC1_ID1', 'Accedi alla piattaforma e autenticati correttamente', true, true, true, '', 0);
+    }
+
+    expect(await page.url()).toBe(process.env.E2E_DASHBOARD_URL);
+}
+
+export const selectCensusSheetMenu = async function(page, reporter) {
+    const sidebarPage = new SidebarPage(page);
+    await sidebarPage.clickCensusSheetLink();
+
+    if (reporter) {
+        reporter.addStep('UC3_TC1_ID2', 'Seleziona la voce del menù laterale relativa alle schede censimento', true, true, true, '', 0);
+    }
+
+    expect(await page.url()).toBe(process.env.E2E_CTS_URL);
+}
+// File: UC3_TC1.spec.js
+import { test, expect } from '@playwright/test';
+
+import TestResultReporter from '../../models/test-result-reporter.js';
+
+import { accessPlatformAndAuthenticate, selectCensusSheetMenu } from './UC3_TC1.functions.js';
+
+import { fillCorrectCredentials, clickLoginButton } from '../UC1/UC1_TC1.functions.js';
+
+test("UC3_TC1 - Apertura interfaccia gestione schede censimento con successo", async ({page, browserName}) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC3_TC1", "Apertura interfaccia gestione schede censimento con successo");
+
+    await accessPlatformAndAuthenticate(page, reporter);
+    await selectCensusSheetMenu(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });     // status can be "passed" or "failed" 
+});
+```
+
+Instructions:
+1. Analyze the test cases provided
+2. For each test case, generate a test script in Javascript with Playwright
+3. Use only Page object model provided to interact with the DOM.
+4. Call the TestResultReporter object methods as described below.
+5. Put the code in functions for reusability, with the reporter object as parameter not mandatory. If not null, call reporter methods. 
+6. Put functions in a separate file called "UC*_TC*.functions.js" and each test in a file called "UC*_TC*.spec.js"
+7. Do not rewrite functions provided in the prompt, just refer to them.
+8. Add the required import for:
+    * test, expect, ... from '@playwright/test' in all files
+    * TestResultReporter from "../../models/test-result-reporter.js" 
+    * page object models from "../../models/page_object_models/<page_object_model_name>.js" 
+    * existing code from the path specified in the code snippet. Pay attention to add imports used also by the existing code. 
+    * make the generated "UC*_TC*.spec.js" file to reference functions in "UC*_TC*.functions.js" generated file
+
+<example>
+export const functionNameDescribingStep = async function(page, reporter) {
+    const startTime = DateTime.now();
+    
+    // Eventually go to page
+    // Put here test case step implementation
+    
+    const endTime = DateTime.now();
+    const executionTime = endTime - startTime;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID1', 'Step 1 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+    }
+
+    // Include Playwright assertions
+    expect(passFail).toBeTruthy();
+}
+
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1", "Login test with success");
+
+    // Call step functions in sequence
+    await functionNameDescribingStep1(page, reporter);
+    await functionNameDescribingStep2(page, reporter);
+    // Additional steps...
+
+    reporter.onTestEnd(test, { status: "passed" });     // status can be "passed" or "failed" 
+});
+</example>
+
+Here the test cases to be converted in Playwright script:
+Test Case ID: UC3.4_TC1
+Title: Visualizzazione azioni disponibili sulla scheda censimento
+Use Case ID: UC3.4
+Priority: Alta
+Type: Positivo
+Preconditions: UC3
+Postconditions: La palette di operazioni viene visualizzata correttamente
+Test Steps:
+  1. Step: Accedi alla sezione delle schede censimento
+Expected: La lista delle schede censimento è visibile
+  2. Step: Clicca sul tasto azioni di una scheda censimento
+Expected: Viene visualizzata la palette di operazioni disponibili
+
+Test Case ID: UC3.4_TC2
+Title: Selezione di un’azione non disponibile
+Use Case ID: UC3.4
+Priority: Media
+Type: Negativo
+Preconditions: UC3
+Postconditions: Il sistema segnala che l’azione non è disponibile
+Test Steps:
+  1. Step: Accedi alla sezione delle schede censimento
+Expected: La lista delle schede censimento è visibile
+  2. Step: Clicca su un’azione che non è supportata per la scheda selezionata
+Expected: Il sistema mostra un messaggio di azione non disponibile
+
+Test Case ID: UC3.4_TC3
+Title: Esecuzione di un’azione su scheda censimento senza permessi
+Use Case ID: UC3.4
+Priority: Alta
+Type: Sicurezza
+Preconditions: UC3
+Postconditions: Il sistema nega l’accesso all’azione
+Test Steps:
+  1. Step: Accedi alla sezione delle schede censimento con un utente senza permessi
+Expected: La lista delle schede censimento è visibile ma le azioni sono limitate
+  2. Step: Tenta di eseguire un’azione che richiede permessi superiori
+Expected: Il sistema nega l’accesso e mostra un messaggio di autorizzazione
+
+Test Case ID: UC3.4_TC4
+Title: Selezione multipla di azioni sulla stessa scheda censimento
+Use Case ID: UC3.4
+Priority: Media
+Type: Prestazione
+Preconditions: UC3
+Postconditions: Il sistema gestisce la selezione multipla correttamente
+Test Steps:
+  1. Step: Accedi alla sezione delle schede censimento
+Expected: La lista delle schede censimento è visibile
+  2. Step: Seleziona più azioni sulla stessa scheda censimento
+Expected: Il sistema esegue le azioni selezionate correttamente
+
+Test Case ID: UC3.4_TC5
+Title: Annullamento dell’azione selezionata
+Use Case ID: UC3.4
+Priority: Media
+Type: Usabilità
+Preconditions: UC3
+Postconditions: L’azione selezionata viene annullata correttamente
+Test Steps:
+  1. Step: Accedi alla sezione delle schede censimento
+Expected: La lista delle schede censimento è visibile
+  2. Step: Seleziona un’azione e poi annulla la selezione
+Expected: Il sistema annulla l’azione senza errori
+
+Output format:
+* Output only valid and runnable JavaScript code
+* Do not write code implementation provided in the prompt, only reference it
+* Structure the code in files using markdown code blocks specifying the file name
+2025-06-20 07:01:59,239 - test_code_generator.llm_client.ollama_client - INFO - OllamaClient initialized with model: llama3.3:latest
+2025-06-20 07:07:41,107 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-06-20 07:07:41,108 - test_code_generator.llm_client.ollama_client - INFO - model='llama3.3:latest' created_at='2025-06-20T07:07:41.107294417Z' done=True done_reason='stop' total_duration=341866513451 load_duration=13066949 prompt_eval_count=3032 prompt_eval_duration=8218012370 eval_count=2581 eval_duration=333630365855 message=Message(role='assistant', content='### UC3.4_TC1.functions.js\n```javascript\nimport { test, expect } from \'@playwright/test\';\nimport TestResultReporter from \'../../models/test-result-reporter.js\';\nimport { CensusSheetPage } from \'../../models/page_object_models/census_sheet_page.js\';\nimport { accessPlatformAndAuthenticate, selectCensusSheetMenu } from \'./UC3_TC1.functions.js\';\n\nexport const accessCensusSheetSection = async function(page, reporter) {\n    await accessPlatformAndAuthenticate(page, reporter);\n    await selectCensusSheetMenu(page, reporter);\n\n    if (reporter) {\n        reporter.addStep(\'UC3.4_TC1_ID1\', \'Accedi alla sezione delle schede censimento\', true, true, true, \'\', 0);\n    }\n\n    expect(await page.url()).toBe(process.env.E2E_CTS_URL);\n}\n\nexport const clickAzioniButton = async function(page, reporter) {\n    const censusSheetPage = new CensusSheetPage(page);\n    await censusSheetPage.clickAzioniButton();\n\n    if (reporter) {\n        reporter.addStep(\'UC3.4_TC1_ID2\', \'Clicca sul tasto azioni di una scheda censimento\', true, true, true, \'\', 0);\n    }\n\n    expect(await censusSheetPage.actionDropdown.isVisible()).toBeTruthy();\n}\n```\n\n### UC3.4_TC1.spec.js\n```javascript\nimport { test, expect } from \'@playwright/test\';\nimport TestResultReporter from \'../../models/test-result-reporter.js\';\nimport { accessCensusSheetSection, clickAzioniButton } from \'./UC3.4_TC1.functions.js\';\n\ntest("UC3.4_TC1 - Visualizzazione azioni disponibili sulla scheda censimento", async ({page, browserName}) => {\n    const reporter = new TestResultReporter();\n    reporter.setBrowserName(browserName);\n    reporter.setTestCase("UC3.4_TC1", "Visualizzazione azioni disponibili sulla scheda censimento");\n\n    await accessCensusSheetSection(page, reporter);\n    await clickAzioniButton(page, reporter);\n\n    reporter.onTestEnd(test, { status: "passed" });     // status can be "passed" or "failed" \n});\n```\n\n### UC3.4_TC2.functions.js\n```javascript\nimport { test, expect } from \'@playwright/test\';\nimport TestResultReporter from \'../../models/test-result-reporter.js\';\nimport { CensusSheetPage } from \'../../models/page_object_models/census_sheet_page.js\';\nimport { accessPlatformAndAuthenticate, selectCensusSheetMenu } from \'./UC3_TC1.functions.js\';\n\nexport const accessCensusSheetSectionTC2 = async function(page, reporter) {\n    await accessPlatformAndAuthenticate(page, reporter);\n    await selectCensusSheetMenu(page, reporter);\n\n    if (reporter) {\n        reporter.addStep(\'UC3.4_TC2_ID1\', \'Accedi alla sezione delle schede censimento\', true, true, true, \'\', 0);\n    }\n\n    expect(await page.url()).toBe(process.env.E2E_CTS_URL);\n}\n\nexport const clickNonSupportedAction = async function(page, reporter) {\n    const censusSheetPage = new CensusSheetPage(page);\n    await censusSheetPage.clickAzioniButton();\n    await censusSheetPage.page.locator(\'[data-kt-cts-table-filter="unsupported_action"]\').first().click();\n\n    if (reporter) {\n        reporter.addStep(\'UC3.4_TC2_ID2\', \'Clicca su un’azione che non è supportata per la scheda selezionata\', true, true, true, \'\', 0);\n    }\n\n    expect(await censusSheetPage.page.locator(\'text=Azioni non disponibili\').isVisible()).toBeTruthy();\n}\n```\n\n### UC3.4_TC2.spec.js\n```javascript\nimport { test, expect } from \'@playwright/test\';\nimport TestResultReporter from \'../../models/test-result-reporter.js\';\nimport { accessCensusSheetSectionTC2, clickNonSupportedAction } from \'./UC3.4_TC2.functions.js\';\n\ntest("UC3.4_TC2 - Selezione di un’azione non disponibile", async ({page, browserName}) => {\n    const reporter = new TestResultReporter();\n    reporter.setBrowserName(browserName);\n    reporter.setTestCase("UC3.4_TC2", "Selezione di un’azione non disponibile");\n\n    await accessCensusSheetSectionTC2(page, reporter);\n    await clickNonSupportedAction(page, reporter);\n\n    reporter.onTestEnd(test, { status: "passed" });     // status can be "passed" or "failed" \n});\n```\n\n### UC3.4_TC3.functions.js\n```javascript\nimport { test, expect } from \'@playwright/test\';\nimport TestResultReporter from \'../../models/test-result-reporter.js\';\nimport { CensusSheetPage } from \'../../models/page_object_models/census_sheet_page.js\';\nimport { accessPlatformAndAuthenticate, selectCensusSheetMenu } from \'./UC3_TC1.functions.js\';\n\nexport const accessCensusSheetSectionTC3 = async function(page, reporter) {\n    await accessPlatformAndAuthenticate(page, reporter);\n    await selectCensusSheetMenu(page, reporter);\n\n    if (reporter) {\n        reporter.addStep(\'UC3.4_TC3_ID1\', \'Accedi alla sezione delle schede censimento con un utente senza permessi\', true, true, true, \'\', 0);\n    }\n\n    expect(await page.url()).toBe(process.env.E2E_CTS_URL);\n}\n\nexport const attemptActionWithoutPermissions = async function(page, reporter) {\n    const censusSheetPage = new CensusSheetPage(page);\n    await censusSheetPage.clickAzioniButton();\n    await censusSheetPage.page.locator(\'[data-kt-cts-table-filter="action_with_permissions"]\').first().click();\n\n    if (reporter) {\n        reporter.addStep(\'UC3.4_TC3_ID2\', \'Tenta di eseguire un’azione che richiede permessi superiori\', true, true, true, \'\', 0);\n    }\n\n    expect(await censusSheetPage.page.locator(\'text=Accesso negato\').isVisible()).toBeTruthy();\n}\n```\n\n### UC3.4_TC3.spec.js\n```javascript\nimport { test, expect } from \'@playwright/test\';\nimport TestResultReporter from \'../../models/test-result-reporter.js\';\nimport { accessCensusSheetSectionTC3, attemptActionWithoutPermissions } from \'./UC3.4_TC3.functions.js\';\n\ntest("UC3.4_TC3 - Esecuzione di un’azione su scheda censimento senza permessi", async ({page, browserName}) => {\n    const reporter = new TestResultReporter();\n    reporter.setBrowserName(browserName);\n    reporter.setTestCase("UC3.4_TC3", "Esecuzione di un’azione su scheda censimento senza permessi");\n\n    await accessCensusSheetSectionTC3(page, reporter);\n    await attemptActionWithoutPermissions(page, reporter);\n\n    reporter.onTestEnd(test, { status: "passed" });     // status can be "passed" or "failed" \n});\n```\n\n### UC3.4_TC4.functions.js\n```javascript\nimport { test, expect } from \'@playwright/test\';\nimport TestResultReporter from \'../../models/test-result-reporter.js\';\nimport { CensusSheetPage } from \'../../models/page_object_models/census_sheet_page.js\';\nimport { accessPlatformAndAuthenticate, selectCensusSheetMenu } from \'./UC3_TC1.functions.js\';\n\nexport const accessCensusSheetSectionTC4 = async function(page, reporter) {\n    await accessPlatformAndAuthenticate(page, reporter);\n    await selectCensusSheetMenu(page, reporter);\n\n    if (reporter) {\n        reporter.addStep(\'UC3.4_TC4_ID1\', \'Accedi alla sezione delle schede censimento\', true, true, true, \'\', 0);\n    }\n\n    expect(await page.url()).toBe(process.env.E2E_CTS_URL);\n}\n\nexport const selectMultipleActions = async function(page, reporter) {\n    const censusSheetPage = new CensusSheetPage(page);\n    await censusSheetPage.clickAzioniButton();\n    await censusSheetPage.page.locator(\'[data-kt-cts-table-filter="action1"]\').first().click();\n    await censusSheetPage.page.locator(\'[data-kt-cts-table-filter="action2"]\').first().click();\n\n    if (reporter) {\n        reporter.addStep(\'UC3.4_TC4_ID2\', \'Seleziona più azioni sulla stessa scheda censimento\', true, true, true, \'\', 0);\n    }\n\n    expect(await censusSheetPage.page.locator(\'[data-kt-cts-table-filter="action1"]\').first().isChecked()).toBeTruthy();\n    expect(await censusSheetPage.page.locator(\'[data-kt-cts-table-filter="action2"]\').first().isChecked()).toBeTruthy();\n}\n```\n\n### UC3.4_TC4.spec.js\n```javascript\nimport { test, expect } from \'@playwright/test\';\nimport TestResultReporter from \'../../models/test-result-reporter.js\';\nimport { accessCensusSheetSectionTC4, selectMultipleActions } from \'./UC3.4_TC4.functions.js\';\n\ntest("UC3.4_TC4 - Selezione multipla di azioni sulla stessa scheda censimento", async ({page, browserName}) => {\n    const reporter = new TestResultReporter();\n    reporter.setBrowserName(browserName);\n    reporter.setTestCase("UC3.4_TC4", "Selezione multipla di azioni sulla stessa scheda censimento");\n\n    await accessCensusSheetSectionTC4(page, reporter);\n    await selectMultipleActions(page, reporter);\n\n    reporter.onTestEnd(test, { status: "passed" });     // status can be "passed" or "failed" \n});\n```\n\n### UC3.4_TC5.functions.js\n```javascript\nimport { test, expect } from \'@playwright/test\';\nimport TestResultReporter from \'../../models/test-result-reporter.js\';\nimport { CensusSheetPage } from \'../../models/page_object_models/census_sheet_page.js\';\nimport { accessPlatformAndAuthenticate, selectCensusSheetMenu } from \'./UC3_TC1.functions.js\';\n\nexport const accessCensusSheetSectionTC5 = async function(page, reporter) {\n    await accessPlatformAndAuthenticate(page, reporter);\n    await selectCensusSheetMenu(page, reporter);\n\n    if (reporter) {\n        reporter.addStep(\'UC3.4_TC5_ID1\', \'Accedi alla sezione delle schede censimento\', true, true, true, \'\', 0);\n    }\n\n    expect(await page.url()).toBe(process.env.E2E_CTS_URL);\n}\n\nexport const cancelSelectedAction = async function(page, reporter) {\n    const censusSheetPage = new CensusSheetPage(page);\n    await censusSheetPage.clickAzioniButton();\n    await censusSheetPage.page.locator(\'[data-kt-cts-table-filter="action1"]\').first().click();\n    await censusSheetPage.page.locator(\'[data-kt-cts-table-filter="cancel_action"]\').first().click();\n\n    if (reporter) {\n        reporter.addStep(\'UC3.4_TC5_ID2\', \'Seleziona un’azione e poi annulla la selezione\', true, true, true, \'\', 0);\n    }\n\n    expect(await censusSheetPage.page.locator(\'[data-kt-cts-table-filter="action1"]\').first().isChecked()).toBeFalsy();\n}\n```\n\n### UC3.4_TC5.spec.js\n```javascript\nimport { test, expect } from \'@playwright/test\';\nimport TestResultReporter from \'../../models/test-result-reporter.js\';\nimport { accessCensusSheetSectionTC5, cancelSelectedAction } from \'./UC3.4_TC5.functions.js\';\n\ntest("UC3.4_TC5 - Annullamento dell’azione selezionata", async ({page, browserName}) => {\n    const reporter = new TestResultReporter();\n    reporter.setBrowserName(browserName);\n    reporter.setTestCase("UC3.4_TC5", "Annullamento dell’azione selezionata");\n\n    await accessCensusSheetSectionTC5(page, reporter);\n    await cancelSelectedAction(page, reporter);\n\n    reporter.onTestEnd(test, { status: "passed" });     // status can be "passed" or "failed" \n});\n```', images=None, tool_calls=None)
+2025-06-20 07:07:41,108 - test_code_generator.validator.javascript_code_validator - INFO - Extracting JavaScript code blocks

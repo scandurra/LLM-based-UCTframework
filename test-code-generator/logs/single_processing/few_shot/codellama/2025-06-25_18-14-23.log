@@ -1,0 +1,387 @@
+2025-06-25 18:14:23,456 - __main__ - INFO - Started execution for use case UC3.1 - test case ['UC3.1_TC1'] - model llama3.3:latest - configuration zero_shot
+2025-06-25 18:14:23,456 - __main__ - INFO - Found 1 dependencies for use case UC3.1
+2025-06-25 18:14:23,456 - __main__ - INFO - Read previously generated functions code for use case UC3 - test case UC3_TC1
+2025-06-25 18:14:23,456 - __main__ - INFO - Read previously generated spec code for use case UC3 - test case UC3_TC1
+2025-06-25 18:14:23,456 - test_code_generator.prompt_builder.prompt_builder - INFO - Test parameters loaded from path: ./input_files/parameters/test_parameters.env
+2025-06-25 18:14:23,456 - test_code_generator.prompt_builder.prompt_builder - INFO - Test reporter loaded from path: ./input_files/reporter_minimal.js
+2025-06-25 18:14:23,456 - test_code_generator.prompt_builder.prompt_builder - INFO - Previous code section loaded from path: ./prompts/single_processing/zero_shot/llama3.3/previous_code_section.txt
+2025-06-25 18:14:23,456 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt built: 
+ROLE: system
+You are a testing engineer, expert in writing Javascript end-to-end tests with Playwright.
+
+Task: Analyze the test case provided below and generate a complete and working Playwright test script in Javascript, following the steps described in the test case.
+When creating the test script, use only the page object model provided for interacting with the DOM and the parameters provided.
+------------------------------------------------------------------
+ROLE: user
+Use only this page object models for interacting with the DOM:
+```javascript
+File: census_sheet_page.js
+const { timeout } = require('../../playwright.config');
+
+export class CensusSheetPage {
+  constructor(page) {
+    this.page = page;
+    this.path = require('path');
+    
+    // Locators
+    this.searchInput = page.getByPlaceholder('Cerca');
+    this.uploadButton = page.locator('#modal_upload_censustechsheet_btn');
+    this.fileInput = page.locator('input[type="file"]');
+    this.okButton = page.getByRole('button', { name: 'OK' });
+    this.actionDropdown = page.locator('.text-start > .btn').first();
+    this.downloadOption = page.locator('[data-kt-cts-table-filter="download_row"]').first();
+    this.deleteOption = page.locator('[data-kt-cts-table-filter="delete_row"]').first();
+    this.editOption = page.locator('[data-kt-cts-table-filter="edit_row"]').first();
+    this.detailOption = page.locator('a[data-kt-cts-table-filter="detail_row"]').first();
+    this.freezeOption = page.locator('a[data-action="freeze"]').first();
+    this.confirmDeleteButton = page.locator('button.swal2-confirm.btn.fw-bold.btn-danger').first();
+    this.cancelDeleteButton = page.locator('button.swal2-cancel.btn.fw-bold.btn-active-light-primary').first();
+    this.confirmButton = page.locator('button.swal2-confirm.btn.fw-bold.btn-primary').first();
+    
+    // Column headers
+    this.azioniColumn = page.getByLabel('Azioni');
+    this.schedaColumn = page.getByLabel('Scheda: attiva per ordinare');
+    this.proprietarioColumn = page.getByLabel('Proprietario: attiva per');
+    this.comuneColumn = page.getByLabel('Comune: attiva per ordinare');
+    this.statsColumn = page.getByLabel('Stats: attiva per ordinare la');
+    this.statoColumn = page.getByLabel('Stato: attiva per ordinare la');
+    this.infoColumn = page.getByLabel('Info: attiva per ordinare la');
+    this.creazioneColumn = page.getByLabel('Creazione: attiva per');
+    this.aggiornamentoColumn = page.getByLabel('Aggiornamento: attiva per');
+    this.sottomissioneColumn = page.getByLabel('Sottomissione: attiva per');
+  }
+
+  async clickAzioniColumn() {
+    await this.azioniColumn.click({timeout: 300000});
+  }
+
+  async clickSchedaColumn() {
+    await this.schedaColumn.click({timeout: 300000});
+  }
+
+  async clickProprietarioColumn() {
+    await this.proprietarioColumn.click({timeout: 300000});
+  }
+
+  async clickComuneColumn() {
+    await this.comuneColumn.click({timeout: 300000});
+  }
+
+  async clickStatsColumn() {
+    await this.statsColumn.click({timeout: 300000});
+  }
+
+  async clickStatoColumn() {
+    await this.statoColumn.click({timeout: 300000});
+  }
+
+  async clickInfoColumn() {
+    await this.infoColumn.click({timeout: 300000});
+  }
+
+  async clickCreazioneColumn() {
+    await this.creazioneColumn.click({timeout: 300000});
+  }
+
+  async clickAggiornamentoColumn() {
+    await this.aggiornamentoColumn.click({timeout: 300000});
+  }
+
+  async clickSottomissioneColumn() {
+    await this.sottomissioneColumn.click({timeout: 300000});
+  }
+
+  async searchByName(name = 'Lucania') {
+    await this.page.getByPlaceholder('Cerca').click();
+    await this.page.getByPlaceholder('Cerca').fill(name);
+    await this.page.getByPlaceholder('Cerca').press('Enter');
+  }
+
+  async clickAzioniButton() {
+    await this.page.locator('.text-start > .btn').first().waitFor({ state: 'visible' });
+
+    // Ora possiamo cliccare sul pulsante
+    await this.page.locator('.text-start > .btn').first().click();
+  }
+
+  async clickAzioneDownload() {
+    await this.page.locator('[data-kt-cts-table-filter="download_row"]').first().click();
+  }
+
+  async clickAzioneDelete() {
+    await this.page.locator('[data-kt-cts-table-filter="delete_row"]').first().click();
+  }
+
+  async clickConfirmAzioneDelete() {
+    await this.page.locator('button.swal2-confirm.btn.fw-bold.btn-danger').first().click();
+    await this.page.locator('button.swal2-confirm.btn.fw-bold.btn-primary').first().click();
+  }
+
+  async clickCancelAzioneDelete() {
+    await this.page.locator('button.swal2-cancel.btn.fw-bold.btn-active-light-primary').first().click();
+    await this.page.locator('button.swal2-confirm.btn.fw-bold.btn-primary').first().click();
+  }
+
+  async clickAzioneEdit() {
+    await this.page.locator('[data-kt-cts-table-filter="edit_row"]').first().click();
+  }
+
+  async clickAzioneCongela() {
+    await this.page.locator('a[data-action="freeze"]').first().click();
+  }
+
+  async clickAzioneDettaglio() {
+    await this.page.locator('a[data-kt-cts-table-filter="detail_row"]').first().click();
+  }
+}
+```
+
+Use only the following parameters from environment variables in the test scripts:
+E2E_BASE_URL=""
+E2E_LOGIN_URL=""
+E2E_HOME_URL="" 
+E2E_DASHBOARD_URL="" 
+E2E_CTS_URL="" 
+EMAIL=""
+PASSWORD=""
+
+When in the test case there is a step, a precondition or a postcondition with a name of use case UC*, reuse this functions passing null as reporter parameter:
+```javascript
+// File: UC3_TC1.functions.js
+import { test, expect } from '@playwright/test';
+
+import { SidebarPage } from '../../models/page_object_models/sidebar_page.js';
+
+import { CensusSheetPage } from '../../models/page_object_models/census_sheet_page.js';
+
+import TestResultReporter from '../../models/test-result-reporter.js';
+
+import { insertCorrectCredentials, clickLoginButton, verifyAuthenticationSuccessMessage } from '../UC1/UC1_TC1.functions.js';
+
+export const accessPlatformAndAuthenticate = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    await insertCorrectCredentials(page, null);
+    await clickLoginButton(page, null);
+    await verifyAuthenticationSuccessMessage(page, null);
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    let passFail = true;
+    if (reporter) {
+        reporter.addStep('UC3_TC1_ID1', 'Access the platform and authenticate correctly', 'The main dashboard is displayed', `Navigated to ${process.env.E2E_DASHBOARD_URL}`, passFail, '', executionTime);
+    }
+
+    expect(passFail).toBeTruthy();
+}
+
+export const selectCensusSheetMenu = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const sidebarPage = new SidebarPage(page);
+    await sidebarPage.clickCensusSheetLink();
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    let passFail = true;
+    try {
+        await page.waitForNavigation({ url: process.env.E2E_CTS_URL });
+    } catch (error) {
+        passFail = false;
+    }
+    if (reporter) {
+        reporter.addStep('UC3_TC1_ID2', 'Select the census sheet menu item', 'The census sheet section opens correctly', `Navigated to ${process.env.E2E_CTS_URL}`, passFail, '', executionTime);
+    }
+
+    expect(passFail).toBeTruthy();
+}
+// File: UC3_TC1.spec.js
+import { test, expect } from '@playwright/test';
+
+import { accessPlatformAndAuthenticate, selectCensusSheetMenu } from './UC3_TC1.functions.js';
+
+import TestResultReporter from '../../models/test-result-reporter.js';
+
+test("UC3_TC1 - Open census sheet management interface with success", async ({page, browserName}) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC3_TC1", "Open census sheet management interface with success");
+
+    // Navigate to the login page
+    await page.goto(process.env.E2E_LOGIN_URL);
+
+    // Call step functions in sequence
+    await accessPlatformAndAuthenticate(page, reporter);
+    await selectCensusSheetMenu(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });     // status can be "passed" or "failed" 
+});
+```
+
+Instructions:
+1. Analyze the test case provided
+2. For the test case, generate a test script in Javascript with Playwright
+3. Use only Page object model provided to interact with the DOM.
+4. Call the TestResultReporter object methods as described below.
+5. Put the code in functions for reusability, with the reporter object as parameter not mandatory. If not null, call reporter methods. 
+6. Put functions in a separate file called "UC3.1_TC1.functions.js" and the test in a file called "UC3.1_TC1.spec.js"
+7. Do not rewrite functions provided in the prompt, just refer to them.
+8. Add the required import for:
+    * test, expect, ... from '@playwright/test' in all files
+    * TestResultReporter from "../../models/test-result-reporter.js" 
+    * page object models from "../../models/page_object_models/<page_object_model_name>.js" 
+    * existing code from the path specified in the code snippet. Pay attention to add imports used also by the existing code. 
+    * make the generated "UC3.1_TC1.spec.js" file to reference functions in "UC3.1_TC1.functions.js" generated file
+
+
+<example>
+export const functionNameDescribingStep = async function(page, reporter) {
+    const startTime = DateTime.now();
+    
+    // Put here test case step implementation
+    
+    const endTime = DateTime.now();
+    const executionTime = endTime - startTime;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID1', 'Step 1 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+    }
+
+    // Include Playwright assertions
+    expect(passFail).toBeTruthy();
+}
+
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1", "Login test with success");
+
+    // Call step functions in sequence
+    await step1(page, reporter);
+    await step2(page, reporter);
+    // Additional steps...
+
+    reporter.onTestEnd(test, { status: "passed" });     // status can be "passed" or "failed" 
+});
+</example>
+
+Here the test case to be converted in Playwright script:
+Test Case ID: UC3.1_TC1
+Title: Visualizzazione schede censimento con dati validi e ordinamento
+Use Case ID: UC3.1
+Priority: Alta
+Type: Positivo
+Preconditions: UC3
+Postconditions: L’utente visualizza le informazioni corrispondenti alla paginazione richiesta
+Test Steps:
+  1. Step: Accedi alla sezione di visualizzazione delle schede censimento
+Expected: La tabella con le informazioni viene visualizzata correttamente
+  2. Step: Seleziona una colonna per l’ordinamento e clicca sul nome della colonna
+Expected: Le righe vengono ordinate in base alla selezione
+  3. Step: Scorri lateralmente per visualizzare tutte le colonne
+Expected: Tutte le colonne sono visibili e scorrevoli
+
+
+Output format:
+* Output only valid and runnable JavaScript code
+* Do not write code implementation provided in the prompt, only reference it
+* Structure the code in files using markdown code blocks specifying the file name
+2025-06-25 18:14:23,457 - test_code_generator.llm_client.ollama_client - INFO - OllamaClient initialized with model: llama3.3:latest
+2025-06-25 18:16:32,047 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-06-25 18:16:32,048 - test_code_generator.llm_client.ollama_client - INFO - model='llama3.3:latest' created_at='2025-06-25T18:16:32.047268114Z' done=True done_reason='stop' total_duration=128589001257 load_duration=14246441 prompt_eval_count=2666 prompt_eval_duration=7038921355 eval_count=961 eval_duration=121531453969 message=Message(role='assistant', content='### UC3.1_TC1.functions.js\n```javascript\nimport { test, expect } from \'@playwright/test\';\nimport { CensusSheetPage } from \'../../models/page_object_models/census_sheet_page.js\';\nimport { accessPlatformAndAuthenticate, selectCensusSheetMenu } from \'./UC3_TC1.functions.js\';\nimport TestResultReporter from \'../../models/test-result-reporter.js\';\n\nexport const accessCensusSheetSection = async function(page, reporter) {\n    const startTime = new Date().getTime();\n    \n    await selectCensusSheetMenu(page, null);\n\n    const endTime = new Date().getTime();\n    const executionTime = (endTime - startTime) / 1000;\n    let passFail = true;\n    try {\n        await page.waitForNavigation({ url: process.env.E2E_CTS_URL });\n    } catch (error) {\n        passFail = false;\n    }\n    if (reporter) {\n        reporter.addStep(\'UC3.1_TC1_ID1\', \'Access the census sheet section\', \'The table with information is displayed correctly\', `Navigated to ${process.env.E2E_CTS_URL}`, passFail, \'\', executionTime);\n    }\n\n    expect(passFail).toBeTruthy();\n}\n\nexport const selectColumnForSorting = async function(page, reporter) {\n    const startTime = new Date().getTime();\n    \n    const censusSheetPage = new CensusSheetPage(page);\n    await censusSheetPage.clickAzioniColumn();\n\n    const endTime = new Date().getTime();\n    const executionTime = (endTime - startTime) / 1000;\n    let passFail = true;\n    if (reporter) {\n        reporter.addStep(\'UC3.1_TC1_ID2\', \'Select a column for sorting and click on the column name\', \'The rows are sorted based on the selection\', \'\', passFail, \'\', executionTime);\n    }\n\n    expect(passFail).toBeTruthy();\n}\n\nexport const scrollHorizontallyToViewAllColumns = async function(page, reporter) {\n    const startTime = new Date().getTime();\n    \n    // This step is more about verifying that all columns are visible and can be scrolled\n    // Since we don\'t have a specific action to perform here, we\'ll just verify the presence of all column headers\n    const censusSheetPage = new CensusSheetPage(page);\n    await expect(censusSheetPage.azioniColumn).toBeVisible();\n    await expect(censusSheetPage.schedaColumn).toBeVisible();\n    await expect(censusSheetPage.proprietarioColumn).toBeVisible();\n    await expect(censusSheetPage.comuneColumn).toBeVisible();\n    await expect(censusSheetPage.statsColumn).toBeVisible();\n    await expect(censusSheetPage.statoColumn).toBeVisible();\n    await expect(censusSheetPage.infoColumn).toBeVisible();\n    await expect(censusSheetPage.creazioneColumn).toBeVisible();\n    await expect(censusSheetPage.aggiornamentoColumn).toBeVisible();\n    await expect(censusSheetPage.sottomissioneColumn).toBeVisible();\n\n    const endTime = new Date().getTime();\n    const executionTime = (endTime - startTime) / 1000;\n    let passFail = true;\n    if (reporter) {\n        reporter.addStep(\'UC3.1_TC1_ID3\', \'Scroll horizontally to view all columns\', \'All columns are visible and can be scrolled\', \'\', passFail, \'\', executionTime);\n    }\n\n    expect(passFail).toBeTruthy();\n}\n```\n\n### UC3.1_TC1.spec.js\n```javascript\nimport { test, expect } from \'@playwright/test\';\nimport { accessPlatformAndAuthenticate } from \'./UC3_TC1.functions.js\';\nimport { accessCensusSheetSection, selectColumnForSorting, scrollHorizontallyToViewAllColumns } from \'./UC3.1_TC1.functions.js\';\nimport TestResultReporter from \'../../models/test-result-reporter.js\';\n\ntest("UC3.1_TC1 - Visualize census sheets with valid data and sorting", async ({page, browserName}) => {\n    const reporter = new TestResultReporter();\n    reporter.setBrowserName(browserName);\n    reporter.setTestCase("UC3.1_TC1", "Visualize census sheets with valid data and sorting");\n\n    // Navigate to the login page\n    await page.goto(process.env.E2E_LOGIN_URL);\n\n    // Call step functions in sequence\n    await accessPlatformAndAuthenticate(page, reporter);\n    await accessCensusSheetSection(page, reporter);\n    await selectColumnForSorting(page, reporter);\n    await scrollHorizontallyToViewAllColumns(page, reporter);\n\n    reporter.onTestEnd(test, { status: "passed" });     // status can be "passed" or "failed" \n});\n```', images=None, tool_calls=None)
+2025-06-25 18:16:32,048 - __main__ - INFO - Model response:
+### UC3.1_TC1.functions.js
+```javascript
+import { test, expect } from '@playwright/test';
+import { CensusSheetPage } from '../../models/page_object_models/census_sheet_page.js';
+import { accessPlatformAndAuthenticate, selectCensusSheetMenu } from './UC3_TC1.functions.js';
+import TestResultReporter from '../../models/test-result-reporter.js';
+
+export const accessCensusSheetSection = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    await selectCensusSheetMenu(page, null);
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    let passFail = true;
+    try {
+        await page.waitForNavigation({ url: process.env.E2E_CTS_URL });
+    } catch (error) {
+        passFail = false;
+    }
+    if (reporter) {
+        reporter.addStep('UC3.1_TC1_ID1', 'Access the census sheet section', 'The table with information is displayed correctly', `Navigated to ${process.env.E2E_CTS_URL}`, passFail, '', executionTime);
+    }
+
+    expect(passFail).toBeTruthy();
+}
+
+export const selectColumnForSorting = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const censusSheetPage = new CensusSheetPage(page);
+    await censusSheetPage.clickAzioniColumn();
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    let passFail = true;
+    if (reporter) {
+        reporter.addStep('UC3.1_TC1_ID2', 'Select a column for sorting and click on the column name', 'The rows are sorted based on the selection', '', passFail, '', executionTime);
+    }
+
+    expect(passFail).toBeTruthy();
+}
+
+export const scrollHorizontallyToViewAllColumns = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    // This step is more about verifying that all columns are visible and can be scrolled
+    // Since we don't have a specific action to perform here, we'll just verify the presence of all column headers
+    const censusSheetPage = new CensusSheetPage(page);
+    await expect(censusSheetPage.azioniColumn).toBeVisible();
+    await expect(censusSheetPage.schedaColumn).toBeVisible();
+    await expect(censusSheetPage.proprietarioColumn).toBeVisible();
+    await expect(censusSheetPage.comuneColumn).toBeVisible();
+    await expect(censusSheetPage.statsColumn).toBeVisible();
+    await expect(censusSheetPage.statoColumn).toBeVisible();
+    await expect(censusSheetPage.infoColumn).toBeVisible();
+    await expect(censusSheetPage.creazioneColumn).toBeVisible();
+    await expect(censusSheetPage.aggiornamentoColumn).toBeVisible();
+    await expect(censusSheetPage.sottomissioneColumn).toBeVisible();
+
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    let passFail = true;
+    if (reporter) {
+        reporter.addStep('UC3.1_TC1_ID3', 'Scroll horizontally to view all columns', 'All columns are visible and can be scrolled', '', passFail, '', executionTime);
+    }
+
+    expect(passFail).toBeTruthy();
+}
+```
+
+### UC3.1_TC1.spec.js
+```javascript
+import { test, expect } from '@playwright/test';
+import { accessPlatformAndAuthenticate } from './UC3_TC1.functions.js';
+import { accessCensusSheetSection, selectColumnForSorting, scrollHorizontallyToViewAllColumns } from './UC3.1_TC1.functions.js';
+import TestResultReporter from '../../models/test-result-reporter.js';
+
+test("UC3.1_TC1 - Visualize census sheets with valid data and sorting", async ({page, browserName}) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC3.1_TC1", "Visualize census sheets with valid data and sorting");
+
+    // Navigate to the login page
+    await page.goto(process.env.E2E_LOGIN_URL);
+
+    // Call step functions in sequence
+    await accessPlatformAndAuthenticate(page, reporter);
+    await accessCensusSheetSection(page, reporter);
+    await selectColumnForSorting(page, reporter);
+    await scrollHorizontallyToViewAllColumns(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });     // status can be "passed" or "failed" 
+});
+```
+2025-06-25 18:16:32,048 - test_code_generator.validator.javascript_code_validator - INFO - Extracting JavaScript code blocks
+2025-06-25 18:16:32,049 - __main__ - INFO - File saved

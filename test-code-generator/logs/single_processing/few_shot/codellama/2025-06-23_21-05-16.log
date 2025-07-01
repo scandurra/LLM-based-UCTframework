@@ -1,0 +1,4 @@
+2025-06-23 21:05:16,224 - __main__ - INFO - Started execution for use case UC3.4.3 - test case ['UC3.4.3_TC1'] - model codellama:70b - configuration zero_shot
+2025-06-23 21:05:16,224 - __main__ - INFO - Found 1 dependencies for use case UC3.4.3
+2025-06-23 21:05:16,659 - __main__ - INFO - Started execution for use case UC3.4.4 - test case ['UC3.4.4_TC1'] - model codellama:70b - configuration zero_shot
+2025-06-23 21:05:16,659 - __main__ - INFO - Found 1 dependencies for use case UC3.4.4

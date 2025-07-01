@@ -1,6 +1,6 @@
 #!/bin/bash
-model="llama3.3:latest"
-# model="codellama:70b"
+#model="llama3.3:latest"
+model="codellama:70b"
 
 executable_file="test_code_generator.main_batch"
 
@@ -12,8 +12,45 @@ use_cases=(
     "UC5" "UC6"
 )
 
+
+
+model="codellama:70b"
+
+
 # Iterate over each use case
 for use_case in "${use_cases[@]}"; do
     echo "Running test for use case: $use_case"
     poetry run python -m $executable_file --use_case_name="$use_case" --configuration="zero_shot" --model="$model"
+done
+
+# Iterate over each use case
+for use_case in "${use_cases[@]}"; do
+    echo "Running test for use case: $use_case"
+    poetry run python -m $executable_file --use_case_name="$use_case" --configuration="one_shot" --model="$model"
+done
+
+# Iterate over each use case
+for use_case in "${use_cases[@]}"; do
+    echo "Running test for use case: $use_case"
+    poetry run python -m $executable_file --use_case_name="$use_case" --configuration="few_shot" --model="$model"
+done
+
+
+model="llama3.3:latest"
+# Iterate over each use case
+# for use_case in "${use_cases[@]}"; do
+#     echo "Running test for use case: $use_case"
+#     poetry run python -m $executable_file --use_case_name="$use_case" --configuration="zero_shot" --model="$model"
+# done
+
+# Iterate over each use case
+for use_case in "${use_cases[@]}"; do
+    echo "Running test for use case: $use_case"
+    poetry run python -m $executable_file --use_case_name="$use_case" --configuration="one_shot" --model="$model"
+done
+
+# Iterate over each use case
+for use_case in "${use_cases[@]}"; do
+    echo "Running test for use case: $use_case"
+    poetry run python -m $executable_file --use_case_name="$use_case" --configuration="few_shot" --model="$model"
 done

@@ -9,7 +9,7 @@ export const selectComuneAndParameters = async function(page, reporter) {
     const startTime = new Date().getTime();
     const dashboardPageIlluminationSearch = new DashboardPageIlluminationSearch(page);
     await dashboardPageIlluminationSearch.selectComune(0); // Select the first comune from the dropdown list
-    // TODO: Add code to select valid parameters for search
+    // TODO: Insert code to select valid parameters for search
     const endTime = new Date().getTime();
     const executionTime = endTime - startTime;
     if (reporter) {
@@ -20,7 +20,7 @@ export const selectComuneAndParameters = async function(page, reporter) {
 // Step 2
 export const confirmSearch = async function(page, reporter) {
     const startTime = new Date().getTime();
-    await dashboardPageIlluminationSearch.applySearch(); // Click on the apply button to perform search
+    await dashboardPageIlluminationSearch.applySearch(); // Click on the "Apply" button to perform search
     const endTime = new Date().getTime();
     const executionTime = endTime - startTime;
     if (reporter) {
@@ -29,9 +29,9 @@ export const confirmSearch = async function(page, reporter) {
 }
 
 // Step 3
-export const viewDetails = async function(page, reporter) {
+export const visualizeDetails = async function(page, reporter) {
     const startTime = new Date().getTime();
-    // TODO: Add code to visualize details of the impianti di illuminazione found in step 2
+    // TODO: Insert code to visualize details of the impianti di illuminazione found in the search results
     const endTime = new Date().getTime();
     const executionTime = endTime - startTime;
     if (reporter) {

@@ -1,0 +1,1057 @@
+2025-06-20 16:11:25,430 - __main__ - INFO - Found 1 dependencies for use case UC3.3
+2025-06-20 16:11:25,430 - __main__ - INFO - Read previously generated functions code for use case UC3 - test case UC3_TC1
+2025-06-20 16:11:25,430 - __main__ - INFO - Read previously generated spec code for use case UC3 - test case UC3_TC1
+2025-06-20 16:11:25,430 - test_code_generator.prompt_builder.prompt_builder - INFO - Test parameters loaded from path: ./input_files/parameters/test_parameters.env
+2025-06-20 16:11:25,430 - test_code_generator.prompt_builder.prompt_builder - INFO - Test reporter loaded from path: ./input_files/reporter_minimal.js
+2025-06-20 16:11:25,430 - test_code_generator.prompt_builder.prompt_builder - INFO - Previous code section loaded from path: ./prompts/batch_processing/few_shot/llama3.3/previous_code_section.txt
+2025-06-20 16:11:25,431 - test_code_generator.prompt_builder.prompt_builder - INFO - Prompt built: 
+ROLE: system
+You are a testing engineer, expert in writing Javascript end-to-end tests with Playwright.
+
+Task: Analyze the test cases provided below and generate for each test case a complete and working Playwright test script in Javascript, following the steps described in each test case.
+When creating the test scripts, use only the page object model provided for interacting with the DOM and the parameters provided.
+------------------------------------------------------------------
+ROLE: user
+Use only this page object models for interacting with the DOM:
+```javascript
+// File: support_page.js
+export class SupportPage {
+    constructor(page) {
+      this.page = page;
+      this.issueCategory = page.locator("#issue-category");
+      this.issueDescription = page.locator("#issue-description");
+      this.email = page.locator("#email");
+      this.submit = page.getByRole("submit");
+      this.errorMessage = page.locator('.error-message');
+    }
+  
+    // Category values: 'missing_credentials', 'other', 
+    async selectIssueCategory(category) {
+        await this.issueCategory.selectOption(category);
+    }
+  
+    async enterIssueDescription(description) {
+        await this.issueDescription.fill(description);
+    }
+  
+    async enterEmail(email) {
+        await this.email.fill(email);
+    }
+  
+    async getErrorMessage() {
+        return await this.errorMessage.textContent();
+    }
+
+    async submitIssue() {
+        await this.submit.click();
+    }
+  } 
+```
+
+Use the following test parameters when creating scripts:
+E2E_BASE_URL=""
+E2E_LOGIN_URL=""
+E2E_SUPPORT_URL=""
+E2E_SUPPORT_SUCCESS_URL = ""
+E2E_HOME_URL="" 
+E2E_DASHBOARD_URL="" 
+E2E_CTS_URL="" 
+EMAIL=""
+PASSWORD=""
+
+Instructions:
+1. Analyze the test cases provided
+2. For each test case, generate a test script in Javascript with Playwright
+3. Use only Page object model provided to interact with the DOM.
+4. Call the TestResultReporter object methods as described below.
+5. Put the code in functions for reusability, with the reporter object as parameter not mandatory. If not null, call reporter methods. 
+6. Put functions in a separate file called "UC*_TC*.spec.js" and the test in a file called "UC*_TC*.spec.js"
+7. Do not rewrite functions provided in the prompt, just refer to them.
+8. Add the required import for:
+    * test, expect, ... from '@playwright/test' in all files
+    * TestResultReporter from "../../models/test-result-reporter.js" 
+    * page object models from "../../models/page_object_models/<page_object_model_name>.js" 
+    * existing code from the path specified in the code snippet. Pay attention to add imports used also by the existing code. 
+    * make the generated "UC*_TC*.spec.js" file to reference functions in "UC*_TC*.spec.js" generated file
+
+<example>
+export const functionNameDescribingStep = async function(page, reporter) {
+    const startTime = DateTime.now();
+    
+    // Put here test case step implementation
+    
+    const endTime = DateTime.now();
+    const executionTime = endTime - startTime;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID1', 'Step 1 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+    }
+
+    // Include Playwright assertions
+    expect(passFail).toBeTruthy();
+}
+
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1", "Login test with success");
+
+    // Eventually go to page
+
+    // Call step functions in sequence
+    await step1(page, reporter);
+    await step2(page, reporter);
+    // Additional steps...
+
+    reporter.onTestEnd(test, { status: "passed" });     // status can be "passed" or "failed" 
+});
+</example>
+
+Here the test cases to be converted in Playwright script:
+Test Case ID: UC10_TC1
+Title: Invia richiesta di assistenza inviata con successo
+Use Case ID: UC10
+Priority: Alta
+Type: Positivo
+Preconditions: Nessuna
+Postconditions: L’utente è a conoscenza che l’operazione ha avuto successo
+Test Steps:
+  1. Step: L'utente naviga nella pagina di assistenza
+Expected: La pagina di assistenza è visualizzata correttamente
+  2. Step: L'utente compila la form di assistenza
+Expected: Tutte le informazioni vengono accettate
+  3. Step: Invia richiesta di assistenza
+Expected: Si viene reindirizzati alla pagina di conferma
+
+Test Case ID: UC10_T2
+Title: Invia richiesta di assistenza
+Use Case ID: UC10
+Priority: Alta
+Type: Positivo
+Preconditions: Nessuna
+Postconditions: L’utente è a conoscenza che l’operazione ha avuto successo
+Test Steps:
+  1. Step: L'utente naviga nella pagina di assistenza
+Expected: La pagina di assistenza è visualizzata correttamente
+  2. Step: L'utente compila la form di assistenza inserendo un indirizzo email non valido
+Expected: Tutte le informazioni vengono accettate
+  3. Step: Invia richiesta di assistenza
+Expected: Viene mostrato un messaggio di errore
+
+Output format:
+* Output only valid and runnable JavaScript code
+* Do not write code implementation provided in the prompt, only reference it
+* Structure the code in files using markdown code blocks specifying the file name
+------------------------------------------------------------------
+ROLE: assistant
+### UC10_TC1.functions.js
+```javascript
+import { test, expect } from '@playwright/test';
+import { SupportPage } from '../../models/page_object_models/support_page.js';
+import TestResultReporter from '../../models/test-result-reporter.js';
+
+// Step 1
+export const navigateToSupportPage = async function(page, reporter) {
+  const startTime = new Date().getTime();
+    await page.goto(process.env.E2E_SUPPORT_URL);
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('U101_TC1_ID1', 'Navigate to support page', 'Support page loaded', 'Support page loaded', true, `E2E_SUPPORT_URL: ${process.env.E2E_SUPPORT_URL}`, executionTime);
+    }
+}
+
+// Step 2
+export const fillSupportForm = async function(page, reporter) {
+  const supportPage = new SupportPage(page);
+
+  let startTime = Date.now();
+  const category = "missing_credentials";
+  const description = "Non riesco più ad accedere al mio account";
+  const email = process.env.EMAIL;
+  await supportPage.selectIssueCategory(category);
+  await supportPage.enterIssueDescription(description);
+  await supportPage.enterEmail(email);
+  let endTime = Date.now();
+  if (reporter) {
+    reporter.addStep('UC10_TC1_ID2','L\'utente compila la form di assistenza', `Form compilata`, `Form compilata`, true, { category, description, email }, endTime - startTime );
+  }
+}
+
+// Step 3
+export const submitForm = async function (page, reporter) {
+  const supportPage = new SupportPage(page);
+
+  startTime = date.now();
+  await supportPage.submitIssue();
+  await page.waitForUrl(process.env.E2E_SUPPORT_SUCCESS_URL, { waitUnitl: "networkidle" });
+  let testPass = page.url() == process.env.E2E_SUPPORT_SUCCESS_URL;
+  endTime = date.now();
+  if (reporter) {
+    reporter.addStep('UC10_TC1_ID3', 'Invia richiesta di assistenza', "L'utente viene reindirizzato alla pagina di avvenuto invio", testPass ? "L'utente viene reindirizzato alla pagina di avvenuto invio" : "Nessun reindirizzamento avvenuto", testPass, {}, endTime - startTime);
+  }
+
+  expect(passFail).toBeTruthy();
+}
+```
+
+### UC10_TC2.functions.js
+```javascript
+import { test, expect } from '@playwright/test';
+import { SupportPage } from '../../models/page_object_models/support_page.js';
+import TestResultReporter from '../../models/test-result-reporter.js';
+
+// Step 1
+export const navigateToSupportPage = async function(page, reporter) {
+  const startTime = new Date().getTime();
+    await page.goto(process.env.E2E_SUPPORT_URL);
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('U101_TC1_ID1', 'Navigate to support page', 'Support page loaded', 'Support page loaded', true, `E2E_SUPPORT_URL: ${process.env.E2E_SUPPORT_URL}`, executionTime);
+    }
+}
+
+// Step 2
+export const fillSupportFormWithWrongEmail = async function(page, reporter) {
+  const supportPage = new SupportPage(page);
+
+  let startTime = Date.now();
+  const category = "missing_credentials";
+  const description = "Non riesco più ad accedere al mio account";
+  const email = "wrong email field";
+  await supportPage.selectIssueCategory(category);
+  await supportPage.enterIssueDescription(description);
+  await supportPage.enterEmail(email);
+  let endTime = Date.now();
+  if (reporter) {
+    reporter.addStep('UC10_TC1_ID2','L\'utente compila la form di assistenza', `Form compilata`, `Form compilata`, true, { category, description, email }, endTime - startTime );
+  }
+}
+
+// Step 3
+export const submitForm = async function (page, reporter) {
+  const supportPage = new SupportPage(page);
+
+  startTime = date.now();
+  await supportPage.submitIssue();
+  await supportPage.waitForErrorMessage();
+  let testPass = await supportPage.getErrorMessage() != '';
+  endTime = date.now();
+  if (reporter) {
+    reporter.addStep('UC10_TC1_ID3', 'Invia richiesta di assistenza', "Viene mostrato all'utente un messaggio di errore", testPass ? "Viene mostrato all'utente un messaggio di errore" : "Nessun messaggio mostrato", testPass, {}, endTime - startTime);
+  }
+
+  expect(passFail).toBeTruthy();
+}
+```
+
+### UC10_TC1.spec.js
+```javascript
+import { test, expect } from '@playwright/test';
+import { SupportPage } from '../../models/page_object_models/support_page.js';
+import TestResultReporter from '../../models/test-result-reporter.js';
+import { navigateToSupportPage, fillSupportForm, submitForm } import './UC10_TC1.functions.js';
+
+const reporter = new TestResultReporter();
+
+test("UC10_TC1 - Invio richiesta di assistenza", async ({ page, browserName }) => {
+  reporter.setBrowserName(browserName);
+  reporter.setTestCase("UC10_TC1", "Invio richiesta di assistenza");
+
+  await navigateToSupportPage(page, reporter);
+  await fillSupportForm(page, reporter);
+  await submitForm(page, reporter);
+
+  reporter.onTestEnd(test, { status: "passed" });
+}); 
+```
+
+### UC10_TC2.spec.js
+```javascript
+import { test, expect } from '@playwright/test';
+import { SupportPage } from '../../models/page_object_models/support_page.js';
+import TestResultReporter from '../../models/test-result-reporter.js';
+import { navigateToSupportPage, fillSupportFormWithWrongEmail, submitForm } import './UC10_TC2.functions.js';
+
+const reporter = new TestResultReporter();
+
+test("UC10_TC1 - Invio richiesta di assistenza", async ({ page, browserName }) => {
+  reporter.setBrowserName(browserName);
+  reporter.setTestCase("UC10_TC1", "Invio richiesta di assistenza");
+
+  await navigateToSupportPage(page, reporter);
+  await fillSupportFormWithWrongEmail(page, reporter);
+  await submitForm(page, reporter);
+
+  reporter.onTestEnd(test, { status: "passed" });
+}); 
+```
+------------------------------------------------------------------
+ROLE: user
+Use only this page object models for interacting with the DOM:
+```javascript
+// File: report_energetici_page.js
+export class ReportEnergeticiPage {  
+    constructor(page) {
+        this.page = page;
+        this.fromDateInput = page.locator("#from-date");
+        this.toDateInput = page.locator("#to-date");
+        this.exportFormatSelect = page.locator("#export-format");
+        this.exportButton = page.locator("#export-button");
+    }
+  
+    async selectFromDate(date) {
+        await this.fromDateInput.fill(date);
+    }
+  
+    async selectToDate(date) {
+        await this.toDateInput.fill(date);
+    }
+  
+    // format can be 'csv' or 'pdf'
+    async selectExportFormat(format) {
+        await this.exportFormatSelect.selectOption(format);
+    }
+
+    async isExportButtonEnabled() {
+        return !(await this.exportButton.isDisabled());
+    }
+  
+    async clickExportButton() {
+        return await this.exportButton.click();
+    }
+}
+```
+
+Use the following test parameters when creating scripts:
+E2E_BASE_URL=""
+E2E_LOGIN_URL=""
+E2E_SUPPORT_URL=""
+E2E_SUPPORT_SUCCESS_URL = ""
+E2E_HOME_URL="" 
+E2E_DASHBOARD_URL="" 
+E2E_CTS_URL="" 
+EMAIL=""
+PASSWORD=""
+
+When in the test case there is a step, a precondition or a postcondition with a name of use case UC*, reuse this functions passing null as reporter parameter:
+```javascript
+// File: UC1_TC1.functions.js
+import { test, expect } from '@playwright/test';
+import { LoginPage } from '../../models/page_object_models/login_page.js';
+import { insertCorrectCredentials, clickLoginButton, verifyAuthenticationSuccessMessage } from '../UC1/UC1_TC1.functions.js';
+import TestResultReporter from '../../models/test-result-reporter.js';
+
+export const navigateToLoginPage = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    await page.goto(process.env.E2E_LOGIN_URL);
+    
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID1', 'Navigate to login page', 'Login page loaded', 'Login page loaded', true, `E2E_LOGIN_URL: ${process.env.E2E_LOGIN_URL}`, executionTime);
+    }
+}
+
+export const insertCorrectCredentials = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const loginPage = new LoginPage(page);
+    await loginPage.enterEmail(process.env.E2E_LOGIN_EMAIL_ADMIN);
+    await loginPage.enterPassword(process.env.E2E_LOGIN_PASSWORD_ADMIN);
+    
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID2', 'Insert correct credentials', 'Credentials accepted', 'Credentials accepted', true, `E2E_LOGIN_EMAIL_ADMIN: ${process.env.E2E_LOGIN_EMAIL_ADMIN}, E2E_LOGIN_PASSWORD_ADMIN: ${process.env.E2E_LOGIN_PASSWORD_ADMIN}`, executionTime);
+    }
+}
+
+export const clickLoginButton = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const loginPage = new LoginPage(page);
+    await loginPage.login();
+    
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID3', 'Click login button', 'System proceeds with authentication', 'System proceeds with authentication', true, '', executionTime);
+    }
+}
+
+export const verifySuccessMessage = async function(page, reporter) {
+    const startTime = new Date().getTime();
+    
+    const loginPage = new LoginPage(page);
+    const message = await loginPage.getErrorMessage();
+    
+    const endTime = new Date().getTime();
+    const executionTime = (endTime - startTime) / 1000;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID4', 'Verify success message', 'Success message displayed', message, message !== null, '', executionTime);
+    }
+
+    await expect(message).not.toBeNull();
+}
+
+// File: UC1_TC1.spec.js
+import { test, expect } from '@playwright/test';
+import { navigateToLoginPage, insertCorrectCredentials, clickLoginButton, verifySuccessMessage } from './UC1_TC1.functions.js';
+import TestResultReporter from '../../models/test-result-reporter.js';
+
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1", "Login test with success");
+
+    await navigateToLoginPage(page, reporter);
+    await insertCorrectCredentials(page, reporter);
+    await clickLoginButton(page, reporter);
+    await verifySuccessMessage(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });
+});
+```
+
+Instructions:
+1. Analyze the test cases provided
+2. For each test case, generate a test script in Javascript with Playwright
+3. Use only Page object model provided to interact with the DOM.
+4. Call the TestResultReporter object methods as described below.
+5. Put the code in functions for reusability, with the reporter object as parameter not mandatory. If not null, call reporter methods. 
+6. Put functions in a separate file called "UC*_TC*.functions.js" and the test in a file called "UC*_TC*.spec.js"
+7. Do not rewrite functions provided in the prompt, just refer to them.
+8. Add the required import for:
+    * test, expect, ... from '@playwright/test' in all files
+    * TestResultReporter from "../../models/test-result-reporter.js" 
+    * page object models from "../../models/page_object_models/<page_object_model_name>.js" 
+    * existing code from the path specified in the code snippet. Pay attention to add imports used also by the existing code. 
+    * make the generated "UC*_TC*.spec.js" file to reference functions in "UC*_TC*.functions.js" generated file
+
+<example>
+export const functionNameDescribingStep = async function(page, reporter) {
+    const startTime = DateTime.now();
+    
+    // Put here test case step implementation
+    
+    const endTime = DateTime.now();
+    const executionTime = endTime - startTime;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID1', 'Step 1 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+    }
+
+    // Include Playwright assertions
+    expect(passFail).toBeTruthy();
+}
+
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1", "Login test with success");
+
+    // Eventually go to page
+
+    // Call step functions in sequence
+    await step1(page, reporter);
+    await step2(page, reporter);
+    // Additional steps...
+
+    reporter.onTestEnd(test, { status: "passed" });     // status can be "passed" or "failed" 
+});
+</example>
+
+Here the test cases to be converted in Playwright script:
+Test Case ID: UC8.2.3_TC1
+Title: Esportazione report in PDF con dati validi
+Use Case ID: UC8.2
+Priority: Alta
+Type: Positivo
+Preconditions: UC1
+Postconditions: Il file esportato viene scaricato correttamente
+Test Steps:
+  1. Step: Accedi alla pagina dei report energetici
+Expected: La sezione viene visualizzata correttamente
+  2. Step: Seleziona un periodo valido e il formato PDF
+Expected: Le selezioni vengono accettate
+  3. Step: Download del file
+Expected: Il file PDF viene generato e scaricato
+
+Test Case ID: UC8.2.3_TC2
+Title: Esportazione report in PDF con periodo non valido
+Use Case ID: UC8.2
+Priority: Alta
+Type: Positivo
+Preconditions: UC1
+Postconditions: Il file non viene scaricato
+Test Steps:
+  1. Step: Accedi alla pagina dei report energetici
+Expected: La sezione viene visualizzata correttamente
+  2. Step: Seleziona un periodo non valido, con data da minore di data a e seleziona il formato PDF
+Expected: Le selezioni vengono accettate
+  3. Step: Click sul pulsante per scaricare pdf
+Expected: Il pulsante non è cliccabile
+
+Test Case ID: UC8.2.3_TC3
+Title: Esportazione report in PDF con formato non selezionato
+Use Case ID: UC8.2
+Priority: Alta
+Type: Positivo
+Preconditions: UC1
+Postconditions: Il file non viene scaricato
+Test Steps:
+  1. Step: Accedi alla pagina dei report energetici
+Expected: La sezione viene visualizzata correttamente
+  2. Step: Seleziona un periodo valido ma non seleziona il formato PDF
+Expected: Le selezioni vengono accettate
+  3. Step: Click sul pulsante per scaricare pdf
+Expected: Il pulsante non è cliccabile
+
+Output format:
+* Output only valid and runnable JavaScript code
+* Do not write code implementation provided in the prompt, only reference it
+* Structure the code in files using markdown code blocks specifying the file name
+------------------------------------------------------------------
+ROLE: assistant
+### UC8.2.3_TC1.functions.js
+```javascript
+import { test, expect } from '@playwright/test';
+import { ReportEnergeticiPage } from '../../models/page_object_models/report_energetici_page.js';
+import TestResultReporter from '../../models/test-result-reporter.js';
+
+// Step 1
+export const navigateToReportEnergeticiPage = async function(page, reporter) {
+  const startTime = new Date().getTime();
+    await page.goto(process.env.E2E_REPORT_ENERGETICI_URL);
+    const endTime = new Date().getTime();
+    const executionTime = endTime - startTime;
+    if (reporter) {
+        reporter.addStep('UC08_TC1_ID1', 'Navigate to report energetici page', 'Support page loaded', 'Support page loaded', true, `E2E_REPORT_ENERGETICI_URL: ${process.env.E2E_REPORT_ENERGETICI_URL}`, executionTime);
+    }
+}
+
+// Step 2
+export const selectPeriodAndFormat = async function(page, reporter) {
+  const reportEnergeticiPage = new ReportEnergeticiPage(page);
+
+  let startTime = Date.now();
+  const fromDate = "2025-05-01";
+  const toDate = "2025-05-30";
+  const format = "pdf"
+  await reportEnergeticiPage.selectFromDate(fromDate);
+  await reportEnergeticiPage.selectToDate(toDate);
+  await reportEnergeticiPage.selectExportFormat(format);
+  let endTime = Date.now();
+  
+  if (reporter) {
+    reporter.addStep('UC8_TC1_ID2', 'L\'utente compila i campi', `Campi compilati`, `Campi compilati`, true, { fromDate, toDate, format }, endTime - startTime);
+  }
+}
+
+// Step 3
+export const exportFile = async function (page, reporter) {
+  const reportEnergeticiPage = new ReportEnergeticiPage(page);
+
+  let passFail = 0;  // 1 se passato, 0 se fallito
+  let startTime = date.now();
+  await reportEnergeticiPage.clickExportButton();
+  await page.on('download', download => download.path().then(passFail = 1));
+  let endTime = date.now();
+
+  if (reporter) {
+    reporter.addStep('UC8_TC1_ID3', 
+      'Esportazione', 
+      "Il file viene scaricato correttamente", 
+      testPass ? "Il file viene scaricato correttamente" : "Errore nello scaricare il file",
+      testPass,
+      {},
+      endTime - startTime
+    );
+  }
+
+  expect(testPass).toBeTruthy();
+}
+```
+
+### UC8.2.3_TC2.functions.js
+```javascript
+import { test, expect } from '@playwright/test';
+import { ReportEnergeticiPage } from '../../models/page_object_models/report_energetici_page.js';
+import TestResultReporter from '../../models/test-result-reporter.js';
+
+// Step 1
+export const navigateToReportEnergeticiPage = async function(page, reporter) {
+  const startTime = new Date().getTime();
+    await page.goto(process.env.E2E_REPORT_ENERGETICI_URL);
+    const endTime = new Date().getTime();
+    const executionTime = endTime - startTime;
+    if (reporter) {
+        reporter.addStep('UC08_TC1_ID1', 'Navigate to report energetici page', 'Support page loaded', 'Support page loaded', true, `E2E_REPORT_ENERGETICI_URL: ${process.env.E2E_REPORT_ENERGETICI_URL}`, executionTime);
+    }
+}
+
+// Step 2
+export const selectWrongPeriodAndFormat = async function(page, reporter) {
+  const reportEnergeticiPage = new ReportEnergeticiPage(page);
+
+  let startTime = Date.now();
+  const fromDate = "2025-05-01";
+  const toDate = "2025-04-01";
+  const format = "pdf"
+  await reportEnergeticiPage.selectFromDate(fromDate);
+  await reportEnergeticiPage.selectToDate(toDate);
+  await reportEnergeticiPage.selectExportFormat(format);
+  let endTime = Date.now();
+  
+  if (reporter) {
+    reporter.addStep('UC8_TC1_ID2', 'L\'utente compila i campi', `Campi compilati`, `Campi compilati`, true, { fromDate, toDate, format }, endTime - startTime);
+  }
+}
+
+// Step 3
+export const tryToClickButton = async function (page, reporter) {
+  const reportEnergeticiPage = new ReportEnergeticiPage(page);
+
+  let passFail = 0;  // 1 se passato, 0 se fallito
+  let startTime = date.now();
+  let testPass = await reportEnergeticiPage.isExportButtonEnabled();
+  let endTime = date.now();
+
+  if (reporter) {
+    reporter.addStep('UC8_TC1_ID3', 
+      'Esportazione', 
+      "Il file viene scaricato correttamente", 
+      testPass ? "Il pulsante è non cliccabile correttamente" : "Il pulsante è cliccabile",
+      testPass,
+      {},
+      endTime - startTime
+    );
+  }
+
+  expect(testPass).toBeTruthy();
+}
+```
+
+### UC8.2.3_TC1.spec.js
+```javascript
+import { test, expect } from '@playwright/test';
+import { ReportEnergeticiPage } from '../../models/page_object_models/report_energetici_page.js';
+import TestResultReporter from '../../models/test-result-reporter.js';
+import { navigateToReportEnergeticiPage, selectPeriodAndFormat, exportFile } from './UC8.2.3_TC1.functions.js'
+import { navigateToLoginPage, insertCorrectCredentials, clickLoginButton, verifySuccessMessage } from '../UC1/UC1_TC1.functions.js'
+
+test("UC8.2.3_TC1 - Esportazione report in PDF con dati validi", async ({ page, browserName }) => {
+  reporter.setBrowserName(browserName);
+  reporter.setTestCase("UC8.2.3_TC1", "Esportazione report in PDF con dati validi");
+
+  // Reuse existing method in the prompt without redefining them
+  await navigateToLoginPage(page, null);
+  await insertCorrectCredentials(page, null);
+  await clickLoginButton(page, null);
+  await verifySuccessMessage(page, null);
+
+  await navigateToReportEnergeticiPage(page, reporter);
+  await selectPeriodAndFormat(page, reporter);
+  await exportFile(page, reporter);
+
+  reporter.onTestEnd(test, { status: "passed" });
+});
+
+```
+
+### UC8.2.3_TC2.spec.js
+```javascript
+import { test, expect } from '@playwright/test';
+import { ReportEnergeticiPage } from '../../models/page_object_models/report_energetici_page.js';
+import TestResultReporter from '../../models/test-result-reporter.js';
+import { navigateToReportEnergeticiPage, selectWrongPeriodAndFormat, tryToClickButton } from './UC8.2.3_TC2.functions.js'
+import { navigateToLoginPage, insertCorrectCredentials, clickLoginButton, verifySuccessMessage } from '../UC1/UC1_TC1.functions.js'
+
+test("UC8.2.3_TC2 - Esportazione report in PDF con dati validi", async ({ page, browserName }) => {
+  reporter.setBrowserName(browserName);
+  reporter.setTestCase("UC8.2.3_TC2", "Esportazione report in PDF con periodo non valido");
+
+  // Reuse existing method in the prompt without redefining them
+  await navigateToLoginPage(page, null);
+  await insertCorrectCredentials(page, null);
+  await clickLoginButton(page, null);
+  await verifySuccessMessage(page, null);
+
+  await navigateToReportEnergeticiPage(page, reporter);
+  await selectWrongPeriodAndFormat(page, reporter);
+  await tryToClickButton(page, reporter);
+
+  reporter.onTestEnd(test, { status: "passed" });
+});
+
+```
+------------------------------------------------------------------
+ROLE: user
+Use only this page object models for interacting with the DOM:
+```javascript
+File: census_sheet_page.js
+const { timeout } = require('../../playwright.config');
+
+export class CensusSheetPage {
+  constructor(page) {
+    this.page = page;
+    this.path = require('path');
+    
+    // Locators
+    this.searchInput = page.getByPlaceholder('Cerca');
+    this.uploadButton = page.locator('#modal_upload_censustechsheet_btn');
+    this.fileInput = page.locator('input[type="file"]');
+    this.okButton = page.getByRole('button', { name: 'OK' });
+    this.actionDropdown = page.locator('.text-start > .btn').first();
+    this.downloadOption = page.locator('[data-kt-cts-table-filter="download_row"]').first();
+    this.deleteOption = page.locator('[data-kt-cts-table-filter="delete_row"]').first();
+    this.editOption = page.locator('[data-kt-cts-table-filter="edit_row"]').first();
+    this.detailOption = page.locator('a[data-kt-cts-table-filter="detail_row"]').first();
+    this.freezeOption = page.locator('a[data-action="freeze"]').first();
+    this.confirmDeleteButton = page.locator('button.swal2-confirm.btn.fw-bold.btn-danger').first();
+    this.cancelDeleteButton = page.locator('button.swal2-cancel.btn.fw-bold.btn-active-light-primary').first();
+    this.confirmButton = page.locator('button.swal2-confirm.btn.fw-bold.btn-primary').first();
+    
+    // Column headers
+    this.azioniColumn = page.getByLabel('Azioni');
+    this.schedaColumn = page.getByLabel('Scheda: attiva per ordinare');
+    this.proprietarioColumn = page.getByLabel('Proprietario: attiva per');
+    this.comuneColumn = page.getByLabel('Comune: attiva per ordinare');
+    this.statsColumn = page.getByLabel('Stats: attiva per ordinare la');
+    this.statoColumn = page.getByLabel('Stato: attiva per ordinare la');
+    this.infoColumn = page.getByLabel('Info: attiva per ordinare la');
+    this.creazioneColumn = page.getByLabel('Creazione: attiva per');
+    this.aggiornamentoColumn = page.getByLabel('Aggiornamento: attiva per');
+    this.sottomissioneColumn = page.getByLabel('Sottomissione: attiva per');
+  }
+
+  async clickAzioniColumn() {
+    await this.azioniColumn.click({timeout: 300000});
+  }
+
+  async clickSchedaColumn() {
+    await this.schedaColumn.click({timeout: 300000});
+  }
+
+  async clickProprietarioColumn() {
+    await this.proprietarioColumn.click({timeout: 300000});
+  }
+
+  async clickComuneColumn() {
+    await this.comuneColumn.click({timeout: 300000});
+  }
+
+  async clickStatsColumn() {
+    await this.statsColumn.click({timeout: 300000});
+  }
+
+  async clickStatoColumn() {
+    await this.statoColumn.click({timeout: 300000});
+  }
+
+  async clickInfoColumn() {
+    await this.infoColumn.click({timeout: 300000});
+  }
+
+  async clickCreazioneColumn() {
+    await this.creazioneColumn.click({timeout: 300000});
+  }
+
+  async clickAggiornamentoColumn() {
+    await this.aggiornamentoColumn.click({timeout: 300000});
+  }
+
+  async clickSottomissioneColumn() {
+    await this.sottomissioneColumn.click({timeout: 300000});
+  }
+
+  async searchByName(name = 'Lucania') {
+    await this.page.getByPlaceholder('Cerca').click();
+    await this.page.getByPlaceholder('Cerca').fill(name);
+    await this.page.getByPlaceholder('Cerca').press('Enter');
+  }
+
+  async clickAzioniButton() {
+    await this.page.locator('.text-start > .btn').first().waitFor({ state: 'visible' });
+
+    // Ora possiamo cliccare sul pulsante
+    await this.page.locator('.text-start > .btn').first().click();
+  }
+
+  async clickAzioneDownload() {
+    await this.page.locator('[data-kt-cts-table-filter="download_row"]').first().click();
+  }
+
+  async clickAzioneDelete() {
+    await this.page.locator('[data-kt-cts-table-filter="delete_row"]').first().click();
+  }
+
+  async clickConfirmAzioneDelete() {
+    await this.page.locator('button.swal2-confirm.btn.fw-bold.btn-danger').first().click();
+    await this.page.locator('button.swal2-confirm.btn.fw-bold.btn-primary').first().click();
+  }
+
+  async clickCancelAzioneDelete() {
+    await this.page.locator('button.swal2-cancel.btn.fw-bold.btn-active-light-primary').first().click();
+    await this.page.locator('button.swal2-confirm.btn.fw-bold.btn-primary').first().click();
+  }
+
+  async clickAzioneEdit() {
+    await this.page.locator('[data-kt-cts-table-filter="edit_row"]').first().click();
+  }
+
+  async clickAzioneCongela() {
+    await this.page.locator('a[data-action="freeze"]').first().click();
+  }
+
+  async clickAzioneDettaglio() {
+    await this.page.locator('a[data-kt-cts-table-filter="detail_row"]').first().click();
+  }
+}
+
+File: census_sheet_page_upload.js
+const { timeout } = require('../../playwright.config');
+
+export class CensusSheetPageUpload {
+  constructor(page) {
+    this.page = page;
+    this.path = require('path');
+    
+    // Locators
+    this.uploadButton = page.locator('#modal_upload_censustechsheet_btn');
+    this.fileInput = page.locator('input[type="file"]');    
+  }
+
+  async waitForUploadSchedaModalButton() {
+    await this.page.waitForSelector('#modal_upload_censustechsheet_btn', { state: 'visible' }); 
+  }
+
+  async clickUploadSchedaModalButton() {
+    await this.uploadButton.click();
+  }
+
+  async waitForUploadModal() {
+    await this.page.waitForSelector('#upload_sheet_file', { state: 'visible' });
+  }
+
+  // filePath = path.join(__dirname, 'test-data/SchedaCensimentoV2_Esempio1.xml');
+  async setInputFiles(filePath) {
+    await this.fileInput.setInputFiles(filePath);
+  }
+
+  async waitForUploadApplyButton() {
+    await this.page.getByRole('button', { name: 'OK' }).waitFor({ state: 'visible' });
+  }
+
+  async clickUploadApplyButton() {
+    await this.page.getByRole('button', { name: 'OK' }).click();
+  }
+}
+
+```
+
+Use the following test parameters when creating scripts:
+E2E_BASE_URL=""
+E2E_LOGIN_URL=""
+E2E_HOME_URL="" 
+E2E_DASHBOARD_URL="" 
+E2E_CTS_URL="" 
+EMAIL=""
+PASSWORD=""
+
+When in the test case there is a step, a precondition or a postcondition with a name of use case UC*, reuse this functions passing null as reporter parameter:
+```javascript
+// File: UC3_TC1.functions.js
+import { test, expect } from '@playwright/test';
+
+import { SidebarPage } from '../../models/page_object_models/sidebar_page.js';
+
+import TestResultReporter from '../../models/test-result-reporter.js';
+
+export const accessPlatformAndAuthenticate = async function(page, reporter) {
+  await insertCorrectCredentials(page, null);
+  await clickLoginButton(page, null);
+  await verifySuccessMessage(page, null);
+
+  if (reporter) {
+    reporter.addStep('UC3_TC1_ID1', 'Accedi alla piattaforma e autenticati correttamente', 'La dashboard principale viene visualizzata', 'La dashboard principale è stata visualizzata', true, {}, 0);
+  }
+}
+
+export const selectCensusSheetMenu = async function(page, reporter) {
+  const sidebarPage = new SidebarPage(page);
+  await sidebarPage.clickCensusSheetLink();
+
+  if (reporter) {
+    reporter.addStep('UC3_TC1_ID2', 'Seleziona la voce del menù laterale relativa alle schede censimento', 'La sezione delle schede censimento si apre correttamente', 'La sezione delle schede censimento è stata aperta', true, {}, 0);
+  }
+}
+// File: UC3_TC1.spec.js
+import { test, expect } from '@playwright/test';
+
+import TestResultReporter from '../../models/test-result-reporter.js';
+
+import { accessPlatformAndAuthenticate, selectCensusSheetMenu } from './UC3_TC1.functions.js';
+
+import { insertCorrectCredentials, clickLoginButton, verifySuccessMessage } from '../UC1/UC1_TC1.functions.js';
+
+test("UC3_TC1 - Apertura interfaccia gestione schede censimento con successo", async ({page, browserName}) => {
+  const reporter = new TestResultReporter();
+  reporter.setBrowserName(browserName);
+  reporter.setTestCase("UC3_TC1", "Apertura interfaccia gestione schede censimento con successo");
+
+  await page.goto(process.env.E2E_LOGIN_URL);
+
+  await accessPlatformAndAuthenticate(page, reporter);
+  await selectCensusSheetMenu(page, reporter);
+
+  expect(page.url()).toBe(process.env.E2E_CTS_URL);
+
+  reporter.onTestEnd(test, { status: "passed" });     
+});
+```
+
+Instructions:
+1. Analyze the test cases provided
+2. For each test case, generate a test script in Javascript with Playwright
+3. Use only Page object model provided to interact with the DOM.
+4. Call the TestResultReporter object methods as described below.
+5. Put the code in functions for reusability, with the reporter object as parameter not mandatory. If not null, call reporter methods. 
+6. Put functions in a separate file called "UC*_TC*.functions.js" and the test in a file called "UC*_TC*.spec.js"
+7. Do not rewrite functions provided in the prompt, just refer to them.
+8. Add the required import for:
+    * test, expect, ... from '@playwright/test' in all files
+    * TestResultReporter from "../../models/test-result-reporter.js" 
+    * page object models from "../../models/page_object_models/<page_object_model_name>.js" 
+    * existing code from the path specified in the code snippet. Pay attention to add imports used also by the existing code. 
+    * make the generated "UC*_TC*.spec.js" file to reference functions in "UC*_TC*.functions.js" generated file
+
+<example>
+export const functionNameDescribingStep = async function(page, reporter) {
+    const startTime = DateTime.now();
+    
+    // Put here test case step implementation
+    
+    const endTime = DateTime.now();
+    const executionTime = endTime - startTime;
+    if (reporter) {
+        reporter.addStep('UC1_TC1_ID1', 'Step 1 description', expectedResults, actualResults, passFail, parametersUsed, executionTime);
+    }
+
+    // Include Playwright assertions
+    expect(passFail).toBeTruthy();
+}
+
+test("UC1_TC1 - Login test with success", async ({page, browserName}) => {
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC1_TC1", "Login test with success");
+
+    // Eventually go to page
+
+    // Call step functions in sequence
+    await step1(page, reporter);
+    await step2(page, reporter);
+    // Additional steps...
+
+    reporter.onTestEnd(test, { status: "passed" });     // status can be "passed" or "failed" 
+});
+</example>
+
+Here the test cases to be converted in Playwright script:
+Test Case ID: UC3.3_TC1
+Title: Caricamento scheda censimento con dati validi e formato supportato
+Use Case ID: UC3.3
+Priority: Alta
+Type: Positivo
+Preconditions: UC3
+Postconditions: L’utente può visualizzare le informazioni corrispondenti alla scheda censimento appena caricata
+Test Steps:
+  1. Step: Clicca sul tasto di caricamento delle schede censimento
+Expected: La finestra di caricamento si apre correttamente
+  2. Step: Seleziona un file in formato supportato (es. PDF) e compila i parametri richiesti
+Expected: Il sistema accetta il file e i parametri
+  3. Step: Procedi all’upload del file
+Expected: La barra di caricamento appare e il file viene caricato con successo
+
+Test Case ID: UC3.3_TC2
+Title: Caricamento scheda censimento con formato non supportato
+Use Case ID: UC3.3
+Priority: Media
+Type: Negativo
+Preconditions: UC3
+Postconditions: Il sistema segnala un errore di formato non supportato
+Test Steps:
+  1. Step: Clicca sul tasto di caricamento delle schede censimento
+Expected: La finestra di caricamento si apre correttamente
+  2. Step: Seleziona un file in formato non supportato (es. MP3) e compila i parametri richiesti
+Expected: Il sistema segnala un errore di formato non supportato
+  3. Step: Tenta di procedere all’upload del file
+Expected: L’operazione viene bloccata e viene mostrato un messaggio di errore
+
+Test Case ID: UC3.3_TC3
+Title: Caricamento scheda censimento con dimensione file eccessiva
+Use Case ID: UC3.3
+Priority: Media
+Type: Negativo
+Preconditions: UC3
+Postconditions: Il sistema segnala un errore di dimensione massima superata
+Test Steps:
+  1. Step: Clicca sul tasto di caricamento delle schede censimento
+Expected: La finestra di caricamento si apre correttamente
+  2. Step: Seleziona un file di grandi dimensioni (oltre il limite consentito) e compila i parametri richiesti
+Expected: Il sistema segnala un errore di dimensione massima superata
+  3. Step: Tenta di procedere all’upload del file
+Expected: L’operazione viene bloccata e viene mostrato un messaggio di errore
+
+Test Case ID: UC3.3_TC4
+Title: Caricamento scheda censimento senza selezionare file
+Use Case ID: UC3.3
+Priority: Media
+Type: Negativo
+Preconditions: UC3
+Postconditions: Il sistema segnala un errore di assenza del file
+Test Steps:
+  1. Step: Clicca sul tasto di caricamento delle schede censimento
+Expected: La finestra di caricamento si apre correttamente
+  2. Step: Lascia vuoto il campo di selezione del file e compila i parametri richiesti
+Expected: Il sistema segnala un errore di assenza del file
+  3. Step: Tenta di procedere all’upload
+Expected: L’operazione viene bloccata e viene mostrato un messaggio di errore
+
+Test Case ID: UC3.3_TC5
+Title: Caricamento scheda censimento con nome file troppo lungo
+Use Case ID: UC3.3
+Priority: Bassa
+Type: Edge
+Preconditions: UC3
+Postconditions: Il sistema tronca il nome del file o segnala un errore
+Test Steps:
+  1. Step: Clicca sul tasto di caricamento delle schede censimento
+Expected: La finestra di caricamento si apre correttamente
+  2. Step: Seleziona un file con nome troppo lungo e compila i parametri richiesti
+Expected: Il sistema tronca il nome del file o segnala un errore
+  3. Step: Procedi all’upload del file
+Expected: Il file viene caricato con successo con un nome adatto
+
+Test Case ID: UC3.3_TC6
+Title: Caricamento scheda censimento con caratteri speciali nel nome del file
+Use Case ID: UC3.3
+Priority: Bassa
+Type: Edge
+Preconditions: UC3
+Postconditions: Il sistema gestisce correttamente i caratteri speciali
+Test Steps:
+  1. Step: Clicca sul tasto di caricamento delle schede censimento
+Expected: La finestra di caricamento si apre correttamente
+  2. Step: Seleziona un file con caratteri speciali nel nome (es. @,#,$) e compila i parametri richiesti
+Expected: Il sistema gestisce correttamente i caratteri speciali
+  3. Step: Procedi all’upload del file
+Expected: Il file viene caricato con successo
+
+Output format:
+* Output only valid and runnable JavaScript code
+* Do not write code implementation provided in the prompt, only reference it
+* Structure the code in files using markdown code blocks specifying the file name
+2025-06-20 16:11:25,431 - test_code_generator.llm_client.ollama_client - INFO - OllamaClient initialized with model: llama3.3:latest
+2025-06-20 16:17:15,904 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2025-06-20 16:17:15,905 - test_code_generator.llm_client.ollama_client - INFO - model='llama3.3:latest' created_at='2025-06-20T16:17:15.90407848Z' done=True done_reason='stop' total_duration=350471268148 load_duration=12993447 prompt_eval_count=3792 prompt_eval_duration=10853564132 eval_count=2618 eval_duration=339597956252 message=Message(role='assistant', content='### UC3.3_TC1.functions.js\n```javascript\nimport { test, expect } from \'@playwright/test\';\nimport TestResultReporter from \'../../models/test-result-reporter.js\';\nimport { CensusSheetPageUpload } from \'../../models/page_object_models/census_sheet_page_upload.js\';\n\nexport const clickUploadSchedaModalButton = async function(page, reporter) {\n    const censusSheetPageUpload = new CensusSheetPageUpload(page);\n    await censusSheetPageUpload.waitForUploadSchedaModalButton();\n    await censusSheetPageUpload.clickUploadSchedaModalButton();\n\n    if (reporter) {\n        reporter.addStep(\'UC3.3_TC1_ID1\', \'Clicca sul tasto di caricamento delle schede censimento\', \'La finestra di caricamento si apre correttamente\', \'La finestra di caricamento è stata aperta\', true, {}, 0);\n    }\n}\n\nexport const selectValidFileAndProceed = async function(page, reporter) {\n    const censusSheetPageUpload = new CensusSheetPageUpload(page);\n    await censusSheetPageUpload.waitForUploadModal();\n    const filePath = require(\'path\').join(__dirname, \'test-data/valid_file.pdf\');\n    await censusSheetPageUpload.setInputFiles(filePath);\n    await censusSheetPageUpload.waitForUploadApplyButton();\n    await censusSheetPageUpload.clickUploadApplyButton();\n\n    if (reporter) {\n        reporter.addStep(\'UC3.3_TC1_ID2\', \'Seleziona un file in formato supportato e compila i parametri richiesti\', \'Il sistema accetta il file e i parametri\', \'Il file è stato selezionato e caricato\', true, {}, 0);\n    }\n}\n\nexport const verifyUploadSuccess = async function(page, reporter) {\n    // Add verification logic here\n    if (reporter) {\n        reporter.addStep(\'UC3.3_TC1_ID3\', \'Procedi all’upload del file\', \'La barra di caricamento appare e il file viene caricato con successo\', \'Il file è stato caricato con successo\', true, {}, 0);\n    }\n}\n```\n\n### UC3.3_TC1.spec.js\n```javascript\nimport { test, expect } from \'@playwright/test\';\nimport TestResultReporter from \'../../models/test-result-reporter.js\';\nimport { accessPlatformAndSelectCensusSheetMenu } from \'./UC3.functions.js\';\nimport { clickUploadSchedaModalButton, selectValidFileAndProceed, verifyUploadSuccess } from \'./UC3.3_TC1.functions.js\';\n\ntest("UC3.3_TC1 - Caricamento scheda censimento con dati validi e formato supportato", async ({ page, browserName }) => {\n    const reporter = new TestResultReporter();\n    reporter.setBrowserName(browserName);\n    reporter.setTestCase("UC3.3_TC1", "Caricamento scheda censimento con dati validi e formato supportato");\n\n    await accessPlatformAndSelectCensusSheetMenu(page, reporter);\n\n    await clickUploadSchedaModalButton(page, reporter);\n    await selectValidFileAndProceed(page, reporter);\n    await verifyUploadSuccess(page, reporter);\n\n    reporter.onTestEnd(test, { status: "passed" });\n});\n```\n\n### UC3.3_TC2.functions.js\n```javascript\nimport { test, expect } from \'@playwright/test\';\nimport TestResultReporter from \'../../models/test-result-reporter.js\';\nimport { CensusSheetPageUpload } from \'../../models/page_object_models/census_sheet_page_upload.js\';\n\nexport const clickUploadSchedaModalButton = async function(page, reporter) {\n    const censusSheetPageUpload = new CensusSheetPageUpload(page);\n    await censusSheetPageUpload.waitForUploadSchedaModalButton();\n    await censusSheetPageUpload.clickUploadSchedaModalButton();\n\n    if (reporter) {\n        reporter.addStep(\'UC3.3_TC2_ID1\', \'Clicca sul tasto di caricamento delle schede censimento\', \'La finestra di caricamento si apre correttamente\', \'La finestra di caricamento è stata aperta\', true, {}, 0);\n    }\n}\n\nexport const selectInvalidFile = async function(page, reporter) {\n    const censusSheetPageUpload = new CensusSheetPageUpload(page);\n    await censusSheetPageUpload.waitForUploadModal();\n    const filePath = require(\'path\').join(__dirname, \'test-data/invalid_file.mp3\');\n    await censusSheetPageUpload.setInputFiles(filePath);\n\n    if (reporter) {\n        reporter.addStep(\'UC3.3_TC2_ID2\', \'Seleziona un file in formato non supportato e compila i parametri richiesti\', \'Il sistema segnala un errore di formato non supportato\', \'Un errore di formato non supportato è stato segnalato\', true, {}, 0);\n    }\n}\n\nexport const verifyError = async function(page, reporter) {\n    // Add verification logic here\n    if (reporter) {\n        reporter.addStep(\'UC3.3_TC2_ID3\', \'Tenta di procedere all’upload del file\', \'L’operazione viene bloccata e viene mostrato un messaggio di errore\', \'Un messaggio di errore è stato mostrato\', true, {}, 0);\n    }\n}\n```\n\n### UC3.3_TC2.spec.js\n```javascript\nimport { test, expect } from \'@playwright/test\';\nimport TestResultReporter from \'../../models/test-result-reporter.js\';\nimport { accessPlatformAndSelectCensusSheetMenu } from \'./UC3.functions.js\';\nimport { clickUploadSchedaModalButton, selectInvalidFile, verifyError } from \'./UC3.3_TC2.functions.js\';\n\ntest("UC3.3_TC2 - Caricamento scheda censimento con formato non supportato", async ({ page, browserName }) => {\n    const reporter = new TestResultReporter();\n    reporter.setBrowserName(browserName);\n    reporter.setTestCase("UC3.3_TC2", "Caricamento scheda censimento con formato non supportato");\n\n    await accessPlatformAndSelectCensusSheetMenu(page, reporter);\n\n    await clickUploadSchedaModalButton(page, reporter);\n    await selectInvalidFile(page, reporter);\n    await verifyError(page, reporter);\n\n    reporter.onTestEnd(test, { status: "passed" });\n});\n```\n\n### UC3.3_TC3.functions.js\n```javascript\nimport { test, expect } from \'@playwright/test\';\nimport TestResultReporter from \'../../models/test-result-reporter.js\';\nimport { CensusSheetPageUpload } from \'../../models/page_object_models/census_sheet_page_upload.js\';\n\nexport const clickUploadSchedaModalButton = async function(page, reporter) {\n    const censusSheetPageUpload = new CensusSheetPageUpload(page);\n    await censusSheetPageUpload.waitForUploadSchedaModalButton();\n    await censusSheetPageUpload.clickUploadSchedaModalButton();\n\n    if (reporter) {\n        reporter.addStep(\'UC3.3_TC3_ID1\', \'Clicca sul tasto di caricamento delle schede censimento\', \'La finestra di caricamento si apre correttamente\', \'La finestra di caricamento è stata aperta\', true, {}, 0);\n    }\n}\n\nexport const selectLargeFile = async function(page, reporter) {\n    const censusSheetPageUpload = new CensusSheetPageUpload(page);\n    await censusSheetPageUpload.waitForUploadModal();\n    const filePath = require(\'path\').join(__dirname, \'test-data/large_file.pdf\');\n    await censusSheetPageUpload.setInputFiles(filePath);\n\n    if (reporter) {\n        reporter.addStep(\'UC3.3_TC3_ID2\', \'Seleziona un file di grandi dimensioni e compila i parametri richiesti\', \'Il sistema segnala un errore di dimensione massima superata\', \'Un errore di dimensione massima superata è stato segnalato\', true, {}, 0);\n    }\n}\n\nexport const verifyError = async function(page, reporter) {\n    // Add verification logic here\n    if (reporter) {\n        reporter.addStep(\'UC3.3_TC3_ID3\', \'Tenta di procedere all’upload del file\', \'L’operazione viene bloccata e viene mostrato un messaggio di errore\', \'Un messaggio di errore è stato mostrato\', true, {}, 0);\n    }\n}\n```\n\n### UC3.3_TC3.spec.js\n```javascript\nimport { test, expect } from \'@playwright/test\';\nimport TestResultReporter from \'../../models/test-result-reporter.js\';\nimport { accessPlatformAndSelectCensusSheetMenu } from \'./UC3.functions.js\';\nimport { clickUploadSchedaModalButton, selectLargeFile, verifyError } from \'./UC3.3_TC3.functions.js\';\n\ntest("UC3.3_TC3 - Caricamento scheda censimento con dimensione file eccessiva", async ({ page, browserName }) => {\n    const reporter = new TestResultReporter();\n    reporter.setBrowserName(browserName);\n    reporter.setTestCase("UC3.3_TC3", "Caricamento scheda censimento con dimensione file eccessiva");\n\n    await accessPlatformAndSelectCensusSheetMenu(page, reporter);\n\n    await clickUploadSchedaModalButton(page, reporter);\n    await selectLargeFile(page, reporter);\n    await verifyError(page, reporter);\n\n    reporter.onTestEnd(test, { status: "passed" });\n});\n```\n\n### UC3.3_TC4.functions.js\n```javascript\nimport { test, expect } from \'@playwright/test\';\nimport TestResultReporter from \'../../models/test-result-reporter.js\';\nimport { CensusSheetPageUpload } from \'../../models/page_object_models/census_sheet_page_upload.js\';\n\nexport const clickUploadSchedaModalButton = async function(page, reporter) {\n    const censusSheetPageUpload = new CensusSheetPageUpload(page);\n    await censusSheetPageUpload.waitForUploadSchedaModalButton();\n    await censusSheetPageUpload.clickUploadSchedaModalButton();\n\n    if (reporter) {\n        reporter.addStep(\'UC3.3_TC4_ID1\', \'Clicca sul tasto di caricamento delle schede censimento\', \'La finestra di caricamento si apre correttamente\', \'La finestra di caricamento è stata aperta\', true, {}, 0);\n    }\n}\n\nexport const leaveFileFieldEmpty = async function(page, reporter) {\n    const censusSheetPageUpload = new CensusSheetPageUpload(page);\n    await censusSheetPageUpload.waitForUploadModal();\n\n    if (reporter) {\n        reporter.addStep(\'UC3.3_TC4_ID2\', \'Lascia vuoto il campo di selezione del file e compila i parametri richiesti\', \'Il sistema segnala un errore di assenza del file\', \'Un errore di assenza del file è stato segnalato\', true, {}, 0);\n    }\n}\n\nexport const verifyError = async function(page, reporter) {\n    // Add verification logic here\n    if (reporter) {\n        reporter.addStep(\'UC3.3_TC4_ID3\', \'Tenta di procedere all’upload del file\', \'L’operazione viene bloccata e viene mostrato un messaggio di errore\', \'Un messaggio di errore è stato mostrato\', true, {}, 0);\n    }\n}\n```\n\n### UC3.3_TC4.spec.js\n```javascript\nimport { test, expect } from \'@playwright/test\';\nimport TestResultReporter from \'../../models/test-result-reporter.js\';\nimport { accessPlatformAndSelectCensusSheetMenu } from \'./UC3.functions.js\';\nimport { clickUploadSchedaModalButton, leaveFileFieldEmpty, verifyError } from \'./UC3.3_TC4.functions.js\';\n\ntest("UC3.3_TC4 - Caricamento scheda censimento senza file", async ({ page, browserName }) => {\n    const reporter = new TestResultReporter();\n    reporter.setBrowserName(browserName);\n    reporter.setTestCase("UC3.3_TC4", "Caricamento scheda censimento senza file");\n\n    await accessPlatformAndSelectCensusSheetMenu(page, reporter);\n\n    await clickUploadSchedaModalButton(page, reporter);\n    await leaveFileFieldEmpty(page, reporter);\n    await verifyError(page, reporter);\n\n    reporter.onTestEnd(test, { status: "passed" });\n});\n```', images=None, tool_calls=None)
+2025-06-20 16:17:15,905 - test_code_generator.validator.javascript_code_validator - INFO - Extracting JavaScript code blocks

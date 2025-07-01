@@ -1,0 +1,2 @@
+Siccome si ha elevata dipendenza tra i test, basta che il primo venga generato con url sbagliato per non far funzionare tutti i successivi.
+Andando però a correggere l'url, si notano comunque buoni risultati.

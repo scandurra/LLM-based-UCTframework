@@ -4,43 +4,41 @@ import { DashboardPageBenchmarkingKpi } from '../../models/page_object_models/da
 
 import TestResultReporter from '../../models/test-result-reporter.js';
 
-import { accessPlatform, selectDashboardMenu } from '../UC2/UC2_TC1.functions.js';
+import { accessPlatform, openDashboard } from '../UC2/UC2_TC1.functions.js';
 
-// Step 1: Seleziona due o più comuni dal menù a tendina
 export const selectCities = async function(page, reporter) {
   const startTime = new Date().getTime();
-  const dashboardPage = new DashboardPageBenchmarkingKpi(page);
-  await dashboardPage.openCitySelector();
-  await dashboardPage.selectCityByIndex(0);
-  await dashboardPage.selectCityByIndex(1);
+  const dashboardPageBenchmarkingKpi = new DashboardPageBenchmarkingKpi(page);
+  await dashboardPageBenchmarkingKpi.selectCity(0); // Select first city
+  await dashboardPageBenchmarkingKpi.selectCity(1); // Select second city
   const endTime = new Date().getTime();
   const executionTime = (endTime - startTime) / 1000;
   if (reporter) {
-    reporter.addStep('UC2.4_TC1_ID1', 'Select cities from dropdown menu', 'Cities are selected correctly', 'Cities are selected correctly', true, '', executionTime);
+    reporter.addStep('UC2.4_TC1_ID1', 'Seleziona due o più comuni dal menù a tendina', 'I comuni vengono selezionati correttamente', 'I comuni vengono selezionati correttamente', true, '', executionTime);
   }
+  expect(await dashboardPageBenchmarkingKpi.isCitySelectorVisible()).toBeTruthy();
 }
 
-// Step 2: Scegli un KPI valido per il confronto
 export const selectKPI = async function(page, reporter) {
   const startTime = new Date().getTime();
-  const dashboardPage = new DashboardPageBenchmarkingKpi(page);
-  await dashboardPage.selectKPI();
+  const dashboardPageBenchmarkingKpi = new DashboardPageBenchmarkingKpi(page);
+  await dashboardPageBenchmarkingKpi.selectKPI();
   const endTime = new Date().getTime();
   const executionTime = (endTime - startTime) / 1000;
   if (reporter) {
-    reporter.addStep('UC2.4_TC1_ID2', 'Choose a valid KPI for comparison', 'KPI is accepted', 'KPI is accepted', true, '', executionTime);
+    reporter.addStep('UC2.4_TC1_ID2', 'Scegli un KPI valido per il confronto', 'Il KPI viene accettato', 'Il KPI viene accettato', true, '', executionTime);
   }
+  expect(await dashboardPageBenchmarkingKpi.isKPISelectorVisible()).toBeTruthy();
 }
 
-// Step 3: Conferma la richiesta cliccando sul pulsante
 export const confirmRequest = async function(page, reporter) {
   const startTime = new Date().getTime();
-  const dashboardPage = new DashboardPageBenchmarkingKpi(page);
-  const result = await dashboardPage.applyKPIAndVerify();
-  expect(result).toBeTruthy();
+  const dashboardPageBenchmarkingKpi = new DashboardPageBenchmarkingKpi(page);
+  const result = await dashboardPageBenchmarkingKpi.applyKPIAndVerify(5000);
   const endTime = new Date().getTime();
   const executionTime = (endTime - startTime) / 1000;
   if (reporter) {
-    reporter.addStep('UC2.4_TC1_ID3', 'Confirm request by clicking on the button', 'Comparison chart is displayed', 'Comparison chart is displayed', result, '', executionTime);
+    reporter.addStep('UC2.4_TC1_ID3', 'Conferma la richiesta cliccando sul pulsante', 'Il grafico con il confronto desiderato viene visualizzato', result ? 'Il grafico con il confronto desiderato viene visualizzato' : 'Errore nella visualizzazione del grafico', result, '', executionTime);
   }
+  expect(result).toBeTruthy();
 }

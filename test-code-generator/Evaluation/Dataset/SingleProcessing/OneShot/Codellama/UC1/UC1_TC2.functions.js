@@ -34,7 +34,7 @@ export const clickLoginButton = async function(page, reporter) {
 // Step 3
 export const verifyErrorMessage = async function(page, reporter) {
     let startTime = Date.now();
-    // Verify error message is displayed
+    await page.waitForSelector('error-message');
     let endTime = Date.now();
     let executionTime = endTime - startTime;
     if (reporter) {
