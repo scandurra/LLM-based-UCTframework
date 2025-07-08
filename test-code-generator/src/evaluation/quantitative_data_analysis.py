@@ -2,6 +2,8 @@ import pandas as pd
 import os
 from pathlib import Path
 import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 def process_configuration_files(base_folder_path, output_file='analysis_results.xlsx'):
     """
@@ -21,7 +23,15 @@ def process_configuration_files(base_folder_path, output_file='analysis_results.
     
     # Get all subdirectories (configurations)
     config_folders = [f for f in base_path.iterdir() if f.is_dir()]
-    config_folders.sort()  # Sort for consistent ordering
+    
+    # Sort configurations as integers if possible, otherwise as strings
+    def sort_key(folder):
+        try:
+            return (0, int(folder.name))  # Try to convert to integer
+        except ValueError:
+            return (1, folder.name)  # Fall back to string sorting
+    
+    config_folders.sort(key=sort_key)  # Sort for consistent ordering
     
     print(f"Found {len(config_folders)} configuration folders")
     
@@ -145,8 +155,11 @@ def process_configuration_files(base_folder_path, output_file='analysis_results.
                 
                 # Calculate and add success rate (percentage of "Yes" responses)
                 yes_count = value_counts.get('Yes', 0)
+                no_count = value_counts.get('No', 0)
                 success_rate = (yes_count / total_count * 100) if total_count > 0 else 0
                 summary_stats[f'{cat_metric}_success_rate'] = success_rate
+                summary_stats[f'{cat_metric}_success_count'] = yes_count
+                summary_stats[f'{cat_metric}_failure_count'] = no_count
                 
                 # Add total count
                 summary_stats[f'{cat_metric}_total_count'] = total_count
@@ -156,6 +169,37 @@ def process_configuration_files(base_folder_path, output_file='analysis_results.
     # Create summary DataFrame with all configurations
     summary_df = pd.DataFrame(all_configurations_summary)
     summary_df.set_index('Configuration', inplace=True)
+    
+    # Add missing configurations with zero values
+    missing_configs = ['2', '8', '10', '12']
+    categorical_metrics = ['compilation_success', 'execution_without_error', 'test_pass']
+    
+    for missing_config in missing_configs:
+        if missing_config not in summary_df.index:
+            # Create zero entry for missing configuration
+            zero_entry = {}
+            for cat_metric in categorical_metrics:
+                zero_entry[f'{cat_metric}_success_count'] = 0
+                zero_entry[f'{cat_metric}_failure_count'] = 0
+                zero_entry[f'{cat_metric}_success_rate'] = 0.0
+                zero_entry[f'{cat_metric}_total_count'] = 0
+                zero_entry[f'{cat_metric}_Yes_count'] = 0
+                zero_entry[f'{cat_metric}_No_count'] = 0
+                zero_entry[f'{cat_metric}_Yes_percent'] = 0.0
+                zero_entry[f'{cat_metric}_No_percent'] = 0.0
+            
+            # Add the zero entry to summary_df
+            summary_df.loc[missing_config] = zero_entry
+    
+    # Sort the summary dataframe by configuration names as integers
+    def sort_index_key(config_name):
+        try:
+            return (0, int(config_name))  # Try to convert to integer
+        except ValueError:
+            return (1, config_name)  # Fall back to string sorting
+    
+    sorted_configs = sorted(summary_df.index, key=sort_index_key)
+    summary_df = summary_df.reindex(sorted_configs)
     
     # Save all results to Excel file
     with pd.ExcelWriter(output_file, engine='openpyxl') as writer:
@@ -209,6 +253,184 @@ def process_configuration_files(base_folder_path, output_file='analysis_results.
     
     return configuration_data, summary_df
 
+def create_success_failure_plots(summary_df, output_folder='plots'):
+    """
+    Create three plots showing success/failure rates for each configuration.
+    
+    Args:
+        summary_df (pd.DataFrame): Summary dataframe with success/failure counts
+        output_folder (str): Folder to save plots
+    """
+    
+    # Create output folder if it doesn't exist
+    Path(output_folder).mkdir(exist_ok=True)
+    
+    # Set up the style - white background
+    plt.style.use('default')
+    plt.rcParams['figure.facecolor'] = 'white'
+    plt.rcParams['axes.facecolor'] = 'white'
+    
+    # Define the metrics to plot
+    metrics = {
+        'compilation_success': 'Compilation Success',
+        'execution_without_error': 'Execution Without Error', 
+        'test_pass': 'Assertion Validity'
+    }
+    
+    # Define labels for each metric
+    metric_labels = {
+        'compilation_success': {
+            'success': 'Successfully compiled number',
+            'failure': 'Non-successfully compiled number',
+            'rate': 'Successfully compiled rate',
+            'number': 'Number of compilations'
+        },
+        'execution_without_error': {
+            'success': 'Successfully executed number',
+            'failure': 'Non-successfully executed number', 
+            'rate': 'Successfully executed rate',
+            'number': 'Number of executions'
+        },
+        'test_pass': {
+            'success': 'Successfully passed tests number',
+            'failure': 'Non-successfully passed tests number',
+            'rate': 'Successfully passed tests rate',
+            'number': 'Number of assertion validities'
+        }
+    }
+    
+    for metric_key, metric_title in metrics.items():
+        # Extract success and failure counts
+        success_col = f'{metric_key}_success_count'
+        failure_col = f'{metric_key}_failure_count'
+        
+        if success_col in summary_df.columns and failure_col in summary_df.columns:
+            # Create the plot data - handle missing values as 0
+            plot_data = pd.DataFrame({
+                'Configuration': summary_df.index,
+                'Success': summary_df[success_col].fillna(0).astype(int),
+                'Failure': summary_df[failure_col].fillna(0).astype(int)
+            })
+            
+            # Sort configurations as integers if possible
+            def sort_config_key(config_name):
+                try:
+                    return (0, int(config_name))
+                except ValueError:
+                    return (1, config_name)
+            
+            # Sort the plot data by configuration names as integers
+            plot_data['sort_key'] = plot_data['Configuration'].apply(sort_config_key)
+            plot_data = plot_data.sort_values('sort_key').drop('sort_key', axis=1).reset_index(drop=True)
+            
+            # Calculate success rate for annotation
+            plot_data['Total'] = plot_data['Success'] + plot_data['Failure']
+            # Handle division by zero - if total is 0, success rate is 0
+            plot_data['Success_Rate'] = np.where(
+                plot_data['Total'] > 0,
+                (plot_data['Success'] / plot_data['Total'] * 100).round(1),
+                0.0
+            )
+            
+            # Create the figure
+            fig, ax = plt.subplots(figsize=(14, 8))
+            
+            # Set up bar positions
+            x = np.arange(len(plot_data))
+            width = 0.6
+            
+            # Get labels for this specific metric
+            labels = metric_labels[metric_key]
+            
+            # Create stacked bars - success on top, failure below x-axis
+            bars1 = ax.bar(x, plot_data['Success'], width, label=labels['success'], 
+                          color='#FFA500', alpha=0.8)
+            bars2 = ax.bar(x, -plot_data['Failure'], width, 
+                          label=labels['failure'], color='#4682B4', alpha=0.8)
+            
+            # Set y-axis to show negative values for failures
+            max_success = plot_data['Success'].max() if plot_data['Success'].max() > 0 else 100
+            max_failure = plot_data['Failure'].max() if plot_data['Failure'].max() > 0 else 100
+            ax.set_ylim(-max_failure * 1.1, max_success * 1.1)
+            
+            # Add success rate line
+            ax2 = ax.twinx()
+            line = ax2.plot(x, plot_data['Success_Rate'], 'ro-', linewidth=2, 
+                           markersize=6, label=labels['rate'])
+            
+            # Align the right y-axis so that 0% aligns with y=0 (submission count)
+            # Set the scale so that 100% aligns with the top of the success bars
+            max_success = plot_data['Success'].max() if plot_data['Success'].max() > 0 else 100
+            max_failure = plot_data['Failure'].max() if plot_data['Failure'].max() > 0 else 100
+            
+            # Calculate the range for proper alignment
+            y_range = max_success * 1.1 + max_failure * 1.1
+            
+            # Set right y-axis limits to align 0% with y=0
+            ax2.set_ylim(-100 * (max_failure * 1.1) / (max_success * 1.1), 100)
+            ax2.set_ylabel(f'{labels["rate"]} (%)', fontsize=12)
+            
+            # Customize the main axis
+            ax.set_xlabel('Configuration', fontsize=12, fontweight='bold')
+            ax.set_ylabel(labels['number'], fontsize=12, fontweight='bold')
+            ax.set_title(f'{metric_title} by Configuration', fontsize=14, fontweight='bold', pad=50)
+            ax.set_xticks(x)
+            ax.set_xticklabels(plot_data['Configuration'], rotation=45, ha='right')
+            
+            # Add value labels on bars (only if values > 0)
+            for i, (bar1, bar2) in enumerate(zip(bars1, bars2)):
+                # Success count on success bar (above x-axis)
+                if plot_data['Success'].iloc[i] > 0:
+                    ax.text(bar1.get_x() + bar1.get_width()/2, bar1.get_height()/2,
+                           f'{int(plot_data["Success"].iloc[i])}',
+                           ha='center', va='center', fontweight='bold', color='white')
+                
+                # Failure count on failure bar (below x-axis)
+                if plot_data['Failure'].iloc[i] > 0:
+                    ax.text(bar2.get_x() + bar2.get_width()/2, bar2.get_height()/2,
+                           f'{int(plot_data["Failure"].iloc[i])}',
+                           ha='center', va='center', fontweight='bold', color='white')
+            
+            # Add success rate annotations at the top of the dots
+            for i in range(len(plot_data)):
+                if plot_data['Total'].iloc[i] > 0:
+                    ax2.annotate(f'{plot_data["Success_Rate"].iloc[i]:.2f}%',
+                                xy=(i, plot_data['Success_Rate'].iloc[i]),
+                                xytext=(0, 8), textcoords='offset points',
+                                ha='center', va='bottom', fontweight='bold',
+                                fontsize=10)
+            
+            # Add legends
+            ax.legend(loc='lower left', bbox_to_anchor=(0, 1))
+            ax2.legend(loc='lower right', bbox_to_anchor=(1, 1))
+            
+            # Add horizontal line at y=0 to separate success and failure
+            ax.axhline(y=0, color='black', linewidth=0.8)
+            
+            # Add horizontal grid lines only
+            ax.grid(True, alpha=0.3, axis='y', linestyle='-', linewidth=0.5)
+            ax.set_axisbelow(True)  # Put grid behind bars
+            
+            # Remove spines except bottom and left
+            ax.spines['top'].set_visible(False)
+            ax.spines['right'].set_visible(False)
+            ax2.spines['top'].set_visible(False)
+            ax2.spines['left'].set_visible(False)
+            
+            # Adjust layout and save
+            plt.tight_layout()
+            
+            # Save the plot
+            filename = f'{metric_key}_analysis.png'
+            filepath = Path(output_folder) / filename
+            plt.savefig(filepath, dpi=300, bbox_inches='tight')
+            print(f"Plot saved: {filepath}")
+            
+            plt.show()
+            plt.close()
+        else:
+            print(f"Warning: Required columns not found for {metric_title}")
+
 def print_summary_info(configuration_data, summary_df):
     """Print summary information about the processed data."""
     print("\n=== PROCESSING SUMMARY ===")
@@ -246,6 +468,10 @@ if __name__ == "__main__":
         # Optional: Display first few rows of summary
         print("\n=== SUMMARY TABLE PREVIEW ===")
         print(summary.head())
+        
+        # Generate the plots
+        print("\n=== GENERATING PLOTS ===")
+        create_success_failure_plots(summary, output_folder='plots')
         
     except FileNotFoundError:
         print(f"Error: Folder '{folder_path}' not found. Please check the path.")
@@ -287,7 +513,15 @@ def customize_cell_locations(base_folder_path, custom_metric_cells, output_file=
     
     # Get all subdirectories (configurations)
     config_folders = [f for f in base_path.iterdir() if f.is_dir()]
-    config_folders.sort()
+    
+    # Sort configurations as integers if possible, otherwise as strings
+    def sort_key(folder):
+        try:
+            return (0, int(folder.name))  # Try to convert to integer
+        except ValueError:
+            return (1, folder.name)  # Fall back to string sorting
+    
+    config_folders.sort(key=sort_key)
     
     print(f"Found {len(config_folders)} configuration folders")
     print(f"Using custom cell locations: {custom_metric_cells}")
