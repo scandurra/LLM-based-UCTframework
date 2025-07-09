@@ -4,6 +4,8 @@ import os
 from pathlib import Path
 import openpyxl
 from scipy import stats
+import matplotlib.pyplot as plt
+import seaborn as sns
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -109,6 +111,7 @@ def process_excel_files(base_path):
     
     all_data = []
     configuration_tables = {}
+    raw_ratings_data = []  # New: store individual ratings for box plots
     
     # Iterate through output folders (4 outputs)
     for output_folder in base_path.iterdir():
@@ -163,11 +166,21 @@ def process_excel_files(base_path):
                     empty_experts = []
                     
                     # Extract values from each expert sheet
-                    for sheet_name in expert_sheets:
+                    for expert_idx, sheet_name in enumerate(expert_sheets):
                         sheet = workbook[sheet_name]
                         cell_value = sheet[cell_ref].value
                         numeric_value = extract_numeric_value(cell_value)
                         expert_values.append(numeric_value)
+                        
+                        # Store individual ratings for box plots
+                        if not pd.isna(numeric_value):
+                            raw_ratings_data.append({
+                                'output': output_name,
+                                'configuration': config_name,
+                                'variable': var_name,
+                                'expert': sheet_name,
+                                'rating': numeric_value
+                            })
                         
                         # Track empty evaluations
                         if pd.isna(numeric_value):
@@ -210,7 +223,7 @@ def process_excel_files(base_path):
                 print(f"    Error processing {excel_file}: {str(e)}")
                 raise
     
-    return all_data, configuration_tables
+    return all_data, configuration_tables, raw_ratings_data
 
 def create_configuration_tables(configuration_tables):
     """Create individual tables for each configuration"""
@@ -522,12 +535,335 @@ def calculate_fleiss_kappa_by_variable(all_data):
     
     return pd.DataFrame(kappa_results)
 
-def main(base_path, output_file):
+def create_box_plots(raw_ratings_data, output_dir="plots"):
+    """
+    Create 9 box plots (8 for individual metrics + 1 overall)
+    X-axis: Average rating values (1-5)
+    Y-axis: Configuration (1-12, ordered numerically, including missing ones)
+    Uses average values across experts for each configuration-output combination
+    """
+    # Create output directory if it doesn't exist
+    os.makedirs(output_dir, exist_ok=True)
+    
+    # Convert raw ratings to DataFrame
+    df_ratings = pd.DataFrame(raw_ratings_data)
+    
+    if df_ratings.empty:
+        print("No ratings data available for box plots")
+        return
+    
+    # Set matplotlib style to match reference plot
+    plt.style.use('default')
+    plt.rcParams['font.size'] = 10
+    plt.rcParams['axes.linewidth'] = 1.0
+    
+    # Define colors for different configurations (cycling through distinct colors)
+    colors = [
+        '#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b',
+        '#e377c2', '#7f7f7f', '#bcbd22', '#17becf', '#aec7e8', '#ffbb78'
+    ]
+    
+    # Define all possible configuration numbers (1-12)
+    all_configurations = [str(i) for i in range(1, 13)]  # ['1', '2', '3', ..., '12']
+    
+    # Define variable names and their display names
+    variables = [
+        'Naming_coherence',
+        'Readability_Accessibility', 
+        'Completeness_functional_coherence',
+        'Proper_interaction_with_DOM',
+        'Proper_import_statements',
+        'Reuse_existing_test_code',
+        'Usage_env_variables',
+        'Correct_use_Reporter_component'
+    ]
+    
+    variable_display_names = {
+        'Naming_coherence': 'Naming Coherence',
+        'Readability_Accessibility': 'Readability & Accessibility',
+        'Completeness_functional_coherence': 'Completeness & Functional Coherence',
+        'Proper_interaction_with_DOM': 'Proper Interaction with DOM',
+        'Proper_import_statements': 'Proper Import Statements',
+        'Reuse_existing_test_code': 'Reuse Existing Test Code',
+        'Usage_env_variables': 'Usage of Environment Variables',
+        'Correct_use_Reporter_component': 'Correct Use of Reporter Component'
+    }
+    
+    def sort_configurations_numerically(config_list):
+        """Sort configurations numerically (treating them as numbers)"""
+        def extract_number(config_name):
+            # Extract numeric part from configuration name
+            import re
+            numbers = re.findall(r'\d+', str(config_name))
+            return int(numbers[0]) if numbers else float('inf')
+        
+        return sorted(config_list, key=extract_number)
+    
+    def prepare_boxplot_data_with_missing(config_averages, all_configs):
+        """Prepare data for boxplot including empty positions for missing configurations"""
+        data_to_plot = []
+        positions = []
+        config_labels = []
+        
+        for i, config in enumerate(all_configs):
+            if config in config_averages and len(config_averages[config]) > 0:
+                # Configuration has data - add it
+                data_to_plot.append(config_averages[config])
+                positions.append(i)
+            else:
+                # Configuration missing - add empty data
+                data_to_plot.append([])  # Empty list will not create a box
+                positions.append(i)
+            
+            config_labels.append(config)
+        
+        return data_to_plot, positions, config_labels
+    
+    # Create box plots for each variable using average values
+    for variable in variables:
+        if variable not in df_ratings['variable'].values:
+            print(f"Warning: Variable '{variable}' not found in data")
+            continue
+            
+        var_data = df_ratings[df_ratings['variable'] == variable].copy()
+        
+        if var_data.empty:
+            print(f"Warning: No data for variable '{variable}'")
+            continue
+        
+        # Create the plot with reference style
+        fig, ax = plt.subplots(figsize=(8, 8))  # Increased height for 12 configurations
+        
+        # Calculate average ratings for each configuration-output combination
+        config_averages = {}
+        available_configs = sort_configurations_numerically(var_data['configuration'].unique())
+        
+        for config in available_configs:
+            config_data = var_data[var_data['configuration'] == config]
+            output_averages = []
+            
+            # Calculate average rating for each output within this configuration
+            for output in config_data['output'].unique():
+                output_data = config_data[config_data['output'] == output]
+                ratings = output_data['rating'].dropna().values
+                
+                if len(ratings) > 0:
+                    avg_rating = np.mean(ratings)
+                    output_averages.append(avg_rating)
+            
+            if output_averages:
+                config_averages[config] = output_averages
+        
+        # Prepare data including missing configurations
+        data_to_plot, positions, config_labels = prepare_boxplot_data_with_missing(
+            config_averages, all_configurations)
+        
+        # Create box plot with all configurations (including missing ones)
+        if any(len(data) > 0 for data in data_to_plot):
+            # Filter out empty data for actual plotting, but keep positions
+            plot_data = []
+            plot_positions = []
+            
+            for i, data in enumerate(data_to_plot):
+                if len(data) > 0:
+                    plot_data.append(data)
+                    plot_positions.append(positions[i])
+            
+            if plot_data:
+                # Create box plot with reference style
+                box_parts = ax.boxplot(plot_data, 
+                                     positions=plot_positions,
+                                     vert=False,  # Horizontal orientation
+                                     patch_artist=True,  # Fill boxes with color
+                                     widths=0.6,
+                                     showfliers=True,  # Show outliers
+                                     flierprops={'marker': 'o', 'markersize': 4, 'alpha': 0.7})
+                
+                # Color the boxes with different colors
+                for i, patch in enumerate(box_parts['boxes']):
+                    # Use color based on actual configuration number
+                    config_num = int(config_labels[plot_positions[i]]) - 1
+                    patch.set_facecolor(colors[config_num % len(colors)])
+                    patch.set_alpha(0.8)
+                    patch.set_linewidth(1)
+                    patch.set_edgecolor('black')
+                
+                # Style other box plot elements
+                for element in ['whiskers', 'caps', 'medians']:
+                    for item in box_parts[element]:
+                        item.set_color('black')
+                        item.set_linewidth(1)
+            
+            # Set y-axis labels for ALL configurations (1-12)
+            ax.set_yticks(list(range(len(all_configurations))))
+            ax.set_yticklabels(all_configurations)
+            
+            # Set x-axis (average ratings)
+            ax.set_xlim(0.5, 5.5)
+            ax.set_xticks([1, 2, 3, 4, 5])
+            ax.set_xticklabels(['1 (Poor)', '2 (Below Average)', '3 (Average)', '4 (Good)', '5 (Excellent)'])
+            
+            # Remove grid and clean up appearance
+            ax.grid(False)
+            ax.set_axisbelow(True)
+            
+            # Simple labels
+            ax.set_xlabel('Average Rating')
+            ax.set_ylabel('Configuration')
+            ax.set_title(f'{variable_display_names.get(variable, variable)}', 
+                        fontsize=12, pad=15)
+            
+            # Remove top and right spines for cleaner look
+            ax.spines['top'].set_visible(False)
+            ax.spines['right'].set_visible(False)
+            
+            # Adjust layout and save
+            plt.tight_layout()
+            filename = f"{output_dir}/boxplot_{variable.lower()}.png"
+            plt.savefig(filename, dpi=300, bbox_inches='tight', facecolor='white')
+            plt.close()
+            
+            print(f"✅ Box plot saved: {filename}")
+            
+            # Print summary statistics for this variable
+            print(f"    Variable: {variable}")
+            for config in all_configurations:
+                if config in config_averages:
+                    avg_vals = config_averages[config]
+                    print(f"      {config}: {len(avg_vals)} outputs, mean={np.mean(avg_vals):.2f}, std={np.std(avg_vals):.2f}")
+                else:
+                    print(f"      {config}: No data")
+        else:
+            print(f"⚠️  No valid data for {variable}")
+            plt.close()
+    
+    # Create overall box plot (combining all variables using averages)
+    print("Creating overall box plot...")
+    
+    # Calculate overall average scores for each configuration
+    overall_averages = {}
+    
+    available_configs = sort_configurations_numerically(df_ratings['configuration'].unique())
+    
+    for config in available_configs:
+        config_data = df_ratings[df_ratings['configuration'] == config]
+        output_overall_averages = []
+        
+        # For each output, calculate the overall average across all variables
+        for output in config_data['output'].unique():
+            output_data = config_data[config_data['output'] == output]
+            
+            # Calculate average for each variable, then take overall average
+            variable_averages = []
+            for variable in variables:
+                var_data = output_data[output_data['variable'] == variable]
+                if not var_data.empty:
+                    ratings = var_data['rating'].dropna().values
+                    if len(ratings) > 0:
+                        var_avg = np.mean(ratings)
+                        variable_averages.append(var_avg)
+            
+            if variable_averages:
+                output_overall_avg = np.mean(variable_averages)
+                output_overall_averages.append(output_overall_avg)
+        
+        if output_overall_averages:
+            overall_averages[config] = output_overall_averages
+
+    if overall_averages:
+        fig, ax = plt.subplots(figsize=(8, 8))  # Increased height for 12 configurations
+        
+        # Prepare data for overall box plot including missing configurations
+        data_to_plot, positions, config_labels = prepare_boxplot_data_with_missing(
+            overall_averages, all_configurations)
+        
+        # Filter out empty data for actual plotting, but keep positions
+        plot_data = []
+        plot_positions = []
+        
+        for i, data in enumerate(data_to_plot):
+            if len(data) > 0:
+                plot_data.append(data)
+                plot_positions.append(positions[i])
+        
+        if plot_data:
+            # Create box plot with reference style
+            box_parts = ax.boxplot(plot_data, 
+                                 positions=plot_positions,
+                                 vert=False,  # Horizontal orientation
+                                 patch_artist=True,  # Fill boxes with color
+                                 widths=0.6,
+                                 showfliers=True,  # Show outliers
+                                 flierprops={'marker': 'o', 'markersize': 4, 'alpha': 0.7})
+            
+            # Color the boxes with different colors
+            for i, patch in enumerate(box_parts['boxes']):
+                # Use color based on actual configuration number
+                config_num = int(config_labels[plot_positions[i]]) - 1
+                patch.set_facecolor(colors[config_num % len(colors)])
+                patch.set_alpha(0.8)
+                patch.set_linewidth(1)
+                patch.set_edgecolor('black')
+            
+            # Style other box plot elements
+            for element in ['whiskers', 'caps', 'medians']:
+                for item in box_parts[element]:
+                    item.set_color('black')
+                    item.set_linewidth(1)
+        
+        # Set y-axis labels for ALL configurations (1-12)
+        ax.set_yticks(list(range(len(all_configurations))))
+        ax.set_yticklabels(all_configurations)
+        
+        # Set x-axis (average ratings)
+        ax.set_xlim(0.5, 5.5)
+        ax.set_xticks([1, 2, 3, 4, 5])
+        ax.set_xticklabels(['1 (Poor)', '2 (Below Average)', '3 (Average)', '4 (Good)', '5 (Excellent)'])
+        
+        # Remove grid and clean up appearance
+        ax.grid(False)
+        ax.set_axisbelow(True)
+        
+        # Simple labels
+        ax.set_xlabel('Overall Average Rating')
+        ax.set_ylabel('Configuration')
+        ax.set_title('Overall Average Rating Distribution by Configuration', 
+                    fontsize=12, pad=15)
+        
+        # Remove top and right spines for cleaner look
+        ax.spines['top'].set_visible(False)
+        ax.spines['right'].set_visible(False)
+        
+        # Adjust layout and save
+        plt.tight_layout()
+        filename = f"{output_dir}/boxplot_overall.png"
+        plt.savefig(filename, dpi=300, bbox_inches='tight', facecolor='white')
+        plt.close()
+        
+        print(f"✅ Overall box plot saved: {filename}")
+        
+        # Print summary statistics for overall
+        print(f"    Overall Summary:")
+        for config in all_configurations:
+            if config in overall_averages:
+                avg_vals = overall_averages[config]
+                print(f"      {config}: {len(avg_vals)} outputs, mean={np.mean(avg_vals):.2f}, std={np.std(avg_vals):.2f}")
+            else:
+                print(f"      {config}: No data")
+    else:
+        print("⚠️  No data available for overall box plot")
+    
+    print(f"\n📊 All box plots saved in '{output_dir}' directory")
+    print(f"📈 Box plots show distribution of average ratings across outputs for each configuration")
+    print(f"📋 Y-axis shows all configurations (1-12), including missing ones without boxes")
+    print(f"🔍 Missing configurations: appear as empty spaces on Y-axis")
+
+def main(base_path, output_file, create_plots=True):
     """Main processing function"""
     print("Starting Excel file processing...")
     
     # Process all Excel files
-    all_data, configuration_tables = process_excel_files(base_path)
+    all_data, configuration_tables, raw_ratings_data = process_excel_files(base_path)
     
     if not all_data:
         print("No data found. Please check the file structure and paths.")
@@ -562,6 +898,15 @@ def main(base_path, output_file):
     print("Creating configuration metrics summary...")
     config_metrics_df = create_configuration_metrics_summary(df_aggregated, kappa_df)
     
+    # Create box plots if requested
+    if create_plots:
+        print("Creating box plots...")
+        try:
+            create_box_plots(raw_ratings_data)
+        except Exception as e:
+            print(f"    ⚠️  Error creating box plots: {str(e)}")
+            print("    Continuing with data export...")
+    
     # Save all tables to Excel file
     print(f"Saving results to {output_file}...")
     
@@ -582,6 +927,10 @@ def main(base_path, output_file):
         config_violin_df.to_excel(writer, sheet_name='Config_Violin_Data', index=False)
         variable_violin_df.to_excel(writer, sheet_name='Variable_Violin_Data', index=False)
         raw_violin_df.to_excel(writer, sheet_name='Raw_Data_Violin', index=False)
+        
+        # Raw ratings data for box plots
+        if raw_ratings_data:
+            pd.DataFrame(raw_ratings_data).to_excel(writer, sheet_name='Raw_Ratings_Data', index=False)
         
         # Fleiss Kappa results
         kappa_df.to_excel(writer, sheet_name='Fleiss_Kappa_Results', index=False)
@@ -643,6 +992,14 @@ def main(base_path, output_file):
                 print(f"  - {row['Configuration']}/{row['Output']}/{row['Variable']}: {row['Missing_Evaluations']} missing")
     else:
         print("\n✅ All evaluations are complete!")
+    
+    # Print box plot summary
+    if create_plots and raw_ratings_data:
+        print(f"\n📈 BOX PLOTS SUMMARY:")
+        print(f"Box plots created for {len(set([r['variable'] for r in raw_ratings_data]))} variables")
+        print("Check the 'plots' directory for visualization files")
+        print("Individual plots saved as: boxplot_[variable_name].png")
+        print("Overall plot saved as: boxplot_overall.png")
 
 # Example usage
 if __name__ == "__main__":
@@ -650,5 +1007,5 @@ if __name__ == "__main__":
     BASE_PATH = "./Evaluation/QualitativeEvaluation/TemplateExperts"  # Update this path
     OUTPUT_FILE = "evaluation_analysis_results.xlsx"
     
-    # Run the analysis
-    main(BASE_PATH, OUTPUT_FILE)
+    # Run the analysis with box plots
+    main(BASE_PATH, OUTPUT_FILE, create_plots=True)

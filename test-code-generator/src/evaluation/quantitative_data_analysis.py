@@ -454,6 +454,319 @@ def print_summary_info(configuration_data, summary_df):
     print(f"Available statistics: mean, std, min, max for numeric metrics")
     print(f"Available statistics: counts, percentages, success rates for categorical metrics")
 
+
+def create_violin_plots(configuration_data, output_folder='plots'):
+    """
+    Create three violin plots for BLEU, Code BLEU, and cosine similarity metrics.
+    
+    Args:
+        configuration_data (dict): Dictionary containing processed data for each configuration
+        output_folder (str): Folder to save plots
+    """
+    
+    # Create output folder if it doesn't exist
+    Path(output_folder).mkdir(exist_ok=True)
+    
+    # Set up the style
+    plt.style.use('default')
+    plt.rcParams['figure.facecolor'] = 'white'
+    plt.rcParams['axes.facecolor'] = 'white'
+    
+    # Define metrics to plot
+    metrics = {
+        'BLEU_score': 'BLEU Score',
+        'Code_BLEU': 'Code BLEU',
+        'cosine_similarity': 'Cosine Similarity'
+    }
+    
+    # Prepare data for violin plots
+    all_configs = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
+    
+    for metric_key, metric_title in metrics.items():
+        print(f"Creating violin plot for {metric_title}...")
+        
+        # Prepare data for this metric
+        plot_data = []
+        
+        for config in all_configs:
+            if config in configuration_data:
+                # Get the metric values for this configuration
+                config_df = configuration_data[config]
+                if metric_key in config_df.columns:
+                    # Get non-null values
+                    values = config_df[metric_key].dropna()
+                    
+                    # Add each value to plot_data with its configuration
+                    for value in values:
+                        plot_data.append({
+                            'Configuration': config,
+                            'Value': value,
+                            'Metric': metric_title
+                        })
+                else:
+                    print(f"Warning: {metric_key} not found in configuration {config}")
+            else:
+                print(f"Warning: Configuration {config} not found in data")
+        
+        # Create DataFrame for plotting
+        if plot_data:
+            df_plot = pd.DataFrame(plot_data)
+            
+            # Create the violin plot
+            fig, ax = plt.subplots(figsize=(16, 8))
+            
+            # Sort configurations numerically
+            df_plot['Config_Num'] = df_plot['Configuration'].astype(int)
+            df_plot = df_plot.sort_values('Config_Num')
+            
+            # Create violin plot
+            violin_parts = ax.violinplot(
+                [df_plot[df_plot['Configuration'] == config]['Value'].values 
+                 for config in sorted(all_configs, key=int) 
+                 if config in df_plot['Configuration'].values],
+                positions=[int(config) for config in sorted(all_configs, key=int) 
+                          if config in df_plot['Configuration'].values],
+                widths=0.8,
+                showmeans=True,
+                showmedians=True,
+                showextrema=True
+            )
+            
+            # Customize violin colors
+            colors = plt.cm.Set3(np.linspace(0, 1, 12))
+            for i, pc in enumerate(violin_parts['bodies']):
+                pc.set_facecolor(colors[i])
+                pc.set_alpha(0.7)
+                pc.set_edgecolor('black')
+                pc.set_linewidth(0.5)
+            
+            # Customize other parts
+            violin_parts['cmeans'].set_color('red')
+            violin_parts['cmeans'].set_linewidth(2)
+            violin_parts['cmedians'].set_color('blue')
+            violin_parts['cmedians'].set_linewidth(2)
+            violin_parts['cbars'].set_color('black')
+            violin_parts['cmaxes'].set_color('black')
+            violin_parts['cmins'].set_color('black')
+            
+            # Add individual data points as scatter
+            for config in sorted(all_configs, key=int):
+                if config in df_plot['Configuration'].values:
+                    config_data = df_plot[df_plot['Configuration'] == config]['Value']
+                    if len(config_data) > 0:
+                        # Add jitter to x-coordinates for better visibility
+                        x_jitter = np.random.normal(int(config), 0.05, len(config_data))
+                        ax.scatter(x_jitter, config_data, alpha=0.6, s=20, color='darkblue', zorder=3)
+            
+            # Customize the plot
+            ax.set_xlabel('Configuration', fontsize=14, fontweight='bold')
+            ax.set_ylabel(f'{metric_title} Value', fontsize=14, fontweight='bold')
+            ax.set_title(f'{metric_title} Distribution by Configuration', fontsize=16, fontweight='bold', pad=20)
+            
+            # Set x-axis ticks and labels
+            ax.set_xticks(range(1, 13))
+            ax.set_xticklabels([str(i) for i in range(1, 13)])
+            
+            # Add grid
+            ax.grid(True, alpha=0.3, axis='y', linestyle='-', linewidth=0.5)
+            ax.set_axisbelow(True)
+            
+            # Remove top and right spines
+            ax.spines['top'].set_visible(False)
+            ax.spines['right'].set_visible(False)
+            
+            # Add legend for violin plot elements
+            from matplotlib.lines import Line2D
+            legend_elements = [
+                Line2D([0], [0], color='red', lw=2, label='Mean'),
+                Line2D([0], [0], color='blue', lw=2, label='Median'),
+                Line2D([0], [0], marker='o', color='w', markerfacecolor='darkblue', 
+                       markersize=8, alpha=0.6, label='Data Points', linestyle='None')
+            ]
+            ax.legend(handles=legend_elements, loc='upper right', fontsize=12)
+            
+            # Add summary statistics as text
+            if len(df_plot) > 0:
+                overall_mean = df_plot['Value'].mean()
+                overall_std = df_plot['Value'].std()
+                overall_min = df_plot['Value'].min()
+                overall_max = df_plot['Value'].max()
+                
+                stats_text = f'Overall Statistics:\n'
+                stats_text += f'Mean: {overall_mean:.4f}\n'
+                stats_text += f'Std: {overall_std:.4f}\n'
+                stats_text += f'Min: {overall_min:.4f}\n'
+                stats_text += f'Max: {overall_max:.4f}\n'
+                stats_text += f'Total Data Points: {len(df_plot)}'
+                
+                ax.text(0.02, 0.98, stats_text, transform=ax.transAxes, 
+                       verticalalignment='top', bbox=dict(boxstyle='round', facecolor='lightgray', alpha=0.8),
+                       fontsize=10)
+            
+            # Adjust layout
+            plt.tight_layout()
+            
+            # Save the plot
+            filename = f'{metric_key}_violin_plot.png'
+            filepath = Path(output_folder) / filename
+            plt.savefig(filepath, dpi=300, bbox_inches='tight')
+            print(f"Violin plot saved: {filepath}")
+            
+            # Show the plot
+            plt.show()
+            plt.close()
+        else:
+            print(f"Warning: No data found for {metric_title}")
+
+def create_combined_violin_plot(configuration_data, output_folder='plots'):
+    """
+    Create a combined violin plot with all three metrics in subplots.
+    
+    Args:
+        configuration_data (dict): Dictionary containing processed data for each configuration
+        output_folder (str): Folder to save plots
+    """
+    
+    # Create output folder if it doesn't exist
+    Path(output_folder).mkdir(exist_ok=True)
+    
+    # Set up the style
+    plt.style.use('default')
+    plt.rcParams['figure.facecolor'] = 'white'
+    plt.rcParams['axes.facecolor'] = 'white'
+    
+    # Define metrics to plot
+    metrics = {
+        'BLEU_score': 'BLEU Score',
+        'Code_BLEU': 'Code BLEU',
+        'cosine_similarity': 'Cosine Similarity'
+    }
+    
+    # Prepare data for violin plots
+    all_configs = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
+    
+    # Create figure with subplots
+    fig, axes = plt.subplots(1, 3, figsize=(24, 8))
+    fig.suptitle('Distribution of BLEU Metrics by Configuration', fontsize=20, fontweight='bold', y=1.02)
+    
+    for idx, (metric_key, metric_title) in enumerate(metrics.items()):
+        ax = axes[idx]
+        
+        # Prepare data for this metric
+        plot_data = []
+        
+        for config in all_configs:
+            if config in configuration_data:
+                # Get the metric values for this configuration
+                config_df = configuration_data[config]
+                if metric_key in config_df.columns:
+                    # Get non-null values
+                    values = config_df[metric_key].dropna()
+                    
+                    # Add each value to plot_data with its configuration
+                    for value in values:
+                        plot_data.append({
+                            'Configuration': config,
+                            'Value': value,
+                            'Metric': metric_title
+                        })
+        
+        # Create DataFrame for plotting
+        if plot_data:
+            df_plot = pd.DataFrame(plot_data)
+            
+            # Sort configurations numerically
+            df_plot['Config_Num'] = df_plot['Configuration'].astype(int)
+            df_plot = df_plot.sort_values('Config_Num')
+            
+            # Create violin plot
+            violin_parts = ax.violinplot(
+                [df_plot[df_plot['Configuration'] == config]['Value'].values 
+                 for config in sorted(all_configs, key=int) 
+                 if config in df_plot['Configuration'].values],
+                positions=[int(config) for config in sorted(all_configs, key=int) 
+                          if config in df_plot['Configuration'].values],
+                widths=0.8,
+                showmeans=True,
+                showmedians=True,
+                showextrema=True
+            )
+            
+            # Customize violin colors
+            colors = plt.cm.Set3(np.linspace(0, 1, 12))
+            for i, pc in enumerate(violin_parts['bodies']):
+                pc.set_facecolor(colors[i])
+                pc.set_alpha(0.7)
+                pc.set_edgecolor('black')
+                pc.set_linewidth(0.5)
+            
+            # Customize other parts
+            violin_parts['cmeans'].set_color('red')
+            violin_parts['cmeans'].set_linewidth(2)
+            violin_parts['cmedians'].set_color('blue')
+            violin_parts['cmedians'].set_linewidth(2)
+            violin_parts['cbars'].set_color('black')
+            violin_parts['cmaxes'].set_color('black')
+            violin_parts['cmins'].set_color('black')
+            
+            # Add individual data points as scatter
+            for config in sorted(all_configs, key=int):
+                if config in df_plot['Configuration'].values:
+                    config_data = df_plot[df_plot['Configuration'] == config]['Value']
+                    if len(config_data) > 0:
+                        # Add jitter to x-coordinates for better visibility
+                        x_jitter = np.random.normal(int(config), 0.05, len(config_data))
+                        ax.scatter(x_jitter, config_data, alpha=0.6, s=15, color='darkblue', zorder=3)
+            
+            # Customize the subplot
+            ax.set_xlabel('Configuration', fontsize=12, fontweight='bold')
+            ax.set_ylabel(f'{metric_title} Value', fontsize=12, fontweight='bold')
+            ax.set_title(f'{metric_title}', fontsize=14, fontweight='bold', pad=15)
+            
+            # Set x-axis ticks and labels
+            ax.set_xticks(range(1, 13))
+            ax.set_xticklabels([str(i) for i in range(1, 13)])
+            
+            # Add grid
+            ax.grid(True, alpha=0.3, axis='y', linestyle='-', linewidth=0.5)
+            ax.set_axisbelow(True)
+            
+            # Remove top and right spines
+            ax.spines['top'].set_visible(False)
+            ax.spines['right'].set_visible(False)
+            
+            # Add legend only for the first subplot
+            if idx == 0:
+                from matplotlib.lines import Line2D
+                legend_elements = [
+                    Line2D([0], [0], color='red', lw=2, label='Mean'),
+                    Line2D([0], [0], color='blue', lw=2, label='Median'),
+                    Line2D([0], [0], marker='o', color='w', markerfacecolor='darkblue', 
+                           markersize=8, alpha=0.6, label='Data Points', linestyle='None')
+                ]
+                ax.legend(handles=legend_elements, loc='upper right', fontsize=10)
+        else:
+            ax.text(0.5, 0.5, f'No data available for {metric_title}', 
+                   transform=ax.transAxes, ha='center', va='center', fontsize=14)
+    
+    # Adjust layout
+    plt.tight_layout()
+    
+    # Save the combined plot
+    filename = 'combined_violin_plots.png'
+    filepath = Path(output_folder) / filename
+    plt.savefig(filepath, dpi=300, bbox_inches='tight')
+    print(f"Combined violin plot saved: {filepath}")
+    
+    # Show the plot
+    plt.show()
+    plt.close()
+
+
+
+
+
+
 # Example usage
 if __name__ == "__main__":
     # Set your folder path here
@@ -472,6 +785,8 @@ if __name__ == "__main__":
         # Generate the plots
         print("\n=== GENERATING PLOTS ===")
         create_success_failure_plots(summary, output_folder='plots')
+        create_violin_plots(config_data, output_folder='plots')
+        create_combined_violin_plot(config_data, output_folder='plots')
         
     except FileNotFoundError:
         print(f"Error: Folder '{folder_path}' not found. Please check the path.")
