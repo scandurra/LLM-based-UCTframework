@@ -4,6 +4,7 @@ from pathlib import Path
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+from evaluation.quantitative_data_plots import *
 
 def process_configuration_files(base_folder_path, output_file='analysis_results.xlsx'):
     """
@@ -253,184 +254,6 @@ def process_configuration_files(base_folder_path, output_file='analysis_results.
     
     return configuration_data, summary_df
 
-def create_success_failure_plots(summary_df, output_folder='plots'):
-    """
-    Create three plots showing success/failure rates for each configuration.
-    
-    Args:
-        summary_df (pd.DataFrame): Summary dataframe with success/failure counts
-        output_folder (str): Folder to save plots
-    """
-    
-    # Create output folder if it doesn't exist
-    Path(output_folder).mkdir(exist_ok=True)
-    
-    # Set up the style - white background
-    plt.style.use('default')
-    plt.rcParams['figure.facecolor'] = 'white'
-    plt.rcParams['axes.facecolor'] = 'white'
-    
-    # Define the metrics to plot
-    metrics = {
-        'compilation_success': 'Compilation Success',
-        'execution_without_error': 'Execution Without Error', 
-        'test_pass': 'Assertion Validity'
-    }
-    
-    # Define labels for each metric
-    metric_labels = {
-        'compilation_success': {
-            'success': 'Successfully compiled number',
-            'failure': 'Non-successfully compiled number',
-            'rate': 'Successfully compiled rate',
-            'number': 'Number of compilations'
-        },
-        'execution_without_error': {
-            'success': 'Successfully executed number',
-            'failure': 'Non-successfully executed number', 
-            'rate': 'Successfully executed rate',
-            'number': 'Number of executions'
-        },
-        'test_pass': {
-            'success': 'Successfully passed tests number',
-            'failure': 'Non-successfully passed tests number',
-            'rate': 'Successfully passed tests rate',
-            'number': 'Number of assertion validities'
-        }
-    }
-    
-    for metric_key, metric_title in metrics.items():
-        # Extract success and failure counts
-        success_col = f'{metric_key}_success_count'
-        failure_col = f'{metric_key}_failure_count'
-        
-        if success_col in summary_df.columns and failure_col in summary_df.columns:
-            # Create the plot data - handle missing values as 0
-            plot_data = pd.DataFrame({
-                'Configuration': summary_df.index,
-                'Success': summary_df[success_col].fillna(0).astype(int),
-                'Failure': summary_df[failure_col].fillna(0).astype(int)
-            })
-            
-            # Sort configurations as integers if possible
-            def sort_config_key(config_name):
-                try:
-                    return (0, int(config_name))
-                except ValueError:
-                    return (1, config_name)
-            
-            # Sort the plot data by configuration names as integers
-            plot_data['sort_key'] = plot_data['Configuration'].apply(sort_config_key)
-            plot_data = plot_data.sort_values('sort_key').drop('sort_key', axis=1).reset_index(drop=True)
-            
-            # Calculate success rate for annotation
-            plot_data['Total'] = plot_data['Success'] + plot_data['Failure']
-            # Handle division by zero - if total is 0, success rate is 0
-            plot_data['Success_Rate'] = np.where(
-                plot_data['Total'] > 0,
-                (plot_data['Success'] / plot_data['Total'] * 100).round(1),
-                0.0
-            )
-            
-            # Create the figure
-            fig, ax = plt.subplots(figsize=(14, 8))
-            
-            # Set up bar positions
-            x = np.arange(len(plot_data))
-            width = 0.6
-            
-            # Get labels for this specific metric
-            labels = metric_labels[metric_key]
-            
-            # Create stacked bars - success on top, failure below x-axis
-            bars1 = ax.bar(x, plot_data['Success'], width, label=labels['success'], 
-                          color='#FFA500', alpha=0.8)
-            bars2 = ax.bar(x, -plot_data['Failure'], width, 
-                          label=labels['failure'], color='#4682B4', alpha=0.8)
-            
-            # Set y-axis to show negative values for failures
-            max_success = plot_data['Success'].max() if plot_data['Success'].max() > 0 else 100
-            max_failure = plot_data['Failure'].max() if plot_data['Failure'].max() > 0 else 100
-            ax.set_ylim(-max_failure * 1.1, max_success * 1.1)
-            
-            # Add success rate line
-            ax2 = ax.twinx()
-            line = ax2.plot(x, plot_data['Success_Rate'], 'ro-', linewidth=2, 
-                           markersize=6, label=labels['rate'])
-            
-            # Align the right y-axis so that 0% aligns with y=0 (submission count)
-            # Set the scale so that 100% aligns with the top of the success bars
-            max_success = plot_data['Success'].max() if plot_data['Success'].max() > 0 else 100
-            max_failure = plot_data['Failure'].max() if plot_data['Failure'].max() > 0 else 100
-            
-            # Calculate the range for proper alignment
-            y_range = max_success * 1.1 + max_failure * 1.1
-            
-            # Set right y-axis limits to align 0% with y=0
-            ax2.set_ylim(-100 * (max_failure * 1.1) / (max_success * 1.1), 100)
-            ax2.set_ylabel(f'{labels["rate"]} (%)', fontsize=12)
-            
-            # Customize the main axis
-            ax.set_xlabel('Configuration', fontsize=12, fontweight='bold')
-            ax.set_ylabel(labels['number'], fontsize=12, fontweight='bold')
-            ax.set_title(f'{metric_title} by Configuration', fontsize=14, fontweight='bold', pad=50)
-            ax.set_xticks(x)
-            ax.set_xticklabels(plot_data['Configuration'], rotation=45, ha='right')
-            
-            # Add value labels on bars (only if values > 0)
-            for i, (bar1, bar2) in enumerate(zip(bars1, bars2)):
-                # Success count on success bar (above x-axis)
-                if plot_data['Success'].iloc[i] > 0:
-                    ax.text(bar1.get_x() + bar1.get_width()/2, bar1.get_height()/2,
-                           f'{int(plot_data["Success"].iloc[i])}',
-                           ha='center', va='center', fontweight='bold', color='white')
-                
-                # Failure count on failure bar (below x-axis)
-                if plot_data['Failure'].iloc[i] > 0:
-                    ax.text(bar2.get_x() + bar2.get_width()/2, bar2.get_height()/2,
-                           f'{int(plot_data["Failure"].iloc[i])}',
-                           ha='center', va='center', fontweight='bold', color='white')
-            
-            # Add success rate annotations at the top of the dots
-            for i in range(len(plot_data)):
-                if plot_data['Total'].iloc[i] > 0:
-                    ax2.annotate(f'{plot_data["Success_Rate"].iloc[i]:.2f}%',
-                                xy=(i, plot_data['Success_Rate'].iloc[i]),
-                                xytext=(0, 8), textcoords='offset points',
-                                ha='center', va='bottom', fontweight='bold',
-                                fontsize=10)
-            
-            # Add legends
-            ax.legend(loc='lower left', bbox_to_anchor=(0, 1))
-            ax2.legend(loc='lower right', bbox_to_anchor=(1, 1))
-            
-            # Add horizontal line at y=0 to separate success and failure
-            ax.axhline(y=0, color='black', linewidth=0.8)
-            
-            # Add horizontal grid lines only
-            ax.grid(True, alpha=0.3, axis='y', linestyle='-', linewidth=0.5)
-            ax.set_axisbelow(True)  # Put grid behind bars
-            
-            # Remove spines except bottom and left
-            ax.spines['top'].set_visible(False)
-            ax.spines['right'].set_visible(False)
-            ax2.spines['top'].set_visible(False)
-            ax2.spines['left'].set_visible(False)
-            
-            # Adjust layout and save
-            plt.tight_layout()
-            
-            # Save the plot
-            filename = f'{metric_key}_analysis.png'
-            filepath = Path(output_folder) / filename
-            plt.savefig(filepath, dpi=300, bbox_inches='tight')
-            print(f"Plot saved: {filepath}")
-            
-            plt.show()
-            plt.close()
-        else:
-            print(f"Warning: Required columns not found for {metric_title}")
-
 def print_summary_info(configuration_data, summary_df):
     """Print summary information about the processed data."""
     print("\n=== PROCESSING SUMMARY ===")
@@ -455,315 +278,536 @@ def print_summary_info(configuration_data, summary_df):
     print(f"Available statistics: counts, percentages, success rates for categorical metrics")
 
 
-def create_violin_plots(configuration_data, output_folder='plots'):
-    """
-    Create three violin plots for BLEU, Code BLEU, and cosine similarity metrics.
-    
-    Args:
-        configuration_data (dict): Dictionary containing processed data for each configuration
-        output_folder (str): Folder to save plots
-    """
-    
-    # Create output folder if it doesn't exist
-    Path(output_folder).mkdir(exist_ok=True)
-    
-    # Set up the style
-    plt.style.use('default')
-    plt.rcParams['figure.facecolor'] = 'white'
-    plt.rcParams['axes.facecolor'] = 'white'
-    
-    # Define metrics to plot
-    metrics = {
-        'BLEU_score': 'BLEU Score',
-        'Code_BLEU': 'Code BLEU',
-        'cosine_similarity': 'Cosine Similarity'
-    }
-    
-    # Prepare data for violin plots
-    all_configs = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
-    
-    for metric_key, metric_title in metrics.items():
-        print(f"Creating violin plot for {metric_title}...")
-        
-        # Prepare data for this metric
-        plot_data = []
-        
-        for config in all_configs:
-            if config in configuration_data:
-                # Get the metric values for this configuration
-                config_df = configuration_data[config]
-                if metric_key in config_df.columns:
-                    # Get non-null values
-                    values = config_df[metric_key].dropna()
-                    
-                    # Add each value to plot_data with its configuration
-                    for value in values:
-                        plot_data.append({
-                            'Configuration': config,
-                            'Value': value,
-                            'Metric': metric_title
-                        })
-                else:
-                    print(f"Warning: {metric_key} not found in configuration {config}")
-            else:
-                print(f"Warning: Configuration {config} not found in data")
-        
-        # Create DataFrame for plotting
-        if plot_data:
-            df_plot = pd.DataFrame(plot_data)
-            
-            # Create the violin plot
-            fig, ax = plt.subplots(figsize=(16, 8))
-            
-            # Sort configurations numerically
-            df_plot['Config_Num'] = df_plot['Configuration'].astype(int)
-            df_plot = df_plot.sort_values('Config_Num')
-            
-            # Create violin plot
-            violin_parts = ax.violinplot(
-                [df_plot[df_plot['Configuration'] == config]['Value'].values 
-                 for config in sorted(all_configs, key=int) 
-                 if config in df_plot['Configuration'].values],
-                positions=[int(config) for config in sorted(all_configs, key=int) 
-                          if config in df_plot['Configuration'].values],
-                widths=0.8,
-                showmeans=True,
-                showmedians=True,
-                showextrema=True
-            )
-            
-            # Customize violin colors
-            colors = plt.cm.Set3(np.linspace(0, 1, 12))
-            for i, pc in enumerate(violin_parts['bodies']):
-                pc.set_facecolor(colors[i])
-                pc.set_alpha(0.7)
-                pc.set_edgecolor('black')
-                pc.set_linewidth(0.5)
-            
-            # Customize other parts
-            violin_parts['cmeans'].set_color('red')
-            violin_parts['cmeans'].set_linewidth(2)
-            violin_parts['cmedians'].set_color('blue')
-            violin_parts['cmedians'].set_linewidth(2)
-            violin_parts['cbars'].set_color('black')
-            violin_parts['cmaxes'].set_color('black')
-            violin_parts['cmins'].set_color('black')
-            
-            # Add individual data points as scatter
-            for config in sorted(all_configs, key=int):
-                if config in df_plot['Configuration'].values:
-                    config_data = df_plot[df_plot['Configuration'] == config]['Value']
-                    if len(config_data) > 0:
-                        # Add jitter to x-coordinates for better visibility
-                        x_jitter = np.random.normal(int(config), 0.05, len(config_data))
-                        ax.scatter(x_jitter, config_data, alpha=0.6, s=20, color='darkblue', zorder=3)
-            
-            # Customize the plot
-            ax.set_xlabel('Configuration', fontsize=14, fontweight='bold')
-            ax.set_ylabel(f'{metric_title} Value', fontsize=14, fontweight='bold')
-            ax.set_title(f'{metric_title} Distribution by Configuration', fontsize=16, fontweight='bold', pad=20)
-            
-            # Set x-axis ticks and labels
-            ax.set_xticks(range(1, 13))
-            ax.set_xticklabels([str(i) for i in range(1, 13)])
-            
-            # Add grid
-            ax.grid(True, alpha=0.3, axis='y', linestyle='-', linewidth=0.5)
-            ax.set_axisbelow(True)
-            
-            # Remove top and right spines
-            ax.spines['top'].set_visible(False)
-            ax.spines['right'].set_visible(False)
-            
-            # Add legend for violin plot elements
-            from matplotlib.lines import Line2D
-            legend_elements = [
-                Line2D([0], [0], color='red', lw=2, label='Mean'),
-                Line2D([0], [0], color='blue', lw=2, label='Median'),
-                Line2D([0], [0], marker='o', color='w', markerfacecolor='darkblue', 
-                       markersize=8, alpha=0.6, label='Data Points', linestyle='None')
-            ]
-            ax.legend(handles=legend_elements, loc='upper right', fontsize=12)
-            
-            # Add summary statistics as text
-            if len(df_plot) > 0:
-                overall_mean = df_plot['Value'].mean()
-                overall_std = df_plot['Value'].std()
-                overall_min = df_plot['Value'].min()
-                overall_max = df_plot['Value'].max()
-                
-                stats_text = f'Overall Statistics:\n'
-                stats_text += f'Mean: {overall_mean:.4f}\n'
-                stats_text += f'Std: {overall_std:.4f}\n'
-                stats_text += f'Min: {overall_min:.4f}\n'
-                stats_text += f'Max: {overall_max:.4f}\n'
-                stats_text += f'Total Data Points: {len(df_plot)}'
-                
-                ax.text(0.02, 0.98, stats_text, transform=ax.transAxes, 
-                       verticalalignment='top', bbox=dict(boxstyle='round', facecolor='lightgray', alpha=0.8),
-                       fontsize=10)
-            
-            # Adjust layout
-            plt.tight_layout()
-            
-            # Save the plot
-            filename = f'{metric_key}_violin_plot.png'
-            filepath = Path(output_folder) / filename
-            plt.savefig(filepath, dpi=300, bbox_inches='tight')
-            print(f"Violin plot saved: {filepath}")
-            
-            # Show the plot
-            plt.show()
-            plt.close()
-        else:
-            print(f"Warning: No data found for {metric_title}")
+# Set scientific article style parameters
+plt.rcParams.update({
+    'font.size': 12,           # Base font size
+    'axes.titlesize': 14,      # Title font size
+    'axes.labelsize': 12,      # Axis label font size
+    'xtick.labelsize': 10,     # X-axis tick font size
+    'ytick.labelsize': 10,     # Y-axis tick font size
+    'legend.fontsize': 10,     # Legend font size
+    'figure.titlesize': 16,    # Figure title font size
+    'font.family': 'serif',    # Use serif font for scientific look
+    'figure.dpi': 300,         # High DPI for publication quality
+    'savefig.dpi': 300,        # High DPI for saved figures
+    'figure.facecolor': 'white',
+    'axes.facecolor': 'white',
+    'axes.linewidth': 1.2,     # Thicker axis lines
+    'grid.linewidth': 0.8,     # Grid line width
+    'lines.linewidth': 2,      # Line width
+})
 
-def create_combined_violin_plot(configuration_data, output_folder='plots'):
-    """
-    Create a combined violin plot with all three metrics in subplots.
+# def create_compact_success_failure_plots(summary_df, output_folder='plots'):
+#     """
+#     Create compact success/failure plots suitable for scientific articles.
+#     """
+#     Path(output_folder).mkdir(exist_ok=True)
     
-    Args:
-        configuration_data (dict): Dictionary containing processed data for each configuration
-        output_folder (str): Folder to save plots
-    """
+#     # Define the metrics with shorter, cleaner names for publication
+#     metrics = {
+#         'compilation_success': 'Compilation',
+#         'execution_without_error': 'Execution', 
+#         'test_pass': 'Test Validation'
+#     }
     
-    # Create output folder if it doesn't exist
+#     # Create a single figure with 3 subplots arranged horizontally
+#     fig, axes = plt.subplots(1, 3, figsize=(15, 4.5))
+#     fig.suptitle('Success/Failure Analysis by Configuration', fontsize=16, fontweight='bold', y=0.98)
+    
+#     for idx, (metric_key, metric_title) in enumerate(metrics.items()):
+#         ax = axes[idx]
+        
+#         # Extract success and failure counts
+#         success_col = f'{metric_key}_success_count'
+#         failure_col = f'{metric_key}_failure_count'
+        
+#         if success_col in summary_df.columns and failure_col in summary_df.columns:
+#             # Create the plot data
+#             plot_data = pd.DataFrame({
+#                 'Configuration': summary_df.index,
+#                 'Success': summary_df[success_col].fillna(0).astype(int),
+#                 'Failure': summary_df[failure_col].fillna(0).astype(int)
+#             })
+            
+#             # Sort configurations numerically
+#             def sort_config_key(config_name):
+#                 try:
+#                     return (0, int(config_name))
+#                 except ValueError:
+#                     return (1, config_name)
+            
+#             plot_data['sort_key'] = plot_data['Configuration'].apply(sort_config_key)
+#             plot_data = plot_data.sort_values('sort_key').drop('sort_key', axis=1).reset_index(drop=True)
+            
+#             # Calculate success rate
+#             plot_data['Total'] = plot_data['Success'] + plot_data['Failure']
+#             plot_data['Success_Rate'] = np.where(
+#                 plot_data['Total'] > 0,
+#                 (plot_data['Success'] / plot_data['Total'] * 100).round(1),
+#                 0.0
+#             )
+            
+#             # Set up bar positions
+#             x = np.arange(len(plot_data))
+#             width = 0.6
+            
+#             # Create stacked bars with more professional colors
+#             bars1 = ax.bar(x, plot_data['Success'], width, 
+#                           label='Success', color='#2E8B57', alpha=0.8)  # Sea green
+#             bars2 = ax.bar(x, -plot_data['Failure'], width, 
+#                           label='Failure', color='#CD5C5C', alpha=0.8)  # Indian red
+            
+#             # Set y-axis range
+#             max_success = plot_data['Success'].max() if plot_data['Success'].max() > 0 else 10
+#             max_failure = plot_data['Failure'].max() if plot_data['Failure'].max() > 0 else 10
+#             ax.set_ylim(-max_failure * 1.2, max_success * 1.2)
+            
+#             # Add success rate line on secondary axis
+#             ax2 = ax.twinx()
+#             line = ax2.plot(x, plot_data['Success_Rate'], 'ko-', linewidth=2.5, 
+#                            markersize=5, label='Success Rate', markerfacecolor='orange',
+#                            markeredgecolor='black', markeredgewidth=0.5)
+#             ax2.set_ylim(-120 * (max_failure * 1.2) / (max_success * 1.2), 120)
+            
+#             # Customize axes
+#             ax.set_xlabel('Configuration', fontweight='bold')
+#             if idx == 0:  # Only label y-axis on leftmost plot
+#                 ax.set_ylabel('Count', fontweight='bold')
+#             if idx == 2:  # Only label right y-axis on rightmost plot
+#                 ax2.set_ylabel('Success Rate (%)', fontweight='bold')
+#             else:
+#                 ax2.set_ylabel('')
+#                 ax2.set_yticklabels([])
+            
+#             ax.set_title(metric_title, fontweight='bold', pad=10)
+#             ax.set_xticks(x)
+#             ax.set_xticklabels(plot_data['Configuration'])
+            
+#             # Add value labels on bars (compact style)
+#             for i, (bar1, bar2) in enumerate(zip(bars1, bars2)):
+#                 if plot_data['Success'].iloc[i] > 0:
+#                     ax.text(bar1.get_x() + bar1.get_width()/2, bar1.get_height()/2,
+#                            f'{int(plot_data["Success"].iloc[i])}',
+#                            ha='center', va='center', fontweight='bold', 
+#                            color='white', fontsize=9)
+                
+#                 if plot_data['Failure'].iloc[i] > 0:
+#                     ax.text(bar2.get_x() + bar2.get_width()/2, bar2.get_height()/2,
+#                            f'{int(plot_data["Failure"].iloc[i])}',
+#                            ha='center', va='center', fontweight='bold', 
+#                            color='white', fontsize=9)
+            
+#             # Add success rate annotations (more compact)
+#             for i in range(len(plot_data)):
+#                 if plot_data['Total'].iloc[i] > 0:
+#                     ax2.annotate(f'{plot_data["Success_Rate"].iloc[i]:.0f}%',
+#                                 xy=(i, plot_data['Success_Rate'].iloc[i]),
+#                                 xytext=(0, 5), textcoords='offset points',
+#                                 ha='center', va='bottom', fontweight='bold',
+#                                 fontsize=8)
+            
+#             # Style improvements
+#             ax.axhline(y=0, color='black', linewidth=1)
+#             ax.grid(True, alpha=0.3, axis='y', linestyle='-', linewidth=0.5)
+#             ax.set_axisbelow(True)
+            
+#             # Remove spines
+#             ax.spines['top'].set_visible(False)
+#             ax.spines['right'].set_visible(False)
+#             ax2.spines['top'].set_visible(False)
+#             ax2.spines['left'].set_visible(False)
+            
+#             # Add legend only to the first subplot
+#             if idx == 0:
+#                 ax.legend(loc='upper left', bbox_to_anchor=(0, 1), fontsize=9)
+#                 ax2.legend(loc='upper right', bbox_to_anchor=(1, 1), fontsize=9)
+    
+#     plt.tight_layout()
+    
+#     # Save the combined plot
+#     filename = 'compact_success_failure_analysis.png'
+#     filepath = Path(output_folder) / filename
+#     plt.savefig(filepath, dpi=300, bbox_inches='tight', facecolor='white')
+#     print(f"Compact success/failure plot saved: {filepath}")
+    
+#     plt.show()
+#     plt.close()
+
+# def create_compact_violin_plot(configuration_data, output_folder='plots'):
+#     """
+#     Create a compact violin plot suitable for scientific articles.
+#     """
+#     Path(output_folder).mkdir(exist_ok=True)
+    
+#     # Define metrics with cleaner names
+#     metrics = {
+#         'BLEU_score': 'BLEU',
+#         'Code_BLEU': 'CodeBLEU',
+#         'cosine_similarity': 'Cosine Similarity'
+#     }
+    
+#     all_configs = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
+    
+#     # Create figure with subplots (more compact arrangement)
+#     fig, axes = plt.subplots(1, 3, figsize=(15, 5))
+#     fig.suptitle('Distribution of Evaluation Metrics by Configuration', 
+#                  fontsize=16, fontweight='bold', y=0.98)
+    
+#     colors = ['#4472C4', '#E15759', '#70AD47']  # Professional color scheme
+    
+#     for idx, (metric_key, metric_title) in enumerate(metrics.items()):
+#         ax = axes[idx]
+        
+#         # Prepare data for this metric
+#         plot_data = []
+        
+#         for config in all_configs:
+#             if config in configuration_data:
+#                 config_df = configuration_data[config]
+#                 if metric_key in config_df.columns:
+#                     values = config_df[metric_key].dropna()
+#                     for value in values:
+#                         plot_data.append({
+#                             'Configuration': config,
+#                             'Value': value
+#                         })
+        
+#         if plot_data:
+#             df_plot = pd.DataFrame(plot_data)
+#             df_plot['Config_Num'] = df_plot['Configuration'].astype(int)
+#             df_plot = df_plot.sort_values('Config_Num')
+            
+#             # Create violin plot with single color
+#             violin_parts = ax.violinplot(
+#                 [df_plot[df_plot['Configuration'] == config]['Value'].values 
+#                  for config in sorted(all_configs, key=int) 
+#                  if config in df_plot['Configuration'].values],
+#                 positions=[int(config) for config in sorted(all_configs, key=int) 
+#                           if config in df_plot['Configuration'].values],
+#                 widths=0.7,
+#                 showmeans=True,
+#                 showmedians=True,
+#                 showextrema=True
+#             )
+            
+#             # Uniform professional styling
+#             for pc in violin_parts['bodies']:
+#                 pc.set_facecolor(colors[idx])
+#                 pc.set_alpha(0.7)
+#                 pc.set_edgecolor('black')
+#                 pc.set_linewidth(0.8)
+            
+#             # Style statistical indicators
+#             violin_parts['cmeans'].set_color('red')
+#             violin_parts['cmeans'].set_linewidth(2)
+#             violin_parts['cmedians'].set_color('blue')
+#             violin_parts['cmedians'].set_linewidth(2)
+#             violin_parts['cbars'].set_color('black')
+#             violin_parts['cmaxes'].set_color('black')
+#             violin_parts['cmins'].set_color('black')
+            
+#             # Add scatter points (smaller, less cluttered)
+#             for config in sorted(all_configs, key=int):
+#                 if config in df_plot['Configuration'].values:
+#                     config_data = df_plot[df_plot['Configuration'] == config]['Value']
+#                     if len(config_data) > 0:
+#                         x_jitter = np.random.normal(int(config), 0.03, len(config_data))
+#                         ax.scatter(x_jitter, config_data, alpha=0.5, s=12, 
+#                                  color='darkblue', zorder=3)
+            
+#             # Customize subplot
+#             ax.set_xlabel('Configuration', fontweight='bold')
+#             if idx == 0:  # Only label y-axis on leftmost plot
+#                 ax.set_ylabel('Value', fontweight='bold')
+#             ax.set_title(metric_title, fontweight='bold', pad=10)
+            
+#             # Set x-axis
+#             ax.set_xticks(range(1, 13))
+#             ax.set_xticklabels([str(i) for i in range(1, 13)])
+            
+#             # Grid and styling
+#             ax.grid(True, alpha=0.3, axis='y', linestyle='-', linewidth=0.5)
+#             ax.set_axisbelow(True)
+#             ax.spines['top'].set_visible(False)
+#             ax.spines['right'].set_visible(False)
+            
+#             # Add compact statistics box (only for first subplot to avoid clutter)
+#             if idx == 0:
+#                 overall_mean = df_plot['Value'].mean()
+#                 overall_std = df_plot['Value'].std()
+#                 stats_text = f'μ={overall_mean:.3f}\nσ={overall_std:.3f}\nn={len(df_plot)}'
+                
+#                 ax.text(0.02, 0.98, stats_text, transform=ax.transAxes, 
+#                        verticalalignment='top', 
+#                        bbox=dict(boxstyle='round,pad=0.3', facecolor='lightgray', alpha=0.8),
+#                        fontsize=9)
+#         else:
+#             ax.text(0.5, 0.5, f'No data\navailable', 
+#                    transform=ax.transAxes, ha='center', va='center', fontsize=12)
+    
+#     # Add single legend for all subplots
+#     from matplotlib.lines import Line2D
+#     legend_elements = [
+#         Line2D([0], [0], color='red', lw=2, label='Mean'),
+#         Line2D([0], [0], color='blue', lw=2, label='Median'),
+#         Line2D([0], [0], marker='o', color='w', markerfacecolor='darkblue', 
+#                markersize=6, alpha=0.5, label='Data Points', linestyle='None')
+#     ]
+#     fig.legend(handles=legend_elements, loc='upper center', bbox_to_anchor=(0.5, 0.02),
+#               ncol=3, fontsize=10, frameon=False)
+    
+#     plt.tight_layout()
+#     plt.subplots_adjust(bottom=0.15)  # Make room for legend
+    
+#     # Save the plot
+#     filename = 'compact_violin_plots.png'
+#     filepath = Path(output_folder) / filename
+#     plt.savefig(filepath, dpi=300, bbox_inches='tight', facecolor='white')
+#     print(f"Compact violin plot saved: {filepath}")
+    
+#     plt.show()
+#     plt.close()
+
+def create_compact_combined_analysis(summary_df, configuration_data, output_folder='plots'):
+    """
+    Create a comprehensive 2x2 subplot figure combining all analyses.
+    """
     Path(output_folder).mkdir(exist_ok=True)
     
-    # Set up the style
-    plt.style.use('default')
-    plt.rcParams['figure.facecolor'] = 'white'
-    plt.rcParams['axes.facecolor'] = 'white'
+    # Create 2x2 subplot layout
+    fig = plt.figure(figsize=(12, 10))
     
-    # Define metrics to plot
-    metrics = {
-        'BLEU_score': 'BLEU Score',
-        'Code_BLEU': 'Code BLEU',
-        'cosine_similarity': 'Cosine Similarity'
-    }
+    # Define grid layout
+    gs = fig.add_gridspec(2, 2, hspace=0.3, wspace=0.3)
     
-    # Prepare data for violin plots
+    # Top row: Success rates for two key metrics
+    ax1 = fig.add_subplot(gs[0, 0])
+    ax2 = fig.add_subplot(gs[0, 1])
+    
+    # Bottom row: Distribution plots for two key metrics
+    ax3 = fig.add_subplot(gs[1, 0])
+    ax4 = fig.add_subplot(gs[1, 1])
+    
+    # Plot 1: Compilation Success Rate
+    metric_key = 'compilation_success'
+    success_col = f'{metric_key}_success_count'
+    failure_col = f'{metric_key}_failure_count'
+    
+    if success_col in summary_df.columns and failure_col in summary_df.columns:
+        plot_data = pd.DataFrame({
+            'Configuration': summary_df.index,
+            'Success': summary_df[success_col].fillna(0).astype(int),
+            'Failure': summary_df[failure_col].fillna(0).astype(int)
+        })
+        
+        # Sort configurations
+        def sort_config_key(config_name):
+            try:
+                return (0, int(config_name))
+            except ValueError:
+                return (1, config_name)
+        
+        plot_data['sort_key'] = plot_data['Configuration'].apply(sort_config_key)
+        plot_data = plot_data.sort_values('sort_key').drop('sort_key', axis=1).reset_index(drop=True)
+        
+        plot_data['Total'] = plot_data['Success'] + plot_data['Failure']
+        plot_data['Success_Rate'] = np.where(
+            plot_data['Total'] > 0,
+            (plot_data['Success'] / plot_data['Total'] * 100).round(1),
+            0.0
+        )
+        
+        x = np.arange(len(plot_data))
+        bars = ax1.bar(x, plot_data['Success_Rate'], color='#2E8B57', alpha=0.8, width=0.6)
+        
+        # Add value labels
+        for i, bar in enumerate(bars):
+            if plot_data['Success_Rate'].iloc[i] > 0:
+                ax1.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 1,
+                        f'{plot_data["Success_Rate"].iloc[i]:.0f}%',
+                        ha='center', va='bottom', fontweight='bold', fontsize=9)
+        
+        ax1.set_title('(a) Compilation Success Rate', fontweight='bold', fontsize=12)
+        ax1.set_xlabel('Configuration', fontweight='bold')
+        ax1.set_ylabel('Success Rate (%)', fontweight='bold')
+        ax1.set_xticks(x)
+        ax1.set_xticklabels(plot_data['Configuration'])
+        ax1.set_ylim(0, 110)
+        ax1.grid(True, alpha=0.3, axis='y')
+        ax1.spines['top'].set_visible(False)
+        ax1.spines['right'].set_visible(False)
+    
+    # Plot 2: Test Pass Success Rate
+    metric_key = 'test_pass'
+    success_col = f'{metric_key}_success_count'
+    failure_col = f'{metric_key}_failure_count'
+    
+    if success_col in summary_df.columns and failure_col in summary_df.columns:
+        plot_data = pd.DataFrame({
+            'Configuration': summary_df.index,
+            'Success': summary_df[success_col].fillna(0).astype(int),
+            'Failure': summary_df[failure_col].fillna(0).astype(int)
+        })
+        
+        plot_data['sort_key'] = plot_data['Configuration'].apply(sort_config_key)
+        plot_data = plot_data.sort_values('sort_key').drop('sort_key', axis=1).reset_index(drop=True)
+        
+        plot_data['Total'] = plot_data['Success'] + plot_data['Failure']
+        plot_data['Success_Rate'] = np.where(
+            plot_data['Total'] > 0,
+            (plot_data['Success'] / plot_data['Total'] * 100).round(1),
+            0.0
+        )
+        
+        x = np.arange(len(plot_data))
+        bars = ax2.bar(x, plot_data['Success_Rate'], color='#4472C4', alpha=0.8, width=0.6)
+        
+        # Add value labels
+        for i, bar in enumerate(bars):
+            if plot_data['Success_Rate'].iloc[i] > 0:
+                ax2.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 1,
+                        f'{plot_data["Success_Rate"].iloc[i]:.0f}%',
+                        ha='center', va='bottom', fontweight='bold', fontsize=9)
+        
+        ax2.set_title('(b) Test Validation Success Rate', fontweight='bold', fontsize=12)
+        ax2.set_xlabel('Configuration', fontweight='bold')
+        ax2.set_ylabel('Success Rate (%)', fontweight='bold')
+        ax2.set_xticks(x)
+        ax2.set_xticklabels(plot_data['Configuration'])
+        ax2.set_ylim(0, 110)
+        ax2.grid(True, alpha=0.3, axis='y')
+        ax2.spines['top'].set_visible(False)
+        ax2.spines['right'].set_visible(False)
+    
+    # Plot 3: BLEU Score Distribution (Box plot style)
     all_configs = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
+    metric_key = 'BLEU_score'
     
-    # Create figure with subplots
-    fig, axes = plt.subplots(1, 3, figsize=(24, 8))
-    fig.suptitle('Distribution of BLEU Metrics by Configuration', fontsize=20, fontweight='bold', y=1.02)
+    plot_data = []
+    for config in all_configs:
+        if config in configuration_data:
+            config_df = configuration_data[config]
+            if metric_key in config_df.columns:
+                values = config_df[metric_key].dropna()
+                for value in values:
+                    plot_data.append({'Configuration': config, 'Value': value})
     
-    for idx, (metric_key, metric_title) in enumerate(metrics.items()):
-        ax = axes[idx]
+    if plot_data:
+        df_plot = pd.DataFrame(plot_data)
+        df_plot['Config_Num'] = df_plot['Configuration'].astype(int)
+        df_plot = df_plot.sort_values('Config_Num')
         
-        # Prepare data for this metric
-        plot_data = []
+        # Create box plot
+        box_data = [df_plot[df_plot['Configuration'] == config]['Value'].values 
+                   for config in sorted(all_configs, key=int) 
+                   if config in df_plot['Configuration'].values]
         
-        for config in all_configs:
-            if config in configuration_data:
-                # Get the metric values for this configuration
-                config_df = configuration_data[config]
-                if metric_key in config_df.columns:
-                    # Get non-null values
-                    values = config_df[metric_key].dropna()
-                    
-                    # Add each value to plot_data with its configuration
-                    for value in values:
-                        plot_data.append({
-                            'Configuration': config,
-                            'Value': value,
-                            'Metric': metric_title
-                        })
+        positions = [int(config) for config in sorted(all_configs, key=int) 
+                    if config in df_plot['Configuration'].values]
         
-        # Create DataFrame for plotting
-        if plot_data:
-            df_plot = pd.DataFrame(plot_data)
-            
-            # Sort configurations numerically
-            df_plot['Config_Num'] = df_plot['Configuration'].astype(int)
-            df_plot = df_plot.sort_values('Config_Num')
-            
-            # Create violin plot
-            violin_parts = ax.violinplot(
-                [df_plot[df_plot['Configuration'] == config]['Value'].values 
-                 for config in sorted(all_configs, key=int) 
-                 if config in df_plot['Configuration'].values],
-                positions=[int(config) for config in sorted(all_configs, key=int) 
-                          if config in df_plot['Configuration'].values],
-                widths=0.8,
-                showmeans=True,
-                showmedians=True,
-                showextrema=True
-            )
-            
-            # Customize violin colors
-            colors = plt.cm.Set3(np.linspace(0, 1, 12))
-            for i, pc in enumerate(violin_parts['bodies']):
-                pc.set_facecolor(colors[i])
-                pc.set_alpha(0.7)
-                pc.set_edgecolor('black')
-                pc.set_linewidth(0.5)
-            
-            # Customize other parts
-            violin_parts['cmeans'].set_color('red')
-            violin_parts['cmeans'].set_linewidth(2)
-            violin_parts['cmedians'].set_color('blue')
-            violin_parts['cmedians'].set_linewidth(2)
-            violin_parts['cbars'].set_color('black')
-            violin_parts['cmaxes'].set_color('black')
-            violin_parts['cmins'].set_color('black')
-            
-            # Add individual data points as scatter
-            for config in sorted(all_configs, key=int):
-                if config in df_plot['Configuration'].values:
-                    config_data = df_plot[df_plot['Configuration'] == config]['Value']
-                    if len(config_data) > 0:
-                        # Add jitter to x-coordinates for better visibility
-                        x_jitter = np.random.normal(int(config), 0.05, len(config_data))
-                        ax.scatter(x_jitter, config_data, alpha=0.6, s=15, color='darkblue', zorder=3)
-            
-            # Customize the subplot
-            ax.set_xlabel('Configuration', fontsize=12, fontweight='bold')
-            ax.set_ylabel(f'{metric_title} Value', fontsize=12, fontweight='bold')
-            ax.set_title(f'{metric_title}', fontsize=14, fontweight='bold', pad=15)
-            
-            # Set x-axis ticks and labels
-            ax.set_xticks(range(1, 13))
-            ax.set_xticklabels([str(i) for i in range(1, 13)])
-            
-            # Add grid
-            ax.grid(True, alpha=0.3, axis='y', linestyle='-', linewidth=0.5)
-            ax.set_axisbelow(True)
-            
-            # Remove top and right spines
-            ax.spines['top'].set_visible(False)
-            ax.spines['right'].set_visible(False)
-            
-            # Add legend only for the first subplot
-            if idx == 0:
-                from matplotlib.lines import Line2D
-                legend_elements = [
-                    Line2D([0], [0], color='red', lw=2, label='Mean'),
-                    Line2D([0], [0], color='blue', lw=2, label='Median'),
-                    Line2D([0], [0], marker='o', color='w', markerfacecolor='darkblue', 
-                           markersize=8, alpha=0.6, label='Data Points', linestyle='None')
-                ]
-                ax.legend(handles=legend_elements, loc='upper right', fontsize=10)
-        else:
-            ax.text(0.5, 0.5, f'No data available for {metric_title}', 
-                   transform=ax.transAxes, ha='center', va='center', fontsize=14)
+        bp = ax3.boxplot(box_data, positions=positions, widths=0.6, patch_artist=True,
+                        showmeans=True, meanline=True)
+        
+        # Style box plot
+        for patch in bp['boxes']:
+            patch.set_facecolor('#E15759')
+            patch.set_alpha(0.7)
+        
+        for element in ['whiskers', 'fliers', 'medians', 'caps']:
+            plt.setp(bp[element], color='black')
+        
+        plt.setp(bp['means'], color='blue', linewidth=2)
+        
+        ax3.set_title('(c) BLEU Score Distribution', fontweight='bold', fontsize=12)
+        ax3.set_xlabel('Configuration', fontweight='bold')
+        ax3.set_ylabel('BLEU Score', fontweight='bold')
+        ax3.set_xticks(range(1, 13))
+        ax3.set_xticklabels([str(i) for i in range(1, 13)])
+        ax3.grid(True, alpha=0.3, axis='y')
+        ax3.spines['top'].set_visible(False)
+        ax3.spines['right'].set_visible(False)
     
-    # Adjust layout
-    plt.tight_layout()
+    # Plot 4: Cosine Similarity Distribution (Box plot style)
+    metric_key = 'cosine_similarity'
     
-    # Save the combined plot
-    filename = 'combined_violin_plots.png'
+    plot_data = []
+    for config in all_configs:
+        if config in configuration_data:
+            config_df = configuration_data[config]
+            if metric_key in config_df.columns:
+                values = config_df[metric_key].dropna()
+                for value in values:
+                    plot_data.append({'Configuration': config, 'Value': value})
+    
+    if plot_data:
+        df_plot = pd.DataFrame(plot_data)
+        df_plot['Config_Num'] = df_plot['Configuration'].astype(int)
+        df_plot = df_plot.sort_values('Config_Num')
+        
+        # Create box plot
+        box_data = [df_plot[df_plot['Configuration'] == config]['Value'].values 
+                   for config in sorted(all_configs, key=int) 
+                   if config in df_plot['Configuration'].values]
+        
+        positions = [int(config) for config in sorted(all_configs, key=int) 
+                    if config in df_plot['Configuration'].values]
+        
+        bp = ax4.boxplot(box_data, positions=positions, widths=0.6, patch_artist=True,
+                        showmeans=True, meanline=True)
+        
+        # Style box plot
+        for patch in bp['boxes']:
+            patch.set_facecolor('#70AD47')
+            patch.set_alpha(0.7)
+        
+        for element in ['whiskers', 'fliers', 'medians', 'caps']:
+            plt.setp(bp[element], color='black')
+        
+        plt.setp(bp['means'], color='blue', linewidth=2)
+        
+        ax4.set_title('(d) Cosine Similarity Distribution', fontweight='bold', fontsize=12)
+        ax4.set_xlabel('Configuration', fontweight='bold')
+        ax4.set_ylabel('Cosine Similarity', fontweight='bold')
+        ax4.set_xticks(range(1, 13))
+        ax4.set_xticklabels([str(i) for i in range(1, 13)])
+        ax4.grid(True, alpha=0.3, axis='y')
+        ax4.spines['top'].set_visible(False)
+        ax4.spines['right'].set_visible(False)
+    
+    # Overall title
+    fig.suptitle('Comprehensive Analysis of Configuration Performance', 
+                 fontsize=16, fontweight='bold', y=0.95)
+    
+    # Save the plot
+    filename = 'compact_combined_analysis.png'
     filepath = Path(output_folder) / filename
-    plt.savefig(filepath, dpi=300, bbox_inches='tight')
-    print(f"Combined violin plot saved: {filepath}")
+    plt.savefig(filepath, dpi=300, bbox_inches='tight', facecolor='white')
+    print(f"Compact combined analysis saved: {filepath}")
     
-    # Show the plot
     plt.show()
     plt.close()
 
+# Example usage function
+def generate_compact_plots(config_data, summary_df, output_folder='plots'):
+    """
+    Generate all compact plots suitable for scientific articles.
+    """
+    print("Generating compact plots for scientific article...")
+    
+    # Create individual compact plots
+    create_compact_success_failure_plots(summary_df, output_folder)
+    create_compact_violin_plot(config_data, output_folder)
+    
+    # Create comprehensive combined analysis
+    # create_compact_combined_analysis(summary_df, config_data, output_folder)
 
-
+    print(f"All compact plots saved to {output_folder}/")
+    print("Plots are optimized for scientific articles with:")
+    print("- Larger fonts for readability when scaled down")
+    print("- Professional color schemes") 
+    print("- Compact layouts to save space")
+    print("- High DPI (300) for publication quality")
+    print("- Serif fonts for academic appearance")
 
 
 
@@ -784,9 +828,11 @@ if __name__ == "__main__":
         
         # Generate the plots
         print("\n=== GENERATING PLOTS ===")
-        create_success_failure_plots(summary, output_folder='plots')
-        create_violin_plots(config_data, output_folder='plots')
-        create_combined_violin_plot(config_data, output_folder='plots')
+
+        generate_compact_plots(config_data, summary, 'plots/quantitative')
+
+        # create_publication_ready_individual_plots(summary, "compact_plots")
+        # create_individual_success_failure_plots(summary, "compact_plots")
         
     except FileNotFoundError:
         print(f"Error: Folder '{folder_path}' not found. Please check the path.")
