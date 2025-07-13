@@ -189,7 +189,7 @@ def process_excel_files(base_path):
                     
                     # Report empty evaluations
                     if empty_experts:
-                        print(f"    ⚠️  EMPTY EVALUATIONS found for {var_name}:")
+                        print(f"    WARNING:  EMPTY EVALUATIONS found for {var_name}:")
                         print(f"       Output: {output_name}, Config: {config_name}")
                         print(f"       Missing experts: {', '.join(empty_experts)}")
                         print(f"       Cell: {cell_ref}, File: {excel_file.name}")
@@ -199,9 +199,9 @@ def process_excel_files(base_path):
                     total_count = len(expert_values)
                     
                     if valid_count == 0:
-                        print(f"    ❌ NO VALID EVALUATIONS for {var_name} in {output_name}/{config_name}")
+                        print(f"    ERROR: NO VALID EVALUATIONS for {var_name} in {output_name}/{config_name}")
                     elif valid_count < total_count:
-                        print(f"    ⚠️  PARTIAL EVALUATIONS for {var_name}: {valid_count}/{total_count} experts")
+                        print(f"    WARNING:  PARTIAL EVALUATIONS for {var_name}: {valid_count}/{total_count} experts")
                     
                     # Store the data
                     configuration_tables[config_key]['data'][var_name] = expert_values
@@ -653,13 +653,13 @@ def main(base_path, output_file, create_plots=True):
     total_missing = df_aggregated['Missing_Evaluations'].sum()
     completion_rate = ((total_evaluations - total_missing) / total_evaluations * 100) if total_evaluations > 0 else 0
     
-    print(f"\n📊 DATA COMPLETENESS SUMMARY:")
+    print(f"\n DATA COMPLETENESS SUMMARY:")
     print(f"Total expected evaluations: {total_evaluations}")
     print(f"Missing evaluations: {total_missing}")
     print(f"Overall completion rate: {completion_rate:.2f}%")
     
     if total_missing > 0:
-        print(f"\n⚠️  WARNING: {total_missing} evaluations are missing!")
+        print(f"\n  WARNING: {total_missing} evaluations are missing!")
         print("Check the 'Data_Completeness_Report' sheet for details.")
         
         # Show most problematic configurations
@@ -669,11 +669,11 @@ def main(base_path, output_file, create_plots=True):
             for _, row in problematic.head(5).iterrows():
                 print(f"  - {row['Configuration']}/{row['Output']}/{row['Variable']}: {row['Missing_Evaluations']} missing")
     else:
-        print("\n✅ All evaluations are complete!")
+        print("\nSUCCESS: All evaluations are complete!")
     
     # Print box plot summary
     if create_plots and raw_ratings_data:
-        print(f"\n📈 BOX PLOTS SUMMARY:")
+        print(f"\nBOX PLOTS SUMMARY:")
         print(f"Box plots created for {len(set([r['variable'] for r in raw_ratings_data]))} variables")
         print("Check the 'plots' directory for visualization files")
         print("Individual plots saved as: boxplot_[variable_name].png")

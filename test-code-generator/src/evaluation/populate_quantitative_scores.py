@@ -271,11 +271,6 @@ def populate_quantitative_scores(baseline_folder, generated_folder, quantitative
 
             preprocessed_generated_code = preprocess_code(code)
             preprocessed_baseline_code = preprocess_code(baseline_code)
-            # print("------------------------------------------------------------------")
-            # print(preprocessed_generated_code)
-            # print("------------------------------------------------------------------")
-            # print(preprocessed_baseline_code)
-            # print("------------------------------------------------------------------")
 
             # make here all metrics between code and baseline_code
             bleu = calculate_bleu(preprocessed_baseline_code, preprocessed_generated_code)

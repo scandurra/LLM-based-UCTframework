@@ -11,7 +11,7 @@ test("UC1_TC1 - Login con credenziali valide", async ({ page, browserName }) => 
   reporter.setBrowserName(browserName);
   reporter.setTestCase("UC1_TC1", "Login con credenziali valide");
 
-  // Navigate to login page
+  // Navigate to the login page
   await page.goto(process.env.E2E_LOGIN_URL);
 
   // Call step functions in sequence

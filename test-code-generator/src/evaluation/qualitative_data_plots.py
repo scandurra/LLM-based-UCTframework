@@ -28,10 +28,10 @@ def create_expert_boxplots(all_data, output_dir="expert_plots"):
     df = pd.DataFrame(all_data)
     
     if df.empty:
-        print("❌ No data available for plotting")
+        print("ERROR: No data available for plotting")
         return
     
-    print(f"✅ Processing {len(df)} data points")
+    print(f"SUCCESS: Processing {len(df)} data points")
     
     # Set publication style
     plt.style.use('default')
@@ -79,10 +79,10 @@ def create_expert_boxplots(all_data, output_dir="expert_plots"):
         var_data = df[df['variable'] == variable].copy()
         
         if var_data.empty:
-            print(f"⚠️ No data for variable: {variable}")
+            print(f"WARNING: No data for variable: {variable}")
             continue
         
-        print(f"📊 Creating plot for: {variable}")
+        print(f"Creating plot for: {variable}")
         
         # Sort configurations numerically and ensure all 1-12 are represented
         var_data['config_num'] = var_data['configuration'].apply(extract_config_number)
@@ -223,7 +223,7 @@ def create_overall_expert_plot(all_data, output_dir="expert_plots"):
     df = pd.DataFrame(all_data)
     
     if df.empty:
-        print("❌ No data available for overall plot")
+        print("ERROR: No data available for overall plot")
         return
     
     def extract_config_number(config_name):
@@ -359,7 +359,7 @@ def create_overall_expert_plot(all_data, output_dir="expert_plots"):
     # plt.savefig(filename.replace('.png', '.pdf'), bbox_inches='tight', facecolor='white')
     plt.close()
     
-    print(f"✅ Overall expert plot saved: {filename}")
+    print(f"SUCCESS: Overall expert plot saved: {filename}")
 
 def create_compact_multi_variable_plot(all_data, output_dir="expert_plots"):
     """
@@ -541,7 +541,7 @@ def create_compact_multi_variable_plot(all_data, output_dir="expert_plots"):
     # plt.savefig(filename.replace('.png', '.pdf'), bbox_inches='tight', facecolor='white')
     plt.close()
     
-    print(f"✅ Compact multi-variable plot saved: {filename}")
+    print(f"SUCCESS: Compact multi-variable plot saved: {filename}")
 
 # Main function to call all plotting functions
 def create_publication_expert_plots(all_data, output_dir="expert_plots"):
@@ -551,7 +551,7 @@ def create_publication_expert_plots(all_data, output_dir="expert_plots"):
     Usage in your main() function:
     create_publication_expert_plots(all_data, "expert_plots")
     """
-    print(f"\n📊 Creating publication-ready expert box plots...")
+    print(f"\nCreating publication-ready expert box plots...")
     
     # Create individual plots for each variable
     create_expert_boxplots(all_data, output_dir)
@@ -562,8 +562,8 @@ def create_publication_expert_plots(all_data, output_dir="expert_plots"):
     # Create compact multi-variable plot
     create_compact_multi_variable_plot(all_data, output_dir)
     
-    print(f"\n✅ All expert plots completed and saved in '{output_dir}' directory")
-    print("📋 Individual variable plots: boxplot_[variable]_experts.png")
-    print("📋 Overall plot: boxplot_overall_experts.png") 
-    print("📋 Compact multi-variable: boxplot_all_variables_compact.png")
-    print("📋 All plots saved in both PNG (300 DPI)")
+    print(f"\nSUCCESS: All expert plots completed and saved in '{output_dir}' directory")
+    print("Individual variable plots: boxplot_[variable]_experts.png")
+    print("Overall plot: boxplot_overall_experts.png") 
+    print("Compact multi-variable: boxplot_all_variables_compact.png")
+    print("All plots saved in both PNG (300 DPI)")
