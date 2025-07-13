@@ -1,0 +1,453 @@
+2025-07-13 16:29:03,812 - __main__ - INFO - Orchestrator initialized
+2025-07-13 16:29:03,812 - __main__ - INFO - Starting orchestrator - use_case: None, test_cases: None, model: llama3.3:latest, config: few_shot, processing_type: single
+2025-07-13 16:29:03,813 - __main__ - INFO - Loaded dependency graph from ./input_files/include_graph/include_graph.json
+2025-07-13 16:29:03,813 - __main__ - INFO - Loaded page object models from ./input_files/pom
+2025-07-13 16:29:03,813 - __main__ - INFO - Found 41 use cases in dependency order: ['UC1', 'UC3', 'UC5', 'UC6', 'UC4', 'UC2', 'UC3.2', 'UC3.1', 'UC3.4', 'UC3.3', 'UC4.3', 'UC4.2', 'UC4.1', 'UC2.5', 'UC2.4', 'UC2.2', 'UC2.3', 'UC2.1', 'UC2.6', 'UC3.2.4', 'UC3.2.2', 'UC3.2.3', 'UC3.2.1', 'UC3.4.3', 'UC3.4.5', 'UC3.4.2', 'UC3.4.1', 'UC3.4.4', 'UC4.1.1', 'UC3.4.3.5', 'UC3.4.3.4', 'UC3.4.3.2', 'UC3.4.3.11', 'UC3.4.3.3', 'UC3.4.3.1', 'UC3.4.3.6', 'UC3.4.3.12', 'UC3.4.3.7', 'UC3.4.3.9', 'UC3.4.3.10', 'UC3.4.3.8']
+2025-07-13 16:29:03,813 - __main__ - INFO - Processing use case: UC1 (type: single)
+2025-07-13 16:29:03,813 - __main__ - INFO - Found 0 dependencies for use case UC1
+2025-07-13 16:29:03,813 - test_code_generator.prompt_builder.prompt_builder - ERROR - [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+Traceback (most recent call last):
+  File "/home/sronzoni/GitHub/LLM-based-UCTframework/test-code-generator/src/test_code_generator/prompt_builder/prompt_builder.py", line 78, in __load_prompt_template
+    for file_path in folder.iterdir():
+  File "/usr/lib/python3.12/pathlib.py", line 1058, in iterdir
+    for name in os.listdir(self):
+                ^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,814 - __main__ - ERROR - Error processing test case UC1_TC1: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,814 - __main__ - ERROR - Error processing use case UC1: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,814 - __main__ - ERROR - Failed to process use case UC1: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,814 - __main__ - INFO - Processing use case: UC3 (type: single)
+2025-07-13 16:29:03,814 - __main__ - INFO - Found 1 dependencies for use case UC3
+2025-07-13 16:29:03,814 - __main__ - INFO - Base test case ID already defined for dependency UC1: UC1_TC1
+2025-07-13 16:29:03,815 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC1/UC1_TC1.functions.js
+2025-07-13 16:29:03,815 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC1/UC1_TC1.spec.js
+2025-07-13 16:29:03,815 - test_code_generator.prompt_builder.prompt_builder - ERROR - [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+Traceback (most recent call last):
+  File "/home/sronzoni/GitHub/LLM-based-UCTframework/test-code-generator/src/test_code_generator/prompt_builder/prompt_builder.py", line 78, in __load_prompt_template
+    for file_path in folder.iterdir():
+  File "/usr/lib/python3.12/pathlib.py", line 1058, in iterdir
+    for name in os.listdir(self):
+                ^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,815 - __main__ - ERROR - Error processing test case UC3_TC1: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,815 - __main__ - ERROR - Error processing use case UC3: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,815 - __main__ - ERROR - Failed to process use case UC3: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,815 - __main__ - INFO - Processing use case: UC5 (type: single)
+2025-07-13 16:29:03,815 - __main__ - INFO - Found 1 dependencies for use case UC5
+2025-07-13 16:29:03,815 - __main__ - INFO - Base test case ID already defined for dependency UC1: UC1_TC1
+2025-07-13 16:29:03,815 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC1/UC1_TC1.functions.js
+2025-07-13 16:29:03,815 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC1/UC1_TC1.spec.js
+2025-07-13 16:29:03,815 - test_code_generator.prompt_builder.prompt_builder - ERROR - [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+Traceback (most recent call last):
+  File "/home/sronzoni/GitHub/LLM-based-UCTframework/test-code-generator/src/test_code_generator/prompt_builder/prompt_builder.py", line 78, in __load_prompt_template
+    for file_path in folder.iterdir():
+  File "/usr/lib/python3.12/pathlib.py", line 1058, in iterdir
+    for name in os.listdir(self):
+                ^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,816 - __main__ - ERROR - Error processing test case UC5_TC1: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,816 - __main__ - ERROR - Error processing use case UC5: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,816 - __main__ - ERROR - Failed to process use case UC5: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,816 - __main__ - INFO - Processing use case: UC6 (type: single)
+2025-07-13 16:29:03,816 - __main__ - INFO - Found 1 dependencies for use case UC6
+2025-07-13 16:29:03,816 - __main__ - INFO - Base test case ID already defined for dependency UC1: UC1_TC1
+2025-07-13 16:29:03,816 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC1/UC1_TC1.functions.js
+2025-07-13 16:29:03,816 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC1/UC1_TC1.spec.js
+2025-07-13 16:29:03,816 - test_code_generator.prompt_builder.prompt_builder - ERROR - [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+Traceback (most recent call last):
+  File "/home/sronzoni/GitHub/LLM-based-UCTframework/test-code-generator/src/test_code_generator/prompt_builder/prompt_builder.py", line 78, in __load_prompt_template
+    for file_path in folder.iterdir():
+  File "/usr/lib/python3.12/pathlib.py", line 1058, in iterdir
+    for name in os.listdir(self):
+                ^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,816 - __main__ - ERROR - Error processing test case UC6_TC1: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,816 - __main__ - ERROR - Error processing use case UC6: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,816 - __main__ - ERROR - Failed to process use case UC6: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,816 - __main__ - INFO - Processing use case: UC4 (type: single)
+2025-07-13 16:29:03,816 - __main__ - INFO - Found 1 dependencies for use case UC4
+2025-07-13 16:29:03,816 - __main__ - INFO - Base test case ID already defined for dependency UC1: UC1_TC1
+2025-07-13 16:29:03,816 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC1/UC1_TC1.functions.js
+2025-07-13 16:29:03,816 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC1/UC1_TC1.spec.js
+2025-07-13 16:29:03,816 - __main__ - ERROR - Error processing use case UC4: 'UC4'
+2025-07-13 16:29:03,816 - __main__ - ERROR - Failed to process use case UC4: 'UC4'
+2025-07-13 16:29:03,816 - __main__ - INFO - Processing use case: UC2 (type: single)
+2025-07-13 16:29:03,816 - __main__ - INFO - Found 1 dependencies for use case UC2
+2025-07-13 16:29:03,816 - __main__ - INFO - Base test case ID already defined for dependency UC1: UC1_TC1
+2025-07-13 16:29:03,816 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC1/UC1_TC1.functions.js
+2025-07-13 16:29:03,816 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC1/UC1_TC1.spec.js
+2025-07-13 16:29:03,816 - test_code_generator.prompt_builder.prompt_builder - ERROR - [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+Traceback (most recent call last):
+  File "/home/sronzoni/GitHub/LLM-based-UCTframework/test-code-generator/src/test_code_generator/prompt_builder/prompt_builder.py", line 78, in __load_prompt_template
+    for file_path in folder.iterdir():
+  File "/usr/lib/python3.12/pathlib.py", line 1058, in iterdir
+    for name in os.listdir(self):
+                ^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,816 - __main__ - ERROR - Error processing test case UC2_TC1: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,817 - __main__ - ERROR - Error processing use case UC2: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,817 - __main__ - ERROR - Failed to process use case UC2: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,817 - __main__ - INFO - Processing use case: UC3.2 (type: single)
+2025-07-13 16:29:03,817 - __main__ - INFO - Found 1 dependencies for use case UC3.2
+2025-07-13 16:29:03,817 - __main__ - INFO - Set base test case ID for UC3: UC3_TC1
+2025-07-13 16:29:03,817 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC3/UC3_TC1.functions.js
+2025-07-13 16:29:03,817 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC3/UC3_TC1.spec.js
+2025-07-13 16:29:03,817 - test_code_generator.prompt_builder.prompt_builder - ERROR - [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+Traceback (most recent call last):
+  File "/home/sronzoni/GitHub/LLM-based-UCTframework/test-code-generator/src/test_code_generator/prompt_builder/prompt_builder.py", line 78, in __load_prompt_template
+    for file_path in folder.iterdir():
+  File "/usr/lib/python3.12/pathlib.py", line 1058, in iterdir
+    for name in os.listdir(self):
+                ^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,817 - __main__ - ERROR - Error processing test case UC3.2_TC1: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,817 - __main__ - ERROR - Error processing use case UC3.2: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,817 - __main__ - ERROR - Failed to process use case UC3.2: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,817 - __main__ - INFO - Processing use case: UC3.1 (type: single)
+2025-07-13 16:29:03,817 - __main__ - INFO - Found 1 dependencies for use case UC3.1
+2025-07-13 16:29:03,817 - __main__ - INFO - Base test case ID already defined for dependency UC3: UC3_TC1
+2025-07-13 16:29:03,817 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC3/UC3_TC1.functions.js
+2025-07-13 16:29:03,817 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC3/UC3_TC1.spec.js
+2025-07-13 16:29:03,817 - test_code_generator.prompt_builder.prompt_builder - ERROR - [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+Traceback (most recent call last):
+  File "/home/sronzoni/GitHub/LLM-based-UCTframework/test-code-generator/src/test_code_generator/prompt_builder/prompt_builder.py", line 78, in __load_prompt_template
+    for file_path in folder.iterdir():
+  File "/usr/lib/python3.12/pathlib.py", line 1058, in iterdir
+    for name in os.listdir(self):
+                ^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,817 - __main__ - ERROR - Error processing test case UC3.1_TC1: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,817 - __main__ - ERROR - Error processing use case UC3.1: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,817 - __main__ - ERROR - Failed to process use case UC3.1: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,817 - __main__ - INFO - Processing use case: UC3.4 (type: single)
+2025-07-13 16:29:03,817 - __main__ - INFO - Found 1 dependencies for use case UC3.4
+2025-07-13 16:29:03,817 - __main__ - INFO - Base test case ID already defined for dependency UC3: UC3_TC1
+2025-07-13 16:29:03,817 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC3/UC3_TC1.functions.js
+2025-07-13 16:29:03,817 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC3/UC3_TC1.spec.js
+2025-07-13 16:29:03,817 - test_code_generator.prompt_builder.prompt_builder - ERROR - [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+Traceback (most recent call last):
+  File "/home/sronzoni/GitHub/LLM-based-UCTframework/test-code-generator/src/test_code_generator/prompt_builder/prompt_builder.py", line 78, in __load_prompt_template
+    for file_path in folder.iterdir():
+  File "/usr/lib/python3.12/pathlib.py", line 1058, in iterdir
+    for name in os.listdir(self):
+                ^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,817 - __main__ - ERROR - Error processing test case UC3.4_TC1: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,817 - __main__ - ERROR - Error processing use case UC3.4: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,817 - __main__ - ERROR - Failed to process use case UC3.4: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,817 - __main__ - INFO - Processing use case: UC3.3 (type: single)
+2025-07-13 16:29:03,817 - __main__ - INFO - Found 1 dependencies for use case UC3.3
+2025-07-13 16:29:03,817 - __main__ - INFO - Base test case ID already defined for dependency UC3: UC3_TC1
+2025-07-13 16:29:03,817 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC3/UC3_TC1.functions.js
+2025-07-13 16:29:03,818 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC3/UC3_TC1.spec.js
+2025-07-13 16:29:03,818 - test_code_generator.prompt_builder.prompt_builder - ERROR - [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+Traceback (most recent call last):
+  File "/home/sronzoni/GitHub/LLM-based-UCTframework/test-code-generator/src/test_code_generator/prompt_builder/prompt_builder.py", line 78, in __load_prompt_template
+    for file_path in folder.iterdir():
+  File "/usr/lib/python3.12/pathlib.py", line 1058, in iterdir
+    for name in os.listdir(self):
+                ^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,818 - __main__ - ERROR - Error processing test case UC3.3_TC1: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,818 - __main__ - ERROR - Error processing use case UC3.3: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,818 - __main__ - ERROR - Failed to process use case UC3.3: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,818 - __main__ - INFO - Processing use case: UC4.3 (type: single)
+2025-07-13 16:29:03,818 - __main__ - INFO - Found 1 dependencies for use case UC4.3
+2025-07-13 16:29:03,818 - __main__ - INFO - Set base test case ID for UC4: UC4_TC1
+2025-07-13 16:29:03,818 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC4/UC4_TC1.functions.js
+2025-07-13 16:29:03,818 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC4/UC4_TC1.spec.js
+2025-07-13 16:29:03,818 - __main__ - ERROR - Error processing use case UC4.3: 'UC4.3'
+2025-07-13 16:29:03,818 - __main__ - ERROR - Failed to process use case UC4.3: 'UC4.3'
+2025-07-13 16:29:03,818 - __main__ - INFO - Processing use case: UC4.2 (type: single)
+2025-07-13 16:29:03,818 - __main__ - INFO - Found 1 dependencies for use case UC4.2
+2025-07-13 16:29:03,818 - __main__ - INFO - Base test case ID already defined for dependency UC4: UC4_TC1
+2025-07-13 16:29:03,818 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC4/UC4_TC1.functions.js
+2025-07-13 16:29:03,818 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC4/UC4_TC1.spec.js
+2025-07-13 16:29:03,818 - __main__ - ERROR - Error processing use case UC4.2: 'UC4.2'
+2025-07-13 16:29:03,818 - __main__ - ERROR - Failed to process use case UC4.2: 'UC4.2'
+2025-07-13 16:29:03,818 - __main__ - INFO - Processing use case: UC4.1 (type: single)
+2025-07-13 16:29:03,818 - __main__ - INFO - Found 1 dependencies for use case UC4.1
+2025-07-13 16:29:03,818 - __main__ - INFO - Base test case ID already defined for dependency UC4: UC4_TC1
+2025-07-13 16:29:03,818 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC4/UC4_TC1.functions.js
+2025-07-13 16:29:03,818 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC4/UC4_TC1.spec.js
+2025-07-13 16:29:03,818 - __main__ - ERROR - Error processing use case UC4.1: 'UC4.1'
+2025-07-13 16:29:03,818 - __main__ - ERROR - Failed to process use case UC4.1: 'UC4.1'
+2025-07-13 16:29:03,818 - __main__ - INFO - Processing use case: UC2.5 (type: single)
+2025-07-13 16:29:03,818 - __main__ - INFO - Found 1 dependencies for use case UC2.5
+2025-07-13 16:29:03,818 - __main__ - INFO - Set base test case ID for UC2: UC2_TC1
+2025-07-13 16:29:03,818 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC2/UC2_TC1.functions.js
+2025-07-13 16:29:03,818 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC2/UC2_TC1.spec.js
+2025-07-13 16:29:03,818 - __main__ - ERROR - Error processing use case UC2.5: 'UC2.5'
+2025-07-13 16:29:03,818 - __main__ - ERROR - Failed to process use case UC2.5: 'UC2.5'
+2025-07-13 16:29:03,818 - __main__ - INFO - Processing use case: UC2.4 (type: single)
+2025-07-13 16:29:03,818 - __main__ - INFO - Found 1 dependencies for use case UC2.4
+2025-07-13 16:29:03,818 - __main__ - INFO - Base test case ID already defined for dependency UC2: UC2_TC1
+2025-07-13 16:29:03,818 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC2/UC2_TC1.functions.js
+2025-07-13 16:29:03,818 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC2/UC2_TC1.spec.js
+2025-07-13 16:29:03,818 - test_code_generator.prompt_builder.prompt_builder - ERROR - [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+Traceback (most recent call last):
+  File "/home/sronzoni/GitHub/LLM-based-UCTframework/test-code-generator/src/test_code_generator/prompt_builder/prompt_builder.py", line 78, in __load_prompt_template
+    for file_path in folder.iterdir():
+  File "/usr/lib/python3.12/pathlib.py", line 1058, in iterdir
+    for name in os.listdir(self):
+                ^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,818 - __main__ - ERROR - Error processing test case UC2.4_TC1: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,818 - __main__ - ERROR - Error processing use case UC2.4: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,818 - __main__ - ERROR - Failed to process use case UC2.4: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,818 - __main__ - INFO - Processing use case: UC2.2 (type: single)
+2025-07-13 16:29:03,819 - __main__ - INFO - Found 1 dependencies for use case UC2.2
+2025-07-13 16:29:03,819 - __main__ - INFO - Base test case ID already defined for dependency UC2: UC2_TC1
+2025-07-13 16:29:03,819 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC2/UC2_TC1.functions.js
+2025-07-13 16:29:03,819 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC2/UC2_TC1.spec.js
+2025-07-13 16:29:03,819 - test_code_generator.prompt_builder.prompt_builder - ERROR - [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+Traceback (most recent call last):
+  File "/home/sronzoni/GitHub/LLM-based-UCTframework/test-code-generator/src/test_code_generator/prompt_builder/prompt_builder.py", line 78, in __load_prompt_template
+    for file_path in folder.iterdir():
+  File "/usr/lib/python3.12/pathlib.py", line 1058, in iterdir
+    for name in os.listdir(self):
+                ^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,819 - __main__ - ERROR - Error processing test case UC2.2_TC1: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,819 - __main__ - ERROR - Error processing use case UC2.2: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,819 - __main__ - ERROR - Failed to process use case UC2.2: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,819 - __main__ - INFO - Processing use case: UC2.3 (type: single)
+2025-07-13 16:29:03,819 - __main__ - INFO - Found 1 dependencies for use case UC2.3
+2025-07-13 16:29:03,819 - __main__ - INFO - Base test case ID already defined for dependency UC2: UC2_TC1
+2025-07-13 16:29:03,819 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC2/UC2_TC1.functions.js
+2025-07-13 16:29:03,819 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC2/UC2_TC1.spec.js
+2025-07-13 16:29:03,819 - test_code_generator.prompt_builder.prompt_builder - ERROR - [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+Traceback (most recent call last):
+  File "/home/sronzoni/GitHub/LLM-based-UCTframework/test-code-generator/src/test_code_generator/prompt_builder/prompt_builder.py", line 78, in __load_prompt_template
+    for file_path in folder.iterdir():
+  File "/usr/lib/python3.12/pathlib.py", line 1058, in iterdir
+    for name in os.listdir(self):
+                ^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,819 - __main__ - ERROR - Error processing test case UC2.3_TC1: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,819 - __main__ - ERROR - Error processing use case UC2.3: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,819 - __main__ - ERROR - Failed to process use case UC2.3: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,819 - __main__ - INFO - Processing use case: UC2.1 (type: single)
+2025-07-13 16:29:03,819 - __main__ - INFO - Found 1 dependencies for use case UC2.1
+2025-07-13 16:29:03,819 - __main__ - INFO - Base test case ID already defined for dependency UC2: UC2_TC1
+2025-07-13 16:29:03,819 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC2/UC2_TC1.functions.js
+2025-07-13 16:29:03,819 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC2/UC2_TC1.spec.js
+2025-07-13 16:29:03,819 - test_code_generator.prompt_builder.prompt_builder - ERROR - [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+Traceback (most recent call last):
+  File "/home/sronzoni/GitHub/LLM-based-UCTframework/test-code-generator/src/test_code_generator/prompt_builder/prompt_builder.py", line 78, in __load_prompt_template
+    for file_path in folder.iterdir():
+  File "/usr/lib/python3.12/pathlib.py", line 1058, in iterdir
+    for name in os.listdir(self):
+                ^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,819 - __main__ - ERROR - Error processing test case UC2.1_TC1: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,819 - __main__ - ERROR - Error processing use case UC2.1: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,819 - __main__ - ERROR - Failed to process use case UC2.1: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,819 - __main__ - INFO - Processing use case: UC2.6 (type: single)
+2025-07-13 16:29:03,819 - __main__ - INFO - Found 1 dependencies for use case UC2.6
+2025-07-13 16:29:03,819 - __main__ - INFO - Base test case ID already defined for dependency UC2: UC2_TC1
+2025-07-13 16:29:03,819 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC2/UC2_TC1.functions.js
+2025-07-13 16:29:03,819 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC2/UC2_TC1.spec.js
+2025-07-13 16:29:03,819 - __main__ - ERROR - Error processing use case UC2.6: 'UC2.6'
+2025-07-13 16:29:03,819 - __main__ - ERROR - Failed to process use case UC2.6: 'UC2.6'
+2025-07-13 16:29:03,819 - __main__ - INFO - Processing use case: UC3.2.4 (type: single)
+2025-07-13 16:29:03,819 - __main__ - INFO - Found 1 dependencies for use case UC3.2.4
+2025-07-13 16:29:03,819 - __main__ - INFO - Set base test case ID for UC3.2: UC3.2_TC1
+2025-07-13 16:29:03,820 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC3.2/UC3.2_TC1.functions.js
+2025-07-13 16:29:03,820 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC3.2/UC3.2_TC1.spec.js
+2025-07-13 16:29:03,820 - __main__ - ERROR - Error processing use case UC3.2.4: 'UC3.2.4'
+2025-07-13 16:29:03,820 - __main__ - ERROR - Failed to process use case UC3.2.4: 'UC3.2.4'
+2025-07-13 16:29:03,820 - __main__ - INFO - Processing use case: UC3.2.2 (type: single)
+2025-07-13 16:29:03,820 - __main__ - INFO - Found 1 dependencies for use case UC3.2.2
+2025-07-13 16:29:03,820 - __main__ - INFO - Base test case ID already defined for dependency UC3.2: UC3.2_TC1
+2025-07-13 16:29:03,820 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC3.2/UC3.2_TC1.functions.js
+2025-07-13 16:29:03,820 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC3.2/UC3.2_TC1.spec.js
+2025-07-13 16:29:03,820 - __main__ - ERROR - Error processing use case UC3.2.2: 'UC3.2.2'
+2025-07-13 16:29:03,820 - __main__ - ERROR - Failed to process use case UC3.2.2: 'UC3.2.2'
+2025-07-13 16:29:03,820 - __main__ - INFO - Processing use case: UC3.2.3 (type: single)
+2025-07-13 16:29:03,820 - __main__ - INFO - Found 1 dependencies for use case UC3.2.3
+2025-07-13 16:29:03,820 - __main__ - INFO - Base test case ID already defined for dependency UC3.2: UC3.2_TC1
+2025-07-13 16:29:03,820 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC3.2/UC3.2_TC1.functions.js
+2025-07-13 16:29:03,820 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC3.2/UC3.2_TC1.spec.js
+2025-07-13 16:29:03,820 - __main__ - ERROR - Error processing use case UC3.2.3: 'UC3.2.3'
+2025-07-13 16:29:03,820 - __main__ - ERROR - Failed to process use case UC3.2.3: 'UC3.2.3'
+2025-07-13 16:29:03,820 - __main__ - INFO - Processing use case: UC3.2.1 (type: single)
+2025-07-13 16:29:03,820 - __main__ - INFO - Found 1 dependencies for use case UC3.2.1
+2025-07-13 16:29:03,820 - __main__ - INFO - Base test case ID already defined for dependency UC3.2: UC3.2_TC1
+2025-07-13 16:29:03,820 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC3.2/UC3.2_TC1.functions.js
+2025-07-13 16:29:03,820 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC3.2/UC3.2_TC1.spec.js
+2025-07-13 16:29:03,820 - test_code_generator.prompt_builder.prompt_builder - ERROR - [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+Traceback (most recent call last):
+  File "/home/sronzoni/GitHub/LLM-based-UCTframework/test-code-generator/src/test_code_generator/prompt_builder/prompt_builder.py", line 78, in __load_prompt_template
+    for file_path in folder.iterdir():
+  File "/usr/lib/python3.12/pathlib.py", line 1058, in iterdir
+    for name in os.listdir(self):
+                ^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,820 - __main__ - ERROR - Error processing test case UC3.2.1_TC1: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,820 - __main__ - ERROR - Error processing use case UC3.2.1: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,820 - __main__ - ERROR - Failed to process use case UC3.2.1: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,820 - __main__ - INFO - Processing use case: UC3.4.3 (type: single)
+2025-07-13 16:29:03,820 - __main__ - INFO - Found 1 dependencies for use case UC3.4.3
+2025-07-13 16:29:03,820 - __main__ - INFO - Set base test case ID for UC3.4: UC3.4_TC1
+2025-07-13 16:29:03,820 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC3.4/UC3.4_TC1.functions.js
+2025-07-13 16:29:03,820 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC3.4/UC3.4_TC1.spec.js
+2025-07-13 16:29:03,820 - test_code_generator.prompt_builder.prompt_builder - ERROR - [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+Traceback (most recent call last):
+  File "/home/sronzoni/GitHub/LLM-based-UCTframework/test-code-generator/src/test_code_generator/prompt_builder/prompt_builder.py", line 78, in __load_prompt_template
+    for file_path in folder.iterdir():
+  File "/usr/lib/python3.12/pathlib.py", line 1058, in iterdir
+    for name in os.listdir(self):
+                ^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,820 - __main__ - ERROR - Error processing test case UC3.4.3_TC1: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,820 - __main__ - ERROR - Error processing use case UC3.4.3: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,820 - __main__ - ERROR - Failed to process use case UC3.4.3: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,820 - __main__ - INFO - Processing use case: UC3.4.5 (type: single)
+2025-07-13 16:29:03,820 - __main__ - INFO - Found 1 dependencies for use case UC3.4.5
+2025-07-13 16:29:03,821 - __main__ - INFO - Base test case ID already defined for dependency UC3.4: UC3.4_TC1
+2025-07-13 16:29:03,821 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC3.4/UC3.4_TC1.functions.js
+2025-07-13 16:29:03,821 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC3.4/UC3.4_TC1.spec.js
+2025-07-13 16:29:03,821 - test_code_generator.prompt_builder.prompt_builder - ERROR - [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+Traceback (most recent call last):
+  File "/home/sronzoni/GitHub/LLM-based-UCTframework/test-code-generator/src/test_code_generator/prompt_builder/prompt_builder.py", line 78, in __load_prompt_template
+    for file_path in folder.iterdir():
+  File "/usr/lib/python3.12/pathlib.py", line 1058, in iterdir
+    for name in os.listdir(self):
+                ^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,821 - __main__ - ERROR - Error processing test case UC3.4.5_TC1: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,821 - __main__ - ERROR - Error processing use case UC3.4.5: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,821 - __main__ - ERROR - Failed to process use case UC3.4.5: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,821 - __main__ - INFO - Processing use case: UC3.4.2 (type: single)
+2025-07-13 16:29:03,821 - __main__ - INFO - Found 1 dependencies for use case UC3.4.2
+2025-07-13 16:29:03,821 - __main__ - INFO - Base test case ID already defined for dependency UC3.4: UC3.4_TC1
+2025-07-13 16:29:03,821 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC3.4/UC3.4_TC1.functions.js
+2025-07-13 16:29:03,821 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC3.4/UC3.4_TC1.spec.js
+2025-07-13 16:29:03,821 - test_code_generator.prompt_builder.prompt_builder - ERROR - [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+Traceback (most recent call last):
+  File "/home/sronzoni/GitHub/LLM-based-UCTframework/test-code-generator/src/test_code_generator/prompt_builder/prompt_builder.py", line 78, in __load_prompt_template
+    for file_path in folder.iterdir():
+  File "/usr/lib/python3.12/pathlib.py", line 1058, in iterdir
+    for name in os.listdir(self):
+                ^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,821 - __main__ - ERROR - Error processing test case UC3.4.2_TC1: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,821 - __main__ - ERROR - Error processing use case UC3.4.2: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,821 - __main__ - ERROR - Failed to process use case UC3.4.2: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,821 - __main__ - INFO - Processing use case: UC3.4.1 (type: single)
+2025-07-13 16:29:03,821 - __main__ - INFO - Found 1 dependencies for use case UC3.4.1
+2025-07-13 16:29:03,821 - __main__ - INFO - Base test case ID already defined for dependency UC3.4: UC3.4_TC1
+2025-07-13 16:29:03,821 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC3.4/UC3.4_TC1.functions.js
+2025-07-13 16:29:03,821 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC3.4/UC3.4_TC1.spec.js
+2025-07-13 16:29:03,821 - test_code_generator.prompt_builder.prompt_builder - ERROR - [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+Traceback (most recent call last):
+  File "/home/sronzoni/GitHub/LLM-based-UCTframework/test-code-generator/src/test_code_generator/prompt_builder/prompt_builder.py", line 78, in __load_prompt_template
+    for file_path in folder.iterdir():
+  File "/usr/lib/python3.12/pathlib.py", line 1058, in iterdir
+    for name in os.listdir(self):
+                ^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,821 - __main__ - ERROR - Error processing test case UC3.4.1_TC1: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,821 - __main__ - ERROR - Error processing use case UC3.4.1: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,821 - __main__ - ERROR - Failed to process use case UC3.4.1: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,821 - __main__ - INFO - Processing use case: UC3.4.4 (type: single)
+2025-07-13 16:29:03,821 - __main__ - INFO - Found 1 dependencies for use case UC3.4.4
+2025-07-13 16:29:03,821 - __main__ - INFO - Base test case ID already defined for dependency UC3.4: UC3.4_TC1
+2025-07-13 16:29:03,822 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC3.4/UC3.4_TC1.functions.js
+2025-07-13 16:29:03,822 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC3.4/UC3.4_TC1.spec.js
+2025-07-13 16:29:03,822 - test_code_generator.prompt_builder.prompt_builder - ERROR - [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+Traceback (most recent call last):
+  File "/home/sronzoni/GitHub/LLM-based-UCTframework/test-code-generator/src/test_code_generator/prompt_builder/prompt_builder.py", line 78, in __load_prompt_template
+    for file_path in folder.iterdir():
+  File "/usr/lib/python3.12/pathlib.py", line 1058, in iterdir
+    for name in os.listdir(self):
+                ^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,822 - __main__ - ERROR - Error processing test case UC3.4.4_TC1: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,822 - __main__ - ERROR - Error processing use case UC3.4.4: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,822 - __main__ - ERROR - Failed to process use case UC3.4.4: [Errno 2] No such file or directory: 'prompts/single/few_shot/llama3.3'
+2025-07-13 16:29:03,822 - __main__ - INFO - Processing use case: UC4.1.1 (type: single)
+2025-07-13 16:29:03,822 - __main__ - INFO - Found 1 dependencies for use case UC4.1.1
+2025-07-13 16:29:03,822 - __main__ - INFO - Set base test case ID for UC4.1: UC4.1_TC1
+2025-07-13 16:29:03,822 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC4.1/UC4.1_TC1.functions.js
+2025-07-13 16:29:03,822 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC4.1/UC4.1_TC1.spec.js
+2025-07-13 16:29:03,822 - __main__ - ERROR - Error processing use case UC4.1.1: 'UC4.1.1'
+2025-07-13 16:29:03,822 - __main__ - ERROR - Failed to process use case UC4.1.1: 'UC4.1.1'
+2025-07-13 16:29:03,822 - __main__ - INFO - Processing use case: UC3.4.3.5 (type: single)
+2025-07-13 16:29:03,822 - __main__ - INFO - Found 1 dependencies for use case UC3.4.3.5
+2025-07-13 16:29:03,822 - __main__ - INFO - Set base test case ID for UC3.4.3: UC3.4.3_TC1
+2025-07-13 16:29:03,822 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC3.4.3/UC3.4.3_TC1.functions.js
+2025-07-13 16:29:03,822 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC3.4.3/UC3.4.3_TC1.spec.js
+2025-07-13 16:29:03,822 - __main__ - ERROR - Error processing use case UC3.4.3.5: 'UC3.4.3.5'
+2025-07-13 16:29:03,822 - __main__ - ERROR - Failed to process use case UC3.4.3.5: 'UC3.4.3.5'
+2025-07-13 16:29:03,822 - __main__ - INFO - Processing use case: UC3.4.3.4 (type: single)
+2025-07-13 16:29:03,822 - __main__ - INFO - Found 1 dependencies for use case UC3.4.3.4
+2025-07-13 16:29:03,822 - __main__ - INFO - Base test case ID already defined for dependency UC3.4.3: UC3.4.3_TC1
+2025-07-13 16:29:03,822 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC3.4.3/UC3.4.3_TC1.functions.js
+2025-07-13 16:29:03,822 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC3.4.3/UC3.4.3_TC1.spec.js
+2025-07-13 16:29:03,822 - __main__ - ERROR - Error processing use case UC3.4.3.4: 'UC3.4.3.4'
+2025-07-13 16:29:03,822 - __main__ - ERROR - Failed to process use case UC3.4.3.4: 'UC3.4.3.4'
+2025-07-13 16:29:03,822 - __main__ - INFO - Processing use case: UC3.4.3.2 (type: single)
+2025-07-13 16:29:03,822 - __main__ - INFO - Found 1 dependencies for use case UC3.4.3.2
+2025-07-13 16:29:03,822 - __main__ - INFO - Base test case ID already defined for dependency UC3.4.3: UC3.4.3_TC1
+2025-07-13 16:29:03,822 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC3.4.3/UC3.4.3_TC1.functions.js
+2025-07-13 16:29:03,822 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC3.4.3/UC3.4.3_TC1.spec.js
+2025-07-13 16:29:03,822 - __main__ - ERROR - Error processing use case UC3.4.3.2: 'UC3.4.3.2'
+2025-07-13 16:29:03,822 - __main__ - ERROR - Failed to process use case UC3.4.3.2: 'UC3.4.3.2'
+2025-07-13 16:29:03,822 - __main__ - INFO - Processing use case: UC3.4.3.11 (type: single)
+2025-07-13 16:29:03,822 - __main__ - ERROR - Error processing use case UC3.4.3.11: 'test_steps'
+2025-07-13 16:29:03,822 - __main__ - ERROR - Failed to process use case UC3.4.3.11: 'test_steps'
+2025-07-13 16:29:03,822 - __main__ - INFO - Processing use case: UC3.4.3.3 (type: single)
+2025-07-13 16:29:03,823 - __main__ - INFO - Found 1 dependencies for use case UC3.4.3.3
+2025-07-13 16:29:03,823 - __main__ - INFO - Base test case ID already defined for dependency UC3.4.3: UC3.4.3_TC1
+2025-07-13 16:29:03,823 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC3.4.3/UC3.4.3_TC1.functions.js
+2025-07-13 16:29:03,823 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC3.4.3/UC3.4.3_TC1.spec.js
+2025-07-13 16:29:03,823 - __main__ - ERROR - Error processing use case UC3.4.3.3: 'UC3.4.3.3'
+2025-07-13 16:29:03,823 - __main__ - ERROR - Failed to process use case UC3.4.3.3: 'UC3.4.3.3'
+2025-07-13 16:29:03,823 - __main__ - INFO - Processing use case: UC3.4.3.1 (type: single)
+2025-07-13 16:29:03,823 - __main__ - INFO - Found 1 dependencies for use case UC3.4.3.1
+2025-07-13 16:29:03,823 - __main__ - INFO - Base test case ID already defined for dependency UC3.4.3: UC3.4.3_TC1
+2025-07-13 16:29:03,823 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC3.4.3/UC3.4.3_TC1.functions.js
+2025-07-13 16:29:03,823 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC3.4.3/UC3.4.3_TC1.spec.js
+2025-07-13 16:29:03,823 - __main__ - ERROR - Error processing use case UC3.4.3.1: 'UC3.4.3.1'
+2025-07-13 16:29:03,823 - __main__ - ERROR - Failed to process use case UC3.4.3.1: 'UC3.4.3.1'
+2025-07-13 16:29:03,823 - __main__ - INFO - Processing use case: UC3.4.3.6 (type: single)
+2025-07-13 16:29:03,823 - __main__ - INFO - Found 1 dependencies for use case UC3.4.3.6
+2025-07-13 16:29:03,823 - __main__ - INFO - Base test case ID already defined for dependency UC3.4.3: UC3.4.3_TC1
+2025-07-13 16:29:03,823 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC3.4.3/UC3.4.3_TC1.functions.js
+2025-07-13 16:29:03,823 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC3.4.3/UC3.4.3_TC1.spec.js
+2025-07-13 16:29:03,823 - __main__ - ERROR - Error processing use case UC3.4.3.6: 'UC3.4.3.6'
+2025-07-13 16:29:03,823 - __main__ - ERROR - Failed to process use case UC3.4.3.6: 'UC3.4.3.6'
+2025-07-13 16:29:03,823 - __main__ - INFO - Processing use case: UC3.4.3.12 (type: single)
+2025-07-13 16:29:03,823 - __main__ - INFO - Found 1 dependencies for use case UC3.4.3.12
+2025-07-13 16:29:03,823 - __main__ - INFO - Base test case ID already defined for dependency UC3.4.3: UC3.4.3_TC1
+2025-07-13 16:29:03,823 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC3.4.3/UC3.4.3_TC1.functions.js
+2025-07-13 16:29:03,823 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC3.4.3/UC3.4.3_TC1.spec.js
+2025-07-13 16:29:03,823 - __main__ - ERROR - Error processing use case UC3.4.3.12: 'UC3.4.3.12'
+2025-07-13 16:29:03,823 - __main__ - ERROR - Failed to process use case UC3.4.3.12: 'UC3.4.3.12'
+2025-07-13 16:29:03,823 - __main__ - INFO - Processing use case: UC3.4.3.7 (type: single)
+2025-07-13 16:29:03,823 - __main__ - INFO - Found 1 dependencies for use case UC3.4.3.7
+2025-07-13 16:29:03,823 - __main__ - INFO - Base test case ID already defined for dependency UC3.4.3: UC3.4.3_TC1
+2025-07-13 16:29:03,823 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC3.4.3/UC3.4.3_TC1.functions.js
+2025-07-13 16:29:03,823 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC3.4.3/UC3.4.3_TC1.spec.js
+2025-07-13 16:29:03,823 - __main__ - ERROR - Error processing use case UC3.4.3.7: 'UC3.4.3.7'
+2025-07-13 16:29:03,823 - __main__ - ERROR - Failed to process use case UC3.4.3.7: 'UC3.4.3.7'
+2025-07-13 16:29:03,823 - __main__ - INFO - Processing use case: UC3.4.3.9 (type: single)
+2025-07-13 16:29:03,823 - __main__ - INFO - Found 1 dependencies for use case UC3.4.3.9
+2025-07-13 16:29:03,823 - __main__ - INFO - Base test case ID already defined for dependency UC3.4.3: UC3.4.3_TC1
+2025-07-13 16:29:03,823 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC3.4.3/UC3.4.3_TC1.functions.js
+2025-07-13 16:29:03,823 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC3.4.3/UC3.4.3_TC1.spec.js
+2025-07-13 16:29:03,823 - __main__ - ERROR - Error processing use case UC3.4.3.9: 'UC3.4.3.9'
+2025-07-13 16:29:03,823 - __main__ - ERROR - Failed to process use case UC3.4.3.9: 'UC3.4.3.9'
+2025-07-13 16:29:03,823 - __main__ - INFO - Processing use case: UC3.4.3.10 (type: single)
+2025-07-13 16:29:03,823 - __main__ - ERROR - Error processing use case UC3.4.3.10: 'priority'
+2025-07-13 16:29:03,823 - __main__ - ERROR - Failed to process use case UC3.4.3.10: 'priority'
+2025-07-13 16:29:03,823 - __main__ - INFO - Processing use case: UC3.4.3.8 (type: single)
+2025-07-13 16:29:03,823 - __main__ - INFO - Found 1 dependencies for use case UC3.4.3.8
+2025-07-13 16:29:03,823 - __main__ - INFO - Base test case ID already defined for dependency UC3.4.3: UC3.4.3_TC1
+2025-07-13 16:29:03,823 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC3.4.3/UC3.4.3_TC1.functions.js
+2025-07-13 16:29:03,823 - __main__ - WARNING - Dependency file not found: ./output/single/few_shot/llama3.3/UC3.4.3/UC3.4.3_TC1.spec.js
+2025-07-13 16:29:03,823 - __main__ - ERROR - Error processing use case UC3.4.3.8: 'UC3.4.3.8'
+2025-07-13 16:29:03,823 - __main__ - ERROR - Failed to process use case UC3.4.3.8: 'UC3.4.3.8'
+2025-07-13 16:29:03,824 - __main__ - INFO - Orchestrator execution completed

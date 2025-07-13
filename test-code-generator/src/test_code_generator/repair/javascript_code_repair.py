@@ -5,7 +5,7 @@ from typing import Dict, List, Tuple
 
 logger = logging.getLogger(__name__)
 
-class JavascriptCodeValidator:
+class JavascriptCodeRepair:
     def __init__(self, use_case_name, test_case_id, markdown_content: str) -> None:
         self.use_case_name = use_case_name
         self.test_case_id = test_case_id
@@ -75,31 +75,6 @@ class JavascriptCodeValidator:
                 })
 
         return self.extracted_files
-    
-
-    # def clean_code(self, code_content: str) -> str:
-    #     """
-    #     Clean JavaScript code by applying all fixes.
-        
-    #     Args:
-    #         code_content: The JavaScript code content to clean
-            
-    #     Returns:
-    #         Cleaned JavaScript code
-    #     """
-    #     logger.info("Starting JavaScript code cleaning")
-        
-    #     # Extract code blocks if there are markdown code fences
-    #     code_blocks = self.extract_code_blocks(code_content)
-        
-    #     logger.info("JavaScript code cleaning completed")
-        
-    #     # If there was only one block, return it directly
-    #     if len(code_blocks) == 1:
-    #         return code_blocks[0]
-        
-    #     # If there were multiple blocks, join them with separators
-    #     return '\n\n// Next JavaScript Block\n\n'.join(code_blocks)
 
     def ensure_require_statements(self, dependencies, output_folder) -> str:
         for file_data in self.extracted_files:

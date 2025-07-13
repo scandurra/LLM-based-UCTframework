@@ -1,19 +1,98 @@
-ollama:
-  model: "llama3.3:latest"
-  request_timeout: 120 # Seconds
+# Configuration file for Test Code Generation Orchestrator
+# This file contains all paths, models, and processing settings
 
-dependency_graph:
-  file_path: "./input_files/include_graph/include_graph.json"
+# File paths configuration
+paths:
+  # Core input files
+  dependency_graph: "./input_files/include_graph/include_graph.json"
+  test_parameters: "./input_files/parameters/test_parameters.env"
+  pom_folder: "./input_files/pom"
+  existing_code: "./input_files/reporter_minimal.js"
+  test_cases_folder: "./input_files/test_cases/"
+  
+  # Template and output paths (structure: {base}/{processing_type}/{configuration}/{model})
+  prompts_base: "./prompts"
+  output_base: "./output"
+  logs_base: "./logs"
 
-parser:
-  input_folder: "./input_files"
+# Model configuration
+models:
+  default: "llama3.3:latest"
+  available:
+    - "llama3.3:latest"
+    - "codellama:70b"
 
-prompt_builder:
-  template_file: "./prompts/playwright_template.txt"
+# Processing configuration
+processing:
+  default_configuration: "few_shot"
+  default_type: "single"  # Can be "single" or "batch"
+  
+  available_configurations:
+    - "zero_shot"
+    - "one_shot"
+    - "few_shot"
+  
+  available_types:
+    - "single"  # Process each test case individually
+    - "batch"   # Process all test cases for a use case together
+  
+  # LLM parameters
+  temperature: 0.0
+  max_retries: 3
+  
+  # Dependency processing
+  process_dependencies: true
+  require_base_test_case: true
+  
+  # Code generation settings
+  fix_imports: true
+  extract_code_blocks: true
+  save_execution_params: true
 
-validator:
-  node_executable: "node" # Path to node if not in PATH
-  temp_script_path: "./output/temp_validation_script.js" # Temporary file for validation
+# Logging configuration
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  encoding: "utf-8"
+  
+  # Rotation settings
+  rotate_logs: true
+  max_log_files: 10
+  backup_count: 5
 
-output:
-  save_path: "./output/generated_script.js" # Where to save the final script
+# File processing settings
+file_processing:
+  encoding: "utf-8"
+  create_directories: true
+  overwrite_existing: true
+  
+  # File extensions
+  spec_extension: ".spec.js"
+  function_extension: ".functions.js"
+  params_extension: ".json"
+  
+  # Test case filtering
+  positive_test_type: "Positivo"
+  
+# Error handling
+error_handling:
+  continue_on_error: true
+  log_errors: true
+  raise_on_config_error: true
+  raise_on_missing_dependencies: false
+
+# Advanced settings
+advanced:
+  # Parallel processing (future enhancement)
+  # enable_parallel_processing: false
+  # max_workers: 4
+  
+  # Validation
+  validate_generated_code: false
+  validate_dependencies: true
+  
+  # Output customization
+  include_timestamps: true
+  include_metadata: true
+  pretty_print_json: true
+  json_indent: 2
