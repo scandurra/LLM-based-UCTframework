@@ -1,4 +1,4 @@
-# GenE2E: an AI-enhanced framework that uses LLMs to enable fully automated End-to-End Testinng of modern web applications.  
+# GenE2E: an AI-enhanced framework that uses LLMs to enable fully automated End-to-End testing of modern web applications.  
 GenE2E generates test cases from use case scenarios (see the repository's folder `Exploration Testing Module`) and, in a second stage, transforms these test cases into executable test scripts, directly executable by 
 the automation tool Playwright (see the repository's folder `test-code-generator`). GenE2E is implemented as a CLI tool in Python for easy integration into development workflows and CI pipelines.
 It was developed upon the Ollama framework to manage and run local Large Language Models efficiently on local hardware.
