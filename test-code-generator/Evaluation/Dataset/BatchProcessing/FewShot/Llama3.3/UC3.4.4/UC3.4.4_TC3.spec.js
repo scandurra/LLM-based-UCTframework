@@ -2,17 +2,20 @@ import { test, expect } from '@playwright/test';
 
 import TestResultReporter from '../../models/test-result-reporter.js';
 
-import { accessCensusSheetSection, selectMultipleSheetsForFreeze, confirmFreezeOfMultipleSheets, verifyStatusOfAllSheetsAfterFreeze } from './UC3.4.4_TC3.functions.js';
+import { accessCensusSheetSection, clickAzioniButton } from '../UC3.4/UC3.4_TC1.functions.js';
 
-test("UC3.4.4_TC3 - Congelamento di più schede censimento", async ({ page, browserName }) => {
-  const reporter = new TestResultReporter();
-  reporter.setBrowserName(browserName);
-  reporter.setTestCase("UC3.4.4_TC3", "Congelamento di più schede censimento");
+import { selectMultipleSheetsForFreeze, confirmFreezeOfMultipleSheets, verifyStatusOfAllSheetsAfterFreeze } from './UC3.4.4_TC3.functions.js';
 
-  await accessCensusSheetSection(page, reporter);
-  await selectMultipleSheetsForFreeze(page, reporter);
-  await confirmFreezeOfMultipleSheets(page, reporter);
-  await verifyStatusOfAllSheetsAfterFreeze(page, reporter);
+test("UC3.4.4_TC3 - Congelamento di più schede censimento", async ({page, browserName}) => {
+    const reporter = new TestResultReporter();
+    reporter.setBrowserName(browserName);
+    reporter.setTestCase("UC3.4.4_TC3", "Congelamento di più schede censimento");
 
-  reporter.onTestEnd(test, { status: "passed" });
+    await accessCensusSheetSection(page, reporter);
+
+    await selectMultipleSheetsForFreeze(page, reporter);
+    await confirmFreezeOfMultipleSheets(page, reporter);
+    await verifyStatusOfAllSheetsAfterFreeze(page, reporter);
+
+    reporter.onTestEnd(test, { status: "passed" });    
 });

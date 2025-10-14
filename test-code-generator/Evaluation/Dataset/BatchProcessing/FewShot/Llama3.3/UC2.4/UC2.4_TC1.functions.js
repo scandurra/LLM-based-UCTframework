@@ -7,38 +7,47 @@ import { DashboardPageBenchmarkingKpi } from '../../models/page_object_models/da
 import { accessPlatformAsRegisteredUser, selectDashboardMenu } from '../UC2/UC2_TC1.functions.js';
 
 export const selectMultipleCities = async function(page, reporter) {
+  const dashboardPage = new DashboardPageBenchmarkingKpi(page);
   const startTime = new Date().getTime();
-  const dashboardPageBenchmarkingKpi = new DashboardPageBenchmarkingKpi(page);
-  await dashboardPageBenchmarkingKpi.selectCity(0);
-  await dashboardPageBenchmarkingKpi.selectCity(1);
+  
+  await dashboardPage.selectCity(0);
+  await dashboardPage.selectCity(1);
+
   const endTime = new Date().getTime();
   const executionTime = endTime - startTime;
   if (reporter) {
-    reporter.addStep('UC2.4_TC1_ID1', 'Seleziona due o più comuni dal menù a tendina', 'I comuni vengono selezionati correttamente', 'I comuni sono stati selezionati', true, {}, executionTime);
+      reporter.addStep('UC2.4_TC1_ID1', 'Seleziona due o più comuni dal menù a tendina', 'I comuni vengono selezionati correttamente', 'I comuni sono stati selezionati', true, {}, executionTime);
   }
-  expect(await dashboardPageBenchmarkingKpi.isCitySelectorVisible()).toBeTruthy();
+
+  expect(await dashboardPage.isCitySelectorVisible()).toBeTruthy();
 }
 
 export const selectValidKPI = async function(page, reporter) {
+  const dashboardPage = new DashboardPageBenchmarkingKpi(page);
   const startTime = new Date().getTime();
-  const dashboardPageBenchmarkingKpi = new DashboardPageBenchmarkingKpi(page);
-  await dashboardPageBenchmarkingKpi.selectKPI();
+  
+  await dashboardPage.selectKPI();
+
   const endTime = new Date().getTime();
   const executionTime = endTime - startTime;
   if (reporter) {
-    reporter.addStep('UC2.4_TC1_ID2', 'Scegli un KPI valido per il confronto', 'Il KPI viene accettato', 'Il KPI è stato selezionato', true, {}, executionTime);
+      reporter.addStep('UC2.4_TC1_ID2', 'Scegli un KPI valido per il confronto', 'Il KPI viene accettato', 'Il KPI è stato accettato', true, {}, executionTime);
   }
-  expect(await dashboardPageBenchmarkingKpi.isKPISelectorVisible()).toBeTruthy();
+
+  expect(await dashboardPage.isKPISelectorVisible()).toBeTruthy();
 }
 
 export const confirmRequest = async function(page, reporter) {
+  const dashboardPage = new DashboardPageBenchmarkingKpi(page);
   const startTime = new Date().getTime();
-  const dashboardPageBenchmarkingKpi = new DashboardPageBenchmarkingKpi(page);
-  await dashboardPageBenchmarkingKpi.applyKPIAndVerify();
+  
+  await dashboardPage.applyKPIAndVerify();
+
   const endTime = new Date().getTime();
   const executionTime = endTime - startTime;
   if (reporter) {
-    reporter.addStep('UC2.4_TC1_ID3', 'Conferma la richiesta cliccando sul pulsante', 'Il grafico con il confronto desiderato viene visualizzato', 'Il grafico è stato visualizzato', true, {}, executionTime);
+      reporter.addStep('UC2.4_TC1_ID3', 'Conferma la richiesta cliccando sul pulsante', 'Il grafico con il confronto desiderato viene visualizzato', 'Il grafico è stato visualizzato', true, {}, executionTime);
   }
-  expect(await dashboardPageBenchmarkingKpi.verifyKPIResults()).toBeTruthy();
+
+  expect(await dashboardPage.verifyKPIResults()).toBeTruthy();
 }

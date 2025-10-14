@@ -1,12 +1,12 @@
 import { test, expect } from '@playwright/test';
 
-import TestResultReporter from '../../models/test-result-reporter.js';
-
 import { accessPlatformAndAuthenticate, selectCensusSheetMenu } from '../UC3/UC3_TC1.functions.js';
 
-import { accessCensusSheetSearchSectionInvalid, insertInvalidSearchParameters, attemptSearchWithInvalidParameters } from './UC3.2_TC3.functions.js';
+import { accessSearchSectionInvalid, insertInvalidSearchParameters, tryExecuteSearchInvalid } from './UC3.2_TC3.functions.js';
 
-test("UC3.2_TC3 - Ricerca con parametri non validi", async ({ page, browserName }) => {
+import TestResultReporter from '../../models/test-result-reporter.js';
+
+test("UC3.2_TC3 - Ricerca con parametri non validi", async ({page, browserName}) => {
     const reporter = new TestResultReporter();
     reporter.setBrowserName(browserName);
     reporter.setTestCase("UC3.2_TC3", "Ricerca con parametri non validi");
@@ -15,9 +15,9 @@ test("UC3.2_TC3 - Ricerca con parametri non validi", async ({ page, browserName 
 
     await accessPlatformAndAuthenticate(page, reporter);
     await selectCensusSheetMenu(page, reporter);
-    await accessCensusSheetSearchSectionInvalid(page, reporter);
+    await accessSearchSectionInvalid(page, reporter);
     await insertInvalidSearchParameters(page, reporter);
-    await attemptSearchWithInvalidParameters(page, reporter);
+    await tryExecuteSearchInvalid(page, reporter);
 
-    reporter.onTestEnd(test, { status: "passed" });
+    reporter.onTestEnd(test, { status: "passed" });     
 });

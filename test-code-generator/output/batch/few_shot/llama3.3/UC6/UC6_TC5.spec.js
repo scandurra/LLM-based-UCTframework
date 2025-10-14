@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 import TestResultReporter from '../../models/test-result-reporter.js';
 
-import { accessSystemFromDifferentDevice, performLogoutFromDifferentDevice } from './UC6_TC5.functions.js';
+import { accessSystemFromDifferentDevice, tryToPerformLogoutFromDifferentDevice } from './UC6_TC5.functions.js';
 
 test("UC6_TC5 - Edge case: logout da dispositivo diverso", async ({page, browserName}) => {
     const reporter = new TestResultReporter();
@@ -10,7 +10,7 @@ test("UC6_TC5 - Edge case: logout da dispositivo diverso", async ({page, browser
     reporter.setTestCase("UC6_TC5", "Edge case: logout da dispositivo diverso");
 
     await accessSystemFromDifferentDevice(page, reporter);
-    await performLogoutFromDifferentDevice(page, reporter);
+    await tryToPerformLogoutFromDifferentDevice(page, reporter);
 
     reporter.onTestEnd(test, { status: "passed" });     
 });

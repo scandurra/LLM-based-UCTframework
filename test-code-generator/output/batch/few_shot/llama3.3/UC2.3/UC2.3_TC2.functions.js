@@ -6,40 +6,47 @@ import TestResultReporter from '../../models/test-result-reporter.js';
 
 import { accessPlatformAsRegisteredUser, selectDashboardMenu } from '../UC2/UC2_TC1.functions.js';
 
-export const accessAndScrollToGeneralDataTable = async function(page, reporter) {
+export const accessAndScrollToTable = async function(page, reporter) {
   const startTime = new Date().getTime();
+  
   await selectDashboardMenu(page, null);
-  await page.waitForTimeout(1000); // wait for the page to load
-  const generalDataTable = new DashboardPageGeneralDataTable(page);
-  await page.scrollTo(0, 500); // scroll down to the table
+  await page.waitForSelector('table');
+
   const endTime = new Date().getTime();
   const executionTime = endTime - startTime;
   if (reporter) {
-    reporter.addStep('UC2.3_TC2_ID1', 'Accedi alla sezione dashboard e scorri fino alla tabella dei dati generali', 'La tabella è visibile', 'La tabella è stata visualizzata', true, {}, executionTime);
+      reporter.addStep('UC2.3_TC2_ID1', 'Accedi alla sezione dashboard e scorri fino alla tabella dei dati generali', 'La tabella è visibile', 'La tabella è stata visualizzata correttamente', true, {}, executionTime);
   }
-  expect(await generalDataTable.isTableVisible()).toBeTruthy();
+
+  expect(await page.isVisible('table')).toBeTruthy();
 }
 
 export const clickOnColumnsToSort = async function(page, reporter) {
   const startTime = new Date().getTime();
-  const generalDataTable = new DashboardPageGeneralDataTable(page);
-  await generalDataTable.sortByColumn('Comune');
-  await generalDataTable.sortByColumn('Regione');
+  
+  const dashboardPageGeneralDataTable = new DashboardPageGeneralDataTable(page);
+  await dashboardPageGeneralDataTable.sortByColumn();
+
   const endTime = new Date().getTime();
   const executionTime = endTime - startTime;
   if (reporter) {
-    reporter.addStep('UC2.3_TC2_ID2', 'Clicca su più colonne per ordinare i dati in base a più criteri', 'I dati vengono ordinati correttamente secondo le colonne selezionate', 'I dati sono stati ordinati', true, {}, executionTime);
+      reporter.addStep('UC2.3_TC2_ID2', 'Clicca su più colonne per ordinare i dati in base a più criteri', 'I dati vengono ordinati correttamente secondo le colonne selezionate', 'I dati sono stati ordinati correttamente', true, {}, executionTime);
   }
+
+  expect(await dashboardPageGeneralDataTable.isSorted()).toBeTruthy();
 }
 
-export const verifySorting = async function(page, reporter) {
+export const verifySortingFunctionality = async function(page, reporter) {
   const startTime = new Date().getTime();
-  const generalDataTable = new DashboardPageGeneralDataTable(page);
-  await generalDataTable.sortByColumn('Comune');
-  await generalDataTable.sortByColumn('Regione');
+  
+  const dashboardPageGeneralDataTable = new DashboardPageGeneralDataTable(page);
+  await dashboardPageGeneralDataTable.sortByColumnAgain();
+
   const endTime = new Date().getTime();
   const executionTime = endTime - startTime;
   if (reporter) {
-    reporter.addStep('UC2.3_TC2_ID3', 'Verifica che l\'ordinamento funzioni come atteso anche con più clic', 'L\'ordinamento dei dati si alterna correttamente tra ascendente e discendente per ogni colonna selezionata', 'L\'ordinamento è stato verificato', true, {}, executionTime);
+      reporter.addStep('UC2.3_TC2_ID3', 'Verifica che l\'ordinamento funzioni come atteso anche con più clic', 'L\'ordinamento dei dati si alterna correttamente tra ascendente e discendente per ogni colonna selezionata', 'L\'ordinamento dei dati è stato verificato correttamente', true, {}, executionTime);
   }
+
+  expect(await dashboardPageGeneralDataTable.isSortedAgain()).toBeTruthy();
 }
