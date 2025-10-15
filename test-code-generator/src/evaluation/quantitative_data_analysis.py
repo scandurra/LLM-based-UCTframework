@@ -541,7 +541,7 @@ def generate_compact_plots(config_data, summary_df, output_folder='plots'):
 if __name__ == "__main__":
     # Set your folder path here
     folder_path = "./Evaluation/QuantitativeEvaluation"  # Replace with your actual folder path
-    output_filename = "quantitative_analysis_results.xlsx"
+    output_filename = "./Evaluation/Results/quantitative_analysis_results.xlsx"
     
     # Process the files
     try:
@@ -555,7 +555,7 @@ if __name__ == "__main__":
         # Generate the plots
         print("\n=== GENERATING PLOTS ===")
 
-        generate_compact_plots(config_data, summary, 'plots/quantitative')
+        generate_compact_plots(config_data, summary, './Evaluation/Results/plots/quantitative')
         
     except FileNotFoundError:
         print(f"Error: Folder '{folder_path}' not found. Please check the path.")

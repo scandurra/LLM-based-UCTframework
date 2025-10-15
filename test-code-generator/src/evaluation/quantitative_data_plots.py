@@ -127,11 +127,15 @@ def create_compact_success_failure_plots(summary_df, output_folder='plots'):
         plt.tight_layout()
         
         # Save the individual plot
-        filename = f'compact_{metric_key}_analysis.png'
-        filepath = Path(output_folder) / filename
-        plt.savefig(filepath, dpi=300, bbox_inches='tight', facecolor='white')
-        print(f"Compact {metric_title.lower()} plot saved: {filepath}")
+        filename = f'compact_{metric_key}_analysis'
+        filepath_png = Path(output_folder) / f'{filename}.png'
+        filepath_pdf = Path(output_folder) / f'{filename}.pdf'
+        plt.savefig(filepath_png, dpi=300, bbox_inches='tight', facecolor='white')
+        print(f"Compact {metric_title.lower()} plot saved as png: {filepath_png}")
+        plt.savefig(filepath_pdf, dpi=300, bbox_inches='tight', facecolor='white')
+        print(f"Compact {metric_title.lower()} plot saved as pdf: {filepath_pdf}")
         
+
         plt.show()
         plt.close()
 
@@ -257,10 +261,13 @@ def create_compact_violin_plot(configuration_data, output_folder='plots'):
         plt.tight_layout()
         
         # Save each plot with metric-specific filename
-        filename = f'{metric_key}_violin_plot.png'
-        filepath = Path(output_folder) / filename
-        plt.savefig(filepath, dpi=300, bbox_inches='tight', facecolor='white')
-        print(f"Violin plot saved: {filepath}")
-        
+        filename = f'{metric_key}_violin_plot'
+        filepath_png = Path(output_folder) / f'{filename}.png'
+        filepath_pdf = Path(output_folder) / f'{filename}.pdf'
+        plt.savefig(filepath_png, dpi=300, bbox_inches='tight', facecolor='white')
+        print(f"Violin plot saved in png: {filepath_png}")
+        plt.savefig(filepath_pdf, dpi=300, bbox_inches='tight', facecolor='white')
+        print(f"Violin plot saved in pdf: {filepath_pdf}")
+
         plt.show()
         plt.close()
