@@ -1,0 +1,78 @@
+[
+  {
+    "test_case_id": "UC4.1_TC1",
+    "title": "Visualizzazione della sezione di gestione impianto con utente autorizzato",
+    "preconditions": "UC4",
+    "postconditions": "La sezione di gestione dell’impianto viene visualizzata correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione del modulo SAVE come utente autorizzato",
+        "expected": "La sezione del modulo SAVE è accessibile"
+      },
+      {
+        "step": "Naviga nella sezione dedicata agli impianti",
+        "expected": "La barra orizzontale degli impianti è visibile e navigabile"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC4.1"
+  },
+  {
+    "test_case_id": "UC4.1_TC2",
+    "title": "Tentativo di accesso alla sezione di gestione impianto senza autorizzazione",
+    "preconditions": "UC4",
+    "postconditions": "L’accesso alla sezione è negato",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione del modulo SAVE come utente non autorizzato",
+        "expected": "La sezione del modulo SAVE non è accessibile"
+      },
+      {
+        "step": "Tenta di navigare nella sezione dedicata agli impianti",
+        "expected": "Viene mostrato un messaggio di accesso negato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC4.1"
+  },
+  {
+    "test_case_id": "UC4.1_TC3",
+    "title": "Verifica della presenza di tutti gli elementi nella barra orizzontale degli impianti",
+    "preconditions": "UC4",
+    "postconditions": "Tutti gli elementi sono presenti e visibili",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione del modulo SAVE come utente autorizzato",
+        "expected": "La sezione del modulo SAVE è accessibile"
+      },
+      {
+        "step": "Verifica la presenza di tutti gli elementi nella barra orizzontale degli impianti",
+        "expected": "Tutti gli elementi sono presenti e visibili"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC4.1"
+  },
+  {
+    "test_case_id": "UC4.1_TC4",
+    "title": "Navigazione nella sezione di gestione impianto con diversi dispositivi e risoluzioni",
+    "preconditions": "UC4",
+    "postconditions": "La navigazione è possibile senza problemi su tutti i dispositivi e risoluzioni testati",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione del modulo SAVE come utente autorizzato su diversi dispositivi (desktop, tablet, smartphone)",
+        "expected": "La sezione del modulo SAVE è accessibile su tutti i dispositivi"
+      },
+      {
+        "step": "Naviga nella sezione dedicata agli impianti su ogni dispositivo",
+        "expected": "La navigazione è possibile senza problemi su tutti i dispositivi e risoluzioni testati"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Alta",
+    "use_case_id": "UC4.1"
+  },
+]

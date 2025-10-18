@@ -1,0 +1,154 @@
+[
+  {
+    "test_case_id": "UC3_TC1",
+    "title": "Accesso alla gestione schede censimento con utente autorizzato",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza la sezione relativa alle schede censimento",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente autorizzato (Regione, Sindaco o Fornitore)",
+        "expected": "La dashboard dell’utente viene caricata correttamente"
+      },
+      {
+        "step": "Seleziona la sezione relativa alle schede censimento dal menù laterale",
+        "expected": "La sezione delle schede censimento si apre e visualizza i dati disponibili"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC2",
+    "title": "Accesso alla gestione schede censimento con utente non autorizzato",
+    "preconditions": "UC1",
+    "postconditions": "L’accesso viene negato e viene richiesta l’autenticazione",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente non autorizzato",
+        "expected": "La dashboard non viene caricata o si visualizza un messaggio di accesso negato"
+      },
+      {
+        "step": "Tenta di accedere alla sezione delle schede censimento",
+        "expected": "Il sistema richiede l’autenticazione o mostra un messaggio di autorizzazione negata"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC3",
+    "title": "Gestione schede censimento con dati non disponibili",
+    "preconditions": "UC1",
+    "postconditions": "Il sistema visualizza un messaggio informativo sulla mancanza di dati",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento come utente autorizzato",
+        "expected": "La sezione si apre ma non ci sono dati disponibili"
+      },
+      {
+        "step": "Verifica la presenza di un messaggio che indica l’assenza di dati",
+        "expected": "Il sistema visualizza un messaggio chiaro sulla mancanza di informazioni"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Media",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC4",
+    "title": "Gestione schede censimento con menù laterale non visibile",
+    "preconditions": "UC1",
+    "postconditions": "Il sistema visualizza un messaggio di errore o si adatta per mostrare il menù",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema e riduci la dimensione della finestra fino a quando il menù laterale non è più visibile",
+        "expected": "Il sistema adatta la layout per mostrare il menù in una versione compatibile"
+      },
+      {
+        "step": "Tenta di accedere alla sezione delle schede censimento attraverso altri metodi (es. ricerca)",
+        "expected": "Il sistema fornisce un’alternativa per accedere alla sezione"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Media",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC5",
+    "title": "Gestione schede censimento con più utenti contemporaneamente",
+    "preconditions": "UC1",
+    "postconditions": "Il sistema gestisce più sessioni senza problemi di sincronizzazione",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema con più utenti autorizzati contemporaneamente",
+        "expected": "Tutti gli utenti possono visualizzare la sezione delle schede censimento"
+      },
+      {
+        "step": "Esegui operazioni di gestione delle schede da parte di ogni utente",
+        "expected": "Il sistema aggiorna i dati in tempo reale per tutti gli utenti connessi"
+      }
+    ],
+    "test_type": "Prestazione",
+    "priority": "Alta",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC6",
+    "title": "Gestione schede censimento con caratteri speciali nel nome dell’utente",
+    "preconditions": "UC1",
+    "postconditions": "Il sistema gestisce correttamente gli utenti con nomi contenenti caratteri speciali",
+    "test_steps": [
+      {
+        "step": "Crea un utente con caratteri speciali nel nome (es. @, #, $)",
+        "expected": "L’utente viene creato senza errori"
+      },
+      {
+        "step": "Accedi alla sezione delle schede censimento con l’utente appena creato",
+        "expected": "Il sistema visualizza la sezione senza problemi e l’utente può operare normalmente"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC7",
+    "title": "Gestione schede censimento con sessione scaduta",
+    "preconditions": "UC1",
+    "postconditions": "Il sistema richiede la ri-autenticazione dell’utente",
+    "test_steps": [
+      {
+        "step": "Lascia la sessione di accesso aperta per un tempo superiore al limite di timeout",
+        "expected": "La sessione scade e il sistema richiede la ri-autenticazione"
+      },
+      {
+        "step": "Tenta di accedere alla sezione delle schede censimento senza ri-autenticarti",
+        "expected": "Il sistema nega l’accesso e richiede di effettuare nuovamente il login"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC8",
+    "title": "Gestione schede censimento con browser non supportato",
+    "preconditions": "UC1",
+    "postconditions": "Il sistema visualizza un messaggio di compatibilità o si adatta per il browser utilizzato",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema utilizzando un browser non supportato ufficialmente",
+        "expected": "Il sistema visualizza un avviso sulla mancata compatibilità del browser"
+      },
+      {
+        "step": "Verifica se il sistema offre alternative o soluzioni per l’accesso",
+        "expected": "Il sistema fornisce indicazioni su come accedere alla funzionalità richiesta con il browser utilizzato"
+      }
+    ],
+    "test_type": "Compatibilità",
+    "priority": "Media",
+    "use_case_id": "UC3"
+  }
+]

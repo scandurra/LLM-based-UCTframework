@@ -7,7 +7,7 @@
     "test_steps": [
       {
         "step": "Entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
-        "expected": "La sezione viene visualizzata correttamente"
+        "expected": "La sezione è visualizzata correttamente"
       },
       {
         "step": "Compila il form con le informazioni desiderate",
@@ -30,15 +30,15 @@
     "test_steps": [
       {
         "step": "Entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
-        "expected": "La sezione viene visualizzata correttamente"
+        "expected": "La sezione è visualizzata correttamente"
       },
       {
         "step": "Compila il form con informazioni non valide (es. campi obbligatori vuoti)",
-        "expected": "Il sistema segnala errori nel form"
+        "expected": "Il sistema segnala un errore"
       },
       {
         "step": "Tenta di applicare le modifiche con l’apposito tasto",
-        "expected": "Viene mostrato un messaggio di errore e l’operazione non va a buon fine"
+        "expected": "L’operazione non va a buon fine e compare un messaggio di errore"
       }
     ],
     "test_type": "Negativo",
@@ -53,15 +53,15 @@
     "test_steps": [
       {
         "step": "Entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
-        "expected": "La sezione viene visualizzata correttamente"
+        "expected": "La sezione è visualizzata correttamente"
       },
       {
-        "step": "Lascia vuoto il form senza compilare i campi richiesti",
-        "expected": "Il sistema segnala la mancanza di informazioni necessarie"
+        "step": "Lascia vuoto il form senza compilare i campi",
+        "expected": "Il sistema segnala la mancanza di informazioni"
       },
       {
         "step": "Tenta di applicare le modifiche con l’apposito tasto",
-        "expected": "Viene mostrato un messaggio di errore e l’operazione non va a buon fine"
+        "expected": "L’operazione non va a buon fine e compare un messaggio di errore"
       }
     ],
     "test_type": "Negativo",
@@ -76,15 +76,15 @@
     "test_steps": [
       {
         "step": "Entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
-        "expected": "La sezione viene visualizzata correttamente"
+        "expected": "La sezione è visualizzata correttamente"
       },
       {
         "step": "Compila parzialmente il form con alcune informazioni valide e altre non valide",
-        "expected": "Il sistema segnala errori solo per i campi non validi"
+        "expected": "Il sistema segnala gli errori solo per i campi non validi"
       },
       {
         "step": "Tenta di applicare le modifiche con l’apposito tasto",
-        "expected": "Viene mostrato un messaggio di errore per i campi non validi e l’operazione non va a buon fine"
+        "expected": "L’operazione non va a buon fine e compare un messaggio di errore per i campi non validi"
       }
     ],
     "test_type": "Negativo",
@@ -93,25 +93,25 @@
   },
   {
     "test_case_id": "UC3.4.3.1_TC5",
-    "title": "Boundary test: modifica sezione Area con dati al limite dei caratteri consentiti",
+    "title": "Modifica sezione Area con caratteri speciali nei campi",
     "preconditions": "UC3.4.3",
-    "postconditions": "L’operazione va a buon fine se i dati sono all’interno dei limiti",
+    "postconditions": "L’operazione va a buon fine o il sistema gestisce correttamente i caratteri speciali",
     "test_steps": [
       {
         "step": "Entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
-        "expected": "La sezione viene visualizzata correttamente"
+        "expected": "La sezione è visualizzata correttamente"
       },
       {
-        "step": "Compila il form con informazioni che raggiungono esattamente i limiti dei caratteri consentiti",
-        "expected": "Il sistema accetta le informazioni senza errori"
+        "step": "Compila il form con caratteri speciali nei campi (es. @, #, $)",
+        "expected": "Il sistema gestisce correttamente i caratteri speciali o li normalizza"
       },
       {
         "step": "Applica le modifiche con l’apposito tasto",
-        "expected": "L’operazione va a buon fine e compare un messaggio di conferma"
+        "expected": "L’operazione va a buon fine e il messaggio di conferma compare"
       }
     ],
-    "test_type": "Boundary",
-    "priority": "Alta",
+    "test_type": "Edge",
+    "priority": "Bassa",
     "use_case_id": "UC3.4.3.1"
   }
 ]

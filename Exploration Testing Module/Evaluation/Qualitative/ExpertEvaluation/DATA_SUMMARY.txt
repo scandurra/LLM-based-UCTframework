@@ -1,0 +1,186 @@
+EXPERT JUDGMENT EVALUATION - DATA SUMMARY
+==========================================
+Generated: October 6, 2025
+Data verified and triple-checked against source Excel files
+
+OVERALL STATISTICS
+------------------
+Total ratings: 432
+Overall mean: 4.24 ± 0.75
+Min: 1, Max: 5
+
+Rating Distribution:
+- Rating 5 (Excellent): 175/432 = 40.5%
+- Rating 4 (Good): 197/432 = 45.6%
+- Rating 3 (Average): 50/432 = 11.6%
+- Rating 2 (Below Average): 9/432 = 2.1%
+- Rating 1 (Poor): 1/432 = 0.2%
+
+BY QUALITY DIMENSION
+--------------------
+1. Clarity & Completeness: 4.46 ± 0.62 (n=108, range [3,5])
+   - Rating 5: 57/108 = 52.8%
+   - Rating 1: 0/108 = 0.0%
+
+2. Semantic Consistency: 4.02 ± 0.81 (n=108, range [1,5])
+   - Rating 5: 31/108 = 28.7%
+   - Rating 1: 1/108 = 0.9%
+   - NOTE: Only dimension with a "Poor" rating
+
+3. Context Deviation: 4.22 ± 0.86 (n=108, range [2,5])
+   - Rating 5: 47/108 = 43.5%
+   - Rating 1: 0/108 = 0.0%
+
+4. Level of Creativity: 4.26 ± 0.65 (n=108, range [3,5])
+   - Rating 5: 40/108 = 37.0%
+   - Rating 1: 0/108 = 0.0%
+
+BY GENERATION STRATEGY
+----------------------
+Zero-Shot: 3.89 ± 0.77 (n=144)
+- Rating 5: 27/144 = 18.8%
+- Rating 1: 1/144 = 0.7%
+- Distribution: {1:1, 2:5, 3:30, 4:81, 5:27}
+
+One-Shot: 4.49 ± 0.67 (n=144) *** BEST PERFORMER ***
+- Rating 5: 83/144 = 57.6%
+- Rating 1: 0/144 = 0.0%
+- Distribution: {1:0, 2:1, 3:11, 4:49, 5:83}
+
+Few-Shot: 4.35 ± 0.69 (n=144)
+- Rating 5: 65/144 = 45.1%
+- Rating 1: 0/144 = 0.0%
+- Distribution: {1:0, 2:3, 3:9, 4:67, 5:65}
+
+DIMENSIONS BY STRATEGY
+----------------------
+                          Zero-Shot    One-Shot     Few-Shot
+Clarity & Completeness:   4.22±0.64    4.50±0.65    4.67±0.48 (BEST)
+Semantic Consistency:     3.50±0.91    4.25±0.65    4.31±0.58
+Context Deviation:        3.83±0.74    4.33±0.79    4.50±0.91
+Level of Creativity:      4.00±0.59    4.86±0.35 (BEST)    3.92±0.50
+
+Key Insight: One-Shot has HIGHEST creativity (4.86)
+             Few-Shot has HIGHEST clarity (4.67) but LOWEST creativity (3.92)
+             Suggests "over-fitting" in Few-Shot
+
+BY EXPERT
+---------
+Expert 1: 4.24 ± 0.74 (n=144)
+Expert 2: 4.12 ± 0.68 (n=144) - Most critical
+Expert 3: 4.35 ± 0.82 (n=144) - Most generous (formerly Expert 4)
+
+Note: Expert 3 data was excluded; Expert 4 renamed to Expert 3
+
+BY USE CASE
+-----------
+UC1:     4.34 ± 0.66 (n=108) - BEST
+UC3.3:   4.31 ± 0.68 (n=108)
+UC3.4.4: 4.19 ± 0.71 (n=108)
+UC2.4:   4.12 ± 0.92 (n=108) - MOST VARIABLE
+
+Note: UC2.4 has highest standard deviation (0.92), indicating inconsistent results
+
+INTER-EXPERT AGREEMENT
+----------------------
+Mean inter-expert variance: 0.317 ± 0.405
+Perfect agreements (all 3 experts same rating): 54/144 = 37.5%
+Close agreements (diff ≤ 1): 127/144 = 88.2%
+
+GENERATION ROUNDS
+-----------------
+R1: 4.24 ± 0.75 (n=144)
+R2: 4.30 ± 0.74 (n=144)
+R3: 4.19 ± 0.78 (n=144)
+
+Note: Very consistent across rounds, no significant trend
+
+BEST PERFORMING COMBINATIONS (UC × Strategy)
+---------------------------------------------
+1. UC2.4 - R2 One Shot: 4.92
+2. UC1 - R1 One Shot: 4.83
+3. UC1 - R2 One Shot: 4.67
+4. UC2.4 - R3 One Shot: 4.67
+5. UC3.3 - R2 Few Shot: 4.58
+
+Note: 4 out of top 5 use One-Shot strategy
+
+WORST PERFORMING COMBINATIONS
+------------------------------
+1. UC3.4.4 - R3 Zero Shot: 3.33
+2. UC2.4 - R1 One Shot: 3.67
+3. UC2.4 - R2 Zero Shot: 3.67
+4. UC2.4 - R1 Zero Shot: 3.67
+5. UC2.4 - R3 Few Shot: 3.75
+
+Note: UC2.4 appears in 4 out of 5 worst cases
+
+KEY FINDINGS SUMMARY
+--------------------
+1. One-Shot is the best strategy (4.49 vs 3.89 Zero-Shot, 4.35 Few-Shot)
+   - Improvement of 0.60 points over Zero-Shot
+   - Highest creativity score (4.86)
+
+2. Few-Shot shows "over-fitting" pattern:
+   - Best clarity (4.67) but lowest creativity (3.92)
+   - Follows examples too closely, lacks innovation
+
+3. Zero-Shot struggles with Semantic Consistency (3.50):
+   - Without examples, LLM has difficulty with logical flow
+   - Still maintains reasonable structure (Clarity: 4.22)
+
+4. UC2.4 is most challenging use case:
+   - Highest variability (SD = 0.92)
+   - Both best (4.92) and worst (3.67) individual results
+
+5. Expert agreement is strong:
+   - 88.2% within 1 point
+   - Validates evaluation framework
+
+6. LLM excels at structure, sometimes struggles with logic:
+   - High Clarity & Completeness (4.46)
+   - Lower Semantic Consistency (4.02)
+
+7. Hallucinations are rare but present:
+   - Context Deviation: 4.22
+   - Only 43.5% rated "Excellent"
+
+8. Generation is stable across rounds:
+   - R1, R2, R3 all within 0.11 points (4.19-4.30)
+
+LATEX TABLES INCLUDED
+----------------------
+✓ Table: Overall Expert Assessment Statistics
+✓ Table: Expert Assessment by Quality Dimension
+✓ Table: Expert Assessment by Generation Strategy
+✓ Table: Quality Dimensions by Generation Strategy
+✓ Table: Expert Assessment by Use Case
+✓ Table: Best and Worst Performing Cases
+✓ Table: Inter-Expert Agreement Statistics
+✓ Table: Expert Assessment by Generation Round
+
+GENERATED FILES
+---------------
+1. Expert_1_Summary.xlsx - Per-expert summary for Expert 1
+2. Expert_2_Summary.xlsx - Per-expert summary for Expert 2
+3. Expert_3_Summary.xlsx - Per-expert summary for Expert 3
+4. UC1_Summary.xlsx - Per-use-case summary for UC1
+5. UC2_4_Summary.xlsx - Per-use-case summary for UC2.4
+6. UC3_3_Summary.xlsx - Per-use-case summary for UC3.3
+7. UC3_4_4_Summary.xlsx - Per-use-case summary for UC3.4.4
+8. Expert_Judgment_LaTeX.tex - Complete LaTeX formatted text
+9. This summary file
+
+All files located in:
+/Evaluation/Qualitative/ExpertEvaluation/Scripts/
+
+DATA VERIFICATION
+-----------------
+✓ All 432 ratings extracted from source Excel files
+✓ Expert 3 data excluded as requested
+✓ Expert 4 renamed to Expert 3 in all outputs
+✓ All calculations verified against raw data
+✓ All percentages recalculated and confirmed
+✓ LaTeX tables match statistical analysis
+✓ No missing or null ratings in final dataset
+✓ All 4 use cases × 3 experts × 4 dimensions × 9 strategies = 432 ratings

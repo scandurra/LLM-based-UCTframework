@@ -1,0 +1,97 @@
+[
+  {
+    "test_case_id": "UC3.4_TC1",
+    "title": "Visualizzazione azioni disponibili sulla scheda censimento",
+    "preconditions": "UC3",
+    "postconditions": "Le azioni sono visualizzate correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento",
+        "expected": "La lista delle schede è visualizzata"
+      },
+      {
+        "step": "Clicca sul tasto azioni per una scheda specifica",
+        "expected": "Le azioni disponibili sono mostrate"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC2",
+    "title": "Selezione azione non valida",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema segnala l’errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento",
+        "expected": "La lista delle schede è visualizzata"
+      },
+      {
+        "step": "Clicca su un’azione non disponibile per la scheda selezionata",
+        "expected": "Il sistema mostra un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC3",
+    "title": "Esecuzione azione su scheda censimento senza autorizzazione",
+    "preconditions": "UC3",
+    "postconditions": "L’azione non è eseguita, viene richiesta l’autorizzazione",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento con un utente senza permessi",
+        "expected": "La lista delle schede è visualizzata ma le azioni sono disabilitate"
+      },
+      {
+        "step": "Tenta di eseguire un’azione su una scheda",
+        "expected": "Il sistema richiede l’autenticazione o mostra un messaggio di accesso negato"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC4",
+    "title": "Selezione multipla di azioni sulla scheda censimento",
+    "preconditions": "UC3",
+    "postconditions": "Le azioni sono eseguite correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento",
+        "expected": "La lista delle schede è visualizzata"
+      },
+      {
+        "step": "Seleziona più azioni disponibili per la scheda",
+        "expected": "Le azioni sono eseguite una dopo l’altra o contemporaneamente se possibile"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC5",
+    "title": "Annullamento azione su scheda censimento",
+    "preconditions": "UC3",
+    "postconditions": "L’azione è annullata senza effetti sulla scheda",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento",
+        "expected": "La lista delle schede è visualizzata"
+      },
+      {
+        "step": "Seleziona un’azione e poi annulla la selezione",
+        "expected": "L’azione non viene eseguita e lo stato della scheda rimane invariato"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC3.4"
+  }
+]

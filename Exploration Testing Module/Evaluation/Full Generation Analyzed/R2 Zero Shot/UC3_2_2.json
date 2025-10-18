@@ -1,0 +1,117 @@
+[
+  {
+    "test_case_id": "UC3.2.2_TC1",
+    "title": "Ricerca scheda censimento per stato con parametri validi",
+    "preconditions": "UC3.2",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci il parametro di ricerca stato con valore valido",
+        "expected": "Il campo stato è compilato correttamente"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema esegue la ricerca e visualizza i risultati"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.2.2"
+  },
+  {
+    "test_case_id": "UC3.2.2_TC2",
+    "title": "Ricerca scheda censimento per stato con parametri vuoti",
+    "preconditions": "UC3.2",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Lascia vuoto il campo stato",
+        "expected": "Il campo stato è vuoto"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema visualizza un messaggio di errore per parametri mancanti"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.2.2"
+  },
+  {
+    "test_case_id": "UC3.2.2_TC3",
+    "title": "Ricerca scheda censimento per stato con parametri non validi",
+    "preconditions": "UC3.2",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci il parametro di ricerca stato con valore non valido",
+        "expected": "Il campo stato contiene un valore non valido"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema visualizza un messaggio di errore per parametri non validi"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.2.2"
+  },
+  {
+    "test_case_id": "UC3.2.2_TC4",
+    "title": "Ricerca scheda censimento per stato con più parametri di ricerca",
+    "preconditions": "UC3.2",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci più parametri di ricerca, compreso lo stato",
+        "expected": "I campi sono compilati correttamente"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema esegue la ricerca e visualizza i risultati"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.2.2"
+  },
+  {
+    "test_case_id": "UC3.2.2_TC5",
+    "title": "Ricerca scheda censimento per stato con limite di paginazione",
+    "preconditions": "UC3.2",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci il parametro di ricerca stato e seleziona un limite di paginazione",
+        "expected": "Il campo stato è compilato correttamente e il limite di paginazione è selezionato"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema esegue la ricerca e visualizza i risultati secondo il limite di paginazione"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.2.2"
+  }
+]

@@ -1,0 +1,162 @@
+[
+  {
+    "test_case_id": "UC3.4.3_TC1",
+    "title": "Modifica scheda censimento con dati validi",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente visualizza le informazioni della scheda in fase di edit",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento",
+        "expected": "La lista delle schede viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona una scheda e l’operazione di modifica",
+        "expected": "La scheda si apre in modalità edit"
+      },
+      {
+        "step": "Modifica i campi con dati validi",
+        "expected": "I dati vengono accettati e salvati correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3"
+  },
+  {
+    "test_case_id": "UC3.4.3_TC2",
+    "title": "Modifica scheda censimento senza autorizzazione",
+    "preconditions": "UC3.4",
+    "postconditions": "L’accesso alla modifica viene negato",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento senza permessi di modifica",
+        "expected": "La lista delle schede viene visualizzata ma il pulsante modifica non è disponibile"
+      },
+      {
+        "step": "Tenta di accedere manualmente all’URL di modifica della scheda",
+        "expected": "Accesso negato e richiesta autenticazione o autorizzazione"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3"
+  },
+  {
+    "test_case_id": "UC3.4.3_TC3",
+    "title": "Modifica scheda censimento con dati non validi",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema segnala errori di validazione",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento e seleziona una scheda per la modifica",
+        "expected": "La scheda si apre in modalità edit"
+      },
+      {
+        "step": "Inserisci dati non validi (es. date future, campi obbligatori vuoti)",
+        "expected": "Il sistema evidenzia gli errori e richiede la correzione"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3"
+  },
+  {
+    "test_case_id": "UC3.4.3_TC4",
+    "title": "Modifica scheda censimento con campi obbligatori vuoti",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema richiede di compilare i campi obbligatori",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento e seleziona una scheda per la modifica",
+        "expected": "La scheda si apre in modalità edit"
+      },
+      {
+        "step": "Lascia vuoti campi obbligatori e tenta di salvare",
+        "expected": "Il sistema segnala gli errori e non permette il salvataggio"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3"
+  },
+  {
+    "test_case_id": "UC3.4.3_TC5",
+    "title": "Modifica scheda censimento e annullamento delle modifiche",
+    "preconditions": "UC3.4",
+    "postconditions": "Le modifiche vengono annullate e la scheda torna allo stato originale",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento e seleziona una scheda per la modifica",
+        "expected": "La scheda si apre in modalità edit"
+      },
+      {
+        "step": "Apporta alcune modifiche ai campi",
+        "expected": "I dati vengono modificati temporaneamente"
+      },
+      {
+        "step": "Seleziona l’opzione per annullare le modifiche",
+        "expected": "Le modifiche vengono annullate e la scheda torna allo stato originale"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3"
+  },
+  {
+    "test_case_id": "UC3.4.3_TC6",
+    "title": "Modifica scheda censimento con caratteri speciali nei campi",
+    "preconditions": "UC3.4",
+    "postconditions": "I dati vengono salvati correttamente o il sistema gestisce i caratteri speciali",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento e seleziona una scheda per la modifica",
+        "expected": "La scheda si apre in modalità edit"
+      },
+      {
+        "step": "Inserisci caratteri speciali (es. @, #, $) nei campi di testo",
+        "expected": "Il sistema accetta i dati o li normalizza correttamente"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3"
+  },
+  {
+    "test_case_id": "UC3.4.3_TC7",
+    "title": "Modifica scheda censimento e salvataggio con successo",
+    "preconditions": "UC3.4",
+    "postconditions": "I dati vengono aggiornati correttamente nella scheda",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento e seleziona una scheda per la modifica",
+        "expected": "La scheda si apre in modalità edit"
+      },
+      {
+        "step": "Apporta modifiche ai campi e salva le modifiche",
+        "expected": "I dati vengono aggiornati correttamente nella scheda"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3"
+  },
+  {
+    "test_case_id": "UC3.4.3_TC8",
+    "title": "Modifica scheda censimento e gestione degli errori di salvataggio",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema gestisce gli errori di salvataggio e informa l’utente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento e seleziona una scheda per la modifica",
+        "expected": "La scheda si apre in modalità edit"
+      },
+      {
+        "step": "Apporta modifiche ai campi e tenta di salvare con errori (es. connessione persa, dati non validi)",
+        "expected": "Il sistema gestisce l’errore e informa l’utente sul problema"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3"
+  }
+]

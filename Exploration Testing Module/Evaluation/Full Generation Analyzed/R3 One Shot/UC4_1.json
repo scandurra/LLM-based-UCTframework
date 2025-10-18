@@ -1,0 +1,120 @@
+[
+  {
+    "test_case_id": "UC4.1_TC1",
+    "title": "Visualizzazione della sezione di gestione impianto con utente autorizzato",
+    "preconditions": "UC4",
+    "postconditions": "La sezione di gestione impianto viene visualizzata correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi al modulo SAVE come utente autorizzato (Regione, Sindaco, Fornitore, Progettista)",
+        "expected": "L’accesso è consentito e la dashboard del modulo SAVE è visibile"
+      },
+      {
+        "step": "Naviga nella sezione dedicata agli impianti",
+        "expected": "La barra orizzontale con le opzioni relative agli impianti è presente e cliccabile"
+      },
+      {
+        "step": "Seleziona la prima sezione degli impianti",
+        "expected": "La sezione di gestione dell’impianto viene caricata correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC4.1"
+  },
+  {
+    "test_case_id": "UC4.1_TC2",
+    "title": "Tentativo di accesso con utente non autorizzato",
+    "preconditions": "UC4",
+    "postconditions": "L’accesso alla sezione di gestione impianto è negato",
+    "test_steps": [
+      {
+        "step": "Accedi al modulo SAVE come utente non autorizzato",
+        "expected": "L’accesso è negato e viene visualizzato un messaggio di errore"
+      },
+      {
+        "step": "Tenta di navigare nella sezione dedicata agli impianti",
+        "expected": "La barra orizzontale con le opzioni relative agli impianti non è visibile o non è cliccabile"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC4.1"
+  },
+  {
+    "test_case_id": "UC4.1_TC3",
+    "title": "Visualizzazione della sezione di gestione impianto con diversi ruoli utente",
+    "preconditions": "UC4",
+    "postconditions": "La sezione di gestione impianto viene visualizzata correttamente per ogni ruolo",
+    "test_steps": [
+      {
+        "step": "Accedi al modulo SAVE come Regione",
+        "expected": "La sezione di gestione dell’impianto è visibile e accessibile"
+      },
+      {
+        "step": "Ripeti l’accesso con gli altri ruoli (Sindaco, Fornitore, Progettista)",
+        "expected": "Per ogni ruolo, la sezione di gestione dell’impianto è visibile e accessibile secondo le autorizzazioni del ruolo"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC4.1"
+  },
+  {
+    "test_case_id": "UC4.1_TC4",
+    "title": "Boundary test: navigazione nella sezione di gestione impianto con dati minimi",
+    "preconditions": "UC4",
+    "postconditions": "La sezione di gestione impianto è visibile anche con pochi dati",
+    "test_steps": [
+      {
+        "step": "Accedi al modulo SAVE con un utente autorizzato e un set di dati minimi",
+        "expected": "La dashboard del modulo SAVE è visibile"
+      },
+      {
+        "step": "Naviga nella sezione dedicata agli impianti con pochi dati disponibili",
+        "expected": "La barra orizzontale con le opzioni relative agli impianti è presente e la sezione di gestione dell’impianto è accessibile"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Media",
+    "use_case_id": "UC4.1"
+  },
+  {
+    "test_case_id": "UC4.1_TC5",
+    "title": "Edge case: visualizzazione della sezione di gestione impianto con caratteri speciali nel nome dell’impianto",
+    "preconditions": "UC4",
+    "postconditions": "La sezione di gestione impianto è visibile anche con nomi di impianti contenenti caratteri speciali",
+    "test_steps": [
+      {
+        "step": "Accedi al modulo SAVE con un utente autorizzato e un impianto con nome contenente caratteri speciali",
+        "expected": "La dashboard del modulo SAVE è visibile"
+      },
+      {
+        "step": "Naviga nella sezione dedicata agli impianti",
+        "expected": "La barra orizzontale con le opzioni relative agli impianti è presente e la sezione di gestione dell’impianto è accessibile"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC4.1"
+  },
+  {
+    "test_case_id": "UC4.1_TC6",
+    "title": "Security test: iniezione SQL nella ricerca degli impianti",
+    "preconditions": "UC4",
+    "postconditions": "Il sistema resiste all’iniezione SQL e non esegue operazioni non autorizzate",
+    "test_steps": [
+      {
+        "step": "Accedi al modulo SAVE come utente autorizzato",
+        "expected": "La dashboard del modulo SAVE è visibile"
+      },
+      {
+        "step": "Tenta di iniettare codice SQL nella ricerca degli impianti",
+        "expected": "Il sistema rileva e blocca l’iniezione, mostrando un messaggio di errore"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC4.1"
+  }
+]

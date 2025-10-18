@@ -1,0 +1,101 @@
+[
+  {
+    "test_case_id": "UC3.4.5_TC1",
+    "title": "Visualizzazione dettaglio scheda censimento con dati validi",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente visualizza le informazioni relative alla scheda censimento",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di dettaglio su una scheda censimento esistente",
+        "expected": "Viene visualizzata la pagina di dettaglio della scheda"
+      },
+      {
+        "step": "Verifica che le informazioni visualizzate siano corrette e non modificabili",
+        "expected": "Le informazioni sono visualizzate correttamente e non è possibile modificarle"
+      },
+      {
+        "step": "Naviga nella gerarchia dei POD e Aree Omogenee",
+        "expected": "La navigazione avviene senza errori"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.5"
+  },
+  {
+    "test_case_id": "UC3.4.5_TC2",
+    "title": "Visualizzazione dettaglio scheda censimento senza dati",
+    "preconditions": "UC3.4",
+    "postconditions": "Viene visualizzato un messaggio di assenza di dati",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di dettaglio su una scheda censimento non esistente o senza dati",
+        "expected": "Viene visualizzato un messaggio che indica l’assenza di dati"
+      },
+      {
+        "step": "Verifica che il sistema gestisca correttamente la mancanza di informazioni",
+        "expected": "Il sistema gestisce la situazione senza errori"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.5"
+  },
+  {
+    "test_case_id": "UC3.4.5_TC3",
+    "title": "Navigazione nella gerarchia dei POD e Aree Omogenee",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente può navigare correttamente nella gerarchia",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di dettaglio su una scheda censimento esistente",
+        "expected": "Viene visualizzata la pagina di dettaglio della scheda"
+      },
+      {
+        "step": "Naviga nella gerarchia dei POD e Aree Omogenee selezionando diversi livelli",
+        "expected": "La navigazione avviene senza errori e le informazioni vengono aggiornate correttamente"
+      }
+    ],
+    "test_type": "Prestazione",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.5"
+  },
+  {
+    "test_case_id": "UC3.4.5_TC4",
+    "title": "Visualizzazione dati generali dell’area",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente visualizza i dati generali dell’area",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di dettaglio su una scheda censimento esistente",
+        "expected": "Viene visualizzata la pagina di dettaglio della scheda"
+      },
+      {
+        "step": "Verifica che i dati generali dell’area siano visualizzati correttamente",
+        "expected": "I dati sono visualizzati in modo chiaro e accessibile"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Media",
+    "use_case_id": "UC3.4.5"
+  },
+  {
+    "test_case_id": "UC3.4.5_TC5",
+    "title": "Boundary test: selezione di una scheda censimento con molti dati",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema gestisce correttamente la grande quantità di dati",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di dettaglio su una scheda censimento con molti dati",
+        "expected": "Il sistema visualizza i dati senza problemi di prestazioni"
+      },
+      {
+        "step": "Verifica che il sistema sia in grado di gestire la grande quantità di informazioni",
+        "expected": "Il sistema gestisce la situazione senza errori o rallentamenti"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.5"
+  }
+]

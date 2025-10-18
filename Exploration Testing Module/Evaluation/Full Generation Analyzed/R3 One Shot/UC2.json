@@ -1,0 +1,154 @@
+[
+  {
+    "test_case_id": "UC2_TC1",
+    "title": "Apertura della dashboard con utente autenticato",
+    "preconditions": "UC1",
+    "postconditions": "La dashboard viene visualizzata correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente registrato",
+        "expected": "Il sistema conferma l’accesso"
+      },
+      {
+        "step": "Seleziona la voce del menù laterale relativa alla dashboard",
+        "expected": "La sezione della dashboard viene caricata"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC2",
+    "title": "Tentativo di accesso alla dashboard senza autenticazione",
+    "preconditions": "",
+    "postconditions": "Il sistema richiede l’autenticazione",
+    "test_steps": [
+      {
+        "step": "Accedi direttamente all’URL della dashboard senza login",
+        "expected": "Il sistema reindirizza alla pagina di login"
+      },
+      {
+        "step": "Tenta di accedere manualmente alla dashboard",
+        "expected": "Accesso negato e richiesta autenticazione"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC3",
+    "title": "Visualizzazione della dashboard con diversi ruoli utente",
+    "preconditions": "UC1",
+    "postconditions": "La dashboard viene visualizzata in base alle autorizzazioni dell’utente",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema con un account di tipo Regione",
+        "expected": "La dashboard mostra le informazioni relative alla Regione"
+      },
+      {
+        "step": "Accedi al sistema con un account di tipo Sindaco",
+        "expected": "La dashboard mostra le informazioni relative al Comune"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC4",
+    "title": "Dashboard con dati non disponibili",
+    "preconditions": "UC1",
+    "postconditions": "Il sistema visualizza un messaggio di dati non disponibili",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard in un momento in cui i dati non sono aggiornati",
+        "expected": "Il sistema mostra un messaggio di mancanza di dati"
+      },
+      {
+        "step": "Verifica la presenza di un link o indicazione per l’aggiornamento dei dati",
+        "expected": "Il sistema fornisce informazioni su come ottenere i dati aggiornati"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC5",
+    "title": "Test di prestazione: caricamento della dashboard con grandi quantità di dati",
+    "preconditions": "UC1",
+    "postconditions": "La dashboard si carica entro un tempo ragionevole",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard con un grande set di dati disponibili",
+        "expected": "Il sistema carica la dashboard senza rallentamenti eccessivi"
+      },
+      {
+        "step": "Misura il tempo di caricamento della pagina",
+        "expected": "Il tempo di caricamento è inferiore a 5 secondi"
+      }
+    ],
+    "test_type": "Prestazione",
+    "priority": "Alta",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC6",
+    "title": "Test di usabilità: navigazione della dashboard",
+    "preconditions": "UC1",
+    "postconditions": "L’utente può navigare facilmente nella dashboard",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e valuta la chiarezza dell’interfaccia utente",
+        "expected": "L’interfaccia è intuitiva e facile da usare"
+      },
+      {
+        "step": "Esegui diverse azioni di navigazione all’interno della dashboard",
+        "expected": "Le operazioni vengono eseguite senza errori o difficoltà"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Media",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC7",
+    "title": "Test di sicurezza: iniezione SQL nella dashboard",
+    "preconditions": "UC1",
+    "postconditions": "Il sistema respinge l’iniezione SQL e mantiene la sicurezza",
+    "test_steps": [
+      {
+        "step": "Tenta di eseguire un attacco di iniezione SQL tramite i parametri della dashboard",
+        "expected": "Il sistema rileva e blocca l’attacco"
+      },
+      {
+        "step": "Verifica che il sistema non mostri errori o informazioni sensibili",
+        "expected": "Il sistema mantiene la sicurezza e non rivela dati sensibili"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC8",
+    "title": "Test di accessibilità: dashboard con browser diversi",
+    "preconditions": "UC1",
+    "postconditions": "La dashboard è visualizzabile correttamente su più browser",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard utilizzando Google Chrome",
+        "expected": "La dashboard si carica e funziona correttamente"
+      },
+      {
+        "step": "Accedi alla dashboard utilizzando Mozilla Firefox",
+        "expected": "La dashboard si carica e funziona correttamente anche su questo browser"
+      }
+    ],
+    "test_type": "Accessibilità",
+    "priority": "Media",
+    "use_case_id": "UC2"
+  }
+]

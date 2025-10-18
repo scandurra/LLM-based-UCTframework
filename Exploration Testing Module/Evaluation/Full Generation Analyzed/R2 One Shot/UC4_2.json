@@ -1,0 +1,218 @@
+[
+  {
+    "test_case_id": "UC4.2_TC1",
+    "title": "Aggiunta nuovo investimento con dati validi",
+    "preconditions": "UC4",
+    "postconditions": "L’utente visualizza un messaggio di conferma",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione degli investimenti",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto per aggiungere un nuovo investimento",
+        "expected": "Il form di inserimento dati si apre"
+      },
+      {
+        "step": "Compila il form con tutti i parametri richiesti in modo corretto",
+        "expected": "Il sistema accetta i dati e procede"
+      },
+      {
+        "step": "Conferma l’aggiunta del nuovo investimento",
+        "expected": "Viene visualizzato un messaggio di conferma"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC4.2"
+  },
+  {
+    "test_case_id": "UC4.2_TC2",
+    "title": "Aggiunta nuovo investimento con dati mancanti",
+    "preconditions": "UC4",
+    "postconditions": "Il sistema segnala errori di compilazione",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione degli investimenti",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto per aggiungere un nuovo investimento",
+        "expected": "Il form di inserimento dati si apre"
+      },
+      {
+        "step": "Lascia alcuni campi obbligatori vuoti e clicca su conferma",
+        "expected": "Il sistema segnala errori di compilazione"
+      },
+      {
+        "step": "Tenta di procedere senza correggere gli errori",
+        "expected": "Il sistema non permette di aggiungere l’investimento"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC4.2"
+  },
+  {
+    "test_case_id": "UC4.2_TC3",
+    "title": "Aggiunta nuovo investimento con dati non validi (es. numeri al posto di testo)",
+    "preconditions": "UC4",
+    "postconditions": "Il sistema segnala errori di formato",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione degli investimenti",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto per aggiungere un nuovo investimento",
+        "expected": "Il form di inserimento dati si apre"
+      },
+      {
+        "step": "Inserisci dati non validi nei campi (es. numeri in un campo testuale)",
+        "expected": "Il sistema segnala errori di formato"
+      },
+      {
+        "step": "Tenta di procedere senza correggere gli errori",
+        "expected": "Il sistema non permette di aggiungere l’investimento"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC4.2"
+  },
+  {
+    "test_case_id": "UC4.2_TC4",
+    "title": "Annullamento dell’aggiunta di un nuovo investimento",
+    "preconditions": "UC4",
+    "postconditions": "L’utente visualizza un messaggio di annullamento",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione degli investimenti",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto per aggiungere un nuovo investimento",
+        "expected": "Il form di inserimento dati si apre"
+      },
+      {
+        "step": "Compila parzialmente il form e poi clicca su annulla",
+        "expected": "Viene visualizzato un messaggio di annullamento"
+      },
+      {
+        "step": "Verifica che i dati non siano stati salvati",
+        "expected": "I dati non sono presenti nella lista degli investimenti"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC4.2"
+  },
+  {
+    "test_case_id": "UC4.2_TC5",
+    "title": "Aggiunta di più investimenti consecutivi",
+    "preconditions": "UC4",
+    "postconditions": "Tutti gli investimenti vengono aggiunti con successo",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione degli investimenti",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Aggiungi un nuovo investimento con dati validi e conferma",
+        "expected": "Il primo investimento viene aggiunto"
+      },
+      {
+        "step": "Ripeti il processo per aggiungere altri due investimenti",
+        "expected": "Tutti gli investimenti vengono aggiunti correttamente"
+      },
+      {
+        "step": "Verifica la lista degli investimenti",
+        "expected": "Tutti e tre gli investimenti sono presenti"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC4.2"
+  },
+  {
+    "test_case_id": "UC4.2_TC6",
+    "title": "SQL Injection test",
+    "preconditions": "UC4",
+    "postconditions": "Il sistema non esegue la query malevola",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione degli investimenti",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci una stringa di testo che potrebbe essere interpretata come codice SQL malevolo in un campo di input",
+        "expected": "Il sistema rileva e blocca la possibile SQL injection"
+      },
+      {
+        "step": "Tenta di eseguire l’azione con il codice malevolo",
+        "expected": "Il sistema non esegue la query e segnala un errore di sicurezza"
+      },
+      {
+        "step": "Verifica che il sistema sia stabile e funzionante",
+        "expected": "Il sistema rimane accessibile e funzionale"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC4.2"
+  },
+  {
+    "test_case_id": "UC4.2_TC7",
+    "title": "Test di carico e stress",
+    "preconditions": "UC4",
+    "postconditions": "Il sistema rimane stabile e risponde correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione degli investimenti",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Esegui più richieste di aggiunta di investimenti in parallelo o in rapida sequenza",
+        "expected": "Il sistema gestisce le richieste senza rallentamenti significativi"
+      },
+      {
+        "step": "Verifica la risposta del sistema e i tempi di caricamento",
+        "expected": "Il sistema rimane stabile e le pagine si caricano in tempi ragionevoli"
+      },
+      {
+        "step": "Ripeti il test con un numero crescente di utenti simultanei",
+        "expected": "Il sistema continua a funzionare correttamente anche con carichi più elevati"
+      }
+    ],
+    "test_type": "Prestazioni",
+    "priority": "Media",
+    "use_case_id": "UC4.2"
+  },
+  {
+    "test_case_id": "UC4.2_TC8",
+    "title": "Test di usabilità",
+    "preconditions": "UC4",
+    "postconditions": "L’utente può aggiungere un investimento facilmente e intuitivamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione degli investimenti con un utente non esperto",
+        "expected": "La sezione è facile da trovare"
+      },
+      {
+        "step": "Chiedi all’utente di aggiungere un nuovo investimento senza alcuna guida",
+        "expected": "L’utente riesce a completare l’azione con facilità"
+      },
+      {
+        "step": "Osserva il processo e chiedi feedback sull’usabilità dell’interfaccia",
+        "expected": "L’utente trova l’interfaccia intuitiva e facile da usare"
+      },
+      {
+        "step": "Raccolti i feedback, valuta se sono necessarie modifiche per migliorare l’usabilità",
+        "expected": "Eventuali suggerimenti vengono presi in considerazione per future implementazioni"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Media",
+    "use_case_id": "UC4.2"
+  }
+]

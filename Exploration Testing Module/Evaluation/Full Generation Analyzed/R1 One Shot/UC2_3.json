@@ -1,0 +1,186 @@
+[
+  {
+    "test_case_id": "UC2.3_TC1",
+    "title": "Visualizzazione tabella dati generali con impostazioni predefinite",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione dashboard tramite il menù apposito",
+        "expected": "La sezione dashboard viene caricata correttamente"
+      },
+      {
+        "step": "Scorri nella pagina fino a visualizzare la sezione tabellare dei dati generali",
+        "expected": "La tabella viene visualizzata con i dati predefiniti"
+      },
+      {
+        "step": "Verifica che siano visibili le informazioni per il comune selezionato",
+        "expected": "Le informazioni sono corrette e complete"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.3"
+  },
+  {
+    "test_case_id": "UC2.3_TC2",
+    "title": "Navigazione tra comuni con selettore di pagine",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza le informazioni relative al comune selezionato",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione dashboard e scorri fino alla tabella dei dati generali",
+        "expected": "La tabella è visibile"
+      },
+      {
+        "step": "Seleziona un comune diverso tramite il selettore di pagine in basso a destra",
+        "expected": "I dati nella tabella si aggiornano per il nuovo comune selezionato"
+      },
+      {
+        "step": "Verifica che le informazioni siano corrette per il nuovo comune",
+        "expected": "Le informazioni sono accurate e relative al comune selezionato"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC2.3"
+  },
+  {
+    "test_case_id": "UC2.3_TC3",
+    "title": "Modifica del numero di elementi visualizzati per pagina",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza il numero selezionato di elementi per pagina",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione dashboard e scorri fino alla tabella dei dati generali",
+        "expected": "La tabella è visibile"
+      },
+      {
+        "step": "Modifica il numero di elementi visualizzati per pagina tramite il selettore in basso a sinistra",
+        "expected": "Il numero di righe nella tabella si aggiorna secondo la selezione"
+      },
+      {
+        "step": "Verifica che il numero di elementi visualizzati corrisponda alla scelta effettuata",
+        "expected": "Il numero di elementi per pagina è quello selezionato"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC2.3"
+  },
+  {
+    "test_case_id": "UC2.3_TC4",
+    "title": "Ordinamento per colonna di dati",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza i dati ordinati secondo la colonna selezionata",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione dashboard e scorri fino alla tabella dei dati generali",
+        "expected": "La tabella è visibile"
+      },
+      {
+        "step": "Clicca sul nome di una colonna per ordinare i dati",
+        "expected": "I dati nella tabella si ordinano secondo la colonna selezionata"
+      },
+      {
+        "step": "Verifica che l’ordinamento sia corretto e coerente con la scelta effettuata",
+        "expected": "L’ordinamento è corretto e come previsto"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC2.3"
+  },
+  {
+    "test_case_id": "UC2.3_TC5",
+    "title": "Visualizzazione con nessun dato disponibile per il comune selezionato",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio informativo sulla mancanza di dati",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione dashboard e scorri fino alla tabella dei dati generali",
+        "expected": "La tabella è visibile"
+      },
+      {
+        "step": "Seleziona un comune per cui non sono disponibili dati",
+        "expected": "Viene visualizzato un messaggio che indica la mancanza di dati"
+      },
+      {
+        "step": "Verifica che il messaggio sia chiaro e utile per l’utente",
+        "expected": "Il messaggio è comprensibile e fornisce indicazioni utili"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC2.3"
+  },
+  {
+    "test_case_id": "UC2.3_TC6",
+    "title": "Test di prestazione con un grande numero di comuni e dati",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza i dati senza problemi di performance",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione dashboard con un grande numero di comuni e dati disponibili",
+        "expected": "La pagina carica entro un tempo ragionevole"
+      },
+      {
+        "step": "Naviga tra i comuni e le pagine senza problemi di performance",
+        "expected": "La navigazione è fluida e non ci sono ritardi significativi"
+      },
+      {
+        "step": "Verifica che la tabella si aggiorni correttamente con i dati selezionati",
+        "expected": "L’aggiornamento dei dati è rapido e preciso"
+      }
+    ],
+    "test_type": "Prestazione",
+    "priority": "Alta",
+    "use_case_id": "UC2.3"
+  },
+  {
+    "test_case_id": "UC2.3_TC7",
+    "title": "Test di usabilità per utenti con disabilità",
+    "preconditions": "UC2",
+    "postconditions": "L’utente con disabilità può utilizzare la funzionalità senza difficoltà",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione dashboard utilizzando strumenti di accessibilità (es. lettore dello schermo)",
+        "expected": "La pagina è accessibile e leggibile"
+      },
+      {
+        "step": "Naviga tra i comuni e le pagine utilizzando solo la tastiera o altri dispositivi di input alternativi",
+        "expected": "La navigazione è possibile senza l’uso del mouse"
+      },
+      {
+        "step": "Verifica che tutte le funzionalità siano accessibili e utilizzabili",
+        "expected": "Tutte le funzionalità sono accessibili e funzionano correttamente"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Alta",
+    "use_case_id": "UC2.3"
+  },
+  {
+    "test_case_id": "UC2.3_TC8",
+    "title": "Test di compatibilità con diversi browser e dispositivi",
+    "preconditions": "UC2",
+    "postconditions": "L’utente può visualizzare e utilizzare la funzionalità su diversi browser e dispositivi",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione dashboard utilizzando diversi browser (es. Chrome, Firefox, Safari)",
+        "expected": "La pagina si carica e funziona correttamente su tutti i browser testati"
+      },
+      {
+        "step": "Testa la funzionalità su dispositivi mobili e tablet",
+        "expected": "La funzionalità è accessibile e utilizzabile anche su dispositivi mobili"
+      },
+      {
+        "step": "Verifica che la layout e il design siano adattivi e funzionino correttamente su schermi di diverse dimensioni",
+        "expected": "Il layout si adatta correttamente alle diverse dimensioni degli schermi"
+      }
+    ],
+    "test_type": "Compatibilità",
+    "priority": "Alta",
+    "use_case_id": "UC2.3"
+  }
+]

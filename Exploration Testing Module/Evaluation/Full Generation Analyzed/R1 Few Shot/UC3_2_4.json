@@ -1,0 +1,101 @@
+[
+  {
+    "test_case_id": "UC3.2.4_TC1",
+    "title": "Ricerca scheda censimento con parametri validi",
+    "preconditions": "UC3.2",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Inserisci nome, stato e tipo nella maschera di ricerca",
+        "expected": "I parametri vengono accettati"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "La ricerca viene avviata correttamente"
+      },
+      {
+        "step": "Visualizza il risultato della ricerca",
+        "expected": "Le informazioni cercate vengono visualizzate correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.2.4"
+  },
+  {
+    "test_case_id": "UC3.2.4_TC2",
+    "title": "Ricerca senza parametri di ricerca",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema segnala l’assenza di parametri",
+    "test_steps": [
+      {
+        "step": "Lascia vuoti tutti i campi della maschera di ricerca",
+        "expected": "Il sistema richiede l’inserimento dei parametri"
+      },
+      {
+        "step": "Tenta di confermare la ricerca",
+        "expected": "La ricerca non viene avviata e compare un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.2.4"
+  },
+  {
+    "test_case_id": "UC3.2.4_TC3",
+    "title": "Ricerca con parametri parzialmente vuoti",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema esegue la ricerca con i parametri forniti",
+    "test_steps": [
+      {
+        "step": "Inserisci solo alcuni dei parametri di ricerca (es. solo il nome)",
+        "expected": "I parametri parziali vengono accettati"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "La ricerca viene avviata e restituisce risultati coerenti con i parametri inseriti"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC3.2.4"
+  },
+  {
+    "test_case_id": "UC3.2.4_TC4",
+    "title": "Ricerca con caratteri speciali nei parametri",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema gestisce correttamente i caratteri speciali",
+    "test_steps": [
+      {
+        "step": "Inserisci caratteri speciali (es. @, #, $) all’interno dei parametri di ricerca",
+        "expected": "I caratteri vengono accettati e gestiti correttamente"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "La ricerca restituisce risultati coerenti con i parametri inseriti, inclusi i caratteri speciali"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC3.2.4"
+  },
+  {
+    "test_case_id": "UC3.2.4_TC5",
+    "title": "Ricerca con lunghe stringhe di ricerca",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema gestisce correttamente le lunghe stringhe",
+    "test_steps": [
+      {
+        "step": "Inserisci una lunga stringa di ricerca (oltre 50 caratteri)",
+        "expected": "La stringa viene accettata"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "La ricerca restituisce risultati coerenti con la stringa inserita"
+      }
+    ],
+    "test_type": "Prestazione",
+    "priority": "Bassa",
+    "use_case_id": "UC3.2.4"
+  }
+]

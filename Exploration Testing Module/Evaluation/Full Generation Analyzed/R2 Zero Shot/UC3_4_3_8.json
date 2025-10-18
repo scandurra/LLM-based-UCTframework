@@ -1,0 +1,169 @@
+[
+  {
+    "test_case_id": "UC3.4.3.8_TC1",
+    "title": "Modifica Elettric panel sezione Manutenzione con dati validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD è selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD",
+        "expected": "I pannelli elettrici sono visualizzati correttamente"
+      },
+      {
+        "step": "Seleziona il pannello elettrico per la modifica",
+        "expected": "Il pannello elettrico è selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo alle informazioni di manutenzione",
+        "expected": "Il tab è selezionato correttamente"
+      },
+      {
+        "step": "Compila il form con le informazioni desiderate",
+        "expected": "Il form è compilato correttamente"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Le modifiche sono applicate correttamente e viene visualizzato un messaggio di conferma"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.8"
+  },
+  {
+    "test_case_id": "UC3.4.3.8_TC2",
+    "title": "Modifica Elettric panel sezione Manutenzione con dati non validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD è selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD",
+        "expected": "I pannelli elettrici sono visualizzati correttamente"
+      },
+      {
+        "step": "Seleziona il pannello elettrico per la modifica",
+        "expected": "Il pannello elettrico è selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo alle informazioni di manutenzione",
+        "expected": "Il tab è selezionato correttamente"
+      },
+      {
+        "step": "Compila il form con dati non validi",
+        "expected": "Il form non è compilato correttamente e viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.8"
+  },
+  {
+    "test_case_id": "UC3.4.3.8_TC3",
+    "title": "Modifica Elettric panel sezione Manutenzione senza compilare il form",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD è selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD",
+        "expected": "I pannelli elettrici sono visualizzati correttamente"
+      },
+      {
+        "step": "Seleziona il pannello elettrico per la modifica",
+        "expected": "Il pannello elettrico è selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo alle informazioni di manutenzione",
+        "expected": "Il tab è selezionato correttamente"
+      },
+      {
+        "step": "Non compilare il form e applica le modifiche con l’apposito tasto",
+        "expected": "Viene visualizzato un messaggio di errore per campi obbligatori non compilati"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.8"
+  },
+  {
+    "test_case_id": "UC3.4.3.8_TC4",
+    "title": "Modifica Elettric panel sezione Manutenzione con dati validi e annullamento delle modifiche",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Le modifiche non sono applicate",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD è selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD",
+        "expected": "I pannelli elettrici sono visualizzati correttamente"
+      },
+      {
+        "step": "Seleziona il pannello elettrico per la modifica",
+        "expected": "Il pannello elettrico è selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo alle informazioni di manutenzione",
+        "expected": "Il tab è selezionato correttamente"
+      },
+      {
+        "step": "Compila il form con le informazioni desiderate",
+        "expected": "Il form è compilato correttamente"
+      },
+      {
+        "step": "Annulla le modifiche",
+        "expected": "Le modifiche non sono applicate e il sistema ritorna allo stato precedente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.8"
+  },
+  {
+    "test_case_id": "UC3.4.3.8_TC5",
+    "title": "Modifica Elettric panel sezione Manutenzione con dati validi e salvataggio delle modifiche in più fasi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Le modifiche sono applicate correttamente",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD è selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD",
+        "expected": "I pannelli elettrici sono visualizzati correttamente"
+      },
+      {
+        "step": "Seleziona il pannello elettrico per la modifica",
+        "expected": "Il pannello elettrico è selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo alle informazioni di manutenzione",
+        "expected": "Il tab è selezionato correttamente"
+      },
+      {
+        "step": "Compila parzialmente il form con le informazioni desiderate e salva le modifiche parziali",
+        "expected": "Le modifiche parziali sono salvate correttamente"
+      },
+      {
+        "step": "Completa la compilazione del form e applica le modifiche definitive",
+        "expected": "Le modifiche definitive sono applicate correttamente e viene visualizzato un messaggio di conferma"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.8"
+  }
+]

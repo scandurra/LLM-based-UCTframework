@@ -1,0 +1,182 @@
+[
+  {
+    "test_case_id": "UC3.4.3.1_TC1",
+    "title": "Modifica sezione Area con dati validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Compila il form con informazioni valide",
+        "expected": "Il sistema accetta i dati senza errori"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Il sistema conferma la modifica e visualizza un messaggio di successo"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.1"
+  },
+  {
+    "test_case_id": "UC3.4.3.1_TC2",
+    "title": "Modifica sezione Area con dati non validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Compila il form con informazioni non valide (es. campo obbligatorio vuoto)",
+        "expected": "Il sistema segnala l’errore e non permette di proseguire"
+      },
+      {
+        "step": "Tenta di applicare le modifiche",
+        "expected": "Il sistema mostra un messaggio di errore e richiede la correzione dei dati"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.1"
+  },
+  {
+    "test_case_id": "UC3.4.3.1_TC3",
+    "title": "Modifica sezione Area senza autorizzazione",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’accesso alla modifica è negato e viene richiesta l’autorizzazione",
+    "test_steps": [
+      {
+        "step": "Tenta di accedere alla sezione relativa ai dati dell’area senza avere i permessi necessari",
+        "expected": "Il sistema nega l’accesso e visualizza un messaggio di autorizzazione richiesta"
+      },
+      {
+        "step": "Tenta comunque di modificare i dati",
+        "expected": "L’operazione viene bloccata e il sistema chiede di effettuare il login o di ottenere i permessi necessari"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.1"
+  },
+  {
+    "test_case_id": "UC3.4.3.1_TC4",
+    "title": "Modifica sezione Area con campi vuoti",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema richiede di compilare tutti i campi obbligatori",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Lascia vuoti alcuni campi obbligatori e compila gli altri",
+        "expected": "Il sistema segnala l’errore e richiede di compilare tutti i campi necessari"
+      },
+      {
+        "step": "Tenta di applicare le modifiche",
+        "expected": "L’operazione non va a buon fine fino a quando non vengono compilati tutti i campi obbligatori"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.1"
+  },
+  {
+    "test_case_id": "UC3.4.3.1_TC5",
+    "title": "Modifica sezione Area con dati troppo lunghi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema tronca i dati o li rifiuta",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci dati che superano la lunghezza massima consentita in uno o più campi",
+        "expected": "Il sistema tronca i dati o li rifiuta e richiede di ridurre la lunghezza"
+      },
+      {
+        "step": "Tenta di applicare le modifiche",
+        "expected": "L’operazione non va a buon fine fino a quando non vengono rispettate le lunghezze massime consentite"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.1"
+  },
+  {
+    "test_case_id": "UC3.4.3.1_TC6",
+    "title": "Modifica sezione Area con caratteri non ammessi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema rifiuta i dati o li normalizza",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci caratteri non ammessi (es. caratteri speciali in un campo numerico)",
+        "expected": "Il sistema rifiuta i dati o li normalizza e richiede di utilizzare solo caratteri ammessi"
+      },
+      {
+        "step": "Tenta di applicare le modifiche",
+        "expected": "L’operazione non va a buon fine fino a quando non vengono utilizzati solo caratteri ammessi"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.1"
+  },
+  {
+    "test_case_id": "UC3.4.3.1_TC7",
+    "title": "Modifica sezione Area e annullamento delle modifiche",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Le modifiche vengono annullate e i dati tornano allo stato precedente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Apporta alcune modifiche ai dati",
+        "expected": "Le modifiche vengono applicate temporaneamente"
+      },
+      {
+        "step": "Annulla le modifiche prima di salvare",
+        "expected": "I dati tornano allo stato precedente e le modifiche vengono annullate"
+      }
+    ],
+    "test_type": "Funzionalità",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.1"
+  },
+  {
+    "test_case_id": "UC3.4.3.1_TC8",
+    "title": "Modifica sezione Area e salvataggio delle modifiche",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Le modifiche vengono salvate correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Apporta alcune modifiche ai dati",
+        "expected": "Le modifiche vengono applicate temporaneamente"
+      },
+      {
+        "step": "Salva le modifiche",
+        "expected": "Le modifiche vengono salvate correttamente e il sistema conferma l’operazione"
+      }
+    ],
+    "test_type": "Funzionalità",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.1"
+  }
+]

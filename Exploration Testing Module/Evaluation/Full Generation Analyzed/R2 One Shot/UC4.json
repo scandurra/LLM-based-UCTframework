@@ -1,0 +1,116 @@
+[
+  {
+    "test_case_id": "UC4_TC1",
+    "title": "Apertura modulo SAVE con utente autorizzato",
+    "preconditions": "UC1",
+    "postconditions": "L’interfaccia del modulo SAVE viene visualizzata correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente autorizzato (Regione, Sindaco, Fornitore, Progettista)",
+        "expected": "La dashboard dell’utente viene caricata"
+      },
+      {
+        "step": "Seleziona il modulo SAVE dal menù laterale di sinistra",
+        "expected": "L’interfaccia del modulo SAVE si apre correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC4"
+  },
+  {
+    "test_case_id": "UC4_TC2",
+    "title": "Tentativo di accesso al modulo SAVE senza autorizzazione",
+    "preconditions": "UC1",
+    "postconditions": "L’accesso al modulo SAVE viene negato",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente non autorizzato",
+        "expected": "La dashboard dell’utente non contiene il link al modulo SAVE"
+      },
+      {
+        "step": "Tenta di accedere manualmente all’URL del modulo SAVE",
+        "expected": "Accesso negato e reindirizzamento alla pagina di login o di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC4"
+  },
+  {
+    "test_case_id": "UC4_TC3",
+    "title": "Apertura modulo SAVE con diversi ruoli utente",
+    "preconditions": "UC1",
+    "postconditions": "L’interfaccia del modulo SAVE si adatta ai permessi dell’utente",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come Regione",
+        "expected": "La dashboard contiene il link al modulo SAVE con funzionalità complete"
+      },
+      {
+        "step": "Accedi al sistema come Sindaco, Fornitore e Progettista e verifica le differenze di accesso",
+        "expected": "Ogni ruolo ha accesso alle funzioni del modulo SAVE secondo i permessi assegnati"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC4"
+  },
+  {
+    "test_case_id": "UC4_TC4",
+    "title": "Test di usabilità dell’interfaccia del modulo SAVE",
+    "preconditions": "UC1",
+    "postconditions": "L’utente può navigare agevolmente all’interno del modulo SAVE",
+    "test_steps": [
+      {
+        "step": "Accedi al modulo SAVE come utente autorizzato",
+        "expected": "L’interfaccia è chiara e facile da usare"
+      },
+      {
+        "step": "Esegui azioni comuni all’interno del modulo (es. creazione, modifica, cancellazione)",
+        "expected": "Le operazioni vengono eseguite senza problemi e con feedback appropriati"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Media",
+    "use_case_id": "UC4"
+  },
+  {
+    "test_case_id": "UC4_TC5",
+    "title": "Test di compatibilità del modulo SAVE con browser diversi",
+    "preconditions": "UC1",
+    "postconditions": "Il modulo SAVE funziona correttamente su più browser",
+    "test_steps": [
+      {
+        "step": "Accedi al modulo SAVE utilizzando Google Chrome",
+        "expected": "Il modulo funziona come previsto"
+      },
+      {
+        "step": "Ripeti il test con Mozilla Firefox, Microsoft Edge e Safari",
+        "expected": "Il modulo SAVE è compatibile e funziona correttamente su tutti i browser testati"
+      }
+    ],
+    "test_type": "Compatibilità",
+    "priority": "Alta",
+    "use_case_id": "UC4"
+  },
+  {
+    "test_case_id": "UC4_TC6",
+    "title": "Test di accessibilità del modulo SAVE per utenti con disabilità",
+    "preconditions": "UC1",
+    "postconditions": "Il modulo SAVE è accessibile secondo gli standard di accessibilità web",
+    "test_steps": [
+      {
+        "step": "Utilizza strumenti di simulazione per testare l’accessibilità (es. lettore dello schermo)",
+        "expected": "Il modulo SAVE può essere utilizzato agevolmente dagli utenti con disabilità"
+      },
+      {
+        "step": "Verifica la conformità agli standard WCAG 2.1",
+        "expected": "Il modulo SAVE soddisfa i requisiti di accessibilità previsti"
+      }
+    ],
+    "test_type": "Accessibilità",
+    "priority": "Alta",
+    "use_case_id": "UC4"
+  }
+]

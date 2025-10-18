@@ -1,0 +1,101 @@
+[
+  {
+    "test_case_id": "UC2.2_TC1",
+    "title": "Ricerca impianti di illuminazione con parametri validi",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza gli impianti di illuminazione che corrispondono ai criteri di ricerca",
+    "test_steps": [
+      {
+        "step": "Seleziona il comune e i parametri di ricerca validi",
+        "expected": "I parametri vengono accettati"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "La ricerca viene avviata correttamente"
+      },
+      {
+        "step": "Visualizza i risultati sulla mappa",
+        "expected": "Gli impianti di illuminazione vengono visualizzati correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.2"
+  },
+  {
+    "test_case_id": "UC2.2_TC2",
+    "title": "Ricerca impianti di illuminazione senza selezionare il comune",
+    "preconditions": "UC2",
+    "postconditions": "La ricerca non viene avviata",
+    "test_steps": [
+      {
+        "step": "Lascia vuoto il campo del comune",
+        "expected": "Il sistema segnala la mancanza di informazioni"
+      },
+      {
+        "step": "Tenta di confermare la ricerca",
+        "expected": "La ricerca non viene avviata"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.2"
+  },
+  {
+    "test_case_id": "UC2.2_TC3",
+    "title": "Ricerca impianti di illuminazione con parametri non validi",
+    "preconditions": "UC2",
+    "postconditions": "La ricerca non viene avviata",
+    "test_steps": [
+      {
+        "step": "Inserisci parametri di ricerca non validi",
+        "expected": "Il sistema segnala l’errore"
+      },
+      {
+        "step": "Tenta di confermare la ricerca",
+        "expected": "La ricerca non viene avviata"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.2"
+  },
+  {
+    "test_case_id": "UC2.2_TC4",
+    "title": "Ricerca impianti di illuminazione con molti parametri",
+    "preconditions": "UC2",
+    "postconditions": "La ricerca viene avviata correttamente",
+    "test_steps": [
+      {
+        "step": "Seleziona molti parametri di ricerca",
+        "expected": "I parametri vengono accettati"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "La ricerca viene avviata correttamente"
+      }
+    ],
+    "test_type": "Prestazione",
+    "priority": "Alta",
+    "use_case_id": "UC2.2"
+  },
+  {
+    "test_case_id": "UC2.2_TC5",
+    "title": "Boundary test: ricerca impianti di illuminazione con un solo parametro",
+    "preconditions": "UC2",
+    "postconditions": "La ricerca viene avviata correttamente",
+    "test_steps": [
+      {
+        "step": "Seleziona un solo parametro di ricerca",
+        "expected": "Il parametro viene accettato"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "La ricerca viene avviata correttamente"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Alta",
+    "use_case_id": "UC2.2"
+  }
+]

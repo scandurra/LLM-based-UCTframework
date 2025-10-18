@@ -1,0 +1,25 @@
+[
+  {
+    "test_case_id": "UC321_TC001",
+    "title": "Ricerca scheda censimento per nome",
+    "preconditions": "Aver compiuto i passaggi fino al UC3.2",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Ci posizioniamo sulla barra di ricerca",
+        "expected": "Il cursore si posiziona correttamente sulla casella di ricerca (la casella è visibile e abilitata)"
+      },
+      {
+        "step": "L'utente digita la stringa di ricerca desiderata",
+        "expected": "A fine digitazione la casella di ricerca contiene la stringadesiderata"
+      },
+      {
+        "step": "L'utente digita invio",
+        "expected": "Vengono visualizzati i risultati che corrispondono con la stringa di ricerca nel loro nome"
+      }
+    ],
+    "test_type": "",
+    "priority": "ALTO",
+    "use_case_id": "UC3.2.1"
+  }
+]

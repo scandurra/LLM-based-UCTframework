@@ -1,0 +1,97 @@
+[
+  {
+    "test_case_id": "UC3_TC1",
+    "title": "Apertura interfaccia schede censimento con utente autorizzato",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza la sezione relativa alle schede censimento",
+    "test_steps": [
+      {
+        "step": "Accedi alla piattaforma come utente autorizzato",
+        "expected": "La home page della piattaforma viene visualizzata"
+      },
+      {
+        "step": "Seleziona la sezione relativa alle schede censimento dal menù laterale di sinistra",
+        "expected": "La sezione delle schede censimento si apre correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC2",
+    "title": "Tentativo di accesso senza autorizzazione",
+    "preconditions": "UC1",
+    "postconditions": "L’accesso alla sezione viene negato",
+    "test_steps": [
+      {
+        "step": "Accedi alla piattaforma come utente non autorizzato",
+        "expected": "La home page della piattaforma non è accessibile"
+      },
+      {
+        "step": "Tenta di accedere manualmente all’URL delle schede censimento",
+        "expected": "L’accesso viene negato e compare un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC3",
+    "title": "Navigazione nella sezione schede censimento con dati non validi",
+    "preconditions": "UC1",
+    "postconditions": "La piattaforma gestisce correttamente i dati non validi",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento come utente autorizzato",
+        "expected": "La sezione si apre senza problemi"
+      },
+      {
+        "step": "Inserisci dati non validi nella ricerca o nel filtro",
+        "expected": "Il sistema gestisce l’errore e visualizza un messaggio di feedback all’utente"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC4",
+    "title": "Boundary test: accesso con utente al limite delle autorizzazioni",
+    "preconditions": "UC1",
+    "postconditions": "L’accesso è consentito solo alle aree autorizzate",
+    "test_steps": [
+      {
+        "step": "Accedi alla piattaforma come utente con autorizzazioni limitate",
+        "expected": "La home page della piattaforma si apre"
+      },
+      {
+        "step": "Tenta di accedere alle aree non autorizzate all’interno della sezione schede censimento",
+        "expected": "L’accesso è negato per le aree non autorizzate"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Alta",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC5",
+    "title": "Usabilità: navigazione semplice e intuitiva",
+    "preconditions": "UC1",
+    "postconditions": "L’utente può navigare facilmente nella sezione",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento come utente autorizzato",
+        "expected": "La sezione si apre e la navigazione è chiara"
+      },
+      {
+        "step": "Verifica che i link e i pulsanti siano facilmente accessibili e comprensibili",
+        "expected": "Tutti gli elementi della pagina sono ben visibili e funzionali"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Media",
+    "use_case_id": "UC3"
+  }
+]

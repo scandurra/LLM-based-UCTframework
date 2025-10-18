@@ -1,0 +1,113 @@
+[
+  {
+    "test_case_id": "UC2.1_TC1",
+    "title": "Download PDF con successo",
+    "preconditions": "UC2",
+    "postconditions": "L’utente ha scaricato il file, può aprirlo dalla apposita sezione del browser utilizzato ed il file è ben formato",
+    "test_steps": [
+      {
+        "step": "Clicca sul tasto di download del PDF",
+        "expected": "Il processo di download inizia"
+      },
+      {
+        "step": "Conferma la richiesta di download",
+        "expected": "Il file inizia a scaricarsi"
+      },
+      {
+        "step": "Verifica il messaggio di operazione completata",
+        "expected": "Viene visualizzato un messaggio di successo"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC2",
+    "title": "Download PDF con errore di rete",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di operazione completata con un errore",
+    "test_steps": [
+      {
+        "step": "Clicca sul tasto di download del PDF",
+        "expected": "Il processo di download inizia"
+      },
+      {
+        "step": "Simula una perdita di connessione durante il download",
+        "expected": "Viene visualizzato un messaggio di errore"
+      },
+      {
+        "step": "Verifica la possibilità di ripetere l’operazione",
+        "expected": "L’utente può ripartire dal punto di download"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC3",
+    "title": "Download PDF senza autorizzazione",
+    "preconditions": "UC2",
+    "postconditions": "L’utente non può scaricare il file",
+    "test_steps": [
+      {
+        "step": "Tenta di accedere alla funzione di download senza permessi",
+        "expected": "Viene visualizzato un messaggio di accesso negato"
+      },
+      {
+        "step": "Verifica la possibilità di accedere ad altre funzioni",
+        "expected": "L’utente non può accedere alle funzioni riservate"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC4",
+    "title": "Download PDF con file non disponibile",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di operazione completata con un errore",
+    "test_steps": [
+      {
+        "step": "Clicca sul tasto di download del PDF",
+        "expected": "Il processo di download inizia"
+      },
+      {
+        "step": "Simula la non disponibilità del file",
+        "expected": "Viene visualizzato un messaggio di errore"
+      },
+      {
+        "step": "Verifica la possibilità di ripetere l’operazione",
+        "expected": "L’utente può ripartire dal punto di download"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC5",
+    "title": "Download PDF con formato non supportato",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di operazione completata con un errore",
+    "test_steps": [
+      {
+        "step": "Clicca sul tasto di download del PDF",
+        "expected": "Il processo di download inizia"
+      },
+      {
+        "step": "Simula il download di un file con formato non supportato",
+        "expected": "Viene visualizzato un messaggio di errore"
+      },
+      {
+        "step": "Verifica la possibilità di ripetere l’operazione",
+        "expected": "L’utente può ripartire dal punto di download"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.1"
+  }
+]

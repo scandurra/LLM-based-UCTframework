@@ -1,0 +1,105 @@
+[
+  {
+    "test_case_id": "UC3.2.1_TC1",
+    "title": "Ricerca scheda censimento con nome valido",
+    "preconditions": "UC3.2",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Inserisci un nome valido nella barra di ricerca",
+        "expected": "Il sistema accetta l’input"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema esegue la ricerca e visualizza i risultati"
+      },
+      {
+        "step": "Visualizza il risultato della ricerca",
+        "expected": "Le informazioni corrispondenti al nome cercato vengono visualizzate correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.2.1"
+  },
+  {
+    "test_case_id": "UC3.2.1_TC2",
+    "title": "Ricerca scheda censimento con nome non esistente",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema visualizza un messaggio di nessun risultato trovato",
+    "test_steps": [
+      {
+        "step": "Inserisci un nome non esistente nella barra di ricerca",
+        "expected": "Il sistema accetta l’input"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema esegue la ricerca e visualizza un messaggio di nessun risultato trovato"
+      },
+      {
+        "step": "Visualizza il risultato della ricerca",
+        "expected": "Un messaggio informativo indica che non sono stati trovati risultati"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.2.1"
+  },
+  {
+    "test_case_id": "UC3.2.1_TC3",
+    "title": "Ricerca scheda censimento con campo nome vuoto",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema richiede di inserire un nome valido",
+    "test_steps": [
+      {
+        "step": "Lascia vuota la barra di ricerca e conferma",
+        "expected": "Il sistema segnala l’errore"
+      },
+      {
+        "step": "Visualizza il messaggio di errore",
+        "expected": "Un messaggio richiede di inserire un nome per eseguire la ricerca"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.2.1"
+  },
+  {
+    "test_case_id": "UC3.2.1_TC4",
+    "title": "Ricerca scheda censimento con nome contenente caratteri speciali",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema gestisce correttamente i caratteri speciali",
+    "test_steps": [
+      {
+        "step": "Inserisci un nome che contiene caratteri speciali nella barra di ricerca",
+        "expected": "Il sistema accetta l’input"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema esegue la ricerca e visualizza i risultati correttamente"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC3.2.1"
+  },
+  {
+    "test_case_id": "UC3.2.1_TC5",
+    "title": "Ricerca scheda censimento con nome lungo",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema gestisce correttamente nomi lunghi",
+    "test_steps": [
+      {
+        "step": "Inserisci un nome molto lungo nella barra di ricerca",
+        "expected": "Il sistema accetta l’input"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema esegue la ricerca e visualizza i risultati correttamente"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC3.2.1"
+  }
+]

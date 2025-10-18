@@ -1,0 +1,186 @@
+[
+  {
+    "test_case_id": "UC3.4.3.4_TC1",
+    "title": "Modifica POD con dati validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD selezionato viene visualizzato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati consumistici del POD",
+        "expected": "I dati consumistici vengono mostrati"
+      },
+      {
+        "step": "Compila il form con informazioni desiderate e valide",
+        "expected": "Il form viene compilato correttamente"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Le modifiche vengono applicate con successo"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.4"
+  },
+  {
+    "test_case_id": "UC3.4.3.4_TC2",
+    "title": "Modifica POD con dati non validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD selezionato viene visualizzato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati consumistici del POD",
+        "expected": "I dati consumistici vengono mostrati"
+      },
+      {
+        "step": "Compila il form con informazioni non valide (es. campo obbligatorio vuoto)",
+        "expected": "Il sistema segnala l’errore"
+      },
+      {
+        "step": "Tenta di applicare le modifiche",
+        "expected": "L’operazione viene bloccata e mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.4"
+  },
+  {
+    "test_case_id": "UC3.4.3.4_TC3",
+    "title": "Modifica POD senza autorizzazione",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’accesso alla modifica del POD viene negato",
+    "test_steps": [
+      {
+        "step": "Accedi come utente senza permessi di modifica",
+        "expected": "La sezione di modifica non è accessibile"
+      },
+      {
+        "step": "Tenta di selezionare il POD per la modifica",
+        "expected": "Il sistema nega l’accesso"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.4"
+  },
+  {
+    "test_case_id": "UC3.4.3.4_TC4",
+    "title": "Modifica POD con campi obbligatori vuoti",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema richiede di compilare i campi obbligatori",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD selezionato viene visualizzato correttamente"
+      },
+      {
+        "step": "Lascia vuoti campi obbligatori nel form",
+        "expected": "Il sistema segnala l’errore e richiede la compilazione"
+      },
+      {
+        "step": "Tenta di applicare le modifiche",
+        "expected": "L’operazione viene bloccata fino alla compilazione dei campi obbligatori"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.4"
+  },
+  {
+    "test_case_id": "UC3.4.3.4_TC5",
+    "title": "Modifica POD con dati numerici fuori range",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema segnala l’errore e richiede la correzione",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD selezionato viene visualizzato correttamente"
+      },
+      {
+        "step": "Inserisci dati numerici al di fuori del range consentito",
+        "expected": "Il sistema segnala l’errore"
+      },
+      {
+        "step": "Tenta di applicare le modifiche",
+        "expected": "L’operazione viene bloccata fino alla correzione dei dati"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.4"
+  },
+  {
+    "test_case_id": "UC3.4.3.4_TC6",
+    "title": "Modifica POD con caratteri speciali nei campi di testo",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema accetta o normalizza i caratteri speciali",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD selezionato viene visualizzato correttamente"
+      },
+      {
+        "step": "Inserisci caratteri speciali nei campi di testo",
+        "expected": "Il sistema accetta o normalizza i caratteri speciali"
+      },
+      {
+        "step": "Applica le modifiche",
+        "expected": "Le modifiche vengono applicate correttamente"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.4"
+  },
+  {
+    "test_case_id": "UC3.4.3.4_TC7",
+    "title": "Modifica POD e annullamento delle modifiche",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Le modifiche vengono annullate e il POD torna allo stato precedente",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD selezionato viene visualizzato correttamente"
+      },
+      {
+        "step": "Apporta modifiche ai dati del POD",
+        "expected": "Le modifiche vengono applicate temporaneamente"
+      },
+      {
+        "step": "Annulla le modifiche",
+        "expected": "Il POD torna allo stato precedente alle modifiche"
+      }
+    ],
+    "test_type": "Funzionalità",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.4"
+  },
+  {
+    "test_case_id": "UC3.4.3.4_TC8",
+    "title": "Modifica POD con più utenti contemporaneamente",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema gestisce le modifiche in modo coerente e senza perdita di dati",
+    "test_steps": [
+      {
+        "step": "Due o più utenti selezionano lo stesso POD per la modifica",
+        "expected": "Il sistema gestisce l’accesso contemporaneo"
+      },
+      {
+        "step": "Gli utenti apportano modifiche ai dati del POD",
+        "expected": "Le modifiche vengono applicate in modo coerente"
+      }
+    ],
+    "test_type": "Stress",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.4"
+  }
+]

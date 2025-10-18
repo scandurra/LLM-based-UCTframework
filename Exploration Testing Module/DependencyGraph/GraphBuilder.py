@@ -9,7 +9,7 @@ def build_dependency_graph(input_dir):
 
     for filename in sorted(os.listdir(input_dir)):
         filepath = os.path.join(input_dir, filename)
-        if not filename.endswith(".txt"):
+        if not filename.endswith(".json"):
             continue
 
         with open(filepath, "r", encoding="utf-8") as f:

@@ -1,0 +1,97 @@
+[
+  {
+    "test_case_id": "UC3_TC1",
+    "title": "Apertura interfaccia gestione schede censimento con successo",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza la sezione relativa alle schede censimento",
+    "test_steps": [
+      {
+        "step": "Accedi alla piattaforma e naviga nel menù laterale di sinistra",
+        "expected": "Il menù viene visualizzato correttamente"
+      },
+      {
+        "step": "Seleziona la voce relativa alle schede censimento",
+        "expected": "La sezione delle schede censimento si apre"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC2",
+    "title": "Tentativo di accesso senza autorizzazione",
+    "preconditions": "UC1",
+    "postconditions": "L’accesso alla sezione viene negato",
+    "test_steps": [
+      {
+        "step": "Accedi alla piattaforma con un account non abilitato per la gestione delle schede censimento",
+        "expected": "Il menù laterale di sinistra non mostra la voce relativa alle schede censimento"
+      },
+      {
+        "step": "Tenta di accedere manualmente alla sezione delle schede censimento",
+        "expected": "L’accesso viene negato e compare un messaggio di autorizzazione"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC3",
+    "title": "Navigazione nella sezione con dati non validi",
+    "preconditions": "UC1",
+    "postconditions": "La piattaforma gestisce correttamente i dati non validi",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento e immetti dati non validi nella ricerca",
+        "expected": "Il sistema segnala l’errore e richiede la correzione dei dati"
+      },
+      {
+        "step": "Tenta di eseguire azioni con i dati non validi",
+        "expected": "La piattaforma impedisce ulteriori azioni fino alla correzione degli errori"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC4",
+    "title": "Test di usabilità dell’interfaccia",
+    "preconditions": "UC1",
+    "postconditions": "L’utente può utilizzare agevolmente l’interfaccia",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento e valuta la chiarezza dell’interfaccia",
+        "expected": "L’utente riesce a comprendere facilmente le funzionalità disponibili"
+      },
+      {
+        "step": "Esegui le principali azioni disponibili nella sezione",
+        "expected": "Le azioni vengono eseguite senza problemi e con feedback adeguati"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Alta",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC5",
+    "title": "Boundary test: selezione di un numero elevato di schede censimento",
+    "preconditions": "UC1",
+    "postconditions": "La piattaforma gestisce correttamente il carico di lavoro",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento e seleziona un numero elevato di schede",
+        "expected": "Il sistema gestisce la selezione senza problemi di performance"
+      },
+      {
+        "step": "Esegui azioni sulle schede selezionate",
+        "expected": "Le azioni vengono eseguite correttamente su tutte le schede selezionate"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Alta",
+    "use_case_id": "UC3"
+  }
+]

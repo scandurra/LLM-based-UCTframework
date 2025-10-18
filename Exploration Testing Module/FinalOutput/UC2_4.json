@@ -1,21 +1,21 @@
 [
   {
     "test_case_id": "UC2.4_TC1",
-    "title": "Selezione di comuni e KPI validi per benchmarking",
+    "title": "Selezione di comuni e KPI validi per il benchmarking",
     "preconditions": "UC2",
     "postconditions": "L’utente visualizza il risultato della analisi su un grafico",
     "test_steps": [
       {
-        "step": "Seleziona due o più comuni dal menù a tendina",
+        "step": "Seleziona almeno due comuni dal menù a tendina",
         "expected": "I comuni vengono selezionati correttamente"
       },
       {
-        "step": "Scegli un KPI valido per il confronto",
-        "expected": "Il KPI viene accettato"
+        "step": "Seleziona un KPI valido tra le opzioni disponibili",
+        "expected": "Il KPI viene accettato e visualizzato"
       },
       {
-        "step": "Conferma la richiesta cliccando sul pulsante",
-        "expected": "Il grafico con il confronto desiderato viene visualizzato"
+        "step": "Conferma la richiesta cliccando sul pulsante di esecuzione",
+        "expected": "Il sistema genera il grafico con i dati dei comuni selezionati"
       }
     ],
     "test_type": "Positivo",
@@ -24,21 +24,17 @@
   },
   {
     "test_case_id": "UC2.4_TC2",
-    "title": "Selezione di un solo comune per benchmarking",
+    "title": "Selezione di un solo comune per il benchmarking",
     "preconditions": "UC2",
     "postconditions": "Il sistema richiede la selezione di almeno due comuni",
     "test_steps": [
       {
         "step": "Seleziona un solo comune dal menù a tendina",
-        "expected": "Il sistema segnala l’errore"
+        "expected": "Il sistema segnala l’errore di selezione"
       },
       {
-        "step": "Scegli un KPI valido per il confronto",
-        "expected": "Il KPI non viene considerato senza la selezione di almeno due comuni"
-      },
-      {
-        "step": "Tenta di confermare la richiesta cliccando sul pulsante",
-        "expected": "La richiesta non procede e viene mostrato un messaggio di errore"
+        "step": "Tenta di confermare la richiesta senza aggiungere altri comuni",
+        "expected": "Il sistema non procede e visualizza un messaggio di errore"
       }
     ],
     "test_type": "Negativo",
@@ -47,21 +43,17 @@
   },
   {
     "test_case_id": "UC2.4_TC3",
-    "title": "Selezione di KPI non valido per benchmarking",
+    "title": "Selezione di KPI non valido per il benchmarking",
     "preconditions": "UC2",
-    "postconditions": "Il sistema segnala l’errore e richiede la selezione di un KPI valido",
+    "postconditions": "Il sistema segnala l’errore di selezione del KPI",
     "test_steps": [
       {
-        "step": "Seleziona due o più comuni dal menù a tendina",
-        "expected": "I comuni vengono selezionati correttamente"
+        "step": "Seleziona un KPI non disponibile o non valido",
+        "expected": "Il sistema segnala l’errore di selezione"
       },
       {
-        "step": "Scegli un KPI non disponibile o non valido per il confronto",
-        "expected": "Il sistema segnala l’errore e richiede la selezione di un KPI diverso"
-      },
-      {
-        "step": "Tenta di confermare la richiesta cliccando sul pulsante",
-        "expected": "La richiesta non procede e viene mostrato un messaggio di errore"
+        "step": "Tenta di confermare la richiesta con il KPI non valido",
+        "expected": "Il sistema non procede e visualizza un messaggio di errore"
       }
     ],
     "test_type": "Negativo",
@@ -70,48 +62,40 @@
   },
   {
     "test_case_id": "UC2.4_TC4",
-    "title": "Boundary test: selezione del massimo numero di comuni consentito",
+    "title": "Benchmarking con molti comuni selezionati",
     "preconditions": "UC2",
-    "postconditions": "Il sistema gestisce correttamente la richiesta e visualizza il grafico",
+    "postconditions": "Il sistema visualizza il grafico con i dati dei comuni selezionati",
     "test_steps": [
       {
-        "step": "Seleziona il massimo numero di comuni possibile dal menù a tendina",
-        "expected": "I comuni vengono selezionati senza errori"
+        "step": "Seleziona il massimo numero di comuni disponibili",
+        "expected": "I comuni vengono selezionati correttamente"
       },
       {
-        "step": "Scegli un KPI valido per il confronto",
-        "expected": "Il KPI viene accettato"
-      },
-      {
-        "step": "Conferma la richiesta cliccando sul pulsante",
-        "expected": "Il grafico con il confronto desiderato viene visualizzato correttamente"
+        "step": "Seleziona un KPI valido e conferma la richiesta",
+        "expected": "Il sistema genera il grafico con i dati dei comuni selezionati"
       }
     ],
-    "test_type": "Boundary",
+    "test_type": "Prestazione",
     "priority": "Alta",
     "use_case_id": "UC2.4"
   },
   {
     "test_case_id": "UC2.4_TC5",
-    "title": "Usabilità: selezione dei comuni e KPI tramite ricerca",
+    "title": "Selezione di comuni e KPI con caratteri speciali",
     "preconditions": "UC2",
-    "postconditions": "L’utente trova facilmente i comuni e il KPI desiderati",
+    "postconditions": "Il sistema gestisce correttamente i caratteri speciali",
     "test_steps": [
       {
-        "step": "Utilizza la funzione di ricerca per trovare i comuni desiderati",
-        "expected": "I comuni vengono trovati correttamente"
+        "step": "Inserisci caratteri speciali nel campo di ricerca dei comuni",
+        "expected": "Il sistema filtra correttamente i risultati"
       },
       {
-        "step": "Seleziona il KPI desiderato tramite la funzione di filtro o ricerca",
-        "expected": "Il KPI viene selezionato facilmente"
-      },
-      {
-        "step": "Conferma la richiesta cliccando sul pulsante",
-        "expected": "Il grafico con il confronto desiderato viene visualizzato in modo chiaro e intuitivo"
+        "step": "Seleziona un KPI e conferma la richiesta",
+        "expected": "Il sistema genera il grafico con i dati dei comuni selezionati"
       }
     ],
-    "test_type": "Usabilità",
-    "priority": "Alta",
+    "test_type": "Edge",
+    "priority": "Media",
     "use_case_id": "UC2.4"
   }
 ]

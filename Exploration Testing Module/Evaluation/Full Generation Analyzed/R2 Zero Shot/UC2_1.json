@@ -1,0 +1,117 @@
+[
+  {
+    "test_case_id": "UC2.1_TC1",
+    "title": "Download PDF con dati validi e conferma",
+    "preconditions": "UC2",
+    "postconditions": "L’utente ha scaricato il file, può aprirlo dalla apposita sezione del browser utilizzato ed il file è ben formato",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e clicca sul tasto di download PDF",
+        "expected": "Il sistema visualizza la richiesta di conferma per il download"
+      },
+      {
+        "step": "Conferma la richiesta di download",
+        "expected": "Il sistema avvia il download del file PDF"
+      },
+      {
+        "step": "Verifica che il file sia stato scaricato correttamente",
+        "expected": "Il file è presente nella sezione dei download del browser e può essere aperto senza problemi"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC2",
+    "title": "Download PDF con annullamento della richiesta",
+    "preconditions": "UC2",
+    "postconditions": "L’utente non ha scaricato il file",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e clicca sul tasto di download PDF",
+        "expected": "Il sistema visualizza la richiesta di conferma per il download"
+      },
+      {
+        "step": "Annulla la richiesta di download",
+        "expected": "Il sistema non avvia il download del file PDF"
+      },
+      {
+        "step": "Verifica che il file non sia stato scaricato",
+        "expected": "Il file non è presente nella sezione dei download del browser"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC3",
+    "title": "Download PDF con errore di rete",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e clicca sul tasto di download PDF",
+        "expected": "Il sistema visualizza la richiesta di conferma per il download"
+      },
+      {
+        "step": "Simula un errore di rete durante il download",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      },
+      {
+        "step": "Verifica che il file non sia stato scaricato",
+        "expected": "Il file non è presente nella sezione dei download del browser"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC4",
+    "title": "Download PDF con file non disponibile",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e clicca sul tasto di download PDF",
+        "expected": "Il sistema visualizza la richiesta di conferma per il download"
+      },
+      {
+        "step": "Simula che il file non sia disponibile",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      },
+      {
+        "step": "Verifica che il file non sia stato scaricato",
+        "expected": "Il file non è presente nella sezione dei download del browser"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC5",
+    "title": "Download PDF con formato file non supportato",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e clicca sul tasto di download PDF",
+        "expected": "Il sistema visualizza la richiesta di conferma per il download"
+      },
+      {
+        "step": "Simula che il file abbia un formato non supportato",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      },
+      {
+        "step": "Verifica che il file non sia stato scaricato",
+        "expected": "Il file non è presente nella sezione dei download del browser"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC2.1"
+  }
+]

@@ -1,0 +1,186 @@
+[
+  {
+    "test_case_id": "UC3.4.1_TC1",
+    "title": "Download scheda censimento con successo",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente visualizza un messaggio di conferma e ottiene il file desiderato",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento",
+        "expected": "La lista delle schede viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona una scheda censimento valida e clicca su download",
+        "expected": "L’operazione di download inizia"
+      },
+      {
+        "step": "Verifica lo stato del download",
+        "expected": "Il file viene scaricato correttamente e un messaggio di conferma viene visualizzato"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.1"
+  },
+  {
+    "test_case_id": "UC3.4.1_TC2",
+    "title": "Download senza selezionare una scheda censimento",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema segnala l’errore e non avvia il download",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento",
+        "expected": "La lista delle schede viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca su download senza selezionare una scheda",
+        "expected": "Il sistema segnala l’errore di selezione"
+      },
+      {
+        "step": "Verifica la presenza di un messaggio di errore",
+        "expected": "Un messaggio di errore viene visualizzato all’utente"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.1"
+  },
+  {
+    "test_case_id": "UC3.4.1_TC3",
+    "title": "Download di una scheda censimento non esistente",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema segnala l’errore e non avvia il download",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento",
+        "expected": "La lista delle schede viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci manualmente l’ID di una scheda non esistente e clicca su download",
+        "expected": "Il sistema segnala l’errore di scheda non trovata"
+      },
+      {
+        "step": "Verifica la presenza di un messaggio di errore",
+        "expected": "Un messaggio di errore viene visualizzato all’utente"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.1"
+  },
+  {
+    "test_case_id": "UC3.4.1_TC4",
+    "title": "Download con utente non autorizzato",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema nega l’accesso alla funzione di download",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento con un utente non autorizzato",
+        "expected": "La pagina di accesso negato viene visualizzata"
+      },
+      {
+        "step": "Tenta di accedere manualmente all’URL di download",
+        "expected": "Il sistema reindirizza alla pagina di login o mostra un messaggio di accesso negato"
+      },
+      {
+        "step": "Verifica la presenza di un messaggio di accesso negato",
+        "expected": "Un messaggio di accesso negato viene visualizzato all’utente"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.1"
+  },
+  {
+    "test_case_id": "UC3.4.1_TC5",
+    "title": "Download con caratteri speciali nel nome del file",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema gestisce correttamente i caratteri speciali",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento",
+        "expected": "La lista delle schede viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona una scheda con nome contenente caratteri speciali (@,#,$, etc.) e clicca su download",
+        "expected": "Il sistema gestisce i caratteri speciali nel nome del file"
+      },
+      {
+        "step": "Verifica il nome del file scaricato",
+        "expected": "Il file viene salvato con un nome corretto e sicuro"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC3.4.1"
+  },
+  {
+    "test_case_id": "UC3.4.1_TC6",
+    "title": "Download durante la manutenzione del sistema",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema notifica l’indisponibilità della funzione di download",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento durante la manutenzione",
+        "expected": "Un messaggio di manutenzione viene visualizzato"
+      },
+      {
+        "step": "Tenta di scaricare una scheda censimento",
+        "expected": "Il sistema blocca l’operazione e mostra un messaggio di indisponibilità"
+      },
+      {
+        "step": "Verifica la presenza del messaggio di manutenzione",
+        "expected": "Un messaggio che indica la manutenzione in corso viene visualizzato all’utente"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.1"
+  },
+  {
+    "test_case_id": "UC3.4.1_TC7",
+    "title": "Download con browser non supportato",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema avvisa l’utente del problema di compatibilità",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento con un browser non supportato",
+        "expected": "Un messaggio di compatibilità viene visualizzato"
+      },
+      {
+        "step": "Tenta di scaricare una scheda censimento",
+        "expected": "Il sistema avvisa l’utente della necessità di utilizzare un browser supportato"
+      },
+      {
+        "step": "Verifica la presenza del messaggio di compatibilità",
+        "expected": "Un messaggio che indica il problema di compatibilità viene visualizzato all’utente"
+      }
+    ],
+    "test_type": "Compatibilità",
+    "priority": "Media",
+    "use_case_id": "UC3.4.1"
+  },
+  {
+    "test_case_id": "UC3.4.1_TC8",
+    "title": "Download di una grande quantità di schede censimento",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema gestisce la richiesta senza problemi di performance",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento",
+        "expected": "La lista delle schede viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un numero elevato di schede censimento e clicca su download",
+        "expected": "Il sistema gestisce la richiesta senza rallentamenti significativi"
+      },
+      {
+        "step": "Verifica il tempo di risposta del sistema",
+        "expected": "Il sistema risponde in tempi ragionevoli anche con un carico elevato"
+      }
+    ],
+    "test_type": "Prestazioni",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.1"
+  }
+]

@@ -1,0 +1,178 @@
+[
+  {
+    "test_case_id": "UC4.2_TC1",
+    "title": "Aggiunta nuovo investimento con dati validi",
+    "preconditions": "UC4",
+    "postconditions": "L’utente visualizza un messaggio di conferma",
+    "test_steps": [
+      {
+        "step": "Naviga nella sezione degli investimenti",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto per aggiungere un nuovo investimento",
+        "expected": "Il form di inserimento dati si apre"
+      },
+      {
+        "step": "Compila il form con tutti i parametri richiesti in modo corretto",
+        "expected": "Il sistema accetta i dati e visualizza un messaggio di conferma"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC4.2"
+  },
+  {
+    "test_case_id": "UC4.2_TC2",
+    "title": "Aggiunta nuovo investimento con dati mancanti",
+    "preconditions": "UC4",
+    "postconditions": "Il sistema segnala errori di compilazione",
+    "test_steps": [
+      {
+        "step": "Naviga nella sezione degli investimenti",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto per aggiungere un nuovo investimento",
+        "expected": "Il form di inserimento dati si apre"
+      },
+      {
+        "step": "Lascia alcuni campi obbligatori vuoti e invia il form",
+        "expected": "Il sistema segnala gli errori e richiede la compilazione dei campi mancanti"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC4.2"
+  },
+  {
+    "test_case_id": "UC4.2_TC3",
+    "title": "Aggiunta nuovo investimento con dati non validi",
+    "preconditions": "UC4",
+    "postconditions": "Il sistema segnala errori di validazione",
+    "test_steps": [
+      {
+        "step": "Naviga nella sezione degli investimenti",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto per aggiungere un nuovo investimento",
+        "expected": "Il form di inserimento dati si apre"
+      },
+      {
+        "step": "Inserisci dati non validi (es. stringhe al posto di numeri) e invia il form",
+        "expected": "Il sistema segnala gli errori di validazione e richiede la correzione dei dati"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC4.2"
+  },
+  {
+    "test_case_id": "UC4.2_TC4",
+    "title": "Annullamento aggiunta nuovo investimento",
+    "preconditions": "UC4",
+    "postconditions": "L’utente visualizza un messaggio di annullamento",
+    "test_steps": [
+      {
+        "step": "Naviga nella sezione degli investimenti",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto per aggiungere un nuovo investimento",
+        "expected": "Il form di inserimento dati si apre"
+      },
+      {
+        "step": "Compila parzialmente il form e poi clicca su annulla",
+        "expected": "Il sistema visualizza un messaggio di annullamento dell’operazione"
+      }
+    ],
+    "test_type": "Branch",
+    "priority": "Media",
+    "use_case_id": "UC4.2"
+  },
+  {
+    "test_case_id": "UC4.2_TC5",
+    "title": "Aggiunta multiplo nuovo investimento",
+    "preconditions": "UC4",
+    "postconditions": "Tutti gli investimenti vengono aggiunti con successo",
+    "test_steps": [
+      {
+        "step": "Naviga nella sezione degli investimenti",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto per aggiungere un nuovo investimento e compila il form",
+        "expected": "Il sistema accetta i dati"
+      },
+      {
+        "step": "Ripeti l’operazione più volte con dati diversi",
+        "expected": "Tutti gli investimenti vengono aggiunti correttamente"
+      }
+    ],
+    "test_type": "Prestazione",
+    "priority": "Alta",
+    "use_case_id": "UC4.2"
+  },
+  {
+    "test_case_id": "UC4.2_TC6",
+    "title": "Aggiunta nuovo investimento con caratteri speciali",
+    "preconditions": "UC4",
+    "postconditions": "Il sistema gestisce correttamente i caratteri speciali",
+    "test_steps": [
+      {
+        "step": "Naviga nella sezione degli investimenti",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto per aggiungere un nuovo investimento",
+        "expected": "Il form di inserimento dati si apre"
+      },
+      {
+        "step": "Inserisci caratteri speciali nei campi di testo e invia il form",
+        "expected": "Il sistema accetta i dati e li salva correttamente"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC4.2"
+  },
+  {
+    "test_case_id": "UC4.2_TC7",
+    "title": "Aggiunta nuovo investimento senza autorizzazione",
+    "preconditions": "UC4",
+    "postconditions": "Il sistema nega l’accesso",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema con un utente non autorizzato",
+        "expected": "La sezione degli investimenti non è accessibile"
+      },
+      {
+        "step": "Tenta di aggiungere un nuovo investimento",
+        "expected": "Il sistema visualizza un messaggio di accesso negato"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC4.2"
+  },
+  {
+    "test_case_id": "UC4.2_TC8",
+    "title": "Aggiunta nuovo investimento con timeout",
+    "preconditions": "UC4",
+    "postconditions": "Il sistema gestisce il timeout",
+    "test_steps": [
+      {
+        "step": "Naviga nella sezione degli investimenti",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto per aggiungere un nuovo investimento e lascia il form aperto per un lungo periodo",
+        "expected": "Il sistema gestisce il timeout e richiede di ripetere l’operazione"
+      }
+    ],
+    "test_type": "Prestazione",
+    "priority": "Media",
+    "use_case_id": "UC4.2"
+  }
+]

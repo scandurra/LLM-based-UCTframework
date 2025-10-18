@@ -1,0 +1,29 @@
+[
+  {
+    "test_case_id": "UC26_TC1",
+    "title": "Gestione e visualizzazione dati enti",
+    "preconditions": "L'utente deve essere autenticato nel sistema; I dati degli enti devono essere disponibili nel database; L'utente deve avere i permessi di lettura sui dati degli enti",
+    "postconditions": "I dati vengono visualizzati correttamente in formato strutturato; Il sistema mantiene la performance ottimale; I dati mostrati sono aggiornati e verificati",
+    "test_steps": [
+      {
+        "step": "Accedere alla sezione di gestione enti",
+        "expected": "La pagina si carica correttamente mostrando l'elenco degli enti"
+      },
+      {
+        "step": "Applicare filtri di ricerca per trovare enti specifici",
+        "expected": "I filtri vengono applicati e la lista si aggiorna dinamicamente"
+      },
+      {
+        "step": "Selezionare un ente per visualizzare i dettagli",
+        "expected": "I dettagli dell'ente vengono caricati e mostrati correttamente"
+      },
+      {
+        "step": "Verificare la completezza e accuratezza dei dati mostrati",
+        "expected": "Tutti i campi richiesti sono popolati e i dati sono coerenti"
+      }
+    ],
+    "test_type": "",
+    "priority": "MEDIO",
+    "use_case_id": "UC26"
+  }
+]

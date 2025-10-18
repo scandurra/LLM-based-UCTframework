@@ -1,0 +1,186 @@
+[
+  {
+    "test_case_id": "UC5_TC1",
+    "title": "Selezione lingua italiana",
+    "preconditions": "UC1",
+    "postconditions": "Il portale viene visualizzato in italiano",
+    "test_steps": [
+      {
+        "step": "Accedi al portale e clicca sul proprio nome utente",
+        "expected": "Viene visualizzato il menù di opzioni"
+      },
+      {
+        "step": "Seleziona la lingua italiana dal menù a tendina",
+        "expected": "La selezione viene accettata"
+      },
+      {
+        "step": "Attendi il ricaricamento della pagina",
+        "expected": "Il portale è visualizzato in italiano"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC5"
+  },
+  {
+    "test_case_id": "UC5_TC2",
+    "title": "Selezione lingua inglese",
+    "preconditions": "UC1",
+    "postconditions": "Il portale viene visualizzato in inglese",
+    "test_steps": [
+      {
+        "step": "Accedi al portale e clicca sul proprio nome utente",
+        "expected": "Viene visualizzato il menù di opzioni"
+      },
+      {
+        "step": "Seleziona la lingua inglese dal menù a tendina",
+        "expected": "La selezione viene accettata"
+      },
+      {
+        "step": "Attendi il ricaricamento della pagina",
+        "expected": "Il portale è visualizzato in inglese"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC5"
+  },
+  {
+    "test_case_id": "UC5_TC3",
+    "title": "Cambio lingua più volte",
+    "preconditions": "UC1",
+    "postconditions": "Il portale riflette l’ultima lingua selezionata",
+    "test_steps": [
+      {
+        "step": "Accedi al portale e clicca sul proprio nome utente",
+        "expected": "Viene visualizzato il menù di opzioni"
+      },
+      {
+        "step": "Seleziona la lingua italiana, attendi il ricaricamento e poi seleziona la lingua inglese",
+        "expected": "La selezione viene accettata e il portale si aggiorna"
+      },
+      {
+        "step": "Ripeti più volte il cambio di lingua",
+        "expected": "Il portale riflette sempre l’ultima scelta"
+      }
+    ],
+    "test_type": "Prestazione",
+    "priority": "Media",
+    "use_case_id": "UC5"
+  },
+  {
+    "test_case_id": "UC5_TC4",
+    "title": "Selezione lingua non supportata",
+    "preconditions": "UC1",
+    "postconditions": "Il portale visualizza un messaggio di errore o rimane nella lingua precedente",
+    "test_steps": [
+      {
+        "step": "Accedi al portale e clicca sul proprio nome utente",
+        "expected": "Viene visualizzato il menù di opzioni"
+      },
+      {
+        "step": "Inserisci manualmente una lingua non supportata nel codice della pagina",
+        "expected": "Il sistema rifiuta la selezione o mostra un messaggio di errore"
+      },
+      {
+        "step": "Verifica il comportamento del portale",
+        "expected": "Il portale non cambia lingua o visualizza un avviso"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC5"
+  },
+  {
+    "test_case_id": "UC5_TC5",
+    "title": "Selezione lingua con caratteri speciali",
+    "preconditions": "UC1",
+    "postconditions": "Il portale gestisce correttamente i caratteri speciali",
+    "test_steps": [
+      {
+        "step": "Accedi al portale e clicca sul proprio nome utente",
+        "expected": "Viene visualizzato il menù di opzioni"
+      },
+      {
+        "step": "Inserisci manualmente una lingua con caratteri speciali nel codice della pagina",
+        "expected": "Il sistema gestisce i caratteri speciali senza errori"
+      },
+      {
+        "step": "Verifica il comportamento del portale",
+        "expected": "Il portale visualizza la lingua selezionata senza problemi"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC5"
+  },
+  {
+    "test_case_id": "UC5_TC6",
+    "title": "Selezione lingua durante la sessione di un altro utente",
+    "preconditions": "UC1",
+    "postconditions": "Il portale mantiene le impostazioni dell’utente attuale",
+    "test_steps": [
+      {
+        "step": "Accedi al portale con un utente e seleziona una lingua",
+        "expected": "Il portale si aggiorna con la lingua selezionata"
+      },
+      {
+        "step": "Apri un’altra sessione con un diverso utente",
+        "expected": "La nuova sessione mantiene le proprie impostazioni di lingua"
+      },
+      {
+        "step": "Verifica che le due sessioni abbiano lingue diverse se selezionate",
+        "expected": "Ogni sessione mantiene la lingua scelta dall’utente"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC5"
+  },
+  {
+    "test_case_id": "UC5_TC7",
+    "title": "Selezione lingua con utente non autenticato",
+    "preconditions": "UC1",
+    "postconditions": "Il portale richiede l’autenticazione per modificare la lingua",
+    "test_steps": [
+      {
+        "step": "Accedi al portale senza autenticarti",
+        "expected": "Non è possibile accedere alle opzioni di lingua"
+      },
+      {
+        "step": "Tenta di selezionare una lingua",
+        "expected": "Il sistema richiede l’autenticazione"
+      },
+      {
+        "step": "Autenticati e seleziona la lingua",
+        "expected": "La lingua viene applicata correttamente"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC5"
+  },
+  {
+    "test_case_id": "UC5_TC8",
+    "title": "Selezione lingua con browser diversi",
+    "preconditions": "UC1",
+    "postconditions": "Il portale mantiene la lingua selezionata su tutti i browser",
+    "test_steps": [
+      {
+        "step": "Accedi al portale con un browser e seleziona una lingua",
+        "expected": "Il portale si aggiorna con la lingua selezionata"
+      },
+      {
+        "step": "Apri il portale con un diverso browser",
+        "expected": "La lingua precedentemente selezionata è mantenuta"
+      },
+      {
+        "step": "Verifica che la lingua sia coerente su tutti i browser utilizzati",
+        "expected": "La lingua rimane costante attraverso i diversi browser"
+      }
+    ],
+    "test_type": "Compatibilità",
+    "priority": "Media",
+    "use_case_id": "UC5"
+  }
+]

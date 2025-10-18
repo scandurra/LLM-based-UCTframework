@@ -1,0 +1,97 @@
+[
+  {
+    "test_case_id": "UC4_TC1",
+    "title": "Apertura modulo SAVE con successo",
+    "preconditions": "UC1",
+    "postconditions": "L’interfaccia del modulo SAVE viene visualizzata correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione relativa al modulo SAVE tramite il menù laterale di sinistra",
+        "expected": "La sezione del modulo SAVE si apre correttamente"
+      },
+      {
+        "step": "Verifica la presenza degli elementi previsti all’interno dell’interfaccia",
+        "expected": "Tutti gli elementi sono presenti e visualizzati correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC4"
+  },
+  {
+    "test_case_id": "UC4_TC2",
+    "title": "Apertura modulo SAVE senza autorizzazione",
+    "preconditions": "UC1",
+    "postconditions": "L’accesso al modulo SAVE viene negato",
+    "test_steps": [
+      {
+        "step": "Tenta di accedere alla sezione del modulo SAVE senza avere i permessi necessari",
+        "expected": "Il sistema mostra un messaggio di accesso negato"
+      },
+      {
+        "step": "Verifica che non sia possibile visualizzare o utilizzare il contenuto del modulo",
+        "expected": "L’accesso è completamente bloccato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC4"
+  },
+  {
+    "test_case_id": "UC4_TC3",
+    "title": "Navigazione all’interno del modulo SAVE",
+    "preconditions": "UC1",
+    "postconditions": "La navigazione avviene senza problemi",
+    "test_steps": [
+      {
+        "step": "Apri il modulo SAVE e naviga attraverso le sue sezioni",
+        "expected": "Tutte le sezioni sono accessibili e funzionano correttamente"
+      },
+      {
+        "step": "Verifica che i collegamenti interni e i pulsanti funzionino come previsto",
+        "expected": "Tutto funziona senza errori"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Alta",
+    "use_case_id": "UC4"
+  },
+  {
+    "test_case_id": "UC4_TC4",
+    "title": "Test di compatibilità con browser diversi",
+    "preconditions": "UC1",
+    "postconditions": "Il modulo SAVE è visualizzato correttamente su tutti i browser testati",
+    "test_steps": [
+      {
+        "step": "Apri il modulo SAVE utilizzando diversi browser (es. Chrome, Firefox, Edge)",
+        "expected": "L’interfaccia del modulo SAVE si apre e funziona correttamente su ogni browser"
+      },
+      {
+        "step": "Verifica che non ci siano problemi di visualizzazione o funzionalità",
+        "expected": "Tutto funziona senza errori su tutti i browser testati"
+      }
+    ],
+    "test_type": "Compatibilità",
+    "priority": "Alta",
+    "use_case_id": "UC4"
+  },
+  {
+    "test_case_id": "UC4_TC5",
+    "title": "Test di accessibilità per utenti con disabilità",
+    "preconditions": "UC1",
+    "postconditions": "Il modulo SAVE è accessibile per gli utenti con disabilità",
+    "test_steps": [
+      {
+        "step": "Utilizza strumenti di accessibilità per testare la navigazione e l’utilizzo del modulo SAVE",
+        "expected": "Tutte le funzionalità sono accessibili anche per gli utenti con disabilità"
+      },
+      {
+        "step": "Verifica che il modulo SAVE soddisfi gli standard di accessibilità",
+        "expected": "Il modulo SAVE rispetta tutti gli standard richiesti"
+      }
+    ],
+    "test_type": "Accessibilità",
+    "priority": "Alta",
+    "use_case_id": "UC4"
+  }
+]

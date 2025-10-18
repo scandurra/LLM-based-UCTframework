@@ -1,0 +1,316 @@
+[
+  {
+    "test_case_id": "UC3.4.3.7_TC1",
+    "title": "Modifica dati operativi pannello elettrico con dati validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD è selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD",
+        "expected": "I pannelli elettrici sono visualizzati correttamente"
+      },
+      {
+        "step": "Seleziona il pannello elettrico per la modifica",
+        "expected": "Il pannello elettrico è selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati operativi",
+        "expected": "I dati operativi sono visualizzati correttamente"
+      },
+      {
+        "step": "Compila il form con le informazioni desiderate",
+        "expected": "Il form è compilato correttamente"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Le modifiche sono applicate correttamente e viene visualizzato un messaggio di conferma"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.7"
+  },
+  {
+    "test_case_id": "UC3.4.3.7_TC2",
+    "title": "Modifica dati operativi pannello elettrico con dati non validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD è selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD",
+        "expected": "I pannelli elettrici sono visualizzati correttamente"
+      },
+      {
+        "step": "Seleziona il pannello elettrico per la modifica",
+        "expected": "Il pannello elettrico è selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati operativi",
+        "expected": "I dati operativi sono visualizzati correttamente"
+      },
+      {
+        "step": "Compila il form con informazioni non valide",
+        "expected": "Il form non è compilato correttamente e viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.7"
+  },
+  {
+    "test_case_id": "UC3.4.3.7_TC3",
+    "title": "Modifica dati operativi pannello elettrico senza compilare il form",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD è selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD",
+        "expected": "I pannelli elettrici sono visualizzati correttamente"
+      },
+      {
+        "step": "Seleziona il pannello elettrico per la modifica",
+        "expected": "Il pannello elettrico è selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati operativi",
+        "expected": "I dati operativi sono visualizzati correttamente"
+      },
+      {
+        "step": "Non compila il form e applica le modifiche con l’apposito tasto",
+        "expected": "Viene mostrato un messaggio di errore per campi obbligatori non compilati"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.7"
+  },
+  {
+    "test_case_id": "UC3.4.3.7_TC4",
+    "title": "Modifica dati operativi pannello elettrico con campi non obbligatori vuoti",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD è selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD",
+        "expected": "I pannelli elettrici sono visualizzati correttamente"
+      },
+      {
+        "step": "Seleziona il pannello elettrico per la modifica",
+        "expected": "Il pannello elettrico è selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati operativi",
+        "expected": "I dati operativi sono visualizzati correttamente"
+      },
+      {
+        "step": "Compila solo i campi obbligatori e lascia vuoti quelli non obbligatori, poi applica le modifiche con l’apposito tasto",
+        "expected": "Le modifiche sono applicate correttamente e viene visualizzato un messaggio di conferma"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.7"
+  },
+  {
+    "test_case_id": "UC3.4.3.7_TC5",
+    "title": "Modifica dati operativi pannello elettrico con dati di lunghezza massima",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD è selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD",
+        "expected": "I pannelli elettrici sono visualizzati correttamente"
+      },
+      {
+        "step": "Seleziona il pannello elettrico per la modifica",
+        "expected": "Il pannello elettrico è selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati operativi",
+        "expected": "I dati operativi sono visualizzati correttamente"
+      },
+      {
+        "step": "Compila i campi con la lunghezza massima consentita e applica le modifiche con l’apposito tasto",
+        "expected": "Le modifiche sono applicate correttamente e viene visualizzato un messaggio di conferma"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.7"
+  },
+  {
+    "test_case_id": "UC3.4.3.7_TC6",
+    "title": "Modifica dati operativi pannello elettrico con dati di lunghezza superiore alla massima",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD è selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD",
+        "expected": "I pannelli elettrici sono visualizzati correttamente"
+      },
+      {
+        "step": "Seleziona il pannello elettrico per la modifica",
+        "expected": "Il pannello elettrico è selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati operativi",
+        "expected": "I dati operativi sono visualizzati correttamente"
+      },
+      {
+        "step": "Compila i campi con una lunghezza superiore alla massima consentita e applica le modifiche con l’apposito tasto",
+        "expected": "Viene mostrato un messaggio di errore per lunghezza dei dati superiore al massimo consentito"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.7"
+  },
+  {
+    "test_case_id": "UC3.4.3.7_TC7",
+    "title": "Modifica dati operativi pannello elettrico con caratteri speciali",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD è selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD",
+        "expected": "I pannelli elettrici sono visualizzati correttamente"
+      },
+      {
+        "step": "Seleziona il pannello elettrico per la modifica",
+        "expected": "Il pannello elettrico è selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati operativi",
+        "expected": "I dati operativi sono visualizzati correttamente"
+      },
+      {
+        "step": "Compila i campi con caratteri speciali e applica le modifiche con l’apposito tasto",
+        "expected": "Le modifiche sono applicate correttamente e viene visualizzato un messaggio di conferma"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.7"
+  },
+  {
+    "test_case_id": "UC3.4.3.7_TC8",
+    "title": "Modifica dati operativi pannello elettrico con SQL injection",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore per tentativo di SQL injection",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD è selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD",
+        "expected": "I pannelli elettrici sono visualizzati correttamente"
+      },
+      {
+        "step": "Seleziona il pannello elettrico per la modifica",
+        "expected": "Il pannello elettrico è selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati operativi",
+        "expected": "I dati operativi sono visualizzati correttamente"
+      },
+      {
+        "step": "Compila i campi con una stringa di SQL injection e applica le modifiche con l’apposito tasto",
+        "expected": "Viene mostrato un messaggio di errore per tentativo di SQL injection"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.7"
+  },
+  {
+    "test_case_id": "UC3.4.3.7_TC9",
+    "title": "Modifica dati operativi pannello elettrico con cross-site scripting (XSS)",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore per tentativo di XSS",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD è selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD",
+        "expected": "I pannelli elettrici sono visualizzati correttamente"
+      },
+      {
+        "step": "Seleziona il pannello elettrico per la modifica",
+        "expected": "Il pannello elettrico è selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati operativi",
+        "expected": "I dati operativi sono visualizzati correttamente"
+      },
+      {
+        "step": "Compila i campi con una stringa di XSS e applica le modifiche con l’apposito tasto",
+        "expected": "Viene mostrato un messaggio di errore per tentativo di XSS"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.7"
+  },
+  {
+    "test_case_id": "UC3.4.3.7_TC10",
+    "title": "Modifica dati operativi pannello elettrico con input non valido",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore per input non valido",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD è selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato per visionare i pannelli elettrici che appartengono al POD",
+        "expected": "I pannelli elettrici sono visualizzati correttamente"
+      },
+      {
+        "step": "Seleziona il pannello elettrico per la modifica",
+        "expected": "Il pannello elettrico è selezionato correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati operativi",
+        "expected": "I dati operativi sono visualizzati correttamente"
+      },
+      {
+        "step": "Compila i campi con un input non valido (ad esempio, una data non valida) e applica le modifiche con l’apposito tasto",
+        "expected": "Viene mostrato un messaggio di errore per input non valido"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.7"
+  }
+]

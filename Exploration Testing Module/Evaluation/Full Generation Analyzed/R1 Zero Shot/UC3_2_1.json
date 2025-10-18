@@ -1,0 +1,117 @@
+[
+  {
+    "test_case_id": "UC3.2.1_TC1",
+    "title": "Ricerca scheda censimento per nome valido",
+    "preconditions": "UC3.2",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Inserisci un nome valido tra i parametri di ricerca",
+        "expected": "Il sistema accetta il nome e procede con la ricerca"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema esegue la ricerca e visualizza i risultati"
+      },
+      {
+        "step": "Verifica i risultati della ricerca",
+        "expected": "I risultati sono visualizzati correttamente e corrispondono al nome inserito"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.2.1"
+  },
+  {
+    "test_case_id": "UC3.2.1_TC2",
+    "title": "Ricerca scheda censimento per nome non esistente",
+    "preconditions": "UC3.2",
+    "postconditions": "L’utente visualizza un messaggio di avviso per nome non trovato",
+    "test_steps": [
+      {
+        "step": "Inserisci un nome non esistente tra i parametri di ricerca",
+        "expected": "Il sistema accetta il nome e procede con la ricerca"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema esegue la ricerca e visualizza un messaggio di avviso per nome non trovato"
+      },
+      {
+        "step": "Verifica il messaggio di avviso",
+        "expected": "Il messaggio di avviso è visualizzato correttamente e informa l’utente che il nome non è stato trovato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.2.1"
+  },
+  {
+    "test_case_id": "UC3.2.1_TC3",
+    "title": "Ricerca scheda censimento per nome vuoto",
+    "preconditions": "UC3.2",
+    "postconditions": "L’utente visualizza un messaggio di errore per campo obbligatorio",
+    "test_steps": [
+      {
+        "step": "Lascia vuoto il campo del nome tra i parametri di ricerca",
+        "expected": "Il sistema richiede l’inserimento del nome"
+      },
+      {
+        "step": "Conferma la ricerca senza inserire il nome",
+        "expected": "Il sistema visualizza un messaggio di errore per campo obbligatorio"
+      },
+      {
+        "step": "Verifica il messaggio di errore",
+        "expected": "Il messaggio di errore è visualizzato correttamente e informa l’utente che il nome è obbligatorio"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.2.1"
+  },
+  {
+    "test_case_id": "UC3.2.1_TC4",
+    "title": "Ricerca scheda censimento per nome con caratteri speciali",
+    "preconditions": "UC3.2",
+    "postconditions": "L’utente visualizza i risultati della ricerca o un messaggio di avviso per nome non trovato",
+    "test_steps": [
+      {
+        "step": "Inserisci un nome con caratteri speciali tra i parametri di ricerca",
+        "expected": "Il sistema accetta il nome e procede con la ricerca"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema esegue la ricerca e visualizza i risultati o un messaggio di avviso per nome non trovato"
+      },
+      {
+        "step": "Verifica i risultati della ricerca o il messaggio di avviso",
+        "expected": "I risultati o il messaggio di avviso sono visualizzati correttamente e corrispondono al nome inserito"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC3.2.1"
+  },
+  {
+    "test_case_id": "UC3.2.1_TC5",
+    "title": "Ricerca scheda censimento per nome con lunghezza massima",
+    "preconditions": "UC3.2",
+    "postconditions": "L’utente visualizza i risultati della ricerca o un messaggio di avviso per nome non trovato",
+    "test_steps": [
+      {
+        "step": "Inserisci un nome con lunghezza massima tra i parametri di ricerca",
+        "expected": "Il sistema accetta il nome e procede con la ricerca"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema esegue la ricerca e visualizza i risultati o un messaggio di avviso per nome non trovato"
+      },
+      {
+        "step": "Verifica i risultati della ricerca o il messaggio di avviso",
+        "expected": "I risultati o il messaggio di avviso sono visualizzati correttamente e corrispondono al nome inserito"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.2.1"
+  }
+]

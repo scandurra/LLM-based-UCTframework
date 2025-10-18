@@ -1,0 +1,117 @@
+[
+  {
+    "test_case_id": "UC2.6_TC1",
+    "title": "Analisi consumo comune con parametri validi",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza le informazioni consultando i grafici",
+    "test_steps": [
+      {
+        "step": "Scorri nella pagina fino a visualizzare la sezione dedicata al consumo",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un comune, POD, pannello elettrico, periodo e tipo di potenza analizzata",
+        "expected": "I parametri vengono accettati"
+      },
+      {
+        "step": "Esegui l’analisi",
+        "expected": "I grafici vengono visualizzati correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC2",
+    "title": "Analisi consumo comune senza selezionare il comune",
+    "preconditions": "UC2",
+    "postconditions": "L’analisi non viene eseguita",
+    "test_steps": [
+      {
+        "step": "Scorri nella pagina fino a visualizzare la sezione dedicata al consumo",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Lascia vuoto il campo relativo al comune",
+        "expected": "Il sistema segnala la mancanza di informazioni"
+      },
+      {
+        "step": "Tenta di eseguire l’analisi",
+        "expected": "La funzione non procede e viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC3",
+    "title": "Analisi consumo comune con periodo non valido",
+    "preconditions": "UC2",
+    "postconditions": "L’analisi non viene eseguita",
+    "test_steps": [
+      {
+        "step": "Scorri nella pagina fino a visualizzare la sezione dedicata al consumo",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un comune e immetti una data di fine precedente alla data di inizio",
+        "expected": "Il sistema segnala l’errore di date non valide"
+      },
+      {
+        "step": "Tenta di eseguire l’analisi",
+        "expected": "La funzione non procede e viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC4",
+    "title": "Boundary test: analisi consumo comune con date di inizio e fine coincidenti",
+    "preconditions": "UC2",
+    "postconditions": "L’analisi viene eseguita per il giorno selezionato",
+    "test_steps": [
+      {
+        "step": "Scorri nella pagina fino a visualizzare la sezione dedicata al consumo",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un comune e imposta come data di inizio e fine la stessa giornata",
+        "expected": "Il sistema accetta le date"
+      },
+      {
+        "step": "Esegui l’analisi",
+        "expected": "I grafici vengono visualizzati per il giorno selezionato"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Alta",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC5",
+    "title": "Usabilità: analisi consumo comune con selezione multipla di POD",
+    "preconditions": "UC2",
+    "postconditions": "L’analisi viene eseguita per i POD selezionati",
+    "test_steps": [
+      {
+        "step": "Scorri nella pagina fino a visualizzare la sezione dedicata al consumo",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona più POD tra le opzioni disponibili",
+        "expected": "Il sistema accetta la selezione multipla"
+      },
+      {
+        "step": "Esegui l’analisi",
+        "expected": "I grafici vengono visualizzati per i POD selezionati"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Alta",
+    "use_case_id": "UC2.6"
+  }
+]

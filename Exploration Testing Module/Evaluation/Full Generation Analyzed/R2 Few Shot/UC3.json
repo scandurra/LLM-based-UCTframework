@@ -1,0 +1,97 @@
+[
+  {
+    "test_case_id": "UC3_TC1",
+    "title": "Accesso alla sezione schede censimento con successo",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza la sezione relativa alle schede censimento",
+    "test_steps": [
+      {
+        "step": "Accedi all’interfaccia principale",
+        "expected": "La pagina iniziale viene caricata correttamente"
+      },
+      {
+        "step": "Seleziona la voce del menù laterale per le schede censimento",
+        "expected": "La sezione delle schede censimento si apre"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC2",
+    "title": "Accesso alla sezione schede censimento senza autorizzazione",
+    "preconditions": "UC1",
+    "postconditions": "L’accesso viene negato",
+    "test_steps": [
+      {
+        "step": "Accedi all’interfaccia principale come utente non abilitato",
+        "expected": "La pagina iniziale viene caricata"
+      },
+      {
+        "step": "Tenta di selezionare la voce del menù laterale per le schede censimento",
+        "expected": "Il sistema mostra un messaggio di accesso negato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC3",
+    "title": "Navigazione all’interno della sezione schede censimento",
+    "preconditions": "UC1",
+    "postconditions": "L’utente può navigare tra le varie sottosezioni",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento",
+        "expected": "La sezione si apre correttamente"
+      },
+      {
+        "step": "Seleziona una sottosezione specifica all’interno della sezione",
+        "expected": "La sottosezione selezionata viene visualizzata"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC4",
+    "title": "Test di usabilità della sezione schede censimento",
+    "preconditions": "UC1",
+    "postconditions": "L’utente può utilizzare la sezione in modo intuitivo",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento",
+        "expected": "La sezione è facilmente accessibile"
+      },
+      {
+        "step": "Valuta l’esperienza utente nella navigazione e nell’utilizzo della sezione",
+        "expected": "L’interfaccia è chiara e facile da utilizzare"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Alta",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC5",
+    "title": "Test di boundary: selezione di una sottosezione non esistente",
+    "preconditions": "UC1",
+    "postconditions": "Il sistema gestisce l’errore in modo appropriato",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento",
+        "expected": "La sezione si apre"
+      },
+      {
+        "step": "Inserisci manualmente un URL di una sottosezione non esistente",
+        "expected": "Il sistema mostra un messaggio di errore o reindirizza alla pagina principale della sezione"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Media",
+    "use_case_id": "UC3"
+  }
+]

@@ -1,0 +1,21 @@
+[
+  {
+    "test_case_id": "UC344_TC001",
+    "title": "Congela scheda censimento",
+    "preconditions": "Aver compiuto i passaggi fino al UC34",
+    "postconditions": "L’utente non può più svolgere qualsiasi azione sulla scheda. Inoltre, lo stato visualizzato della scheda è come “non attivo”",
+    "test_steps": [
+      {
+        "step": "L’utente seleziona l’operazione di congelamento per la scheda selezionata dal menu Azione.",
+        "expected": "L’utente visualizza il messaggio di conferma di avvenuta operazione."
+      },
+      {
+        "step": "L'utente clicca sul pulsante OK per tornare alla tabella.",
+        "expected": "L'utente visualizza la tabella aggiornata."
+      }
+    ],
+    "test_type": "",
+    "priority": "ALTO",
+    "use_case_id": "UC344"
+  }
+]

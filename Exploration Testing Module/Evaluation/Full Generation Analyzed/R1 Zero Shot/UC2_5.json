@@ -1,0 +1,117 @@
+[
+  {
+    "test_case_id": "UC2.5_TC1",
+    "title": "Visualizzazione grafici con dati validi",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza le informazioni consultando i grafici",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard",
+        "expected": "La dashboard è visualizzata correttamente"
+      },
+      {
+        "step": "Scorri nella pagina fino a visualizzare le sezioni contrassegnate dai grafici",
+        "expected": "Le sezioni sono visualizzate correttamente"
+      },
+      {
+        "step": "Seleziona un grafico per visualizzare le informazioni",
+        "expected": "Il grafico è visualizzato correttamente con i dati relativi"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC2",
+    "title": "Visualizzazione grafici con dati non validi",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard",
+        "expected": "La dashboard è visualizzata correttamente"
+      },
+      {
+        "step": "Scorri nella pagina fino a visualizzare le sezioni contrassegnate dai grafici",
+        "expected": "Le sezioni sono visualizzate correttamente"
+      },
+      {
+        "step": "Seleziona un grafico con dati non validi",
+        "expected": "Viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC3",
+    "title": "Visualizzazione grafici senza dati",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di avviso",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard",
+        "expected": "La dashboard è visualizzata correttamente"
+      },
+      {
+        "step": "Scorri nella pagina fino a visualizzare le sezioni contrassegnate dai grafici",
+        "expected": "Le sezioni sono visualizzate correttamente"
+      },
+      {
+        "step": "Seleziona un grafico senza dati",
+        "expected": "Viene visualizzato un messaggio di avviso"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC4",
+    "title": "Visualizzazione grafici con filtro regione",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza le informazioni consultando i grafici filtrati per regione",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard",
+        "expected": "La dashboard è visualizzata correttamente"
+      },
+      {
+        "step": "Scorri nella pagina fino a visualizzare le sezioni contrassegnate dai grafici",
+        "expected": "Le sezioni sono visualizzate correttamente"
+      },
+      {
+        "step": "Seleziona un filtro per regione e seleziona un grafico",
+        "expected": "Il grafico è visualizzato correttamente con i dati relativi alla regione selezionata"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC5",
+    "title": "Visualizzazione grafici con filtro tipo apparecchio",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza le informazioni consultando i grafici filtrati per tipo apparecchio",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard",
+        "expected": "La dashboard è visualizzata correttamente"
+      },
+      {
+        "step": "Scorri nella pagina fino a visualizzare le sezioni contrassegnate dai grafici",
+        "expected": "Le sezioni sono visualizzate correttamente"
+      },
+      {
+        "step": "Seleziona un filtro per tipo apparecchio e seleziona un grafico",
+        "expected": "Il grafico è visualizzato correttamente con i dati relativi al tipo apparecchio selezionato"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.5"
+  }
+]

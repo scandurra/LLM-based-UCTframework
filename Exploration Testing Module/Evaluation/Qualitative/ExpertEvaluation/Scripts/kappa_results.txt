@@ -1,0 +1,21 @@
+INTER-RATER RELIABILITY ANALYSIS
+============================================================
+
+PAIRWISE COHEN'S KAPPA (Quadratic Weighted)
+------------------------------------------------------------
+         Expert_Pair  Cohen_Kappa  N_cases
+Expert 1 vs Expert 2     0.500855      144
+Expert 1 vs Expert 3     0.413120      144
+Expert 2 vs Expert 3     0.430250      144
+
+Average pairwise Cohen's kappa: 0.448
+
+FLEISS' KAPPA (All 3 Experts)
+------------------------------------------------------------
+Fleiss' kappa: 0.276
+Based on 144 complete assessments
+
+AGREEMENT PERCENTAGES
+------------------------------------------------------------
+Perfect agreement: 54/144 (37.5%)
+Close agreement (diff ≤ 1): 127/144 (88.2%)

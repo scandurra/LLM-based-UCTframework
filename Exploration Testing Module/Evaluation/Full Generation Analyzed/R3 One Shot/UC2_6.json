@@ -1,0 +1,182 @@
+[
+  {
+    "test_case_id": "UC2.6_TC1",
+    "title": "Visualizzazione analisi consumo comune con parametri validi",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza le informazioni consultando i grafici",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e scorri fino alla sezione consumo",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un comune, POD, pannello elettrico, periodo e tipo di potenza",
+        "expected": "I parametri vengono accettati e l’analisi avviata"
+      },
+      {
+        "step": "Visualizza i grafici di analisi",
+        "expected": "I dati vengono visualizzati in modo chiaro e leggibile"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC2",
+    "title": "Selezione comune non valido",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema segnala l’errore e richiede la selezione di un comune valido",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e scorri fino alla sezione consumo",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci un comune non esistente o non selezionabile",
+        "expected": "Il sistema segnala l’errore di selezione"
+      },
+      {
+        "step": "Tenta di avviare l’analisi",
+        "expected": "L’operazione non procede e viene richiesta la correzione dell’input"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC3",
+    "title": "Analisi con periodo di tempo non valido",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema segnala l’errore e richiede la selezione di un periodo valido",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e scorri fino alla sezione consumo",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona una data di inizio successiva alla data di fine",
+        "expected": "Il sistema segnala l’errore di periodo non valido"
+      },
+      {
+        "step": "Tenta di avviare l’analisi",
+        "expected": "L’operazione non procede e viene richiesta la correzione dell’input"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC4",
+    "title": "Boundary test: selezione di un solo giorno",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema visualizza i dati relativi al giorno selezionato",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e scorri fino alla sezione consumo",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un comune, POD, pannello elettrico e un solo giorno",
+        "expected": "I parametri vengono accettati"
+      },
+      {
+        "step": "Avvia l’analisi",
+        "expected": "Il sistema visualizza i dati del giorno selezionato"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Alta",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC5",
+    "title": "Security test: accesso non autorizzato alla sezione analisi",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema nega l’accesso e richiede autenticazione",
+    "test_steps": [
+      {
+        "step": "Tenta di accedere direttamente alla sezione analisi senza login",
+        "expected": "Il sistema reindirizza alla pagina di login"
+      },
+      {
+        "step": "Inserisci credenziali non valide o mancanti",
+        "expected": "Accesso negato e richiesta autenticazione"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC6",
+    "title": "Edge case: selezione di tutti i parametri possibili",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema gestisce la richiesta e visualizza i dati",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e scorri fino alla sezione consumo",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona tutti i comuni, POD, pannelli elettrici, periodi e tipi di potenza disponibili",
+        "expected": "Il sistema accetta la selezione e avvia l’analisi"
+      },
+      {
+        "step": "Visualizza i grafici di analisi",
+        "expected": "I dati vengono visualizzati in modo chiaro e leggibile, anche se con una grande quantità di informazioni"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC7",
+    "title": "Performance test: analisi con grandi quantità di dati",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema gestisce la richiesta senza problemi di performance",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e scorri fino alla sezione consumo",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un comune, POD, pannello elettrico e un lungo periodo di tempo con alta frequenza di dati",
+        "expected": "Il sistema accetta la selezione e avvia l’analisi senza rallentamenti"
+      },
+      {
+        "step": "Visualizza i grafici di analisi",
+        "expected": "I dati vengono visualizzati in modo chiaro e leggibile, senza problemi di performance"
+      }
+    ],
+    "test_type": "Performance",
+    "priority": "Alta",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC8",
+    "title": "Usabilità test: facilità di utilizzo dell’interfaccia",
+    "preconditions": "UC2",
+    "postconditions": "L’utente può facilmente selezionare i parametri e visualizzare l’analisi",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e scorri fino alla sezione consumo",
+        "expected": "La sezione viene visualizzata correttamente e è facile da utilizzare"
+      },
+      {
+        "step": "Seleziona un comune, POD, pannello elettrico e periodo di tempo",
+        "expected": "Le opzioni sono chiare e facili da selezionare"
+      },
+      {
+        "step": "Visualizza i grafici di analisi",
+        "expected": "I dati vengono visualizzati in modo chiaro e leggibile, con una buona esperienza utente"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Media",
+    "use_case_id": "UC2.6"
+  }
+]

@@ -1,0 +1,117 @@
+[
+  {
+    "test_case_id": "UC2.6_TC1",
+    "title": "Analisi consumo comune per POD con dati validi",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza le informazioni consultando i grafici",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione dedicata al consumo",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona il comune e specifica POD, pannello elettrico, periodo e tipo di potenza analizzata",
+        "expected": "L’analisi del consumo è visualizzata correttamente"
+      },
+      {
+        "step": "Visualizza i grafici dell’analisi",
+        "expected": "I grafici sono visualizzati correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC2",
+    "title": "Analisi consumo comune per POD con dati mancanti",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione dedicata al consumo",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Non selezionare il comune e non specifica POD, pannello elettrico, periodo e tipo di potenza analizzata",
+        "expected": "L’analisi del consumo non è possibile senza dati"
+      },
+      {
+        "step": "Visualizza il messaggio di errore",
+        "expected": "Il messaggio di errore è visualizzato correttamente"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC3",
+    "title": "Analisi consumo comune per POD con dati non validi",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione dedicata al consumo",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona il comune e specifica POD, pannello elettrico, periodo e tipo di potenza analizzata con dati non validi",
+        "expected": "L’analisi del consumo non è possibile con dati non validi"
+      },
+      {
+        "step": "Visualizza il messaggio di errore",
+        "expected": "Il messaggio di errore è visualizzato correttamente"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC4",
+    "title": "Analisi consumo comune per POD con selezione multipla di comuni",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza le informazioni consultando i grafici",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione dedicata al consumo",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona più comuni e specifica POD, pannello elettrico, periodo e tipo di potenza analizzata",
+        "expected": "L’analisi del consumo è visualizzata correttamente per ogni comune selezionato"
+      },
+      {
+        "step": "Visualizza i grafici dell’analisi",
+        "expected": "I grafici sono visualizzati correttamente per ogni comune selezionato"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Bassa",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC5",
+    "title": "Analisi consumo comune per POD con filtro di dati",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza le informazioni consultando i grafici",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione dedicata al consumo",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona il comune e specifica POD, pannello elettrico, periodo e tipo di potenza analizzata con filtro di dati",
+        "expected": "L’analisi del consumo è visualizzata correttamente con i dati filtrati"
+      },
+      {
+        "step": "Visualizza i grafici dell’analisi",
+        "expected": "I grafici sono visualizzati correttamente con i dati filtrati"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Bassa",
+    "use_case_id": "UC2.6"
+  }
+]

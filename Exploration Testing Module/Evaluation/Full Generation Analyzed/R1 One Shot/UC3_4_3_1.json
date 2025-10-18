@@ -1,0 +1,182 @@
+[
+  {
+    "test_case_id": "UC3.4.3.1_TC1",
+    "title": "Modifica sezione Area con dati validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Compila il form con informazioni valide",
+        "expected": "Il sistema accetta le modifiche"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Viene visualizzato un messaggio di conferma dell’operazione"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.1"
+  },
+  {
+    "test_case_id": "UC3.4.3.1_TC2",
+    "title": "Modifica sezione Area con dati non validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Compila il form con informazioni non valide (es. campi obbligatori vuoti)",
+        "expected": "Il sistema segnala un errore"
+      },
+      {
+        "step": "Tenta di applicare le modifiche",
+        "expected": "Viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.1"
+  },
+  {
+    "test_case_id": "UC3.4.3.1_TC3",
+    "title": "Modifica sezione Area senza autorizzazione",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’accesso alla modifica viene negato",
+    "test_steps": [
+      {
+        "step": "Tenta di accedere alla sezione relativa ai dati dell’area senza permessi di modifica",
+        "expected": "Il sistema nega l’accesso"
+      },
+      {
+        "step": "Tenta comunque di compilare e inviare il form",
+        "expected": "L’operazione viene bloccata e visualizzato un messaggio di accesso negato"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.1"
+  },
+  {
+    "test_case_id": "UC3.4.3.1_TC4",
+    "title": "Modifica sezione Area con campi vuoti",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore per campi obbligatori",
+    "test_steps": [
+      {
+        "step": "Entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Lascia vuoti campi obbligatori e compila gli altri",
+        "expected": "Il sistema segnala un errore per i campi obbligatori vuoti"
+      },
+      {
+        "step": "Tenta di applicare le modifiche",
+        "expected": "Viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.1"
+  },
+  {
+    "test_case_id": "UC3.4.3.1_TC5",
+    "title": "Modifica sezione Area con dati troppo lunghi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore per dati troppo lunghi",
+    "test_steps": [
+      {
+        "step": "Entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci dati più lunghi del consentito in campi di testo",
+        "expected": "Il sistema segnala un errore per i dati troppo lunghi"
+      },
+      {
+        "step": "Tenta di applicare le modifiche",
+        "expected": "Viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.1"
+  },
+  {
+    "test_case_id": "UC3.4.3.1_TC6",
+    "title": "Modifica sezione Area con caratteri speciali",
+    "preconditions": "UC3.4.3",
+    "postconditions": "I dati vengono accettati e salvati correttamente",
+    "test_steps": [
+      {
+        "step": "Entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci caratteri speciali nei campi di testo",
+        "expected": "Il sistema accetta i dati"
+      },
+      {
+        "step": "Applica le modifiche",
+        "expected": "Viene visualizzato un messaggio di conferma dell’operazione"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.1"
+  },
+  {
+    "test_case_id": "UC3.4.3.1_TC7",
+    "title": "Modifica sezione Area e annullamento delle modifiche",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Le modifiche vengono annullate e i dati tornano allo stato precedente",
+    "test_steps": [
+      {
+        "step": "Entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Apporta delle modifiche ai campi",
+        "expected": "Le modifiche vengono applicate temporaneamente"
+      },
+      {
+        "step": "Annulla le modifiche",
+        "expected": "I dati tornano allo stato precedente"
+      }
+    ],
+    "test_type": "Funzionalità",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.1"
+  },
+  {
+    "test_case_id": "UC3.4.3.1_TC8",
+    "title": "Modifica sezione Area con più utenti contemporaneamente",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema gestisce le modifiche in modo atomico e coerente",
+    "test_steps": [
+      {
+        "step": "Due o più utenti entrano nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente per ogni utente"
+      },
+      {
+        "step": "Gli utenti apportano modifiche contemporaneamente",
+        "expected": "Il sistema gestisce le modifiche in modo da evitare conflitti"
+      },
+      {
+        "step": "Verifica che le modifiche vengano applicate correttamente per ogni utente",
+        "expected": "Le modifiche sono coerenti e non ci sono perdite di dati"
+      }
+    ],
+    "test_type": "Integrazione",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.1"
+  }
+]

@@ -1,0 +1,117 @@
+[
+  {
+    "test_case_id": "UC6_TC1",
+    "title": "Logout utente con successo",
+    "preconditions": "UC1",
+    "postconditions": "L’utente non è più autenticato ed è a conoscenza che l’operazione ha avuto successo",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione account",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto “Logout”",
+        "expected": "Il processo di logout inizia"
+      },
+      {
+        "step": "Conferma l’intenzione di effettuare il logout",
+        "expected": "Viene visualizzato un messaggio di successo"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC6"
+  },
+  {
+    "test_case_id": "UC6_TC2",
+    "title": "Logout senza conferma",
+    "preconditions": "UC1",
+    "postconditions": "Il logout non viene completato",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione account",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto “Logout”",
+        "expected": "Il processo di logout inizia"
+      },
+      {
+        "step": "Annulla l’operazione di logout",
+        "expected": "L’utente rimane autenticato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC6"
+  },
+  {
+    "test_case_id": "UC6_TC3",
+    "title": "Logout con più utenti aperti",
+    "preconditions": "UC1",
+    "postconditions": "Tutti gli utenti vengono disconnessi",
+    "test_steps": [
+      {
+        "step": "Apri più sessioni di utente",
+        "expected": "Tutte le sessioni sono visibili"
+      },
+      {
+        "step": "Clicca sul tasto “Logout” in una delle sessioni",
+        "expected": "Il processo di logout inizia per tutte le sessioni"
+      },
+      {
+        "step": "Conferma l’intenzione di effettuare il logout",
+        "expected": "Tutte le sessioni vengono chiuse"
+      }
+    ],
+    "test_type": "Prestazione",
+    "priority": "Alta",
+    "use_case_id": "UC6"
+  },
+  {
+    "test_case_id": "UC6_TC4",
+    "title": "Boundary test: logout con sessione scaduta",
+    "preconditions": "UC1",
+    "postconditions": "L’utente viene disconnesso e invitato a riautenticarsi",
+    "test_steps": [
+      {
+        "step": "Lascia la sessione aperta per un lungo periodo",
+        "expected": "La sessione scade"
+      },
+      {
+        "step": "Tenta di eseguire un’azione che richiede autenticazione",
+        "expected": "Il sistema richiede nuovamente l’autenticazione"
+      },
+      {
+        "step": "Clicca sul tasto “Logout”",
+        "expected": "L’utente viene disconnesso e invitato a riautenticarsi"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Media",
+    "use_case_id": "UC6"
+  },
+  {
+    "test_case_id": "UC6_TC5",
+    "title": "Edge case: logout con browser non supportato",
+    "preconditions": "UC1",
+    "postconditions": "Il sistema avvisa l’utente del problema e suggerisce un’alternativa",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema con un browser non supportato",
+        "expected": "Il sistema avvisa dell’incompatibilità"
+      },
+      {
+        "step": "Clicca sul tasto “Logout”",
+        "expected": "Il processo di logout potrebbe non funzionare correttamente"
+      },
+      {
+        "step": "Segui le istruzioni per utilizzare un browser supportato",
+        "expected": "L’utente può completare il logout con successo"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC6"
+  }
+]

@@ -1,0 +1,117 @@
+[
+  {
+    "test_case_id": "UC2.3_TC1",
+    "title": "Visualizzazione tabella dati generali con paginazione predefinita",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione dashboard utilizzando il menù apposito",
+        "expected": "La sezione dashboard è visualizzata correttamente"
+      },
+      {
+        "step": "Scorri nella pagina fino a visualizzare la sezione tabellare dedicata ai dati generali",
+        "expected": "La sezione tabellare è visualizzata correttamente"
+      },
+      {
+        "step": "Verifica che i dati siano presentati in forma tabellare e che sia possibile scorrere tra i comuni disponibili",
+        "expected": "I dati sono presentati correttamente e lo scorrimento funziona come atteso"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.3"
+  },
+  {
+    "test_case_id": "UC2.3_TC2",
+    "title": "Visualizzazione tabella dati generali con modifiche alla paginazione",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione dashboard utilizzando il menù apposito",
+        "expected": "La sezione dashboard è visualizzata correttamente"
+      },
+      {
+        "step": "Scorri nella pagina fino a visualizzare la sezione tabellare dedicata ai dati generali",
+        "expected": "La sezione tabellare è visualizzata correttamente"
+      },
+      {
+        "step": "Modifica gli elementi visualizzati per pagina utilizzando il selettore in basso a sinistra",
+        "expected": "I dati sono aggiornati correttamente in base alla nuova paginazione"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC2.3"
+  },
+  {
+    "test_case_id": "UC2.3_TC3",
+    "title": "Visualizzazione tabella dati generali con ordinamento per colonna",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione dashboard utilizzando il menù apposito",
+        "expected": "La sezione dashboard è visualizzata correttamente"
+      },
+      {
+        "step": "Scorri nella pagina fino a visualizzare la sezione tabellare dedicata ai dati generali",
+        "expected": "La sezione tabellare è visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul nome di una colonna per ordinare i dati",
+        "expected": "I dati sono ordinati correttamente in base alla colonna selezionata"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC2.3"
+  },
+  {
+    "test_case_id": "UC2.3_TC4",
+    "title": "Visualizzazione tabella dati generali con selezione di comune non disponibile",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione dashboard utilizzando il menù apposito",
+        "expected": "La sezione dashboard è visualizzata correttamente"
+      },
+      {
+        "step": "Scorri nella pagina fino a visualizzare la sezione tabellare dedicata ai dati generali",
+        "expected": "La sezione tabellare è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un comune non disponibile utilizzando il selettore della pagine in basso a destra",
+        "expected": "Viene visualizzato un messaggio di errore per indicare che il comune selezionato non è disponibile"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC2.3"
+  },
+  {
+    "test_case_id": "UC2.3_TC5",
+    "title": "Visualizzazione tabella dati generali con input non valido",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione dashboard utilizzando il menù apposito",
+        "expected": "La sezione dashboard è visualizzata correttamente"
+      },
+      {
+        "step": "Scorri nella pagina fino a visualizzare la sezione tabellare dedicata ai dati generali",
+        "expected": "La sezione tabellare è visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci un input non valido nel campo di ricerca",
+        "expected": "Viene visualizzato un messaggio di errore per indicare che l’input non è valido"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC2.3"
+  }
+]

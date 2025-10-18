@@ -1,0 +1,154 @@
+[
+  {
+    "test_case_id": "UC3.4_TC1",
+    "title": "Visualizzazione azioni disponibili sulla scheda censimento",
+    "preconditions": "UC3",
+    "postconditions": "La palette di operazioni viene visualizzata correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento",
+        "expected": "Le schede vengono elencate correttamente"
+      },
+      {
+        "step": "Clicca sul tasto azioni per una scheda specifica",
+        "expected": "La palette di operazioni relative alla scheda selezionata appare"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC2",
+    "title": "Selezione di un’azione non valida",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema segnala l’errore e non esegue l’azione",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento",
+        "expected": "Le schede vengono elencate correttamente"
+      },
+      {
+        "step": "Clicca sul tasto azioni e seleziona un’opzione non valida (es. un link rotto)",
+        "expected": "Il sistema mostra un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC3",
+    "title": "Azioni su scheda censimento senza autorizzazione",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema nega l’accesso alle azioni",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento con un utente non autorizzato",
+        "expected": "Le schede vengono elencate, ma le azioni sono disabilitate"
+      },
+      {
+        "step": "Tenta di cliccare sul tasto azioni per una scheda",
+        "expected": "Il sistema mostra un messaggio di accesso negato"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC4",
+    "title": "Azioni su scheda censimento con dati mancanti",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema richiede i dati mancanti prima di eseguire l’azione",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento",
+        "expected": "Le schede vengono elencate correttamente"
+      },
+      {
+        "step": "Seleziona una scheda con dati incompleti e clicca sul tasto azioni",
+        "expected": "Il sistema richiede di completare i dati prima di procedere"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC5",
+    "title": "Concorrenza nell’accesso alle azioni sulla scheda censimento",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema gestisce correttamente le richieste concorrenti",
+    "test_steps": [
+      {
+        "step": "Due o più utenti accedono contemporaneamente alla stessa scheda censimento",
+        "expected": "I sistemi gestiscono le richieste senza conflitti"
+      },
+      {
+        "step": "Ciascun utente clicca sul tasto azioni per la medesima scheda",
+        "expected": "Le azioni vengono eseguite correttamente e senza errori di concorrenza"
+      }
+    ],
+    "test_type": "Prestazione",
+    "priority": "Alta",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC6",
+    "title": "Azioni su scheda censimento con caratteri speciali nel nome",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema gestisce correttamente i caratteri speciali",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento",
+        "expected": "Le schede vengono elencate correttamente"
+      },
+      {
+        "step": "Seleziona una scheda con nome contenente caratteri speciali e clicca sul tasto azioni",
+        "expected": "Il sistema esegue le azioni senza problemi relativi ai caratteri speciali"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC7",
+    "title": "Azioni su scheda censimento in una sessione scaduta",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema richiede la ri-autenticazione",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento e lascia scadere la sessione",
+        "expected": "La sessione viene considerata scaduta"
+      },
+      {
+        "step": "Tenta di cliccare sul tasto azioni per una scheda",
+        "expected": "Il sistema richiede la ri-autenticazione prima di eseguire l’azione"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC8",
+    "title": "Azioni su scheda censimento con browser non supportato",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema informa dell’incompatibilità del browser",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento utilizzando un browser non supportato",
+        "expected": "Il sistema visualizza un messaggio di incompatibilità"
+      },
+      {
+        "step": "Tenta di cliccare sul tasto azioni per una scheda",
+        "expected": "Il sistema non esegue l’azione e mantiene il messaggio di incompatibilità"
+      }
+    ],
+    "test_type": "Compatibilità",
+    "priority": "Media",
+    "use_case_id": "UC3.4"
+  }
+]

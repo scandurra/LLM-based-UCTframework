@@ -1,0 +1,21 @@
+[
+  {
+    "test_case_id": "UC3.4_TC1",
+    "title": "Visualizzazione azioni disponibili sulla scheda censimento",
+    "preconditions": "UC3",
+    "postconditions": "La palette di azioni viene visualizzata correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento",
+        "expected": "Le schede vengono elencate correttamente"
+      },
+      {
+        "step": "Clicca sul tasto azioni per una scheda specifica",
+        "expected": "Viene visualizzata la palette di operazioni disponibili"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4"
+  }
+]

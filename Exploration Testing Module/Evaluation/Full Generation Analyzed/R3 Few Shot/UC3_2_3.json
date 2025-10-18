@@ -1,0 +1,109 @@
+[
+  {
+    "test_case_id": "UC3.2.3_TC1",
+    "title": "Ricerca scheda censimento per tipo con parametri validi",
+    "preconditions": "UC3.2",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Inserisci il tipo di scheda censimento nella maschera di ricerca",
+        "expected": "Il sistema accetta i parametri"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema esegue la ricerca e visualizza i risultati"
+      },
+      {
+        "step": "Verifica che le informazioni visualizzate siano relative al tipo selezionato",
+        "expected": "I dati mostrati sono coerenti con la ricerca effettuata"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.2.3"
+  },
+  {
+    "test_case_id": "UC3.2.3_TC2",
+    "title": "Ricerca scheda censimento senza specificare il tipo",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema non esegue la ricerca o visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Lascia vuoto il campo relativo al tipo di scheda censimento",
+        "expected": "Il sistema segnala l’assenza del parametro"
+      },
+      {
+        "step": "Tenta di confermare la ricerca",
+        "expected": "Il sistema non procede con la ricerca e visualizza un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.2.3"
+  },
+  {
+    "test_case_id": "UC3.2.3_TC3",
+    "title": "Ricerca scheda censimento con tipo non esistente",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema visualizza un messaggio che indica l’assenza di risultati",
+    "test_steps": [
+      {
+        "step": "Inserisci un tipo di scheda censimento non presente nel database",
+        "expected": "Il sistema accetta i parametri"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema esegue la ricerca ma non trova risultati"
+      },
+      {
+        "step": "Verifica che il sistema visualizzi un messaggio di ‘nessun risultato trovato’",
+        "expected": "Il messaggio è coerente con l’esito della ricerca"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.2.3"
+  },
+  {
+    "test_case_id": "UC3.2.3_TC4",
+    "title": "Ricerca scheda censimento con caratteri speciali nel tipo",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema gestisce correttamente i caratteri speciali",
+    "test_steps": [
+      {
+        "step": "Inserisci un tipo di scheda censimento contenente caratteri speciali (es. @, #, $)",
+        "expected": "Il sistema accetta i parametri"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema esegue la ricerca senza errori"
+      },
+      {
+        "step": "Verifica che i risultati della ricerca siano coerenti con il parametro inserito",
+        "expected": "I dati mostrati sono relativi alla ricerca effettuata"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC3.2.3"
+  },
+  {
+    "test_case_id": "UC3.2.3_TC5",
+    "title": "Ricerca scheda censimento con tipo parzialmente inserito",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema esegue la ricerca basandosi sul parametro parziale",
+    "test_steps": [
+      {
+        "step": "Inserisci solo una parte del tipo di scheda censimento",
+        "expected": "Il sistema accetta i parametri"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema esegue la ricerca e visualizza i risultati coerenti con il parametro parziale"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Media",
+    "use_case_id": "UC3.2.3"
+  }
+]

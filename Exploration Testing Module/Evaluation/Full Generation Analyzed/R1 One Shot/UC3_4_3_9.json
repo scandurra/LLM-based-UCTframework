@@ -1,0 +1,202 @@
+[
+  {
+    "test_case_id": "UC3.4.3.9_TC1",
+    "title": "Modifica dati punto luce con informazioni valide",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD viene selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato e seleziona un pannello elettrico",
+        "expected": "I pannelli elettrici vengono visualizzati e il pannello selezionato è accessibile"
+      },
+      {
+        "step": "Seleziona un punto luce all’interno del pannello e accedi al tab dei dati punti luce",
+        "expected": "I dati precedenti del punto luce vengono visualizzati"
+      },
+      {
+        "step": "Compila il form con informazioni valide e applica le modifiche",
+        "expected": "Le modifiche vengono applicate con successo e viene visualizzato un messaggio di conferma"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.9"
+  },
+  {
+    "test_case_id": "UC3.4.3.9_TC2",
+    "title": "Modifica dati punto luce con informazioni non valide",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD viene selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato e seleziona un pannello elettrico",
+        "expected": "I pannelli elettrici vengono visualizzati e il pannello selezionato è accessibile"
+      },
+      {
+        "step": "Seleziona un punto luce all’interno del pannello e accedi al tab dei dati punti luce",
+        "expected": "I dati precedenti del punto luce vengono visualizzati"
+      },
+      {
+        "step": "Compila il form con informazioni non valide (es. campi obbligatori vuoti) e applica le modifiche",
+        "expected": "Viene mostrato un messaggio di errore indicando i dati non validi"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.9"
+  },
+  {
+    "test_case_id": "UC3.4.3.9_TC3",
+    "title": "Modifica dati punto luce senza selezionare il POD",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema non permette di proseguire senza la selezione del POD",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di modifica dei dati punti luce senza selezionare il POD",
+        "expected": "Il sistema richiede la selezione del POD"
+      },
+      {
+        "step": "Tenta di proseguire senza selezionare il POD",
+        "expected": "Il sistema blocca l’operazione e richiede la selezione del POD"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.9"
+  },
+  {
+    "test_case_id": "UC3.4.3.9_TC4",
+    "title": "Modifica dati punto luce con caratteri speciali nei campi di input",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema gestisce correttamente i caratteri speciali",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD viene selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato e seleziona un pannello elettrico",
+        "expected": "I pannelli elettrici vengono visualizzati e il pannello selezionato è accessibile"
+      },
+      {
+        "step": "Seleziona un punto luce all’interno del pannello e accedi al tab dei dati punti luce",
+        "expected": "I dati precedenti del punto luce vengono visualizzati"
+      },
+      {
+        "step": "Compila il form con caratteri speciali nei campi di input (es. @, #, $) e applica le modifiche",
+        "expected": "Il sistema gestisce correttamente i caratteri speciali e applica le modifiche senza errori"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.9"
+  },
+  {
+    "test_case_id": "UC3.4.3.9_TC5",
+    "title": "Modifica dati punto luce con un utente non autorizzato",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema nega l’accesso alla modifica dei dati",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di modifica dei dati punti luce con un utente non autorizzato",
+        "expected": "Il sistema nega l’accesso e visualizza un messaggio di errore"
+      },
+      {
+        "step": "Tenta di proseguire con la modifica dei dati",
+        "expected": "Il sistema blocca l’operazione e richiede l’autenticazione di un utente autorizzato"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.9"
+  },
+  {
+    "test_case_id": "UC3.4.3.9_TC6",
+    "title": "Modifica dati punto luce con un carico pesante di dati",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema gestisce correttamente il carico di dati e applica le modifiche",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD viene selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato e seleziona un pannello elettrico",
+        "expected": "I pannelli elettrici vengono visualizzati e il pannello selezionato è accessibile"
+      },
+      {
+        "step": "Seleziona un punto luce all’interno del pannello e accedi al tab dei dati punti luce",
+        "expected": "I dati precedenti del punto luce vengono visualizzati"
+      },
+      {
+        "step": "Compila il form con un carico pesante di dati (es. molti campi di input) e applica le modifiche",
+        "expected": "Il sistema gestisce correttamente il carico di dati e applica le modifiche senza errori"
+      }
+    ],
+    "test_type": "Prestazione",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.9"
+  },
+  {
+    "test_case_id": "UC3.4.3.9_TC7",
+    "title": "Modifica dati punto luce con un timeout di sessione",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema gestisce correttamente il timeout di sessione e richiede la reimmissione delle credenziali",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD viene selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato e seleziona un pannello elettrico",
+        "expected": "I pannelli elettrici vengono visualizzati e il pannello selezionato è accessibile"
+      },
+      {
+        "step": "Seleziona un punto luce all’interno del pannello e accedi al tab dei dati punti luce",
+        "expected": "I dati precedenti del punto luce vengono visualizzati"
+      },
+      {
+        "step": "Lascia la sessione inattiva per un periodo di tempo superiore al timeout e tenta di applicare le modifiche",
+        "expected": "Il sistema gestisce correttamente il timeout di sessione e richiede la reimmissione delle credenziali"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.9"
+  },
+  {
+    "test_case_id": "UC3.4.3.9_TC8",
+    "title": "Modifica dati punto luce con un errore di rete",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema gestisce correttamente l’errore di rete e visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD viene selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato e seleziona un pannello elettrico",
+        "expected": "I pannelli elettrici vengono visualizzati e il pannello selezionato è accessibile"
+      },
+      {
+        "step": "Seleziona un punto luce all’interno del pannello e accedi al tab dei dati punti luce",
+        "expected": "I dati precedenti del punto luce vengono visualizzati"
+      },
+      {
+        "step": "Simula un errore di rete durante l’applicazione delle modifiche",
+        "expected": "Il sistema gestisce correttamente l’errore di rete e visualizza un messaggio di errore"
+      }
+    ],
+    "test_type": "Recupero",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.9"
+  }
+]

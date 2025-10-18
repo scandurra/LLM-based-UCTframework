@@ -1,0 +1,186 @@
+[
+  {
+    "test_case_id": "UC2.4_TC1",
+    "title": "Benchmarking KPI con selezione di due comuni e un KPI valido",
+    "preconditions": "UC2",
+    "postconditions": "Il grafico con il confronto dei KPI viene visualizzato correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e seleziona due comuni dalla lista",
+        "expected": "I comuni vengono selezionati correttamente"
+      },
+      {
+        "step": "Seleziona un KPI disponibile per il confronto",
+        "expected": "Il KPI viene accettato dal sistema"
+      },
+      {
+        "step": "Conferma la richiesta di benchmarking",
+        "expected": "Il sistema genera il grafico con i dati dei due comuni"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC2",
+    "title": "Benchmarking senza selezione di comuni",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema richiede la selezione dei comuni",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e lascia vuoto il campo di selezione dei comuni",
+        "expected": "Il sistema segnala l’errore di selezione"
+      },
+      {
+        "step": "Seleziona un KPI",
+        "expected": "Il sistema non procede senza la selezione dei comuni"
+      },
+      {
+        "step": "Tenta di confermare la richiesta",
+        "expected": "Il sistema blocca l’operazione e richiede la selezione dei comuni"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC3",
+    "title": "Benchmarking con KPI non disponibile",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema segnala l’indisponibilità del KPI",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e seleziona due comuni",
+        "expected": "I comuni vengono selezionati"
+      },
+      {
+        "step": "Seleziona un KPI non disponibile per il confronto",
+        "expected": "Il sistema segnala l’indisponibilità del KPI"
+      },
+      {
+        "step": "Tenta di confermare la richiesta",
+        "expected": "L’operazione viene bloccata e viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC4",
+    "title": "Benchmarking con più di cinque comuni selezionati",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema limita la visualizzazione a cinque comuni o richiede una selezione ridotta",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e seleziona più di cinque comuni",
+        "expected": "Il sistema segnala il limite di selezione"
+      },
+      {
+        "step": "Seleziona un KPI",
+        "expected": "Il sistema richiede di ridurre la selezione dei comuni"
+      },
+      {
+        "step": "Tenta di confermare la richiesta",
+        "expected": "Il sistema blocca l’operazione e richiede una nuova selezione"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC5",
+    "title": "Benchmarking con caratteri speciali nel nome del comune",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema gestisce correttamente i caratteri speciali",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e seleziona un comune con caratteri speciali nel nome",
+        "expected": "Il sistema accetta la selezione"
+      },
+      {
+        "step": "Seleziona un KPI",
+        "expected": "Il sistema procede con la generazione del grafico"
+      },
+      {
+        "step": "Conferma la richiesta di benchmarking",
+        "expected": "Il sistema visualizza il grafico correttamente"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC6",
+    "title": "Benchmarking con utente non autorizzato",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema nega l’accesso alla funzione di benchmarking",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard senza autenticazione",
+        "expected": "Il sistema richiede l’autenticazione"
+      },
+      {
+        "step": "Tenta di selezionare comuni e KPI",
+        "expected": "Il sistema blocca l’accesso alle funzioni"
+      },
+      {
+        "step": "Tenta di confermare la richiesta di benchmarking",
+        "expected": "L’operazione viene negata e il sistema richiede l’autenticazione"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC7",
+    "title": "Benchmarking con dati non aggiornati",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema avvisa dell’ultima data di aggiornamento dei dati",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e seleziona comuni e KPI",
+        "expected": "Il sistema visualizza i dati disponibili"
+      },
+      {
+        "step": "Verifica la data dell’ultimo aggiornamento dei dati",
+        "expected": "Il sistema indica chiaramente l’ultima data di aggiornamento"
+      },
+      {
+        "step": "Conferma la richiesta di benchmarking",
+        "expected": "Il sistema visualizza il grafico con i dati disponibili e avvisa dell’eventuale obsolescenza dei dati"
+      }
+    ],
+    "test_type": "Informazione",
+    "priority": "Bassa",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC8",
+    "title": "Benchmarking con selezione di comuni non validi",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema segnala l’errore di selezione dei comuni",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e inserisci nomi di comuni non validi",
+        "expected": "Il sistema segnala l’errore"
+      },
+      {
+        "step": "Seleziona un KPI",
+        "expected": "Il sistema non procede con la generazione del grafico"
+      },
+      {
+        "step": "Tenta di confermare la richiesta",
+        "expected": "L’operazione viene bloccata e il sistema richiede una selezione corretta dei comuni"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.4"
+  }
+]

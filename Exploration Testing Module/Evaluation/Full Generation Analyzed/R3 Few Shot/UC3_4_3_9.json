@@ -1,0 +1,124 @@
+[
+  {
+    "test_case_id": "UC3.4.3.9_TC1",
+    "title": "Modifica dati punto luce con informazioni valide",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il sistema mostra i pannelli elettrici relativi al POD"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato, seleziona il pannello elettrico e poi il punto luce",
+        "expected": "Il sistema visualizza i dati precedenti del punto luce"
+      },
+      {
+        "step": "Compila il form con le informazioni desiderate e applica le modifiche",
+        "expected": "Il sistema mostra un messaggio di conferma dell’operazione andata a buon fine"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.9"
+  },
+  {
+    "test_case_id": "UC3.4.3.9_TC2",
+    "title": "Modifica dati punto luce con informazioni non valide",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il sistema mostra i pannelli elettrici relativi al POD"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato, seleziona il pannello elettrico e poi il punto luce",
+        "expected": "Il sistema visualizza i dati precedenti del punto luce"
+      },
+      {
+        "step": "Compila il form con informazioni non valide (es. campi obbligatori vuoti) e applica le modifiche",
+        "expected": "Il sistema mostra un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.9"
+  },
+  {
+    "test_case_id": "UC3.4.3.9_TC3",
+    "title": "Modifica dati punto luce senza selezionare il POD",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema non permette di procedere",
+    "test_steps": [
+      {
+        "step": "Non selezionare il POD e tenta di accedere ai dati del punto luce",
+        "expected": "Il sistema richiede la selezione del POD"
+      },
+      {
+        "step": "Tenta di compilare il form senza aver selezionato il POD",
+        "expected": "Il sistema non permette di applicare le modifiche"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.9"
+  },
+  {
+    "test_case_id": "UC3.4.3.9_TC4",
+    "title": "Modifica dati punto luce con caratteri speciali nei campi di input",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema gestisce correttamente i caratteri speciali",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD e accedi ai dati del punto luce",
+        "expected": "Il sistema visualizza i dati precedenti"
+      },
+      {
+        "step": "Compila il form con caratteri speciali nei campi di input (es. @, #, $)",
+        "expected": "Il sistema gestisce correttamente i caratteri speciali e applica le modifiche"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.9"
+  },
+  {
+    "test_case_id": "UC3.4.3.9_TC5",
+    "title": "Modifica dati punto luce con campi di input vuoti",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema richiede di compilare i campi obbligatori",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD e accedi ai dati del punto luce",
+        "expected": "Il sistema visualizza i dati precedenti"
+      },
+      {
+        "step": "Lascia vuoti i campi di input obbligatori e applica le modifiche",
+        "expected": "Il sistema richiede di compilare i campi obbligatori"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.9"
+  },
+  {
+    "test_case_id": "UC3.4.3.9_TC6",
+    "title": "Modifica dati punto luce e annullamento delle modifiche",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Le modifiche vengono annullate correttamente",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD e accedi ai dati del punto luce",
+        "expected": "Il sistema visualizza i dati precedenti"
+      },
+      {
+        "step": "Compila il form con nuove informazioni, poi annulla le modifiche",
+        "expected": "Le modifiche vengono annullate e i dati tornano allo stato precedente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.9"
+  }
+]

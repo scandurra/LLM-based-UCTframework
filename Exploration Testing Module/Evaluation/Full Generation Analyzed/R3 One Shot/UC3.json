@@ -1,0 +1,116 @@
+[
+  {
+    "test_case_id": "UC3_TC1",
+    "title": "Accesso alla gestione schede censimento con utente autorizzato",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza la sezione relativa alle schede censimento",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come Regione, Sindaco o Fornitore",
+        "expected": "La dashboard dell’utente viene visualizzata"
+      },
+      {
+        "step": "Seleziona la sezione relativa alle schede censimento dal menù laterale di sinistra",
+        "expected": "La sezione delle schede censimento si apre correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC2",
+    "title": "Accesso alla gestione schede censimento con utente non autorizzato",
+    "preconditions": "UC1",
+    "postconditions": "L’accesso viene negato e viene richiesta l’autenticazione",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente non autorizzato",
+        "expected": "La dashboard dell’utente non viene visualizzata"
+      },
+      {
+        "step": "Tenta di accedere alla sezione delle schede censimento",
+        "expected": "Viene mostrato un messaggio di accesso negato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC3",
+    "title": "Accesso alla gestione schede censimento senza autenticazione",
+    "preconditions": "UC1",
+    "postconditions": "L’accesso viene negato e viene richiesta l’autenticazione",
+    "test_steps": [
+      {
+        "step": "Tenta di accedere direttamente alla sezione delle schede censimento senza login",
+        "expected": "Il sistema reindirizza alla pagina di login"
+      },
+      {
+        "step": "Inserisci credenziali non valide",
+        "expected": "L’accesso viene negato e viene richiesto di riprovare"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC4",
+    "title": "Navigazione nella sezione schede censimento",
+    "preconditions": "UC1",
+    "postconditions": "L’utente può navigare all’interno della sezione",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento",
+        "expected": "La sezione si apre correttamente"
+      },
+      {
+        "step": "Esplora le funzionalità disponibili all’interno della sezione",
+        "expected": "Tutte le funzionalità sono accessibili e funzionano correttamente"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Media",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC5",
+    "title": "Accesso alla gestione schede censimento con browser non supportato",
+    "preconditions": "UC1",
+    "postconditions": "Il sistema visualizza un messaggio di compatibilità",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema utilizzando un browser non supportato",
+        "expected": "Viene visualizzato un messaggio di compatibilità"
+      },
+      {
+        "step": "Tenta di accedere alla sezione delle schede censimento",
+        "expected": "La funzionalità potrebbe essere limitata o non funzionare correttamente"
+      }
+    ],
+    "test_type": "Compatibilità",
+    "priority": "Media",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC6",
+    "title": "Accesso alla gestione schede censimento con dispositivo mobile",
+    "preconditions": "UC1",
+    "postconditions": "L’utente può accedere e utilizzare la sezione",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema utilizzando un dispositivo mobile",
+        "expected": "La dashboard dell’utente si adatta allo schermo del dispositivo"
+      },
+      {
+        "step": "Tenta di accedere alla sezione delle schede censimento",
+        "expected": "La sezione è accessibile e funziona correttamente"
+      }
+    ],
+    "test_type": "Responsività",
+    "priority": "Alta",
+    "use_case_id": "UC3"
+  }
+]

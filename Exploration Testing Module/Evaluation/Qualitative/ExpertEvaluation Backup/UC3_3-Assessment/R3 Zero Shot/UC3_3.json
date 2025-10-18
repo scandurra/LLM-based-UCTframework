@@ -1,0 +1,117 @@
+[
+  {
+    "test_case_id": "UC3.3_TC1",
+    "title": "Caricamento scheda censimento con file valido e formato corretto",
+    "preconditions": "UC3",
+    "postconditions": "L’utente può visualizzare le informazioni corrispondenti alla scheda censimento appena caricata",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di caricamento delle schede censimento",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un file con formato corretto (ad es. CSV, PDF) e nome valido",
+        "expected": "Il file viene selezionato correttamente"
+      },
+      {
+        "step": "Carica il file tramite drag-and-drop o selezione tramite browser",
+        "expected": "Il file viene caricato correttamente e viene mostrata la barra di caricamento"
+      },
+      {
+        "step": "Verifica il messaggio di operazione andata a buon fine",
+        "expected": "Il messaggio di conferma viene visualizzato"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.3"
+  },
+  {
+    "test_case_id": "UC3.3_TC2",
+    "title": "Caricamento scheda censimento con file non valido o formato errato",
+    "preconditions": "UC3",
+    "postconditions": "L’utente riceve un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di caricamento delle schede censimento",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un file con formato non supportato (ad es. ZIP, EXE) o nome non valido",
+        "expected": "Il file non viene selezionato o viene mostrato un messaggio di errore"
+      },
+      {
+        "step": "Tenta di caricare il file tramite drag-and-drop o selezione tramite browser",
+        "expected": "Viene mostrato un messaggio di errore per formato non supportato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.3"
+  },
+  {
+    "test_case_id": "UC3.3_TC3",
+    "title": "Caricamento scheda censimento con file troppo grande",
+    "preconditions": "UC3",
+    "postconditions": "L’utente riceve un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di caricamento delle schede censimento",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un file con dimensioni superiori al limite consentito",
+        "expected": "Il file non viene selezionato o viene mostrato un messaggio di errore"
+      },
+      {
+        "step": "Tenta di caricare il file tramite drag-and-drop o selezione tramite browser",
+        "expected": "Viene mostrato un messaggio di errore per dimensioni del file troppo grandi"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.3"
+  },
+  {
+    "test_case_id": "UC3.3_TC4",
+    "title": "Caricamento scheda censimento senza selezionare un file",
+    "preconditions": "UC3",
+    "postconditions": "L’utente riceve un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di caricamento delle schede censimento",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Tenta di caricare un file senza selezionarne uno",
+        "expected": "Viene mostrato un messaggio di errore per mancanza di file selezionato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.3"
+  },
+  {
+    "test_case_id": "UC3.3_TC5",
+    "title": "Caricamento scheda censimento con nome file troppo lungo",
+    "preconditions": "UC3",
+    "postconditions": "L’utente riceve un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di caricamento delle schede censimento",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un file con nome troppo lungo",
+        "expected": "Il file non viene selezionato o viene mostrato un messaggio di errore"
+      },
+      {
+        "step": "Tenta di caricare il file tramite drag-and-drop o selezione tramite browser",
+        "expected": "Viene mostrato un messaggio di errore per nome file troppo lungo"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.3"
+  }
+]

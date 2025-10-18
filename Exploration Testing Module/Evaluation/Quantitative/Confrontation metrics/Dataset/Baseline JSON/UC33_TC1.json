@@ -1,0 +1,29 @@
+[
+  {
+    "test_case_id": "UC33_TC001",
+    "title": "Caricamento scheda censimento",
+    "preconditions": "Aver compiuto i passaggi fino al UC3",
+    "postconditions": "L’utente può visualizzare le informazioni della scheda di censimento caricata.",
+    "test_steps": [
+      {
+        "step": "L'utente accede alla sezione di caricamento delle schede di censimento.",
+        "expected": "La sezione di caricamento è visibile."
+      },
+      {
+        "step": "L'utente clicca sul pulsante di upload.",
+        "expected": "Si apre una finestra per selezionare i parametri del file."
+      },
+      {
+        "step": "L'utente seleziona i parametri (nome e formato) per il caricamento.",
+        "expected": "I parametri sono impostati correttamente."
+      },
+      {
+        "step": "L'utente carica il file tramite drag-and-drop o selezione tramite browser.",
+        "expected": "Il messaggio di successo conferma che il file è stato caricato."
+      }
+    ],
+    "test_type": "",
+    "priority": "ALTO",
+    "use_case_id": "UC3.3"
+  }
+]

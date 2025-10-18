@@ -1,0 +1,113 @@
+[
+  {
+    "test_case_id": "UC6_TC1",
+    "title": "Logout utente con successo",
+    "preconditions": "UC1",
+    "postconditions": "L’utente è non è più autenticato ed è a conoscenza che l’operazione ha avuto successo",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente registrato",
+        "expected": "La home page del sistema è visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul proprio nome utente in alto a destra",
+        "expected": "Il menu di opzioni utente è visualizzato"
+      },
+      {
+        "step": "Seleziona l’opzione “Logout” dal menu",
+        "expected": "Il sistema richiede conferma per il logout"
+      },
+      {
+        "step": "Conferma il logout",
+        "expected": "Il sistema visualizza un messaggio di operazione completata con successo e l’utente viene reindirizzato alla pagina di login"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC6"
+  },
+  {
+    "test_case_id": "UC6_TC2",
+    "title": "Logout utente senza conferma",
+    "preconditions": "UC1",
+    "postconditions": "L’utente è non è più autenticato ma non viene visualizzato il messaggio di successo",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente registrato",
+        "expected": "La home page del sistema è visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul proprio nome utente in alto a destra",
+        "expected": "Il menu di opzioni utente è visualizzato"
+      },
+      {
+        "step": "Seleziona l’opzione “Logout” dal menu senza confermare",
+        "expected": "Il sistema non esegue il logout e visualizza un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC6"
+  },
+  {
+    "test_case_id": "UC6_TC3",
+    "title": "Logout utente con sessione scaduta",
+    "preconditions": "UC1",
+    "postconditions": "L’utente è non è più autenticato e viene reindirizzato alla pagina di login",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente registrato",
+        "expected": "La home page del sistema è visualizzata correttamente"
+      },
+      {
+        "step": "Lascia la sessione inattiva per un periodo di tempo superiore al timeout",
+        "expected": "Il sistema scade la sessione e reindirizza l’utente alla pagina di login"
+      },
+      {
+        "step": "Tenta di eseguire il logout",
+        "expected": "Il sistema visualizza un messaggio di errore e richiede di accedere nuovamente"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC6"
+  },
+  {
+    "test_case_id": "UC6_TC4",
+    "title": "Logout utente con più sessioni aperte",
+    "preconditions": "UC1",
+    "postconditions": "L’utente è non è più autenticato su tutte le sessioni",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente registrato su più dispositivi o browser",
+        "expected": "La home page del sistema è visualizzata correttamente su tutti i dispositivi"
+      },
+      {
+        "step": "Esegui il logout su uno dei dispositivi",
+        "expected": "Il sistema scade la sessione e reindirizza l’utente alla pagina di login su tutti i dispositivi"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC6"
+  },
+  {
+    "test_case_id": "UC6_TC5",
+    "title": "Logout utente con dati di sessione non validi",
+    "preconditions": "UC1",
+    "postconditions": "L’utente è non è più autenticato e viene visualizzato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente registrato con dati di sessione non validi",
+        "expected": "Il sistema richiede di accedere nuovamente"
+      },
+      {
+        "step": "Tenta di eseguire il logout",
+        "expected": "Il sistema visualizza un messaggio di errore e richiede di accedere nuovamente"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC6"
+  }
+]

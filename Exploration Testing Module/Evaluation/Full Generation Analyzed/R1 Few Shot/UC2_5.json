@@ -1,0 +1,117 @@
+[
+  {
+    "test_case_id": "UC2.5_TC1",
+    "title": "Visualizzazione grafici con dati validi",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza le informazioni consultando i grafici",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard",
+        "expected": "La dashboard viene visualizzata correttamente"
+      },
+      {
+        "step": "Scorri nella pagina fino a raggiungere la sezione dei grafici",
+        "expected": "I grafici vengono visualizzati correttamente"
+      },
+      {
+        "step": "Seleziona un tipo di grafico (es. comuni aderenti per regione)",
+        "expected": "Il grafico selezionato viene visualizzato con dati aggiornati"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC2",
+    "title": "Visualizzazione grafici senza dati",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema visualizza un messaggio di assenza di dati",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard",
+        "expected": "La dashboard viene visualizzata correttamente"
+      },
+      {
+        "step": "Scorri nella pagina fino a raggiungere la sezione dei grafici",
+        "expected": "I grafici vengono visualizzati ma senza dati"
+      },
+      {
+        "step": "Verifica il messaggio di assenza di dati",
+        "expected": "Il sistema mostra un messaggio chiaro sull’assenza di dati"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC3",
+    "title": "Interazione con i grafici",
+    "preconditions": "UC2",
+    "postconditions": "L’utente può interagire con i grafici per visualizzare informazioni dettagliate",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e scorri fino ai grafici",
+        "expected": "I grafici sono visibili"
+      },
+      {
+        "step": "Seleziona un elemento all’interno di un grafico (es. una regione)",
+        "expected": "Vengono visualizzate informazioni dettagliate sull’elemento selezionato"
+      },
+      {
+        "step": "Utilizza le funzioni di zoom e pan per esplorare il grafico",
+        "expected": "Il grafico risponde correttamente alle azioni dell’utente"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Alta",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC4",
+    "title": "Visualizzazione su dispositivi mobili",
+    "preconditions": "UC2",
+    "postconditions": "I grafici sono visualizzabili e interattivi anche su dispositivi mobili",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard da un dispositivo mobile",
+        "expected": "La dashboard è accessibile e i grafici sono visibili"
+      },
+      {
+        "step": "Scorri fino ai grafici e seleziona uno di essi",
+        "expected": "Il grafico si adatta correttamente allo schermo del dispositivo mobile"
+      },
+      {
+        "step": "Interagisci con il grafico utilizzando touch screen",
+        "expected": "Le funzioni di interazione sono disponibili e funzionano correttamente"
+      }
+    ],
+    "test_type": "Compatibilità",
+    "priority": "Alta",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC5",
+    "title": "Boundary test: selezione di più grafici contemporaneamente",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema gestisce la visualizzazione di più grafici senza problemi",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e scorri fino ai grafici",
+        "expected": "I grafici sono visibili"
+      },
+      {
+        "step": "Seleziona più grafici contemporaneamente",
+        "expected": "Il sistema visualizza tutti i grafici selezionati senza errori"
+      },
+      {
+        "step": "Verifica che le informazioni siano coerenti e aggiornate",
+        "expected": "Tutti i grafici mostrano dati corretti e aggiornati"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Media",
+    "use_case_id": "UC2.5"
+  }
+]

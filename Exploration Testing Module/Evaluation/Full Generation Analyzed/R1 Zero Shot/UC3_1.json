@@ -1,0 +1,117 @@
+[
+  {
+    "test_case_id": "UC3.1_TC1",
+    "title": "Visualizzazione schede censimento con dati validi e paginazione",
+    "preconditions": "UC3",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di visualizzazione schede censimento",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona il numero di righe da visualizzare per paginazione",
+        "expected": "Il sistema mostra le righe selezionate"
+      },
+      {
+        "step": "Scorri lateralmente per visualizzare tutte le colonne",
+        "expected": "Tutte le colonne sono visualizzate correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC2",
+    "title": "Visualizzazione schede censimento con ordinamento per colonna",
+    "preconditions": "UC3",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di visualizzazione schede censimento",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul nome di una colonna per ordinare i dati",
+        "expected": "I dati sono ordinati correttamente"
+      },
+      {
+        "step": "Verifica che l’ordinamento sia mantenuto anche dopo il cambio di paginazione",
+        "expected": "L’ordinamento è mantenuto"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC3",
+    "title": "Visualizzazione schede censimento con nessun dato",
+    "preconditions": "UC3",
+    "postconditions": "L’utente visualizza un messaggio di avviso per l’assenza di dati",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di visualizzazione schede censimento",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Verifica che non ci siano dati da visualizzare",
+        "expected": "Il sistema mostra un messaggio di avviso"
+      },
+      {
+        "step": "Verifica che il messaggio di avviso sia chiaro e comprensibile",
+        "expected": "Il messaggio è chiaro e comprensibile"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC4",
+    "title": "Visualizzazione schede censimento con dati non validi",
+    "preconditions": "UC3",
+    "postconditions": "L’utente visualizza un messaggio di errore per i dati non validi",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di visualizzazione schede censimento",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci dati non validi nella ricerca",
+        "expected": "Il sistema mostra un messaggio di errore"
+      },
+      {
+        "step": "Verifica che il messaggio di errore sia chiaro e comprensibile",
+        "expected": "Il messaggio è chiaro e comprensibile"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC5",
+    "title": "Visualizzazione schede censimento con utente non autorizzato",
+    "preconditions": "UC3",
+    "postconditions": "L’utente visualizza un messaggio di accesso negato",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di visualizzazione schede censimento con un utente non autorizzato",
+        "expected": "Il sistema mostra un messaggio di accesso negato"
+      },
+      {
+        "step": "Verifica che il messaggio di accesso negato sia chiaro e comprensibile",
+        "expected": "Il messaggio è chiaro e comprensibile"
+      },
+      {
+        "step": "Verifica che l’utente non possa visualizzare i dati",
+        "expected": "L’utente non può visualizzare i dati"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC3.1"
+  }
+]

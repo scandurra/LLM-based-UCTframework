@@ -1,0 +1,29 @@
+[
+  {
+    "test_case_id": "UC24_TC1",
+    "title": "Esecuzione corretta di Benchmarking KPI per comune",
+    "preconditions": "L'utente deve essere autenticato nel sistema; Il sistema deve avere accesso ai dati KPI dei comuni; L'utente deve avere i permessi per accedere alla funzionalità di benchmarking",
+    "postconditions": "I KPI vengono visualizzati correttamente in formato tabellare; Il sistema genera il report di benchmarking; I dati sono aggiornati e coerenti",
+    "test_steps": [
+      {
+        "step": "Accedere alla sezione di benchmarking KPI dal menu principale",
+        "expected": "La sezione viene caricata correttamente mostrando l'interfaccia di selezione"
+      },
+      {
+        "step": "Selezionare i comuni target per l'analisi dai filtri disponibili",
+        "expected": "I comuni vengono selezionati e visualizzati nella lista di selezione"
+      },
+      {
+        "step": "Configurare i parametri KPI da analizzare",
+        "expected": "I parametri vengono impostati correttamente"
+      },
+      {
+        "step": "Avviare l'analisi dei KPI cliccando sul pulsante 'Genera Report'",
+        "expected": "L'analisi viene eseguita e i risultati sono mostrati in formato leggibile"
+      }
+    ],
+    "test_type": "",
+    "priority": "MEDIO",
+    "use_case_id": "UC24"
+  }
+]

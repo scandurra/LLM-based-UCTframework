@@ -1,0 +1,21 @@
+[
+  {
+    "test_case_id": "UC3.4_TC1",
+    "title": "Visualizzazione palette azioni con utente autorizzato",
+    "preconditions": "UC3",
+    "postconditions": "La palette di azioni viene visualizzata correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento come utente autorizzato",
+        "expected": "Le schede vengono visualizzate"
+      },
+      {
+        "step": "Clicca sul tasto azioni per una specifica scheda",
+        "expected": "La palette di azioni appare"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4"
+  }
+]

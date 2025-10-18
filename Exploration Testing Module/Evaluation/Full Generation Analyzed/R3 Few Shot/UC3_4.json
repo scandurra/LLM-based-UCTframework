@@ -1,0 +1,97 @@
+[
+  {
+    "test_case_id": "UC3.4_TC1",
+    "title": "Visualizzazione azioni sulla scheda censimento con utente autorizzato",
+    "preconditions": "UC3",
+    "postconditions": "La palette di operazioni viene visualizzata correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento come utente autorizzato",
+        "expected": "Le schede vengono visualizzate"
+      },
+      {
+        "step": "Clicca sul tasto azioni per una scheda specifica",
+        "expected": "La palette di operazioni appare"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC2",
+    "title": "Tentativo di visualizzazione azioni senza autorizzazione",
+    "preconditions": "UC3",
+    "postconditions": "La palette di operazioni non viene visualizzata",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento come utente non autorizzato",
+        "expected": "Le schede vengono visualizzate ma senza opzioni"
+      },
+      {
+        "step": "Tenta di cliccare sul tasto azioni per una scheda specifica",
+        "expected": "La palette di operazioni non appare o viene negata"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC3",
+    "title": "Selezione di più schede per azioni multiple",
+    "preconditions": "UC3",
+    "postconditions": "Le azioni vengono applicate correttamente a tutte le schede selezionate",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento come utente autorizzato",
+        "expected": "Le schede vengono visualizzate"
+      },
+      {
+        "step": "Seleziona più schede e clicca sul tasto azioni",
+        "expected": "La palette di operazioni appare con opzioni per tutte le schede selezionate"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC4",
+    "title": "Azioni su scheda censimento con dati incompleti",
+    "preconditions": "UC3",
+    "postconditions": "Le azioni non vengono applicate o richiedono completamento dei dati",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento come utente autorizzato",
+        "expected": "Le schede vengono visualizzate"
+      },
+      {
+        "step": "Seleziona una scheda con dati incompleti e clicca sul tasto azioni",
+        "expected": "Il sistema richiede il completamento dei dati o non applica le azioni"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC5",
+    "title": "Test di usabilità: navigazione e selezione delle azioni",
+    "preconditions": "UC3",
+    "postconditions": "Le azioni vengono eseguite in modo intuitivo e senza errori",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento come utente autorizzato",
+        "expected": "Le schede vengono visualizzate in modo chiaro"
+      },
+      {
+        "step": "Naviga tra le varie opzioni e seleziona azioni per una scheda",
+        "expected": "Il sistema risponde prontamente e senza errori di navigazione"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Alta",
+    "use_case_id": "UC3.4"
+  }
+]

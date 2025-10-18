@@ -1,0 +1,113 @@
+[
+  {
+    "test_case_id": "UC3.4.3_TC1",
+    "title": "Modifica scheda censimento con dati validi",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente visualizza le informazioni della scheda in fase di edit",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di modifica scheda censimento",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona l’operazione di modifica",
+        "expected": "L’utente può modificare i dati della scheda"
+      },
+      {
+        "step": "Inserisci i nuovi dati e salva le modifiche",
+        "expected": "I dati vengono aggiornati correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3"
+  },
+  {
+    "test_case_id": "UC3.4.3_TC2",
+    "title": "Modifica scheda censimento con dati non validi",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente visualizza le informazioni della scheda in fase di edit",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di modifica scheda censimento",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona l’operazione di modifica",
+        "expected": "L’utente può modificare i dati della scheda"
+      },
+      {
+        "step": "Inserisci dati non validi e salva le modifiche",
+        "expected": "Il sistema segnala un errore e non salva le modifiche"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3"
+  },
+  {
+    "test_case_id": "UC3.4.3_TC3",
+    "title": "Modifica scheda censimento senza autorizzazione",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente visualizza le informazioni della scheda in fase di edit",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di modifica scheda censimento senza autorizzazione",
+        "expected": "Il sistema nega l’accesso"
+      },
+      {
+        "step": "Tenta di selezionare l’operazione di modifica",
+        "expected": "Il sistema segnala un errore di autorizzazione"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3"
+  },
+  {
+    "test_case_id": "UC3.4.3_TC4",
+    "title": "Modifica scheda censimento con campi obbligatori vuoti",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente visualizza le informazioni della scheda in fase di edit",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di modifica scheda censimento",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona l’operazione di modifica",
+        "expected": "L’utente può modificare i dati della scheda"
+      },
+      {
+        "step": "Lascia vuoti i campi obbligatori e salva le modifiche",
+        "expected": "Il sistema segnala un errore e non salva le modifiche"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3"
+  },
+  {
+    "test_case_id": "UC3.4.3_TC5",
+    "title": "Modifica scheda censimento con dati troppo lunghi",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente visualizza le informazioni della scheda in fase di edit",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di modifica scheda censimento",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona l’operazione di modifica",
+        "expected": "L’utente può modificare i dati della scheda"
+      },
+      {
+        "step": "Inserisci dati troppo lunghi e salva le modifiche",
+        "expected": "Il sistema segnala un errore e non salva le modifiche"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3"
+  }
+]

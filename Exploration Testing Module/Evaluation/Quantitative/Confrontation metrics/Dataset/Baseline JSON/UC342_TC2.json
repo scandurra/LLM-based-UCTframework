@@ -1,0 +1,21 @@
+[
+  {
+    "test_case_id": "UC342_TC002",
+    "title": "Elimina scheda censimento - annullamento l’eliminazione",
+    "preconditions": "Aver compiuto i passaggi fino al UC3",
+    "postconditions": "Utente annulla l'operazione di eliminazione della scheda di censimento.",
+    "test_steps": [
+      {
+        "step": "L'utente cerca la scheda di censimento inserendo i parametri di ricerca.",
+        "expected": "L'utente visualizza i record relativi alla sua ricerca."
+      },
+      {
+        "step": "Utente ha cliccato su \"No, torna\" e poi su \"Ok, vai alla tabella!\"",
+        "expected": "Operazione di ritorno è stata effettuata con successo."
+      }
+    ],
+    "test_type": "",
+    "priority": "ALTO",
+    "use_case_id": "UC342"
+  }
+]

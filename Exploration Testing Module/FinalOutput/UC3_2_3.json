@@ -6,16 +6,16 @@
     "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
     "test_steps": [
       {
-        "step": "Inserisci un tipo di scheda censimento valido",
-        "expected": "Il campo viene accettato"
+        "step": "Inserisci il tipo di scheda censimento nella maschera di ricerca",
+        "expected": "Il sistema accetta i parametri"
       },
       {
         "step": "Conferma la ricerca",
-        "expected": "La ricerca viene avviata correttamente"
+        "expected": "Il sistema avvia la ricerca"
       },
       {
         "step": "Visualizza il risultato della ricerca",
-        "expected": "Le informazioni vengono visualizzate correttamente"
+        "expected": "Le informazioni corrispondenti vengono visualizzate correttamente"
       }
     ],
     "test_type": "Positivo",
@@ -24,17 +24,17 @@
   },
   {
     "test_case_id": "UC3.2.3_TC2",
-    "title": "Ricerca scheda censimento senza inserire tipo",
+    "title": "Ricerca scheda censimento senza parametri di ricerca",
     "preconditions": "UC3.2",
-    "postconditions": "Il sistema segnala un errore per mancanza di parametri",
+    "postconditions": "Il sistema segnala l’assenza di parametri di ricerca",
     "test_steps": [
       {
-        "step": "Lascia vuoto il campo del tipo",
-        "expected": "Il sistema segnala la mancanza di informazioni"
+        "step": "Lascia vuoto il campo del tipo di scheda censimento",
+        "expected": "Il sistema richiede l’inserimento dei parametri"
       },
       {
-        "step": "Tenta di confermare la ricerca",
-        "expected": "La ricerca non viene avviata e compare un messaggio di errore"
+        "step": "Tenta di confermare la ricerca senza parametri",
+        "expected": "Il sistema blocca l’operazione e visualizza un messaggio di errore"
       }
     ],
     "test_type": "Negativo",
@@ -49,15 +49,15 @@
     "test_steps": [
       {
         "step": "Inserisci un tipo di scheda censimento non esistente",
-        "expected": "Il campo viene accettato"
+        "expected": "Il sistema accetta i parametri"
       },
       {
         "step": "Conferma la ricerca",
-        "expected": "La ricerca viene avviata ma non trova risultati"
+        "expected": "Il sistema avvia la ricerca"
       },
       {
-        "step": "Visualizza il messaggio di nessun risultato trovato",
-        "expected": "Il messaggio viene visualizzato correttamente"
+        "step": "Visualizza il risultato della ricerca",
+        "expected": "Viene visualizzato un messaggio che indica l’assenza di risultati"
       }
     ],
     "test_type": "Negativo",
@@ -66,48 +66,48 @@
   },
   {
     "test_case_id": "UC3.2.3_TC4",
-    "title": "Ricerca scheda censimento con caratteri speciali nel tipo",
+    "title": "Boundary test: ricerca con tipo di lunghezza massima consentita",
     "preconditions": "UC3.2",
-    "postconditions": "Il sistema gestisce correttamente i caratteri speciali",
+    "postconditions": "Il sistema accetta il parametro e visualizza i risultati",
     "test_steps": [
       {
-        "step": "Inserisci un tipo di scheda censimento con caratteri speciali (es. @,#,$)",
-        "expected": "Il campo viene accettato"
+        "step": "Inserisci un tipo di scheda censimento con la lunghezza massima consentita",
+        "expected": "Il sistema accetta il parametro"
       },
       {
         "step": "Conferma la ricerca",
-        "expected": "La ricerca viene avviata correttamente"
+        "expected": "Il sistema avvia la ricerca"
       },
       {
         "step": "Visualizza il risultato della ricerca",
-        "expected": "Le informazioni vengono visualizzate correttamente o un messaggio di nessun risultato trovato se non esistente"
+        "expected": "I risultati vengono visualizzati correttamente"
       }
     ],
-    "test_type": "Edge",
-    "priority": "Bassa",
+    "test_type": "Boundary",
+    "priority": "Alta",
     "use_case_id": "UC3.2.3"
   },
   {
     "test_case_id": "UC3.2.3_TC5",
-    "title": "Ricerca scheda censimento con lunghezza massima del tipo",
+    "title": "Edge case: ricerca con caratteri speciali nel tipo",
     "preconditions": "UC3.2",
-    "postconditions": "Il sistema gestisce correttamente la lunghezza massima",
+    "postconditions": "Il sistema gestisce correttamente i caratteri speciali",
     "test_steps": [
       {
-        "step": "Inserisci un tipo di scheda censimento con la lunghezza massima consentita",
-        "expected": "Il campo viene accettato"
+        "step": "Inserisci un tipo di scheda censimento contenente caratteri speciali",
+        "expected": "Il sistema accetta il parametro"
       },
       {
         "step": "Conferma la ricerca",
-        "expected": "La ricerca viene avviata correttamente"
+        "expected": "Il sistema avvia la ricerca"
       },
       {
         "step": "Visualizza il risultato della ricerca",
-        "expected": "Le informazioni vengono visualizzate correttamente o un messaggio di nessun risultato trovato se non esistente"
+        "expected": "I risultati vengono visualizzati correttamente, considerando i caratteri speciali"
       }
     ],
-    "test_type": "Boundary",
-    "priority": "Bassa",
+    "test_type": "Edge",
+    "priority": "Media",
     "use_case_id": "UC3.2.3"
   }
 ]

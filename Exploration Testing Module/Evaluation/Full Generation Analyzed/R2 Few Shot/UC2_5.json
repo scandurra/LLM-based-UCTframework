@@ -1,0 +1,117 @@
+[
+  {
+    "test_case_id": "UC2.5_TC1",
+    "title": "Visualizzazione grafici con dati validi",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza le informazioni consultando i grafici",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard",
+        "expected": "La pagina della dashboard viene caricata correttamente"
+      },
+      {
+        "step": "Scorri nella pagina fino a raggiungere la sezione dei grafici",
+        "expected": "I grafici vengono visualizzati correttamente"
+      },
+      {
+        "step": "Osserva i grafici sui comuni aderenti per regione, punti luce per regione e distribuzione punti luce per tipo apparecchio",
+        "expected": "I dati nei grafici sono coerenti e facili da leggere"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC2",
+    "title": "Zoom e interazione con i grafici",
+    "preconditions": "UC2",
+    "postconditions": "L’utente può interagire con i grafici in modo efficace",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e scorri fino ai grafici",
+        "expected": "I grafici sono visibili"
+      },
+      {
+        "step": "Clicca su un grafico per ingrandirlo o ridurlo",
+        "expected": "Il grafico si adatta correttamente alle dimensioni della finestra"
+      },
+      {
+        "step": "Passa il mouse sui dati dei grafici per visualizzare informazioni aggiuntive",
+        "expected": "Le informazioni aggiuntive vengono visualizzate in modo chiaro e utile"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Media",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC3",
+    "title": "Visualizzazione su dispositivi mobili",
+    "preconditions": "UC2",
+    "postconditions": "I grafici sono visibili e utilizzabili anche su dispositivi mobili",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard da un dispositivo mobile",
+        "expected": "La pagina si adatta alle dimensioni dello schermo del dispositivo"
+      },
+      {
+        "step": "Scorri fino ai grafici",
+        "expected": "I grafici sono visibili e ben formattati per il dispositivo mobile"
+      },
+      {
+        "step": "Interagisci con i grafici utilizzando touch screen",
+        "expected": "L’interazione è fluida e risponde correttamente ai comandi"
+      }
+    ],
+    "test_type": "Compatibilità",
+    "priority": "Alta",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC4",
+    "title": "Assenza di dati nei grafici",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema gestisce correttamente la mancanza di dati",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard in un periodo senza dati disponibili per i grafici",
+        "expected": "I grafici sono visualizzati ma indicano l’assenza di dati"
+      },
+      {
+        "step": "Verifica che non ci siano errori di visualizzazione o messaggi di errore",
+        "expected": "La pagina rimane stabile e non mostra messaggi di errore"
+      },
+      {
+        "step": "Controlla se sono presenti indicazioni sulla data di aggiornamento dei dati",
+        "expected": "Sono presenti informazioni utili sull’aggiornamento dei dati"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC5",
+    "title": "Boundary test: visualizzazione con diversi livelli di autorizzazione",
+    "preconditions": "UC2",
+    "postconditions": "L’accesso ai grafici è limitato in base all’autorizzazione dell’utente",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard con un account utente con livello di autorizzazione basso",
+        "expected": "Alcuni grafici o funzionalità potrebbero essere nascosti o disabilitati"
+      },
+      {
+        "step": "Tenta di accedere a sezioni riservate",
+        "expected": "L’accesso è negato e viene visualizzato un messaggio di autorizzazione insufficiente"
+      },
+      {
+        "step": "Ripeti i passaggi con account utente di livello più alto",
+        "expected": "Tutti i grafici e funzionalità sono accessibili"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Alta",
+    "use_case_id": "UC2.5"
+  }
+]

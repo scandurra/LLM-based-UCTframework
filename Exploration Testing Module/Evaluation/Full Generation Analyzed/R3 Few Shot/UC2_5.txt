@@ -1,0 +1,94 @@
+[
+  {
+    "test_case_id": "UC2.5_TC1",
+    "title": "Visualizzazione grafici con dati validi e completo",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza le informazioni consultando i grafici",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard della piattaforma",
+        "expected": "La dashboard viene visualizzata correttamente"
+      },
+      {
+        "step": "Scorri nella pagina fino a raggiungere le sezioni dei grafici",
+        "expected": "I grafici vengono visualizzati correttamente"
+      },
+      {
+        "step": "Osserva i dettagli dei grafici sui comuni aderenti per regione, punti luce per regione e distribuzione punti luce per tipo apparecchio",
+        "expected": "I dati sono coerenti e facilmente leggibili"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC2",
+    "title": "Visualizzazione grafici con zoom e ingrandimento",
+    "preconditions": "UC2",
+    "postconditions": "L’utente può visualizzare i dettagli dei grafici",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard della piattaforma",
+        "expected": "La dashboard viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un grafico e applica lo zoom",
+        "expected": "Il grafico si ingrandisce mantenendo la leggibilità"
+      },
+      {
+        "step": "Controlla la leggibilità dei dati nel grafico ingrandito",
+        "expected": "I dati rimangono chiari e ben visibili"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC3",
+    "title": "Visualizzazione grafici su dispositivi mobili",
+    "preconditions": "UC2",
+    "postconditions": "L’utente può visualizzare i grafici anche su dispositivo mobile",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard della piattaforma da un dispositivo mobile",
+        "expected": "La dashboard si adatta correttamente allo schermo del dispositivo"
+      },
+      {
+        "step": "Scorri nella pagina fino a raggiungere le sezioni dei grafici",
+        "expected": "I grafici sono visibili e leggibili anche sullo schermo mobile"
+      },
+      {
+        "step": "Verifica la navigazione e l’interazione con i grafici sul dispositivo mobile",
+        "expected": "La navigazione è agevole e i grafici sono facilmente visualizzabili"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Alta",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC4",
+    "title": "Visualizzazione grafici con dati parziali o mancanti",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di avviso per i dati mancanti",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard della piattaforma con dati parziali o mancanti",
+        "expected": "La dashboard segnala la presenza di dati incompleti"
+      },
+      {
+        "step": "Scorri nella pagina fino a raggiungere le sezioni dei grafici",
+        "expected": "I grafici mostrano un messaggio di avviso per i dati mancanti"
+      },
+      {
+        "step": "Verifica che il messaggio di avviso sia chiaro e utile per l’utente",
+        "expected": "Il messaggio è comprensibile e fornisce indicazioni utili"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.5"
+  },
+]

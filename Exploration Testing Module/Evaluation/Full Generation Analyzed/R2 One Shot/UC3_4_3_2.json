@@ -1,0 +1,178 @@
+[
+  {
+    "test_case_id": "UC3.4.3.2_TC1",
+    "title": "Modifica dati generali con informazioni valide",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Compila il form con informazioni desiderate e valide",
+        "expected": "Il sistema accetta le modifiche"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Viene visualizzato un messaggio di conferma dell’operazione"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.2"
+  },
+  {
+    "test_case_id": "UC3.4.3.2_TC2",
+    "title": "Modifica dati generali con informazioni non valide",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Compila il form con informazioni non valide (es. campo obbligatorio vuoto)",
+        "expected": "Il sistema segnala l’errore"
+      },
+      {
+        "step": "Tenta di applicare le modifiche",
+        "expected": "Viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.2"
+  },
+  {
+    "test_case_id": "UC3.4.3.2_TC3",
+    "title": "Modifica dati generali senza autorizzazione",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’accesso alla modifica è negato",
+    "test_steps": [
+      {
+        "step": "Tenta di accedere alla sezione relativa ai dati dell’area senza essere loggato o con ruolo non autorizzato",
+        "expected": "Il sistema richiede l’autenticazione o mostra un messaggio di accesso negato"
+      },
+      {
+        "step": "Tenta comunque di modificare i dati",
+        "expected": "L’operazione è bloccata e viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.2"
+  },
+  {
+    "test_case_id": "UC3.4.3.2_TC4",
+    "title": "Modifica dati generali con campi obbligatori vuoti",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Lascia vuoti i campi obbligatori e compila gli altri",
+        "expected": "Il sistema segnala l’errore dei campi mancanti"
+      },
+      {
+        "step": "Tenta di applicare le modifiche",
+        "expected": "Viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.2"
+  },
+  {
+    "test_case_id": "UC3.4.3.2_TC5",
+    "title": "Modifica dati generali con caratteri speciali",
+    "preconditions": "UC3.4.3",
+    "postconditions": "I dati vengono salvati correttamente o il sistema gestisce i caratteri speciali",
+    "test_steps": [
+      {
+        "step": "Entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci caratteri speciali nei campi di testo (es. @, #, $)",
+        "expected": "Il sistema accetta o normalizza i caratteri"
+      },
+      {
+        "step": "Applica le modifiche",
+        "expected": "I dati vengono salvati senza errori"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.2"
+  },
+  {
+    "test_case_id": "UC3.4.3.2_TC6",
+    "title": "Modifica dati generali e annullamento delle modifiche",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Le modifiche vengono annullate e i dati tornano allo stato precedente",
+    "test_steps": [
+      {
+        "step": "Entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Apporta delle modifiche ai dati",
+        "expected": "Le modifiche sono visibili nel form"
+      },
+      {
+        "step": "Annulla le modifiche utilizzando l’apposito tasto",
+        "expected": "I dati tornano allo stato precedente e non ci sono errori"
+      }
+    ],
+    "test_type": "Funzionalità",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.2"
+  },
+  {
+    "test_case_id": "UC3.4.3.2_TC7",
+    "title": "Modifica dati generali con lunghe stringhe di testo",
+    "preconditions": "UC3.4.3",
+    "postconditions": "I dati vengono salvati correttamente senza troncamenti",
+    "test_steps": [
+      {
+        "step": "Entra nella sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci lunghe stringhe di testo nei campi di testo",
+        "expected": "Il sistema accetta le stringhe senza troncarle"
+      },
+      {
+        "step": "Applica le modifiche",
+        "expected": "I dati vengono salvati integralmente"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.2"
+  },
+  {
+    "test_case_id": "UC3.4.3.2_TC8",
+    "title": "Modifica dati generali in concomitanza con altre azioni",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Le modifiche vengono applicate correttamente senza conflitti",
+    "test_steps": [
+      {
+        "step": "Esegui altre azioni contemporaneamente alla modifica dei dati generali (es. aggiornamento di altri campi)",
+        "expected": "Il sistema gestisce le operazioni senza errori"
+      },
+      {
+        "step": "Applica le modifiche",
+        "expected": "Tutte le operazioni vengono eseguite correttamente"
+      }
+    ],
+    "test_type": "Integrazione",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.2"
+  }
+]

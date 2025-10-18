@@ -1,0 +1,117 @@
+[
+  {
+    "test_case_id": "UC4_TC1",
+    "title": "Apertura modulo SAVE con utente autorizzato",
+    "preconditions": "UC1",
+    "postconditions": "Il modulo SAVE è visualizzato correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione del menù laterale di sinistra relativa al modulo SAVE",
+        "expected": "La sezione del modulo SAVE è visualizzata"
+      },
+      {
+        "step": "Seleziona l’opzione per aprire il modulo SAVE",
+        "expected": "Il modulo SAVE si apre correttamente"
+      },
+      {
+        "step": "Verifica la presenza di tutti gli elementi del modulo SAVE",
+        "expected": "Tutti gli elementi del modulo SAVE sono presenti e visualizzati correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC4"
+  },
+  {
+    "test_case_id": "UC4_TC2",
+    "title": "Apertura modulo SAVE con utente non autorizzato",
+    "preconditions": "",
+    "postconditions": "Il sistema visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione del menù laterale di sinistra relativa al modulo SAVE senza essere loggato",
+        "expected": "Il sistema richiede l’autenticazione"
+      },
+      {
+        "step": "Inserisci credenziali non valide per accedere al modulo SAVE",
+        "expected": "Il sistema visualizza un messaggio di errore di autenticazione"
+      },
+      {
+        "step": "Verifica che il modulo SAVE non sia accessibile",
+        "expected": "Il modulo SAVE non è accessibile e il sistema visualizza un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC4"
+  },
+  {
+    "test_case_id": "UC4_TC3",
+    "title": "Apertura modulo SAVE con dati mancanti",
+    "preconditions": "UC1",
+    "postconditions": "Il sistema visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione del menù laterale di sinistra relativa al modulo SAVE",
+        "expected": "La sezione del modulo SAVE è visualizzata"
+      },
+      {
+        "step": "Seleziona l’opzione per aprire il modulo SAVE senza avere i dati necessari",
+        "expected": "Il sistema richiede i dati mancanti"
+      },
+      {
+        "step": "Verifica che il modulo SAVE non sia accessibile senza i dati necessari",
+        "expected": "Il modulo SAVE non è accessibile e il sistema visualizza un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC4"
+  },
+  {
+    "test_case_id": "UC4_TC4",
+    "title": "Apertura modulo SAVE con SQL injection",
+    "preconditions": "",
+    "postconditions": "Il sistema visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione del menù laterale di sinistra relativa al modulo SAVE",
+        "expected": "La sezione del modulo SAVE è visualizzata"
+      },
+      {
+        "step": "Inserisci una query SQL malevola per tentare di accedere al modulo SAVE",
+        "expected": "Il sistema rileva la query SQL malevola e visualizza un messaggio di errore"
+      },
+      {
+        "step": "Verifica che il modulo SAVE non sia accessibile con query SQL malevole",
+        "expected": "Il modulo SAVE non è accessibile e il sistema visualizza un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC4"
+  },
+  {
+    "test_case_id": "UC4_TC5",
+    "title": "Apertura modulo SAVE con dati non validi",
+    "preconditions": "UC1",
+    "postconditions": "Il sistema visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione del menù laterale di sinistra relativa al modulo SAVE",
+        "expected": "La sezione del modulo SAVE è visualizzata"
+      },
+      {
+        "step": "Inserisci dati non validi per accedere al modulo SAVE",
+        "expected": "Il sistema rileva i dati non validi e visualizza un messaggio di errore"
+      },
+      {
+        "step": "Verifica che il modulo SAVE non sia accessibile con dati non validi",
+        "expected": "Il modulo SAVE non è accessibile e il sistema visualizza un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC4"
+  }
+]

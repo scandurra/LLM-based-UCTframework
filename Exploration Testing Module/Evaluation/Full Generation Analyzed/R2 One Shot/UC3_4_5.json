@@ -1,0 +1,186 @@
+[
+  {
+    "test_case_id": "UC3.4.5_TC1",
+    "title": "Visualizzazione dettaglio scheda censimento con dati validi",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente visualizza le informazioni relative alla scheda censimento",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione delle schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona l’operazione di dettaglio su una scheda esistente",
+        "expected": "Viene visualizzata la pagina di dettaglio della scheda"
+      },
+      {
+        "step": "Verifica la presenza e la correttezza dei dati generali dell’area",
+        "expected": "I dati sono presenti e corretti"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.5"
+  },
+  {
+    "test_case_id": "UC3.4.5_TC2",
+    "title": "Tentativo di modifica dei dati nella pagina di dettaglio",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema non permette la modifica",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione delle schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona l’operazione di dettaglio su una scheda esistente",
+        "expected": "Viene visualizzata la pagina di dettaglio della scheda"
+      },
+      {
+        "step": "Tenta di modificare i dati visualizzati",
+        "expected": "Il sistema non permette la modifica e mostra un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.5"
+  },
+  {
+    "test_case_id": "UC3.4.5_TC3",
+    "title": "Navigazione nella gerarchia dei POD e Aree Omogenee",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente può navigare correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione delle schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona l’operazione di dettaglio su una scheda esistente",
+        "expected": "Viene visualizzata la pagina di dettaglio della scheda"
+      },
+      {
+        "step": "Naviga nella gerarchia dei POD e Aree Omogenee",
+        "expected": "La navigazione avviene correttamente senza errori"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.5"
+  },
+  {
+    "test_case_id": "UC3.4.5_TC4",
+    "title": "Visualizzazione dettaglio scheda censimento senza dati",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema gestisce la mancanza di dati",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione delle schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona l’operazione di dettaglio su una scheda senza dati",
+        "expected": "Il sistema mostra un messaggio che indica la mancanza di dati"
+      },
+      {
+        "step": "Verifica la presenza di un messaggio informativo",
+        "expected": "Un messaggio chiaro informa l’utente sulla mancanza di dati"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.5"
+  },
+  {
+    "test_case_id": "UC3.4.5_TC5",
+    "title": "Accesso alla pagina di dettaglio senza autorizzazione",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema nega l’accesso",
+    "test_steps": [
+      {
+        "step": "Tenta di accedere alla sezione di gestione delle schede censimento senza login",
+        "expected": "Il sistema richiede l’autenticazione"
+      },
+      {
+        "step": "Inserisci credenziali non valide o non autorizzate",
+        "expected": "L’accesso viene negato e viene mostrato un messaggio di errore"
+      },
+      {
+        "step": "Verifica che la pagina di dettaglio non sia accessibile",
+        "expected": "La pagina non è raggiungibile senza autenticazione valida"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.5"
+  },
+  {
+    "test_case_id": "UC3.4.5_TC6",
+    "title": "Test di prestazione con grandi quantità di dati",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema gestisce i dati senza problemi di performance",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione delle schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona l’operazione di dettaglio su una scheda con grandi quantità di dati",
+        "expected": "I dati vengono caricati senza problemi di performance"
+      },
+      {
+        "step": "Verifica i tempi di caricamento e la stabilità del sistema",
+        "expected": "Il sistema rimane stabile e risponde in tempi ragionevoli"
+      }
+    ],
+    "test_type": "Prestazione",
+    "priority": "Media",
+    "use_case_id": "UC3.4.5"
+  },
+  {
+    "test_case_id": "UC3.4.5_TC7",
+    "title": "Test di usabilità della pagina di dettaglio",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente può utilizzare la pagina senza difficoltà",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione delle schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona l’operazione di dettaglio su una scheda esistente",
+        "expected": "La pagina di dettaglio è chiara e facile da utilizzare"
+      },
+      {
+        "step": "Verifica la presenza di indicazioni chiare e la facilità di navigazione",
+        "expected": "Le indicazioni sono chiare e la navigazione è intuitiva"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Media",
+    "use_case_id": "UC3.4.5"
+  },
+  {
+    "test_case_id": "UC3.4.5_TC8",
+    "title": "Test di compatibilità con diversi browser e dispositivi",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema è compatibile con diversi browser e dispositivi",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione delle schede censimento utilizzando diversi browser",
+        "expected": "La sezione viene visualizzata correttamente su tutti i browser"
+      },
+      {
+        "step": "Seleziona l’operazione di dettaglio su una scheda esistente utilizzando dispositivi differenti (desktop, tablet, smartphone)",
+        "expected": "La pagina di dettaglio è visualizzabile e funzionale su tutti i dispositivi"
+      },
+      {
+        "step": "Verifica la compatibilità e la risposta del sistema",
+        "expected": "Il sistema è compatibile e funziona correttamente su tutti i browser e dispositivi testati"
+      }
+    ],
+    "test_type": "Compatibilità",
+    "priority": "Media",
+    "use_case_id": "UC3.4.5"
+  }
+]

@@ -1,0 +1,17 @@
+[
+  {
+    "test_case_id": "UC343_TC001",
+    "title": "Mostra la sezione relativa alla modifica dei dati di una scheda censimento",
+    "preconditions": "Aver compiuto i passaggi fino al UC34",
+    "postconditions": "L’utente visualizza le informazioni della scheda in fase di edit",
+    "test_steps": [
+      {
+        "step": "Utente seleziona l'operazione di modifica dal menu di Azione.",
+        "expected": "L’utente visualizza le informazioni della scheda in fase di edit"
+      }
+    ],
+    "test_type": "",
+    "priority": "ALTO",
+    "use_case_id": "UC343"
+  }
+]

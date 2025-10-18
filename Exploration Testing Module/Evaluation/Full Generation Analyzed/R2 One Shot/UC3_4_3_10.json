@@ -1,0 +1,178 @@
+[
+  {
+    "test_case_id": "UC3.4.3.10_TC1",
+    "title": "Modifica dati apparecchio con informazioni valide",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD selezionato viene visualizzato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato e seleziona un pannello elettrico",
+        "expected": "I pannelli elettrici vengono elencati correttamente"
+      },
+      {
+        "step": "Seleziona il punto luce e visualizza i dispositivi punti luce",
+        "expected": "I dispositivi punti luce vengono elencati correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati apparecchio e compila il form con informazioni valide",
+        "expected": "Il form viene compilato correttamente"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Un messaggio di conferma dell’operazione andata a buon fine viene visualizzato"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.10"
+  },
+  {
+    "test_case_id": "UC3.4.3.10_TC2",
+    "title": "Modifica dati apparecchio con informazioni non valide",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD selezionato viene visualizzato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato e seleziona un pannello elettrico",
+        "expected": "I pannelli elettrici vengono elencati correttamente"
+      },
+      {
+        "step": "Seleziona il punto luce e visualizza i dispositivi punti luce",
+        "expected": "I dispositivi punti luce vengono elencati correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati apparecchio e compila il form con informazioni non valide (es. campo obbligatorio vuoto)",
+        "expected": "Il sistema segnala un errore di validazione dei dati"
+      },
+      {
+        "step": "Tenta di applicare le modifiche con l’apposito tasto",
+        "expected": "Un messaggio di errore viene visualizzato e le modifiche non vengono applicate"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.10"
+  },
+  {
+    "test_case_id": "UC3.4.3.10_TC3",
+    "title": "Modifica dati apparecchio senza selezionare il POD",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema non consente di procedere con la modifica",
+    "test_steps": [
+      {
+        "step": "Non seleziona il POD e tenta di accedere direttamente alla sezione dati apparecchio",
+        "expected": "Il sistema richiede la selezione del POD"
+      },
+      {
+        "step": "Tenta di compilare il form senza aver selezionato il POD",
+        "expected": "Il sistema non consente di applicare le modifiche"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.10"
+  },
+  {
+    "test_case_id": "UC3.4.3.10_TC4",
+    "title": "Modifica dati apparecchio con utente non autorizzato",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema nega l’accesso alla funzione di modifica",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema con un utente non autorizzato a modificare i dati apparecchio",
+        "expected": "Il sistema nega l’accesso alla sezione di modifica"
+      },
+      {
+        "step": "Tenta di accedere alla sezione dati apparecchio e applicare modifiche",
+        "expected": "Il sistema visualizza un messaggio di accesso negato"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.10"
+  },
+  {
+    "test_case_id": "UC3.4.3.10_TC5",
+    "title": "Modifica dati apparecchio con dati già esistenti",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema aggiorna i dati esistenti",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD e accedi alla sezione dati apparecchio",
+        "expected": "I dati esistenti vengono visualizzati"
+      },
+      {
+        "step": "Modifica i dati esistenti e applica le modifiche",
+        "expected": "I dati vengono aggiornati correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.10"
+  },
+  {
+    "test_case_id": "UC3.4.3.10_TC6",
+    "title": "Modifica dati apparecchio con campi facoltativi vuoti",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema consente di applicare le modifiche anche con campi facoltativi vuoti",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD e accedi alla sezione dati apparecchio",
+        "expected": "I dati esistenti vengono visualizzati"
+      },
+      {
+        "step": "Lascia vuoti i campi facoltativi e applica le modifiche",
+        "expected": "Il sistema consente di applicare le modifiche senza errori"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.10"
+  },
+  {
+    "test_case_id": "UC3.4.3.10_TC7",
+    "title": "Modifica dati apparecchio con caratteri speciali nei campi di input",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema gestisce correttamente i caratteri speciali",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD e accedi alla sezione dati apparecchio",
+        "expected": "I dati esistenti vengono visualizzati"
+      },
+      {
+        "step": "Inserisci caratteri speciali nei campi di input e applica le modifiche",
+        "expected": "Il sistema gestisce correttamente i caratteri speciali senza errori"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.10"
+  },
+  {
+    "test_case_id": "UC3.4.3.10_TC8",
+    "title": "Modifica dati apparecchio con un grande numero di caratteri nei campi di input",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema gestisce correttamente il limite di caratteri",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD e accedi alla sezione dati apparecchio",
+        "expected": "I dati esistenti vengono visualizzati"
+      },
+      {
+        "step": "Inserisci un grande numero di caratteri nei campi di input e applica le modifiche",
+        "expected": "Il sistema gestisce correttamente il limite di caratteri senza errori"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.10"
+  }
+]

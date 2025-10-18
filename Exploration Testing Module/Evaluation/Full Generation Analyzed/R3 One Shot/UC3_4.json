@@ -1,0 +1,154 @@
+[
+  {
+    "test_case_id": "UC3.4_TC1",
+    "title": "Visualizzazione palette azioni con utente autorizzato",
+    "preconditions": "UC3",
+    "postconditions": "La palette di azioni viene visualizzata correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento come utente autorizzato",
+        "expected": "Le schede vengono visualizzate"
+      },
+      {
+        "step": "Clicca sul tasto azioni per una specifica scheda",
+        "expected": "La palette di azioni appare"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC2",
+    "title": "Visualizzazione palette azioni con utente non autorizzato",
+    "preconditions": "UC3",
+    "postconditions": "La palette di azioni non viene visualizzata o è limitata",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento come utente non autorizzato",
+        "expected": "Le schede vengono visualizzate ma con limitazioni"
+      },
+      {
+        "step": "Clicca sul tasto azioni per una specifica scheda",
+        "expected": "La palette di azioni non compare o è parzialmente accessibile"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC3",
+    "title": "Selezione azione non valida",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema segnala l’azione non valida",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento come utente autorizzato",
+        "expected": "Le schede vengono visualizzate"
+      },
+      {
+        "step": "Clicca sul tasto azioni e seleziona un’opzione non applicabile",
+        "expected": "Il sistema mostra un messaggio di errore o di azione non valida"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC4",
+    "title": "Conferma azione su scheda censimento",
+    "preconditions": "UC3",
+    "postconditions": "L’azione viene eseguita con successo",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento come utente autorizzato",
+        "expected": "Le schede vengono visualizzate"
+      },
+      {
+        "step": "Clicca sul tasto azioni, seleziona un’opzione valida e conferma",
+        "expected": "L’azione viene completata correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC5",
+    "title": "Annullamento azione su scheda censimento",
+    "preconditions": "UC3",
+    "postconditions": "L’azione non viene eseguita",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento come utente autorizzato",
+        "expected": "Le schede vengono visualizzate"
+      },
+      {
+        "step": "Clicca sul tasto azioni, seleziona un’opzione e poi annulla",
+        "expected": "L’azione non viene eseguita e lo stato rimane invariato"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC6",
+    "title": "Test di sicurezza: iniezione SQL nella selezione azioni",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema respinge l’iniezione e mantiene la sicurezza",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento come utente autorizzato",
+        "expected": "Le schede vengono visualizzate"
+      },
+      {
+        "step": "Tenta di iniettare codice SQL nella selezione dell’azione",
+        "expected": "Il sistema rileva e blocca l’iniezione, mostrando un messaggio di errore"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC7",
+    "title": "Test di prestazione: selezione azioni con grande numero di schede",
+    "preconditions": "UC3",
+    "postconditions": "La palette di azioni si carica senza problemi",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento con un elevato numero di schede",
+        "expected": "Le schede vengono visualizzate"
+      },
+      {
+        "step": "Clicca sul tasto azioni per una specifica scheda in questo scenario",
+        "expected": "La palette di azioni si carica rapidamente e correttamente"
+      }
+    ],
+    "test_type": "Prestazione",
+    "priority": "Alta",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC8",
+    "title": "Test di usabilità: accessibilità della palette azioni",
+    "preconditions": "UC3",
+    "postconditions": "La palette di azioni è facilmente accessibile e utilizzabile",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento con un browser o dispositivo diverso",
+        "expected": "Le schede vengono visualizzate correttamente"
+      },
+      {
+        "step": "Clicca sul tasto azioni e valuta l’accessibilità della palette",
+        "expected": "La palette di azioni è facilmente accessibile e utilizzabile anche con dispositivi o browser diversi"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Media",
+    "use_case_id": "UC3.4"
+  }
+]

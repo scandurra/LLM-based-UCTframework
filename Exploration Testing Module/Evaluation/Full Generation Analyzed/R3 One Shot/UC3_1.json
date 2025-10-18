@@ -1,0 +1,186 @@
+[
+  {
+    "test_case_id": "UC3.1_TC1",
+    "title": "Visualizzazione schede censimento con dati validi",
+    "preconditions": "UC3",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione schede censimento",
+        "expected": "La sezione viene caricata correttamente"
+      },
+      {
+        "step": "Seleziona un numero di elementi per pagina e una pagina specifica",
+        "expected": "Il sistema visualizza le informazioni richieste"
+      },
+      {
+        "step": "Scorri lateralmente per visualizzare tutte le colonne",
+        "expected": "Tutte le colonne sono visibili e scorrevoli"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC2",
+    "title": "Ordinamento delle colonne",
+    "preconditions": "UC3",
+    "postconditions": "Le righe della tabella vengono ordinate secondo la colonna selezionata",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione schede censimento",
+        "expected": "La sezione viene caricata correttamente"
+      },
+      {
+        "step": "Clicca sul nome di una colonna per ordinare le righe",
+        "expected": "Le righe vengono ordinate in base alla colonna selezionata"
+      },
+      {
+        "step": "Clicca nuovamente sulla stessa colonna per invertire l’ordinamento",
+        "expected": "L’ordinamento viene invertito"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC3",
+    "title": "Visualizzazione con numero di elementi per pagina non valido",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema visualizza un messaggio di errore o utilizza un valore predefinito",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione schede censimento",
+        "expected": "La sezione viene caricata correttamente"
+      },
+      {
+        "step": "Inserisci un numero non valido per gli elementi per pagina (es. testo, numero negativo)",
+        "expected": "Il sistema segnala l’errore o utilizza un valore predefinito"
+      },
+      {
+        "step": "Tenta di visualizzare le informazioni",
+        "expected": "Il sistema gestisce correttamente l’input non valido"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC4",
+    "title": "Visualizzazione senza autorizzazione",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema nega l’accesso alle informazioni",
+    "test_steps": [
+      {
+        "step": "Tenta di accedere alla sezione di gestione schede censimento senza autenticazione",
+        "expected": "Il sistema richiede l’autenticazione"
+      },
+      {
+        "step": "Inserisci credenziali non valide o scadute",
+        "expected": "Il sistema nega l’accesso"
+      },
+      {
+        "step": "Tenta di forzare l’accesso alla sezione",
+        "expected": "Il sistema mantiene la protezione e nega l’accesso"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC5",
+    "title": "Boundary test: visualizzazione con un solo elemento per pagina",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema visualizza l’elemento singolo correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione schede censimento",
+        "expected": "La sezione viene caricata correttamente"
+      },
+      {
+        "step": "Seleziona 1 come numero di elementi per pagina",
+        "expected": "Il sistema visualizza un solo elemento per pagina"
+      },
+      {
+        "step": "Naviga tra le pagine",
+        "expected": "Il sistema gestisce correttamente la navigazione con un solo elemento per pagina"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Media",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC6",
+    "title": "Edge case: visualizzazione con caratteri speciali nei dati",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema visualizza i dati correttamente, anche con caratteri speciali",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione schede censimento",
+        "expected": "La sezione viene caricata correttamente"
+      },
+      {
+        "step": "Cerca dati contenenti caratteri speciali (es. @, #, $)",
+        "expected": "Il sistema visualizza i dati senza problemi"
+      },
+      {
+        "step": "Verifica che tutti i dati vengano visualizzati correttamente",
+        "expected": "Tutti i dati, inclusi quelli con caratteri speciali, sono visibili e corretti"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC7",
+    "title": "Visualizzazione in diversi dispositivi e browser",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema è accessibile e funziona correttamente su diverse piattaforme",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione schede censimento da diversi dispositivi (es. desktop, tablet, smartphone)",
+        "expected": "La sezione è accessibile e visualizzata correttamente"
+      },
+      {
+        "step": "Testa la visualizzazione su più browser (es. Chrome, Firefox, Safari)",
+        "expected": "Il sistema funziona senza problemi su tutti i browser testati"
+      },
+      {
+        "step": "Verifica la compatibilità con diverse versioni dei browser",
+        "expected": "La compatibilità è garantita anche con versioni precedenti dei browser"
+      }
+    ],
+    "test_type": "Compatibilità",
+    "priority": "Alta",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC8",
+    "title": "Visualizzazione con dati non presenti",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema gestisce correttamente la mancanza di dati",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione schede censimento",
+        "expected": "La sezione viene caricata correttamente"
+      },
+      {
+        "step": "Cerca dati che non esistono nel sistema",
+        "expected": "Il sistema visualizza un messaggio informativo sulla mancanza di dati"
+      },
+      {
+        "step": "Verifica che il sistema non mostri errori o eccezioni",
+        "expected": "Il sistema gestisce la situazione senza errori"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.1"
+  }
+]

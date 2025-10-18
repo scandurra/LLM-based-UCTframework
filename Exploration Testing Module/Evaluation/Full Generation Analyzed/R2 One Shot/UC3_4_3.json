@@ -1,0 +1,182 @@
+[
+  {
+    "test_case_id": "UC3.4.3_TC1",
+    "title": "Modifica scheda censimento con dati validi",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente visualizza le informazioni della scheda in fase di edit",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento",
+        "expected": "La lista delle schede viene visualizzata"
+      },
+      {
+        "step": "Seleziona una scheda e l’operazione di modifica",
+        "expected": "La scheda entra in modalità edit"
+      },
+      {
+        "step": "Modifica i campi con dati validi",
+        "expected": "I dati vengono accettati e salvati"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3"
+  },
+  {
+    "test_case_id": "UC3.4.3_TC2",
+    "title": "Modifica scheda censimento con dati non validi",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema segnala errori di validazione",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento",
+        "expected": "La lista delle schede viene visualizzata"
+      },
+      {
+        "step": "Seleziona una scheda e l’operazione di modifica",
+        "expected": "La scheda entra in modalità edit"
+      },
+      {
+        "step": "Inserisci dati non validi (es. date future, campi obbligatori vuoti)",
+        "expected": "Il sistema segnala gli errori e non salva i dati"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3"
+  },
+  {
+    "test_case_id": "UC3.4.3_TC3",
+    "title": "Modifica scheda censimento senza permessi",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema nega l’accesso alla modifica",
+    "test_steps": [
+      {
+        "step": "Accedi come utente senza permessi di modifica",
+        "expected": "La sezione delle schede censimento è accessibile in sola lettura"
+      },
+      {
+        "step": "Tenta di selezionare l’operazione di modifica su una scheda",
+        "expected": "Il sistema nega l’accesso e visualizza un messaggio di errore"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3"
+  },
+  {
+    "test_case_id": "UC3.4.3_TC4",
+    "title": "Modifica scheda censimento con campi obbligatori vuoti",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema richiede di compilare i campi obbligatori",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento",
+        "expected": "La lista delle schede viene visualizzata"
+      },
+      {
+        "step": "Seleziona una scheda e l’operazione di modifica",
+        "expected": "La scheda entra in modalità edit"
+      },
+      {
+        "step": "Lascia vuoti campi obbligatori e tenta di salvare",
+        "expected": "Il sistema segnala gli errori e richiede la compilazione dei campi"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3"
+  },
+  {
+    "test_case_id": "UC3.4.3_TC5",
+    "title": "Modifica scheda censimento con dati troppo lunghi",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema tronca i dati o visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento",
+        "expected": "La lista delle schede viene visualizzata"
+      },
+      {
+        "step": "Seleziona una scheda e l’operazione di modifica",
+        "expected": "La scheda entra in modalità edit"
+      },
+      {
+        "step": "Inserisci dati troppo lunghi in un campo",
+        "expected": "Il sistema tronca i dati o visualizza un messaggio di errore"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3"
+  },
+  {
+    "test_case_id": "UC3.4.3_TC6",
+    "title": "Annullamento della modifica",
+    "preconditions": "UC3.4",
+    "postconditions": "Le modifiche vengono annullate e la scheda torna allo stato precedente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento",
+        "expected": "La lista delle schede viene visualizzata"
+      },
+      {
+        "step": "Seleziona una scheda e l’operazione di modifica",
+        "expected": "La scheda entra in modalità edit"
+      },
+      {
+        "step": "Apporta alcune modifiche e poi annullale",
+        "expected": "Le modifiche vengono annullate e la scheda torna allo stato originale"
+      }
+    ],
+    "test_type": "Funzionalità",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3"
+  },
+  {
+    "test_case_id": "UC3.4.3_TC7",
+    "title": "Modifica scheda censimento con caratteri speciali",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema accetta i caratteri speciali o li normalizza",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento",
+        "expected": "La lista delle schede viene visualizzata"
+      },
+      {
+        "step": "Seleziona una scheda e l’operazione di modifica",
+        "expected": "La scheda entra in modalità edit"
+      },
+      {
+        "step": "Inserisci caratteri speciali in un campo",
+        "expected": "Il sistema accetta i caratteri speciali o li normalizza correttamente"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3"
+  },
+  {
+    "test_case_id": "UC3.4.3_TC8",
+    "title": "Modifica scheda censimento in concomitanza con un’altra modifica",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema gestisce correttamente le modifiche concorrenti",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento",
+        "expected": "La lista delle schede viene visualizzata"
+      },
+      {
+        "step": "Seleziona una scheda e l’operazione di modifica",
+        "expected": "La scheda entra in modalità edit"
+      },
+      {
+        "step": "Simula un’altra sessione di modifica della stessa scheda",
+        "expected": "Il sistema gestisce le modifiche concorrenti senza perdita di dati o errori"
+      }
+    ],
+    "test_type": "Stress",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3"
+  }
+]

@@ -1,0 +1,232 @@
+[
+  {
+    "test_case_id": "UC2.4_TC1",
+    "title": "Selezione comuni e KPI validi",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza il risultato della analisi su un grafico, in base ai comuni e al KPI su cui fare il confronto",
+    "test_steps": [
+      {
+        "step": "Seleziona due o più comuni dal menù a tendina",
+        "expected": "I comuni vengono selezionati correttamente"
+      },
+      {
+        "step": "Seleziona un KPI desiderato",
+        "expected": "Il KPI viene selezionato correttamente"
+      },
+      {
+        "step": "Conferma la richiesta cliccando sul pulsante",
+        "expected": "Il sistema visualizza il grafico con il confronto desiderato"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC2",
+    "title": "Selezione di un solo comune",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza il risultato della analisi su un grafico, in base ai comuni e al KPI su cui fare il confronto",
+    "test_steps": [
+      {
+        "step": "Seleziona un solo comune dal menù a tendina",
+        "expected": "Il sistema richiede la selezione di almeno due comuni"
+      },
+      {
+        "step": "Seleziona un KPI desiderato",
+        "expected": "Il KPI viene selezionato correttamente"
+      },
+      {
+        "step": "Conferma la richiesta cliccando sul pulsante",
+        "expected": "Il sistema non visualizza il grafico e mostra un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC3",
+    "title": "Selezione di nessun comune",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza il risultato della analisi su un grafico, in base ai comuni e al KPI su cui fare il confronto",
+    "test_steps": [
+      {
+        "step": "Non selezionare nessun comune dal menù a tendina",
+        "expected": "Il sistema richiede la selezione di almeno due comuni"
+      },
+      {
+        "step": "Seleziona un KPI desiderato",
+        "expected": "Il KPI viene selezionato correttamente"
+      },
+      {
+        "step": "Conferma la richiesta cliccando sul pulsante",
+        "expected": "Il sistema non visualizza il grafico e mostra un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC4",
+    "title": "Selezione di un KPI non valido",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza il risultato della analisi su un grafico, in base ai comuni e al KPI su cui fare il confronto",
+    "test_steps": [
+      {
+        "step": "Seleziona due o più comuni dal menù a tendina",
+        "expected": "I comuni vengono selezionati correttamente"
+      },
+      {
+        "step": "Inserisci un KPI non valido",
+        "expected": "Il sistema richiede la selezione di un KPI valido"
+      },
+      {
+        "step": "Conferma la richiesta cliccando sul pulsante",
+        "expected": "Il sistema non visualizza il grafico e mostra un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC5",
+    "title": "Selezione di comuni e KPI con caratteri speciali",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza il risultato della analisi su un grafico, in base ai comuni e al KPI su cui fare il confronto",
+    "test_steps": [
+      {
+        "step": "Seleziona due o più comuni dal menù a tendina con caratteri speciali",
+        "expected": "I comuni vengono selezionati correttamente"
+      },
+      {
+        "step": "Seleziona un KPI desiderato con caratteri speciali",
+        "expected": "Il KPI viene selezionato correttamente"
+      },
+      {
+        "step": "Conferma la richiesta cliccando sul pulsante",
+        "expected": "Il sistema visualizza il grafico con il confronto desiderato"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Bassa",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC6",
+    "title": "Selezione di comuni e KPI con spazi vuoti",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza il risultato della analisi su un grafico, in base ai comuni e al KPI su cui fare il confronto",
+    "test_steps": [
+      {
+        "step": "Seleziona due o più comuni dal menù a tendina con spazi vuoti",
+        "expected": "I comuni vengono selezionati correttamente"
+      },
+      {
+        "step": "Seleziona un KPI desiderato con spazi vuoti",
+        "expected": "Il KPI viene selezionato correttamente"
+      },
+      {
+        "step": "Conferma la richiesta cliccando sul pulsante",
+        "expected": "Il sistema visualizza il grafico con il confronto desiderato"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Bassa",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC7",
+    "title": "Selezione di comuni e KPI con lunghezza massima",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza il risultato della analisi su un grafico, in base ai comuni e al KPI su cui fare il confronto",
+    "test_steps": [
+      {
+        "step": "Seleziona due o più comuni dal menù a tendina con lunghezza massima",
+        "expected": "I comuni vengono selezionati correttamente"
+      },
+      {
+        "step": "Seleziona un KPI desiderato con lunghezza massima",
+        "expected": "Il KPI viene selezionato correttamente"
+      },
+      {
+        "step": "Conferma la richiesta cliccando sul pulsante",
+        "expected": "Il sistema visualizza il grafico con il confronto desiderato"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Bassa",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC8",
+    "title": "Selezione di comuni e KPI con dati non esistenti",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza il risultato della analisi su un grafico, in base ai comuni e al KPI su cui fare il confronto",
+    "test_steps": [
+      {
+        "step": "Seleziona due o più comuni non esistenti dal menù a tendina",
+        "expected": "Il sistema richiede la selezione di comuni esistenti"
+      },
+      {
+        "step": "Seleziona un KPI non esistente",
+        "expected": "Il sistema richiede la selezione di un KPI esistente"
+      },
+      {
+        "step": "Conferma la richiesta cliccando sul pulsante",
+        "expected": "Il sistema non visualizza il grafico e mostra un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC9",
+    "title": "Selezione di comuni e KPI con dati duplicati",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza il risultato della analisi su un grafico, in base ai comuni e al KPI su cui fare il confronto",
+    "test_steps": [
+      {
+        "step": "Seleziona due o più comuni duplicati dal menù a tendina",
+        "expected": "Il sistema richiede la selezione di comuni univoci"
+      },
+      {
+        "step": "Seleziona un KPI duplicato",
+        "expected": "Il sistema richiede la selezione di un KPI univoco"
+      },
+      {
+        "step": "Conferma la richiesta cliccando sul pulsante",
+        "expected": "Il sistema non visualizza il grafico e mostra un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC10",
+    "title": "Selezione di comuni e KPI con ordine diverso",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza il risultato della analisi su un grafico, in base ai comuni e al KPI su cui fare il confronto",
+    "test_steps": [
+      {
+        "step": "Seleziona due o più comuni dal menù a tendina in ordine diverso",
+        "expected": "I comuni vengono selezionati correttamente"
+      },
+      {
+        "step": "Seleziona un KPI desiderato in ordine diverso",
+        "expected": "Il KPI viene selezionato correttamente"
+      },
+      {
+        "step": "Conferma la richiesta cliccando sul pulsante",
+        "expected": "Il sistema visualizza il grafico con il confronto desiderato"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Bassa",
+    "use_case_id": "UC2.4"
+  }
+]

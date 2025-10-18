@@ -1,0 +1,97 @@
+[
+  {
+    "test_case_id": "UC3.4.1_TC1",
+    "title": "Download scheda censimento con successo",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente visualizza un messaggio di conferma e ottiene il file desiderato",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di download della scheda censimento",
+        "expected": "Il sistema avvia la procedura di download"
+      },
+      {
+        "step": "Visualizza l’avanzamento del download all’interno del browser",
+        "expected": "Il download procede correttamente e il file viene scaricato"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.1"
+  },
+  {
+    "test_case_id": "UC3.4.1_TC2",
+    "title": "Download senza selezionare la scheda censimento",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema non avvia il download e visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Non seleziona alcuna scheda censimento",
+        "expected": "Il sistema segnala la mancanza di selezione"
+      },
+      {
+        "step": "Tenta di avviare il download",
+        "expected": "Il sistema visualizza un messaggio di errore per assenza di selezione"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.1"
+  },
+  {
+    "test_case_id": "UC3.4.1_TC3",
+    "title": "Download con nome file troppo lungo",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema tronca il nome del file o lo rende compatibile",
+    "test_steps": [
+      {
+        "step": "Seleziona una scheda censimento con un titolo molto lungo",
+        "expected": "Il sistema gestisce il nome del file"
+      },
+      {
+        "step": "Avvia il download della scheda censimento",
+        "expected": "Il file viene scaricato con un nome compatibile"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC3.4.1"
+  },
+  {
+    "test_case_id": "UC3.4.1_TC4",
+    "title": "Download con formato file non supportato",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema visualizza un messaggio di errore per formato non supportato",
+    "test_steps": [
+      {
+        "step": "Seleziona una scheda censimento e scegli un formato file non supportato",
+        "expected": "Il sistema segnala l’impossibilità di eseguire il download"
+      },
+      {
+        "step": "Tenta di avviare il download con quel formato",
+        "expected": "Il sistema visualizza un messaggio di errore per formato non supportato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.1"
+  },
+  {
+    "test_case_id": "UC3.4.1_TC5",
+    "title": "Download di scheda censimento con dati sensibili",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema protegge i dati sensibili durante il download",
+    "test_steps": [
+      {
+        "step": "Seleziona una scheda censimento contenente informazioni sensibili",
+        "expected": "Il sistema avvia la procedura di download con protezione dei dati"
+      },
+      {
+        "step": "Verifica che i dati sensibili siano protetti durante il download",
+        "expected": "I dati sono scaricati in modo sicuro"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.1"
+  }
+]

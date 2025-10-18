@@ -1,0 +1,137 @@
+[
+  {
+    "test_case_id": "UC4.3_TC1",
+    "title": "Aggiunta simulazione con dati validi",
+    "preconditions": "UC4",
+    "postconditions": "L’utente ha aggiunto l’associazione nel menu dedicato",
+    "test_steps": [
+      {
+        "step": "Naviga nella terza sezione dedicata alle analisi",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto dedicato all’aggiunta di una singola analisi",
+        "expected": "Il sistema permette l’inserimento dei dati"
+      },
+      {
+        "step": "Seleziona un impianto e un investimento validi da associare",
+        "expected": "L’associazione viene accettata"
+      },
+      {
+        "step": "Conferma l’aggiunta della simulazione",
+        "expected": "Viene visualizzato un messaggio di conferma"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC4.3"
+  },
+  {
+    "test_case_id": "UC4.3_TC2",
+    "title": "Annullamento dell’aggiunta di una simulazione",
+    "preconditions": "UC4",
+    "postconditions": "L’utente visualizza un messaggio di avvenuto annullamento",
+    "test_steps": [
+      {
+        "step": "Naviga nella terza sezione dedicata alle analisi",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto dedicato all’aggiunta di una singola analisi",
+        "expected": "Il sistema permette l’inserimento dei dati"
+      },
+      {
+        "step": "Seleziona un impianto e un investimento da associare",
+        "expected": "L’associazione viene accettata"
+      },
+      {
+        "step": "Annulla l’aggiunta della simulazione",
+        "expected": "Viene visualizzato un messaggio di annullamento"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC4.3"
+  },
+  {
+    "test_case_id": "UC4.3_TC3",
+    "title": "Aggiunta simulazione senza selezionare impianto",
+    "preconditions": "UC4",
+    "postconditions": "L’utente non può aggiungere la simulazione",
+    "test_steps": [
+      {
+        "step": "Naviga nella terza sezione dedicata alle analisi",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto dedicato all’aggiunta di una singola analisi",
+        "expected": "Il sistema permette l’inserimento dei dati"
+      },
+      {
+        "step": "Lascia vuoto il campo relativo all’impianto da associare",
+        "expected": "Il sistema segnala un errore"
+      },
+      {
+        "step": "Tenta di confermare l’aggiunta della simulazione",
+    "expected": "L’operazione non va a buon fine e viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC4.3"
+  },
+  {
+    "test_case_id": "UC4.3_TC4",
+    "title": "Aggiunta simulazione con investimento non valido",
+    "preconditions": "UC4",
+    "postconditions": "L’utente non può aggiungere la simulazione",
+    "test_steps": [
+      {
+        "step": "Naviga nella terza sezione dedicata alle analisi",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto dedicato all’aggiunta di una singola analisi",
+        "expected": "Il sistema permette l’inserimento dei dati"
+      },
+      {
+        "step": "Seleziona un impianto ma inserisci un investimento non valido",
+        "expected": "Il sistema segnala un errore"
+      },
+      {
+        "step": "Tenta di confermare l’aggiunta della simulazione",
+    "expected": "L’operazione non va a buon fine e viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC4.3"
+  },
+  {
+    "test_case_id": "UC4.3_TC5",
+    "title": "Boundary test: aggiunta simulazione con dati al limite",
+    "preconditions": "UC4",
+    "postconditions": "L’utente ha aggiunto l’associazione nel menu dedicato",
+    "test_steps": [
+      {
+        "step": "Naviga nella terza sezione dedicata alle analisi",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto dedicato all’aggiunta di una singola analisi",
+        "expected": "Il sistema permette l’inserimento dei dati"
+      },
+      {
+        "step": "Inserisci i dati al limite (es. massimo numero di caratteri)",
+        "expected": "Il sistema accetta i dati"
+      },
+      {
+        "step": "Conferma l’aggiunta della simulazione",
+        "expected": "Viene visualizzato un messaggio di conferma"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Alta",
+    "use_case_id": "UC4.3"
+  },
+]

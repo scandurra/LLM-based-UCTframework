@@ -1,0 +1,29 @@
+[
+  {
+    "test_case_id": "UC3.3_TC1",
+    "title": "Caricamento scheda censimento con file valido e formato corretto",
+    "preconditions": "UC3",
+    "postconditions": "L’utente può visualizzare le informazioni corrispondenti alla scheda censimento appena caricata",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di caricamento delle schede censimento",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un file con formato corretto (ad es. PDF) e nome valido",
+        "expected": "Il file viene selezionato correttamente"
+      },
+      {
+        "step": "Procedi all’upload del file tramite drag-and-drop o selezione tramite browser",
+        "expected": "La barra di caricamento appare e il file viene caricato correttamente"
+      },
+      {
+        "step": "Verifica il messaggio di operazione andata a buon fine",
+        "expected": "Il messaggio di successo è visualizzato"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.3"
+  }
+]

@@ -1,0 +1,158 @@
+[
+  {
+    "test_case_id": "UC6_TC1",
+    "title": "Logout utente con sessione attiva",
+    "preconditions": "UC1",
+    "postconditions": "L’utente è disconnesso e visualizza un messaggio di conferma",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente registrato",
+        "expected": "La dashboard dell’utente viene visualizzata"
+      },
+      {
+        "step": "Clicca sul nome utente in alto a destra e seleziona 'Logout'",
+        "expected": "Il processo di logout inizia"
+      },
+      {
+        "step": "Conferma l’intenzione di disconnettersi",
+        "expected": "Un messaggio di successo conferma la disconnessione"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC6"
+  },
+  {
+    "test_case_id": "UC6_TC2",
+    "title": "Tentativo di logout senza sessione attiva",
+    "preconditions": "UC1",
+    "postconditions": "Il sistema richiede l’autenticazione",
+    "test_steps": [
+      {
+        "step": "Accedi alla pagina di logout senza essere loggato",
+        "expected": "Il sistema reindirizza alla pagina di login"
+      },
+      {
+        "step": "Tenta di eseguire il logout",
+        "expected": "Viene richiesta l’autenticazione"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC6"
+  },
+  {
+    "test_case_id": "UC6_TC3",
+    "title": "Logout con più sessioni aperte",
+    "preconditions": "UC1",
+    "postconditions": "Tutte le sessioni vengono chiuse",
+    "test_steps": [
+      {
+        "step": "Apri più schede del browser con la stessa sessione attiva",
+        "expected": "Tutte le schede mostrano il contenuto dell’utente loggato"
+      },
+      {
+        "step": "Esegui il logout da una delle schede",
+        "expected": "Tutte le altre schede non sono più accessibili e richiedono login"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC6"
+  },
+  {
+    "test_case_id": "UC6_TC4",
+    "title": "Test di sicurezza: iniezione SQL durante il logout",
+    "preconditions": "UC1",
+    "postconditions": "Il sistema non esegue alcun comando dannoso e mantiene la sicurezza",
+    "test_steps": [
+      {
+        "step": "Tenta di iniettare codice SQL malevolo durante il processo di logout",
+        "expected": "Il sistema rileva e blocca l’attacco"
+      },
+      {
+        "step": "Verifica che non ci siano stati danni al database o alla sessione",
+        "expected": "Tutto funziona correttamente senza vulnerabilità"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC6"
+  },
+  {
+    "test_case_id": "UC6_TC5",
+    "title": "Test di usabilità: messaggio di conferma al logout",
+    "preconditions": "UC1",
+    "postconditions": "Il messaggio di conferma è chiaro e visibile",
+    "test_steps": [
+      {
+        "step": "Esegui il logout",
+        "expected": "Un messaggio chiaro indica che la sessione è stata chiusa"
+      },
+      {
+        "step": "Verifica la leggibilità e la comprensione del messaggio",
+        "expected": "L’utente capisce facilmente lo stato della propria sessione"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Media",
+    "use_case_id": "UC6"
+  },
+  {
+    "test_case_id": "UC6_TC6",
+    "title": "Test di prestazione: tempo di logout",
+    "preconditions": "UC1",
+    "postconditions": "Il logout avviene entro un tempo ragionevole",
+    "test_steps": [
+      {
+        "step": "Misura il tempo necessario per eseguire il logout",
+        "expected": "Il processo di logout è rapido e non causa ritardi"
+      },
+      {
+        "step": "Confronta con i tempi di risposta accettabili",
+        "expected": "Il sistema risponde entro i limiti di tempo previsti"
+      }
+    ],
+    "test_type": "Prestazione",
+    "priority": "Alta",
+    "use_case_id": "UC6"
+  },
+  {
+    "test_case_id": "UC6_TC7",
+    "title": "Test edge case: logout durante un’operazione in corso",
+    "preconditions": "UC1",
+    "postconditions": "L’operazione viene interrotta e il logout ha successo",
+    "test_steps": [
+      {
+        "step": "Avvia un’operazione lunga (es. upload di file)",
+        "expected": "L’operazione inizia"
+      },
+      {
+        "step": "Esegui il logout durante l’operazione",
+        "expected": "L’operazione viene interrotta e la sessione chiusa"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC6"
+  },
+  {
+    "test_case_id": "UC6_TC8",
+    "title": "Test di recupero: logout dopo un errore di sistema",
+    "preconditions": "UC1",
+    "postconditions": "Il sistema si riprende e il logout ha successo",
+    "test_steps": [
+      {
+        "step": "Simula un errore di sistema durante la sessione",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      },
+      {
+        "step": "Esegui il logout dopo l’errore",
+        "expected": "La sessione viene chiusa correttamente nonostante l’errore"
+      }
+    ],
+    "test_type": "Recupero",
+    "priority": "Alta",
+    "use_case_id": "UC6"
+  }
+]

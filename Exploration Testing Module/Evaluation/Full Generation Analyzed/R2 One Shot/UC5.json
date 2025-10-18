@@ -1,0 +1,162 @@
+[
+  {
+    "test_case_id": "UC5_TC1",
+    "title": "Selezione lingua italiana",
+    "preconditions": "UC1",
+    "postconditions": "Il portale viene visualizzato in italiano",
+    "test_steps": [
+      {
+        "step": "Accedi al portale e clicca sul nome utente",
+        "expected": "Viene visualizzato il menù di opzioni"
+      },
+      {
+        "step": "Seleziona 'Italiano' dal menù a tendina delle lingue",
+        "expected": "La selezione viene accettata"
+      },
+      {
+        "step": "Attendi il ricaricamento della pagina",
+        "expected": "Il portale è ora visualizzato in italiano"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC5"
+  },
+  {
+    "test_case_id": "UC5_TC2",
+    "title": "Selezione lingua inglese",
+    "preconditions": "UC1",
+    "postconditions": "Il portale viene visualizzato in inglese",
+    "test_steps": [
+      {
+        "step": "Accedi al portale e clicca sul nome utente",
+        "expected": "Viene visualizzato il menù di opzioni"
+      },
+      {
+        "step": "Seleziona 'Inglese' dal menù a tendina delle lingue",
+        "expected": "La selezione viene accettata"
+      },
+      {
+        "step": "Attendi il ricaricamento della pagina",
+        "expected": "Il portale è ora visualizzato in inglese"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC5"
+  },
+  {
+    "test_case_id": "UC5_TC3",
+    "title": "Selezione lingua non supportata",
+    "preconditions": "UC1",
+    "postconditions": "Il portale visualizza un messaggio di errore o rimane nella lingua predefinita",
+    "test_steps": [
+      {
+        "step": "Accedi al portale e clicca sul nome utente",
+        "expected": "Viene visualizzato il menù di opzioni"
+      },
+      {
+        "step": "Tenta di selezionare una lingua non presente nel menù a tendina (es. 'Francese')",
+        "expected": "Il sistema segnala l’assenza della lingua o mantiene la lingua predefinita"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC5"
+  },
+  {
+    "test_case_id": "UC5_TC4",
+    "title": "Cambio lingua senza ricaricamento della pagina",
+    "preconditions": "UC1",
+    "postconditions": "Il portale non cambia lingua o richiede di ricaricare la pagina",
+    "test_steps": [
+      {
+        "step": "Accedi al portale e clicca sul nome utente",
+        "expected": "Viene visualizzato il menù di opzioni"
+      },
+      {
+        "step": "Seleziona una nuova lingua senza attendere il ricaricamento della pagina",
+        "expected": "Il sistema richiede di ricaricare la pagina o non applica i cambiamenti"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC5"
+  },
+  {
+    "test_case_id": "UC5_TC5",
+    "title": "Selezione lingua con caratteri speciali",
+    "preconditions": "UC1",
+    "postconditions": "Il portale gestisce correttamente i caratteri speciali nella selezione della lingua",
+    "test_steps": [
+      {
+        "step": "Accedi al portale e clicca sul nome utente",
+        "expected": "Viene visualizzato il menù di opzioni"
+      },
+      {
+        "step": "Tenta di inserire manualmente una lingua con caratteri speciali (es. 'Italian@')",
+        "expected": "Il sistema gestisce correttamente i caratteri speciali o li rimuove"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC5"
+  },
+  {
+    "test_case_id": "UC5_TC6",
+    "title": "Selezione lingua durante la sessione di un altro utente",
+    "preconditions": "UC1",
+    "postconditions": "Il portale mantiene le impostazioni linguistiche dell’utente attuale",
+    "test_steps": [
+      {
+        "step": "Accedi al portale con un utente e seleziona una lingua",
+        "expected": "La lingua viene applicata correttamente"
+      },
+      {
+        "step": "Disconnetti l’utente e accedi con un altro utente",
+        "expected": "Il portale mantiene le impostazioni linguistiche dell’utente precedente o chiede di selezionare la lingua"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC5"
+  },
+  {
+    "test_case_id": "UC5_TC7",
+    "title": "Selezione lingua con utente non autenticato",
+    "preconditions": "UC1",
+    "postconditions": "Il portale richiede l’autenticazione per modificare le impostazioni linguistiche",
+    "test_steps": [
+      {
+        "step": "Accedi al portale senza autenticarti",
+        "expected": "Viene visualizzato il messaggio di accesso"
+      },
+      {
+        "step": "Tenta di selezionare una lingua",
+        "expected": "Il sistema richiede l’autenticazione prima di poter modificare le impostazioni"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC5"
+  },
+  {
+    "test_case_id": "UC5_TC8",
+    "title": "Selezione lingua con più utenti contemporaneamente",
+    "preconditions": "UC1",
+    "postconditions": "Il portale gestisce correttamente le richieste di più utenti",
+    "test_steps": [
+      {
+        "step": "Accedi al portale con più utenti contemporaneamente",
+        "expected": "Ogni utente può selezionare la propria lingua"
+      },
+      {
+        "step": "Verifica che le impostazioni linguistiche siano applicate correttamente per ogni utente",
+        "expected": "Il sistema gestisce le richieste in modo concorrente senza problemi"
+      }
+    ],
+    "test_type": "Stress",
+    "priority": "Media",
+    "use_case_id": "UC5"
+  }
+]

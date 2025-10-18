@@ -1,0 +1,178 @@
+[
+  {
+    "test_case_id": "UC3.2.4_TC1",
+    "title": "Ricerca scheda censimento con parametri validi",
+    "preconditions": "UC3.2",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci parametri di ricerca validi (nome, stato e tipo)",
+        "expected": "I parametri vengono accettati"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema mostra i risultati della ricerca"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.2.4"
+  },
+  {
+    "test_case_id": "UC3.2.4_TC2",
+    "title": "Ricerca senza parametri di ricerca",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema mostra un messaggio di errore per assenza di parametri",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Lascia vuoti i campi dei parametri di ricerca",
+        "expected": "Il sistema segnala l’assenza di parametri"
+      },
+      {
+        "step": "Tenta di confermare la ricerca",
+        "expected": "La funzione non procede e viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.2.4"
+  },
+  {
+    "test_case_id": "UC3.2.4_TC3",
+    "title": "Ricerca con parametri parzialmente validi",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema mostra i risultati della ricerca basati sui parametri validi",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci alcuni parametri di ricerca validi e altri non validi",
+        "expected": "Il sistema accetta i parametri validi e segnala quelli non validi"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema mostra i risultati della ricerca basati sui parametri validi"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC3.2.4"
+  },
+  {
+    "test_case_id": "UC3.2.4_TC4",
+    "title": "Ricerca con caratteri speciali nei parametri",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema gestisce correttamente i caratteri speciali",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci parametri di ricerca con caratteri speciali (es. @, #, $)",
+        "expected": "Il sistema gestisce i caratteri speciali senza errori"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema mostra i risultati della ricerca correttamente"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC3.2.4"
+  },
+  {
+    "test_case_id": "UC3.2.4_TC5",
+    "title": "Ricerca con molti parametri di ricerca",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema mostra i risultati della ricerca senza problemi di performance",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci molti parametri di ricerca",
+        "expected": "Il sistema accetta i parametri senza problemi"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema mostra i risultati della ricerca senza ritardi"
+      }
+    ],
+    "test_type": "Prestazione",
+    "priority": "Alta",
+    "use_case_id": "UC3.2.4"
+  },
+  {
+    "test_case_id": "UC3.2.4_TC6",
+    "title": "Ricerca durante la manutenzione del sistema",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema notifica l’indisponibilità della funzione",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento durante la manutenzione",
+        "expected": "Viene visualizzato un messaggio di manutenzione"
+      },
+      {
+        "step": "Tenta di eseguire una ricerca",
+        "expected": "Il sistema blocca l’operazione e notifica la manutenzione in corso"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC3.2.4"
+  },
+  {
+    "test_case_id": "UC3.2.4_TC7",
+    "title": "Ricerca con utente non autorizzato",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema nega l’accesso alla funzione",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento come utente non autorizzato",
+        "expected": "Viene visualizzato un messaggio di accesso negato"
+      },
+      {
+        "step": "Tenta di eseguire una ricerca",
+        "expected": "Il sistema blocca l’operazione e richiede l’autenticazione"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.2.4"
+  },
+  {
+    "test_case_id": "UC3.2.4_TC8",
+    "title": "Ricerca con parametri di ricerca troppo lunghi",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema gestisce correttamente i parametri troppo lunghi",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci parametri di ricerca troppo lunghi",
+        "expected": "Il sistema gestisce i parametri troppo lunghi senza errori"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema mostra i risultati della ricerca correttamente"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC3.2.4"
+  }
+]

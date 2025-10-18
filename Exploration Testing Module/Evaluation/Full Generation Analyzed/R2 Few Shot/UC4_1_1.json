@@ -1,0 +1,117 @@
+[
+  {
+    "test_case_id": "UC4.1.1_TC1",
+    "title": "Aggiunta impianto con dati validi",
+    "preconditions": "UC4.1",
+    "postconditions": "L’utente visualizza un messaggio di conferma",
+    "test_steps": [
+      {
+        "step": "Clicca sul tasto dedicato all’aggiunta di un singolo impianto",
+        "expected": "La sezione per l’inserimento dei dati dell’impianto è visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci il nome e seleziona il comune tra quelli disponibili",
+        "expected": "I dati vengono accettati e salvati"
+      },
+      {
+        "step": "Conferma l’aggiunta dell’impianto",
+        "expected": "Viene visualizzato un messaggio di conferma"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC4.1.1"
+  },
+  {
+    "test_case_id": "UC4.1.1_TC2",
+    "title": "Aggiunta impianto senza nome",
+    "preconditions": "UC4.1",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Clicca sul tasto dedicato all’aggiunta di un singolo impianto",
+        "expected": "La sezione per l’inserimento dei dati dell’impianto è visualizzata correttamente"
+      },
+      {
+        "step": "Lascia vuoto il campo del nome e seleziona il comune",
+        "expected": "Il sistema segnala un errore per il campo obbligatorio mancante"
+      },
+      {
+        "step": "Tenta di confermare l’aggiunta dell’impianto",
+        "expected": "L’operazione non va a buon fine e viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC4.1.1"
+  },
+  {
+    "test_case_id": "UC4.1.1_TC3",
+    "title": "Aggiunta impianto con annullamento",
+    "preconditions": "UC4.1",
+    "postconditions": "L’utente visualizza un messaggio di avvenuto annullamento",
+    "test_steps": [
+      {
+        "step": "Clicca sul tasto dedicato all’aggiunta di un singolo impianto",
+        "expected": "La sezione per l’inserimento dei dati dell’impianto è visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci il nome e seleziona il comune, poi clicca su annulla",
+        "expected": "L’operazione di aggiunta viene interrotta"
+      },
+      {
+        "step": "Conferma l’annullamento",
+        "expected": "Viene visualizzato un messaggio di avvenuto annullamento"
+      }
+    ],
+    "test_type": "Branch",
+    "priority": "Media",
+    "use_case_id": "UC4.1.1"
+  },
+  {
+    "test_case_id": "UC4.1.1_TC4",
+    "title": "Aggiunta impianto con selezione comune non valida",
+    "preconditions": "UC4.1",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Clicca sul tasto dedicato all’aggiunta di un singolo impianto",
+        "expected": "La sezione per l’inserimento dei dati dell’impianto è visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci il nome e seleziona un comune non disponibile o non valido",
+        "expected": "Il sistema segnala un errore per la selezione del comune"
+      },
+      {
+        "step": "Tenta di confermare l’aggiunta dell’impianto",
+        "expected": "L’operazione non va a buon fine e viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC4.1.1"
+  },
+  {
+    "test_case_id": "UC4.1.1_TC5",
+    "title": "Aggiunta impianto con dati di input eccessivamente lunghi",
+    "preconditions": "UC4.1",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Clicca sul tasto dedicato all’aggiunta di un singolo impianto",
+        "expected": "La sezione per l’inserimento dei dati dell’impianto è visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci un nome eccessivamente lungo o seleziona un comune con un nome troppo lungo",
+        "expected": "Il sistema segnala un errore per la lunghezza dei dati inseriti"
+      },
+      {
+        "step": "Tenta di confermare l’aggiunta dell’impianto",
+        "expected": "L’operazione non va a buon fine e viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC4.1.1"
+  }
+]

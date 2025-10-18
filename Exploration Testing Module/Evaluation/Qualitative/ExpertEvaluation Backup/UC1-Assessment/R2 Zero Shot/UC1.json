@@ -1,0 +1,232 @@
+[
+  {
+    "test_case_id": "UC1_TC1",
+    "title": "Login utente con credenziali valide",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "L’utente è autenticato ed è a conoscenza che l’operazione ha avuto successo",
+    "test_steps": [
+      {
+        "step": "Inserisci le credenziali di accesso valide",
+        "expected": "Le credenziali vengono accettate"
+      },
+      {
+        "step": "Clicca il tasto “Login”",
+        "expected": "Il sistema autentica l’utente"
+      },
+      {
+        "step": "Verifica il messaggio di operazione completata",
+        "expected": "Il messaggio di successo viene visualizzato"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC2",
+    "title": "Login utente con credenziali errate",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Inserisci le credenziali di accesso errate",
+        "expected": "Le credenziali vengono rifiutate"
+      },
+      {
+        "step": "Clicca il tasto “Login”",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      },
+      {
+        "step": "Verifica il messaggio di errore",
+        "expected": "Il messaggio di errore viene visualizzato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC3",
+    "title": "Login utente con campo username vuoto",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Lascia il campo username vuoto e inserisci la password",
+        "expected": "Il sistema richiede di compilare il campo username"
+      },
+      {
+        "step": "Clicca il tasto “Login”",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      },
+      {
+        "step": "Verifica il messaggio di errore",
+        "expected": "Il messaggio di errore viene visualizzato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC4",
+    "title": "Login utente con campo password vuoto",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Inserisci il username e lascia il campo password vuoto",
+        "expected": "Il sistema richiede di compilare il campo password"
+      },
+      {
+        "step": "Clicca il tasto “Login”",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      },
+      {
+        "step": "Verifica il messaggio di errore",
+        "expected": "Il messaggio di errore viene visualizzato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC5",
+    "title": "Login utente con iniezione SQL",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Inserisci una query SQL nel campo username o password",
+        "expected": "Il sistema rileva l’iniezione SQL e la blocca"
+      },
+      {
+        "step": "Clicca il tasto “Login”",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      },
+      {
+        "step": "Verifica il messaggio di errore",
+        "expected": "Il messaggio di errore viene visualizzato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC6",
+    "title": "Login utente con password debolare",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Inserisci una password debolare (ad esempio, solo spazi)",
+        "expected": "Il sistema rileva la password debolare e la rifiuta"
+      },
+      {
+        "step": "Clicca il tasto “Login”",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      },
+      {
+        "step": "Verifica il messaggio di errore",
+        "expected": "Il messaggio di errore viene visualizzato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC7",
+    "title": "Login utente con username troppo lungo",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Inserisci un username troppo lungo",
+        "expected": "Il sistema rileva l’username troppo lungo e lo rifiuta"
+      },
+      {
+        "step": "Clicca il tasto “Login”",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      },
+      {
+        "step": "Verifica il messaggio di errore",
+        "expected": "Il messaggio di errore viene visualizzato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC8",
+    "title": "Login utente con password troppo lunga",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Inserisci una password troppo lunga",
+        "expected": "Il sistema rileva la password troppo lunga e la rifiuta"
+      },
+      {
+        "step": "Clicca il tasto “Login”",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      },
+      {
+        "step": "Verifica il messaggio di errore",
+        "expected": "Il messaggio di errore viene visualizzato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC9",
+    "title": "Login utente con caratteri non ammessi",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Inserisci caratteri non ammessi nel campo username o password",
+        "expected": "Il sistema rileva i caratteri non ammessi e li rifiuta"
+      },
+      {
+        "step": "Clicca il tasto “Login”",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      },
+      {
+        "step": "Verifica il messaggio di errore",
+        "expected": "Il messaggio di errore viene visualizzato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC10",
+    "title": "Login utente con modifiche alla prima password di accesso",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "L’utente visualizza un messaggio di successo",
+    "test_steps": [
+      {
+        "step": "Inserisci le credenziali di accesso valide e clicca il tasto “Login”",
+        "expected": "Il sistema richiede di modificare la prima password di accesso"
+      },
+      {
+        "step": "Inserisci la nuova password e conferma",
+        "expected": "Il sistema accetta la nuova password"
+      },
+      {
+        "step": "Verifica il messaggio di successo",
+        "expected": "Il messaggio di successo viene visualizzato"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC1"
+  }
+]

@@ -1,0 +1,182 @@
+[
+  {
+    "test_case_id": "UC3.2.3_TC1",
+    "title": "Ricerca scheda censimento per tipo valido",
+    "preconditions": "UC3.2",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione viene caricata correttamente"
+      },
+      {
+        "step": "Inserisci un tipo di scheda censimento valido",
+        "expected": "Il sistema accetta il parametro di ricerca"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema visualizza i risultati della ricerca corrispondenti al tipo selezionato"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.2.3"
+  },
+  {
+    "test_case_id": "UC3.2.3_TC2",
+    "title": "Ricerca con tipo non esistente",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema visualizza un messaggio di nessun risultato trovato",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione viene caricata correttamente"
+      },
+      {
+        "step": "Inserisci un tipo di scheda censimento non esistente",
+        "expected": "Il sistema accetta il parametro di ricerca"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema visualizza un messaggio indicando che non ci sono risultati per il tipo selezionato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.2.3"
+  },
+  {
+    "test_case_id": "UC3.2.3_TC3",
+    "title": "Ricerca senza specificare il tipo",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema richiede di inserire il tipo di scheda censimento",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione viene caricata correttamente"
+      },
+      {
+        "step": "Lascia vuoto il campo del tipo di scheda censimento",
+        "expected": "Il sistema segnala l’errore e richiede di inserire il tipo"
+      },
+      {
+        "step": "Tenta di confermare la ricerca",
+        "expected": "La ricerca non viene eseguita e viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.2.3"
+  },
+  {
+    "test_case_id": "UC3.2.3_TC4",
+    "title": "Ricerca con caratteri speciali nel tipo",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema gestisce correttamente i caratteri speciali",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione viene caricata correttamente"
+      },
+      {
+        "step": "Inserisci un tipo con caratteri speciali (es. tipo@speciale)",
+        "expected": "Il sistema accetta il parametro di ricerca"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema visualizza i risultati della ricerca corrispondenti al tipo inserito, gestendo correttamente i caratteri speciali"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC3.2.3"
+  },
+  {
+    "test_case_id": "UC3.2.3_TC5",
+    "title": "Ricerca con tipo troppo lungo",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema tronca o gestisce il tipo di scheda censimento troppo lungo",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione viene caricata correttamente"
+      },
+      {
+        "step": "Inserisci un tipo di scheda censimento troppo lungo",
+        "expected": "Il sistema gestisce il tipo lungo, eventualmente troncandolo o mostrando un messaggio di errore"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema esegue la ricerca con il tipo inserito, gestendo correttamente la lunghezza"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Media",
+    "use_case_id": "UC3.2.3"
+  },
+  {
+    "test_case_id": "UC3.2.3_TC6",
+    "title": "Ricerca da parte di utente non autorizzato",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema nega l’accesso alla funzione di ricerca",
+    "test_steps": [
+      {
+        "step": "Tenta di accedere alla sezione di ricerca schede censimento senza permessi",
+        "expected": "Il sistema nega l’accesso e richiede autenticazione"
+      },
+      {
+        "step": "Inserisci le credenziali di un utente non autorizzato",
+        "expected": "Il sistema rifiuta l’accesso alla funzione di ricerca"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.2.3"
+  },
+  {
+    "test_case_id": "UC3.2.3_TC7",
+    "title": "Ricerca con più tipi di scheda censimento",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema visualizza i risultati della ricerca per tutti i tipi selezionati",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione viene caricata correttamente"
+      },
+      {
+        "step": "Seleziona più tipi di scheda censimento",
+        "expected": "Il sistema accetta la selezione multipla"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema visualizza i risultati della ricerca per tutti i tipi selezionati"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC3.2.3"
+  },
+  {
+    "test_case_id": "UC3.2.3_TC8",
+    "title": "Ricerca con tipo di scheda censimento non valido",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema visualizza un messaggio di errore per il tipo non valido",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione viene caricata correttamente"
+      },
+      {
+        "step": "Inserisci un tipo di scheda censimento non valido (es. numero al posto di testo)",
+        "expected": "Il sistema rileva l’errore e richiede di inserire un tipo valido"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "La ricerca non viene eseguita e viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.2.3"
+  }
+]

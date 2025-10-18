@@ -1,0 +1,97 @@
+[
+  {
+    "test_case_id": "UC4_TC1",
+    "title": "Apertura modulo SAVE con successo",
+    "preconditions": "UC1",
+    "postconditions": "L’interfaccia del modulo SAVE viene visualizzata correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione relativa al modulo SAVE",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona il modulo SAVE dal menù laterale di sinistra",
+        "expected": "Il modulo SAVE si apre senza errori"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC4"
+  },
+  {
+    "test_case_id": "UC4_TC2",
+    "title": "Apertura modulo SAVE con menù laterale non visibile",
+    "preconditions": "UC1",
+    "postconditions": "Il modulo SAVE non si apre",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione relativa al modulo SAVE con il menù laterale di sinistra nascosto",
+        "expected": "La sezione è visualizzata ma il menù non è visibile"
+      },
+      {
+        "step": "Tenta di selezionare il modulo SAVE",
+        "expected": "Il modulo SAVE non si apre a causa della mancanza del menù"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC4"
+  },
+  {
+    "test_case_id": "UC4_TC3",
+    "title": "Apertura modulo SAVE con utente non autorizzato",
+    "preconditions": "UC1",
+    "postconditions": "Il modulo SAVE non si apre e viene visualizzato un messaggio di accesso negato",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione relativa al modulo SAVE come utente non autorizzato",
+        "expected": "La sezione è visualizzata ma il modulo SAVE non è accessibile"
+      },
+      {
+        "step": "Tenta di selezionare il modulo SAVE",
+        "expected": "Viene visualizzato un messaggio di accesso negato"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC4"
+  },
+  {
+    "test_case_id": "UC4_TC4",
+    "title": "Apertura modulo SAVE con browser non supportato",
+    "preconditions": "UC1",
+    "postconditions": "Il modulo SAVE non si apre o si apre con errori di visualizzazione",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione relativa al modulo SAVE utilizzando un browser non supportato",
+        "expected": "La sezione è visualizzata ma il modulo SAVE potrebbe non funzionare correttamente"
+      },
+      {
+        "step": "Tenta di selezionare il modulo SAVE",
+        "expected": "Il modulo SAVE potrebbe non aprirsi o aprirsi con problemi di visualizzazione"
+      }
+    ],
+    "test_type": "Compatibilità",
+    "priority": "Media",
+    "use_case_id": "UC4"
+  },
+  {
+    "test_case_id": "UC4_TC5",
+    "title": "Apertura modulo SAVE con schermo di piccole dimensioni",
+    "preconditions": "UC1",
+    "postconditions": "Il modulo SAVE si apre e si adatta alle dimensioni dello schermo",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione relativa al modulo SAVE utilizzando uno schermo di piccole dimensioni",
+        "expected": "La sezione è visualizzata e il modulo SAVE si adatta allo schermo"
+      },
+      {
+        "step": "Seleziona il modulo SAVE",
+        "expected": "Il modulo SAVE si apre e rimane utilizzabile"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Alta",
+    "use_case_id": "UC4"
+  }
+]

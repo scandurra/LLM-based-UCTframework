@@ -1,0 +1,158 @@
+[
+  {
+    "test_case_id": "UC4.1_TC1",
+    "title": "Visualizzazione sezione impianto con utente autorizzato",
+    "preconditions": "UC4",
+    "postconditions": "La sezione di gestione dell’impianto viene visualizzata correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi al modulo SAVE come utente autorizzato (Regione, Sindaco, Fornitore, Progettista)",
+        "expected": "Il sistema consente l’accesso"
+      },
+      {
+        "step": "Naviga nella sezione dedicata agli impianti",
+        "expected": "La sezione viene visualizzata correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC4.1"
+  },
+  {
+    "test_case_id": "UC4.1_TC2",
+    "title": "Tentativo di accesso senza autorizzazione",
+    "preconditions": "UC4",
+    "postconditions": "Il sistema nega l’accesso alla sezione",
+    "test_steps": [
+      {
+        "step": "Accedi al modulo SAVE come utente non autorizzato",
+        "expected": "Il sistema nega l’accesso"
+      },
+      {
+        "step": "Tenta di navigare nella sezione dedicata agli impianti",
+        "expected": "Il sistema visualizza un messaggio di accesso negato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC4.1"
+  },
+  {
+    "test_case_id": "UC4.1_TC3",
+    "title": "Visualizzazione sezione impianto con diversi ruoli",
+    "preconditions": "UC4",
+    "postconditions": "La sezione di gestione dell’impianto viene visualizzata correttamente per ogni ruolo",
+    "test_steps": [
+      {
+        "step": "Accedi al modulo SAVE come Regione",
+        "expected": "Il sistema consente l’accesso"
+      },
+      {
+        "step": "Naviga nella sezione dedicata agli impianti e verifica le funzionalità disponibili",
+        "expected": "Le funzionalità sono coerenti con il ruolo"
+      },
+      {
+        "step": "Ripeti i passaggi per gli altri ruoli (Sindaco, Fornitore, Progettista)",
+        "expected": "Il sistema visualizza le funzionalità corrette per ogni ruolo"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC4.1"
+  },
+  {
+    "test_case_id": "UC4.1_TC4",
+    "title": "Test di usabilità: navigazione nella sezione impianto",
+    "preconditions": "UC4",
+    "postconditions": "La navigazione nella sezione è intuitiva e facile da utilizzare",
+    "test_steps": [
+      {
+        "step": "Accedi al modulo SAVE come utente autorizzato",
+        "expected": "Il sistema consente l’accesso"
+      },
+      {
+        "step": "Naviga nella sezione dedicata agli impianti e valuta la facilità d’uso",
+        "expected": "La navigazione è logica e facile da seguire"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Media",
+    "use_case_id": "UC4.1"
+  },
+  {
+    "test_case_id": "UC4.1_TC5",
+    "title": "Test di prestazione: caricamento della sezione impianto",
+    "preconditions": "UC4",
+    "postconditions": "La sezione si carica rapidamente anche con una grande quantità di dati",
+    "test_steps": [
+      {
+        "step": "Accedi al modulo SAVE come utente autorizzato",
+        "expected": "Il sistema consente l’accesso"
+      },
+      {
+        "step": "Naviga nella sezione dedicata agli impianti con un grande numero di impianti",
+        "expected": "La sezione si carica in un tempo ragionevole"
+      }
+    ],
+    "test_type": "Prestazione",
+    "priority": "Media",
+    "use_case_id": "UC4.1"
+  },
+  {
+    "test_case_id": "UC4.1_TC6",
+    "title": "Test di sicurezza: iniezione SQL nella sezione impianto",
+    "preconditions": "UC4",
+    "postconditions": "Il sistema protegge contro attacchi di iniezione SQL",
+    "test_steps": [
+      {
+        "step": "Accedi al modulo SAVE come utente autorizzato",
+        "expected": "Il sistema consente l’accesso"
+      },
+      {
+        "step": "Tenta di eseguire un attacco di iniezione SQL nella sezione impianto",
+        "expected": "Il sistema blocca l’attacco e visualizza un messaggio di errore"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC4.1"
+  },
+  {
+    "test_case_id": "UC4.1_TC7",
+    "title": "Test di accessibilità: sezione impianto con tecnologie assistive",
+    "preconditions": "UC4",
+    "postconditions": "La sezione è accessibile e utilizzabile con tecnologie assistive",
+    "test_steps": [
+      {
+        "step": "Accedi al modulo SAVE come utente autorizzato utilizzando una tecnologia assistiva (es. lettore dello schermo)",
+        "expected": "Il sistema è navigabile"
+      },
+      {
+        "step": "Naviga nella sezione dedicata agli impianti e valuta l’accessibilità",
+        "expected": "La sezione è accessibile e utilizzabile"
+      }
+    ],
+    "test_type": "Accessibilità",
+    "priority": "Media",
+    "use_case_id": "UC4.1"
+  },
+  {
+    "test_case_id": "UC4.1_TC8",
+    "title": "Test di compatibilità: sezione impianto su diversi browser e dispositivi",
+    "preconditions": "UC4",
+    "postconditions": "La sezione è visualizzata correttamente su diversi browser e dispositivi",
+    "test_steps": [
+      {
+        "step": "Accedi al modulo SAVE come utente autorizzato utilizzando diversi browser (es. Chrome, Firefox, Edge)",
+        "expected": "Il sistema consente l’accesso"
+      },
+      {
+        "step": "Naviga nella sezione dedicata agli impianti e valuta la visualizzazione su diversi dispositivi (es. desktop, tablet, smartphone)",
+        "expected": "La sezione è visualizzata correttamente"
+      }
+    ],
+    "test_type": "Compatibilità",
+    "priority": "Media",
+    "use_case_id": "UC4.1"
+  }
+]

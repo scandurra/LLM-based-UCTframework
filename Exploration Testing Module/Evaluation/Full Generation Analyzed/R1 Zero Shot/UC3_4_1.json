@@ -1,0 +1,101 @@
+[
+  {
+    "test_case_id": "UC3.4.1_TC1",
+    "title": "Download scheda censimento con dati validi",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente visualizza un messaggio di conferma e ottiene il file desiderato",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di download della scheda censimento",
+        "expected": "L’operazione di download viene avviata correttamente"
+      },
+      {
+        "step": "Verifica l’avanzamento del download all’interno del browser",
+        "expected": "L’avanzamento del download è visualizzato correttamente"
+      },
+      {
+        "step": "Verifica il contenuto del file scaricato",
+        "expected": "Il file contiene le informazioni sulla scheda censimento selezionata"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.1"
+  },
+  {
+    "test_case_id": "UC3.4.1_TC2",
+    "title": "Download scheda censimento senza selezionare il file",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Non selezionare alcun file per il download",
+        "expected": "Il sistema richiede la selezione di un file"
+      },
+      {
+        "step": "Verifica il comportamento del sistema",
+        "expected": "Il sistema non avvia il download e visualizza un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.1"
+  },
+  {
+    "test_case_id": "UC3.4.1_TC3",
+    "title": "Download scheda censimento con formato file non supportato",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona un file con formato non supportato per il download",
+        "expected": "Il sistema rileva il formato non supportato"
+      },
+      {
+        "step": "Verifica il comportamento del sistema",
+        "expected": "Il sistema non avvia il download e visualizza un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.1"
+  },
+  {
+    "test_case_id": "UC3.4.1_TC4",
+    "title": "Download scheda censimento con dimensione file eccessiva",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona un file di grandi dimensioni per il download",
+        "expected": "Il sistema rileva la dimensione eccessiva del file"
+      },
+      {
+        "step": "Verifica il comportamento del sistema",
+        "expected": "Il sistema non avvia il download e visualizza un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.1"
+  },
+  {
+    "test_case_id": "UC3.4.1_TC5",
+    "title": "Download scheda censimento con autorizzazione insufficiente",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Tentare il download senza le autorizzazioni necessarie",
+        "expected": "Il sistema rileva l’assenza di autorizzazione"
+      },
+      {
+        "step": "Verifica il comportamento del sistema",
+        "expected": "Il sistema non avvia il download e visualizza un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.1"
+  }
+]

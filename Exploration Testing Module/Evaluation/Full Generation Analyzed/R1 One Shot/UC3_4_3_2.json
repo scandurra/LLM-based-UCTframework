@@ -1,0 +1,182 @@
+[
+  {
+    "test_case_id": "UC3.4.3.2_TC1",
+    "title": "Modifica sezione PlSystemGeneralData con dati validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Compila il form con informazioni valide e desiderate",
+        "expected": "Il form viene compilato senza errori"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Le modifiche vengono applicate con successo e visualizzato un messaggio di conferma"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.2"
+  },
+  {
+    "test_case_id": "UC3.4.3.2_TC2",
+    "title": "Modifica sezione con dati non validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Compila il form con informazioni non valide (es. campi obbligatori vuoti)",
+        "expected": "Il sistema segnala errori di validazione"
+      },
+      {
+        "step": "Tenta di applicare le modifiche",
+        "expected": "L’operazione fallisce e viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.2"
+  },
+  {
+    "test_case_id": "UC3.4.3.2_TC3",
+    "title": "Modifica sezione senza autorizzazione",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’accesso alla modifica della sezione viene negato",
+    "test_steps": [
+      {
+        "step": "Accedi alla piattaforma con un utente non autorizzato a modificare la sezione",
+        "expected": "La sezione non è accessibile o visualizza un messaggio di accesso negato"
+      },
+      {
+        "step": "Tenta di accedere manualmente all’URL della sezione",
+        "expected": "L’accesso viene bloccato e richiesta autenticazione o autorizzazione"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.2"
+  },
+  {
+    "test_case_id": "UC3.4.3.2_TC4",
+    "title": "Modifica sezione con caratteri speciali nei campi di input",
+    "preconditions": "UC3.4.3",
+    "postconditions": "I dati vengono salvati correttamente o il sistema gestisce i caratteri speciali",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci caratteri speciali (es. @,#,$) nei campi di input",
+        "expected": "Il sistema accetta i caratteri o li gestisce in modo appropriato"
+      },
+      {
+        "step": "Applica le modifiche",
+        "expected": "Le modifiche vengono applicate senza errori"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.2"
+  },
+  {
+    "test_case_id": "UC3.4.3.2_TC5",
+    "title": "Modifica sezione lasciando campi obbligatori vuoti",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema richiede la compilazione dei campi obbligatori",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Lascia vuoti campi obbligatori e compila gli altri",
+        "expected": "Il sistema segnala l’errore e richiede la compilazione dei campi mancanti"
+      },
+      {
+        "step": "Tenta di applicare le modifiche",
+        "expected": "L’operazione non va a buon fine fino alla compilazione di tutti i campi obbligatori"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.2"
+  },
+  {
+    "test_case_id": "UC3.4.3.2_TC6",
+    "title": "Modifica sezione con un numero eccessivo di caratteri in un campo",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema gestisce il limite di caratteri o visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci un numero eccessivo di caratteri in un campo (oltre il limite consentito)",
+        "expected": "Il sistema tronca i caratteri, li gestisce o visualizza un messaggio di errore"
+      },
+      {
+        "step": "Applica le modifiche",
+        "expected": "Le modifiche vengono applicate con successo o il sistema segnala l’errore"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.2"
+  },
+  {
+    "test_case_id": "UC3.4.3.2_TC7",
+    "title": "Modifica sezione e annullamento delle modifiche",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Le modifiche vengono annullate e i dati tornano allo stato precedente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione relativa ai dati dell’area utilizzando il menù laterale di destra",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Apporta modifiche ai campi",
+        "expected": "Le modifiche vengono applicate temporaneamente"
+      },
+      {
+        "step": "Annulla le modifiche prima di salvare",
+        "expected": "I dati tornano allo stato precedente alle modifiche"
+      }
+    ],
+    "test_type": "Funzionalità",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.2"
+  },
+  {
+    "test_case_id": "UC3.4.3.2_TC8",
+    "title": "Modifica sezione con più utenti contemporaneamente",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema gestisce le modifiche multiple in modo coerente",
+    "test_steps": [
+      {
+        "step": "Due o più utenti accedono alla stessa sezione e apportano modifiche contemporaneamente",
+        "expected": "Il sistema gestisce le modifiche in modo da evitare conflitti"
+      },
+      {
+        "step": "Utente 1 applica le sue modifiche",
+        "expected": "Le modifiche vengono salvate correttamente"
+      },
+      {
+        "step": "Utente 2 tenta di sovrascrivere le modifiche di Utente 1",
+        "expected": "Il sistema gestisce il conflitto in modo appropriato (es. avvisa dell’esistenza di modifiche più recenti)"
+      }
+    ],
+    "test_type": "Concorrenza",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.2"
+  }
+]

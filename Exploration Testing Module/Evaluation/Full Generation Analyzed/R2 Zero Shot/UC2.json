@@ -1,0 +1,139 @@
+[
+  {
+    "test_case_id": "UC2_TC1",
+    "title": "Apertura della dashboard con utente autorizzato",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza la sezione relativa alla dashboard",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente Regione",
+        "expected": "La home page del sistema è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona la voce di menù laterale sinistro per accedere alla dashboard",
+        "expected": "La sezione della dashboard è visualizzata correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC2",
+    "title": "Apertura della dashboard con utente non autorizzato",
+    "preconditions": "",
+    "postconditions": "Il sistema visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente non registrato",
+        "expected": "La home page del sistema non è accessibile"
+      },
+      {
+        "step": "Tenta di accedere alla dashboard tramite URL diretto",
+        "expected": "Il sistema visualizza un messaggio di errore di autorizzazione"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC3",
+    "title": "Apertura della dashboard con dati mancanti",
+    "preconditions": "UC1",
+    "postconditions": "Il sistema visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente Regione",
+        "expected": "La home page del sistema è visualizzata correttamente"
+      },
+      {
+        "step": "Rimuovi i dati di sessione dell’utente",
+        "expected": "Il sistema richiede nuovamente l’autenticazione"
+      },
+      {
+        "step": "Tenta di accedere alla dashboard",
+        "expected": "Il sistema visualizza un messaggio di errore per dati mancanti"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC4",
+    "title": "Apertura della dashboard con utente Sindaco",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza la sezione relativa alla dashboard",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente Sindaco",
+        "expected": "La home page del sistema è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona la voce di menù laterale sinistro per accedere alla dashboard",
+        "expected": "La sezione della dashboard è visualizzata correttamente con i dati relativi al Sindaco"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC5",
+    "title": "Apertura della dashboard con utente Fornitore",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza la sezione relativa alla dashboard",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente Fornitore",
+        "expected": "La home page del sistema è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona la voce di menù laterale sinistro per accedere alla dashboard",
+        "expected": "La sezione della dashboard è visualizzata correttamente con i dati relativi al Fornitore"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC6",
+    "title": "Apertura della dashboard con utente Progettista",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza la sezione relativa alla dashboard",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente Progettista",
+        "expected": "La home page del sistema è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona la voce di menù laterale sinistro per accedere alla dashboard",
+        "expected": "La sezione della dashboard è visualizzata correttamente con i dati relativi al Progettista"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC7",
+    "title": "Apertura della dashboard con utente Cittadino",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza la sezione relativa alla dashboard",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente Cittadino",
+        "expected": "La home page del sistema è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona la voce di menù laterale sinistro per accedere alla dashboard",
+        "expected": "La sezione della dashboard è visualizzata correttamente con i dati relativi al Cittadino"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2"
+  }
+]

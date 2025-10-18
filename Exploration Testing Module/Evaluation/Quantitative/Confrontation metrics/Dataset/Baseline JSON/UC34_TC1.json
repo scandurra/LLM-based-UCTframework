@@ -1,0 +1,21 @@
+[
+  {
+    "test_case_id": "UC34_TC001",
+    "title": "Menu a tendina \"Azione\" su scheda censimento",
+    "preconditions": "Aver compiuto i passaggi fino al UC3",
+    "postconditions": "L'utente visualizza le varie opzioni relative al menu a tendina Azione",
+    "test_steps": [
+      {
+        "step": "Posizionarsi su un record a scelta nella scheda di censimento",
+        "expected": "Il cursore si posiziona correttamente sul pulsante del menu a tendina \"Azione\""
+      },
+      {
+        "step": "L'utente clicca sul pulsante del menu a tendina \"Azione\"",
+        "expected": "L'utente visualizza le opzioni previste nel menu a tendina \"Azione\""
+      }
+    ],
+    "test_type": "",
+    "priority": "ALTO",
+    "use_case_id": "UC3.4"
+  }
+]

@@ -1,0 +1,78 @@
+[
+  {
+    "test_case_id": "UC4_TC1",
+    "title": "Apertura modulo SAVE con successo",
+    "preconditions": "UC1",
+    "postconditions": "L’interfaccia del modulo SAVE viene visualizzata correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione relativa al modulo SAVE tramite il menù laterale di sinistra",
+        "expected": "La sezione dedicata al modulo SAVE si apre correttamente"
+      },
+      {
+        "step": "Verifica la presenza degli elementi previsti nell’interfaccia del modulo",
+        "expected": "Tutti gli elementi sono presenti e visibili"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC4"
+  },
+  {
+    "test_case_id": "UC4_TC2",
+    "title": "Apertura modulo SAVE senza autorizzazione",
+    "preconditions": "UC1",
+    "postconditions": "L’accesso al modulo SAVE viene negato",
+    "test_steps": [
+      {
+        "step": "Tenta di accedere alla sezione del modulo SAVE senza i permessi necessari",
+        "expected": "Il sistema mostra un messaggio di accesso negato"
+      },
+      {
+        "step": "Verifica che non sia possibile visualizzare o utilizzare le funzionalità del modulo",
+        "expected": "L’accesso è completamente bloccato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC4"
+  },
+  {
+    "test_case_id": "UC4_TC3",
+    "title": "Navigazione nel modulo SAVE con browser non supportato",
+    "preconditions": "UC1",
+    "postconditions": "Il modulo SAVE potrebbe non funzionare correttamente o mostrare errori di visualizzazione",
+    "test_steps": [
+      {
+        "step": "Accedi al modulo SAVE utilizzando un browser non supportato ufficialmente",
+        "expected": "Potrebbero verificarsi problemi di visualizzazione o funzionalità"
+      },
+      {
+        "step": "Verifica la presenza di errori o malfunzionamenti nell’interfaccia del modulo",
+        "expected": "Il sistema potrebbe mostrare avvisi o messaggi di compatibilità"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Bassa",
+    "use_case_id": "UC4"
+  },
+  {
+    "test_case_id": "UC4_TC4",
+    "title": "Apertura modulo SAVE con schermata di risoluzione bassa",
+    "preconditions": "UC1",
+    "postconditions": "L’interfaccia del modulo SAVE si adatta alla risoluzione dello schermo",
+    "test_steps": [
+      {
+        "step": "Accedi al modulo SAVE su un dispositivo con risoluzione dello schermo bassa",
+        "expected": "Il layout e la disposizione degli elementi si adattano alla risoluzione"
+      },
+      {
+        "step": "Verifica che tutte le funzionalità siano accessibili e utilizzabili",
+        "expected": "Tutte le funzioni sono operative nonostante la risoluzione limitata"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Media",
+    "use_case_id": "UC4"
+  }
+]

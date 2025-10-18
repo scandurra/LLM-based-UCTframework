@@ -1,0 +1,117 @@
+[
+  {
+    "test_case_id": "UC3.1_TC1",
+    "title": "Visualizzazione schede censimento con dati validi e paginazione",
+    "preconditions": "UC3",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di visualizzazione schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona il numero di righe per pagina e scorri tra le pagine",
+        "expected": "Le informazioni vengono visualizzate in base alla selezione"
+      },
+      {
+        "step": "Ordina le colonne cliccando sui nomi",
+        "expected": "L’ordinamento viene applicato correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC2",
+    "title": "Visualizzazione senza selezionare il numero di righe per pagina",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema visualizza un messaggio di errore o utilizza un valore predefinito",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di visualizzazione schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Lascia vuoto il campo del numero di righe per pagina",
+        "expected": "Il sistema segnala la mancanza di informazioni o utilizza un valore predefinito"
+      },
+      {
+        "step": "Tenta di visualizzare le informazioni",
+        "expected": "Il sistema gestisce correttamente la situazione"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC3",
+    "title": "Scorrimento laterale e visualizzazione di tutte le colonne",
+    "preconditions": "UC3",
+    "postconditions": "L’utente può visualizzare tutte le informazioni",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di visualizzazione schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Scorri lateralmente per visualizzare tutte le colonne",
+        "expected": "Tutte le colonne sono accessibili e visibili"
+      },
+      {
+        "step": "Verifica la presenza di tutti i dati richiesti",
+        "expected": "Tutti i dati sono presenti e corretti"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC4",
+    "title": "Ordinamento delle colonne con più clic",
+    "preconditions": "UC3",
+    "postconditions": "L’ordinamento viene applicato correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di visualizzazione schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca più volte sul nome di una colonna per cambiare l’ordinamento",
+        "expected": "L’ordinamento cambia correttamente tra ascendente e discendente"
+      },
+      {
+        "step": "Verifica che l’ordinamento sia stato applicato correttamente",
+        "expected": "I dati sono ordinati come richiesto"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC5",
+    "title": "Boundary test: visualizzazione con un solo elemento nella tabella",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema gestisce correttamente la situazione di boundary",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di visualizzazione schede censimento con un solo elemento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Verifica che le funzionalità di ordinamento e scorrimento siano disponibili",
+        "expected": "Tutte le funzionalità sono accessibili anche con un solo elemento"
+      },
+      {
+        "step": "Testa l’ordinamento e lo scorrimento laterale",
+        "expected": "Il sistema gestisce correttamente la situazione di boundary"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Bassa",
+    "use_case_id": "UC3.1"
+  }
+]

@@ -1,0 +1,137 @@
+[
+  {
+    "test_case_id": "UC4.2_TC1",
+    "title": "Aggiunta investimento con dati validi",
+    "preconditions": "UC4",
+    "postconditions": "L’utente visualizza un messaggio di conferma",
+    "test_steps": [
+      {
+        "step": "Naviga nella sezione dedicata agli investimenti",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto per aggiungere un nuovo investimento",
+        "expected": "Il form di inserimento dati si apre"
+      },
+      {
+        "step": "Compila il form con tutti i parametri richiesti in modo corretto",
+        "expected": "Il form viene completato senza errori"
+      },
+      {
+        "step": "Conferma l’aggiunta dell’investimento",
+        "expected": "Viene visualizzato un messaggio di conferma"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC4.2"
+  },
+  {
+    "test_case_id": "UC4.2_TC2",
+    "title": "Aggiunta investimento con dati mancanti",
+    "preconditions": "UC4",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Naviga nella sezione dedicata agli investimenti",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto per aggiungere un nuovo investimento",
+        "expected": "Il form di inserimento dati si apre"
+      },
+      {
+        "step": "Lascia vuoti alcuni campi obbligatori del form",
+        "expected": "Il sistema segnala l’errore di compilazione"
+      },
+      {
+        "step": "Tenta di confermare l’aggiunta dell’investimento",
+    "expected": "Viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC4.2"
+  },
+  {
+    "test_case_id": "UC4.2_TC3",
+    "title": "Annullamento aggiunta investimento",
+    "preconditions": "UC4",
+    "postconditions": "L’utente visualizza un messaggio di annullamento",
+    "test_steps": [
+      {
+        "step": "Naviga nella sezione dedicata agli investimenti",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto per aggiungere un nuovo investimento",
+        "expected": "Il form di inserimento dati si apre"
+      },
+      {
+        "step": "Compila parzialmente il form e poi clicca su annulla",
+        "expected": "Il sistema chiede conferma dell’annullamento"
+      },
+      {
+        "step": "Conferma l’annullamento",
+    "expected": "Viene visualizzato un messaggio di avvenuto annullamento"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC4.2"
+  },
+  {
+    "test_case_id": "UC4.2_TC4",
+    "title": "Inserimento dati non validi nel form",
+    "preconditions": "UC4",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Naviga nella sezione dedicata agli investimenti",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto per aggiungere un nuovo investimento",
+        "expected": "Il form di inserimento dati si apre"
+      },
+      {
+        "step": "Inserisci dati non validi in alcuni campi (es. testo al posto di numeri)",
+        "expected": "Il sistema segnala l’errore di formato"
+      },
+      {
+        "step": "Tenta di confermare l’aggiunta dell’investimento",
+    "expected": "Viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC4.2"
+  },
+  {
+    "test_case_id": "UC4.2_TC5",
+    "title": "Boundary test: inserimento dati al limite dei campi",
+    "preconditions": "UC4",
+    "postconditions": "L’utente visualizza un messaggio di conferma o errore",
+    "test_steps": [
+      {
+        "step": "Naviga nella sezione dedicata agli investimenti",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto per aggiungere un nuovo investimento",
+        "expected": "Il form di inserimento dati si apre"
+      },
+      {
+        "step": "Inserisci dati esattamente al limite dei campi (es. numero massimo di caratteri)",
+        "expected": "Il sistema accetta o rifiuta i dati con un messaggio appropriato"
+      },
+      {
+        "step": "Conferma l’aggiunta dell’investimento",
+    "expected": "Viene visualizzato un messaggio di conferma o errore"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Alta",
+    "use_case_id": "UC4.2"
+  },
+]

@@ -1,0 +1,166 @@
+[
+  {
+    "test_case_id": "UC3.4.4_TC1",
+    "title": "Congelamento scheda censimento con conferma",
+    "preconditions": "UC3.4",
+    "postconditions": "La scheda viene congelata e lo stato è aggiornato a 'non attivo'",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione delle schede censimento",
+        "expected": "La lista delle schede è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona una scheda e l’operazione di congelamento",
+        "expected": "Viene richiesta la conferma del congelamento"
+      },
+      {
+        "step": "Conferma il congelamento della scheda",
+        "expected": "Viene visualizzato un messaggio di conferma dell’operazione e lo stato della scheda è aggiornato"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.4"
+  },
+  {
+    "test_case_id": "UC3.4.4_TC2",
+    "title": "Congelamento scheda censimento con annullamento",
+    "preconditions": "UC3.4",
+    "postconditions": "Il congelamento non viene eseguito e la scheda rimane nello stato precedente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione delle schede censimento",
+        "expected": "La lista delle schede è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona una scheda e l’operazione di congelamento",
+        "expected": "Viene richiesta la conferma del congelamento"
+      },
+      {
+        "step": "Annulla il congelamento della scheda",
+        "expected": "Il congelamento viene interrotto e lo stato della scheda non cambia"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.4"
+  },
+  {
+    "test_case_id": "UC3.4.4_TC3",
+    "title": "Congelamento di più schede censimento",
+    "preconditions": "UC3.4",
+    "postconditions": "Tutte le schede selezionate vengono congelate e i loro stati sono aggiornati a 'non attivo'",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione delle schede censimento",
+        "expected": "La lista delle schede è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona più schede e l’operazione di congelamento",
+        "expected": "Viene richiesta la conferma del congelamento per tutte le schede selezionate"
+      },
+      {
+        "step": "Conferma il congelamento delle schede",
+        "expected": "Tutte le schede vengono congelate e i loro stati sono aggiornati"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.4"
+  },
+  {
+    "test_case_id": "UC3.4.4_TC4",
+    "title": "Congelamento scheda censimento senza permessi",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente non può congelare la scheda e viene visualizzato un messaggio di accesso negato",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione delle schede censimento come utente senza permessi di congelamento",
+        "expected": "La lista delle schede è visualizzata, ma l’opzione di congelamento non è disponibile"
+      },
+      {
+        "step": "Tenta di selezionare una scheda e l’operazione di congelamento",
+        "expected": "Viene visualizzato un messaggio di accesso negato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.4"
+  },
+  {
+    "test_case_id": "UC3.4.4_TC5",
+    "title": "Congelamento scheda censimento già congelata",
+    "preconditions": "UC3.4",
+    "postconditions": "Viene visualizzato un messaggio che indica la scheda è già congelata",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione delle schede censimento",
+        "expected": "La lista delle schede è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona una scheda già congelata e l’operazione di congelamento",
+        "expected": "Viene visualizzato un messaggio che indica la scheda è già congelata"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.4"
+  },
+  {
+    "test_case_id": "UC3.4.4_TC6",
+    "title": "Congelamento scheda censimento con dati non validi",
+    "preconditions": "UC3.4",
+    "postconditions": "Viene visualizzato un messaggio di errore per i dati non validi",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione delle schede censimento",
+        "expected": "La lista delle schede è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona una scheda con dati non validi e l’operazione di congelamento",
+        "expected": "Viene visualizzato un messaggio di errore per i dati non validi"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.4"
+  },
+  {
+    "test_case_id": "UC3.4.4_TC7",
+    "title": "Congelamento scheda censimento durante la manutenzione del sistema",
+    "preconditions": "UC3.4",
+    "postconditions": "Viene visualizzato un messaggio di indisponibilità della funzione a causa della manutenzione",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione delle schede censimento durante la manutenzione del sistema",
+        "expected": "Viene visualizzato un messaggio di indisponibilità"
+      },
+      {
+        "step": "Tenta di selezionare una scheda e l’operazione di congelamento",
+        "expected": "Il sistema non permette di eseguire l’operazione a causa della manutenzione in corso"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.4"
+  },
+  {
+    "test_case_id": "UC3.4.4_TC8",
+    "title": "Congelamento scheda censimento con timeout",
+    "preconditions": "UC3.4",
+    "postconditions": "Viene visualizzato un messaggio di timeout e l’operazione non viene completata",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione delle schede censimento",
+        "expected": "La lista delle schede è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona una scheda e l’operazione di congelamento, attendi fino al timeout",
+        "expected": "Viene visualizzato un messaggio di timeout e l’operazione non viene completata"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.4"
+  }
+]

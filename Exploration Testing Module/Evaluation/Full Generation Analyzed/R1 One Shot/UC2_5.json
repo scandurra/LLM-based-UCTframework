@@ -1,0 +1,186 @@
+[
+  {
+    "test_case_id": "UC2.5_TC1",
+    "title": "Visualizzazione grafici con dati validi e completo",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza le informazioni consultando i grafici",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard",
+        "expected": "La dashboard viene caricata correttamente"
+      },
+      {
+        "step": "Scorri nella pagina fino a raggiungere la sezione dei grafici",
+        "expected": "I grafici vengono visualizzati correttamente"
+      },
+      {
+        "step": "Osserva i grafici di comuni aderenti per regione, punti luce per regione e distribuzione punti luce per tipo apparecchio",
+        "expected": "Tutti i grafici sono visibili e contengono dati coerenti"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC2",
+    "title": "Visualizzazione grafici con dati parziali",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza le informazioni disponibili consultando i grafici",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard",
+        "expected": "La dashboard viene caricata correttamente"
+      },
+      {
+        "step": "Scorri nella pagina fino a raggiungere la sezione dei grafici",
+        "expected": "I grafici vengono visualizzati correttamente"
+      },
+      {
+        "step": "Osserva i grafici con dati parziali (es. solo alcuni comuni o regioni)",
+        "expected": "I grafici mostrano i dati disponibili e segnalano la mancanza di informazioni per le parti incomplete"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC3",
+    "title": "Visualizzazione grafici senza dati",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio che indica l’assenza di dati",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard",
+        "expected": "La dashboard viene caricata correttamente"
+      },
+      {
+        "step": "Scorri nella pagina fino a raggiungere la sezione dei grafici",
+        "expected": "I grafici vengono visualizzati ma senza dati"
+      },
+      {
+        "step": "Osserva il messaggio di assenza di dati",
+        "expected": "Il sistema mostra un messaggio chiaro sull’assenza di dati per i grafici"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC4",
+    "title": "Visualizzazione grafici con utente non autorizzato",
+    "preconditions": "UC2",
+    "postconditions": "L’utente non autorizzato non può visualizzare i grafici",
+    "test_steps": [
+      {
+        "step": "Tenta di accedere alla dashboard senza autenticazione",
+        "expected": "Il sistema richiede l’autenticazione"
+      },
+      {
+        "step": "Inserisci credenziali di un utente non autorizzato",
+        "expected": "L’accesso viene negato e il sistema mostra un messaggio di errore"
+      },
+      {
+        "step": "Tenta di forzare l’accesso ai grafici",
+        "expected": "Il sistema blocca l’accesso e mantiene la protezione dei dati"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC5",
+    "title": "Visualizzazione grafici su dispositivi mobili",
+    "preconditions": "UC2",
+    "postconditions": "I grafici vengono visualizzati correttamente sul dispositivo mobile",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard da un dispositivo mobile",
+        "expected": "La dashboard si adatta allo schermo del dispositivo mobile"
+      },
+      {
+        "step": "Scorri nella pagina fino a raggiungere la sezione dei grafici",
+        "expected": "I grafici sono visibili e ben formattati per il dispositivo mobile"
+      },
+      {
+        "step": "Osserva i grafici e verifica la leggibilità",
+        "expected": "I grafici sono chiari e facilmente leggibili sullo schermo del dispositivo mobile"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Alta",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC6",
+    "title": "Visualizzazione grafici con dati in lingua diversa",
+    "preconditions": "UC2",
+    "postconditions": "I grafici vengono visualizzati con etichette e didascalie nella lingua selezionata",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e seleziona una lingua diversa dall’italiano",
+        "expected": "La dashboard e i testi vengono tradotti nella lingua selezionata"
+      },
+      {
+        "step": "Scorri nella pagina fino a raggiungere la sezione dei grafici",
+        "expected": "I grafici sono visibili con etichette e didascalie nella lingua selezionata"
+      },
+      {
+        "step": "Osserva i grafici e verifica la correttezza della traduzione",
+        "expected": "Le etichette e le didascalie dei grafici sono accurate e coerenti con la lingua selezionata"
+      }
+    ],
+    "test_type": "Internazionalizzazione",
+    "priority": "Media",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC7",
+    "title": "Visualizzazione grafici con accessibilità per utenti con disabilità",
+    "preconditions": "UC2",
+    "postconditions": "I grafici sono accessibili e utilizzabili anche per utenti con disabilità",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard utilizzando un lettore dello schermo o altri strumenti di accessibilità",
+        "expected": "La dashboard è navigabile e i contenuti sono accessibili"
+      },
+      {
+        "step": "Scorri nella pagina fino a raggiungere la sezione dei grafici",
+        "expected": "I grafici sono descritti in modo da essere comprensibili anche senza visione"
+      },
+      {
+        "step": "Osserva i grafici e verifica l’accessibilità",
+        "expected": "I grafici sono progettati per essere accessibili e utilizzabili anche dagli utenti con disabilità"
+      }
+    ],
+    "test_type": "Accessibilità",
+    "priority": "Alta",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC8",
+    "title": "Visualizzazione grafici con dati aggiornati in tempo reale",
+    "preconditions": "UC2",
+    "postconditions": "I grafici riflettono i dati più recenti e aggiornati",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e osserva i grafici",
+        "expected": "I grafici mostrano i dati attuali"
+      },
+      {
+        "step": "Aggiorna i dati sottostanti (es. nuovi comuni aderenti, variazioni nei punti luce)",
+        "expected": "I grafici si aggiornano automaticamente per riflettere le modifiche"
+      },
+      {
+        "step": "Verifica che i grafici mostrino i dati più recenti",
+        "expected": "I grafici sono aggiornati e coerenti con i dati più recenti disponibili"
+      }
+    ],
+    "test_type": "Funzionalità",
+    "priority": "Alta",
+    "use_case_id": "UC2.5"
+  }
+]

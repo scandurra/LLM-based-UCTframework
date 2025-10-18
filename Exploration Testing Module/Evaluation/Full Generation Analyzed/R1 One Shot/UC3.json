@@ -1,0 +1,154 @@
+[
+  {
+    "test_case_id": "UC3_TC1",
+    "title": "Accesso alla sezione schede censimento con utente autorizzato",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza la sezione relativa alle schede censimento",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come Regione, Sindaco o Fornitore",
+        "expected": "La home page del sistema viene visualizzata"
+      },
+      {
+        "step": "Seleziona la sezione relativa alle schede censimento dal menù laterale di sinistra",
+        "expected": "La sezione delle schede censimento si apre correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC2",
+    "title": "Accesso alla sezione schede censimento con utente non autorizzato",
+    "preconditions": "UC1",
+    "postconditions": "L’accesso alla sezione viene negato",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente non autorizzato (es. cittadino)",
+        "expected": "La home page del sistema viene visualizzata"
+      },
+      {
+        "step": "Tenta di accedere alla sezione relativa alle schede censimento",
+        "expected": "Il sistema nega l’accesso e visualizza un messaggio di autorizzazione necessaria"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC3",
+    "title": "Accesso alla sezione schede censimento senza autenticazione",
+    "preconditions": "UC1",
+    "postconditions": "Il sistema richiede l’autenticazione",
+    "test_steps": [
+      {
+        "step": "Accedi direttamente all’URL della sezione relativa alle schede censimento senza login",
+        "expected": "Il sistema reindirizza alla pagina di login"
+      },
+      {
+        "step": "Tenta di accedere alla sezione senza autenticarsi",
+        "expected": "L’accesso viene negato e il sistema richiede l’autenticazione"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC4",
+    "title": "Verifica della presenza di tutti gli elementi nella sezione schede censimento",
+    "preconditions": "UC1",
+    "postconditions": "Tutti gli elementi attesi sono presenti e funzionanti",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione relativa alle schede censimento come utente autorizzato",
+        "expected": "La sezione si apre correttamente"
+      },
+      {
+        "step": "Verifica la presenza e il funzionamento di tutti gli elementi della pagina (es. bottoni, link, tabelle)",
+        "expected": "Tutti gli elementi sono presenti e funzionano come atteso"
+      }
+    ],
+    "test_type": "Funzionalità",
+    "priority": "Media",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC5",
+    "title": "Test di usabilità della sezione schede censimento",
+    "preconditions": "UC1",
+    "postconditions": "La sezione è facilmente navigabile e gli elementi sono intuitivi",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione relativa alle schede censimento come utente autorizzato",
+        "expected": "La sezione si apre correttamente"
+      },
+      {
+        "step": "Esegui una serie di azioni comuni nella sezione (es. creazione, modifica, cancellazione di schede)",
+        "expected": "Le operazioni sono facili da eseguire e gli elementi della pagina sono intuitivi"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Media",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC6",
+    "title": "Test di prestazione della sezione schede censimento con carico elevato",
+    "preconditions": "UC1",
+    "postconditions": "La sezione rimane performante anche con un alto numero di utenti o dati",
+    "test_steps": [
+      {
+        "step": "Simula un alto numero di utenti che accedono contemporaneamente alla sezione relativa alle schede censimento",
+        "expected": "La sezione rimane accessibile e risponde prontamente"
+      },
+      {
+        "step": "Verifica le prestazioni della sezione con un grande volume di dati",
+        "expected": "La sezione gestisce il carico senza problemi di lentezza o crash"
+      }
+    ],
+    "test_type": "Prestazione",
+    "priority": "Alta",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC7",
+    "title": "Test di compatibilità della sezione schede censimento con diversi browser e dispositivi",
+    "preconditions": "UC1",
+    "postconditions": "La sezione è visualizzata correttamente su diverse piattaforme",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione relativa alle schede censimento utilizzando diversi browser (es. Chrome, Firefox, Safari)",
+        "expected": "La sezione si apre e funziona correttamente su ogni browser"
+      },
+      {
+        "step": "Verifica la compatibilità con dispositivi mobili e tablet",
+        "expected": "La sezione è accessibile e utilizzabile anche su dispositivi mobili"
+      }
+    ],
+    "test_type": "Compatibilità",
+    "priority": "Media",
+    "use_case_id": "UC3"
+  },
+  {
+    "test_case_id": "UC3_TC8",
+    "title": "Test di accessibilità della sezione schede censimento per utenti con disabilità",
+    "preconditions": "UC1",
+    "postconditions": "La sezione è accessibile per utenti con diverse abilità",
+    "test_steps": [
+      {
+        "step": "Verifica la conformità della sezione agli standard di accessibilità (es. WCAG 2.1)",
+        "expected": "La sezione soddisfa gli standard di accessibilità"
+      },
+      {
+        "step": "Testa l’accessibilità con strumenti di assistenza come lettori di schermo",
+        "expected": "La sezione è utilizzabile anche con strumenti di assistenza"
+      }
+    ],
+    "test_type": "Accessibilità",
+    "priority": "Alta",
+    "use_case_id": "UC3"
+  }
+]

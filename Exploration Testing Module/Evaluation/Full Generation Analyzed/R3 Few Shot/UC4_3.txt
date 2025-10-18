@@ -1,0 +1,121 @@
+[
+  {
+    "test_case_id": "UC4.3_TC1",
+    "title": "Aggiunta simulazione con dati validi",
+    "preconditions": "UC4",
+    "postconditions": "L’utente ha aggiunto l’associazione nel menu dedicato",
+    "test_steps": [
+      {
+        "step": "Naviga nella terza sezione dedicata alle analisi",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto per aggiungere una nuova simulazione",
+        "expected": "Il sistema apre la finestra di dialogo per l’aggiunta"
+      },
+      {
+        "step": "Seleziona un impianto e un investimento validi da associare",
+        "expected": "L’associazione viene accettata"
+      },
+      {
+        "step": "Conferma l’aggiunta della simulazione",
+        "expected": "Viene visualizzato un messaggio di conferma"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC4.3"
+  },
+  {
+    "test_case_id": "UC4.3_TC2",
+    "title": "Aggiunta simulazione con annullamento",
+    "preconditions": "UC4",
+    "postconditions": "L’utente visualizza un messaggio di avvenuto annullamento",
+    "test_steps": [
+      {
+        "step": "Naviga nella terza sezione dedicata alle analisi",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto per aggiungere una nuova simulazione",
+        "expected": "Il sistema apre la finestra di dialogo per l’aggiunta"
+      },
+      {
+        "step": "Seleziona un impianto e un investimento, poi annulla l’operazione",
+        "expected": "Viene visualizzato un messaggio di annullamento"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC4.3"
+  },
+  {
+    "test_case_id": "UC4.3_TC3",
+    "title": "Aggiunta simulazione senza selezionare impianto",
+    "preconditions": "UC4",
+    "postconditions": "L’utente non può procedere con l’aggiunta",
+    "test_steps": [
+      {
+        "step": "Naviga nella terza sezione dedicata alle analisi",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto per aggiungere una nuova simulazione",
+        "expected": "Il sistema apre la finestra di dialogo per l’aggiunta"
+      },
+      {
+        "step": "Lascia vuoto il campo dell’impianto e tenta di procedere",
+        "expected": "Il sistema segnala un errore di selezione mancante"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC4.3"
+  },
+  {
+    "test_case_id": "UC4.3_TC4",
+    "title": "Aggiunta simulazione con dati duplicati",
+    "preconditions": "UC4",
+    "postconditions": "L’utente riceve un avviso di dati già esistenti",
+    "test_steps": [
+      {
+        "step": "Naviga nella terza sezione dedicata alle analisi",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto per aggiungere una nuova simulazione",
+        "expected": "Il sistema apre la finestra di dialogo per l’aggiunta"
+      },
+      {
+        "step": "Seleziona un impianto e un investimento già associati in precedenza",
+        "expected": "Il sistema segnala che i dati sono già presenti"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC4.3"
+  },
+  {
+    "test_case_id": "UC4.3_TC5",
+    "title": "Boundary test: aggiunta simulazione con selezione multipla",
+    "preconditions": "UC4",
+    "postconditions": "L’utente può aggiungere più associazioni",
+    "test_steps": [
+      {
+        "step": "Naviga nella terza sezione dedicata alle analisi",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto per aggiungere una nuova simulazione",
+        "expected": "Il sistema apre la finestra di dialogo per l’aggiunta"
+      },
+      {
+        "step": "Seleziona più impianti e investimenti da associare",
+        "expected": "L’associazione multipla viene accettata"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Alta",
+    "use_case_id": "UC4.3"
+  },
+]

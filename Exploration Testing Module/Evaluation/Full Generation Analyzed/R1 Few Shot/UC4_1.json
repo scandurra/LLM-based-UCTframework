@@ -1,0 +1,97 @@
+[
+  {
+    "test_case_id": "UC4.1_TC1",
+    "title": "Visualizzazione della sezione di gestione impianto con utente autorizzato",
+    "preconditions": "UC4",
+    "postconditions": "La sezione di gestione dell’impianto viene visualizzata correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione del modulo SAVE come utente autorizzato",
+        "expected": "La sezione del modulo SAVE è accessibile"
+      },
+      {
+        "step": "Seleziona la sezione di gestione dell’impianto",
+        "expected": "La sezione di gestione dell’impianto viene visualizzata"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC4.1"
+  },
+  {
+    "test_case_id": "UC4.1_TC2",
+    "title": "Visualizzazione della sezione di gestione impianto con navigazione rapida",
+    "preconditions": "UC4",
+    "postconditions": "La sezione di gestione dell’impianto viene visualizzata rapidamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione del modulo SAVE",
+        "expected": "La sezione del modulo SAVE è accessibile"
+      },
+      {
+        "step": "Utilizza la barra orizzontale dedicata per navigare rapidamente alla sezione di gestione dell’impianto",
+        "expected": "La sezione di gestione dell’impianto viene visualizzata velocemente"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Media",
+    "use_case_id": "UC4.1"
+  },
+  {
+    "test_case_id": "UC4.1_TC3",
+    "title": "Tentativo di accesso alla sezione di gestione impianto senza autorizzazione",
+    "preconditions": "UC4",
+    "postconditions": "L’accesso alla sezione di gestione dell’impianto viene negato",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione del modulo SAVE come utente non autorizzato",
+        "expected": "La sezione del modulo SAVE è inaccessibile"
+      },
+      {
+        "step": "Tenta di accedere alla sezione di gestione dell’impianto",
+        "expected": "L’accesso viene negato e compare un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC4.1"
+  },
+  {
+    "test_case_id": "UC4.1_TC4",
+    "title": "Visualizzazione della sezione di gestione impianto con dati non validi",
+    "preconditions": "UC4",
+    "postconditions": "La sezione di gestione dell’impianto viene visualizzata con un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione del modulo SAVE",
+        "expected": "La sezione del modulo SAVE è accessibile"
+      },
+      {
+        "step": "Inserisci dati non validi per accedere alla sezione di gestione dell’impianto",
+        "expected": "La sezione di gestione dell’impianto viene visualizzata con un messaggio di errore"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC4.1"
+  },
+  {
+    "test_case_id": "UC4.1_TC5",
+    "title": "Test di usabilità della sezione di gestione impianto",
+    "preconditions": "UC4",
+    "postconditions": "La sezione di gestione dell’impianto è facile da utilizzare",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione del modulo SAVE",
+        "expected": "La sezione del modulo SAVE è accessibile"
+      },
+      {
+        "step": "Valuta la facilità d’uso della sezione di gestione dell’impianto",
+        "expected": "La sezione di gestione dell’impianto è facile da utilizzare e navigare"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Bassa",
+    "use_case_id": "UC4.1"
+  }
+]

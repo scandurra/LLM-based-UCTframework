@@ -1,0 +1,97 @@
+[
+  {
+    "test_case_id": "UC3.4_TC1",
+    "title": "Visualizzazione azioni disponibili sulla scheda censimento",
+    "preconditions": "UC3",
+    "postconditions": "Le azioni sono visualizzate correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento",
+        "expected": "La lista delle schede è visualizzata"
+      },
+      {
+        "step": "Clicca sul tasto azioni per una scheda specifica",
+        "expected": "La palette di operazioni viene mostrata"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC2",
+    "title": "Selezione di un’azione non valida",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema segnala l’errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento",
+        "expected": "La lista delle schede è visualizzata"
+      },
+      {
+        "step": "Clicca sul tasto azioni e seleziona un’opzione non applicabile",
+        "expected": "Il sistema mostra un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC3",
+    "title": "Esecuzione di un’azione su scheda censimento senza autorizzazione",
+    "preconditions": "UC3",
+    "postconditions": "L’accesso è negato",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento con utente non autorizzato",
+        "expected": "La lista delle schede potrebbe essere visualizzata ma le azioni sono limitate"
+      },
+      {
+        "step": "Tenta di eseguire un’azione richiedendo permessi speciali",
+        "expected": "Il sistema nega l’accesso e richiede autenticazione o autorizzazione"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC4",
+    "title": "Selezione di più azioni contemporaneamente",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema gestisce la selezione multipla",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento",
+        "expected": "La lista delle schede è visualizzata"
+      },
+      {
+        "step": "Clicca sul tasto azioni e tenta di selezionare più opzioni",
+        "expected": "Il sistema gestisce correttamente la selezione multipla o segnala un errore se non supportata"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Media",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC5",
+    "title": "Annullamento dell’azione selezionata",
+    "preconditions": "UC3",
+    "postconditions": "L’azione è annullata senza effetti collaterali",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento",
+        "expected": "La lista delle schede è visualizzata"
+      },
+      {
+        "step": "Clicca sul tasto azioni, seleziona un’opzione e poi annulla",
+        "expected": "Il sistema torna allo stato precedente senza applicare l’azione"
+      }
+    ],
+    "test_type": "Funzionalità",
+    "priority": "Alta",
+    "use_case_id": "UC3.4"
+  }
+]

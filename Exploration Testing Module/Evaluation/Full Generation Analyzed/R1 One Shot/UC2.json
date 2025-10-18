@@ -1,0 +1,158 @@
+[
+  {
+    "test_case_id": "UC2_TC1",
+    "title": "Apertura della dashboard con utente autenticato",
+    "preconditions": "UC1",
+    "postconditions": "La dashboard viene visualizzata correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente registrato",
+        "expected": "L’accesso avviene con successo"
+      },
+      {
+        "step": "Seleziona la voce del menù laterale relativa alla dashboard",
+        "expected": "La sezione della dashboard si apre correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC2",
+    "title": "Tentativo di accesso alla dashboard senza autenticazione",
+    "preconditions": "",
+    "postconditions": "Viene richiesta l’autenticazione",
+    "test_steps": [
+      {
+        "step": "Accedi direttamente all’URL della dashboard senza login",
+        "expected": "Il sistema reindirizza alla pagina di login"
+      },
+      {
+        "step": "Tenta di accedere manualmente alla dashboard",
+        "expected": "Accesso negato e richiesta autenticazione"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC3",
+    "title": "Visualizzazione della dashboard con diversi ruoli utente",
+    "preconditions": "UC1",
+    "postconditions": "La dashboard si adatta al ruolo dell’utente",
+    "test_steps": [
+      {
+        "step": "Accedi come Regione",
+        "expected": "Vengono visualizzate le informazioni relative alla Regione"
+      },
+      {
+        "step": "Accedi come Sindaco",
+        "expected": "Vengono visualizzate le informazioni relative al Comune"
+      },
+      {
+        "step": "Accedi come Fornitore, Progettista e Cittadino",
+        "expected": "La dashboard si adatta di conseguenza per ogni ruolo"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC4",
+    "title": "Dashboard con dati non disponibili",
+    "preconditions": "UC1",
+    "postconditions": "Viene mostrato un messaggio di dati non disponibili",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard in un momento in cui i dati non sono aggiornati",
+        "expected": "Il sistema visualizza un messaggio informativo"
+      },
+      {
+        "step": "Verifica la presenza di un indicatore di stato dei dati (es. ‘in aggiornamento’)",
+        "expected": "L’indicatore è presente e visibile"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC5",
+    "title": "Test di usabilità: navigazione nella dashboard",
+    "preconditions": "UC1",
+    "postconditions": "La navigazione è intuitiva e facile da utilizzare",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e esegui una serie di azioni comuni (es. selezionare filtri, aprire dettagli)",
+        "expected": "Le operazioni vengono eseguite senza difficoltà"
+      },
+      {
+        "step": "Verifica la presenza di elementi di aiuto o guide all’uso",
+        "expected": "Sono presenti e accessibili"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Alta",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC6",
+    "title": "Test di prestazione: caricamento della dashboard con grandi volumi di dati",
+    "preconditions": "UC1",
+    "postconditions": "La dashboard si carica in un tempo ragionevole",
+    "test_steps": [
+      {
+        "step": "Simula un grande volume di dati da visualizzare nella dashboard",
+        "expected": "Il sistema gestisce i dati senza rallentamenti significativi"
+      },
+      {
+        "step": "Misura il tempo di caricamento della pagina",
+        "expected": "Risultati entro i limiti di tolleranza prestazionale"
+      }
+    ],
+    "test_type": "Prestazione",
+    "priority": "Alta",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC7",
+    "title": "Test di sicurezza: accesso alla dashboard con permessi insufficienti",
+    "preconditions": "UC1",
+    "postconditions": "L’accesso viene negato",
+    "test_steps": [
+      {
+        "step": "Crea un utente con permessi limitati",
+        "expected": "L’utente non può accedere a funzionalità riservate"
+      },
+      {
+        "step": "Tenta di accedere alla dashboard con l’utente a bassi privilegi",
+        "expected": "Accesso negato e messaggio di permessi insufficienti"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC8",
+    "title": "Test di compatibilità: visualizzazione della dashboard su dispositivi diversi",
+    "preconditions": "UC1",
+    "postconditions": "La dashboard è visualizzata correttamente su tutti i dispositivi testati",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard utilizzando un desktop",
+        "expected": "La dashboard si adatta allo schermo"
+      },
+      {
+        "step": "Accedi alla dashboard utilizzando un tablet e uno smartphone",
+        "expected": "La dashboard è fully responsive e funzionale su tutti i dispositivi"
+      }
+    ],
+    "test_type": "Compatibilità",
+    "priority": "Media",
+    "use_case_id": "UC2"
+  }
+]

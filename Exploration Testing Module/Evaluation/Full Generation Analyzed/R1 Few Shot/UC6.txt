@@ -1,0 +1,82 @@
+[
+  {
+    "test_case_id": "UC6_TC1",
+    "title": "Logout utente con successo",
+    "preconditions": "UC1",
+    "postconditions": "L’utente non è più autenticato ed è a conoscenza che l’operazione ha avuto successo",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione profilo utente",
+        "expected": "La sezione profilo viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto “Logout”",
+        "expected": "Il sistema inizia il processo di logout"
+      },
+      {
+        "step": "Conferma l’uscita",
+        "expected": "L’utente visualizza un messaggio di operazione completata con successo e viene reindirizzato alla pagina di login"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC6"
+  },
+  {
+    "test_case_id": "UC6_TC2",
+    "title": "Logout senza conferma",
+    "preconditions": "UC1",
+    "postconditions": "Il sistema richiede la conferma di logout",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione profilo utente",
+        "expected": "La sezione profilo viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto “Logout” e poi chiudi la finestra di conferma",
+        "expected": "Il sistema non esegue il logout e rimane nella stessa pagina"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC6"
+  },
+  {
+    "test_case_id": "UC6_TC3",
+    "title": "Logout con più utenti aperti",
+    "preconditions": "UC1",
+    "postconditions": "Solo l’utente che ha eseguito il logout non è più autenticato",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione profilo utente con più browser o schede aperte",
+        "expected": "Tutte le sessioni sono attive"
+      },
+      {
+        "step": "Esegui il logout da una delle sessioni",
+        "expected": "Solo la sessione da cui è stato eseguito il logout viene chiusa, mentre le altre rimangono attive"
+      }
+    ],
+    "test_type": "Prestazione",
+    "priority": "Alta",
+    "use_case_id": "UC6"
+  },
+  {
+    "test_case_id": "UC6_TC4",
+    "title": "Boundary test: logout immediatamente dopo il login",
+    "preconditions": "UC1",
+    "postconditions": "Il sistema esegue correttamente il logout anche se fatto subito dopo il login",
+    "test_steps": [
+      {
+        "step": "Esegui il login",
+        "expected": "La pagina di login conferma l’accesso"
+      },
+      {
+        "step": "Immediatamente clicca sul tasto “Logout”",
+        "expected": "Il sistema esegue il logout senza problemi"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Alta",
+    "use_case_id": "UC6"
+  },
+]

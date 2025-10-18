@@ -1,0 +1,101 @@
+[
+  {
+    "test_case_id": "UC3.4.5_TC1",
+    "title": "Visualizzazione dettaglio scheda censimento con dati validi",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente visualizza le informazioni relative alla scheda censimento",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di dettaglio su una scheda censimento esistente",
+        "expected": "La pagina di dettaglio si apre correttamente"
+      },
+      {
+        "step": "Verifica la visualizzazione dei dati generali dell’area a cui si riferisce la scheda",
+        "expected": "I dati sono visualizzati correttamente"
+      },
+      {
+        "step": "Naviga nella gerarchia dei POD e Aree Omogenee",
+        "expected": "La navigazione avviene senza errori"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.5"
+  },
+  {
+    "test_case_id": "UC3.4.5_TC2",
+    "title": "Visualizzazione dettaglio scheda censimento con dati non validi",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di dettaglio su una scheda censimento non esistente",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      },
+      {
+        "step": "Verifica la presenza di un messaggio di errore",
+        "expected": "Il messaggio di errore è presente e descrittivo"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.5"
+  },
+  {
+    "test_case_id": "UC3.4.5_TC3",
+    "title": "Visualizzazione dettaglio scheda censimento con permessi insufficienti",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente visualizza un messaggio di accesso negato",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema con un utente senza permessi di visualizzazione delle schede censimento",
+        "expected": "Il sistema non consente l’accesso alla pagina di dettaglio"
+      },
+      {
+        "step": "Verifica la presenza di un messaggio di accesso negato",
+        "expected": "Il messaggio di accesso negato è presente e descrittivo"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.5"
+  },
+  {
+    "test_case_id": "UC3.4.5_TC4",
+    "title": "Visualizzazione dettaglio scheda censimento con dati parzialmente visibili",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente visualizza solo le informazioni relative alla scheda censimento che ha il permesso di visualizzare",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema con un utente con permessi parziali di visualizzazione delle schede censimento",
+        "expected": "Il sistema consente l’accesso alla pagina di dettaglio solo per le informazioni visibili"
+      },
+      {
+        "step": "Verifica la visualizzazione dei dati generali dell’area a cui si riferisce la scheda",
+        "expected": "I dati visibili sono visualizzati correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.5"
+  },
+  {
+    "test_case_id": "UC3.4.5_TC5",
+    "title": "Visualizzazione dettaglio scheda censimento con navigazione nella gerarchia dei POD e Aree Omogenee",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente visualizza le informazioni relative alla scheda censimento e può navigare nella gerarchia",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di dettaglio su una scheda censimento esistente",
+        "expected": "La pagina di dettaglio si apre correttamente"
+      },
+      {
+        "step": "Naviga nella gerarchia dei POD e Aree Omogenee",
+        "expected": "La navigazione avviene senza errori e le informazioni sono visualizzate correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.5"
+  }
+]

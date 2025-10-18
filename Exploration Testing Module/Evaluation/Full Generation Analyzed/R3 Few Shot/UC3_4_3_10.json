@@ -1,0 +1,152 @@
+[
+  {
+    "test_case_id": "UC3.4.3.10_TC1",
+    "title": "Modifica dati apparecchio con successo",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected_result": "Il POD selezionato viene visualizzato"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato e seleziona il pannello elettrico",
+        "expected_result": "I punti luce del pannello elettrico vengono visualizzati"
+      },
+      {
+        "step": "Seleziona il punto luce e il dispositivo punto luce, quindi seleziona il tab relativo ai dati apparecchio",
+        "expected_result": "I dati precedenti vengono visualizzati"
+      },
+      {
+        "step": "Compila il form con le informazioni desiderate e applica le modifiche",
+        "expected_result": "Un messaggio di conferma dell’operazione andata a buon fine viene visualizzato"
+      }
+    ],
+    "test_type": "Positivo"
+  },
+  {
+    "test_case_id": "UC3.4.3.10_TC2",
+    "title": "Modifica dati apparecchio con dati non validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected_result": "Il POD selezionato viene visualizzato"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato e seleziona il pannello elettrico",
+        "expected_result": "I punti luce del pannello elettrico vengono visualizzati"
+      },
+      {
+        "step": "Seleziona il punto luce e il dispositivo punto luce, quindi seleziona il tab relativo ai dati apparecchio",
+        "expected_result": "I dati precedenti vengono visualizzati"
+      },
+      {
+        "step": "Compila il form con dati non validi e applica le modifiche",
+        "expected_result": "Un messaggio di errore viene visualizzato"
+      }
+    ],
+    "test_type": "Negativo"
+  },
+  {
+    "test_case_id": "UC3.4.3.10_TC3",
+    "title": "Modifica dati apparecchio senza compilare il form",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected_result": "Il POD selezionato viene visualizzato"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato e seleziona il pannello elettrico",
+        "expected_result": "I punti luce del pannello elettrico vengono visualizzati"
+      },
+      {
+        "step": "Seleziona il punto luce e il dispositivo punto luce, quindi seleziona il tab relativo ai dati apparecchio",
+        "expected_result": "I dati precedenti vengono visualizzati"
+      },
+      {
+        "step": "Applica le modifiche senza compilare il form",
+        "expected_result": "Un messaggio di errore viene visualizzato"
+      }
+    ],
+    "test_type": "Negativo"
+  },
+  {
+    "test_case_id": "UC3.4.3.10_TC4",
+    "title": "Modifica dati apparecchio con campi obbligatori vuoti",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected_result": "Il POD selezionato viene visualizzato"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato e seleziona il pannello elettrico",
+        "expected_result": "I punti luce del pannello elettrico vengono visualizzati"
+      },
+      {
+        "step": "Seleziona il punto luce e il dispositivo punto luce, quindi seleziona il tab relativo ai dati apparecchio",
+        "expected_result": "I dati precedenti vengono visualizzati"
+      },
+      {
+        "step": "Compila il form lasciando vuoti i campi obbligatori e applica le modifiche",
+        "expected_result": "Un messaggio di errore viene visualizzato"
+      }
+    ],
+    "test_type": "Negativo"
+  },
+  {
+    "test_case_id": "UC3.4.3.10_TC5",
+    "title": "Modifica dati apparecchio con selezione multipla",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected_result": "Il POD selezionato viene visualizzato"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato e seleziona più pannelli elettrici",
+        "expected_result": "I punti luce dei pannelli elettrici vengono visualizzati"
+      },
+      {
+        "step": "Seleziona più punti luce e dispositivi punto luce, quindi seleziona il tab relativo ai dati apparecchio",
+        "expected_result": "I dati precedenti vengono visualizzati"
+      },
+      {
+        "step": "Compila il form con le informazioni desiderate e applica le modifiche",
+        "expected_result": "Un messaggio di conferma dell’operazione andata a buon fine viene visualizzato"
+      }
+    ],
+    "test_type": "Positivo"
+  },
+  {
+    "test_case_id": "UC3.4.3.10_TC6",
+    "title": "Modifica dati apparecchio con annullamento delle modifiche",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Le modifiche vengono annullate",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected_result": "Il POD selezionato viene visualizzato"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato e seleziona il pannello elettrico",
+        "expected_result": "I punti luce del pannello elettrico vengono visualizzati"
+      },
+      {
+        "step": "Seleziona il punto luce e il dispositivo punto luce, quindi seleziona il tab relativo ai dati apparecchio",
+        "expected_result": "I dati precedenti vengono visualizzati"
+      },
+      {
+        "step": "Compila il form con le informazioni desiderate, annulla le modifiche e conferma",
+        "expected_result": "Le modifiche vengono annullate"
+      }
+    ],
+    "test_type": "Positivo"
+  }
+]

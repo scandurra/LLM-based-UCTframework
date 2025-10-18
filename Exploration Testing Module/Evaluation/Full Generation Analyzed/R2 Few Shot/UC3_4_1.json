@@ -1,0 +1,97 @@
+[
+  {
+    "test_case_id": "UC3.4.1_TC1",
+    "title": "Download scheda censimento con successo",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente visualizza un messaggio di conferma e ottiene il file desiderato",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di download della scheda censimento",
+        "expected": "La procedura di download inizia correttamente"
+      },
+      {
+        "step": "Attendere il completamento del download",
+        "expected": "Il file viene scaricato con successo e visualizzato nel browser"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.1"
+  },
+  {
+    "test_case_id": "UC3.4.1_TC2",
+    "title": "Download scheda censimento senza selezionare la scheda",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema segnala l’errore di selezione",
+    "test_steps": [
+      {
+        "step": "Accedere alla sezione download senza avere selezionato una scheda censimento",
+        "expected": "Il sistema richiede la selezione di una scheda"
+      },
+      {
+        "step": "Tentare di avviare il download",
+        "expected": "L’operazione non procede e viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.1"
+  },
+  {
+    "test_case_id": "UC3.4.1_TC3",
+    "title": "Download scheda censimento con nome file lungo",
+    "preconditions": "UC3.4",
+    "postconditions": "Il file viene scaricato correttamente con un nome valido",
+    "test_steps": [
+      {
+        "step": "Selezionare una scheda censimento con un titolo molto lungo",
+        "expected": "Il sistema accetta il titolo senza problemi"
+      },
+      {
+        "step": "Avviare il download della scheda",
+        "expected": "Il file viene generato e scaricato con successo, anche se il nome è lungo"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC3.4.1"
+  },
+  {
+    "test_case_id": "UC3.4.1_TC4",
+    "title": "Download scheda censimento con caratteri speciali nel nome file",
+    "preconditions": "UC3.4",
+    "postconditions": "Il file viene salvato con un nome corretto e sicuro",
+    "test_steps": [
+      {
+        "step": "Selezionare una scheda censimento con un titolo contenente caratteri speciali (@,#,$)",
+        "expected": "Il sistema gestisce i caratteri speciali senza problemi"
+      },
+      {
+        "step": "Avviare il download della scheda",
+        "expected": "Il file viene generato e scaricato con successo, con un nome file sicuro"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC3.4.1"
+  },
+  {
+    "test_case_id": "UC3.4.1_TC5",
+    "title": "Download scheda censimento in formato diverso dal previsto",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema segnala l’errore di formato non supportato",
+    "test_steps": [
+      {
+        "step": "Tentare di scaricare la scheda censimento in un formato non supportato (es. immagine)",
+        "expected": "Il sistema visualizza un messaggio di errore per il formato non supportato"
+      },
+      {
+        "step": "Verificare che l’operazione di download non proceda",
+        "expected": "L’utente non può scaricare la scheda nel formato selezionato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.1"
+  }
+]

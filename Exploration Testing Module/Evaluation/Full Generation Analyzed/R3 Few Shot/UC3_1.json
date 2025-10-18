@@ -1,0 +1,101 @@
+[
+  {
+    "test_case_id": "UC3.1_TC1",
+    "title": "Visualizzazione schede censimento con dati validi e paginazione",
+    "preconditions": "UC3",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di visualizzazione delle schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona il numero di elementi per pagina e scorri tra le pagine",
+        "expected": "Le informazioni vengono visualizzate in base alla selezione"
+      },
+      {
+        "step": "Ordina i dati cliccando sul nome di una colonna",
+        "expected": "I dati vengono ordinati correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC2",
+    "title": "Visualizzazione senza selezionare il numero di elementi per pagina",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema visualizza un messaggio di errore o utilizza un valore predefinito",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di visualizzazione delle schede censimento senza specificare il numero di elementi per pagina",
+        "expected": "Il sistema richiede la selezione del numero di elementi o utilizza un valore predefinito"
+      },
+      {
+        "step": "Tenta di visualizzare le informazioni",
+        "expected": "Le informazioni vengono visualizzate con un numero di elementi per pagina predefinito o viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC3",
+    "title": "Visualizzazione con ordinamento su più colonne",
+    "preconditions": "UC3",
+    "postconditions": "L’utente visualizza le informazioni ordinate correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di visualizzazione delle schede censimento e seleziona più colonne per l’ordinamento",
+        "expected": "Il sistema consente la selezione multipla"
+      },
+      {
+        "step": "Applica l’ordinamento",
+        "expected": "I dati vengono ordinati correttamente in base alle colonne selezionate"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC4",
+    "title": "Boundary test: visualizzazione con un solo elemento per pagina",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema visualizza correttamente l’elemento singolo",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di visualizzazione delle schede censimento e seleziona 1 come numero di elementi per pagina",
+        "expected": "Il sistema visualizza un solo elemento per pagina"
+      },
+      {
+        "step": "Scorri tra le pagine",
+        "expected": "Il sistema scorre correttamente tra le pagine con un solo elemento visibile per pagina"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Media",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC5",
+    "title": "Edge case: visualizzazione con un numero di elementi per pagina molto grande",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema gestisce correttamente la richiesta o visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di visualizzazione delle schede censimento e seleziona un numero molto grande come numero di elementi per pagina",
+        "expected": "Il sistema gestisce la richiesta o visualizza un messaggio di errore"
+      },
+      {
+        "step": "Tenta di visualizzare le informazioni",
+        "expected": "Le informazioni vengono visualizzate correttamente o viene mostrato un messaggio di errore per numero eccessivo di elementi"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC3.1"
+  }
+]

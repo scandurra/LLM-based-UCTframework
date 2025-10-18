@@ -1,0 +1,117 @@
+[
+  {
+    "test_case_id": "UC3.4.3_TC1",
+    "title": "Modifica scheda censimento con dati validi",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente visualizza le informazioni della scheda in fase di edit",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di modifica sulla scheda censimento",
+        "expected": "La sezione di modifica viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci i dati necessari per la modifica",
+        "expected": "I dati vengono accettati e salvati"
+      },
+      {
+        "step": "Conferma le modifiche",
+        "expected": "Le informazioni della scheda vengono aggiornate con successo"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3"
+  },
+  {
+    "test_case_id": "UC3.4.3_TC2",
+    "title": "Modifica scheda censimento con dati mancanti",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente non può procedere senza inserire tutti i dati richiesti",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di modifica sulla scheda censimento",
+        "expected": "La sezione di modifica viene visualizzata correttamente"
+      },
+      {
+        "step": "Lascia vuoti alcuni campi obbligatori",
+        "expected": "Il sistema segnala l’errore e richiede la compilazione dei campi mancanti"
+      },
+      {
+        "step": "Tenta di confermare le modifiche",
+        "expected": "La modifica non viene salvata e vengono visualizzati messaggi di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3"
+  },
+  {
+    "test_case_id": "UC3.4.3_TC3",
+    "title": "Modifica scheda censimento con dati non validi",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente non può procedere senza correggere i dati inseriti",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di modifica sulla scheda censimento",
+        "expected": "La sezione di modifica viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci dati non validi (es. caratteri alfanumerici in un campo numerico)",
+        "expected": "Il sistema segnala l’errore e richiede la correzione dei dati"
+      },
+      {
+        "step": "Tenta di confermare le modifiche",
+        "expected": "La modifica non viene salvata e vengono visualizzati messaggi di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3"
+  },
+  {
+    "test_case_id": "UC3.4.3_TC4",
+    "title": "Modifica scheda censimento con caratteri speciali",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente visualizza le informazioni della scheda in fase di edit",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di modifica sulla scheda censimento",
+        "expected": "La sezione di modifica viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci caratteri speciali nei campi di testo",
+        "expected": "I caratteri vengono accettati e salvati correttamente"
+      },
+      {
+        "step": "Conferma le modifiche",
+        "expected": "Le informazioni della scheda vengono aggiornate con successo"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3"
+  },
+  {
+    "test_case_id": "UC3.4.3_TC5",
+    "title": "Annullamento modifica scheda censimento",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente torna alla visualizzazione originale della scheda",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di modifica sulla scheda censimento",
+        "expected": "La sezione di modifica viene visualizzata correttamente"
+      },
+      {
+        "step": "Apporta alcune modifiche ai dati",
+        "expected": "Le modifiche vengono riflesse nella sezione di modifica"
+      },
+      {
+        "step": "Seleziona l’opzione per annullare le modifiche",
+        "expected": "La scheda torna allo stato originale e le modifiche vengono cancellate"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3"
+  }
+]

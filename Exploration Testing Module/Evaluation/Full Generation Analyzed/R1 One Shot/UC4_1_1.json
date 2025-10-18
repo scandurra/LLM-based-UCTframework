@@ -1,0 +1,210 @@
+[
+  {
+    "test_case_id": "UC4.1.1_TC1",
+    "title": "Aggiunta impianto con dati validi",
+    "preconditions": "UC4.1",
+    "postconditions": "L’utente visualizza un messaggio di conferma",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione impianti",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto per aggiungere un nuovo impianto",
+        "expected": "Viene visualizzato il modulo di inserimento dati"
+      },
+      {
+        "step": "Inserisci nome e seleziona comune valido",
+        "expected": "Il sistema accetta i dati"
+      },
+      {
+        "step": "Conferma l’aggiunta dell’impianto",
+        "expected": "Viene visualizzato un messaggio di conferma"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC4.1.1"
+  },
+  {
+    "test_case_id": "UC4.1.1_TC2",
+    "title": "Aggiunta impianto con nome già esistente",
+    "preconditions": "UC4.1",
+    "postconditions": "Il sistema segnala un errore per nome duplicato",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione impianti",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto per aggiungere un nuovo impianto",
+        "expected": "Viene visualizzato il modulo di inserimento dati"
+      },
+      {
+        "step": "Inserisci nome già utilizzato e seleziona comune",
+        "expected": "Il sistema segnala l’errore di duplicato"
+      },
+      {
+        "step": "Tenta di confermare l’aggiunta dell’impianto",
+        "expected": "L’operazione non va a buon fine e viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC4.1.1"
+  },
+  {
+    "test_case_id": "UC4.1.1_TC3",
+    "title": "Aggiunta impianto senza selezionare comune",
+    "preconditions": "UC4.1",
+    "postconditions": "Il sistema richiede la selezione del comune",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione impianti",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto per aggiungere un nuovo impianto",
+        "expected": "Viene visualizzato il modulo di inserimento dati"
+      },
+      {
+        "step": "Inserisci nome senza selezionare comune",
+        "expected": "Il sistema segnala l’errore di mancanza del comune"
+      },
+      {
+        "step": "Tenta di confermare l’aggiunta dell’impianto",
+        "expected": "L’operazione non va a buon fine e viene richiesta la selezione del comune"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC4.1.1"
+  },
+  {
+    "test_case_id": "UC4.1.1_TC4",
+    "title": "Aggiunta impianto con annullamento",
+    "preconditions": "UC4.1",
+    "postconditions": "L’utente visualizza un messaggio di avvenuto annullamento",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione impianti",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto per aggiungere un nuovo impianto",
+        "expected": "Viene visualizzato il modulo di inserimento dati"
+      },
+      {
+        "step": "Inserisci nome e seleziona comune",
+        "expected": "Il sistema accetta i dati"
+      },
+      {
+        "step": "Annulla l’aggiunta dell’impianto",
+        "expected": "Viene visualizzato un messaggio di annullamento"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Bassa",
+    "use_case_id": "UC4.1.1"
+  },
+  {
+    "test_case_id": "UC4.1.1_TC5",
+    "title": "Aggiunta impianto con caratteri speciali nel nome",
+    "preconditions": "UC4.1",
+    "postconditions": "Il sistema accetta o normalizza i caratteri speciali",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione impianti",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto per aggiungere un nuovo impianto",
+        "expected": "Viene visualizzato il modulo di inserimento dati"
+      },
+      {
+        "step": "Inserisci nome con caratteri speciali (@, #, $) e seleziona comune",
+        "expected": "Il sistema accetta o normalizza i caratteri"
+      },
+      {
+        "step": "Conferma l’aggiunta dell’impianto",
+        "expected": "L’operazione va a buon fine"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC4.1.1"
+  },
+  {
+    "test_case_id": "UC4.1.1_TC6",
+    "title": "Aggiunta impianto senza autorizzazione",
+    "preconditions": "UC4.1",
+    "postconditions": "Il sistema nega l’accesso",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione impianti come utente non autorizzato",
+        "expected": "La sezione non viene visualizzata o si verifica un errore di accesso"
+      },
+      {
+        "step": "Tenta di cliccare sul tasto per aggiungere un nuovo impianto",
+        "expected": "Il sistema nega l’accesso"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC4.1.1"
+  },
+  {
+    "test_case_id": "UC4.1.1_TC7",
+    "title": "Aggiunta impianto con lunghezza nome superiore al massimo consentito",
+    "preconditions": "UC4.1",
+    "postconditions": "Il sistema segnala un errore per lunghezza del nome",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione impianti",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto per aggiungere un nuovo impianto",
+        "expected": "Viene visualizzato il modulo di inserimento dati"
+      },
+      {
+        "step": "Inserisci nome con lunghezza superiore al massimo consentito e seleziona comune",
+        "expected": "Il sistema segnala l’errore di lunghezza"
+      },
+      {
+        "step": "Tenta di confermare l’aggiunta dell’impianto",
+        "expected": "L’operazione non va a buon fine e viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC4.1.1"
+  },
+  {
+    "test_case_id": "UC4.1.1_TC8",
+    "title": "Aggiunta impianto con comune non selezionabile",
+    "preconditions": "UC4.1",
+    "postconditions": "Il sistema segnala un errore per comune non selezionabile",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione impianti",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto per aggiungere un nuovo impianto",
+        "expected": "Viene visualizzato il modulo di inserimento dati"
+      },
+      {
+        "step": "Inserisci nome e seleziona comune non disponibile o non selezionabile",
+        "expected": "Il sistema segnala l’errore per comune non selezionabile"
+      },
+      {
+        "step": "Tenta di confermare l’aggiunta dell’impianto",
+        "expected": "L’operazione non va a buon fine e viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC4.1.1"
+  }
+]

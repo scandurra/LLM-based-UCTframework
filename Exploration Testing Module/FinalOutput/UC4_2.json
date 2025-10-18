@@ -1,7 +1,7 @@
 [
   {
     "test_case_id": "UC4.2_TC1",
-    "title": "Aggiunta nuovo investimento con dati validi",
+    "title": "Aggiunta investimento con dati validi",
     "preconditions": "UC4",
     "postconditions": "L’utente visualizza un messaggio di conferma",
     "test_steps": [
@@ -15,10 +15,10 @@
       },
       {
         "step": "Compila il form con tutti i parametri richiesti in modo corretto",
-        "expected": "Il form viene compilato senza errori"
+        "expected": "Il form viene completato senza errori"
       },
       {
-        "step": "Conferma l’aggiunta del nuovo investimento",
+        "step": "Conferma l’aggiunta dell’investimento",
         "expected": "Viene visualizzato un messaggio di conferma"
       }
     ],
@@ -28,7 +28,7 @@
   },
   {
     "test_case_id": "UC4.2_TC2",
-    "title": "Aggiunta nuovo investimento con dati mancanti",
+    "title": "Aggiunta investimento con dati mancanti",
     "preconditions": "UC4",
     "postconditions": "L’utente visualizza un messaggio di errore",
     "test_steps": [
@@ -42,11 +42,11 @@
       },
       {
         "step": "Lascia vuoti alcuni campi obbligatori del form",
-        "expected": "Il sistema segnala gli errori di compilazione"
+        "expected": "Il sistema segnala l’errore di compilazione"
       },
       {
-        "step": "Tenta di confermare l’aggiunta del nuovo investimento",
-        "expected": "Viene visualizzato un messaggio di errore per dati mancanti"
+        "step": "Tenta di confermare l’aggiunta dell’investimento",
+        "expected": "Viene visualizzato un messaggio di errore"
       }
     ],
     "test_type": "Negativo",
@@ -55,9 +55,9 @@
   },
   {
     "test_case_id": "UC4.2_TC3",
-    "title": "Aggiunta nuovo investimento e annullamento",
+    "title": "Annullamento aggiunta investimento",
     "preconditions": "UC4",
-    "postconditions": "L’utente visualizza un messaggio di avvenuto annullamento",
+    "postconditions": "L’utente visualizza un messaggio di annullamento",
     "test_steps": [
       {
         "step": "Naviga nella sezione dedicata agli investimenti",
@@ -82,7 +82,7 @@
   },
   {
     "test_case_id": "UC4.2_TC4",
-    "title": "Aggiunta nuovo investimento con dati non validi",
+    "title": "Inserimento dati non validi nel form",
     "preconditions": "UC4",
     "postconditions": "L’utente visualizza un messaggio di errore",
     "test_steps": [
@@ -96,11 +96,11 @@
       },
       {
         "step": "Inserisci dati non validi in alcuni campi (es. testo al posto di numeri)",
-        "expected": "Il sistema segnala gli errori di formato"
+        "expected": "Il sistema segnala l’errore di formato"
       },
       {
-        "step": "Tenta di confermare l’aggiunta del nuovo investimento",
-        "expected": "Viene visualizzato un messaggio di errore per dati non validi"
+        "step": "Tenta di confermare l’aggiunta dell’investimento",
+        "expected": "Viene visualizzato un messaggio di errore"
       }
     ],
     "test_type": "Negativo",
@@ -109,9 +109,9 @@
   },
   {
     "test_case_id": "UC4.2_TC5",
-    "title": "Boundary test: aggiunta di un investimento con dati al limite dei campi",
+    "title": "Boundary test: inserimento dati al limite dei campi",
     "preconditions": "UC4",
-    "postconditions": "L’utente visualizza un messaggio di conferma o di errore",
+    "postconditions": "L’utente visualizza un messaggio di conferma o errore",
     "test_steps": [
       {
         "step": "Naviga nella sezione dedicata agli investimenti",
@@ -126,8 +126,8 @@
         "expected": "Il sistema accetta o rifiuta i dati con un messaggio appropriato"
       },
       {
-        "step": "Conferma l’aggiunta del nuovo investimento",
-        "expected": "Viene visualizzato un messaggio di conferma o di errore a seconda della validità dei dati"
+        "step": "Conferma l’aggiunta dell’investimento",
+        "expected": "Viene visualizzato un messaggio di conferma o errore"
       }
     ],
     "test_type": "Boundary",

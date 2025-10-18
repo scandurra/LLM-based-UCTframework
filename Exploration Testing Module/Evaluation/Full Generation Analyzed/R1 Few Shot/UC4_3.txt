@@ -1,0 +1,137 @@
+[
+  {
+    "test_case_id": "UC4.3_TC1",
+    "title": "Aggiunta simulazione con dati validi",
+    "preconditions": "UC4",
+    "postconditions": "L’utente ha aggiunto l’associazione nel menu dedicato",
+    "test_steps": [
+      {
+        "step": "Naviga nella terza sezione dedicata alle analisi",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto dedicato all’aggiunta di una singola analisi",
+        "expected": "Il sistema apre la finestra per l’aggiunta"
+      },
+      {
+        "step": "Seleziona un impianto e un investimento validi da associare",
+        "expected": "L’associazione viene effettuata con successo"
+      },
+      {
+        "step": "Conferma l’aggiunta",
+        "expected": "Viene visualizzato un messaggio di conferma"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC4.3"
+  },
+  {
+    "test_case_id": "UC4.3_TC2",
+    "title": "Aggiunta simulazione con annullamento",
+    "preconditions": "UC4",
+    "postconditions": "L’utente visualizza un messaggio di avvenuto annullamento",
+    "test_steps": [
+      {
+        "step": "Naviga nella terza sezione dedicata alle analisi",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto dedicato all’aggiunta di una singola analisi",
+        "expected": "Il sistema apre la finestra per l’aggiunta"
+      },
+      {
+        "step": "Seleziona un impianto e un investimento da associare",
+        "expected": "L’associazione è pronta per essere confermata"
+      },
+      {
+        "step": "Annulla l’operazione",
+        "expected": "Viene visualizzato un messaggio di annullamento"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC4.3"
+  },
+  {
+    "test_case_id": "UC4.3_TC3",
+    "title": "Aggiunta simulazione senza selezionare impianto",
+    "preconditions": "UC4",
+    "postconditions": "L’utente non può procedere con l’aggiunta",
+    "test_steps": [
+      {
+        "step": "Naviga nella terza sezione dedicata alle analisi",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto dedicato all’aggiunta di una singola analisi",
+        "expected": "Il sistema apre la finestra per l’aggiunta"
+      },
+      {
+        "step": "Lascia vuoto il campo relativo all’impianto",
+        "expected": "Il sistema segnala l’errore di mancanza di selezione"
+      },
+      {
+        "step": "Tenta di confermare l’aggiunta",
+    "expected": "L’operazione non procede e viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC4.3"
+  },
+  {
+    "test_case_id": "UC4.3_TC4",
+    "title": "Aggiunta simulazione con selezione multipla di impianti",
+    "preconditions": "UC4",
+    "postconditions": "L’utente può aggiungere più associazioni",
+    "test_steps": [
+      {
+        "step": "Naviga nella terza sezione dedicata alle analisi",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto dedicato all’aggiunta di una singola analisi",
+        "expected": "Il sistema apre la finestra per l’aggiunta"
+      },
+      {
+        "step": "Seleziona più impianti da associare",
+        "expected": "L’associazione multipla è possibile"
+      },
+      {
+        "step": "Conferma l’aggiunta",
+        "expected": "Tutte le associazioni vengono aggiunte con successo"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC4.3"
+  },
+  {
+    "test_case_id": "UC4.3_TC5",
+    "title": "Boundary test: aggiunta simulazione con limite di selezione raggiunto",
+    "preconditions": "UC4",
+    "postconditions": "L’utente riceve un avviso di limite raggiunto",
+    "test_steps": [
+      {
+        "step": "Naviga nella terza sezione dedicata alle analisi",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto dedicato all’aggiunta di una singola analisi",
+        "expected": "Il sistema apre la finestra per l’aggiunta"
+      },
+      {
+        "step": "Seleziona il massimo numero di impianti consentito",
+        "expected": "Il sistema avvisa dell’avvenuto raggiungimento del limite"
+      },
+      {
+        "step": "Tenta di selezionare un altro impianto",
+        "expected": "L’operazione non procede e viene visualizzato un messaggio di limite raggiunto"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Alta",
+    "use_case_id": "UC4.3"
+  },
+]

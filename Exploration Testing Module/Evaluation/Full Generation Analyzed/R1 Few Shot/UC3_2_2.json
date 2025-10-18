@@ -1,0 +1,101 @@
+[
+  {
+    "test_case_id": "UC3.2.2_TC1",
+    "title": "Ricerca scheda censimento per stato valido",
+    "preconditions": "UC3.2",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Inserisci uno stato di censimento valido",
+        "expected": "Il sistema accetta lo stato"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "La ricerca viene avviata correttamente"
+      },
+      {
+        "step": "Visualizza il risultato della ricerca",
+        "expected": "Le informazioni vengono visualizzate in base allo stato selezionato"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.2.2"
+  },
+  {
+    "test_case_id": "UC3.2.2_TC2",
+    "title": "Ricerca senza stato selezionato",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema segnala l’errore di ricerca",
+    "test_steps": [
+      {
+        "step": "Lascia vuoto il campo dello stato",
+        "expected": "Il sistema richiede la selezione dello stato"
+      },
+      {
+        "step": "Tenta di confermare la ricerca",
+        "expected": "La ricerca non viene avviata e compare un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.2.2"
+  },
+  {
+    "test_case_id": "UC3.2.2_TC3",
+    "title": "Ricerca con stato non esistente",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema segnala che non ci sono risultati",
+    "test_steps": [
+      {
+        "step": "Inserisci uno stato di censimento non valido o inesistente",
+        "expected": "La ricerca viene avviata ma senza risultati"
+      },
+      {
+        "step": "Visualizza il messaggio di feedback del sistema",
+        "expected": "Il sistema comunica che non ci sono stati trovati risultati per lo stato selezionato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.2.2"
+  },
+  {
+    "test_case_id": "UC3.2.2_TC4",
+    "title": "Ricerca con stato parzialmente inserito",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema fornisce i risultati in base ai criteri di ricerca parziali",
+    "test_steps": [
+      {
+        "step": "Inserisci solo una parte dello stato (es. solo le prime lettere)",
+        "expected": "La ricerca viene avviata con i criteri parziali"
+      },
+      {
+        "step": "Visualizza il risultato della ricerca",
+        "expected": "Il sistema fornisce i risultati che corrispondono ai criteri di ricerca inseriti parzialmente"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Alta",
+    "use_case_id": "UC3.2.2"
+  },
+  {
+    "test_case_id": "UC3.2.2_TC5",
+    "title": "Ricerca con caratteri speciali nello stato",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema gestisce i caratteri speciali correttamente",
+    "test_steps": [
+      {
+        "step": "Inserisci uno stato contenente caratteri speciali (es. stato@prova)",
+        "expected": "Il sistema accetta lo stato con caratteri speciali"
+      },
+      {
+        "step": "Conferma la ricerca e visualizza il risultato",
+        "expected": "Il sistema gestisce correttamente i caratteri speciali nella ricerca"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC3.2.2"
+  }
+]

@@ -1,0 +1,117 @@
+[
+  {
+    "test_case_id": "UC2.4_TC1",
+    "title": "Selezione comuni e KPI validi per benchmarking",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza il grafico con i dati selezionati",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard di benchmarking",
+        "expected": "La pagina viene caricata correttamente"
+      },
+      {
+        "step": "Seleziona due o più comuni dal menù a tendina e scegli un KPI valido",
+        "expected": "Le selezioni vengono accettate senza errori"
+      },
+      {
+        "step": "Conferma la richiesta cliccando sul pulsante di esecuzione",
+        "expected": "Il sistema visualizza il grafico con i dati dei comuni selezionati e del KPI scelto"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC2",
+    "title": "Selezione di un solo comune per benchmarking",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema richiede la selezione di almeno due comuni",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard di benchmarking",
+        "expected": "La pagina viene visualizzata senza problemi"
+      },
+      {
+        "step": "Seleziona un solo comune e scegli un KPI",
+        "expected": "Il sistema segnala l’errore per la mancanza di un secondo comune da confrontare"
+      },
+      {
+        "step": "Tenta di confermare la richiesta",
+        "expected": "L’operazione non procede e viene visualizzato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC3",
+    "title": "Selezione di KPI non valido per benchmarking",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema segnala l’errore e richiede la selezione di un KPI valido",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard di benchmarking",
+        "expected": "La pagina si carica correttamente"
+      },
+      {
+        "step": "Seleziona due comuni ma scegli un KPI non disponibile o non valido",
+        "expected": "Il sistema rileva l’errore e visualizza un messaggio di selezione non valida"
+      },
+      {
+        "step": "Tenta di confermare la richiesta con il KPI errato",
+        "expected": "L’operazione non va a buon fine e viene chiesto di selezionare un KPI corretto"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC4",
+    "title": "Benchmarking con molti comuni selezionati",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema visualizza il grafico con tutti i dati richiesti",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard di benchmarking",
+        "expected": "La pagina si apre senza problemi"
+      },
+      {
+        "step": "Seleziona più di cinque comuni e un KPI valido",
+        "expected": "Il sistema accetta la selezione senza segnalare errori"
+      },
+      {
+        "step": "Conferma la richiesta cliccando sul pulsante di esecuzione",
+        "expected": "Il sistema visualizza il grafico con i dati di tutti i comuni selezionati e del KPI scelto"
+      }
+    ],
+    "test_type": "Prestazione",
+    "priority": "Alta",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC5",
+    "title": "Selezione di comuni e KPI con caratteri speciali",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema gestisce correttamente i caratteri speciali",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard di benchmarking",
+        "expected": "La pagina si carica senza errori"
+      },
+      {
+        "step": "Seleziona comuni con nomi contenenti caratteri speciali (es. à, é, ò) e scegli un KPI",
+        "expected": "Il sistema accetta la selezione trattando correttamente i caratteri speciali"
+      },
+      {
+        "step": "Conferma la richiesta cliccando sul pulsante di esecuzione",
+        "expected": "Il sistema visualizza il grafico con i dati dei comuni selezionati, gestendo correttamente i caratteri speciali nei nomi"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC2.4"
+  },
+]

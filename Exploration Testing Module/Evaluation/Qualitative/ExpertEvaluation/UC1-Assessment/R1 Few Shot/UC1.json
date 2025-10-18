@@ -1,0 +1,140 @@
+[
+  {
+    "test_case_id": "UC1_TC1",
+    "title": "Login con credenziali valide",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "L’utente è autenticato ed è a conoscenza che l’operazione ha avuto successo",
+    "test_steps": [
+      {
+        "step": "Inserisci le credenziali corrette nel form di login",
+        "expected": "Il sistema accetta le credenziali"
+      },
+      {
+        "step": "Clicca il tasto “Login”",
+        "expected": "Il sistema avvia la procedura di autenticazione"
+      },
+      {
+        "step": "Visualizza il messaggio di login riuscito",
+        "expected": "Il messaggio conferma l’avvenuta autenticazione"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC2",
+    "title": "Login con credenziali errate",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Inserisci credenziali non valide nel form di login",
+        "expected": "Il sistema rileva le credenziali errate"
+      },
+      {
+        "step": "Clicca il tasto “Login”",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      },
+      {
+        "step": "Visualizza il messaggio di login fallito",
+        "expected": "Il messaggio indica l’errore nelle credenziali"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC3",
+    "title": "Cambio password alla prima autenticazione",
+    "preconditions": "L’utente non è autenticato e deve cambiare la password di default",
+    "postconditions": "La password viene aggiornata con successo",
+    "test_steps": [
+      {
+        "step": "Inserisci le credenziali iniziali per il primo accesso",
+        "expected": "Il sistema richiede il cambio della password"
+      },
+      {
+        "step": "Inserisci la nuova password e confermala",
+        "expected": "Il sistema accetta la nuova password"
+      },
+      {
+        "step": "Conferma il cambio password",
+        "expected": "Il messaggio di conferma indica che la password è stata aggiornata"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC4",
+    "title": "Tentativo di login con campo username vuoto",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "Il sistema visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Lascia vuoto il campo username nel form di login",
+        "expected": "Il sistema rileva l’assenza del valore"
+      },
+      {
+        "step": "Inserisci una password e clicca “Login”",
+        "expected": "Il sistema visualizza un messaggio di errore per il campo vuoto"
+      },
+      {
+        "step": "Visualizza il messaggio di errore",
+        "expected": "Il messaggio richiede di compilare tutti i campi obbligatori"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC5",
+    "title": "Inserimento di caratteri speciali nella password",
+    "preconditions": "L’utente non è autenticato e deve inserire una nuova password",
+    "postconditions": "La password con caratteri speciali viene accettata",
+    "test_steps": [
+      {
+        "step": "Inserisci una password con caratteri speciali durante il cambio password",
+        "expected": "Il sistema accetta la password"
+      },
+      {
+        "step": "Conferma la nuova password",
+        "expected": "Il sistema conferma l’avvenuto aggiornamento della password"
+      },
+      {
+        "step": "Tenta di accedere con la nuova password",
+        "expected": "L’accesso ha successo con la nuova password"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Bassa",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC6",
+    "title": "Tentativo di SQL injection nel campo username",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "Il sistema rileva e blocca il tentativo di SQL injection",
+    "test_steps": [
+      {
+        "step": "Inserisci una stringa di SQL injection nel campo username",
+        "expected": "Il sistema rileva la minaccia"
+      },
+      {
+        "step": "Clicca “Login” per eseguire il tentativo di attacco",
+        "expected": "Il sistema blocca l’accesso e visualizza un messaggio di errore"
+      },
+      {
+        "step": "Visualizza il messaggio di errore",
+        "expected": "Il messaggio indica che l’operazione non è stata eseguita per motivi di sicurezza"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC1"
+  }
+]

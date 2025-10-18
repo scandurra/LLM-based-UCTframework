@@ -1,0 +1,30 @@
+================================================================================
+JSON STRUCTURE ERRORS - COMPACT SUMMARY
+================================================================================
+
+Generation      Use Case     Test Cases with Errors
+--------------------------------------------------------------------------------
+R1 Few Shot     N/A          UC3.4.3.10_TC1, UC3.4.3.10_TC2, UC3.4.3.10_TC3,...
+R1 One Shot     UC2          UC2_TC2
+R1 Zero Shot    UC2          UC2_TC2
+R1 Zero Shot    UC3          UC3_TC2
+R1 Zero Shot    UC3.4.2      UC3.4.2_TC2, UC3.4.2_TC3, UC3.4.2_TC4, UC3.4.2_TC5
+R1 Zero Shot    UC3.4.4      UC3.4.4_TC2, UC3.4.4_TC3, UC3.4.4_TC4, UC3.4.4_TC5
+R1 Zero Shot    UC4          UC4_TC2, UC4_TC4
+R2 Few Shot     N/A          UC3.4.3.10_TC1, UC3.4.3.10_TC2, UC3.4.3.10_TC3,...
+R2 One Shot     UC6          UC6_TC2
+R2 Zero Shot    UC2          UC2_TC2
+R2 Zero Shot    UC3          UC3_TC2
+R2 Zero Shot    UC3.4.4      UC3.4.4_TC2, UC3.4.4_TC3, UC3.4.4_TC4, UC3.4.4_TC5
+R2 Zero Shot    UC4          UC4_TC2, UC4_TC4
+R2 Zero Shot    UC4.1        UC4.1_TC2
+R3 Few Shot     N/A          UC3.4.3.10_TC1, UC3.4.3.10_TC2, UC3.4.3.10_TC3,...
+R3 One Shot     UC2          UC2_TC2
+R3 One Shot     UC6          UC6_TC6
+R3 Zero Shot    UC2          UC2_TC2
+R3 Zero Shot    UC3          UC3_TC2
+R3 Zero Shot    UC3.4.4      UC3.4.4_TC2, UC3.4.4_TC3, UC3.4.4_TC4, UC3.4.4_TC5
+R3 Zero Shot    UC4          UC4_TC2, UC4_TC5
+R3 Zero Shot    UC6          UC6_TC2
+
+================================================================================

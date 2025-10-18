@@ -1,0 +1,136 @@
+[
+  {
+    "test_case_id": "UC6_TC1",
+    "title": "Logout utente con sessione attiva",
+    "preconditions": "UC1",
+    "postconditions": "L’utente è disconnesso e visualizza un messaggio di logout avvenuto con successo",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente registrato",
+        "expected": "La dashboard dell’utente viene visualizzata"
+      },
+      {
+        "step": "Clicca sul nome utente in alto a destra e seleziona \"Logout\"",
+        "expected": "Il sistema richiede conferma per il logout"
+      },
+      {
+        "step": "Conferma il logout",
+        "expected": "Il sistema visualizza un messaggio di logout avvenuto con successo e reindirizza alla pagina di login"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC6"
+  },
+  {
+    "test_case_id": "UC6_TC2",
+    "title": "Logout senza conferma",
+    "preconditions": "UC1",
+    "postconditions": "Il sistema richiede conferma per il logout",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente registrato",
+        "expected": "La dashboard dell’utente viene visualizzata"
+      },
+      {
+        "step": "Clicca sul nome utente in alto a destra e seleziona \"Logout\" senza confermare",
+        "expected": "Il sistema richiede conferma per il logout"
+      },
+      {
+        "step": "Annulla la richiesta di logout",
+        "expected": "La sessione dell’utente rimane attiva"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC6"
+  },
+  {
+    "test_case_id": "UC6_TC3",
+    "title": "Doppio logout",
+    "preconditions": "UC1",
+    "postconditions": "Il sistema gestisce correttamente la richiesta di doppio logout",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente registrato",
+        "expected": "La dashboard dell’utente viene visualizzata"
+      },
+      {
+        "step": "Clicca sul nome utente in alto a destra e seleziona \"Logout\"",
+        "expected": "Il sistema richiede conferma per il logout"
+      },
+      {
+        "step": "Conferma il logout e poi tenta di eseguire un’altra operazione di logout",
+        "expected": "Il sistema non permette il doppio logout e visualizza un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC6"
+  },
+  {
+    "test_case_id": "UC6_TC4",
+    "title": "Logout con sessione scaduta",
+    "preconditions": "UC1",
+    "postconditions": "Il sistema gestisce correttamente la sessione scaduta e richiede login",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente registrato",
+        "expected": "La dashboard dell’utente viene visualizzata"
+      },
+      {
+        "step": "Lascia inattiva la sessione per un periodo superiore al tempo di scadenza",
+        "expected": "Il sistema disconnette l’utente"
+      },
+      {
+        "step": "Tenta di eseguire il logout",
+        "expected": "Il sistema richiede nuovamente il login"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC6"
+  },
+  {
+    "test_case_id": "UC6_TC5",
+    "title": "Logout da più browser contemporaneamente",
+    "preconditions": "UC1",
+    "postconditions": "Il sistema gestisce correttamente il logout su tutti i browser",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente registrato su più browser",
+        "expected": "Le dashboard dell’utente vengono visualizzate"
+      },
+      {
+        "step": "Esegui il logout da un browser",
+        "expected": "Il sistema disconnette l’utente su tutti i browser"
+      },
+      {
+        "step": "Verifica lo stato di login sugli altri browser",
+        "expected": "L’utente è disconnesso su tutti i browser"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC6"
+  },
+  {
+    "test_case_id": "UC6_TC6",
+    "title": "Logout con utente non autenticato",
+    "preconditions": "",
+    "postconditions": "Il sistema richiede l’autenticazione",
+    "test_steps": [
+      {
+        "step": "Accedi alla pagina di logout senza essere autenticato",
+        "expected": "Il sistema richiede il login"
+      },
+      {
+        "step": "Tenta di eseguire il logout",
+        "expected": "Il sistema non permette il logout e richiede l’autenticazione"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC6"
+  }
+]

@@ -1,0 +1,190 @@
+[
+  {
+    "test_case_id": "UC3.4.3.7_TC1",
+    "title": "Modifica dati operativi pannello elettrico con successo",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD viene selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato e seleziona il pannello elettrico",
+        "expected": "Il pannello elettrico è visualizzato nella struttura ad albero"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati operativi e compila il form con informazioni valide",
+        "expected": "I dati vengono accettati e il form può essere inviato"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Il sistema conferma la modifica con successo"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.7"
+  },
+  {
+    "test_case_id": "UC3.4.3.7_TC2",
+    "title": "Modifica dati operativi con dati non validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD viene selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato e seleziona il pannello elettrico",
+        "expected": "Il pannello elettrico è visualizzato nella struttura ad albero"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati operativi e compila il form con informazioni non valide (es. campi obbligatori vuoti)",
+        "expected": "Il sistema segnala un errore di validazione dei dati"
+      },
+      {
+        "step": "Tenta di applicare le modifiche",
+        "expected": "Il sistema mostra un messaggio di errore e non esegue la modifica"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.7"
+  },
+  {
+    "test_case_id": "UC3.4.3.7_TC3",
+    "title": "Modifica dati operativi senza selezionare il pannello elettrico",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema non permette la modifica",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD viene selezionato correttamente"
+      },
+      {
+        "step": "Non selezionare alcun pannello elettrico",
+        "expected": "Il sistema non visualizza il tab dei dati operativi o mostra un messaggio di errore"
+      },
+      {
+        "step": "Tenta di accedere al tab dei dati operativi",
+        "expected": "L’accesso è negato o viene mostrato un messaggio di selezione obbligatoria del pannello elettrico"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.7"
+  },
+  {
+    "test_case_id": "UC3.4.3.7_TC4",
+    "title": "Modifica dati operativi con permessi insufficienti",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema nega l’accesso alla modifica",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema con un utente che non ha i permessi per la modifica dei dati operativi",
+        "expected": "L’utente non vede l’opzione di modifica o il tab dei dati operativi"
+      },
+      {
+        "step": "Tenta di accedere alla sezione di modifica dei dati operativi",
+        "expected": "Il sistema mostra un messaggio di accesso negato per mancanza di permessi"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.7"
+  },
+  {
+    "test_case_id": "UC3.4.3.7_TC5",
+    "title": "Modifica dati operativi con caratteri speciali nei campi di input",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema accetta o normalizza i caratteri speciali",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD e il pannello elettrico per la modifica",
+        "expected": "Il pannello elettrico è selezionato correttamente"
+      },
+      {
+        "step": "Inserisci caratteri speciali (es. @,#,$) nei campi di input dei dati operativi",
+        "expected": "Il sistema accetta i caratteri o li sostituisce con caratteri validi"
+      },
+      {
+        "step": "Applica le modifiche",
+        "expected": "Il sistema salva correttamente le informazioni senza errori di validazione"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.7"
+  },
+  {
+    "test_case_id": "UC3.4.3.7_TC6",
+    "title": "Modifica dati operativi con campi obbligatori non compilati",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema segnala un errore di validazione",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD e il pannello elettrico per la modifica",
+        "expected": "Il pannello elettrico è selezionato correttamente"
+      },
+      {
+        "step": "Lascia vuoti i campi obbligatori nella sezione dei dati operativi",
+        "expected": "Il sistema segnala un errore per i campi obbligatori non compilati"
+      },
+      {
+        "step": "Tenta di applicare le modifiche",
+        "expected": "Il sistema non esegue la modifica e visualizza un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.7"
+  },
+  {
+    "test_case_id": "UC3.4.3.7_TC7",
+    "title": "Modifica dati operativi durante la modifica da parte di un altro utente",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema gestisce la concorrenza delle modifiche",
+    "test_steps": [
+      {
+        "step": "Due utenti selezionano lo stesso pannello elettrico per la modifica",
+        "expected": "Il sistema permette ad un utente di modificare i dati mentre l’altro visualizza un messaggio di avviso"
+      },
+      {
+        "step": "Il primo utente applica le modifiche",
+        "expected": "Il sistema aggiorna i dati e il secondo utente può vedere le modifiche apportate"
+      },
+      {
+        "step": "Il secondo utente tenta di applicare ulteriori modifiche",
+        "expected": "Il sistema gestisce la concorrenza delle modifiche, eventualmente avvisando l’utente di dati aggiornati"
+      }
+    ],
+    "test_type": "Concorrenza",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.7"
+  },
+  {
+    "test_case_id": "UC3.4.3.7_TC8",
+    "title": "Modifica dati operativi con un numero elevato di caratteri nei campi di input",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema accetta o tronca i dati in base alle limitazioni del database",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD e il pannello elettrico per la modifica",
+        "expected": "Il pannello elettrico è selezionato correttamente"
+      },
+      {
+        "step": "Inserisci un numero elevato di caratteri nei campi di input dei dati operativi",
+        "expected": "Il sistema accetta i dati o li tronca in base alle limitazioni del database"
+      },
+      {
+        "step": "Applica le modifiche",
+        "expected": "Il sistema salva correttamente le informazioni senza errori di validazione"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.7"
+  }
+]

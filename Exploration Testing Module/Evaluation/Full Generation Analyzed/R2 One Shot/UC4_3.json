@@ -1,0 +1,206 @@
+[
+  {
+    "test_case_id": "UC4.3_TC1",
+    "title": "Aggiunta nuova simulazione con dati validi",
+    "preconditions": "UC4",
+    "postconditions": "L’utente ha aggiunto l’associazione nel menu dedicato",
+    "test_steps": [
+      {
+        "step": "Naviga nella terza sezione dedicata alle analisi",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto per aggiungere una nuova analisi",
+        "expected": "Il sistema apre la finestra di selezione dell’impianto e investimento"
+      },
+      {
+        "step": "Seleziona un impianto riqualificato e un investimento valido",
+        "expected": "Il sistema accetta le selezioni"
+      },
+      {
+        "step": "Conferma l’aggiunta della simulazione",
+        "expected": "Viene visualizzato un messaggio di conferma dell’avvenuta aggiunta"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC4.3"
+  },
+  {
+    "test_case_id": "UC4.3_TC2",
+    "title": "Aggiunta simulazione con impianto non valido",
+    "preconditions": "UC4",
+    "postconditions": "Il sistema segnala l’errore e non aggiunge la simulazione",
+    "test_steps": [
+      {
+        "step": "Naviga nella terza sezione dedicata alle analisi",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto per aggiungere una nuova analisi",
+        "expected": "Il sistema apre la finestra di selezione dell’impianto e investimento"
+      },
+      {
+        "step": "Seleziona un impianto non riqualificato o inesistente",
+        "expected": "Il sistema segnala l’errore di selezione"
+      },
+      {
+        "step": "Tenta di confermare l’aggiunta della simulazione",
+        "expected": "Il sistema blocca l’operazione e visualizza un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC4.3"
+  },
+  {
+    "test_case_id": "UC4.3_TC3",
+    "title": "Aggiunta simulazione senza selezionare impianto",
+    "preconditions": "UC4",
+    "postconditions": "Il sistema segnala l’errore e non aggiunge la simulazione",
+    "test_steps": [
+      {
+        "step": "Naviga nella terza sezione dedicata alle analisi",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto per aggiungere una nuova analisi",
+        "expected": "Il sistema apre la finestra di selezione dell’impianto e investimento"
+      },
+      {
+        "step": "Lascia vuoto il campo di selezione dell’impianto",
+        "expected": "Il sistema segnala l’errore di mancata selezione"
+      },
+      {
+        "step": "Tenta di confermare l’aggiunta della simulazione",
+        "expected": "Il sistema blocca l’operazione e visualizza un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC4.3"
+  },
+  {
+    "test_case_id": "UC4.3_TC4",
+    "title": "Annullamento dell’aggiunta di una simulazione",
+    "preconditions": "UC4",
+    "postconditions": "Il sistema visualizza un messaggio di annullamento",
+    "test_steps": [
+      {
+        "step": "Naviga nella terza sezione dedicata alle analisi",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto per aggiungere una nuova analisi",
+        "expected": "Il sistema apre la finestra di selezione dell’impianto e investimento"
+      },
+      {
+        "step": "Seleziona un impianto e un investimento, poi clicca su annulla",
+        "expected": "Il sistema visualizza un messaggio di annullamento dell’operazione"
+      }
+    ],
+    "test_type": "Branch",
+    "priority": "Media",
+    "use_case_id": "UC4.3"
+  },
+  {
+    "test_case_id": "UC4.3_TC5",
+    "title": "Aggiunta simulazione con investimento non valido",
+    "preconditions": "UC4",
+    "postconditions": "Il sistema segnala l’errore e non aggiunge la simulazione",
+    "test_steps": [
+      {
+        "step": "Naviga nella terza sezione dedicata alle analisi",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto per aggiungere una nuova analisi",
+        "expected": "Il sistema apre la finestra di selezione dell’impianto e investimento"
+      },
+      {
+        "step": "Seleziona un impianto valido ma un investimento non valido",
+        "expected": "Il sistema segnala l’errore di selezione dell’investimento"
+      },
+      {
+        "step": "Tenta di confermare l’aggiunta della simulazione",
+        "expected": "Il sistema blocca l’operazione e visualizza un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC4.3"
+  },
+  {
+    "test_case_id": "UC4.3_TC6",
+    "title": "Aggiunta simulazione con dati già esistenti",
+    "preconditions": "UC4",
+    "postconditions": "Il sistema segnala l’errore e non aggiunge la simulazione",
+    "test_steps": [
+      {
+        "step": "Naviga nella terza sezione dedicata alle analisi",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto per aggiungere una nuova analisi",
+        "expected": "Il sistema apre la finestra di selezione dell’impianto e investimento"
+      },
+      {
+        "step": "Seleziona un impianto e un investimento già associati",
+        "expected": "Il sistema segnala l’errore di dati già esistenti"
+      },
+      {
+        "step": "Tenta di confermare l’aggiunta della simulazione",
+        "expected": "Il sistema blocca l’operazione e visualizza un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC4.3"
+  },
+  {
+    "test_case_id": "UC4.3_TC7",
+    "title": "Aggiunta simulazione con caratteri speciali nel nome dell’impianto",
+    "preconditions": "UC4",
+    "postconditions": "Il sistema gestisce correttamente i caratteri speciali",
+    "test_steps": [
+      {
+        "step": "Naviga nella terza sezione dedicata alle analisi",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto per aggiungere una nuova analisi",
+        "expected": "Il sistema apre la finestra di selezione dell’impianto e investimento"
+      },
+      {
+        "step": "Seleziona un impianto con caratteri speciali nel nome (es. Im@pianto2024)",
+        "expected": "Il sistema gestisce correttamente i caratteri speciali"
+      },
+      {
+        "step": "Conferma l’aggiunta della simulazione",
+        "expected": "Il sistema aggiunge la simulazione senza errori"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC4.3"
+  },
+  {
+    "test_case_id": "UC4.3_TC8",
+    "title": "Aggiunta simulazione durante la manutenzione del sistema",
+    "preconditions": "UC4",
+    "postconditions": "Il sistema visualizza un messaggio di indisponibilità",
+    "test_steps": [
+      {
+        "step": "Naviga nella terza sezione dedicata alle analisi durante la manutenzione",
+        "expected": "Viene visualizzato un messaggio di manutenzione"
+      },
+      {
+        "step": "Tenta di aggiungere una nuova simulazione",
+        "expected": "Il sistema blocca l’operazione e visualizza un messaggio di indisponibilità"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC4.3"
+  }
+]

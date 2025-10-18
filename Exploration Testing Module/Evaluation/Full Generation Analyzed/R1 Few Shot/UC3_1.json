@@ -1,0 +1,117 @@
+[
+  {
+    "test_case_id": "UC3.1_TC1",
+    "title": "Visualizzazione schede censimento con dati validi",
+    "preconditions": "UC3",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona la scheda da visualizzare",
+        "expected": "Le informazioni della scheda vengono mostrate in forma tabellare e paginata"
+      },
+      {
+        "step": "Scorri lateralmente per visualizzare tutte le colonne",
+        "expected": "Tutte le colonne sono visibili e scorrevoli"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC2",
+    "title": "Visualizzazione schede censimento con ordinamento",
+    "preconditions": "UC3",
+    "postconditions": "L’utente visualizza le informazioni ordinate correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul nome di una colonna per ordinare le informazioni",
+        "expected": "Le informazioni vengono ordinate in base alla colonna selezionata"
+      },
+      {
+        "step": "Verifica che l’ordinamento sia corretto",
+        "expected": "L’ordinamento è coerente con la scelta dell’utente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC3",
+    "title": "Visualizzazione schede censimento senza dati",
+    "preconditions": "UC3",
+    "postconditions": "L’utente visualizza un messaggio di assenza di dati",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona una scheda senza dati",
+        "expected": "Viene mostrato un messaggio che indica l’assenza di dati"
+      },
+      {
+        "step": "Verifica che il messaggio sia chiaro e utile",
+        "expected": "Il messaggio è comprensibile e fornisce indicazioni utili all’utente"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC4",
+    "title": "Visualizzazione schede censimento con molti dati",
+    "preconditions": "UC3",
+    "postconditions": "L’utente visualizza le informazioni in forma tabellare e paginata senza problemi di prestazione",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona una scheda con un grande numero di dati",
+        "expected": "Le informazioni vengono mostrate in forma tabellare e paginata senza problemi di caricamento"
+      },
+      {
+        "step": "Verifica che la navigazione sia fluida e non ci siano problemi di prestazione",
+        "expected": "La navigazione è scorrevole e non si verificano rallentamenti"
+      }
+    ],
+    "test_type": "Prestazione",
+    "priority": "Alta",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC5",
+    "title": "Visualizzazione schede censimento con caratteri speciali",
+    "preconditions": "UC3",
+    "postconditions": "L’utente visualizza le informazioni correttamente anche con caratteri speciali",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona una scheda con caratteri speciali nei dati",
+        "expected": "Le informazioni vengono mostrate correttamente senza errori di visualizzazione"
+      },
+      {
+        "step": "Verifica che i caratteri speciali siano visualizzati in modo coerente",
+        "expected": "I caratteri speciali sono visualizzati correttamente e non causano problemi di visualizzazione"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC3.1"
+  }
+]

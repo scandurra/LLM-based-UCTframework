@@ -1,0 +1,117 @@
+[
+  {
+    "test_case_id": "UC5_TC1",
+    "title": "Selezione lingua italiana",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza il portale con la lingua selezionata",
+    "test_steps": [
+      {
+        "step": "Accedi al portale come utente registrato",
+        "expected": "Il portale è visualizzato correttamente"
+      },
+      {
+        "step": "Clicca sul proprio nome utente in alto a destra",
+        "expected": "Il menù a tendina con le opzioni di lingua appare"
+      },
+      {
+        "step": "Seleziona la lingua italiana dal menù a tendina",
+        "expected": "La lingua del portale cambia in italiano"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC5"
+  },
+  {
+    "test_case_id": "UC5_TC2",
+    "title": "Selezione lingua inglese",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza il portale con la lingua selezionata",
+    "test_steps": [
+      {
+        "step": "Accedi al portale come utente registrato",
+        "expected": "Il portale è visualizzato correttamente"
+      },
+      {
+        "step": "Clicca sul proprio nome utente in alto a destra",
+        "expected": "Il menù a tendina con le opzioni di lingua appare"
+      },
+      {
+        "step": "Seleziona la lingua inglese dal menù a tendina",
+        "expected": "La lingua del portale cambia in inglese"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC5"
+  },
+  {
+    "test_case_id": "UC5_TC3",
+    "title": "Selezione lingua non supportata",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi al portale come utente registrato",
+        "expected": "Il portale è visualizzato correttamente"
+      },
+      {
+        "step": "Clicca sul proprio nome utente in alto a destra",
+        "expected": "Il menù a tendina con le opzioni di lingua appare"
+      },
+      {
+        "step": "Inserisci una lingua non supportata nel campo di selezione",
+        "expected": "Il portale visualizza un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC5"
+  },
+  {
+    "test_case_id": "UC5_TC4",
+    "title": "Selezione lingua senza modifiche",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza il portale con la lingua precedente",
+    "test_steps": [
+      {
+        "step": "Accedi al portale come utente registrato",
+        "expected": "Il portale è visualizzato correttamente"
+      },
+      {
+        "step": "Clicca sul proprio nome utente in alto a destra",
+        "expected": "Il menù a tendina con le opzioni di lingua appare"
+      },
+      {
+        "step": "Non selezionare alcuna lingua dal menù a tendina",
+        "expected": "La lingua del portale rimane invariata"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC5"
+  },
+  {
+    "test_case_id": "UC5_TC5",
+    "title": "Selezione lingua con caratteri speciali",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi al portale come utente registrato",
+        "expected": "Il portale è visualizzato correttamente"
+      },
+      {
+        "step": "Clicca sul proprio nome utente in alto a destra",
+        "expected": "Il menù a tendina con le opzioni di lingua appare"
+      },
+      {
+        "step": "Inserisci caratteri speciali nel campo di selezione della lingua",
+        "expected": "Il portale visualizza un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC5"
+  }
+]

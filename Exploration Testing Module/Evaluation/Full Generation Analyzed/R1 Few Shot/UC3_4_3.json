@@ -1,0 +1,117 @@
+[
+  {
+    "test_case_id": "UC3.4.3_TC1",
+    "title": "Modifica scheda censimento con dati validi",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente visualizza le informazioni della scheda in fase di edit",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di modifica sulla scheda censimento",
+        "expected": "La sezione di modifica viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci i dati necessari per la modifica",
+        "expected": "I campi vengono compilati senza errori"
+      },
+      {
+        "step": "Conferma le modifiche",
+        "expected": "Le informazioni vengono aggiornate con successo"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3"
+  },
+  {
+    "test_case_id": "UC3.4.3_TC2",
+    "title": "Modifica scheda censimento con dati mancanti",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente non può procedere senza compilare tutti i campi obbligatori",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di modifica sulla scheda censimento",
+        "expected": "La sezione di modifica viene visualizzata correttamente"
+      },
+      {
+        "step": "Lascia vuoti alcuni campi obbligatori",
+        "expected": "Il sistema segnala l’errore e richiede la compilazione dei campi mancanti"
+      },
+      {
+        "step": "Tenta di confermare le modifiche",
+        "expected": "La modifica non viene eseguita e vengono visualizzati messaggi di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3"
+  },
+  {
+    "test_case_id": "UC3.4.3_TC3",
+    "title": "Modifica scheda censimento con dati non validi",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente non può procedere con dati non conformi ai formati richiesti",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di modifica sulla scheda censimento",
+        "expected": "La sezione di modifica viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci dati non validi (es. testo in un campo numerico)",
+        "expected": "Il sistema segnala l’errore e richiede la correzione dei dati"
+      },
+      {
+        "step": "Tenta di confermare le modifiche",
+        "expected": "La modifica non viene eseguita e vengono visualizzati messaggi di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3"
+  },
+  {
+    "test_case_id": "UC3.4.3_TC4",
+    "title": "Modifica scheda censimento con caratteri speciali",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente può visualizzare le informazioni della scheda in fase di edit senza problemi",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di modifica sulla scheda censimento",
+        "expected": "La sezione di modifica viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci caratteri speciali nei campi di testo",
+        "expected": "I caratteri vengono accettati e visualizzati correttamente"
+      },
+      {
+        "step": "Conferma le modifiche",
+        "expected": "Le informazioni vengono aggiornate con successo"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3"
+  },
+  {
+    "test_case_id": "UC3.4.3_TC5",
+    "title": "Annullamento modifica scheda censimento",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente torna alla visualizzazione originale della scheda senza apportare modifiche",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di modifica sulla scheda censimento",
+        "expected": "La sezione di modifica viene visualizzata correttamente"
+      },
+      {
+        "step": "Apporta alcune modifiche ai campi",
+        "expected": "I campi vengono modificati come previsto"
+      },
+      {
+        "step": "Seleziona l’opzione per annullare le modifiche",
+        "expected": "Le modifiche vengono annullate e la scheda torna allo stato originale"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3"
+  }
+]

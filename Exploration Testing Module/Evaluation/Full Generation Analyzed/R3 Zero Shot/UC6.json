@@ -1,0 +1,117 @@
+[
+  {
+    "test_case_id": "UC6_TC1",
+    "title": "Logout utente con successo",
+    "preconditions": "UC1",
+    "postconditions": "L’utente è non è più autenticato ed è a conoscenza che l’operazione ha avuto successo",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente registrato",
+        "expected": "L’utente è autenticato correttamente"
+      },
+      {
+        "step": "Clicca sul proprio nome utente in alto a destra",
+        "expected": "Il menu di opzioni utente è visualizzato"
+      },
+      {
+        "step": "Inizia il processo di logout cliccando il tasto “Logout”",
+        "expected": "L’utente viene reindirizzato alla pagina di login"
+      },
+      {
+        "step": "Verifica che l’utente non sia più autenticato",
+        "expected": "L’utente non è più autenticato e non può accedere alle aree riservate"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC6"
+  },
+  {
+    "test_case_id": "UC6_TC2",
+    "title": "Logout utente senza essere autenticato",
+    "preconditions": "",
+    "postconditions": "L’utente non è autenticato e visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla pagina di logout senza essere autenticato",
+        "expected": "Il sistema richiede l’autenticazione"
+      },
+      {
+        "step": "Clicca sul tasto “Logout”",
+        "expected": "Il sistema visualizza un messaggio di errore per mancata autenticazione"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC6"
+  },
+  {
+    "test_case_id": "UC6_TC3",
+    "title": "Logout utente con più sessioni aperte",
+    "preconditions": "UC1",
+    "postconditions": "L’utente è non è più autenticato in tutte le sessioni",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente registrato e apri più sessioni",
+        "expected": "L’utente è autenticato correttamente in tutte le sessioni"
+      },
+      {
+        "step": "Clicca sul proprio nome utente in alto a destra in una delle sessioni",
+        "expected": "Il menu di opzioni utente è visualizzato"
+      },
+      {
+        "step": "Inizia il processo di logout cliccando il tasto “Logout”",
+        "expected": "L’utente viene reindirizzato alla pagina di login in tutte le sessioni"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC6"
+  },
+  {
+    "test_case_id": "UC6_TC4",
+    "title": "Logout utente con dati di sessione scaduti",
+    "preconditions": "UC1",
+    "postconditions": "L’utente è non è più autenticato e visualizza un messaggio di timeout",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente registrato e lascia la sessione inattiva per un periodo prolungato",
+        "expected": "I dati di sessione sono scaduti"
+      },
+      {
+        "step": "Clicca sul proprio nome utente in alto a destra",
+        "expected": "Il menu di opzioni utente non è visualizzato a causa del timeout"
+      },
+      {
+        "step": "Inizia il processo di logout cliccando il tasto “Logout”",
+        "expected": "Il sistema visualizza un messaggio di timeout e richiede l’autenticazione"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC6"
+  },
+  {
+    "test_case_id": "UC6_TC5",
+    "title": "Logout utente con browser diverso",
+    "preconditions": "UC1",
+    "postconditions": "L’utente è non è più autenticato e visualizza un messaggio di operazione completata con successo",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente registrato utilizzando un browser diverso",
+        "expected": "L’utente è autenticato correttamente"
+      },
+      {
+        "step": "Clicca sul proprio nome utente in alto a destra",
+        "expected": "Il menu di opzioni utente è visualizzato"
+      },
+      {
+        "step": "Inizia il processo di logout cliccando il tasto “Logout”",
+        "expected": "L’utente viene reindirizzato alla pagina di login"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC6"
+  }
+]

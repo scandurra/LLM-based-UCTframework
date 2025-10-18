@@ -1,0 +1,117 @@
+[
+  {
+    "test_case_id": "UC4.1.1_TC1",
+    "title": "Aggiunta impianto con dati validi",
+    "preconditions": "UC4.1",
+    "postconditions": "L’utente visualizza un messaggio di conferma",
+    "test_steps": [
+      {
+        "step": "Clicca sul tasto dedicato all’aggiunta di un singolo impianto",
+        "expected": "La sezione per l’inserimento dei dati dell’impianto viene visualizzata"
+      },
+      {
+        "step": "Inserisci il nome e seleziona il comune tra quelli disponibili",
+        "expected": "I dati vengono accettati e salvati"
+      },
+      {
+        "step": "Conferma l’aggiunta dell’impianto",
+        "expected": "Viene visualizzato un messaggio di conferma"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC4.1.1"
+  },
+  {
+    "test_case_id": "UC4.1.1_TC2",
+    "title": "Aggiunta impianto senza selezionare comune",
+    "preconditions": "UC4.1",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Clicca sul tasto dedicato all’aggiunta di un singolo impianto",
+        "expected": "La sezione per l’inserimento dei dati dell’impianto viene visualizzata"
+      },
+      {
+        "step": "Lascia vuoto il campo del comune",
+        "expected": "Il sistema segnala l’errore di mancanza di informazioni"
+      },
+      {
+        "step": "Tenta di confermare l’aggiunta dell’impianto",
+        "expected": "La funzione non procede e viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC4.1.1"
+  },
+  {
+    "test_case_id": "UC4.1.1_TC3",
+    "title": "Aggiunta impianto con annullamento",
+    "preconditions": "UC4.1",
+    "postconditions": "L’utente visualizza un messaggio di avvenuto annullamento",
+    "test_steps": [
+      {
+        "step": "Clicca sul tasto dedicato all’aggiunta di un singolo impianto",
+        "expected": "La sezione per l’inserimento dei dati dell’impianto viene visualizzata"
+      },
+      {
+        "step": "Inizia a inserire i dati ma poi clicca su annulla",
+        "expected": "I dati vengono cancellati e il sistema torna alla schermata precedente"
+      },
+      {
+        "step": "Conferma l’annullamento dell’operazione",
+        "expected": "Viene visualizzato un messaggio di avvenuto annullamento"
+      }
+    ],
+    "test_type": "Branch",
+    "priority": "Media",
+    "use_case_id": "UC4.1.1"
+  },
+  {
+    "test_case_id": "UC4.1.1_TC4",
+    "title": "Aggiunta impianto con nome già esistente",
+    "preconditions": "UC4.1",
+    "postconditions": "L’utente visualizza un messaggio di errore per nome duplicato",
+    "test_steps": [
+      {
+        "step": "Clicca sul tasto dedicato all’aggiunta di un singolo impianto",
+        "expected": "La sezione per l’inserimento dei dati dell’impianto viene visualizzata"
+      },
+      {
+        "step": "Inserisci un nome già utilizzato da un altro impianto",
+        "expected": "Il sistema segnala l’errore di nome duplicato"
+      },
+      {
+        "step": "Tenta di confermare l’aggiunta dell’impianto",
+        "expected": "La funzione non procede e viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC4.1.1"
+  },
+  {
+    "test_case_id": "UC4.1.1_TC5",
+    "title": "Aggiunta impianto con dati parzialmente validi",
+    "preconditions": "UC4.1",
+    "postconditions": "L’utente visualizza un messaggio di errore per i campi non validi",
+    "test_steps": [
+      {
+        "step": "Clicca sul tasto dedicato all’aggiunta di un singolo impianto",
+        "expected": "La sezione per l’inserimento dei dati dell’impianto viene visualizzata"
+      },
+      {
+        "step": "Inserisci alcuni dati validi e altri no (es. nome valido ma comune non selezionato)",
+        "expected": "Il sistema segnala gli errori nei campi non validi"
+      },
+      {
+        "step": "Tenta di confermare l’aggiunta dell’impianto",
+        "expected": "La funzione non procede e vengono mostrati messaggi di errore per i campi non validi"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC4.1.1"
+  }
+]

@@ -1,0 +1,77 @@
+[
+  {
+    "test_case_id": "UC2_TC1",
+    "title": "Apertura della dashboard con utente autorizzato",
+    "preconditions": "UC1",
+    "postconditions": "La sezione relativa alla dashboard viene visualizzata correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema e naviga nella sezione relativa alla dashboard utilizzando il menù laterale di sinistra",
+        "expected": "La sezione della dashboard si apre correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC2",
+    "title": "Tentativo di accesso alla dashboard senza autorizzazione",
+    "preconditions": "UC1",
+    "postconditions": "L’accesso alla dashboard viene negato",
+    "test_steps": [
+      {
+        "step": "Tenta di accedere alla sezione della dashboard senza essere loggato",
+        "expected": "Il sistema richiede l’autenticazione"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC3",
+    "title": "Apertura della dashboard con navigazione rapida",
+    "preconditions": "UC1",
+    "postconditions": "La sezione relativa alla dashboard si apre rapidamente",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema e utilizza la funzione di navigazione rapida per aprire la dashboard",
+        "expected": "La dashboard si apre velocemente"
+      }
+    ],
+    "test_type": "Prestazione",
+    "priority": "Alta",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC4",
+    "title": "Verifica della visualizzazione dei dati nella dashboard",
+    "preconditions": "UC1",
+    "postconditions": "I dati vengono visualizzati correttamente nella dashboard",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione della dashboard e verifica la presenza dei dati",
+        "expected": "Tutti i dati richiesti sono presenti e visibili"
+      }
+    ],
+    "test_type": "Funzionalità",
+    "priority": "Alta",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC5",
+    "title": "Test di usabilità della dashboard",
+    "preconditions": "UC1",
+    "postconditions": "La dashboard è facile da utilizzare e navigare",
+    "test_steps": [
+      {
+        "step": "Esegui una serie di operazioni comuni nella dashboard per verificare l’usabilità",
+        "expected": "Tutte le funzioni sono accessibili e facili da usare"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Media",
+    "use_case_id": "UC2"
+  }
+]

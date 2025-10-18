@@ -1,0 +1,116 @@
+[
+  {
+    "test_case_id": "UC4.1_TC1",
+    "title": "Visualizzazione della sezione impianto con utente autorizzato",
+    "preconditions": "UC4",
+    "postconditions": "La sezione di gestione dell’impianto viene visualizzata correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla piattaforma come utente autorizzato (Regione, Sindaco, Fornitore, Progettista)",
+        "expected": "L’accesso è consentito"
+      },
+      {
+        "step": "Naviga nella sezione dedicata agli impianti",
+        "expected": "La sezione viene visualizzata correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC4.1"
+  },
+  {
+    "test_case_id": "UC4.1_TC2",
+    "title": "Tentativo di accesso senza autorizzazione",
+    "preconditions": "UC4",
+    "postconditions": "L’accesso alla sezione impianto è negato",
+    "test_steps": [
+      {
+        "step": "Accedi alla piattaforma come utente non autorizzato",
+        "expected": "L’accesso è negato"
+      },
+      {
+        "step": "Tenta di navigare nella sezione dedicata agli impianti",
+        "expected": "Viene visualizzato un messaggio di accesso negato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC4.1"
+  },
+  {
+    "test_case_id": "UC4.1_TC3",
+    "title": "Visualizzazione della sezione impianto con diversi ruoli autorizzati",
+    "preconditions": "UC4",
+    "postconditions": "La sezione di gestione dell’impianto viene visualizzata correttamente per ogni ruolo",
+    "test_steps": [
+      {
+        "step": "Accedi alla piattaforma come Regione",
+        "expected": "L’accesso è consentito e la sezione impianto è visibile"
+      },
+      {
+        "step": "Ripeti l’accesso con gli altri ruoli autorizzati (Sindaco, Fornitore, Progettista)",
+        "expected": "Per ogni ruolo, la sezione impianto è accessibile e visualizzata correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC4.1"
+  },
+  {
+    "test_case_id": "UC4.1_TC4",
+    "title": "Test di usabilità: navigazione nella sezione impianto",
+    "preconditions": "UC4",
+    "postconditions": "La navigazione nella sezione impianto è intuitiva e facile",
+    "test_steps": [
+      {
+        "step": "Accedi alla piattaforma come utente autorizzato",
+        "expected": "L’accesso è consentito"
+      },
+      {
+        "step": "Naviga nella sezione dedicata agli impianti e valuta l’usabilità dell’interfaccia",
+        "expected": "La navigazione è semplice e logica"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Media",
+    "use_case_id": "UC4.1"
+  },
+  {
+    "test_case_id": "UC4.1_TC5",
+    "title": "Test di sicurezza: iniezione SQL nella sezione impianto",
+    "preconditions": "UC4",
+    "postconditions": "Il sistema respinge l’iniezione SQL e mantiene la sicurezza",
+    "test_steps": [
+      {
+        "step": "Accedi alla piattaforma come utente autorizzato",
+        "expected": "L’accesso è consentito"
+      },
+      {
+        "step": "Tenta di eseguire un’iniezione SQL nella sezione impianto",
+        "expected": "Il sistema rileva e blocca l’attacco"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC4.1"
+  },
+  {
+    "test_case_id": "UC4.1_TC6",
+    "title": "Test di prestazione: accesso alla sezione impianto con carico elevato",
+    "preconditions": "UC4",
+    "postconditions": "La sezione impianto rimane accessibile e risponde prontamente",
+    "test_steps": [
+      {
+        "step": "Simula un carico elevato di utenti che accedono alla piattaforma",
+        "expected": "Il sistema mantiene le prestazioni"
+      },
+      {
+        "step": "Accedi alla sezione dedicata agli impianti durante il test di carico",
+        "expected": "La sezione rimane accessibile e risponde prontamente"
+      }
+    ],
+    "test_type": "Prestazione",
+    "priority": "Media",
+    "use_case_id": "UC4.1"
+  }
+]

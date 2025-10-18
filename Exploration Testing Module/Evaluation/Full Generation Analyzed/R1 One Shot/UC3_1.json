@@ -1,0 +1,162 @@
+[
+  {
+    "test_case_id": "UC3.1_TC1",
+    "title": "Visualizzazione schede censimento con dati validi e paginazione",
+    "preconditions": "UC3",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un numero di righe per pagina e scorri tra le pagine",
+        "expected": "Le informazioni vengono visualizzate correttamente in base alla selezione"
+      },
+      {
+        "step": "Verifica la possibilità di scorrere lateralmente per visualizzare tutte le colonne",
+        "expected": "Tutte le colonne sono accessibili e visibili"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC2",
+    "title": "Visualizzazione schede censimento con ordinamento",
+    "preconditions": "UC3",
+    "postconditions": "Le informazioni vengono visualizzate in base all’ordinamento selezionato",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona una colonna per l’ordinamento e clicca sul nome della colonna",
+        "expected": "Le righe vengono ordinate secondo la selezione"
+      },
+      {
+        "step": "Verifica che l’ordinamento funzioni correttamente anche cambiando direzione (ASC/DESC)",
+        "expected": "L’ordinamento si adatta alla direzione scelta"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC3",
+    "title": "Visualizzazione schede censimento senza dati",
+    "preconditions": "UC3",
+    "postconditions": "Viene visualizzato un messaggio di assenza di dati",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione schede censimento in assenza di dati",
+        "expected": "La sezione viene visualizzata ma senza righe"
+      },
+      {
+        "step": "Verifica la presenza di un messaggio che indica l’assenza di dati",
+        "expected": "Un messaggio chiaro informa dell’assenza di dati"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC4",
+    "title": "Boundary test: visualizzazione con un numero elevato di colonne",
+    "preconditions": "UC3",
+    "postconditions": "Tutte le colonne vengono visualizzate correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione schede censimento con un numero elevato di colonne",
+        "expected": "La sezione viene caricata senza problemi"
+      },
+      {
+        "step": "Scorri lateralmente per visualizzare tutte le colonne",
+        "expected": "Tutte le colonne sono visibili e accessibili"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Alta",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC5",
+    "title": "Security test: accesso alla visualizzazione senza autorizzazione",
+    "preconditions": "UC3",
+    "postconditions": "L’accesso viene negato e richiesta l’autenticazione",
+    "test_steps": [
+      {
+        "step": "Tenta di accedere alla sezione di gestione schede censimento senza essere loggato",
+        "expected": "Il sistema reindirizza alla pagina di login"
+      },
+      {
+        "step": "Inserisci credenziali non valide o mancanti",
+        "expected": "L’accesso viene negato e richiesta l’autenticazione corretta"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC6",
+    "title": "Usability test: navigazione e comprensione dell’interfaccia",
+    "preconditions": "UC3",
+    "postconditions": "L’utente può navigare facilmente e comprendere le informazioni visualizzate",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione schede censimento",
+        "expected": "La sezione è chiara e facile da navigare"
+      },
+      {
+        "step": "Verifica la presenza di etichette chiare per le colonne e i controlli di paginazione",
+        "expected": "Tutti gli elementi dell’interfaccia sono ben descritti e facili da usare"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Media",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC7",
+    "title": "Edge case: visualizzazione con dati non standard (es. caratteri speciali)",
+    "preconditions": "UC3",
+    "postconditions": "I dati vengono visualizzati correttamente senza problemi di formattazione",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione schede censimento con dati non standard",
+        "expected": "La sezione viene caricata senza errori"
+      },
+      {
+        "step": "Verifica che i caratteri speciali vengano visualizzati correttamente",
+        "expected": "Tutti i dati, inclusi quelli con caratteri speciali, sono visibili e leggibili"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC3.1"
+  },
+  {
+    "test_case_id": "UC3.1_TC8",
+    "title": "Visualizzazione schede censimento con filtri applicati",
+    "preconditions": "UC3",
+    "postconditions": "Le informazioni vengono visualizzate in base ai filtri applicati",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Applica filtri alle colonne per restringere i risultati",
+        "expected": "Le righe vengono filtrate secondo le condizioni impostate"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC3.1"
+  }
+]

@@ -1,0 +1,25 @@
+[
+  {
+    "test_case_id": "UC3.4.5_TC1",
+    "title": "Visualizzazione dettaglio scheda censimento con dati validi",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente visualizza le informazioni relative alla scheda censimento",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di dettaglio su una scheda esistente",
+        "expected": "Viene visualizzata la pagina di dettaglio della scheda"
+      },
+      {
+        "step": "Verifica che le informazioni visualizzate siano corrette e non modificabili",
+        "expected": "Le informazioni sono visualizzate correttamente e non è possibile modificarle"
+      },
+      {
+        "step": "Naviga nella gerarchia dei POD e Aree Omogenee sulla sinistra",
+        "expected": "La navigazione avviene senza errori e mostra le informazioni attese"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.5"
+  }
+]

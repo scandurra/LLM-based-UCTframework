@@ -1,0 +1,186 @@
+[
+  {
+    "test_case_id": "UC1_TC1",
+    "title": "Login utente con credenziali valide",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "L’utente è autenticato ed è a conoscenza che l’operazione ha avuto successo",
+    "test_steps": [
+      {
+        "step": "Inserisci le credenziali valide nel form di login",
+        "expected": "Il sistema accetta le credenziali e procede con il login"
+      },
+      {
+        "step": "Clicca il tasto \"Login\"",
+        "expected": "Il sistema esegue la procedura di autenticazione"
+      },
+      {
+        "step": "Verifica il messaggio di operazione completata",
+        "expected": "Il sistema visualizza un messaggio di login riuscito"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC2",
+    "title": "Login utente con credenziali errate",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Inserisci credenziali errate nel form di login",
+        "expected": "Il sistema rifiuta le credenziali"
+      },
+      {
+        "step": "Clicca il tasto \"Login\"",
+        "expected": "Il sistema visualizza un messaggio di errore di autenticazione"
+      },
+      {
+        "step": "Verifica il messaggio di operazione completata",
+        "expected": "Il sistema visualizza un messaggio di login fallito"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC3",
+    "title": "Login utente con campo username vuoto",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Lascia il campo username vuoto e inserisci la password",
+        "expected": "Il sistema segnala l’errore di campo obbligatorio"
+      },
+      {
+        "step": "Clicca il tasto \"Login\"",
+        "expected": "Il sistema non esegue la procedura di autenticazione"
+      },
+      {
+        "step": "Verifica il messaggio di operazione completata",
+        "expected": "Il sistema visualizza un messaggio di errore per campo obbligatorio"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC4",
+    "title": "Login utente con password vuota",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Inserisci il username e lascia il campo password vuoto",
+        "expected": "Il sistema segnala l’errore di campo obbligatorio"
+      },
+      {
+        "step": "Clicca il tasto \"Login\"",
+        "expected": "Il sistema non esegue la procedura di autenticazione"
+      },
+      {
+        "step": "Verifica il messaggio di operazione completata",
+        "expected": "Il sistema visualizza un messaggio di errore per campo obbligatorio"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC5",
+    "title": "Login utente con iniezione SQL",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Inserisci una stringa di iniezione SQL nel campo username o password",
+        "expected": "Il sistema rileva e blocca l’iniezione"
+      },
+      {
+        "step": "Clicca il tasto \"Login\"",
+        "expected": "Il sistema visualizza un messaggio di errore di sicurezza"
+      },
+      {
+        "step": "Verifica il messaggio di operazione completata",
+        "expected": "Il sistema non esegue la procedura di autenticazione e segnala l’attacco"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC6",
+    "title": "Login utente con richiesta di cambio password",
+    "preconditions": "L’utente non è autenticato e la password è scaduta",
+    "postconditions": "L’utente è autenticato con la nuova password",
+    "test_steps": [
+      {
+        "step": "Inserisci le credenziali valide nel form di login",
+        "expected": "Il sistema richiede il cambio della password"
+      },
+      {
+        "step": "Inserisci la nuova password e conferma",
+        "expected": "Il sistema accetta la nuova password"
+      },
+      {
+        "step": "Clicca il tasto \"Login\" con la nuova password",
+        "expected": "Il sistema esegue la procedura di autenticazione con successo"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC7",
+    "title": "Login utente con password non confermata",
+    "preconditions": "L’utente non è autenticato e la password è scaduta",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Inserisci le credenziali valide nel form di login",
+        "expected": "Il sistema richiede il cambio della password"
+      },
+      {
+        "step": "Inserisci la nuova password senza confermarla",
+        "expected": "Il sistema segnala l’errore di conferma"
+      },
+      {
+        "step": "Clicca il tasto \"Login\"",
+        "expected": "Il sistema non esegue la procedura di autenticazione e visualizza un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC8",
+    "title": "Login utente con più tentativi falliti",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "L’utente visualizza un messaggio di blocco",
+    "test_steps": [
+      {
+        "step": "Inserisci credenziali errate nel form di login più volte",
+        "expected": "Il sistema conta i tentativi falliti"
+      },
+      {
+        "step": "Superi il numero massimo di tentativi consentiti",
+        "expected": "Il sistema blocca l’account"
+      },
+      {
+        "step": "Verifica il messaggio di operazione completata",
+        "expected": "Il sistema visualizza un messaggio di account bloccato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC1"
+  }
+]

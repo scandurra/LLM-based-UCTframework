@@ -1,0 +1,174 @@
+[
+  {
+    "test_case_id": "UC3.4.3.11_TC1",
+    "title": "Modifica LightSource con dati validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD viene selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato e seleziona un pannello elettrico, poi un punto luce e infine un dispositivo punto luce",
+        "expected": "La struttura ad albero viene espansa correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati apparecchio e compila il form con informazioni valide",
+        "expected": "Il form viene compilato senza errori"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Viene visualizzato un messaggio di conferma dell’operazione"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.11"
+  },
+  {
+    "test_case_id": "UC3.4.3.11_TC2",
+    "title": "Modifica LightSource con dati non validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD viene selezionato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato e seleziona un pannello elettrico, poi un punto luce e infine un dispositivo punto luce",
+        "expected": "La struttura ad albero viene espansa correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati apparecchio e compila il form con informazioni non valide (es. campi obbligatori vuoti)",
+        "expected": "Il sistema segnala errori di validazione"
+      },
+      {
+        "step": "Tenta di applicare le modifiche con l’apposito tasto",
+        "expected": "Viene mostrato un messaggio di errore e le modifiche non vengono applicate"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.11"
+  },
+  {
+    "test_case_id": "UC3.4.3.11_TC3",
+    "title": "Modifica LightSource senza selezionare il POD",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema non permette di procedere",
+    "test_steps": [
+      {
+        "step": "Non selezionare il POD e tenta di accedere ai dati apparecchio",
+        "expected": "Il sistema richiede la selezione del POD"
+      },
+      {
+        "step": "Tenta di compilare il form senza aver selezionato il POD",
+        "expected": "Il sistema non permette di procedere"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.11"
+  },
+  {
+    "test_case_id": "UC3.4.3.11_TC4",
+    "title": "Modifica LightSource con più dispositivi punto luce selezionati",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema gestisce correttamente la selezione multipla",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD e espandi la struttura ad albero fino ai dispositivi punto luce",
+        "expected": "La struttura ad albero viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona più dispositivi punto luce",
+        "expected": "Il sistema permette la selezione multipla"
+      },
+      {
+        "step": "Tenta di modificare i dati apparecchio per i dispositivi selezionati",
+        "expected": "Il sistema applica le modifiche a tutti i dispositivi selezionati"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.11"
+  },
+  {
+    "test_case_id": "UC3.4.3.11_TC5",
+    "title": "Modifica LightSource con caratteri speciali nei campi di input",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema gestisce correttamente i caratteri speciali",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD e accedi ai dati apparecchio",
+        "expected": "I campi di input sono pronti per l’input"
+      },
+      {
+        "step": "Inserisci caratteri speciali (es. @, #, $) nei campi di input",
+        "expected": "Il sistema accetta i caratteri speciali senza errori"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Le modifiche vengono applicate correttamente"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.11"
+  },
+  {
+    "test_case_id": "UC3.4.3.11_TC6",
+    "title": "Modifica LightSource con campi obbligatori non compilati",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema richiede la compilazione dei campi obbligatori",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD e accedi ai dati apparecchio",
+        "expected": "I campi di input sono pronti per l’input"
+      },
+      {
+        "step": "Lascia vuoti i campi obbligatori e tenta di applicare le modifiche",
+        "expected": "Il sistema richiede la compilazione dei campi obbligatori"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.11"
+  },
+  {
+    "test_case_id": "UC3.4.3.11_TC7",
+    "title": "Modifica LightSource con un utente non autorizzato",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema nega l’accesso",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema con un utente non autorizzato",
+        "expected": "L’utente non ha accesso alla funzione di modifica"
+      },
+      {
+        "step": "Tenta di accedere ai dati apparecchio e applicare modifiche",
+        "expected": "Il sistema nega l’accesso e visualizza un messaggio di errore"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.11"
+  },
+  {
+    "test_case_id": "UC3.4.3.11_TC8",
+    "title": "Modifica LightSource durante la manutenzione del sistema",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema visualizza un messaggio di indisponibilità",
+    "test_steps": [
+      {
+        "step": "Tenta di accedere ai dati apparecchio e applicare modifiche durante la manutenzione del sistema",
+        "expected": "Il sistema visualizza un messaggio di indisponibilità"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.11"
+  }
+]

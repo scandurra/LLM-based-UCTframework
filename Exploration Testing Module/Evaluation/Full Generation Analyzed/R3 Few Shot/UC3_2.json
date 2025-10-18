@@ -1,0 +1,117 @@
+[
+  {
+    "test_case_id": "UC3.2_TC1",
+    "title": "Ricerca con parametri validi",
+    "preconditions": "UC3",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla ricerca",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La barra di ricerca è visibile e funzionale"
+      },
+      {
+        "step": "Inserisci parametri di ricerca validi (es. nome, data)",
+        "expected": "Il sistema accetta i parametri"
+      },
+      {
+        "step": "Avvia la ricerca",
+        "expected": "Le informazioni corrispondenti ai parametri vengono visualizzate"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.2"
+  },
+  {
+    "test_case_id": "UC3.2_TC2",
+    "title": "Ricerca senza parametri",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema segnala la mancanza di informazioni",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La barra di ricerca è visibile e funzionale"
+      },
+      {
+        "step": "Lascia vuota la barra di ricerca",
+        "expected": "Il sistema segnala l’assenza di parametri"
+      },
+      {
+        "step": "Tenta di avviare la ricerca",
+        "expected": "Viene mostrato un messaggio di errore per mancanza di parametri"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.2"
+  },
+  {
+    "test_case_id": "UC3.2_TC3",
+    "title": "Ricerca con caratteri speciali",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema gestisce correttamente i caratteri speciali",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La barra di ricerca è visibile e funzionale"
+      },
+      {
+        "step": "Inserisci parametri con caratteri speciali (es. @, #)",
+        "expected": "Il sistema gestisce i caratteri senza errori"
+      },
+      {
+        "step": "Avvia la ricerca",
+        "expected": "Le informazioni vengono visualizzate correttamente"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC3.2"
+  },
+  {
+    "test_case_id": "UC3.2_TC4",
+    "title": "Ricerca con lunghe stringhe di input",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema gestisce correttamente le lunghe stringhe",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La barra di ricerca è visibile e funzionale"
+      },
+      {
+        "step": "Inserisci una lunga stringa di input (oltre 100 caratteri)",
+        "expected": "Il sistema accetta la stringa senza errori"
+      },
+      {
+        "step": "Avvia la ricerca",
+        "expected": "Le informazioni vengono visualizzate correttamente"
+      }
+    ],
+    "test_type": "Prestazione",
+    "priority": "Alta",
+    "use_case_id": "UC3.2"
+  },
+  {
+    "test_case_id": "UC3.2_TC5",
+    "title": "Ricerca con più parametri",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema applica correttamente i filtri multipli",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La barra di ricerca è visibile e funzionale"
+      },
+      {
+        "step": "Inserisci più parametri di ricerca (es. nome, data, categoria)",
+        "expected": "Il sistema applica tutti i filtri correttamente"
+      },
+      {
+        "step": "Avvia la ricerca",
+        "expected": "Le informazioni vengono visualizzate in base a tutti i parametri"
+      }
+    ],
+    "test_type": "Funzionalità",
+    "priority": "Alta",
+    "use_case_id": "UC3.2"
+  }
+]

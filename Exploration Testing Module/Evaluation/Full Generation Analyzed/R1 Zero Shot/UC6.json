@@ -1,0 +1,110 @@
+[
+  {
+    "test_case_id": "UC6_TC1",
+    "title": "Logout utente con successo",
+    "preconditions": "UC1",
+    "postconditions": "L’utente è non è più autenticato ed è a conoscenza che l’operazione ha avuto successo",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente registrato",
+        "expected": "La dashboard dell’utente è visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul proprio nome utente in alto a destra",
+        "expected": "Il menu di opzioni utente è visualizzato"
+      },
+      {
+        "step": "Clicca il tasto “Logout”",
+        "expected": "Il processo di logout inizia e un messaggio di conferma viene visualizzato"
+      },
+      {
+        "step": "Conferma l’operazione di logout",
+        "expected": "Un messaggio di operazione completata con successo viene visualizzato e l’utente è reindirizzato alla pagina di login"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC6"
+  },
+  {
+    "test_case_id": "UC6_TC2",
+    "title": "Logout utente senza conferma",
+    "preconditions": "UC1",
+    "postconditions": "L’utente è non è più autenticato ma non è a conoscenza che l’operazione ha avuto successo",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente registrato",
+        "expected": "La dashboard dell’utente è visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul proprio nome utente in alto a destra",
+        "expected": "Il menu di opzioni utente è visualizzato"
+      },
+      {
+        "step": "Clicca il tasto “Logout”",
+        "expected": "Il processo di logout inizia ma non viene confermato"
+      },
+      {
+        "step": "Non confermare l’operazione di logout e chiudere la pagina",
+        "expected": "L’utente è comunque disconnesso ma non riceve un messaggio di conferma"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC6"
+  },
+  {
+    "test_case_id": "UC6_TC3",
+    "title": "Logout utente con più tentativi",
+    "preconditions": "UC1",
+    "postconditions": "L’utente è non è più autenticato ed è a conoscenza che l’operazione ha avuto successo",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente registrato",
+        "expected": "La dashboard dell’utente è visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul proprio nome utente in alto a destra",
+        "expected": "Il menu di opzioni utente è visualizzato"
+      },
+      {
+        "step": "Clicca il tasto “Logout” e annulla l’operazione più volte",
+        "expected": "Il processo di logout non si completa e l’utente rimane connesso"
+      },
+      {
+        "step": "Confermare l’operazione di logout alla fine",
+        "expected": "Un messaggio di operazione completata con successo viene visualizzato e l’utente è reindirizzato alla pagina di login"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC6"
+  },
+  {
+    "test_case_id": "UC6_TC4",
+    "title": "Logout utente con sessione scaduta",
+    "preconditions": "UC1",
+    "postconditions": "L’utente è non è più autenticato ed è a conoscenza che l’operazione ha avuto successo",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente registrato e lascia la sessione inattiva per un lungo periodo",
+        "expected": "La sessione scade e l’utente è disconnesso automaticamente"
+      },
+      {
+        "step": "Tenta di eseguire un’azione richiedendo autenticazione",
+        "expected": "L’utente viene reindirizzato alla pagina di login"
+      },
+      {
+        "step": "Accedi nuovamente al sistema come utente registrato",
+        "expected": "La dashboard dell’utente è visualizzata correttamente"
+      },
+      {
+        "step": "Clicca il tasto “Logout”",
+        "expected": "Un messaggio di operazione completata con successo viene visualizzato e l’utente è reindirizzato alla pagina di login"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC6"
+  }
+]

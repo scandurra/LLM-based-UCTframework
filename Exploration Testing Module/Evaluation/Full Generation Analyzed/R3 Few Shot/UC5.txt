@@ -1,0 +1,94 @@
+[
+  {
+    "test_case_id": "UC5_TC1",
+    "title": "Selezione lingua italiana",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza il portale con la lingua selezionata",
+    "test_steps": [
+      {
+        "step": "Clicca sul proprio nome utente in alto a destra",
+        "expected": "Il menù appare correttamente"
+      },
+      {
+        "step": "Seleziona la lingua italiana dal menù a tendina",
+        "expected": "La selezione viene accettata e il portale si ricarica"
+      },
+      {
+        "step": "Verifica che il portale sia visualizzato in italiano",
+        "expected": "Tutti gli elementi del portale sono tradotti correttamente in italiano"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC5"
+  },
+  {
+    "test_case_id": "UC5_TC2",
+    "title": "Selezione lingua inglese",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza il portale con la lingua selezionata",
+    "test_steps": [
+      {
+        "step": "Clicca sul proprio nome utente in alto a destra",
+        "expected": "Il menù appare correttamente"
+      },
+      {
+        "step": "Seleziona la lingua inglese dal menù a tendina",
+        "expected": "La selezione viene accettata e il portale si ricarica"
+      },
+      {
+        "step": "Verifica che il portale sia visualizzato in inglese",
+        "expected": "Tutti gli elementi del portale sono tradotti correttamente in inglese"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC5"
+  },
+  {
+    "test_case_id": "UC5_TC3",
+    "title": "Selezione lingua non disponibile",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza un messaggio di errore o la lingua predefinita",
+    "test_steps": [
+      {
+        "step": "Clicca sul proprio nome utente in alto a destra",
+        "expected": "Il menù appare correttamente"
+      },
+      {
+        "step": "Inserisci manualmente una lingua non disponibile nel campo di selezione",
+        "expected": "Il sistema segnala un errore o mantiene la lingua predefinita"
+      },
+      {
+        "step": "Verifica che il portale visualizzi un messaggio di errore o rimanga nella lingua predefinita",
+        "expected": "L’utente non può selezionare una lingua non supportata"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC5"
+  },
+  {
+    "test_case_id": "UC5_TC4",
+    "title": "Cambio rapido della lingua",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza il portale con la nuova lingua selezionata",
+    "test_steps": [
+      {
+        "step": "Seleziona una lingua e verifica che il portale si aggiorni correttamente",
+        "expected": "Il portale è tradotto nella nuova lingua"
+      },
+      {
+        "step": "Ripeti immediatamente la selezione di un’altra lingua",
+        "expected": "Il portale si ricarica con la nuova lingua senza errori"
+      },
+      {
+        "step": "Verifica che il portale sia visualizzato nella seconda lingua selezionata",
+        "expected": "Tutti gli elementi del portale sono tradotti correttamente nella seconda lingua"
+      }
+    ],
+    "test_type": "Prestazione",
+    "priority": "Alta",
+    "use_case_id": "UC5"
+  },
+]

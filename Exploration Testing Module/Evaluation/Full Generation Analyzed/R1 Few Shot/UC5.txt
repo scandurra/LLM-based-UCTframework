@@ -1,0 +1,94 @@
+[
+  {
+    "test_case_id": "UC5_TC1",
+    "title": "Selezione lingua italiana",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza il portale con la lingua selezionata",
+    "test_steps": [
+      {
+        "step": "Clicca sul proprio nome utente in alto a destra",
+        "expected": "Viene visualizzato il menù di opzioni"
+      },
+      {
+        "step": "Seleziona 'Italiano' dal menù a tendina delle lingue",
+        "expected": "La selezione viene accettata e la pagina si ricarica"
+      },
+      {
+        "step": "Verifica che il portale sia visualizzato in italiano",
+        "expected": "Tutti gli elementi della pagina sono tradotti in italiano"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC5"
+  },
+  {
+    "test_case_id": "UC5_TC2",
+    "title": "Selezione lingua inglese",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza il portale con la lingua selezionata",
+    "test_steps": [
+      {
+        "step": "Clicca sul proprio nome utente in alto a destra",
+        "expected": "Viene visualizzato il menù di opzioni"
+      },
+      {
+        "step": "Seleziona 'Inglese' dal menù a tendina delle lingue",
+        "expected": "La selezione viene accettata e la pagina si ricarica"
+      },
+      {
+        "step": "Verifica che il portale sia visualizzato in inglese",
+        "expected": "Tutti gli elementi della pagina sono tradotti in inglese"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC5"
+  },
+  {
+    "test_case_id": "UC5_TC3",
+    "title": "Selezione lingua non supportata",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza un messaggio di errore o la lingua predefinita",
+    "test_steps": [
+      {
+        "step": "Clicca sul proprio nome utente in alto a destra",
+        "expected": "Viene visualizzato il menù di opzioni"
+      },
+      {
+        "step": "Inserisci manualmente una lingua non supportata nel campo di selezione",
+        "expected": "Il sistema rifiuta la selezione o visualizza un messaggio di errore"
+      },
+      {
+        "step": "Verifica che il portale mostri un messaggio di errore o ritorni alla lingua predefinita",
+        "expected": "L’utente non può selezionare una lingua non supportata"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC5"
+  },
+  {
+    "test_case_id": "UC5_TC4",
+    "title": "Cambio lingua ripetuto",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza il portale con la lingua selezionata",
+    "test_steps": [
+      {
+        "step": "Clicca sul proprio nome utente in alto a destra e seleziona una lingua",
+        "expected": "La pagina si ricarica con la nuova lingua"
+      },
+      {
+        "step": "Ripeti il processo di cambio lingua più volte",
+        "expected": "Il sistema accetta ogni cambio di lingua senza problemi"
+      },
+      {
+        "step": "Verifica che dopo ogni cambio la pagina sia visualizzata nella lingua selezionata",
+        "expected": "Tutti gli elementi della pagina sono tradotti correttamente in base alla lingua selezionata"
+      }
+    ],
+    "test_type": "Prestazione",
+    "priority": "Alta",
+    "use_case_id": "UC5"
+  },
+]

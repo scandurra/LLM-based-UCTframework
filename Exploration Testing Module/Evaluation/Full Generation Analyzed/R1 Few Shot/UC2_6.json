@@ -1,0 +1,117 @@
+[
+  {
+    "test_case_id": "UC2.6_TC1",
+    "title": "Analisi consumo comune con selezione di tutti i parametri",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza le informazioni consultando i grafici",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione del consumo e scorri fino alla parte dedicata all’analisi per comune",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un comune, specifica POD, pannello elettrico, periodo e tipo di potenza da analizzare",
+        "expected": "Tutti i parametri vengono accettati"
+      },
+      {
+        "step": "Esegui l’analisi",
+        "expected": "I grafici relativi al consumo del comune selezionato vengono visualizzati correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC2",
+    "title": "Analisi consumo senza selezione del comune",
+    "preconditions": "UC2",
+    "postconditions": "L’analisi non può essere eseguita",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione del consumo e scorri fino alla parte dedicata all’analisi per comune",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Lascia vuoto il campo di selezione del comune",
+        "expected": "Il sistema segnala l’errore di mancata selezione"
+      },
+      {
+        "step": "Tenta di eseguire l’analisi",
+        "expected": "L’operazione non procede e viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC3",
+    "title": "Boundary test: selezione del comune con solo un POD disponibile",
+    "preconditions": "UC2",
+    "postconditions": "L’analisi viene eseguita correttamente per il POD selezionato",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione del consumo e scorri fino alla parte dedicata all’analisi per comune",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un comune con un solo POD disponibile e specifica il periodo e tipo di potenza",
+        "expected": "Il sistema accetta la selezione"
+      },
+      {
+        "step": "Esegui l’analisi",
+        "expected": "I grafici relativi al consumo del comune selezionato vengono visualizzati correttamente per il POD disponibile"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Alta",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC4",
+    "title": "Edge case: selezione di un comune con nome contenente caratteri speciali",
+    "preconditions": "UC2",
+    "postconditions": "L’analisi viene eseguita correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione del consumo e scorri fino alla parte dedicata all’analisi per comune",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un comune con nome contenente caratteri speciali (es. Comune’ di Milano)",
+        "expected": "Il sistema accetta la selezione"
+      },
+      {
+        "step": "Esegui l’analisi",
+        "expected": "I grafici relativi al consumo del comune selezionato vengono visualizzati correttamente"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC5",
+    "title": "Usabilità: verifica della presenza di istruzioni per l’analisi",
+    "preconditions": "UC2",
+    "postconditions": "L’utente trova facilmente le informazioni necessarie per eseguire l’analisi",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione del consumo e scorri fino alla parte dedicata all’analisi per comune",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Cerca istruzioni o indicazioni sulla selezione dei parametri per l’analisi",
+        "expected": "Le istruzioni sono presenti e facilmente accessibili"
+      },
+      {
+        "step": "Segui le istruzioni per eseguire l’analisi",
+        "expected": "L’analisi viene completata con successo grazie alle istruzioni fornite"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Alta",
+    "use_case_id": "UC2.6"
+  }
+]

@@ -1,0 +1,158 @@
+[
+  {
+    "test_case_id": "UC3.4.1_TC1",
+    "title": "Download scheda censimento con dati validi",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente visualizza un messaggio di conferma e ottiene il file desiderato",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione gestione schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona una scheda censimento valida e l’operazione di download",
+        "expected": "Il sistema avvia il download della scheda"
+      },
+      {
+        "step": "Verifica lo stato del download all’interno del browser",
+        "expected": "Il download procede correttamente e il file viene scaricato"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.1"
+  },
+  {
+    "test_case_id": "UC3.4.1_TC2",
+    "title": "Download senza selezionare una scheda censimento",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema segnala l’errore di selezione",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione gestione schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Non selezionare alcuna scheda e tenta di avviare il download",
+        "expected": "Il sistema mostra un messaggio di errore per mancanza di selezione"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.1"
+  },
+  {
+    "test_case_id": "UC3.4.1_TC3",
+    "title": "Download con formato file non supportato",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema segnala l’errore di formato",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione gestione schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona una scheda e un formato file non supportato per il download",
+        "expected": "Il sistema mostra un messaggio di errore per formato non supportato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.1"
+  },
+  {
+    "test_case_id": "UC3.4.1_TC4",
+    "title": "Download di una scheda censimento non esistente",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema segnala l’errore di scheda non trovata",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione gestione schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci manualmente l’ID di una scheda non esistente e tenta il download",
+        "expected": "Il sistema mostra un messaggio di errore per scheda non trovata"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.1"
+  },
+  {
+    "test_case_id": "UC3.4.1_TC5",
+    "title": "Download con utente non autorizzato",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema nega l’accesso alla funzione di download",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione gestione schede censimento con un utente non autorizzato",
+        "expected": "Il sistema blocca l’accesso"
+      },
+      {
+        "step": "Tenta comunque di eseguire il download",
+        "expected": "Il sistema mantiene il blocco e richiede autenticazione"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.1"
+  },
+  {
+    "test_case_id": "UC3.4.1_TC6",
+    "title": "Download con grandi dimensioni del file",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema gestisce il download senza problemi di prestazione",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione gestione schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona una scheda con un file di grandi dimensioni e avvia il download",
+        "expected": "Il sistema gestisce il download senza rallentamenti significativi"
+      }
+    ],
+    "test_type": "Prestazione",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.1"
+  },
+  {
+    "test_case_id": "UC3.4.1_TC7",
+    "title": "Download durante la manutenzione del sistema",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema notifica l’indisponibilità della funzione di download",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione gestione schede censimento durante la manutenzione",
+        "expected": "Viene visualizzato un messaggio di manutenzione"
+      },
+      {
+        "step": "Tenta comunque di eseguire il download",
+        "expected": "Il sistema mantiene l’indisponibilità e notifica la manutenzione in corso"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.1"
+  },
+  {
+    "test_case_id": "UC3.4.1_TC8",
+    "title": "Download con browser non supportato",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema segnala l’errore di compatibilità",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione gestione schede censimento con un browser non supportato",
+        "expected": "Il sistema visualizza un messaggio di errore per browser non supportato"
+      },
+      {
+        "step": "Tenta comunque di eseguire il download",
+        "expected": "Il sistema mantiene l’errore e suggerisce l’utilizzo di un browser compatibile"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.1"
+  }
+]

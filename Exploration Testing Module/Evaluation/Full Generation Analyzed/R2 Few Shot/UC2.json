@@ -1,0 +1,78 @@
+[
+  {
+    "test_case_id": "UC2_TC1",
+    "title": "Apertura della dashboard con successo",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza la sezione relativa alla dashboard",
+    "test_steps": [
+      {
+        "step": "Accedi al menù laterale di sinistra e seleziona la voce 'Dashboard'",
+        "expected": "La sezione della dashboard viene caricata correttamente"
+      },
+      {
+        "step": "Verifica che tutti gli elementi della dashboard siano visualizzati",
+        "expected": "Tutti gli elementi sono presenti e visibili"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC2",
+    "title": "Apertura della dashboard senza autorizzazione",
+    "preconditions": "UC1",
+    "postconditions": "L’utente non può accedere alla dashboard",
+    "test_steps": [
+      {
+        "step": "Tenta di accedere alla dashboard senza essere loggato",
+        "expected": "Il sistema richiede l'autenticazione"
+      },
+      {
+        "step": "Inserisci credenziali non valide",
+        "expected": "Il sistema segnala un errore di autenticazione"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC3",
+    "title": "Apertura della dashboard con browser non supportato",
+    "preconditions": "UC1",
+    "postconditions": "L’utente riceve un messaggio di compatibilità",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard utilizzando un browser non supportato",
+        "expected": "Il sistema visualizza un avviso di compatibilità"
+      },
+      {
+        "step": "Verifica che il messaggio di compatibilità sia chiaro e utile",
+        "expected": "Il messaggio fornisce informazioni utili sull’aggiornamento del browser"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC4",
+    "title": "Apertura della dashboard con schermata di risoluzione bassa",
+    "preconditions": "UC1",
+    "postconditions": "L’utente visualizza la dashboard in modalità adattiva",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard utilizzando uno schermo con risoluzione bassa",
+        "expected": "La dashboard si adatta alla risoluzione dello schermo"
+      },
+      {
+        "step": "Verifica che tutti gli elementi siano ancora visibili e utilizzabili",
+        "expected": "Tutti gli elementi sono accessibili e funzionali"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Media",
+    "use_case_id": "UC2"
+  }
+]

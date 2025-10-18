@@ -1,0 +1,25 @@
+[
+  {
+    "test_case_id": "UC2.4_TC1",
+    "title": "Selezione di comuni e KPI validi per benchmarking",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza il risultato della analisi su un grafico",
+    "test_steps": [
+      {
+        "step": "Seleziona almeno due comuni dal menù a tendina",
+        "expected": "I comuni vengono selezionati correttamente"
+      },
+      {
+        "step": "Seleziona un KPI valido per il confronto",
+        "expected": "Il KPI viene accettato"
+      },
+      {
+        "step": "Conferma la richiesta cliccando sul pulsante",
+        "expected": "Il grafico con il confronto desiderato viene visualizzato"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.4"
+  }
+]

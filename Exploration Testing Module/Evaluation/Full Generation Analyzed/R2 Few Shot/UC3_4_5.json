@@ -1,0 +1,117 @@
+[
+  {
+    "test_case_id": "UC3.4.5_TC1",
+    "title": "Visualizzazione dettaglio scheda censimento con dati validi",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente visualizza le informazioni relative alla scheda censimento",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di dettaglio su una scheda esistente",
+        "expected": "La pagina di dettaglio si apre correttamente"
+      },
+      {
+        "step": "Verifica la presenza dei dati generali dell’area e della gerarchia dei POD e Aree Omogenee",
+        "expected": "Tutti i dati richiesti sono visualizzati correttamente"
+      },
+      {
+        "step": "Naviga nella gerarchia dei POD e Aree Omogenee",
+        "expected": "La navigazione avviene senza errori"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.5"
+  },
+  {
+    "test_case_id": "UC3.4.5_TC2",
+    "title": "Tentativo di modifica dei dati nella pagina di dettaglio",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente non può modificare i dati",
+    "test_steps": [
+      {
+        "step": "Apri la pagina di dettaglio di una scheda censimento",
+        "expected": "La pagina si apre in modalità sola lettura"
+      },
+      {
+        "step": "Tenta di modificare un campo",
+        "expected": "Il sistema non permette la modifica"
+      },
+      {
+        "step": "Verifica che non ci siano opzioni di salvataggio per le modifiche",
+        "expected": "Non ci sono pulsanti o link per salvare modifiche"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.5"
+  },
+  {
+    "test_case_id": "UC3.4.5_TC3",
+    "title": "Visualizzazione dettaglio scheda censimento con dati mancanti",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente visualizza un messaggio di dati non disponibili",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di dettaglio su una scheda senza dati associati",
+        "expected": "La pagina di dettaglio si apre con un messaggio di dati mancanti"
+      },
+      {
+        "step": "Verifica la presenza di un messaggio che indica l’assenza dei dati",
+        "expected": "Il messaggio è chiaro e visibile"
+      },
+      {
+        "step": "Controlla se ci sono link o opzioni per aggiungere i dati mancanti",
+        "expected": "Sono presenti opzioni per aggiungere nuovi dati"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.5"
+  },
+  {
+    "test_case_id": "UC3.4.5_TC4",
+    "title": "Navigazione nella gerarchia dei POD e Aree Omogenee",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente naviga correttamente nella gerarchia",
+    "test_steps": [
+      {
+        "step": "Apri la pagina di dettaglio di una scheda censimento",
+        "expected": "La gerarchia dei POD e Aree Omogenee è visibile"
+      },
+      {
+        "step": "Seleziona un elemento della gerarchia per visualizzare i dettagli",
+        "expected": "I dettagli dell’elemento selezionato sono visualizzati correttamente"
+      },
+      {
+        "step": "Ripeti il processo per più elementi della gerarchia",
+        "expected": "La navigazione è fluida e senza errori"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.5"
+  },
+  {
+    "test_case_id": "UC3.4.5_TC5",
+    "title": "Boundary test: selezione di un elemento non esistente nella gerarchia",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente riceve un messaggio di elemento non trovato",
+    "test_steps": [
+      {
+        "step": "Apri la pagina di dettaglio di una scheda censimento",
+        "expected": "La gerarchia dei POD e Aree Omogenee è visibile"
+      },
+      {
+        "step": "Inserisci manualmente un ID o nome di un elemento non esistente nella gerarchia",
+        "expected": "Il sistema mostra un messaggio di elemento non trovato"
+      },
+      {
+        "step": "Verifica che il messaggio sia chiaro e utile per l’utente",
+        "expected": "Il messaggio fornisce indicazioni utili per la risoluzione del problema"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Media",
+    "use_case_id": "UC3.4.5"
+  }
+]

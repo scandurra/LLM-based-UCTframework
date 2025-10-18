@@ -1,0 +1,109 @@
+[
+  {
+    "test_case_id": "UC3.4_TC1",
+    "title": "Visualizzazione palette di operazioni sulla scheda censimento",
+    "preconditions": "UC3",
+    "postconditions": "La palette di operazioni è visualizzata correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona una scheda censimento e clicca sul tasto delle azioni",
+        "expected": "La palette di operazioni è visualizzata"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC2",
+    "title": "Selezione di un'operazione non valida sulla scheda censimento",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema segnala un errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona una scheda censimento e clicca sul tasto delle azioni",
+        "expected": "La palette di operazioni è visualizzata"
+      },
+      {
+        "step": "Seleziona un'operazione non valida",
+        "expected": "Il sistema segnala un errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC3",
+    "title": "Chiusura della palette di operazioni sulla scheda censimento",
+    "preconditions": "UC3",
+    "postconditions": "La palette di operazioni è chiusa correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona una scheda censimento e clicca sul tasto delle azioni",
+        "expected": "La palette di operazioni è visualizzata"
+      },
+      {
+        "step": "Clicca sul tasto di chiusura della palette",
+        "expected": "La palette di operazioni è chiusa"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC4",
+    "title": "Selezione di un'operazione sulla scheda censimento senza autorizzazione",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema segnala un errore di autorizzazione",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento con un utente non autorizzato",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona una scheda censimento e clicca sul tasto delle azioni",
+        "expected": "La palette di operazioni è visualizzata"
+      },
+      {
+        "step": "Seleziona un'operazione",
+        "expected": "Il sistema segnala un errore di autorizzazione"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC5",
+    "title": "Visualizzazione della palette di operazioni sulla scheda censimento con dati mancanti",
+    "preconditions": "UC3",
+    "postconditions": "La palette di operazioni è visualizzata correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona una scheda censimento con dati mancanti e clicca sul tasto delle azioni",
+        "expected": "La palette di operazioni è visualizzata"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC3.4"
+  }
+]

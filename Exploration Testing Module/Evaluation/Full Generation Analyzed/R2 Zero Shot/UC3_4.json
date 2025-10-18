@@ -1,0 +1,97 @@
+[
+  {
+    "test_case_id": "UC3.4_TC1",
+    "title": "Visualizzazione palette di operazioni sulla scheda censimento con utente Regione",
+    "preconditions": "UC3",
+    "postconditions": "La palette di operazioni è visualizzata correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento come utente Regione",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto delle azioni dedicato alla singola scheda censimento",
+        "expected": "La palette di operazioni è visualizzata"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC2",
+    "title": "Visualizzazione palette di operazioni sulla scheda censimento con utente Sindaco",
+    "preconditions": "UC3",
+    "postconditions": "La palette di operazioni è visualizzata correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento come utente Sindaco",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto delle azioni dedicato alla singola scheda censimento",
+        "expected": "La palette di operazioni è visualizzata"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC3",
+    "title": "Visualizzazione palette di operazioni sulla scheda censimento con utente Fornitore",
+    "preconditions": "UC3",
+    "postconditions": "La palette di operazioni è visualizzata correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento come utente Fornitore",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto delle azioni dedicato alla singola scheda censimento",
+        "expected": "La palette di operazioni è visualizzata"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC4",
+    "title": "Visualizzazione palette di operazioni sulla scheda censimento senza autorizzazione",
+    "preconditions": "UC3",
+    "postconditions": "La palette di operazioni non è visualizzata",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento come utente non autorizzato",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto delle azioni dedicato alla singola scheda censimento",
+        "expected": "La palette di operazioni non è visualizzata"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC5",
+    "title": "Visualizzazione palette di operazioni sulla scheda censimento con dati non validi",
+    "preconditions": "UC3",
+    "postconditions": "La palette di operazioni non è visualizzata",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento come utente Regione",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci dati non validi nella scheda censimento",
+        "expected": "La palette di operazioni non è visualizzata"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4"
+  }
+]

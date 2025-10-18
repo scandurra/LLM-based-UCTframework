@@ -1,0 +1,120 @@
+[
+  {
+    "test_case_id": "UC2_TC1",
+    "title": "Apertura della dashboard con utente autorizzato",
+    "preconditions": "UC1",
+    "postconditions": "La dashboard viene visualizzata correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente autorizzato (Regione, Sindaco, Fornitore, Progettista, Cittadino)",
+        "expected": "L’accesso avviene con successo"
+      },
+      {
+        "step": "Seleziona la sezione della dashboard dal menù laterale di sinistra",
+        "expected": "La dashboard si apre e viene visualizzata correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC2",
+    "title": "Tentativo di accesso alla dashboard senza autorizzazione",
+    "preconditions": "UC1",
+    "postconditions": "L’accesso alla dashboard viene negato",
+    "test_steps": [
+      {
+        "step": "Tenta di accedere al sistema come utente non autorizzato",
+        "expected": "Il sistema richiede l’autenticazione o mostra un messaggio di accesso negato"
+      },
+      {
+        "step": "Tenta di forzare l’accesso alla dashboard",
+        "expected": "L’accesso viene bloccato e viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC3",
+    "title": "Apertura della dashboard con diversi ruoli utente",
+    "preconditions": "UC1",
+    "postconditions": "La dashboard si adatta ai permessi dell’utente",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema con ruolo di Regione",
+        "expected": "La dashboard mostra le informazioni relative alla Regione"
+      },
+      {
+        "step": "Accedi al sistema con ruolo di Sindaco",
+        "expected": "La dashboard mostra le informazioni relative al Comune"
+      },
+      {
+        "step": "Accedi al sistema con ruolo di Fornitore, Progettista e Cittadino",
+        "expected": "La dashboard si adatta ai permessi e alle informazioni disponibili per ciascun ruolo"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC4",
+    "title": "Dashboard con dati non disponibili",
+    "preconditions": "UC1",
+    "postconditions": "La dashboard visualizza un messaggio di dati non disponibili",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema in un momento in cui i dati non sono aggiornati o non sono disponibili",
+        "expected": "La dashboard mostra un messaggio che indica la mancanza di dati"
+      },
+      {
+        "step": "Verifica che il messaggio sia chiaro e utile per l’utente",
+        "expected": "Il messaggio è comprensibile e fornisce indicazioni utili"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC5",
+    "title": "Usabilità della dashboard",
+    "preconditions": "UC1",
+    "postconditions": "La dashboard è facile da usare e navigare",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e valuta la facilità di navigazione",
+        "expected": "La dashboard è intuitiva e facile da utilizzare"
+      },
+      {
+        "step": "Verifica la presenza di elementi di aiuto o guide per l’utente",
+        "expected": "Sono presenti risorse utili per aiutare l’utente nella navigazione"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Alta",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC6",
+    "title": "Accessibilità della dashboard per utenti con disabilità",
+    "preconditions": "UC1",
+    "postconditions": "La dashboard è accessibile per utenti con disabilità",
+    "test_steps": [
+      {
+        "step": "Verifica la compatibilità con tecnologie assistive (es. lettore dello schermo)",
+        "expected": "La dashboard è compatibile e accessibile"
+      },
+      {
+        "step": "Valuta la presenza di funzionalità per utenti con disabilità (es. alto contrasto, dimensioni del testo)",
+        "expected": "Sono presenti opzioni per facilitare l’accesso"
+      }
+    ],
+    "test_type": "Accessibilità",
+    "priority": "Alta",
+    "use_case_id": "UC2"
+  }
+]

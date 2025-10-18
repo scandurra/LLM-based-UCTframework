@@ -1,0 +1,182 @@
+[
+  {
+    "test_case_id": "UC3.2.1_TC1",
+    "title": "Ricerca scheda censimento per nome valido",
+    "preconditions": "UC3.2",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci un nome valido nella barra di ricerca",
+        "expected": "Il sistema accetta l’input"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "I risultati della ricerca vengono visualizzati correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.2.1"
+  },
+  {
+    "test_case_id": "UC3.2.1_TC2",
+    "title": "Ricerca con nome non esistente",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema segnala che non ci sono risultati",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci un nome che non esiste nel database",
+        "expected": "Il sistema accetta l’input"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Viene visualizzato un messaggio di ‘nessun risultato trovato’"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.2.1"
+  },
+  {
+    "test_case_id": "UC3.2.1_TC3",
+    "title": "Ricerca con nome parziale",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema restituisce i risultati che contengono il nome parziale",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci una parte del nome (es. ‘Mario’ anziché ‘Mario Rossi’)",
+        "expected": "Il sistema accetta l’input parziale"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "I risultati della ricerca vengono visualizzati correttamente, mostrando tutti i nomi che contengono ‘Mario’"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.2.1"
+  },
+  {
+    "test_case_id": "UC3.2.1_TC4",
+    "title": "Ricerca senza inserire il nome",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema richiede l’inserimento del nome",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Lascia vuoto il campo di ricerca e conferma",
+        "expected": "Il sistema segnala l’errore e richiede l’inserimento del nome"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.2.1"
+  },
+  {
+    "test_case_id": "UC3.2.1_TC5",
+    "title": "Ricerca con caratteri speciali nel nome",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema gestisce correttamente i caratteri speciali",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci un nome con caratteri speciali (es. ‘Mario@’)",
+        "expected": "Il sistema accetta l’input e gestisce i caratteri speciali"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "I risultati della ricerca vengono visualizzati correttamente, considerando i caratteri speciali"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC3.2.1"
+  },
+  {
+    "test_case_id": "UC3.2.1_TC6",
+    "title": "Ricerca con nome lungo",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema gestisce correttamente nomi lunghi",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci un nome molto lungo (es. ‘MarioRossiLungoNome’)",
+        "expected": "Il sistema accetta l’input e gestisce il nome lungo"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "I risultati della ricerca vengono visualizzati correttamente, considerando il nome lungo"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC3.2.1"
+  },
+  {
+    "test_case_id": "UC3.2.1_TC7",
+    "title": "Ricerca con più nomi",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema gestisce correttamente la ricerca multipla",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci più nomi separati da virgole o spazi (es. ‘Mario, Luca, Giovanni’)",
+        "expected": "Il sistema accetta l’input e gestisce la ricerca multipla"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "I risultati della ricerca vengono visualizzati correttamente, mostrando tutti i nomi cercati"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.2.1"
+  },
+  {
+    "test_case_id": "UC3.2.1_TC8",
+    "title": "Ricerca con nome non alfanumerico",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema gestisce correttamente i nomi non alfanumerici",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci un nome con caratteri non alfanumerici (es. ‘123’)",
+        "expected": "Il sistema accetta l’input e gestisce i caratteri non alfanumerici"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "I risultati della ricerca vengono visualizzati correttamente, considerando i caratteri non alfanumerici"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC3.2.1"
+  }
+]

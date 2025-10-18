@@ -1,0 +1,101 @@
+[
+  {
+    "test_case_id": "UC2.4_TC1",
+    "title": "Selezione di comuni e KPI validi per il benchmarking",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza il risultato della analisi su un grafico",
+    "test_steps": [
+      {
+        "step": "Seleziona almeno due comuni dal menù a tendina",
+        "expected": "I comuni vengono selezionati correttamente"
+      },
+      {
+        "step": "Seleziona un KPI valido tra le opzioni disponibili",
+        "expected": "Il KPI viene accettato e visualizzato"
+      },
+      {
+        "step": "Conferma la richiesta cliccando sul pulsante di esecuzione",
+        "expected": "Il sistema genera il grafico con i dati dei comuni selezionati"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC2",
+    "title": "Selezione di un solo comune per il benchmarking",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema richiede la selezione di almeno due comuni",
+    "test_steps": [
+      {
+        "step": "Seleziona un solo comune dal menù a tendina",
+        "expected": "Il sistema segnala l’errore di selezione"
+      },
+      {
+        "step": "Tenta di confermare la richiesta senza aggiungere altri comuni",
+        "expected": "Il sistema non procede e visualizza un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC3",
+    "title": "Selezione di KPI non valido per il benchmarking",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema segnala l’errore di selezione del KPI",
+    "test_steps": [
+      {
+        "step": "Seleziona un KPI non disponibile o non valido",
+        "expected": "Il sistema segnala l’errore di selezione"
+      },
+      {
+        "step": "Tenta di confermare la richiesta con il KPI non valido",
+        "expected": "Il sistema non procede e visualizza un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC4",
+    "title": "Benchmarking con molti comuni selezionati",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema visualizza il grafico con i dati dei comuni selezionati",
+    "test_steps": [
+      {
+        "step": "Seleziona il massimo numero di comuni disponibili",
+        "expected": "I comuni vengono selezionati correttamente"
+      },
+      {
+        "step": "Seleziona un KPI valido e conferma la richiesta",
+        "expected": "Il sistema genera il grafico con i dati dei comuni selezionati"
+      }
+    ],
+    "test_type": "Prestazione",
+    "priority": "Alta",
+    "use_case_id": "UC2.4"
+  },
+  {
+    "test_case_id": "UC2.4_TC5",
+    "title": "Selezione di comuni e KPI con caratteri speciali",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema gestisce correttamente i caratteri speciali",
+    "test_steps": [
+      {
+        "step": "Inserisci caratteri speciali nel campo di ricerca dei comuni",
+        "expected": "Il sistema filtra correttamente i risultati"
+      },
+      {
+        "step": "Seleziona un KPI e conferma la richiesta",
+        "expected": "Il sistema genera il grafico con i dati dei comuni selezionati"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC2.4"
+  },
+]

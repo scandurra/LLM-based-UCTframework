@@ -1,0 +1,117 @@
+[
+  {
+    "test_case_id": "UC1_TC1",
+    "title": "Login con credenziali valide",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "L’utente è autenticato ed è a conoscenza che l’operazione ha avuto successo",
+    "test_steps": [
+      {
+        "step": "Inserisci le credenziali corrette nel form di login",
+        "expected": "Il sistema accetta le credenziali"
+      },
+      {
+        "step": "Clicca il tasto “Login”",
+        "expected": "Il sistema procede con l’autenticazione"
+      },
+      {
+        "step": "Visualizza il messaggio di operazione completata con successo",
+        "expected": "L’utente è autenticato e visualizza la pagina principale"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC2",
+    "title": "Login con credenziali errate",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Inserisci credenziali errate nel form di login",
+        "expected": "Il sistema rileva le credenziali come non valide"
+      },
+      {
+        "step": "Clicca il tasto “Login”",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      },
+      {
+        "step": "Visualizza il messaggio di operazione fallita",
+        "expected": "L’utente non è autenticato e può riprovare"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC3",
+    "title": "Cambio password alla prima autenticazione",
+    "preconditions": "L’utente non è autenticato e deve cambiare la password di default",
+    "postconditions": "La password è stata modificata con successo",
+    "test_steps": [
+      {
+        "step": "Inserisci le credenziali nel form di login e clicca “Login”",
+        "expected": "Il sistema richiede il cambio della password"
+      },
+      {
+        "step": "Inserisci la nuova password e confermala",
+        "expected": "Il sistema accetta la nuova password"
+      },
+      {
+        "step": "Visualizza il messaggio di operazione completata con successo",
+        "expected": "La password è stata modificata e l’utente è autenticato"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC4",
+    "title": "Inserimento di credenziali con caratteri speciali",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "Il sistema gestisce correttamente i caratteri speciali",
+    "test_steps": [
+      {
+        "step": "Inserisci credenziali contenenti caratteri speciali nel form di login",
+        "expected": "Il sistema accetta le credenziali"
+      },
+      {
+        "step": "Clicca il tasto “Login”",
+        "expected": "Il sistema procede con l’autenticazione senza problemi"
+      },
+      {
+        "step": "Visualizza il messaggio di operazione completata con successo",
+        "expected": "L’utente è autenticato e i caratteri speciali non hanno causato errori"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC5",
+    "title": "Tentativo di SQL injection nel form di login",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "Il sistema rileva e blocca il tentativo di SQL injection",
+    "test_steps": [
+      {
+        "step": "Inserisci una stringa di input contenente codice SQL nel form di login",
+        "expected": "Il sistema rileva la stringa come potenziale SQL injection"
+      },
+      {
+        "step": "Clicca il tasto “Login”",
+        "expected": "Il sistema blocca l’accesso e visualizza un messaggio di errore"
+      },
+      {
+        "step": "Visualizza il messaggio di operazione fallita per sicurezza",
+        "expected": "L’utente non è autenticato e il tentativo di SQL injection è stato respinto"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC1"
+  },
+]

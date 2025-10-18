@@ -1,0 +1,433 @@
+Expert,UseCase,QualityDimension,Round,Strategy,FullStrategyName,Rating
+Expert 1,UC1,Clarity & Completeness,R1,Zero Shot,R1 Zero Shot,4
+Expert 1,UC1,Clarity & Completeness,R2,Zero Shot,R2 Zero Shot,4
+Expert 1,UC1,Clarity & Completeness,R3,Zero Shot,R3 Zero Shot,4
+Expert 1,UC1,Clarity & Completeness,R1,One Shot,R1 One Shot,5
+Expert 1,UC1,Clarity & Completeness,R2,One Shot,R2 One Shot,5
+Expert 1,UC1,Clarity & Completeness,R3,One Shot,R3 One Shot,4
+Expert 1,UC1,Clarity & Completeness,R1,Few Shot,R1 Few Shot,5
+Expert 1,UC1,Clarity & Completeness,R2,Few Shot,R2 Few Shot,5
+Expert 1,UC1,Clarity & Completeness,R3,Few Shot,R3 Few Shot,5
+Expert 1,UC1,Semantic consistency,R1,Zero Shot,R1 Zero Shot,4
+Expert 1,UC1,Semantic consistency,R2,Zero Shot,R2 Zero Shot,3
+Expert 1,UC1,Semantic consistency,R3,Zero Shot,R3 Zero Shot,3
+Expert 1,UC1,Semantic consistency,R1,One Shot,R1 One Shot,5
+Expert 1,UC1,Semantic consistency,R2,One Shot,R2 One Shot,4
+Expert 1,UC1,Semantic consistency,R3,One Shot,R3 One Shot,3
+Expert 1,UC1,Semantic consistency,R1,Few Shot,R1 Few Shot,4
+Expert 1,UC1,Semantic consistency,R2,Few Shot,R2 Few Shot,5
+Expert 1,UC1,Semantic consistency,R3,Few Shot,R3 Few Shot,5
+Expert 1,UC1,Context Deviation,R1,Zero Shot,R1 Zero Shot,5
+Expert 1,UC1,Context Deviation,R2,Zero Shot,R2 Zero Shot,5
+Expert 1,UC1,Context Deviation,R3,Zero Shot,R3 Zero Shot,4
+Expert 1,UC1,Context Deviation,R1,One Shot,R1 One Shot,5
+Expert 1,UC1,Context Deviation,R2,One Shot,R2 One Shot,5
+Expert 1,UC1,Context Deviation,R3,One Shot,R3 One Shot,4
+Expert 1,UC1,Context Deviation,R1,Few Shot,R1 Few Shot,5
+Expert 1,UC1,Context Deviation,R2,Few Shot,R2 Few Shot,5
+Expert 1,UC1,Context Deviation,R3,Few Shot,R3 Few Shot,5
+Expert 1,UC1,Level of creativity,R1,Zero Shot,R1 Zero Shot,4
+Expert 1,UC1,Level of creativity,R2,Zero Shot,R2 Zero Shot,4
+Expert 1,UC1,Level of creativity,R3,Zero Shot,R3 Zero Shot,4
+Expert 1,UC1,Level of creativity,R1,One Shot,R1 One Shot,5
+Expert 1,UC1,Level of creativity,R2,One Shot,R2 One Shot,5
+Expert 1,UC1,Level of creativity,R3,One Shot,R3 One Shot,5
+Expert 1,UC1,Level of creativity,R1,Few Shot,R1 Few Shot,4
+Expert 1,UC1,Level of creativity,R2,Few Shot,R2 Few Shot,3
+Expert 1,UC1,Level of creativity,R3,Few Shot,R3 Few Shot,4
+Expert 2,UC1,Clarity & Completeness,R1,Zero Shot,R1 Zero Shot,4
+Expert 2,UC1,Clarity & Completeness,R2,Zero Shot,R2 Zero Shot,3
+Expert 2,UC1,Clarity & Completeness,R3,Zero Shot,R3 Zero Shot,4
+Expert 2,UC1,Clarity & Completeness,R1,One Shot,R1 One Shot,5
+Expert 2,UC1,Clarity & Completeness,R2,One Shot,R2 One Shot,5
+Expert 2,UC1,Clarity & Completeness,R3,One Shot,R3 One Shot,4
+Expert 2,UC1,Clarity & Completeness,R1,Few Shot,R1 Few Shot,5
+Expert 2,UC1,Clarity & Completeness,R2,Few Shot,R2 Few Shot,4
+Expert 2,UC1,Clarity & Completeness,R3,Few Shot,R3 Few Shot,4
+Expert 2,UC1,Semantic consistency,R1,Zero Shot,R1 Zero Shot,4
+Expert 2,UC1,Semantic consistency,R2,Zero Shot,R2 Zero Shot,3
+Expert 2,UC1,Semantic consistency,R3,Zero Shot,R3 Zero Shot,3
+Expert 2,UC1,Semantic consistency,R1,One Shot,R1 One Shot,5
+Expert 2,UC1,Semantic consistency,R2,One Shot,R2 One Shot,4
+Expert 2,UC1,Semantic consistency,R3,One Shot,R3 One Shot,4
+Expert 2,UC1,Semantic consistency,R1,Few Shot,R1 Few Shot,4
+Expert 2,UC1,Semantic consistency,R2,Few Shot,R2 Few Shot,4
+Expert 2,UC1,Semantic consistency,R3,Few Shot,R3 Few Shot,4
+Expert 2,UC1,Context Deviation,R1,Zero Shot,R1 Zero Shot,4
+Expert 2,UC1,Context Deviation,R2,Zero Shot,R2 Zero Shot,4
+Expert 2,UC1,Context Deviation,R3,Zero Shot,R3 Zero Shot,4
+Expert 2,UC1,Context Deviation,R1,One Shot,R1 One Shot,5
+Expert 2,UC1,Context Deviation,R2,One Shot,R2 One Shot,5
+Expert 2,UC1,Context Deviation,R3,One Shot,R3 One Shot,4
+Expert 2,UC1,Context Deviation,R1,Few Shot,R1 Few Shot,4
+Expert 2,UC1,Context Deviation,R2,Few Shot,R2 Few Shot,4
+Expert 2,UC1,Context Deviation,R3,Few Shot,R3 Few Shot,5
+Expert 2,UC1,Level of creativity,R1,Zero Shot,R1 Zero Shot,5
+Expert 2,UC1,Level of creativity,R2,Zero Shot,R2 Zero Shot,5
+Expert 2,UC1,Level of creativity,R3,Zero Shot,R3 Zero Shot,4
+Expert 2,UC1,Level of creativity,R1,One Shot,R1 One Shot,5
+Expert 2,UC1,Level of creativity,R2,One Shot,R2 One Shot,5
+Expert 2,UC1,Level of creativity,R3,One Shot,R3 One Shot,5
+Expert 2,UC1,Level of creativity,R1,Few Shot,R1 Few Shot,3
+Expert 2,UC1,Level of creativity,R2,Few Shot,R2 Few Shot,3
+Expert 2,UC1,Level of creativity,R3,Few Shot,R3 Few Shot,4
+Expert 3,UC1,Clarity & Completeness,R1,Zero Shot,R1 Zero Shot,4
+Expert 3,UC1,Clarity & Completeness,R2,Zero Shot,R2 Zero Shot,4
+Expert 3,UC1,Clarity & Completeness,R3,Zero Shot,R3 Zero Shot,5
+Expert 3,UC1,Clarity & Completeness,R1,One Shot,R1 One Shot,5
+Expert 3,UC1,Clarity & Completeness,R2,One Shot,R2 One Shot,5
+Expert 3,UC1,Clarity & Completeness,R3,One Shot,R3 One Shot,5
+Expert 3,UC1,Clarity & Completeness,R1,Few Shot,R1 Few Shot,5
+Expert 3,UC1,Clarity & Completeness,R2,Few Shot,R2 Few Shot,5
+Expert 3,UC1,Clarity & Completeness,R3,Few Shot,R3 Few Shot,5
+Expert 3,UC1,Semantic consistency,R1,Zero Shot,R1 Zero Shot,5
+Expert 3,UC1,Semantic consistency,R2,Zero Shot,R2 Zero Shot,4
+Expert 3,UC1,Semantic consistency,R3,Zero Shot,R3 Zero Shot,5
+Expert 3,UC1,Semantic consistency,R1,One Shot,R1 One Shot,4
+Expert 3,UC1,Semantic consistency,R2,One Shot,R2 One Shot,4
+Expert 3,UC1,Semantic consistency,R3,One Shot,R3 One Shot,4
+Expert 3,UC1,Semantic consistency,R1,Few Shot,R1 Few Shot,4
+Expert 3,UC1,Semantic consistency,R2,Few Shot,R2 Few Shot,4
+Expert 3,UC1,Semantic consistency,R3,Few Shot,R3 Few Shot,4
+Expert 3,UC1,Context Deviation,R1,Zero Shot,R1 Zero Shot,5
+Expert 3,UC1,Context Deviation,R2,Zero Shot,R2 Zero Shot,5
+Expert 3,UC1,Context Deviation,R3,Zero Shot,R3 Zero Shot,4
+Expert 3,UC1,Context Deviation,R1,One Shot,R1 One Shot,5
+Expert 3,UC1,Context Deviation,R2,One Shot,R2 One Shot,5
+Expert 3,UC1,Context Deviation,R3,One Shot,R3 One Shot,5
+Expert 3,UC1,Context Deviation,R1,Few Shot,R1 Few Shot,5
+Expert 3,UC1,Context Deviation,R2,Few Shot,R2 Few Shot,5
+Expert 3,UC1,Context Deviation,R3,Few Shot,R3 Few Shot,5
+Expert 3,UC1,Level of creativity,R1,Zero Shot,R1 Zero Shot,4
+Expert 3,UC1,Level of creativity,R2,Zero Shot,R2 Zero Shot,5
+Expert 3,UC1,Level of creativity,R3,Zero Shot,R3 Zero Shot,3
+Expert 3,UC1,Level of creativity,R1,One Shot,R1 One Shot,4
+Expert 3,UC1,Level of creativity,R2,One Shot,R2 One Shot,4
+Expert 3,UC1,Level of creativity,R3,One Shot,R3 One Shot,4
+Expert 3,UC1,Level of creativity,R1,Few Shot,R1 Few Shot,4
+Expert 3,UC1,Level of creativity,R2,Few Shot,R2 Few Shot,3
+Expert 3,UC1,Level of creativity,R3,Few Shot,R3 Few Shot,4
+Expert 1,UC2.4,Clarity & Completeness,R1,Zero Shot,R1 Zero Shot,4
+Expert 1,UC2.4,Clarity & Completeness,R2,Zero Shot,R2 Zero Shot,4
+Expert 1,UC2.4,Clarity & Completeness,R3,Zero Shot,R3 Zero Shot,4
+Expert 1,UC2.4,Clarity & Completeness,R1,One Shot,R1 One Shot,3
+Expert 1,UC2.4,Clarity & Completeness,R2,One Shot,R2 One Shot,5
+Expert 1,UC2.4,Clarity & Completeness,R3,One Shot,R3 One Shot,5
+Expert 1,UC2.4,Clarity & Completeness,R1,Few Shot,R1 Few Shot,5
+Expert 1,UC2.4,Clarity & Completeness,R2,Few Shot,R2 Few Shot,5
+Expert 1,UC2.4,Clarity & Completeness,R3,Few Shot,R3 Few Shot,4
+Expert 1,UC2.4,Semantic consistency,R1,Zero Shot,R1 Zero Shot,3
+Expert 1,UC2.4,Semantic consistency,R2,Zero Shot,R2 Zero Shot,4
+Expert 1,UC2.4,Semantic consistency,R3,Zero Shot,R3 Zero Shot,4
+Expert 1,UC2.4,Semantic consistency,R1,One Shot,R1 One Shot,4
+Expert 1,UC2.4,Semantic consistency,R2,One Shot,R2 One Shot,5
+Expert 1,UC2.4,Semantic consistency,R3,One Shot,R3 One Shot,5
+Expert 1,UC2.4,Semantic consistency,R1,Few Shot,R1 Few Shot,5
+Expert 1,UC2.4,Semantic consistency,R2,Few Shot,R2 Few Shot,5
+Expert 1,UC2.4,Semantic consistency,R3,Few Shot,R3 Few Shot,3
+Expert 1,UC2.4,Context Deviation,R1,Zero Shot,R1 Zero Shot,4
+Expert 1,UC2.4,Context Deviation,R2,Zero Shot,R2 Zero Shot,4
+Expert 1,UC2.4,Context Deviation,R3,Zero Shot,R3 Zero Shot,3
+Expert 1,UC2.4,Context Deviation,R1,One Shot,R1 One Shot,4
+Expert 1,UC2.4,Context Deviation,R2,One Shot,R2 One Shot,5
+Expert 1,UC2.4,Context Deviation,R3,One Shot,R3 One Shot,4
+Expert 1,UC2.4,Context Deviation,R1,Few Shot,R1 Few Shot,4
+Expert 1,UC2.4,Context Deviation,R2,Few Shot,R2 Few Shot,5
+Expert 1,UC2.4,Context Deviation,R3,Few Shot,R3 Few Shot,5
+Expert 1,UC2.4,Level of creativity,R1,Zero Shot,R1 Zero Shot,4
+Expert 1,UC2.4,Level of creativity,R2,Zero Shot,R2 Zero Shot,3
+Expert 1,UC2.4,Level of creativity,R3,Zero Shot,R3 Zero Shot,5
+Expert 1,UC2.4,Level of creativity,R1,One Shot,R1 One Shot,5
+Expert 1,UC2.4,Level of creativity,R2,One Shot,R2 One Shot,5
+Expert 1,UC2.4,Level of creativity,R3,One Shot,R3 One Shot,5
+Expert 1,UC2.4,Level of creativity,R1,Few Shot,R1 Few Shot,5
+Expert 1,UC2.4,Level of creativity,R2,Few Shot,R2 Few Shot,4
+Expert 1,UC2.4,Level of creativity,R3,Few Shot,R3 Few Shot,4
+Expert 2,UC2.4,Clarity & Completeness,R1,Zero Shot,R1 Zero Shot,4
+Expert 2,UC2.4,Clarity & Completeness,R2,Zero Shot,R2 Zero Shot,4
+Expert 2,UC2.4,Clarity & Completeness,R3,Zero Shot,R3 Zero Shot,4
+Expert 2,UC2.4,Clarity & Completeness,R1,One Shot,R1 One Shot,3
+Expert 2,UC2.4,Clarity & Completeness,R2,One Shot,R2 One Shot,5
+Expert 2,UC2.4,Clarity & Completeness,R3,One Shot,R3 One Shot,5
+Expert 2,UC2.4,Clarity & Completeness,R1,Few Shot,R1 Few Shot,5
+Expert 2,UC2.4,Clarity & Completeness,R2,Few Shot,R2 Few Shot,5
+Expert 2,UC2.4,Clarity & Completeness,R3,Few Shot,R3 Few Shot,4
+Expert 2,UC2.4,Semantic consistency,R1,Zero Shot,R1 Zero Shot,3
+Expert 2,UC2.4,Semantic consistency,R2,Zero Shot,R2 Zero Shot,3
+Expert 2,UC2.4,Semantic consistency,R3,Zero Shot,R3 Zero Shot,4
+Expert 2,UC2.4,Semantic consistency,R1,One Shot,R1 One Shot,3
+Expert 2,UC2.4,Semantic consistency,R2,One Shot,R2 One Shot,4
+Expert 2,UC2.4,Semantic consistency,R3,One Shot,R3 One Shot,4
+Expert 2,UC2.4,Semantic consistency,R1,Few Shot,R1 Few Shot,4
+Expert 2,UC2.4,Semantic consistency,R2,Few Shot,R2 Few Shot,4
+Expert 2,UC2.4,Semantic consistency,R3,Few Shot,R3 Few Shot,4
+Expert 2,UC2.4,Context Deviation,R1,Zero Shot,R1 Zero Shot,3
+Expert 2,UC2.4,Context Deviation,R2,Zero Shot,R2 Zero Shot,3
+Expert 2,UC2.4,Context Deviation,R3,Zero Shot,R3 Zero Shot,3
+Expert 2,UC2.4,Context Deviation,R1,One Shot,R1 One Shot,3
+Expert 2,UC2.4,Context Deviation,R2,One Shot,R2 One Shot,5
+Expert 2,UC2.4,Context Deviation,R3,One Shot,R3 One Shot,4
+Expert 2,UC2.4,Context Deviation,R1,Few Shot,R1 Few Shot,4
+Expert 2,UC2.4,Context Deviation,R2,Few Shot,R2 Few Shot,3
+Expert 2,UC2.4,Context Deviation,R3,Few Shot,R3 Few Shot,4
+Expert 2,UC2.4,Level of creativity,R1,Zero Shot,R1 Zero Shot,3
+Expert 2,UC2.4,Level of creativity,R2,Zero Shot,R2 Zero Shot,3
+Expert 2,UC2.4,Level of creativity,R3,Zero Shot,R3 Zero Shot,5
+Expert 2,UC2.4,Level of creativity,R1,One Shot,R1 One Shot,5
+Expert 2,UC2.4,Level of creativity,R2,One Shot,R2 One Shot,5
+Expert 2,UC2.4,Level of creativity,R3,One Shot,R3 One Shot,5
+Expert 2,UC2.4,Level of creativity,R1,Few Shot,R1 Few Shot,4
+Expert 2,UC2.4,Level of creativity,R2,Few Shot,R2 Few Shot,3
+Expert 2,UC2.4,Level of creativity,R3,Few Shot,R3 Few Shot,4
+Expert 3,UC2.4,Clarity & Completeness,R1,Zero Shot,R1 Zero Shot,5
+Expert 3,UC2.4,Clarity & Completeness,R2,Zero Shot,R2 Zero Shot,5
+Expert 3,UC2.4,Clarity & Completeness,R3,Zero Shot,R3 Zero Shot,5
+Expert 3,UC2.4,Clarity & Completeness,R1,One Shot,R1 One Shot,3
+Expert 3,UC2.4,Clarity & Completeness,R2,One Shot,R2 One Shot,5
+Expert 3,UC2.4,Clarity & Completeness,R3,One Shot,R3 One Shot,5
+Expert 3,UC2.4,Clarity & Completeness,R1,Few Shot,R1 Few Shot,5
+Expert 3,UC2.4,Clarity & Completeness,R2,Few Shot,R2 Few Shot,5
+Expert 3,UC2.4,Clarity & Completeness,R3,Few Shot,R3 Few Shot,4
+Expert 3,UC2.4,Semantic consistency,R1,Zero Shot,R1 Zero Shot,5
+Expert 3,UC2.4,Semantic consistency,R2,Zero Shot,R2 Zero Shot,5
+Expert 3,UC2.4,Semantic consistency,R3,Zero Shot,R3 Zero Shot,5
+Expert 3,UC2.4,Semantic consistency,R1,One Shot,R1 One Shot,4
+Expert 3,UC2.4,Semantic consistency,R2,One Shot,R2 One Shot,5
+Expert 3,UC2.4,Semantic consistency,R3,One Shot,R3 One Shot,5
+Expert 3,UC2.4,Semantic consistency,R1,Few Shot,R1 Few Shot,5
+Expert 3,UC2.4,Semantic consistency,R2,Few Shot,R2 Few Shot,5
+Expert 3,UC2.4,Semantic consistency,R3,Few Shot,R3 Few Shot,3
+Expert 3,UC2.4,Context Deviation,R1,Zero Shot,R1 Zero Shot,2
+Expert 3,UC2.4,Context Deviation,R2,Zero Shot,R2 Zero Shot,2
+Expert 3,UC2.4,Context Deviation,R3,Zero Shot,R3 Zero Shot,2
+Expert 3,UC2.4,Context Deviation,R1,One Shot,R1 One Shot,2
+Expert 3,UC2.4,Context Deviation,R2,One Shot,R2 One Shot,5
+Expert 3,UC2.4,Context Deviation,R3,One Shot,R3 One Shot,4
+Expert 3,UC2.4,Context Deviation,R1,Few Shot,R1 Few Shot,2
+Expert 3,UC2.4,Context Deviation,R2,Few Shot,R2 Few Shot,2
+Expert 3,UC2.4,Context Deviation,R3,Few Shot,R3 Few Shot,2
+Expert 3,UC2.4,Level of creativity,R1,Zero Shot,R1 Zero Shot,4
+Expert 3,UC2.4,Level of creativity,R2,Zero Shot,R2 Zero Shot,4
+Expert 3,UC2.4,Level of creativity,R3,Zero Shot,R3 Zero Shot,5
+Expert 3,UC2.4,Level of creativity,R1,One Shot,R1 One Shot,5
+Expert 3,UC2.4,Level of creativity,R2,One Shot,R2 One Shot,5
+Expert 3,UC2.4,Level of creativity,R3,One Shot,R3 One Shot,5
+Expert 3,UC2.4,Level of creativity,R1,Few Shot,R1 Few Shot,5
+Expert 3,UC2.4,Level of creativity,R2,Few Shot,R2 Few Shot,5
+Expert 3,UC2.4,Level of creativity,R3,Few Shot,R3 Few Shot,4
+Expert 1,UC3.3,Clarity & Completeness,R1,Zero Shot,R1 Zero Shot,4
+Expert 1,UC3.3,Clarity & Completeness,R2,Zero Shot,R2 Zero Shot,4
+Expert 1,UC3.3,Clarity & Completeness,R3,Zero Shot,R3 Zero Shot,4
+Expert 1,UC3.3,Clarity & Completeness,R1,One Shot,R1 One Shot,4
+Expert 1,UC3.3,Clarity & Completeness,R2,One Shot,R2 One Shot,4
+Expert 1,UC3.3,Clarity & Completeness,R3,One Shot,R3 One Shot,4
+Expert 1,UC3.3,Clarity & Completeness,R1,Few Shot,R1 Few Shot,5
+Expert 1,UC3.3,Clarity & Completeness,R2,Few Shot,R2 Few Shot,5
+Expert 1,UC3.3,Clarity & Completeness,R3,Few Shot,R3 Few Shot,5
+Expert 1,UC3.3,Semantic consistency,R1,Zero Shot,R1 Zero Shot,3
+Expert 1,UC3.3,Semantic consistency,R2,Zero Shot,R2 Zero Shot,4
+Expert 1,UC3.3,Semantic consistency,R3,Zero Shot,R3 Zero Shot,3
+Expert 1,UC3.3,Semantic consistency,R1,One Shot,R1 One Shot,4
+Expert 1,UC3.3,Semantic consistency,R2,One Shot,R2 One Shot,3
+Expert 1,UC3.3,Semantic consistency,R3,One Shot,R3 One Shot,4
+Expert 1,UC3.3,Semantic consistency,R1,Few Shot,R1 Few Shot,4
+Expert 1,UC3.3,Semantic consistency,R2,Few Shot,R2 Few Shot,5
+Expert 1,UC3.3,Semantic consistency,R3,Few Shot,R3 Few Shot,4
+Expert 1,UC3.3,Context Deviation,R1,Zero Shot,R1 Zero Shot,4
+Expert 1,UC3.3,Context Deviation,R2,Zero Shot,R2 Zero Shot,4
+Expert 1,UC3.3,Context Deviation,R3,Zero Shot,R3 Zero Shot,4
+Expert 1,UC3.3,Context Deviation,R1,One Shot,R1 One Shot,5
+Expert 1,UC3.3,Context Deviation,R2,One Shot,R2 One Shot,4
+Expert 1,UC3.3,Context Deviation,R3,One Shot,R3 One Shot,5
+Expert 1,UC3.3,Context Deviation,R1,Few Shot,R1 Few Shot,5
+Expert 1,UC3.3,Context Deviation,R2,Few Shot,R2 Few Shot,5
+Expert 1,UC3.3,Context Deviation,R3,Few Shot,R3 Few Shot,5
+Expert 1,UC3.3,Level of creativity,R1,Zero Shot,R1 Zero Shot,3
+Expert 1,UC3.3,Level of creativity,R2,Zero Shot,R2 Zero Shot,4
+Expert 1,UC3.3,Level of creativity,R3,Zero Shot,R3 Zero Shot,3
+Expert 1,UC3.3,Level of creativity,R1,One Shot,R1 One Shot,5
+Expert 1,UC3.3,Level of creativity,R2,One Shot,R2 One Shot,5
+Expert 1,UC3.3,Level of creativity,R3,One Shot,R3 One Shot,5
+Expert 1,UC3.3,Level of creativity,R1,Few Shot,R1 Few Shot,4
+Expert 1,UC3.3,Level of creativity,R2,Few Shot,R2 Few Shot,4
+Expert 1,UC3.3,Level of creativity,R3,Few Shot,R3 Few Shot,3
+Expert 2,UC3.3,Clarity & Completeness,R1,Zero Shot,R1 Zero Shot,5
+Expert 2,UC3.3,Clarity & Completeness,R2,Zero Shot,R2 Zero Shot,5
+Expert 2,UC3.3,Clarity & Completeness,R3,Zero Shot,R3 Zero Shot,5
+Expert 2,UC3.3,Clarity & Completeness,R1,One Shot,R1 One Shot,5
+Expert 2,UC3.3,Clarity & Completeness,R2,One Shot,R2 One Shot,5
+Expert 2,UC3.3,Clarity & Completeness,R3,One Shot,R3 One Shot,5
+Expert 2,UC3.3,Clarity & Completeness,R1,Few Shot,R1 Few Shot,4
+Expert 2,UC3.3,Clarity & Completeness,R2,Few Shot,R2 Few Shot,5
+Expert 2,UC3.3,Clarity & Completeness,R3,Few Shot,R3 Few Shot,5
+Expert 2,UC3.3,Semantic consistency,R1,Zero Shot,R1 Zero Shot,4
+Expert 2,UC3.3,Semantic consistency,R2,Zero Shot,R2 Zero Shot,4
+Expert 2,UC3.3,Semantic consistency,R3,Zero Shot,R3 Zero Shot,4
+Expert 2,UC3.3,Semantic consistency,R1,One Shot,R1 One Shot,5
+Expert 2,UC3.3,Semantic consistency,R2,One Shot,R2 One Shot,5
+Expert 2,UC3.3,Semantic consistency,R3,One Shot,R3 One Shot,5
+Expert 2,UC3.3,Semantic consistency,R1,Few Shot,R1 Few Shot,4
+Expert 2,UC3.3,Semantic consistency,R2,Few Shot,R2 Few Shot,4
+Expert 2,UC3.3,Semantic consistency,R3,Few Shot,R3 Few Shot,5
+Expert 2,UC3.3,Context Deviation,R1,Zero Shot,R1 Zero Shot,4
+Expert 2,UC3.3,Context Deviation,R2,Zero Shot,R2 Zero Shot,4
+Expert 2,UC3.3,Context Deviation,R3,Zero Shot,R3 Zero Shot,4
+Expert 2,UC3.3,Context Deviation,R1,One Shot,R1 One Shot,3
+Expert 2,UC3.3,Context Deviation,R2,One Shot,R2 One Shot,3
+Expert 2,UC3.3,Context Deviation,R3,One Shot,R3 One Shot,3
+Expert 2,UC3.3,Context Deviation,R1,Few Shot,R1 Few Shot,5
+Expert 2,UC3.3,Context Deviation,R2,Few Shot,R2 Few Shot,5
+Expert 2,UC3.3,Context Deviation,R3,Few Shot,R3 Few Shot,5
+Expert 2,UC3.3,Level of creativity,R1,Zero Shot,R1 Zero Shot,4
+Expert 2,UC3.3,Level of creativity,R2,Zero Shot,R2 Zero Shot,4
+Expert 2,UC3.3,Level of creativity,R3,Zero Shot,R3 Zero Shot,4
+Expert 2,UC3.3,Level of creativity,R1,One Shot,R1 One Shot,5
+Expert 2,UC3.3,Level of creativity,R2,One Shot,R2 One Shot,5
+Expert 2,UC3.3,Level of creativity,R3,One Shot,R3 One Shot,5
+Expert 2,UC3.3,Level of creativity,R1,Few Shot,R1 Few Shot,4
+Expert 2,UC3.3,Level of creativity,R2,Few Shot,R2 Few Shot,4
+Expert 2,UC3.3,Level of creativity,R3,Few Shot,R3 Few Shot,4
+Expert 3,UC3.3,Clarity & Completeness,R1,Zero Shot,R1 Zero Shot,5
+Expert 3,UC3.3,Clarity & Completeness,R2,Zero Shot,R2 Zero Shot,5
+Expert 3,UC3.3,Clarity & Completeness,R3,Zero Shot,R3 Zero Shot,5
+Expert 3,UC3.3,Clarity & Completeness,R1,One Shot,R1 One Shot,5
+Expert 3,UC3.3,Clarity & Completeness,R2,One Shot,R2 One Shot,5
+Expert 3,UC3.3,Clarity & Completeness,R3,One Shot,R3 One Shot,4
+Expert 3,UC3.3,Clarity & Completeness,R1,Few Shot,R1 Few Shot,4
+Expert 3,UC3.3,Clarity & Completeness,R2,Few Shot,R2 Few Shot,5
+Expert 3,UC3.3,Clarity & Completeness,R3,Few Shot,R3 Few Shot,5
+Expert 3,UC3.3,Semantic consistency,R1,Zero Shot,R1 Zero Shot,3
+Expert 3,UC3.3,Semantic consistency,R2,Zero Shot,R2 Zero Shot,3
+Expert 3,UC3.3,Semantic consistency,R3,Zero Shot,R3 Zero Shot,3
+Expert 3,UC3.3,Semantic consistency,R1,One Shot,R1 One Shot,3
+Expert 3,UC3.3,Semantic consistency,R2,One Shot,R2 One Shot,5
+Expert 3,UC3.3,Semantic consistency,R3,One Shot,R3 One Shot,4
+Expert 3,UC3.3,Semantic consistency,R1,Few Shot,R1 Few Shot,4
+Expert 3,UC3.3,Semantic consistency,R2,Few Shot,R2 Few Shot,4
+Expert 3,UC3.3,Semantic consistency,R3,Few Shot,R3 Few Shot,5
+Expert 3,UC3.3,Context Deviation,R1,Zero Shot,R1 Zero Shot,4
+Expert 3,UC3.3,Context Deviation,R2,Zero Shot,R2 Zero Shot,4
+Expert 3,UC3.3,Context Deviation,R3,Zero Shot,R3 Zero Shot,4
+Expert 3,UC3.3,Context Deviation,R1,One Shot,R1 One Shot,4
+Expert 3,UC3.3,Context Deviation,R2,One Shot,R2 One Shot,5
+Expert 3,UC3.3,Context Deviation,R3,One Shot,R3 One Shot,5
+Expert 3,UC3.3,Context Deviation,R1,Few Shot,R1 Few Shot,5
+Expert 3,UC3.3,Context Deviation,R2,Few Shot,R2 Few Shot,5
+Expert 3,UC3.3,Context Deviation,R3,Few Shot,R3 Few Shot,5
+Expert 3,UC3.3,Level of creativity,R1,Zero Shot,R1 Zero Shot,4
+Expert 3,UC3.3,Level of creativity,R2,Zero Shot,R2 Zero Shot,4
+Expert 3,UC3.3,Level of creativity,R3,Zero Shot,R3 Zero Shot,4
+Expert 3,UC3.3,Level of creativity,R1,One Shot,R1 One Shot,5
+Expert 3,UC3.3,Level of creativity,R2,One Shot,R2 One Shot,5
+Expert 3,UC3.3,Level of creativity,R3,One Shot,R3 One Shot,5
+Expert 3,UC3.3,Level of creativity,R1,Few Shot,R1 Few Shot,4
+Expert 3,UC3.3,Level of creativity,R2,Few Shot,R2 Few Shot,4
+Expert 3,UC3.3,Level of creativity,R3,Few Shot,R3 Few Shot,4
+Expert 1,UC3.4.4,Clarity & Completeness,R1,Zero Shot,R1 Zero Shot,3
+Expert 1,UC3.4.4,Clarity & Completeness,R2,Zero Shot,R2 Zero Shot,3
+Expert 1,UC3.4.4,Clarity & Completeness,R3,Zero Shot,R3 Zero Shot,3
+Expert 1,UC3.4.4,Clarity & Completeness,R1,One Shot,R1 One Shot,5
+Expert 1,UC3.4.4,Clarity & Completeness,R2,One Shot,R2 One Shot,4
+Expert 1,UC3.4.4,Clarity & Completeness,R3,One Shot,R3 One Shot,4
+Expert 1,UC3.4.4,Clarity & Completeness,R1,Few Shot,R1 Few Shot,5
+Expert 1,UC3.4.4,Clarity & Completeness,R2,Few Shot,R2 Few Shot,4
+Expert 1,UC3.4.4,Clarity & Completeness,R3,Few Shot,R3 Few Shot,4
+Expert 1,UC3.4.4,Semantic consistency,R1,Zero Shot,R1 Zero Shot,3
+Expert 1,UC3.4.4,Semantic consistency,R2,Zero Shot,R2 Zero Shot,3
+Expert 1,UC3.4.4,Semantic consistency,R3,Zero Shot,R3 Zero Shot,1
+Expert 1,UC3.4.4,Semantic consistency,R1,One Shot,R1 One Shot,4
+Expert 1,UC3.4.4,Semantic consistency,R2,One Shot,R2 One Shot,4
+Expert 1,UC3.4.4,Semantic consistency,R3,One Shot,R3 One Shot,4
+Expert 1,UC3.4.4,Semantic consistency,R1,Few Shot,R1 Few Shot,5
+Expert 1,UC3.4.4,Semantic consistency,R2,Few Shot,R2 Few Shot,5
+Expert 1,UC3.4.4,Semantic consistency,R3,Few Shot,R3 Few Shot,4
+Expert 1,UC3.4.4,Context Deviation,R1,Zero Shot,R1 Zero Shot,4
+Expert 1,UC3.4.4,Context Deviation,R2,Zero Shot,R2 Zero Shot,4
+Expert 1,UC3.4.4,Context Deviation,R3,Zero Shot,R3 Zero Shot,4
+Expert 1,UC3.4.4,Context Deviation,R1,One Shot,R1 One Shot,4
+Expert 1,UC3.4.4,Context Deviation,R2,One Shot,R2 One Shot,5
+Expert 1,UC3.4.4,Context Deviation,R3,One Shot,R3 One Shot,5
+Expert 1,UC3.4.4,Context Deviation,R1,Few Shot,R1 Few Shot,5
+Expert 1,UC3.4.4,Context Deviation,R2,Few Shot,R2 Few Shot,5
+Expert 1,UC3.4.4,Context Deviation,R3,Few Shot,R3 Few Shot,5
+Expert 1,UC3.4.4,Level of creativity,R1,Zero Shot,R1 Zero Shot,4
+Expert 1,UC3.4.4,Level of creativity,R2,Zero Shot,R2 Zero Shot,4
+Expert 1,UC3.4.4,Level of creativity,R3,Zero Shot,R3 Zero Shot,4
+Expert 1,UC3.4.4,Level of creativity,R1,One Shot,R1 One Shot,5
+Expert 1,UC3.4.4,Level of creativity,R2,One Shot,R2 One Shot,5
+Expert 1,UC3.4.4,Level of creativity,R3,One Shot,R3 One Shot,5
+Expert 1,UC3.4.4,Level of creativity,R1,Few Shot,R1 Few Shot,4
+Expert 1,UC3.4.4,Level of creativity,R2,Few Shot,R2 Few Shot,4
+Expert 1,UC3.4.4,Level of creativity,R3,Few Shot,R3 Few Shot,4
+Expert 2,UC3.4.4,Clarity & Completeness,R1,Zero Shot,R1 Zero Shot,4
+Expert 2,UC3.4.4,Clarity & Completeness,R2,Zero Shot,R2 Zero Shot,4
+Expert 2,UC3.4.4,Clarity & Completeness,R3,Zero Shot,R3 Zero Shot,4
+Expert 2,UC3.4.4,Clarity & Completeness,R1,One Shot,R1 One Shot,4
+Expert 2,UC3.4.4,Clarity & Completeness,R2,One Shot,R2 One Shot,4
+Expert 2,UC3.4.4,Clarity & Completeness,R3,One Shot,R3 One Shot,4
+Expert 2,UC3.4.4,Clarity & Completeness,R1,Few Shot,R1 Few Shot,4
+Expert 2,UC3.4.4,Clarity & Completeness,R2,Few Shot,R2 Few Shot,4
+Expert 2,UC3.4.4,Clarity & Completeness,R3,Few Shot,R3 Few Shot,4
+Expert 2,UC3.4.4,Semantic consistency,R1,Zero Shot,R1 Zero Shot,3
+Expert 2,UC3.4.4,Semantic consistency,R2,Zero Shot,R2 Zero Shot,3
+Expert 2,UC3.4.4,Semantic consistency,R3,Zero Shot,R3 Zero Shot,2
+Expert 2,UC3.4.4,Semantic consistency,R1,One Shot,R1 One Shot,4
+Expert 2,UC3.4.4,Semantic consistency,R2,One Shot,R2 One Shot,4
+Expert 2,UC3.4.4,Semantic consistency,R3,One Shot,R3 One Shot,4
+Expert 2,UC3.4.4,Semantic consistency,R1,Few Shot,R1 Few Shot,5
+Expert 2,UC3.4.4,Semantic consistency,R2,Few Shot,R2 Few Shot,4
+Expert 2,UC3.4.4,Semantic consistency,R3,Few Shot,R3 Few Shot,4
+Expert 2,UC3.4.4,Context Deviation,R1,Zero Shot,R1 Zero Shot,4
+Expert 2,UC3.4.4,Context Deviation,R2,Zero Shot,R2 Zero Shot,4
+Expert 2,UC3.4.4,Context Deviation,R3,Zero Shot,R3 Zero Shot,4
+Expert 2,UC3.4.4,Context Deviation,R1,One Shot,R1 One Shot,4
+Expert 2,UC3.4.4,Context Deviation,R2,One Shot,R2 One Shot,4
+Expert 2,UC3.4.4,Context Deviation,R3,One Shot,R3 One Shot,4
+Expert 2,UC3.4.4,Context Deviation,R1,Few Shot,R1 Few Shot,4
+Expert 2,UC3.4.4,Context Deviation,R2,Few Shot,R2 Few Shot,5
+Expert 2,UC3.4.4,Context Deviation,R3,Few Shot,R3 Few Shot,4
+Expert 2,UC3.4.4,Level of creativity,R1,Zero Shot,R1 Zero Shot,4
+Expert 2,UC3.4.4,Level of creativity,R2,Zero Shot,R2 Zero Shot,4
+Expert 2,UC3.4.4,Level of creativity,R3,Zero Shot,R3 Zero Shot,4
+Expert 2,UC3.4.4,Level of creativity,R1,One Shot,R1 One Shot,4
+Expert 2,UC3.4.4,Level of creativity,R2,One Shot,R2 One Shot,4
+Expert 2,UC3.4.4,Level of creativity,R3,One Shot,R3 One Shot,5
+Expert 2,UC3.4.4,Level of creativity,R1,Few Shot,R1 Few Shot,4
+Expert 2,UC3.4.4,Level of creativity,R2,Few Shot,R2 Few Shot,4
+Expert 2,UC3.4.4,Level of creativity,R3,Few Shot,R3 Few Shot,4
+Expert 3,UC3.4.4,Clarity & Completeness,R1,Zero Shot,R1 Zero Shot,5
+Expert 3,UC3.4.4,Clarity & Completeness,R2,Zero Shot,R2 Zero Shot,5
+Expert 3,UC3.4.4,Clarity & Completeness,R3,Zero Shot,R3 Zero Shot,4
+Expert 3,UC3.4.4,Clarity & Completeness,R1,One Shot,R1 One Shot,5
+Expert 3,UC3.4.4,Clarity & Completeness,R2,One Shot,R2 One Shot,4
+Expert 3,UC3.4.4,Clarity & Completeness,R3,One Shot,R3 One Shot,5
+Expert 3,UC3.4.4,Clarity & Completeness,R1,Few Shot,R1 Few Shot,5
+Expert 3,UC3.4.4,Clarity & Completeness,R2,Few Shot,R2 Few Shot,5
+Expert 3,UC3.4.4,Clarity & Completeness,R3,Few Shot,R3 Few Shot,5
+Expert 3,UC3.4.4,Semantic consistency,R1,Zero Shot,R1 Zero Shot,4
+Expert 3,UC3.4.4,Semantic consistency,R2,Zero Shot,R2 Zero Shot,4
+Expert 3,UC3.4.4,Semantic consistency,R3,Zero Shot,R3 Zero Shot,2
+Expert 3,UC3.4.4,Semantic consistency,R1,One Shot,R1 One Shot,5
+Expert 3,UC3.4.4,Semantic consistency,R2,One Shot,R2 One Shot,5
+Expert 3,UC3.4.4,Semantic consistency,R3,One Shot,R3 One Shot,5
+Expert 3,UC3.4.4,Semantic consistency,R1,Few Shot,R1 Few Shot,5
+Expert 3,UC3.4.4,Semantic consistency,R2,Few Shot,R2 Few Shot,4
+Expert 3,UC3.4.4,Semantic consistency,R3,Few Shot,R3 Few Shot,4
+Expert 3,UC3.4.4,Context Deviation,R1,Zero Shot,R1 Zero Shot,4
+Expert 3,UC3.4.4,Context Deviation,R2,Zero Shot,R2 Zero Shot,4
+Expert 3,UC3.4.4,Context Deviation,R3,Zero Shot,R3 Zero Shot,4
+Expert 3,UC3.4.4,Context Deviation,R1,One Shot,R1 One Shot,5
+Expert 3,UC3.4.4,Context Deviation,R2,One Shot,R2 One Shot,5
+Expert 3,UC3.4.4,Context Deviation,R3,One Shot,R3 One Shot,4
+Expert 3,UC3.4.4,Context Deviation,R1,Few Shot,R1 Few Shot,5
+Expert 3,UC3.4.4,Context Deviation,R2,Few Shot,R2 Few Shot,5
+Expert 3,UC3.4.4,Context Deviation,R3,Few Shot,R3 Few Shot,5
+Expert 3,UC3.4.4,Level of creativity,R1,Zero Shot,R1 Zero Shot,4
+Expert 3,UC3.4.4,Level of creativity,R2,Zero Shot,R2 Zero Shot,4
+Expert 3,UC3.4.4,Level of creativity,R3,Zero Shot,R3 Zero Shot,4
+Expert 3,UC3.4.4,Level of creativity,R1,One Shot,R1 One Shot,5
+Expert 3,UC3.4.4,Level of creativity,R2,One Shot,R2 One Shot,5
+Expert 3,UC3.4.4,Level of creativity,R3,One Shot,R3 One Shot,5
+Expert 3,UC3.4.4,Level of creativity,R1,Few Shot,R1 Few Shot,4
+Expert 3,UC3.4.4,Level of creativity,R2,Few Shot,R2 Few Shot,4
+Expert 3,UC3.4.4,Level of creativity,R3,Few Shot,R3 Few Shot,4

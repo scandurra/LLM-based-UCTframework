@@ -1,0 +1,162 @@
+[
+  {
+    "test_case_id": "UC3.4.5_TC1",
+    "title": "Visualizzazione dettaglio scheda censimento con dati validi",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente visualizza le informazioni relative alla scheda censimento",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di dettaglio su una scheda esistente",
+        "expected": "Viene visualizzata la pagina di dettaglio della scheda"
+      },
+      {
+        "step": "Verifica che le informazioni visualizzate siano corrette e non modificabili",
+        "expected": "Le informazioni sono visualizzate correttamente e non è possibile modificarle"
+      },
+      {
+        "step": "Naviga nella gerarchia dei POD e Aree Omogenee sulla sinistra",
+        "expected": "La navigazione avviene senza errori e mostra le informazioni attese"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.5"
+  },
+  {
+    "test_case_id": "UC3.4.5_TC2",
+    "title": "Visualizzazione dettaglio scheda censimento non esistente",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema segnala che la scheda non esiste",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di dettaglio su una scheda inesistente",
+        "expected": "Viene visualizzato un messaggio di errore"
+      },
+      {
+        "step": "Verifica che il messaggio di errore sia chiaro e utile",
+        "expected": "Il messaggio è comprensibile e indica la causa dell’errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.5"
+  },
+  {
+    "test_case_id": "UC3.4.5_TC3",
+    "title": "Visualizzazione dettaglio scheda censimento con permessi insufficienti",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema nega l’accesso alla scheda",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema con un utente che non ha i permessi per visualizzare la scheda",
+        "expected": "L’accesso alla scheda è negato"
+      },
+      {
+        "step": "Verifica che il messaggio di errore sia chiaro e indichi la mancanza di permessi",
+        "expected": "Il messaggio è comprensibile e indica la causa dell’errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.5"
+  },
+  {
+    "test_case_id": "UC3.4.5_TC4",
+    "title": "Navigazione nella gerarchia dei POD e Aree Omogenee",
+    "preconditions": "UC3.4",
+    "postconditions": "La navigazione avviene senza errori",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di dettaglio su una scheda esistente",
+        "expected": "Viene visualizzata la pagina di dettaglio della scheda"
+      },
+      {
+        "step": "Naviga nella gerarchia dei POD e Aree Omogenee sulla sinistra",
+        "expected": "La navigazione avviene senza errori e mostra le informazioni attese"
+      },
+      {
+        "step": "Verifica che i dati visualizzati siano coerenti con la gerarchia selezionata",
+        "expected": "I dati sono coerenti e corretti"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.5"
+  },
+  {
+    "test_case_id": "UC3.4.5_TC5",
+    "title": "Visualizzazione dati generali dell’area",
+    "preconditions": "UC3.4",
+    "postconditions": "I dati generali dell’area sono visualizzati correttamente",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di dettaglio su una scheda esistente",
+        "expected": "Viene visualizzata la pagina di dettaglio della scheda"
+      },
+      {
+        "step": "Verifica che i dati generali dell’area siano visualizzati sulla destra",
+        "expected": "I dati sono visualizzati correttamente e sono coerenti con l’area selezionata"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.5"
+  },
+  {
+    "test_case_id": "UC3.4.5_TC6",
+    "title": "Security test: accesso alla scheda censimento da parte di utente non autenticato",
+    "preconditions": "UC3.4",
+    "postconditions": "L’accesso è negato e viene richiesta l’autenticazione",
+    "test_steps": [
+      {
+        "step": "Tenta di accedere alla scheda censimento senza essere autenticato",
+        "expected": "L’accesso è negato e viene mostrata la pagina di login"
+      },
+      {
+        "step": "Verifica che il messaggio di errore sia chiaro e indichi la necessità di autenticazione",
+        "expected": "Il messaggio è comprensibile e indica la causa dell’errore"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.5"
+  },
+  {
+    "test_case_id": "UC3.4.5_TC7",
+    "title": "Edge case: visualizzazione dettaglio scheda censimento con dati non validi",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema segnala che i dati non sono validi",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di dettaglio su una scheda con dati non validi",
+        "expected": "Viene visualizzato un messaggio di errore"
+      },
+      {
+        "step": "Verifica che il messaggio di errore sia chiaro e indichi la causa dell’errore",
+        "expected": "Il messaggio è comprensibile e indica la causa dell’errore"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC3.4.5"
+  },
+  {
+    "test_case_id": "UC3.4.5_TC8",
+    "title": "Performance test: visualizzazione dettaglio scheda censimento con grandi quantità di dati",
+    "preconditions": "UC3.4",
+    "postconditions": "La visualizzazione avviene senza problemi di performance",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di dettaglio su una scheda con grandi quantità di dati",
+        "expected": "La visualizzazione avviene senza problemi di performance"
+      },
+      {
+        "step": "Verifica che i tempi di caricamento siano ragionevoli e che la pagina sia navigabile",
+        "expected": "I tempi di caricamento sono ragionevoli e la pagina è navigabile"
+      }
+    ],
+    "test_type": "Performance",
+    "priority": "Media",
+    "use_case_id": "UC3.4.5"
+  }
+]

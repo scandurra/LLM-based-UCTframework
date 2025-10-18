@@ -1,0 +1,78 @@
+[
+  {
+    "test_case_id": "UC4.1_TC1",
+    "title": "Visualizzazione della sezione impianto con dati validi",
+    "preconditions": "UC4",
+    "postconditions": "La sezione viene visualizzata correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione dell’impianto del modulo SAVE",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Verifica la presenza degli elementi di navigazione nella barra orizzontale",
+        "expected": "Gli elementi sono presenti e funzionano correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC4.1"
+  },
+  {
+    "test_case_id": "UC4.1_TC2",
+    "title": "Navigazione nella sezione impianto con utente non autorizzato",
+    "preconditions": "UC4",
+    "postconditions": "La sezione non è accessibile",
+    "test_steps": [
+      {
+        "step": "Tenta di accedere alla sezione di gestione dell’impianto del modulo SAVE senza permessi",
+        "expected": "Viene mostrato un messaggio di accesso negato"
+      },
+      {
+        "step": "Verifica la possibilità di navigare nella barra orizzontale dedicata agli impianti",
+        "expected": "La navigazione non è possibile"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC4.1"
+  },
+  {
+    "test_case_id": "UC4.1_TC3",
+    "title": "Visualizzazione della sezione impianto con dati mancanti",
+    "preconditions": "UC4",
+    "postconditions": "La sezione è visualizzata ma con avvisi di dati mancanti",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione dell’impianto del modulo SAVE con dati parzialmente inseriti",
+        "expected": "La sezione è visualizzata con avvisi"
+      },
+      {
+        "step": "Verifica la presenza degli elementi di navigazione nella barra orizzontale",
+        "expected": "Gli elementi sono presenti ma potrebbero non funzionare correttamente a causa dei dati mancanti"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC4.1"
+  },
+  {
+    "test_case_id": "UC4.1_TC4",
+    "title": "Usabilità della sezione impianto",
+    "preconditions": "UC4",
+    "postconditions": "La sezione è facile da usare",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione dell’impianto del modulo SAVE e valuta l’usabilità",
+        "expected": "La sezione è intuitiva e facile da navigare"
+      },
+      {
+        "step": "Verifica la presenza di istruzioni o aiuti per l’utente",
+        "expected": "Sono presenti istruzioni o aiuti utili"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Alta",
+    "use_case_id": "UC4.1"
+  },
+]

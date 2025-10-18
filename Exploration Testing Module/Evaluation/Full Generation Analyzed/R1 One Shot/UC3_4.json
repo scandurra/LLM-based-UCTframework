@@ -1,0 +1,154 @@
+[
+  {
+    "test_case_id": "UC3.4_TC1",
+    "title": "Visualizzazione azioni disponibili sulla scheda censimento",
+    "preconditions": "UC3",
+    "postconditions": "La palette di azioni viene visualizzata correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento",
+        "expected": "Le schede vengono elencate correttamente"
+      },
+      {
+        "step": "Clicca sul tasto azioni per una scheda specifica",
+        "expected": "Viene visualizzata la palette di operazioni disponibili"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC2",
+    "title": "Selezione di un’azione non disponibile per il ruolo dell’utente",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema mostra un messaggio di autorizzazione negata",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento con un utente che non ha i permessi per una specifica azione",
+        "expected": "Le schede vengono elencate, ma alcune azioni potrebbero essere disabilitate"
+      },
+      {
+        "step": "Tenta di selezionare un’azione per cui l’utente non ha i permessi",
+        "expected": "Il sistema mostra un messaggio che indica la mancanza di autorizzazione"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC3",
+    "title": "Test di usabilità: navigazione tra le azioni disponibili",
+    "preconditions": "UC3",
+    "postconditions": "L’utente può facilmente navigare e selezionare le azioni",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento",
+        "expected": "Le schede sono visibili e il tasto azioni è accessibile"
+      },
+      {
+        "step": "Clicca sul tasto azioni e valuta la facilità di navigazione tra le opzioni",
+        "expected": "La palette di azioni è chiara, facile da comprendere e utilizzare"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Alta",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC4",
+    "title": "Test di sicurezza: iniezione SQL tramite input della scheda censimento",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema respinge l’input pericoloso e non esegue operazioni dannose",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento con un utente autorizzato",
+        "expected": "Le schede sono accessibili"
+      },
+      {
+        "step": "Inserisci una stringa di testo che potrebbe essere interpretata come codice SQL dannoso nel campo di input della scheda",
+        "expected": "Il sistema rileva e blocca l’input pericoloso, mostrando un messaggio di errore"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC5",
+    "title": "Test di prestazione: caricamento della palette di azioni con un grande numero di schede",
+    "preconditions": "UC3",
+    "postconditions": "La palette di azioni si carica in tempi ragionevoli anche con molti elementi",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento con un numero elevato di schede presenti",
+        "expected": "Le schede sono elencate, potrebbe esserci un leggero ritardo nel caricamento"
+      },
+      {
+        "step": "Clicca sul tasto azioni e misura il tempo di caricamento della palette",
+        "expected": "La palette si carica entro un tempo accettabile anche con un grande numero di schede"
+      }
+    ],
+    "test_type": "Prestazione",
+    "priority": "Media",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC6",
+    "title": "Test di boundary: selezione dell’ultima azione disponibile nella palette",
+    "preconditions": "UC3",
+    "postconditions": "L’azione viene eseguita correttamente senza problemi di visualizzazione o funzionalità",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento e clicca sul tasto azioni",
+        "expected": "La palette di azioni si apre mostrando tutte le opzioni"
+      },
+      {
+        "step": "Seleziona l’ultima azione disponibile nella lista",
+        "expected": "L’azione viene eseguita senza errori e con la stessa facilità delle altre azioni"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Media",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC7",
+    "title": "Test di compatibilità: visualizzazione della palette di azioni su dispositivi mobili",
+    "preconditions": "UC3",
+    "postconditions": "La palette di azioni è visibile e funziona correttamente sui dispositivi mobili",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento utilizzando un dispositivo mobile",
+        "expected": "Le schede e il tasto azioni sono visibili e accessibili"
+      },
+      {
+        "step": "Clicca sul tasto azioni e valuta la facilità di uso sulla piattaforma mobile",
+        "expected": "La palette di azioni è ottimizzata per i dispositivi mobili, facile da navigare e utilizzare"
+      }
+    ],
+    "test_type": "Compatibilità",
+    "priority": "Alta",
+    "use_case_id": "UC3.4"
+  },
+  {
+    "test_case_id": "UC3.4_TC8",
+    "title": "Test di accessibilità: utilizzo della palette di azioni con tecnologie assistive",
+    "preconditions": "UC3",
+    "postconditions": "La palette di azioni è accessibile e utilizzabile anche con tecnologie assistive",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento utilizzando una tecnologia assistiva (es. lettore dello schermo)",
+        "expected": "Le schede e il tasto azioni sono accessibili attraverso la tecnologia assistiva"
+      },
+      {
+        "step": "Clicca sul tasto azioni e valuta l’esperienza di utilizzo con la tecnologia assistiva",
+        "expected": "La palette di azioni è progettata per essere accessibile, consentendo un uso agevole anche agli utenti con disabilità"
+      }
+    ],
+    "test_type": "Accessibilità",
+    "priority": "Alta",
+    "use_case_id": "UC3.4"
+  }
+]

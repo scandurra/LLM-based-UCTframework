@@ -1,25 +1,21 @@
 [
   {
     "test_case_id": "UC3.4.3.8_TC1",
-    "title": "Modifica Elettric panel con dati validi",
+    "title": "Modifica dati manutenzione pannello elettrico con successo",
     "preconditions": "UC3.4.3",
     "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
     "test_steps": [
       {
         "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
-        "expected": "Il POD viene selezionato correttamente"
+        "expected": "Il sistema visualizza i pannelli elettrici relativi al POD selezionato"
       },
       {
         "step": "Espandi la visione ad albero del POD selezionato e seleziona il pannello elettrico per la modifica",
-        "expected": "Il pannello elettrico viene visualizzato"
+        "expected": "Il sistema mostra le informazioni relative al pannello elettrico selezionato"
       },
       {
         "step": "Seleziona il tab relativo alle informazioni di manutenzione e compila il form con dati validi",
-        "expected": "I dati vengono accettati senza errori"
-      },
-      {
-        "step": "Applica le modifiche con l’apposito tasto",
-        "expected": "Viene visualizzato un messaggio di conferma dell’operazione"
+        "expected": "Il sistema accetta i dati e visualizza un messaggio di conferma"
       }
     ],
     "test_type": "Positivo",
@@ -28,25 +24,21 @@
   },
   {
     "test_case_id": "UC3.4.3.8_TC2",
-    "title": "Modifica Elettric panel con dati non validi",
+    "title": "Modifica dati manutenzione pannello elettrico con dati non validi",
     "preconditions": "UC3.4.3",
     "postconditions": "Viene mostrato un messaggio di errore",
     "test_steps": [
       {
         "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
-        "expected": "Il POD viene selezionato correttamente"
+        "expected": "Il sistema visualizza i pannelli elettrici relativi al POD selezionato"
       },
       {
         "step": "Espandi la visione ad albero del POD selezionato e seleziona il pannello elettrico per la modifica",
-        "expected": "Il pannello elettrico viene visualizzato"
+        "expected": "Il sistema mostra le informazioni relative al pannello elettrico selezionato"
       },
       {
-        "step": "Seleziona il tab relativo alle informazioni di manutenzione e compila il form con dati non validi",
-        "expected": "Viene mostrato un messaggio di errore"
-      },
-      {
-        "step": "Tenta di applicare le modifiche con l’apposito tasto",
-        "expected": "L’operazione non va a buon fine e viene visualizzato il messaggio di errore"
+        "step": "Seleziona il tab relativo alle informazioni di manutenzione e compila il form con dati non validi (es. campi obbligatori vuoti)",
+        "expected": "Il sistema visualizza un messaggio di errore"
       }
     ],
     "test_type": "Negativo",
@@ -55,17 +47,17 @@
   },
   {
     "test_case_id": "UC3.4.3.8_TC3",
-    "title": "Modifica Elettric panel senza selezionare il POD",
+    "title": "Modifica dati manutenzione pannello elettrico senza selezionare il POD",
     "preconditions": "UC3.4.3",
-    "postconditions": "Non è possibile procedere con la modifica",
+    "postconditions": "Il sistema non permette la modifica",
     "test_steps": [
       {
-        "step": "Non seleziona il POD e tenta di accedere direttamente alla sezione di modifica del pannello elettrico",
+        "step": "Non selezionare il POD e tenta di accedere direttamente alla modifica del pannello elettrico",
         "expected": "Il sistema richiede la selezione del POD"
       },
       {
-        "step": "Tenta di applicare le modifiche senza aver selezionato il POD",
-        "expected": "L’operazione non è possibile e viene visualizzato un messaggio di errore"
+        "step": "Tenta di compilare il form senza aver selezionato il POD",
+        "expected": "Il sistema non accetta i dati e visualizza un messaggio di errore"
       }
     ],
     "test_type": "Negativo",
@@ -74,70 +66,47 @@
   },
   {
     "test_case_id": "UC3.4.3.8_TC4",
-    "title": "Modifica Elettric panel con campi obbligatori vuoti",
+    "title": "Modifica dati manutenzione pannello elettrico con caratteri speciali nei campi",
     "preconditions": "UC3.4.3",
-    "postconditions": "Viene mostrato un messaggio di errore",
+    "postconditions": "Il sistema accetta i dati o li normalizza",
     "test_steps": [
       {
-        "step": "Seleziona il POD e il pannello elettrico per la modifica",
-        "expected": "Il pannello elettrico viene visualizzato"
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il sistema visualizza i pannelli elettrici relativi al POD selezionato"
       },
       {
-        "step": "Lascia vuoti i campi obbligatori nella sezione di manutenzione",
-        "expected": "Viene mostrato un messaggio di errore per i campi obbligatori non compilati"
+        "step": "Espandi la visione ad albero del POD selezionato e seleziona il pannello elettrico per la modifica",
+        "expected": "Il sistema mostra le informazioni relative al pannello elettrico selezionato"
       },
       {
-        "step": "Tenta di applicare le modifiche con l’apposito tasto",
-        "expected": "L’operazione non va a buon fine e viene visualizzato il messaggio di errore"
+        "step": "Seleziona il tab relativo alle informazioni di manutenzione e compila il form con caratteri speciali (es. @, #, $)",
+        "expected": "Il sistema accetta i dati o li normalizza correttamente"
       }
     ],
-    "test_type": "Negativo",
-    "priority": "Media",
+    "test_type": "Edge",
+    "priority": "Bassa",
     "use_case_id": "UC3.4.3.8"
   },
   {
     "test_case_id": "UC3.4.3.8_TC5",
-    "title": "Modifica Elettric panel con dati di manutenzione già presenti",
+    "title": "Modifica dati manutenzione pannello elettrico con campi vuoti",
     "preconditions": "UC3.4.3",
-    "postconditions": "I dati vengono aggiornati correttamente",
+    "postconditions": "Il sistema visualizza un messaggio di errore",
     "test_steps": [
       {
-        "step": "Seleziona il POD e il pannello elettrico per la modifica",
-        "expected": "Il pannello elettrico viene visualizzato con i dati di manutenzione già presenti"
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il sistema visualizza i pannelli elettrici relativi al POD selezionato"
       },
       {
-        "step": "Modifica alcuni dei campi relativi alle informazioni di manutenzione",
-        "expected": "I dati vengono aggiornati senza errori"
+        "step": "Espandi la visione ad albero del POD selezionato e seleziona il pannello elettrico per la modifica",
+        "expected": "Il sistema mostra le informazioni relative al pannello elettrico selezionato"
       },
       {
-        "step": "Applica le modifiche con l’apposito tasto",
-        "expected": "Viene visualizzato un messaggio di conferma dell’operazione andata a buon fine"
+        "step": "Seleziona il tab relativo alle informazioni di manutenzione e lascia vuoti i campi obbligatori",
+        "expected": "Il sistema visualizza un messaggio di errore"
       }
     ],
-    "test_type": "Positivo",
-    "priority": "Alta",
-    "use_case_id": "UC3.4.3.8"
-  },
-  {
-    "test_case_id": "UC3.4.3.8_TC6",
-    "title": "Modifica Elettric panel con caratteri speciali nei campi di testo",
-    "preconditions": "UC3.4.3",
-    "postconditions": "I dati vengono accettati e salvati correttamente",
-    "test_steps": [
-      {
-        "step": "Seleziona il POD e il pannello elettrico per la modifica",
-        "expected": "Il pannello elettrico viene visualizzato"
-      },
-      {
-        "step": "Inserisci caratteri speciali nei campi di testo relativi alle informazioni di manutenzione",
-        "expected": "I dati vengono accettati senza errori"
-      },
-      {
-        "step": "Applica le modifiche con l’apposito tasto",
-        "expected": "Viene visualizzato un messaggio di conferma dell’operazione andata a buon fine"
-      }
-    ],
-    "test_type": "Edge",
+    "test_type": "Negativo",
     "priority": "Media",
     "use_case_id": "UC3.4.3.8"
   }

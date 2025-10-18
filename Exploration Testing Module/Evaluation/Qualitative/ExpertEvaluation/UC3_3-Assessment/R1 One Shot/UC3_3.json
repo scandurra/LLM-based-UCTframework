@@ -1,0 +1,182 @@
+[
+  {
+    "test_case_id": "UC3.3_TC1",
+    "title": "Caricamento scheda censimento con file valido",
+    "preconditions": "UC3",
+    "postconditions": "La scheda censimento viene caricata e visualizzata correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di caricamento delle schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un file valido per il caricamento (es. PDF, CSV)",
+        "expected": "Il file viene selezionato e pronto per l’upload"
+      },
+      {
+        "step": "Carica il file tramite drag-and-drop o selezione tramite browser",
+        "expected": "Il file inizia a caricarsi e la barra di avanzamento appare"
+      },
+      {
+        "step": "Attendi la fine del caricamento",
+        "expected": "Viene mostrato un messaggio di successo e la scheda censimento è visualizzabile"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.3"
+  },
+  {
+    "test_case_id": "UC3.3_TC2",
+    "title": "Caricamento con file non supportato",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema mostra un messaggio di errore per formato non supportato",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di caricamento delle schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un file in un formato non supportato (es. immagine)",
+        "expected": "Il sistema segnala l’errore di formato"
+      },
+      {
+        "step": "Tenta di caricare il file",
+        "expected": "L’operazione viene bloccata e compare un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.3"
+  },
+  {
+    "test_case_id": "UC3.3_TC3",
+    "title": "Caricamento senza selezionare file",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema richiede la selezione di un file",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di caricamento delle schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Lascia vuoto il campo per la selezione del file",
+        "expected": "Il sistema segnala l’assenza del file"
+      },
+      {
+        "step": "Tenta di procedere con il caricamento",
+        "expected": "Il sistema richiede la selezione di un file valido"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.3"
+  },
+  {
+    "test_case_id": "UC3.3_TC4",
+    "title": "Caricamento con nome scheda già esistente",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema avvisa dell’esistenza di una scheda con lo stesso nome",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di caricamento delle schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un file e immetti un nome già utilizzato per una scheda",
+        "expected": "Il sistema segnala l’esistenza di una scheda con lo stesso nome"
+      },
+      {
+        "step": "Tenta di caricare la scheda",
+        "expected": "L’operazione viene bloccata e compare un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.3"
+  },
+  {
+    "test_case_id": "UC3.3_TC5",
+    "title": "Caricamento con file danneggiato o corrotto",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema mostra un messaggio di errore per file non leggibile",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di caricamento delle schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un file danneggiato o corrotto",
+        "expected": "Il sistema tenta di leggere il file e fallisce"
+      },
+      {
+        "step": "Tenta di caricare il file",
+        "expected": "L’operazione viene bloccata e compare un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC3.3"
+  },
+  {
+    "test_case_id": "UC3.3_TC6",
+    "title": "Caricamento con dimensione file superiore al limite",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema mostra un messaggio di errore per dimensione file eccessiva",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di caricamento delle schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un file con dimensione superiore al limite consentito",
+        "expected": "Il sistema segnala l’eccesso di dimensione"
+      },
+      {
+        "step": "Tenta di caricare il file",
+        "expected": "L’operazione viene bloccata e compare un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC3.3"
+  },
+  {
+    "test_case_id": "UC3.3_TC7",
+    "title": "Caricamento durante la manutenzione del sistema",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema notifica l’indisponibilità della funzione di caricamento",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di caricamento delle schede censimento durante la manutenzione",
+        "expected": "Viene visualizzato un messaggio di indisponibilità"
+      },
+      {
+        "step": "Tenta di caricare una scheda censimento",
+        "expected": "Il sistema blocca l’operazione e notifica la manutenzione in corso"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC3.3"
+  },
+  {
+    "test_case_id": "UC3.3_TC8",
+    "title": "Caricamento con utente non autorizzato",
+    "preconditions": "UC3",
+    "postconditions": "Il sistema nega l’accesso alla funzione di caricamento",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di caricamento delle schede censimento con un utente non autorizzato",
+        "expected": "Viene visualizzato un messaggio di accesso negato"
+      },
+      {
+        "step": "Tenta di caricare una scheda censimento",
+        "expected": "Il sistema blocca l’operazione e richiede l’autenticazione"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.3"
+  }
+]

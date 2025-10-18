@@ -1,0 +1,198 @@
+[
+  {
+    "test_case_id": "UC3.4.3.8_TC1",
+    "title": "Modifica informazioni di manutenzione con dati validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD selezionato viene visualizzato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato e seleziona un pannello elettrico",
+        "expected": "I pannelli elettrici vengono elencati e il pannello selezionato è visualizzato"
+      },
+      {
+        "step": "Seleziona il tab relativo alle informazioni di manutenzione e compila il form con dati validi",
+        "expected": "Il form viene compilato correttamente e i dati vengono accettati"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Le modifiche vengono applicate con successo e viene visualizzato un messaggio di conferma"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.8"
+  },
+  {
+    "test_case_id": "UC3.4.3.8_TC2",
+    "title": "Modifica informazioni di manutenzione con dati non validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD selezionato viene visualizzato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato e seleziona un pannello elettrico",
+        "expected": "I pannelli elettrici vengono elencati e il pannello selezionato è visualizzato"
+      },
+      {
+        "step": "Seleziona il tab relativo alle informazioni di manutenzione e compila il form con dati non validi (es. date future)",
+        "expected": "Il sistema segnala un errore per i dati non validi"
+      },
+      {
+        "step": "Tenta di applicare le modifiche con l’apposito tasto",
+        "expected": "L’operazione viene bloccata e viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.8"
+  },
+  {
+    "test_case_id": "UC3.4.3.8_TC3",
+    "title": "Modifica informazioni di manutenzione senza selezionare il pannello elettrico",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema richiede la selezione del pannello elettrico",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD selezionato viene visualizzato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato senza selezionare un pannello elettrico",
+        "expected": "Il sistema richiede la selezione di un pannello elettrico"
+      },
+      {
+        "step": "Tenta di accedere al tab relativo alle informazioni di manutenzione",
+        "expected": "L’accesso è negato fino alla selezione di un pannello elettrico"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.8"
+  },
+  {
+    "test_case_id": "UC3.4.3.8_TC4",
+    "title": "Modifica informazioni di manutenzione con campi obbligatori vuoti",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema segnala un errore per i campi obbligatori non compilati",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD selezionato viene visualizzato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato e seleziona un pannello elettrico",
+        "expected": "I pannelli elettrici vengono elencati e il pannello selezionato è visualizzato"
+      },
+      {
+        "step": "Seleziona il tab relativo alle informazioni di manutenzione e lascia vuoti i campi obbligatori",
+        "expected": "Il sistema segnala un errore per i campi obbligatori non compilati"
+      },
+      {
+        "step": "Tenta di applicare le modifiche con l’apposito tasto",
+        "expected": "L’operazione viene bloccata e viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.8"
+  },
+  {
+    "test_case_id": "UC3.4.3.8_TC5",
+    "title": "Modifica informazioni di manutenzione con caratteri speciali nei campi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema accetta o normalizza i caratteri speciali",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD selezionato viene visualizzato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato e seleziona un pannello elettrico",
+        "expected": "I pannelli elettrici vengono elencati e il pannello selezionato è visualizzato"
+      },
+      {
+        "step": "Seleziona il tab relativo alle informazioni di manutenzione e compila i campi con caratteri speciali",
+        "expected": "Il sistema accetta o normalizza i caratteri speciali senza errori"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Le modifiche vengono applicate con successo"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.8"
+  },
+  {
+    "test_case_id": "UC3.4.3.8_TC6",
+    "title": "Modifica informazioni di manutenzione con utente non autorizzato",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema nega l’accesso alle funzionalità di modifica",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema con un utente non autorizzato a modificare le informazioni di manutenzione",
+        "expected": "L’utente non può accedere alla sezione di modifica"
+      },
+      {
+        "step": "Tenta di selezionare il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "L’accesso è negato"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.8"
+  },
+  {
+    "test_case_id": "UC3.4.3.8_TC7",
+    "title": "Modifica informazioni di manutenzione con dati troppo lunghi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema tronca o segnala un errore per i dati troppo lunghi",
+    "test_steps": [
+      {
+        "step": "Seleziona il POD per la modifica tramite il menù ad albero di sinistra",
+        "expected": "Il POD selezionato viene visualizzato correttamente"
+      },
+      {
+        "step": "Espandi la visione ad albero del POD selezionato e seleziona un pannello elettrico",
+        "expected": "I pannelli elettrici vengono elencati e il pannello selezionato è visualizzato"
+      },
+      {
+        "step": "Seleziona il tab relativo alle informazioni di manutenzione e compila i campi con dati troppo lunghi",
+        "expected": "Il sistema tronca o segnala un errore per i dati troppo lunghi"
+      },
+      {
+        "step": "Tenta di applicare le modifiche con l’apposito tasto",
+        "expected": "L’operazione viene bloccata e viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.8"
+  },
+  {
+    "test_case_id": "UC3.4.3.8_TC8",
+    "title": "Modifica informazioni di manutenzione in concomitanza con altre operazioni",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Il sistema gestisce correttamente le modifiche anche in caso di concorrenza",
+    "test_steps": [
+      {
+        "step": "Esegui più sessioni di modifica contemporaneamente su diversi pannelli elettrici",
+        "expected": "Il sistema gestisce le modifiche senza errori o perdita di dati"
+      },
+      {
+        "step": "Verifica l’integrità dei dati dopo le modifiche",
+        "expected": "I dati sono stati aggiornati correttamente in tutte le sessioni"
+      }
+    ],
+    "test_type": "Stress",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.8"
+  }
+]

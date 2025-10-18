@@ -1,0 +1,117 @@
+[
+  {
+    "test_case_id": "UC2.5_TC1",
+    "title": "Visualizzazione grafici con dati validi e completa",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza le informazioni consultando i grafici",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard",
+        "expected": "La dashboard è visualizzata correttamente"
+      },
+      {
+        "step": "Scorri nella pagina fino a visualizzare le sezioni contrassegnate dai grafici",
+        "expected": "Le sezioni sono visualizzate correttamente"
+      },
+      {
+        "step": "Seleziona un grafico per visualizzare i dettagli",
+        "expected": "Il grafico è visualizzato con i dati completi e corretti"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC2",
+    "title": "Visualizzazione grafici con dati parziali",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza le informazioni consultando i grafici",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard",
+        "expected": "La dashboard è visualizzata correttamente"
+      },
+      {
+        "step": "Scorri nella pagina fino a visualizzare le sezioni contrassegnate dai grafici",
+        "expected": "Le sezioni sono visualizzate correttamente"
+      },
+      {
+        "step": "Seleziona un grafico con dati parziali per visualizzare i dettagli",
+        "expected": "Il grafico è visualizzato con i dati parziali e un messaggio di avviso"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC3",
+    "title": "Visualizzazione grafici senza dati",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza le informazioni consultando i grafici",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard",
+        "expected": "La dashboard è visualizzata correttamente"
+      },
+      {
+        "step": "Scorri nella pagina fino a visualizzare le sezioni contrassegnate dai grafici",
+        "expected": "Le sezioni sono visualizzate correttamente"
+      },
+      {
+        "step": "Seleziona un grafico senza dati per visualizzare i dettagli",
+        "expected": "Il grafico è visualizzato con un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC4",
+    "title": "Visualizzazione grafici con selezione multipla",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza le informazioni consultando i grafici",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard",
+        "expected": "La dashboard è visualizzata correttamente"
+      },
+      {
+        "step": "Scorri nella pagina fino a visualizzare le sezioni contrassegnate dai grafici",
+        "expected": "Le sezioni sono visualizzate correttamente"
+      },
+      {
+        "step": "Seleziona più grafici per visualizzare i dettagli",
+        "expected": "I grafici sono visualizzati con i dati completi e corretti"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.5"
+  },
+  {
+    "test_case_id": "UC2.5_TC5",
+    "title": "Visualizzazione grafici con filtro",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza le informazioni consultando i grafici",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard",
+        "expected": "La dashboard è visualizzata correttamente"
+      },
+      {
+        "step": "Scorri nella pagina fino a visualizzare le sezioni contrassegnate dai grafici",
+        "expected": "Le sezioni sono visualizzate correttamente"
+      },
+      {
+        "step": "Applica un filtro ai grafici per visualizzare i dettagli",
+        "expected": "I grafici sono visualizzati con i dati filtrati corretti"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Media",
+    "use_case_id": "UC2.5"
+  }
+]

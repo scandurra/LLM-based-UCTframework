@@ -1,0 +1,186 @@
+[
+  {
+    "test_case_id": "UC3.2.3_TC1",
+    "title": "Ricerca scheda censimento per tipo con parametro valido",
+    "preconditions": "UC3.2",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione viene caricata correttamente"
+      },
+      {
+        "step": "Inserisci un tipo di scheda censimento valido tra i parametri di ricerca",
+        "expected": "Il sistema accetta il parametro"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema visualizza i risultati della ricerca corrispondenti al tipo selezionato"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.2.3"
+  },
+  {
+    "test_case_id": "UC3.2.3_TC2",
+    "title": "Ricerca con tipo non esistente",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema visualizza un messaggio di nessun risultato trovato",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione viene caricata correttamente"
+      },
+      {
+        "step": "Inserisci un tipo di scheda censimento non esistente tra i parametri di ricerca",
+        "expected": "Il sistema accetta il parametro ma non trova risultati"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema visualizza un messaggio che indica l’assenza di risultati"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.2.3"
+  },
+  {
+    "test_case_id": "UC3.2.3_TC3",
+    "title": "Ricerca senza inserire tipo",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema richiede l’inserimento del parametro di ricerca",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione viene caricata correttamente"
+      },
+      {
+        "step": "Lascia vuoto il campo del tipo e conferma la ricerca",
+        "expected": "Il sistema richiede l’inserimento obbligatorio del parametro"
+      },
+      {
+        "step": "Tenta di procedere senza inserire il tipo",
+        "expected": "La ricerca non viene eseguita e viene mostrato un messaggio di errore"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.2.3"
+  },
+  {
+    "test_case_id": "UC3.2.3_TC4",
+    "title": "Ricerca con caratteri speciali nel tipo",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema gestisce correttamente i caratteri speciali",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione viene caricata correttamente"
+      },
+      {
+        "step": "Inserisci un tipo con caratteri speciali (es. tipo@speciale)",
+        "expected": "Il sistema accetta il parametro e lo gestisce correttamente"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema visualizza i risultati della ricerca senza errori"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC3.2.3"
+  },
+  {
+    "test_case_id": "UC3.2.3_TC5",
+    "title": "Ricerca con lunghezza del tipo superiore al massimo consentito",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema tronca o gestisce la lunghezza eccessiva",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione viene caricata correttamente"
+      },
+      {
+        "step": "Inserisci un tipo con una lunghezza superiore al massimo consentito",
+        "expected": "Il sistema gestisce la lunghezza eccessiva troncandola o mostrando un messaggio di errore"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema esegue la ricerca con il tipo troncato o mostra un messaggio di errore"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC3.2.3"
+  },
+  {
+    "test_case_id": "UC3.2.3_TC6",
+    "title": "Ricerca con più tipi contemporaneamente",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema gestisce la ricerca multipla",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione viene caricata correttamente"
+      },
+      {
+        "step": "Inserisci più tipi di scheda censimento separati da virgole o utilizza la funzione di selezione multipla",
+        "expected": "Il sistema accetta i parametri multipli"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema visualizza i risultati della ricerca per tutti i tipi selezionati"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.2.3"
+  },
+  {
+    "test_case_id": "UC3.2.3_TC7",
+    "title": "Ricerca durante la manutenzione del sistema",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema visualizza un messaggio di indisponibilità",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento durante la manutenzione",
+        "expected": "Viene visualizzato un messaggio di manutenzione"
+      },
+      {
+        "step": "Tenta di eseguire una ricerca",
+        "expected": "Il sistema blocca l’operazione e visualizza il messaggio di indisponibilità"
+      },
+      {
+        "step": "Verifica la presenza del messaggio di manutenzione",
+        "expected": "Il messaggio è chiaro e indica la temporanea indisponibilità della funzione"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC3.2.3"
+  },
+  {
+    "test_case_id": "UC3.2.3_TC8",
+    "title": "Ricerca con utente non autorizzato",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema richiede l’autenticazione o visualizza un messaggio di accesso negato",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento senza essere autenticato",
+        "expected": "Viene richiesta l’autenticazione"
+      },
+      {
+        "step": "Tenta di eseguire una ricerca senza autenticarsi",
+        "expected": "Il sistema blocca l’accesso e visualizza un messaggio di accesso negato"
+      },
+      {
+        "step": "Verifica la presenza del messaggio di accesso negato",
+        "expected": "Il messaggio è chiaro e indica la necessità di autenticazione"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.2.3"
+  }
+]

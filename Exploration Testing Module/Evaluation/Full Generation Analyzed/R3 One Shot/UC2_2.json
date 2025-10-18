@@ -1,0 +1,186 @@
+[
+  {
+    "test_case_id": "UC2.2_TC1",
+    "title": "Ricerca impianti di illuminazione per comune",
+    "preconditions": "UC2",
+    "postconditions": "Gli impianti di illuminazione del comune selezionato vengono visualizzati",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e seleziona la funzione di ricerca impianti",
+        "expected": "La sezione di ricerca viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un comune valido e conferma la ricerca",
+        "expected": "Gli impianti di illuminazione del comune selezionato vengono mostrati sulla mappa"
+      },
+      {
+        "step": "Verifica la correttezza dei dati visualizzati",
+        "expected": "I dati degli impianti di illuminazione sono coerenti con le informazioni disponibili"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.2"
+  },
+  {
+    "test_case_id": "UC2.2_TC2",
+    "title": "Ricerca impianti di illuminazione con parametri multipli",
+    "preconditions": "UC2",
+    "postconditions": "Gli impianti di illuminazione che soddisfano tutti i criteri di ricerca vengono visualizzati",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e seleziona la funzione di ricerca impianti",
+        "expected": "La sezione di ricerca viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona più parametri di ricerca (es. comune, tipo di impianto, etc.)",
+        "expected": "I parametri vengono accettati e la ricerca avviata"
+      },
+      {
+        "step": "Conferma la ricerca e verifica i risultati",
+        "expected": "Gli impianti di illuminazione che soddisfano tutti i criteri selezionati vengono visualizzati"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.2"
+  },
+  {
+    "test_case_id": "UC2.2_TC3",
+    "title": "Ricerca senza selezionare comune",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema richiede la selezione del comune",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e seleziona la funzione di ricerca impianti",
+        "expected": "La sezione di ricerca viene visualizzata correttamente"
+      },
+      {
+        "step": "Lascia vuoto il campo del comune e tenta di confermare la ricerca",
+        "expected": "Il sistema segnala l’errore e richiede la selezione del comune"
+      },
+      {
+        "step": "Seleziona un comune e ripeti la ricerca",
+        "expected": "La ricerca viene eseguita correttamente"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.2"
+  },
+  {
+    "test_case_id": "UC2.2_TC4",
+    "title": "Ricerca con comune non esistente",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema segnala che il comune non è stato trovato",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e seleziona la funzione di ricerca impianti",
+        "expected": "La sezione di ricerca viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci un comune non esistente e conferma la ricerca",
+        "expected": "Il sistema segnala che il comune non è stato trovato"
+      },
+      {
+        "step": "Correggi il nome del comune e ripeti la ricerca",
+        "expected": "La ricerca viene eseguita correttamente"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.2"
+  },
+  {
+    "test_case_id": "UC2.2_TC5",
+    "title": "Ricerca con caratteri speciali nel nome del comune",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema esegue la ricerca ignorando i caratteri speciali",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e seleziona la funzione di ricerca impianti",
+        "expected": "La sezione di ricerca viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci un comune con caratteri speciali (es. Roma!) e conferma la ricerca",
+        "expected": "Il sistema esegue la ricerca ignorando i caratteri speciali"
+      },
+      {
+        "step": "Verifica che i risultati siano coerenti con il comune senza caratteri speciali",
+        "expected": "I risultati sono coerenti"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC2.2"
+  },
+  {
+    "test_case_id": "UC2.2_TC6",
+    "title": "Ricerca da parte di utente non autorizzato",
+    "preconditions": "UC2",
+    "postconditions": "L’accesso alla funzione di ricerca è negato",
+    "test_steps": [
+      {
+        "step": "Tenta di accedere alla dashboard senza autenticazione",
+        "expected": "Il sistema richiede l’autenticazione"
+      },
+      {
+        "step": "Inserisci credenziali non valide e tenta di accedere",
+        "expected": "L’accesso è negato"
+      },
+      {
+        "step": "Autentica con credenziali valide e ripeti la ricerca",
+        "expected": "La funzione di ricerca è accessibile"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC2.2"
+  },
+  {
+    "test_case_id": "UC2.2_TC7",
+    "title": "Ricerca con un grande numero di parametri",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema esegue la ricerca senza problemi di performance",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e seleziona la funzione di ricerca impianti",
+        "expected": "La sezione di ricerca viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un grande numero di parametri di ricerca",
+        "expected": "Il sistema accetta i parametri senza errori"
+      },
+      {
+        "step": "Conferma la ricerca e verifica la performance del sistema",
+        "expected": "La ricerca viene eseguita senza problemi di performance"
+      }
+    ],
+    "test_type": "Performance",
+    "priority": "Media",
+    "use_case_id": "UC2.2"
+  },
+  {
+    "test_case_id": "UC2.2_TC8",
+    "title": "Ricerca durante la manutenzione del sistema",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema notifica l’indisponibilità della funzione di ricerca",
+    "test_steps": [
+      {
+        "step": "Tenta di accedere alla dashboard durante la manutenzione",
+        "expected": "Viene visualizzato un messaggio di manutenzione"
+      },
+      {
+        "step": "Tenta comunque di eseguire una ricerca",
+        "expected": "Il sistema blocca l’operazione e notifica la manutenzione in corso"
+      },
+      {
+        "step": "Verifica che il sistema sia nuovamente accessibile dopo la manutenzione",
+        "expected": "Il sistema è accessibile e funziona correttamente"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC2.2"
+  }
+]

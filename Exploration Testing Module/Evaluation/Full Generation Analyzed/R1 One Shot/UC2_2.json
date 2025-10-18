@@ -1,0 +1,186 @@
+[
+  {
+    "test_case_id": "UC2.2_TC1",
+    "title": "Ricerca impianti di illuminazione per comune e tipo",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza gli impianti di illuminazione che corrispondono ai criteri di ricerca",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e seleziona la funzione di ricerca impianti",
+        "expected": "La sezione di ricerca viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un comune e un tipo di impianto di illuminazione",
+        "expected": "I parametri vengono accettati dal sistema"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Gli impianti di illuminazione corrispondenti ai criteri selezionati vengono visualizzati sulla mappa"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.2"
+  },
+  {
+    "test_case_id": "UC2.2_TC2",
+    "title": "Ricerca senza selezionare il comune",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema richiede la selezione del comune",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e seleziona la funzione di ricerca impianti",
+        "expected": "La sezione di ricerca viene visualizzata correttamente"
+      },
+      {
+        "step": "Lascia vuoto il campo del comune e seleziona altri parametri",
+        "expected": "Il sistema segnala l’errore di mancanza del comune"
+      },
+      {
+        "step": "Tenta di confermare la ricerca",
+        "expected": "La ricerca non viene eseguita e il sistema richiede di selezionare un comune"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.2"
+  },
+  {
+    "test_case_id": "UC2.2_TC3",
+    "title": "Ricerca con parametri di ricerca non validi",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema segnala l’errore e richiede la correzione dei parametri",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e seleziona la funzione di ricerca impianti",
+        "expected": "La sezione di ricerca viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci parametri di ricerca non validi (es. testo nel campo numerico)",
+        "expected": "Il sistema rileva l’errore e lo segnala all’utente"
+      },
+      {
+        "step": "Tenta di confermare la ricerca",
+        "expected": "La ricerca non viene eseguita e il sistema richiede la correzione degli errori"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.2"
+  },
+  {
+    "test_case_id": "UC2.2_TC4",
+    "title": "Ricerca con molti parametri di ricerca selezionati",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema visualizza gli impianti di illuminazione corrispondenti ai criteri di ricerca",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e seleziona la funzione di ricerca impianti",
+        "expected": "La sezione di ricerca viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona molti parametri di ricerca (comune, tipo, anno di installazione, etc.)",
+        "expected": "Il sistema accetta tutti i parametri selezionati"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Gli impianti di illuminazione che corrispondono a tutti i criteri selezionati vengono visualizzati sulla mappa"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.2"
+  },
+  {
+    "test_case_id": "UC2.2_TC5",
+    "title": "Ricerca senza risultati",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema informa l’utente che non ci sono impianti di illuminazione corrispondenti ai criteri di ricerca",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e seleziona la funzione di ricerca impianti",
+        "expected": "La sezione di ricerca viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona criteri di ricerca per i quali non ci sono risultati (es. comune con pochi impianti)",
+        "expected": "Il sistema esegue la ricerca senza trovare corrispondenze"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema visualizza un messaggio che informa l’utente dell’assenza di risultati"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.2"
+  },
+  {
+    "test_case_id": "UC2.2_TC6",
+    "title": "Ricerca con utente non autorizzato",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema nega l’accesso alla funzione di ricerca",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard senza autenticazione",
+        "expected": "La sezione di ricerca non è accessibile"
+      },
+      {
+        "step": "Tenta di accedere direttamente all’URL della ricerca impianti",
+        "expected": "Il sistema richiede l’autenticazione prima di poter eseguire la ricerca"
+      },
+      {
+        "step": "Inserisci credenziali non valide o non autorizzate",
+        "expected": "Il sistema nega l’accesso e visualizza un messaggio di errore"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC2.2"
+  },
+  {
+    "test_case_id": "UC2.2_TC7",
+    "title": "Ricerca con caratteri speciali nei parametri di ricerca",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema gestisce correttamente i caratteri speciali senza errori",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e seleziona la funzione di ricerca impianti",
+        "expected": "La sezione di ricerca viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci caratteri speciali nei parametri di ricerca (es. @, #, $)",
+        "expected": "Il sistema gestisce i caratteri speciali senza problemi e li include nella ricerca"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "La ricerca viene eseguita correttamente e visualizza gli impianti di illuminazione che corrispondono ai criteri, incluso l’uso dei caratteri speciali"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC2.2"
+  },
+  {
+    "test_case_id": "UC2.2_TC8",
+    "title": "Ricerca con lunghe stringhe di ricerca",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema gestisce correttamente le lunghe stringhe di ricerca senza troncamento o errori",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e seleziona la funzione di ricerca impianti",
+        "expected": "La sezione di ricerca viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci una lunga stringa di ricerca (oltre 100 caratteri)",
+        "expected": "Il sistema accetta la lunga stringa senza troncarla o generare errori"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "La ricerca viene eseguita correttamente e visualizza gli impianti di illuminazione che corrispondono alla lunga stringa di ricerca"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC2.2"
+  }
+]

@@ -1,0 +1,182 @@
+[
+  {
+    "test_case_id": "UC3.2.2_TC1",
+    "title": "Ricerca scheda censimento per stato valido",
+    "preconditions": "UC3.2",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci uno stato valido tra i parametri di ricerca",
+        "expected": "Il sistema accetta lo stato selezionato"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema mostra i risultati della ricerca per lo stato selezionato"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.2.2"
+  },
+  {
+    "test_case_id": "UC3.2.2_TC2",
+    "title": "Ricerca con stato non esistente",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema mostra un messaggio di stato non trovato",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci uno stato che non esiste nel database",
+        "expected": "Il sistema segnala che lo stato non è stato trovato"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema mostra un messaggio di stato non trovato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.2.2"
+  },
+  {
+    "test_case_id": "UC3.2.2_TC3",
+    "title": "Ricerca con stato parzialmente inserito",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema mostra i risultati della ricerca per lo stato parzialmente inserito",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci solo una parte dello stato (es. 'Ita' per 'Italia')",
+        "expected": "Il sistema suggerisce gli stati che corrispondono alla ricerca parziale"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema mostra i risultati della ricerca per lo stato selezionato"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.2.2"
+  },
+  {
+    "test_case_id": "UC3.2.2_TC4",
+    "title": "Ricerca senza inserire stato",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema richiede l’inserimento dello stato",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Lascia vuoto il campo relativo allo stato",
+        "expected": "Il sistema segnala l’errore di campo obbligatorio"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "La ricerca non procede e viene richiesto di inserire lo stato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.2.2"
+  },
+  {
+    "test_case_id": "UC3.2.2_TC5",
+    "title": "Ricerca con caratteri speciali nello stato",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema gestisce correttamente i caratteri speciali",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci uno stato con caratteri speciali (es. 'Stato@' )",
+        "expected": "Il sistema gestisce i caratteri speciali in modo appropriato"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema mostra i risultati della ricerca o un messaggio di stato non trovato se applicabile"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC3.2.2"
+  },
+  {
+    "test_case_id": "UC3.2.2_TC6",
+    "title": "Ricerca da parte di utente non autorizzato",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema nega l’accesso alla funzione di ricerca",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento senza autenticazione",
+        "expected": "Il sistema richiede l’autenticazione"
+      },
+      {
+        "step": "Tenta di accedere direttamente all’URL della ricerca",
+        "expected": "Accesso negato e reindirizzamento alla pagina di login"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.2.2"
+  },
+  {
+    "test_case_id": "UC3.2.2_TC7",
+    "title": "Ricerca con stato che contiene spazi vuoti",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema gestisce correttamente gli spazi vuoti",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci uno stato con spazi vuoti (es. ' Stato ')",
+        "expected": "Il sistema ignora gli spazi vuoti o li gestisce in modo appropriato"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema mostra i risultati della ricerca per lo stato selezionato"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC3.2.2"
+  },
+  {
+    "test_case_id": "UC3.2.2_TC8",
+    "title": "Ricerca con stato lungo",
+    "preconditions": "UC3.2",
+    "postconditions": "Il sistema gestisce correttamente lo stato lungo",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di ricerca schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci uno stato molto lungo (es. una frase)",
+        "expected": "Il sistema gestisce lo stato lungo in modo appropriato, eventualmente troncandolo o mostrando un messaggio di errore se necessario"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema mostra i risultati della ricerca per lo stato selezionato o un messaggio di errore se lo stato è troppo lungo"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC3.2.2"
+  }
+]

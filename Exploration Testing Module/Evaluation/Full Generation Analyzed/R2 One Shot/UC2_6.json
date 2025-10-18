@@ -1,0 +1,182 @@
+[
+  {
+    "test_case_id": "UC2.6_TC1",
+    "title": "Analisi consumo comune con parametri validi",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza le informazioni consultando i grafici",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e scorri fino alla sezione del consumo",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un comune, POD, pannello elettrico, periodo e tipo di potenza",
+        "expected": "I parametri vengono accettati e l’analisi avviata"
+      },
+      {
+        "step": "Visualizza i risultati dell’analisi",
+        "expected": "I grafici e le informazioni vengono visualizzati correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC2",
+    "title": "Analisi senza selezionare comune",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema richiede la selezione del comune",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e scorri fino alla sezione del consumo",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Lascia vuoto il campo del comune e seleziona altri parametri",
+        "expected": "Il sistema segnala l’errore di mancanza del comune"
+      },
+      {
+        "step": "Tenta di avviare l’analisi",
+        "expected": "L’operazione non procede fino alla selezione del comune"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC3",
+    "title": "Selezione di più comuni per analisi comparativa",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema visualizza i dati dei comuni selezionati",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e scorri fino alla sezione del consumo",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona più comuni e altri parametri per l’analisi",
+        "expected": "Il sistema accetta la selezione multipla"
+      },
+      {
+        "step": "Avvia l’analisi e visualizza i risultati",
+        "expected": "I grafici comparativi vengono visualizzati correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC4",
+    "title": "Analisi con periodo di tempo non valido",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema segnala l’errore del periodo",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e scorri fino alla sezione del consumo",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un comune e un periodo di tempo non valido (es. data fine prima della data inizio)",
+        "expected": "Il sistema segnala l’errore del periodo"
+      },
+      {
+        "step": "Tenta di avviare l’analisi",
+        "expected": "L’operazione non procede fino alla correzione del periodo"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC5",
+    "title": "Boundary test: selezione di un solo giorno per l’analisi",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema visualizza i dati del giorno selezionato",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e scorri fino alla sezione del consumo",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un comune e un solo giorno per l’analisi",
+        "expected": "Il sistema accetta la selezione"
+      },
+      {
+        "step": "Avvia l’analisi e visualizza i risultati",
+        "expected": "I dati del giorno vengono visualizzati correttamente"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Alta",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC6",
+    "title": "Security test: accesso alla funzione di analisi senza autorizzazione",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema nega l’accesso e richiede autenticazione",
+    "test_steps": [
+      {
+        "step": "Tenta di accedere direttamente all’URL della sezione del consumo senza login",
+        "expected": "Il sistema reindirizza alla pagina di login"
+      },
+      {
+        "step": "Inserisci credenziali non valide o mancanti",
+        "expected": "Accesso negato e richiesta autenticazione"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC7",
+    "title": "Edge case: selezione di un comune non esistente",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema segnala l’errore del comune non trovato",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e scorri fino alla sezione del consumo",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Inserisci un comune non esistente o non valido",
+        "expected": "Il sistema segnala l’errore del comune"
+      },
+      {
+        "step": "Tenta di avviare l’analisi",
+        "expected": "L’operazione non procede fino alla correzione del comune"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC2.6"
+  },
+  {
+    "test_case_id": "UC2.6_TC8",
+    "title": "Analisi con dati parzialmente mancanti",
+    "preconditions": "UC2",
+    "postconditions": "Il sistema visualizza i dati disponibili e segnala quelli mancanti",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e scorri fino alla sezione del consumo",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona un comune con dati parzialmente mancanti per l’analisi",
+        "expected": "Il sistema avvisa della presenza di dati mancanti"
+      },
+      {
+        "step": "Avvia l’analisi e visualizza i risultati",
+        "expected": "I dati disponibili vengono visualizzati, con indicazione dei dati mancanti"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.6"
+  }
+]

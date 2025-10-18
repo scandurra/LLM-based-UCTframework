@@ -1,0 +1,97 @@
+[
+  {
+    "test_case_id": "UC2_TC1",
+    "title": "Apertura della dashboard con utente autenticato",
+    "preconditions": "UC1",
+    "postconditions": "La dashboard viene visualizzata correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla piattaforma come utente registrato",
+        "expected": "La home page della piattaforma viene visualizzata"
+      },
+      {
+        "step": "Seleziona la voce del menù laterale relativa alla dashboard",
+        "expected": "La sezione della dashboard si apre correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC2",
+    "title": "Tentativo di accesso alla dashboard senza autenticazione",
+    "preconditions": "UC1",
+    "postconditions": "Viene richiesta l’autenticazione",
+    "test_steps": [
+      {
+        "step": "Tenta di accedere direttamente alla sezione della dashboard senza login",
+        "expected": "Il sistema richiede l’autenticazione"
+      },
+      {
+        "step": "Inserisci credenziali non valide",
+        "expected": "Il sistema segnala un errore di autenticazione"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC3",
+    "title": "Apertura della dashboard con browser non supportato",
+    "preconditions": "UC1",
+    "postconditions": "La dashboard potrebbe non essere visualizzata correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla piattaforma utilizzando un browser non supportato",
+        "expected": "La piattaforma potrebbe non funzionare correttamente"
+      },
+      {
+        "step": "Tenta di aprire la sezione della dashboard",
+        "expected": "La dashboard potrebbe non essere visualizzata come previsto"
+      }
+    ],
+    "test_type": "Compatibilità",
+    "priority": "Bassa",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC4",
+    "title": "Apertura della dashboard con schermo di piccole dimensioni",
+    "preconditions": "UC1",
+    "postconditions": "La dashboard deve essere visualizzata in modo responsivo",
+    "test_steps": [
+      {
+        "step": "Accedi alla piattaforma utilizzando uno schermo di piccole dimensioni (es. smartphone)",
+        "expected": "La piattaforma si adatta alle dimensioni dello schermo"
+      },
+      {
+        "step": "Apri la sezione della dashboard",
+        "expected": "La dashboard è visualizzata in modo ottimizzato per lo schermo utilizzato"
+      }
+    ],
+    "test_type": "Usabilità",
+    "priority": "Alta",
+    "use_case_id": "UC2"
+  },
+  {
+    "test_case_id": "UC2_TC5",
+    "title": "Tentativo di accesso alla dashboard con URL non valido",
+    "preconditions": "UC1",
+    "postconditions": "Il sistema gestisce l’errore",
+    "test_steps": [
+      {
+        "step": "Inserisci un URL non valido per la dashboard",
+        "expected": "Il sistema segnala un errore 404 o reindirizza alla home page"
+      },
+      {
+        "step": "Tenta di accedere alla dashboard attraverso un link rotto",
+        "expected": "Il sistema gestisce l’errore in modo appropriato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2"
+  }
+]

@@ -1,0 +1,94 @@
+[
+  {
+    "test_case_id": "UC6_TC1",
+    "title": "Logout utente con successo",
+    "preconditions": "UC1",
+    "postconditions": "L’utente è non è più autenticato ed è a conoscenza che l’operazione ha avuto successo",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente registrato",
+        "expected": "La dashboard dell’utente viene visualizzata"
+      },
+      {
+        "step": "Clicca sul proprio nome utente in alto a destra e seleziona il tasto “Logout”",
+        "expected": "Il processo di logout inizia"
+      },
+      {
+        "step": "Conferma l’intenzione di effettuare il logout",
+        "expected": "Un messaggio conferma che l’operazione è stata completata con successo e l’utente viene reindirizzato alla pagina di login"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC6"
+  },
+  {
+    "test_case_id": "UC6_TC2",
+    "title": "Logout senza conferma",
+    "preconditions": "UC1",
+    "postconditions": "L’utente rimane autenticato",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente registrato",
+        "expected": "La dashboard dell’utente viene visualizzata"
+      },
+      {
+        "step": "Clicca sul proprio nome utente in alto a destra e seleziona il tasto “Logout”",
+        "expected": "Il processo di logout inizia"
+      },
+      {
+        "step": "Annulla l’operazione di logout prima della conferma",
+        "expected": "L’utente rimane autenticato e nella dashboard"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC6"
+  },
+  {
+    "test_case_id": "UC6_TC3",
+    "title": "Logout da più browser contemporaneamente",
+    "preconditions": "UC1",
+    "postconditions": "L’utente è disconnesso in tutti i browser",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente registrato su più browser",
+        "expected": "La dashboard dell’utente viene visualizzata in ogni browser"
+      },
+      {
+        "step": "Esegui il logout da un browser",
+        "expected": "Il processo di logout inizia e l’utente viene disconnesso"
+      },
+      {
+        "step": "Verifica lo stato di autenticazione negli altri browser",
+        "expected": "L’utente è disconnesso anche negli altri browser"
+      }
+    ],
+    "test_type": "Prestazione",
+    "priority": "Alta",
+    "use_case_id": "UC6"
+  },
+  {
+    "test_case_id": "UC6_TC4",
+    "title": "Logout con sessione scaduta",
+    "preconditions": "UC1",
+    "postconditions": "L’utente è disconnesso e viene reindirizzato alla pagina di login",
+    "test_steps": [
+      {
+        "step": "Accedi al sistema come utente registrato e lascia la sessione inattiva fino a scadenza",
+        "expected": "La sessione scade"
+      },
+      {
+        "step": "Tenta di eseguire un’azione richiedendo autenticazione",
+        "expected": "Il sistema richiede nuovamente l’autenticazione"
+      },
+      {
+        "step": "Esegui il login e poi il logout",
+        "expected": "L’utente viene disconnesso correttamente"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Media",
+    "use_case_id": "UC6"
+  }
+]
