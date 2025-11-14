@@ -1,0 +1,21 @@
+[
+  {
+    "test_case_id": "UC3.4.2_TC1",
+    "title": "Elimina scheda censimento con conferma",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di cancellazione della scheda censimento",
+        "expected": "Viene richiesta la conferma dell’eliminazione"
+      },
+      {
+        "step": "Conferma l’eliminazione della scheda indicata",
+        "expected": "Il sistema elimina la scheda e visualizza un messaggio di conferma"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.2"
+  }
+]

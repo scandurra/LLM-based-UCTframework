@@ -1,0 +1,7 @@
+Test Case Coverage Matrix;;;;;;;;;
+Use Case;R1 Zero Shot;R2 Zero Shot;R3 Zero Shot;R1 One Shot;R2 One Shot;R3 One Shot;R1 Few Shot;R2 Few Shot;R3 Few Shot
+UC1;yes;yes;yes;yes;yes;yes;yes;yes;yes
+UC2.1;yes;yes;yes;yes;yes;yes;yes;yes;yes
+UC3.4.2;yes;yes;yes;yes;yes;yes;yes;yes;yes
+UC3.4.3.12;yes;yes;yes;yes;yes;yes;yes;yes;yes
+UC3.4.4;yes;yes;yes;yes;yes;yes;yes;yes;yes

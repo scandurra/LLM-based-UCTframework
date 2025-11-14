@@ -1,0 +1,21 @@
+[
+  {
+    "test_case_id": "UC3.4_TC1",
+    "title": "Visualizzazione palette di operazioni sulla scheda censimento con utente Regione",
+    "preconditions": "UC3",
+    "postconditions": "La palette di operazioni è visualizzata correttamente",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione delle schede censimento come utente Regione",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Clicca sul tasto delle azioni dedicato alla singola scheda censimento",
+        "expected": "La palette di operazioni è visualizzata"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4"
+  }
+]

@@ -1,0 +1,117 @@
+[
+  {
+    "test_case_id": "UC2.1_TC1",
+    "title": "Download PDF con successo",
+    "preconditions": "UC2",
+    "postconditions": "L’utente ha scaricato il file, può aprirlo dalla apposita sezione del browser utilizzato ed il file è ben formato",
+    "test_steps": [
+      {
+        "step": "Clicca sul tasto di download",
+        "expected": "Il processo di download inizia"
+      },
+      {
+        "step": "Conferma la richiesta di download",
+        "expected": "Il download procede"
+      },
+      {
+        "step": "Verifica il messaggio di operazione completata",
+        "expected": "Messaggio di successo visualizzato"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC2",
+    "title": "Download PDF con annullamento",
+    "preconditions": "UC2",
+    "postconditions": "Il download non avviene",
+    "test_steps": [
+      {
+        "step": "Clicca sul tasto di download",
+        "expected": "Il processo di download inizia"
+      },
+      {
+        "step": "Annulla la richiesta di download",
+        "expected": "Il download non procede"
+      },
+      {
+        "step": "Verifica lo stato del sistema",
+        "expected": "Nessun file scaricato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC3",
+    "title": "Download PDF con errore di formato",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di operazione completata con un errore relativo all’eccezione verificatasi",
+    "test_steps": [
+      {
+        "step": "Clicca sul tasto di download",
+        "expected": "Il processo di download inizia"
+      },
+      {
+        "step": "Simula un errore di formato del file",
+        "expected": "Messaggio di errore visualizzato"
+      },
+      {
+        "step": "Verifica la possibilità di ripetere l’operazione",
+        "expected": "Opzione per riprovare disponibile"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC4",
+    "title": "Download PDF con nome file lungo",
+    "preconditions": "UC2",
+    "postconditions": "Il file viene scaricato correttamente",
+    "test_steps": [
+      {
+        "step": "Clicca sul tasto di download",
+        "expected": "Il processo di download inizia"
+      },
+      {
+        "step": "Simula un nome file lungo",
+        "expected": "Il sistema gestisce il nome file senza problemi"
+      },
+      {
+        "step": "Verifica il file scaricato",
+        "expected": "File integro e completo"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC5",
+    "title": "Download PDF con caratteri speciali nel nome",
+    "preconditions": "UC2",
+    "postconditions": "Il file viene scaricato correttamente",
+    "test_steps": [
+      {
+        "step": "Clicca sul tasto di download",
+        "expected": "Il processo di download inizia"
+      },
+      {
+        "step": "Simula un nome file con caratteri speciali",
+        "expected": "Il sistema gestisce i caratteri senza problemi"
+      },
+      {
+        "step": "Verifica il file scaricato",
+        "expected": "File integro e completo"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Media",
+    "use_case_id": "UC2.1"
+  }
+]

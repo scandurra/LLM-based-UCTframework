@@ -1,0 +1,25 @@
+[
+  {
+    "test_case_id": "UC3.4.4_TC1",
+    "title": "Congelamento scheda censimento con conferma",
+    "preconditions": "UC3.4",
+    "postconditions": "La scheda viene congelata e lo stato è aggiornato a 'non attivo'",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di gestione delle schede censimento",
+        "expected": "La lista delle schede è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona una scheda e l’operazione di congelamento",
+        "expected": "Il sistema richiede la conferma del congelamento"
+      },
+      {
+        "step": "Conferma il congelamento della scheda",
+        "expected": "Viene visualizzato un messaggio di conferma dell’operazione e lo stato della scheda è aggiornato"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.4"
+  }
+]

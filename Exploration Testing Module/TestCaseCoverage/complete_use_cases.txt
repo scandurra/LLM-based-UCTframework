@@ -1,0 +1,29 @@
+================================================================================
+USE CASES WITH COMPLETE SEQUENCES
+(Base_sequence + Branch_sequence + Exception_sequence)
+================================================================================
+
+Total Complete Use Cases: 1
+Generated on: 10 November 2025
+
+--------------------------------------------------------------------------------
+
+1. UC1 - Login utente
+   File: UC1.json
+   Base sequence steps: 3
+   Branch sequence steps: 2
+   Exception sequence steps: 2
+
+--------------------------------------------------------------------------------
+
+SUMMARY
+--------------------------------------------------------------------------------
+Total complete use cases: 1
+Total base sequence steps: 3
+Total branch sequence steps: 2
+Total exception sequence steps: 2
+Total steps overall: 7
+
+Average base sequence length: 3.0
+Average branch sequence length: 2.0
+Average exception sequence length: 2.0

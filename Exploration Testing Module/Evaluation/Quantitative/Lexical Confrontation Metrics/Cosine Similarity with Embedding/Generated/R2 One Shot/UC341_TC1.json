@@ -1,0 +1,25 @@
+[
+  {
+    "test_case_id": "UC3.4.1_TC1",
+    "title": "Download scheda censimento con dati validi",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente visualizza un messaggio di conferma e ottiene il file desiderato",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione gestione schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona una scheda censimento valida e l’operazione di download",
+        "expected": "Il sistema avvia il download della scheda"
+      },
+      {
+        "step": "Verifica lo stato del download all’interno del browser",
+        "expected": "Il download procede correttamente e il file viene scaricato"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.1"
+  }
+]

@@ -1,0 +1,21 @@
+[
+  {
+    "test_case_id": "UC3.4.2_TC2",
+    "title": "Elimina scheda censimento con annullamento",
+    "preconditions": "UC3.4",
+    "postconditions": "",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di cancellazione della scheda censimento",
+        "expected": "Viene richiesta la conferma dell’eliminazione"
+      },
+      {
+        "step": "Annulla l’eliminazione della scheda indicata",
+        "expected": "L’eliminazione viene interrotta e la scheda rimane intatta"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.2"
+  }
+]

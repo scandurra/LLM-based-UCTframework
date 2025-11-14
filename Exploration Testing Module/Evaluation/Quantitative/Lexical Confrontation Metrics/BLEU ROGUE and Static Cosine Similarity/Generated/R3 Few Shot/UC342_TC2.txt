@@ -1,0 +1,93 @@
+[
+  {
+    "test_case_id": "UC3.4.2_TC1",
+    "title": "Elimina scheda censimento con conferma",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di cancellazione della scheda censimento",
+        "expected": "Viene richiesta la conferma dell’eliminazione"
+      },
+      {
+        "step": "Conferma l’eliminazione della scheda indicata",
+        "expected": "L’utente visualizza un messaggio di conferma dell’operazione"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.2"
+  },
+  {
+    "test_case_id": "UC3.4.2_TC2",
+    "title": "Annulla eliminazione scheda censimento",
+    "preconditions": "UC3.4",
+    "postconditions": "L’eliminazione della scheda viene interrotta",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di cancellazione della scheda censimento",
+        "expected": "Viene richiesta la conferma dell’eliminazione"
+      },
+      {
+        "step": "Annulla l’eliminazione della scheda indicata",
+        "expected": "L’utente torna alla schermata precedente senza eliminare la scheda"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.2"
+  },
+  {
+    "test_case_id": "UC3.4.2_TC3",
+    "title": "Elimina scheda censimento senza selezionare nessuna scheda",
+    "preconditions": "UC3.4",
+    "postconditions": "Il sistema segnala l’assenza di una scheda da eliminare",
+    "test_steps": [
+      {
+        "step": "Tenta di avviare l’operazione di cancellazione senza selezionare alcuna scheda",
+        "expected": "Il sistema richiede la selezione di almeno una scheda"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.2"
+  },
+  {
+    "test_case_id": "UC3.4.2_TC4",
+    "title": "Elimina più schede censimento contemporaneamente",
+    "preconditions": "UC3.4",
+    "postconditions": "Tutte le schede selezionate vengono eliminate con successo",
+    "test_steps": [
+      {
+        "step": "Seleziona più schede censimento per l’eliminazione",
+        "expected": "Il sistema richiede la conferma dell’eliminazione di tutte le schede selezionate"
+      },
+      {
+        "step": "Conferma l’eliminazione delle schede indicate",
+        "expected": "Tutte le schede vengono eliminate e l’utente visualizza un messaggio di conferma"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.2"
+  },
+  {
+    "test_case_id": "UC3.4.2_TC5",
+    "title": "Boundary test: eliminazione di una sola scheda censimento",
+    "preconditions": "UC3.4",
+    "postconditions": "La scheda selezionata viene eliminata con successo",
+    "test_steps": [
+      {
+        "step": "Seleziona solo una scheda censimento per l’eliminazione",
+        "expected": "Il sistema richiede la conferma dell’eliminazione della scheda"
+      },
+      {
+        "step": "Conferma l’eliminazione della scheda indicata",
+        "expected": "La scheda viene eliminata e l’utente visualizza un messaggio di conferma"
+      }
+    ],
+    "test_type": "Boundary",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.2"
+  },
+]

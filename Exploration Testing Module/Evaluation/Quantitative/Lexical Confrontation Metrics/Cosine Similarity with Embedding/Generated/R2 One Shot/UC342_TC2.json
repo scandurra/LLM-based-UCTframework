@@ -1,0 +1,25 @@
+[
+  {
+    "test_case_id": "UC3.4.2_TC2",
+    "title": "Annulla eliminazione scheda censimento",
+    "preconditions": "UC3.4",
+    "postconditions": "L’eliminazione della scheda viene interrotta",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione gestione schede censimento",
+        "expected": "La sezione viene visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona una scheda censimento da eliminare e conferma l’operazione di cancellazione",
+        "expected": "Il sistema richiede la conferma dell’eliminazione"
+      },
+      {
+        "step": "Annulla l’eliminazione della scheda",
+        "expected": "L’operazione di eliminazione viene interrotta e la scheda rimane disponibile"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.2"
+  }
+]

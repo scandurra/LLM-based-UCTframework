@@ -1,0 +1,17 @@
+[
+  {
+    "test_case_id": "UC345_TC001",
+    "title": "Dettaglio scheda censimento",
+    "preconditions": "Aver compiuto i passaggi fino al UC34",
+    "postconditions": "L’utente visualizza le informazioni relative alla scheda censimento",
+    "test_steps": [
+      {
+        "step": "L’utente seleziona l’operazione di dettaglio per la scheda selezionata dal menu Azione.",
+        "expected": "L'utente verrà indirizzato alla pagina dedicata."
+      }
+    ],
+    "test_type": "",
+    "priority": "ALTO",
+    "use_case_id": "UC345"
+  }
+]

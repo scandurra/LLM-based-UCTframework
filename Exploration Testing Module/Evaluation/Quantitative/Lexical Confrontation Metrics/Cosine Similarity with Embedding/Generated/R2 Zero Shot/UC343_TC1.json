@@ -1,0 +1,25 @@
+[
+  {
+    "test_case_id": "UC3.4.3_TC1",
+    "title": "Modifica scheda censimento con dati validi",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente visualizza le informazioni della scheda in fase di edit",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione di modifica della scheda censimento",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona l’operazione di modifica",
+        "expected": "L’utente può modificare i dati della scheda"
+      },
+      {
+        "step": "Inserisci i nuovi dati e salva le modifiche",
+        "expected": "I dati vengono aggiornati correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3"
+  }
+]

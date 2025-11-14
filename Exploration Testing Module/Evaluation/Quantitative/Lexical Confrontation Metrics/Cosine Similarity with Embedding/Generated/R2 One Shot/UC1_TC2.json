@@ -1,0 +1,25 @@
+[
+  {
+    "test_case_id": "UC1_TC2",
+    "title": "Login con credenziali errate",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "Il sistema visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Inserisci username o password errati",
+        "expected": "Le credenziali vengono rifiutate"
+      },
+      {
+        "step": "Clicca il tasto “Login”",
+        "expected": "Il sistema visualizza un messaggio di errore per credenziali non valide"
+      },
+      {
+        "step": "Verifica la possibilità di riprovare l’accesso",
+        "expected": "L’utente può reinserire le credenziali"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC1"
+  }
+]

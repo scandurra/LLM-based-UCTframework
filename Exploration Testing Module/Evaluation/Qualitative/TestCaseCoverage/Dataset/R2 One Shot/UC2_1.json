@@ -1,0 +1,186 @@
+[
+  {
+    "test_case_id": "UC2.1_TC1",
+    "title": "Download PDF con successo",
+    "preconditions": "UC2",
+    "postconditions": "L’utente ha scaricato il file e può aprirlo",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e clicca sul tasto di download del PDF",
+        "expected": "Il processo di download inizia"
+      },
+      {
+        "step": "Conferma la richiesta di download",
+        "expected": "Il sistema procede con il download"
+      },
+      {
+        "step": "Verifica che il file sia stato scaricato correttamente e può essere aperto",
+        "expected": "Il file è stato scaricato e si apre senza problemi"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC2",
+    "title": "Download PDF con errore di rete",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e clicca sul tasto di download del PDF",
+        "expected": "Il processo di download inizia"
+      },
+      {
+        "step": "Simula una perdita di connessione durante il download",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      },
+      {
+        "step": "Verifica che l’utente possa riprovare il download",
+        "expected": "L’utente può ripartire dal punto di download"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC3",
+    "title": "Download PDF senza autorizzazione",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di accesso negato",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard senza essere loggato",
+        "expected": "Il sistema richiede l’autenticazione"
+      },
+      {
+        "step": "Tenta di scaricare il PDF senza autenticarsi",
+        "expected": "Il sistema nega l’accesso al file"
+      },
+      {
+        "step": "Verifica che l’utente sia reindirizzato alla pagina di login",
+        "expected": "L’utente viene reindirizzato alla pagina di accesso"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC4",
+    "title": "Download PDF con browser non supportato",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di compatibilità",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard utilizzando un browser non supportato",
+        "expected": "Il sistema avvisa dell’incompatibilità"
+      },
+      {
+        "step": "Tenta di scaricare il PDF",
+        "expected": "Il download non è possibile o fallisce"
+      },
+      {
+        "step": "Verifica che l’utente riceva indicazioni su come procedere",
+        "expected": "L’utente riceve suggerimenti per la risoluzione del problema"
+      }
+    ],
+    "test_type": "Compatibilità",
+    "priority": "Media",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC5",
+    "title": "Download PDF con file corrotto",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e clicca sul tasto di download del PDF",
+        "expected": "Il processo di download inizia"
+      },
+      {
+        "step": "Simula la corruzione del file durante il download",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      },
+      {
+        "step": "Verifica che l’utente possa riprovare il download",
+        "expected": "L’utente può ripartire dal punto di download"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC6",
+    "title": "Download PDF con nome file troppo lungo",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e clicca sul tasto di download del PDF",
+        "expected": "Il processo di download inizia"
+      },
+      {
+        "step": "Simula un nome file troppo lungo per il sistema",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      },
+      {
+        "step": "Verifica che l’utente possa riprovare il download con un nome file valido",
+        "expected": "L’utente può ripartire dal punto di download"
+      }
+    ],
+    "test_type": "Edge",
+    "priority": "Bassa",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC7",
+    "title": "Download PDF con sistema in manutenzione",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di manutenzione",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard durante un periodo di manutenzione",
+        "expected": "Il sistema visualizza un messaggio di manutenzione"
+      },
+      {
+        "step": "Tenta di scaricare il PDF",
+        "expected": "Il download non è possibile"
+      },
+      {
+        "step": "Verifica che l’utente riceva informazioni sulla durata della manutenzione",
+        "expected": "L’utente riceve indicazioni sulla disponibilità del servizio"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Alta",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC8",
+    "title": "Download PDF con limite di download raggiunto",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di limite raggiunto",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e clicca sul tasto di download del PDF",
+        "expected": "Il processo di download inizia"
+      },
+      {
+        "step": "Simula il raggiungimento del limite di download",
+        "expected": "Il sistema visualizza un messaggio di limite raggiunto"
+      },
+      {
+        "step": "Verifica che l’utente possa contattare il supporto per risolvere il problema",
+        "expected": "L’utente può contattare il supporto"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.1"
+  }
+]

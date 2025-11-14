@@ -1,0 +1,21 @@
+[
+  {
+    "test_case_id": "UC3.4.1_TC1",
+    "title": "Download scheda censimento con successo",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente visualizza un messaggio di conferma e ottiene il file desiderato",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di download della scheda censimento",
+        "expected": "La procedura di download inizia correttamente"
+      },
+      {
+        "step": "Attendere il completamento del download",
+        "expected": "Il file viene scaricato con successo e visualizzato nel browser"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.1"
+  }
+]

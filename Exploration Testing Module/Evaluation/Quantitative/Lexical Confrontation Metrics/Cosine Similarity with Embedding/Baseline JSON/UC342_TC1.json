@@ -1,0 +1,21 @@
+[
+  {
+    "test_case_id": "UC342_TC001",
+    "title": "Elimina scheda censimento",
+    "preconditions": "Aver compiuto i passaggi fino al UC3",
+    "postconditions": "L'utente elimina la scheda censimento selezionata.",
+    "test_steps": [
+      {
+        "step": "L'utente cerca la scheda di censimento inserendo i parametri di ricerca.",
+        "expected": "L'utente visualizza i record relativi alla sua ricerca."
+      },
+      {
+        "step": "L'utente seleziona il primo record tra i risultati e preme sull'opzione Elimina dal menu a tendina di Azione.",
+        "expected": "L'operazione di eliminazione è stata effettuata con successo."
+      }
+    ],
+    "test_type": "",
+    "priority": "ALTO",
+    "use_case_id": "UC342"
+  }
+]

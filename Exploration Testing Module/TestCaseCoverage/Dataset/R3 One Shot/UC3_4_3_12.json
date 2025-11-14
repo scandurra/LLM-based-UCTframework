@@ -1,0 +1,190 @@
+[
+  {
+    "test_case_id": "UC3.4.3.12_TC1",
+    "title": "Modifica zona omogenea con dati validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’utente visualizza un messaggio di conferma dell’operazione andata a buon fine",
+    "test_steps": [
+      {
+        "step": "Seleziona la zona omogenea per la modifica tramite il menù ad albero di sinistra",
+        "expected": "La zona omogenea viene selezionata correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati zona omogenea",
+        "expected": "Il tab viene visualizzato correttamente"
+      },
+      {
+        "step": "Compila il form con informazioni valide",
+        "expected": "Le informazioni vengono accettate"
+      },
+      {
+        "step": "Applica le modifiche con l’apposito tasto",
+        "expected": "Un messaggio di conferma dell’operazione viene visualizzato"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.12"
+  },
+  {
+    "test_case_id": "UC3.4.3.12_TC2",
+    "title": "Modifica zona omogenea con dati non validi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Viene mostrato un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Seleziona la zona omogenea per la modifica tramite il menù ad albero di sinistra",
+        "expected": "La zona omogenea viene selezionata correttamente"
+      },
+      {
+        "step": "Seleziona il tab relativo ai dati zona omogenea",
+        "expected": "Il tab viene visualizzato correttamente"
+      },
+      {
+        "step": "Compila il form con informazioni non valide (es. campo obbligatorio vuoto)",
+        "expected": "Un messaggio di errore viene visualizzato"
+      },
+      {
+        "step": "Tenta di applicare le modifiche con l’apposito tasto",
+        "expected": "L’operazione non va a buon fine e il messaggio di errore rimane visibile"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.12"
+  },
+  {
+    "test_case_id": "UC3.4.3.12_TC3",
+    "title": "Modifica zona omogenea senza autorizzazione",
+    "preconditions": "UC3.4.3",
+    "postconditions": "L’accesso alla modifica della zona omogenea è negato",
+    "test_steps": [
+      {
+        "step": "Tenta di accedere alla modifica della zona omogenea senza avere i permessi necessari",
+        "expected": "Viene visualizzato un messaggio di accesso negato"
+      },
+      {
+        "step": "Verifica che non sia possibile selezionare la zona omogenea o il tab dei dati",
+        "expected": "L’interfaccia utente riflette l’assenza di permessi"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.12"
+  },
+  {
+    "test_case_id": "UC3.4.3.12_TC4",
+    "title": "Modifica zona omogenea con campi obbligatori mancanti",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Un messaggio di errore richiede la compilazione dei campi obbligatori",
+    "test_steps": [
+      {
+        "step": "Seleziona la zona omogenea per la modifica tramite il menù ad albero di sinistra",
+        "expected": "La zona omogenea viene selezionata correttamente"
+      },
+      {
+        "step": "Lascia vuoti campi obbligatori e compila gli altri campi",
+        "expected": "Un messaggio di errore evidenzia i campi mancanti"
+      },
+      {
+        "step": "Tenta di applicare le modifiche con l’apposito tasto",
+        "expected": "L’operazione non va a buon fine e il messaggio di errore rimane visibile"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.12"
+  },
+  {
+    "test_case_id": "UC3.4.3.12_TC5",
+    "title": "Modifica zona omogenea con dati troppo lunghi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Un messaggio di errore indica che i dati superano la lunghezza massima consentita",
+    "test_steps": [
+      {
+        "step": "Seleziona la zona omogenea per la modifica tramite il menù ad albero di sinistra",
+        "expected": "La zona omogenea viene selezionata correttamente"
+      },
+      {
+        "step": "Inserisci dati che superano la lunghezza massima consentita in uno o più campi",
+        "expected": "Un messaggio di errore segnala l’eccesso di lunghezza dei dati"
+      },
+      {
+        "step": "Tenta di applicare le modifiche con l’apposito tasto",
+        "expected": "L’operazione non va a buon fine e il messaggio di errore rimane visibile"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.12"
+  },
+  {
+    "test_case_id": "UC3.4.3.12_TC6",
+    "title": "Modifica zona omogenea con caratteri non ammessi",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Un messaggio di errore indica che sono stati inseriti caratteri non ammessi",
+    "test_steps": [
+      {
+        "step": "Seleziona la zona omogenea per la modifica tramite il menù ad albero di sinistra",
+        "expected": "La zona omogenea viene selezionata correttamente"
+      },
+      {
+        "step": "Inserisci caratteri non ammessi (es. <, >, \", ’) in uno o più campi",
+        "expected": "Un messaggio di errore segnala la presenza di caratteri non validi"
+      },
+      {
+        "step": "Tenta di applicare le modifiche con l’apposito tasto",
+        "expected": "L’operazione non va a buon fine e il messaggio di errore rimane visibile"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.3.12"
+  },
+  {
+    "test_case_id": "UC3.4.3.12_TC7",
+    "title": "Modifica zona omogenea e annullamento delle modifiche",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Le modifiche vengono annullate e la zona omogenea rimane invariata",
+    "test_steps": [
+      {
+        "step": "Seleziona la zona omogenea per la modifica tramite il menù ad albero di sinistra",
+        "expected": "La zona omogenea viene selezionata correttamente"
+      },
+      {
+        "step": "Apporta alcune modifiche ai dati della zona omogenea",
+        "expected": "Le modifiche vengono applicate temporaneamente"
+      },
+      {
+        "step": "Annulla le modifiche prima di salvare",
+        "expected": "La zona omogenea torna allo stato precedente alle modifiche"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.3.12"
+  },
+  {
+    "test_case_id": "UC3.4.3.12_TC8",
+    "title": "Modifica zona omogenea e salvataggio delle modifiche",
+    "preconditions": "UC3.4.3",
+    "postconditions": "Le modifiche vengono salvate correttamente",
+    "test_steps": [
+      {
+        "step": "Seleziona la zona omogenea per la modifica tramite il menù ad albero di sinistra",
+        "expected": "La zona omogenea viene selezionata correttamente"
+      },
+      {
+        "step": "Apporta alcune modifiche ai dati della zona omogenea",
+        "expected": "Le modifiche vengono applicate temporaneamente"
+      },
+      {
+        "step": "Salva le modifiche",
+        "expected": "Un messaggio di conferma dell’operazione viene visualizzato e le modifiche sono permanenti"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.3.12"
+  }
+]

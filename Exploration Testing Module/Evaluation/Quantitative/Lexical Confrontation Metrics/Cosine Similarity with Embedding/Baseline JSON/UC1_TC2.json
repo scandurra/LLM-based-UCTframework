@@ -1,0 +1,25 @@
+[
+  {
+    "test_case_id": "UC1_TC2",
+    "title": "Login utente con credenziali errate",
+    "preconditions": "L'utente deve essere in possesso delle credenziali (email, password) per accedere al portale; Browser con capacità di eseguire script Javascript; L'utente deve essere in grado di accedere all'indirizzo pellip",
+    "postconditions": "L'utente non viene reindirizzato nella homepage. rimane nella form di login; L'utente riceve il messaggio di errore dal sito di login non avvenuto correttamente",
+    "test_steps": [
+      {
+        "step": "Naviga verso il sito pellip",
+        "expected": "La pagina di login viene caricata correttamente (HTTP 200)"
+      },
+      {
+        "step": "Inizia la fase di login cliccando su \"Login\"",
+        "expected": "Il campo e-mail è visibile"
+      },
+      {
+        "step": "Compila la form con mail e password errate",
+        "expected": "Non si viene reindirizzati alla homepage del sito"
+      }
+    ],
+    "test_type": "",
+    "priority": "ALTO",
+    "use_case_id": "UC1"
+  }
+]

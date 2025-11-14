@@ -1,0 +1,117 @@
+[
+  {
+    "test_case_id": "UC2.1_TC1",
+    "title": "Download PDF con dati validi e conferma",
+    "preconditions": "UC2",
+    "postconditions": "L’utente ha scaricato il file, può aprirlo dalla apposita sezione del browser utilizzato ed il file è ben formato",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e clicca sul tasto di download del PDF",
+        "expected": "Il processo di download inizia correttamente"
+      },
+      {
+        "step": "Conferma la richiesta di download",
+        "expected": "Il messaggio di operazione completata con successo viene visualizzato"
+      },
+      {
+        "step": "Verifica che il file sia stato scaricato correttamente e possa essere aperto",
+        "expected": "Il file è ben formato e può essere aperto senza problemi"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC2",
+    "title": "Download PDF con annullamento della richiesta",
+    "preconditions": "UC2",
+    "postconditions": "L’utente non ha scaricato il file",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e clicca sul tasto di download del PDF",
+        "expected": "Il processo di download inizia correttamente"
+      },
+      {
+        "step": "Annulla la richiesta di download",
+        "expected": "Il messaggio di annullamento viene visualizzato"
+      },
+      {
+        "step": "Verifica che il file non sia stato scaricato",
+        "expected": "Il file non è presente nella cartella dei download"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC3",
+    "title": "Download PDF con errore di rete",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di operazione completata con un errore relativo all’eccezione verificatasi",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e clicca sul tasto di download del PDF",
+        "expected": "Il processo di download inizia correttamente"
+      },
+      {
+        "step": "Simula un errore di rete durante il download",
+        "expected": "Il messaggio di operazione completata con un errore relativo all’eccezione verificatasi viene visualizzato"
+      },
+      {
+        "step": "Verifica che l’utente possa ripartire dal punto 2 della base sequence",
+        "expected": "L’utente può ripartire dal punto 2 della base sequence"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC4",
+    "title": "Download PDF con file non disponibile",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di operazione completata con un errore relativo all’eccezione verificatasi",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e clicca sul tasto di download del PDF",
+        "expected": "Il processo di download inizia correttamente"
+      },
+      {
+        "step": "Simula che il file non sia disponibile",
+        "expected": "Il messaggio di operazione completata con un errore relativo all’eccezione verificatasi viene visualizzato"
+      },
+      {
+        "step": "Verifica che l’utente possa ripartire dal punto 2 della base sequence",
+        "expected": "L’utente può ripartire dal punto 2 della base sequence"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC2.1"
+  },
+  {
+    "test_case_id": "UC2.1_TC5",
+    "title": "Download PDF con formato file non supportato",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza un messaggio di operazione completata con un errore relativo all’eccezione verificatasi",
+    "test_steps": [
+      {
+        "step": "Accedi alla dashboard e clicca sul tasto di download del PDF",
+        "expected": "Il processo di download inizia correttamente"
+      },
+      {
+        "step": "Simula che il file abbia un formato non supportato",
+        "expected": "Il messaggio di operazione completata con un errore relativo all’eccezione verificatasi viene visualizzato"
+      },
+      {
+        "step": "Verifica che l’utente possa ripartire dal punto 2 della base sequence",
+        "expected": "L’utente può ripartire dal punto 2 della base sequence"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC2.1"
+  }
+]

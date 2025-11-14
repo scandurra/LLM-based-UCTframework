@@ -1,0 +1,21 @@
+[
+  {
+    "test_case_id": "UC341_TC001",
+    "title": "Download scheda censimento",
+    "preconditions": "Aver compiuto i passaggi fino al UC3",
+    "postconditions": "L'utente seleziona e scarica il file relativo alla scheda di censimento.",
+    "test_steps": [
+      {
+        "step": "L'utente clicca sul pulsante del menu a tendina \"Azione\"",
+        "expected": "L'utente visualizza le opzioni previste nel menu a tendina \"Azione\""
+      },
+      {
+        "step": "L'utente seleziona e scarica il file relativo alla scheda di censimento.",
+        "expected": "Il file selezionato verrà scaricato."
+      }
+    ],
+    "test_type": "",
+    "priority": "ALTO",
+    "use_case_id": "UC341"
+  }
+]

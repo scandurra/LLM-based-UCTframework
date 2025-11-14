@@ -1,0 +1,25 @@
+[
+  {
+    "test_case_id": "UC2.4_TC1",
+    "title": "Selezione comuni e KPI validi",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza il risultato della analisi su un grafico, in base ai comuni e al KPI su cui fare il confronto",
+    "test_steps": [
+      {
+        "step": "Seleziona due o più comuni dal menù a tendina",
+        "expected": "I comuni vengono selezionati correttamente"
+      },
+      {
+        "step": "Seleziona un KPI desiderato",
+        "expected": "Il KPI viene selezionato correttamente"
+      },
+      {
+        "step": "Conferma la richiesta cliccando sul pulsante",
+        "expected": "Il sistema visualizza il grafico con il confronto desiderato"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.4"
+  }
+]

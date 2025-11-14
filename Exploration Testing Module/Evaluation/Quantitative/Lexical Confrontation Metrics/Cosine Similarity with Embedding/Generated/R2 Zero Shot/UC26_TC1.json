@@ -1,0 +1,25 @@
+[
+  {
+    "test_case_id": "UC2.6_TC1",
+    "title": "Analisi consumo comune per POD con dati validi",
+    "preconditions": "UC2",
+    "postconditions": "L’utente visualizza le informazioni consultando i grafici",
+    "test_steps": [
+      {
+        "step": "Accedi alla sezione dedicata al consumo",
+        "expected": "La sezione è visualizzata correttamente"
+      },
+      {
+        "step": "Seleziona il comune e specifica POD, pannello elettrico, periodo e tipo di potenza analizzata",
+        "expected": "L’analisi del consumo è visualizzata correttamente"
+      },
+      {
+        "step": "Visualizza i grafici dell’analisi",
+        "expected": "I grafici sono visualizzati correttamente"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC2.6"
+  }
+]

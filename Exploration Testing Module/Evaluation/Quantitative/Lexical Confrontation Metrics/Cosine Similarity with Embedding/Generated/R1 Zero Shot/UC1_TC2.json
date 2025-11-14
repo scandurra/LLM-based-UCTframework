@@ -1,0 +1,25 @@
+[
+  {
+    "test_case_id": "UC1_TC2",
+    "title": "Login utente con credenziali errate",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Inserisci credenziali errate nel form di login",
+        "expected": "Il sistema rifiuta le credenziali"
+      },
+      {
+        "step": "Clicca il tasto \"Login\"",
+        "expected": "Il sistema visualizza un messaggio di errore di autenticazione"
+      },
+      {
+        "step": "Verifica il messaggio di operazione completata",
+        "expected": "Il sistema visualizza un messaggio di login fallito"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC1"
+  }
+]

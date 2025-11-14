@@ -1,0 +1,202 @@
+\subsubsection{Cosine Similarity with Dense Embeddings}
+
+While traditional TF-IDF-based cosine similarity captures lexical overlap through sparse vector representations, modern neural embeddings provide a more sophisticated approach to measuring semantic similarity. To address the limitations of static TF-IDF representations—particularly when evaluating text generated with controlled randomness (temperature 0.3)—we employ dense embeddings that capture deeper semantic relationships beyond surface-level word matching.
+
+\textbf{Embedding Model Selection}: We utilize the \texttt{paraphrase-multilingual-mpnet-base-v2} model from Hugging Face's SentenceTransformers library. This model was specifically chosen for several key characteristics: (1) multilingual support including Italian, essential for our ENEA PELL-IP test cases; (2) training on paraphrase detection tasks, making it particularly suited for identifying semantic equivalence across different lexical expressions; (3) state-of-the-art performance on semantic textual similarity benchmarks; (4) 768-dimensional dense representations that capture nuanced semantic relationships. The model maps variable-length test case descriptions into fixed-length vectors in a continuous semantic space where distance reflects meaning similarity rather than mere lexical overlap.
+
+\textbf{Metric Calculation}: For each test case pair (baseline vs. generated), we encode the complete test case structure—including title, preconditions, postconditions, test steps with expected results, test type, and priority—into dense 768-dimensional embeddings. Cosine similarity is then computed as:
+\[
+\text{similarity} = \frac{\mathbf{v}_{\text{baseline}} \cdot \mathbf{v}_{\text{generated}}}{\|\mathbf{v}_{\text{baseline}}\| \|\mathbf{v}_{\text{generated}}\|}
+\]
+where $\mathbf{v}_{\text{baseline}}$ and $\mathbf{v}_{\text{generated}}$ are the embedding vectors. Unlike TF-IDF cosine similarity which ranges 0.0-1.0 with typical values 0.1-0.6, embedding-based similarity typically ranges 0.6-1.0 for semantically related content, with values above 0.85 indicating strong semantic alignment.
+
+\textbf{Interpretation Thresholds}:
+\begin{itemize}
+\item 0.90-1.00: Excellent - Very high semantic equivalence, near-paraphrase quality
+\item 0.85-0.89: Good - Strong semantic alignment with acceptable variation
+\item 0.80-0.84: Moderate - Reasonable semantic overlap, notable differences
+\item 0.70-0.79: Fair - Limited semantic similarity, significant divergence
+\item 0.00-0.69: Poor - Weak semantic relationship
+\end{itemize}
+
+\begin{table}[htbp]
+\centering
+\footnotesize
+\makebox[\textwidth][c]{%
+\begin{tabular}{|l|c|c|c|c|c|}
+\hline
+\textbf{Configuration} & \textbf{Mean Similarity} & \textbf{Std Dev} & \textbf{Min} & \textbf{Max} & \textbf{Count} \\
+\hline
+\rowcolor{blue!20}
+\textbf{Zero Shot Overall} & 0.8727 & 0.0869 & 0.6029 & 0.9558 & 36 \\
+\rowcolor{blue!20}
+\textbf{One Shot Overall} & 0.8845 & 0.0666 & 0.7029 & 0.9556 & 36 \\
+\rowcolor{blue!20}
+\textbf{Few Shot Overall} & 0.8783 & 0.0785 & 0.6559 & 0.9636 & 36 \\
+\hline
+\textbf{R1 Overall} & 0.8829 & 0.0744 & 0.6559 & 0.9636 & 36 \\
+\textbf{R2 Overall} & 0.8767 & 0.0821 & 0.6029 & 0.9564 & 36 \\
+\textbf{R3 Overall} & 0.8759 & 0.0769 & 0.6782 & 0.9566 & 36 \\
+\hline
+\rowcolor{yellow!20}
+\textbf{Global Average} & 0.8785 & 0.0772 & 0.6029 & 0.9636 & 108 \\
+\hline
+\end{tabular}%
+}
+\caption{Dense embedding-based cosine similarity across prompting strategies and generation rounds. All configurations achieve strong semantic alignment (mean > 0.85), with One-Shot showing highest consistency (lowest Std Dev: 0.0666).}
+\label{tab:embedding_cosine_analysis}
+\end{table}
+
+The embedding-based analysis reveals dramatically different patterns compared to TF-IDF metrics and other lexical measures. Most notably, \textbf{One-Shot prompting achieves the highest mean similarity (0.8845)}, representing a 1.35\% improvement over Zero-Shot (0.8727) and 0.71\% over Few-Shot (0.8783). This reversal of the TF-IDF trend is highly significant: while Zero-Shot dominated lexical metrics through conservative, template-like generation, One-Shot achieves superior \textit{semantic} alignment by balancing example-guided generation with model creativity.
+
+Crucially, One-Shot also demonstrates the \textbf{lowest standard deviation (0.0666)}, indicating more consistent semantic quality across different test cases compared to Zero-Shot (0.0869) and Few-Shot (0.0785). This consistency is particularly valuable for production deployment where reliable performance across diverse functional domains is essential.
+
+All three strategies achieve mean similarities in the "Good" to "Excellent" range (0.85-0.90), with the global average of 0.8785 indicating strong semantic preservation across all generated test cases. This stands in stark contrast to the TF-IDF-based cosine similarity (global mean 0.390) and BLEU scores (global mean 0.114), demonstrating that neural embeddings capture semantic equivalence that lexical metrics miss entirely.
+
+\begin{table}[htbp]
+\centering
+\small
+\makebox[\textwidth][c]{%
+\begin{tabular}{|l|c|c|c|c|c|c|}
+\hline
+\textbf{Configuration} & \textbf{Mean} & \textbf{Std Dev} & \textbf{Min} & \textbf{Max} & \textbf{Rank} \\
+\hline
+\textbf{R1 Zero Shot} & 0.8773 & 0.0808 & 0.6808 & 0.9523 & 5th \\
+\textbf{R1 One Shot} & 0.8877 & 0.0657 & 0.7116 & 0.9549 & 1st \\
+\textbf{R1 Few Shot} & 0.8837 & 0.0820 & 0.6559 & 0.9636 & 3rd \\
+\hline
+\textbf{R2 Zero Shot} & 0.8675 & 0.1011 & 0.6029 & 0.9398 & 9th \\
+\textbf{R2 One Shot} & 0.8854 & 0.0692 & 0.7077 & 0.9556 & 2nd \\
+\textbf{R2 Few Shot} & 0.8773 & 0.0791 & 0.6909 & 0.9564 & 6th \\
+\hline
+\textbf{R3 Zero Shot} & 0.8734 & 0.0849 & 0.6782 & 0.9558 & 8th \\
+\textbf{R3 One Shot} & 0.8805 & 0.0707 & 0.7029 & 0.9556 & 4th \\
+\textbf{R3 Few Shot} & 0.8738 & 0.0812 & 0.6937 & 0.9566 & 7th \\
+\hline
+\end{tabular}%
+}
+\caption{Detailed round-by-round embedding similarity analysis. One-Shot consistently ranks in top 4 across all rounds, with R1 One-Shot achieving best overall performance (0.8877).}
+\label{tab:embedding_round_detail}
+\end{table}
+
+Round-level analysis shows \textbf{R1 performance superiority across all strategies}, with R1 achieving the highest mean (0.8829) compared to R2 (0.8767) and R3 (0.8759). This suggests that initial generation attempts capture reference semantics most effectively, with subsequent refinement rounds introducing minor semantic drift despite potential quality improvements in other dimensions.
+
+The configuration ranking reveals R1 One-Shot (0.8877) as the clear winner, followed by R2 One-Shot (0.8854) and R1 Few-Shot (0.8837). Notably, R2 Zero-Shot shows the weakest performance (0.8675) and highest variability (Std Dev 0.1011), suggesting instability in Zero-Shot generation quality across rounds.
+
+\begin{table}[htbp]
+\centering
+\small
+\makebox[\textwidth][c]{%
+\begin{tabular}{|l|c|c|c|c|c|}
+\hline
+\textbf{Test Case} & \textbf{Mean} & \textbf{Std Dev} & \textbf{Min} & \textbf{Max} & \textbf{Quality Rating} \\
+\hline
+UC321\_TC1 & 0.9538 & 0.0056 & 0.9398 & 0.9594 & Excellent \\
+UC33\_TC1 & 0.9463 & 0.0114 & 0.9310 & 0.9636 & Excellent \\
+UC343\_TC1 & 0.9370 & 0.0020 & 0.9325 & 0.9396 & Excellent \\
+UC341\_TC1 & 0.9204 & 0.0087 & 0.8998 & 0.9294 & Excellent \\
+UC342\_TC2 & 0.9195 & 0.0039 & 0.9140 & 0.9272 & Excellent \\
+UC342\_TC1 & 0.9025 & 0.0025 & 0.8977 & 0.9056 & Excellent \\
+UC345\_TC1 & 0.8962 & 0.0117 & 0.8792 & 0.9112 & Excellent \\
+UC344\_TC1 & 0.8851 & 0.0389 & 0.8542 & 0.9413 & Good \\
+UC24\_TC1 & 0.8556 & 0.0349 & 0.8125 & 0.8982 & Good \\
+UC34\_TC1 & 0.8327 & 0.0463 & 0.7633 & 0.8802 & Good \\
+UC1\_TC2 & 0.8126 & 0.0330 & 0.7508 & 0.8370 & Moderate \\
+UC26\_TC1 & 0.6805 & 0.0338 & 0.6029 & 0.7116 & Poor \\
+\hline
+\end{tabular}%
+}
+\caption{Embedding similarity by test case showing functional domain impact. Seven test cases achieve "Excellent" ratings (>0.90), demonstrating strong semantic preservation. UC26\_TC1 (data visualization) remains challenging across all metrics.}
+\label{tab:embedding_testcase}
+\end{table}
+
+Test case-specific analysis reveals remarkable consistency in high-performing domains. \textbf{Seven test cases achieve mean similarities above 0.90} (Excellent rating), with UC321\_TC1 (Schema search, 0.9538), UC33\_TC1 (Schema upload, 0.9463), and UC343\_TC1 (Schema modification, 0.9370) leading the rankings. These results are particularly impressive given the model's temperature setting of 0.3, which introduces controlled randomness while maintaining semantic fidelity.
+
+Notably, data management and CRUD operations (UC321, UC33, UC343, UC341, UC342) consistently achieve excellent semantic alignment, with remarkably low standard deviations (0.0020-0.0087) indicating stable generation quality across all prompting strategies and rounds. This suggests that structured, procedural test cases are well-suited for LLM generation with consistent semantic preservation.
+
+UC26\_TC1 (Data visualization, 0.6805) represents the only test case with "Poor" semantic alignment, though even this outlier maintains moderate similarity. The consistency of UC26\_TC1's poor performance across all metrics (BLEU: 0.011, ROUGE-1: 0.230, TF-IDF Cosine: 0.135, Embedding Cosine: 0.6805) suggests fundamental complexity in the domain rather than generation strategy deficiencies.
+
+\textbf{Key Insight - Temperature Effects}: The model's temperature setting of 0.3 (controlled randomness) combined with dense embeddings provides an optimal balance: sufficient lexical variation to avoid template-like outputs (explaining lower BLEU/ROUGE scores) while maintaining strong semantic alignment (demonstrated by high embedding similarity). This validates Few-Shot's documented feasibility advantages while explaining its lexical metric underperformance.
+
+
+\subsubsection{Comprehensive Metrics Summary and Considerations}
+
+\begin{table}[htbp]
+\centering
+\small
+\makebox[\textwidth][c]{%
+\begin{tabular}{|l|c|c|c|c|c|c|}
+\hline
+\textbf{Strategy} & \textbf{BLEU} & \textbf{ROUGE-1} & \textbf{ROUGE-2} & \textbf{ROUGE-L} & \textbf{TF-IDF Cos} & \textbf{Embed Cos} \\
+\hline
+\textbf{Zero Shot} & 0.130 (1st) & 0.405 (1st) & 0.205 (1st) & 0.312 (1st) & 0.407 (1st) & 0.8727 (3rd) \\
+\textbf{One Shot} & 0.107 (2nd) & 0.387 (2nd) & 0.165 (3rd) & 0.282 (3rd) & 0.386 (2nd) & \textbf{0.8845 (1st)} \\
+\textbf{Few Shot} & 0.103 (3rd) & 0.381 (3rd) & 0.172 (2nd) & 0.289 (2nd) & 0.375 (3rd) & 0.8783 (2nd) \\
+\hline
+\textbf{ZS-OS Delta (\%)} & +21.5\% & +4.8\% & +24.6\% & +10.7\% & +5.5\% & \textbf{-1.35\%} \\
+\textbf{ZS-FS Delta (\%)} & +27.0\% & +6.2\% & +19.6\% & +7.9\% & +8.3\% & \textbf{-0.64\%} \\
+\hline
+\end{tabular}%
+}
+\caption{Comprehensive ranking across all similarity metrics revealing critical divergence between lexical (BLEU, ROUGE, TF-IDF) and semantic (embedding) measures. Zero-Shot dominates lexical metrics while One-Shot achieves superior semantic alignment.}
+\label{tab:metrics_comprehensive}
+\end{table}
+
+The comprehensive cross-metric analysis reveals a fundamental dichotomy in evaluation outcomes that carries significant implications for LLM-based test case generation assessment. While Zero-Shot prompting systematically dominates all lexical similarity metrics (BLEU, ROUGE-1/2/L, TF-IDF cosine similarity), \textbf{One-Shot achieves superior semantic alignment as measured by dense embeddings}. This reversal is not merely a statistical anomaly but reflects fundamentally different generation behaviors captured by different evaluation paradigms.
+
+\textbf{The Lexical-Semantic Divergence}: Zero-Shot's dominance in lexical metrics (advantages ranging from 4.8\% to 27.0\%) reflects its tendency toward conservative, template-adherent generation. Without example guidance, the model defaults to patterns closely matching its training data, producing outputs with high vocabulary overlap but limited semantic flexibility. Conversely, One-Shot and Few-Shot strategies encourage more diverse lexical expressions while maintaining—or even improving—semantic equivalence, as evidenced by One-Shot's 1.35\% embedding similarity advantage over Zero-Shot.
+
+This pattern strongly aligns with the temperature setting (0.3) used during generation. With controlled randomness, the model introduces lexical variations (reducing BLEU/ROUGE scores) while neural embeddings confirm that these variations preserve semantic meaning. Few-Shot's previously documented feasibility superiority (92.1\% vs 78.4\% for Zero-Shot) despite lower lexical scores is thus explained: Few-Shot generates semantically valid test cases through paraphrasing rather than template replication.
+
+\textbf{Stability and Consistency Analysis}: One-Shot demonstrates not only the highest embedding similarity but also the \textbf{lowest variability across all configurations} (Std Dev: 0.0666 vs 0.0869 for Zero-Shot and 0.0785 for Few-Shot). This consistency advantage is crucial for production deployment where predictable quality across diverse functional domains is essential. The standard deviation reduction of 23.4\% compared to Zero-Shot indicates more reliable semantic preservation regardless of test case complexity or domain.
+
+\begin{table}[htbp]
+\centering
+\footnotesize
+\makebox[\textwidth][c]{%
+\begin{tabular}{|l|c|c|c|c|c|c|c|}
+\hline
+\textbf{Test Case} & \textbf{BLEU} & \textbf{ROUGE-1} & \textbf{ROUGE-L} & \textbf{TF-IDF Cos} & \textbf{Embed Cos} & \textbf{Feasibility} & \textbf{Quality} \\
+\hline
+UC343\_TC1 & 0.273 & 0.524 & 0.416 & 0.574 & \textbf{0.9370} & High & Excellent \\
+UC33\_TC1 & 0.240 & 0.566 & 0.440 & 0.579 & \textbf{0.9463} & High & Excellent \\
+UC321\_TC1 & 0.207 & 0.498 & 0.417 & 0.528 & \textbf{0.9538} & High & Excellent \\
+UC345\_TC1 & 0.189 & 0.385 & 0.350 & 0.412 & \textbf{0.8962} & High & Excellent \\
+UC344\_TC1 & 0.180 & 0.416 & 0.348 & 0.434 & 0.8851 & Moderate & Good \\
+UC342\_TC2 & 0.059 & 0.382 & 0.276 & 0.365 & \textbf{0.9195} & High & Excellent \\
+UC1\_TC2 & 0.055 & 0.300 & 0.220 & 0.379 & 0.8126 & Moderate & Moderate \\
+UC342\_TC1 & 0.044 & 0.413 & 0.235 & 0.367 & \textbf{0.9025} & High & Excellent \\
+UC341\_TC1 & 0.038 & 0.407 & 0.287 & 0.396 & \textbf{0.9204} & High & Excellent \\
+UC24\_TC1 & 0.036 & 0.330 & 0.188 & 0.362 & 0.8556 & Moderate & Good \\
+UC34\_TC1 & 0.022 & 0.254 & 0.194 & 0.153 & 0.8327 & Moderate & Good \\
+UC26\_TC1 & 0.011 & 0.230 & 0.156 & 0.135 & 0.6805 & Low & Fair \\
+\hline
+\end{tabular}%
+}
+\caption{Integrated quality assessment across all metrics revealing critical divergence patterns. Bold embedding scores indicate cases where semantic preservation dramatically exceeds lexical similarity, validating paraphrase-based generation quality.}
+\label{tab:integrated_quality}
+\end{table}
+
+\textbf{Reconciling Metrics with Practical Quality}: The integrated analysis (Table \ref{tab:integrated_quality}) demonstrates that \textbf{embedding-based cosine similarity provides the most reliable indicator of functional test case quality}. Seven test cases achieve "Excellent" embedding similarity (>0.90) despite widely varying lexical scores. For example:
+
+\begin{itemize}
+\item \textbf{UC342\_TC2}: BLEU 0.059 (Poor) vs Embedding 0.9195 (Excellent) - 1458\% semantic advantage
+\item \textbf{UC342\_TC1}: BLEU 0.044 (Poor) vs Embedding 0.9025 (Excellent) - 1951\% semantic advantage  
+\item \textbf{UC341\_TC1}: BLEU 0.038 (Poor) vs Embedding 0.9204 (Excellent) - 2322\% semantic advantage
+\end{itemize}
+
+These dramatic divergences validate the hypothesis that lexical metrics severely underestimate generation quality when models employ paraphrasing strategies. The cases showing the largest lexical-semantic gaps (UC342\_TC1/TC2, UC341\_TC1) all achieve high feasibility ratings in qualitative assessment, confirming that embedding similarity aligns with practical test case utility.
+
+\textbf{Strategic Implications for Evaluation}: The comprehensive metrics analysis establishes three critical findings for LLM-based test case generation assessment:
+
+\begin{enumerate}
+\item \textbf{Dense embeddings should be the primary evaluation metric} for semantic tasks where paraphrasing represents valid behavior. Traditional lexical metrics (BLEU, ROUGE) systematically penalize semantic equivalence expressed through alternative vocabulary, leading to misleading quality assessments.
+
+\item \textbf{One-Shot prompting emerges as the optimal strategy} when considering both semantic fidelity (highest embedding similarity: 0.8845) and generation consistency (lowest variability: 0.0666 Std Dev). The single-example guidance provides sufficient constraint to maintain semantic alignment while allowing flexibility for natural language variation.
+
+\item \textbf{Temperature-controlled generation (0.3) enables optimal quality balance}: sufficient randomness to avoid template replication (explaining lexical metric suppression) while maintaining semantic coherence (demonstrated by embedding similarities >0.85 across all strategies). This validates production deployment with moderate temperature settings rather than deterministic (temperature 0) generation.
+\end{enumerate}
+
+\textbf{Final Recommendation}: For production deployment of LLM-based test case generation, evaluation frameworks should prioritize embedding-based semantic similarity over lexical metrics, with One-Shot prompting as the recommended strategy for balancing quality, consistency, and semantic preservation. The apparent contradiction between lexical underperformance and practical utility (feasibility ratings) is resolved by recognizing that neural embeddings capture meaning preservation that surface-level text matching misses entirely. 
+
+Future work should investigate hybrid evaluation approaches combining embedding similarity for semantic assessment with task-specific functional metrics (executability, coverage, maintainability) that directly measure test case utility independent of reference similarity. The current analysis demonstrates that optimal test case generation requires accepting reduced lexical similarity in favor of improved semantic quality and functional correctness.

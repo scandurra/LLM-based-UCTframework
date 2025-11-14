@@ -1,0 +1,105 @@
+[
+  {
+    "test_case_id": "UC3.4.4_TC1",
+    "title": "Congelamento scheda censimento con conferma",
+    "preconditions": "UC3.4",
+    "postconditions": "L’utente non può più svolgere qualsiasi azione sulla scheda. Inoltre, lo stato visualizzato della scheda è come “non attivo”",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di congelamento della scheda censimento",
+        "expected": "Viene richiesta la conferma del congelamento"
+      },
+      {
+        "step": "Conferma il congelamento della scheda",
+        "expected": "Viene visualizzato un messaggio di conferma dell’operazione"
+      },
+      {
+        "step": "Verifica lo stato della scheda dopo il congelamento",
+        "expected": "Lo stato della scheda è visualizzato come “non attivo”"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.4"
+  },
+  {
+    "test_case_id": "UC3.4.4_TC2",
+    "title": "Congelamento scheda censimento con annullamento",
+    "preconditions": "UC3.4",
+    "postconditions": "",
+    "test_steps": [
+      {
+        "step": "Seleziona l’operazione di congelamento della scheda censimento",
+        "expected": "Viene richiesta la conferma del congelamento"
+      },
+      {
+        "step": "Annulla il congelamento della scheda",
+        "expected": "Il congelamento viene interrotto e lo stato della scheda rimane invariato"
+      },
+      {
+        "step": "Verifica lo stato della scheda dopo l’annullamento",
+        "expected": "Lo stato della scheda è ancora attivo"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC3.4.4"
+  },
+  {
+    "test_case_id": "UC3.4.4_TC3",
+    "title": "Congelamento scheda censimento senza autorizzazione",
+    "preconditions": "UC3.4",
+    "postconditions": "",
+    "test_steps": [
+      {
+        "step": "Tenta di selezionare l’operazione di congelamento della scheda censimento senza avere i permessi necessari",
+        "expected": "Viene visualizzato un messaggio di errore per mancanza di autorizzazione"
+      },
+      {
+        "step": "Verifica lo stato della scheda",
+        "expected": "Lo stato della scheda rimane invariato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.4"
+  },
+  {
+    "test_case_id": "UC3.4.4_TC4",
+    "title": "Congelamento scheda censimento con dati non validi",
+    "preconditions": "UC3.4",
+    "postconditions": "",
+    "test_steps": [
+      {
+        "step": "Inserisci dati non validi durante la selezione dell’operazione di congelamento",
+        "expected": "Viene visualizzato un messaggio di errore per dati non validi"
+      },
+      {
+        "step": "Verifica lo stato della scheda",
+        "expected": "Lo stato della scheda rimane invariato"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Bassa",
+    "use_case_id": "UC3.4.4"
+  },
+  {
+    "test_case_id": "UC3.4.4_TC5",
+    "title": "Congelamento scheda censimento con più utenti contemporaneamente",
+    "preconditions": "UC3.4",
+    "postconditions": "",
+    "test_steps": [
+      {
+        "step": "Due o più utenti tentano di congelare la stessa scheda censimento contemporaneamente",
+        "expected": "Viene gestito correttamente il conflitto e viene visualizzato un messaggio di errore o di successo per ogni utente"
+      },
+      {
+        "step": "Verifica lo stato della scheda",
+        "expected": "Lo stato della scheda è coerente con l’azione eseguita"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.4.4"
+  }
+]

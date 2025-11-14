@@ -1,0 +1,140 @@
+[
+  {
+    "test_case_id": "UC1_TC1",
+    "title": "Login con credenziali valide",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "L’utente è autenticato ed è a conoscenza che l’operazione ha avuto successo",
+    "test_steps": [
+      {
+        "step": "Inserisci le credenziali corrette nel form di login",
+        "expected": "Le credenziali vengono accettate"
+      },
+      {
+        "step": "Clicca il tasto “Login”",
+        "expected": "Il sistema inizia la procedura di autenticazione"
+      },
+      {
+        "step": "Visualizza il messaggio di operazione completata con successo",
+        "expected": "L’utente è autenticato e visualizza un messaggio di benvenuto"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC2",
+    "title": "Login con credenziali errate",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "L’utente visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Inserisci credenziali errate nel form di login",
+        "expected": "Le credenziali vengono rifiutate"
+      },
+      {
+        "step": "Clicca il tasto “Login”",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      },
+      {
+        "step": "Visualizza il messaggio di operazione non riuscita",
+        "expected": "L’utente può riprovare l’accesso"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC3",
+    "title": "Cambio password alla prima autenticazione",
+    "preconditions": "L’utente non è autenticato e deve cambiare la password di default",
+    "postconditions": "La password viene modificata con successo",
+    "test_steps": [
+      {
+        "step": "Inserisci le credenziali nel form di login",
+        "expected": "Il sistema richiede il cambio della password"
+      },
+      {
+        "step": "Inserisci la nuova password e conferma",
+        "expected": "La password viene accettata"
+      },
+      {
+        "step": "Visualizza il messaggio di operazione completata con successo",
+        "expected": "L’utente è autenticato con la nuova password"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC4",
+    "title": "Tentativo di SQL injection nel campo username",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "Il sistema rifiuta l’input pericoloso",
+    "test_steps": [
+      {
+        "step": "Inserisci un input pericoloso (es. ' OR 1=1) nel campo username",
+        "expected": "Il sistema rileva e blocca l’input"
+      },
+      {
+        "step": "Clicca il tasto “Login”",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      },
+      {
+        "step": "Visualizza il messaggio di operazione non riuscita",
+        "expected": "L’utente non può accedere"
+      }
+    ],
+    "test_type": "Sicurezza",
+    "priority": "Alta",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC5",
+    "title": "Login con campo password vuoto",
+    "preconditions": "L’utente non è autenticato",
+    "postconditions": "Il sistema visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Inserisci il username ma lascia vuoto il campo password",
+        "expected": "Il sistema segnala l’errore"
+      },
+      {
+        "step": "Clicca il tasto “Login”",
+        "expected": "Il sistema visualizza un messaggio di errore"
+      },
+      {
+        "step": "Visualizza il messaggio di operazione non riuscita",
+        "expected": "L’utente può riprovare l’accesso"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC1"
+  },
+  {
+    "test_case_id": "UC1_TC6",
+    "title": "Cambio password con conferma non corretta",
+    "preconditions": "L’utente è richiesto di cambiare la password",
+    "postconditions": "Il sistema visualizza un messaggio di errore",
+    "test_steps": [
+      {
+        "step": "Inserisci la nuova password",
+        "expected": "Il sistema richiede la conferma della password"
+      },
+      {
+        "step": "Inserisci una conferma diversa dalla password",
+        "expected": "Il sistema segnala l’errore di conferma"
+      },
+      {
+        "step": "Visualizza il messaggio di operazione non riuscita",
+        "expected": "L’utente può riprovare a cambiare la password"
+      }
+    ],
+    "test_type": "Negativo",
+    "priority": "Media",
+    "use_case_id": "UC1"
+  },
+]

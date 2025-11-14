@@ -1,0 +1,25 @@
+[
+  {
+    "test_case_id": "UC3.2.1_TC1",
+    "title": "Ricerca scheda censimento per nome valido",
+    "preconditions": "UC3.2",
+    "postconditions": "L’utente visualizza le informazioni corrispondenti alla paginazione richiesta",
+    "test_steps": [
+      {
+        "step": "Inserisci un nome valido nella barra di ricerca",
+        "expected": "Il sistema accetta l’input"
+      },
+      {
+        "step": "Conferma la ricerca",
+        "expected": "Il sistema esegue la ricerca e visualizza i risultati"
+      },
+      {
+        "step": "Verifica i risultati della ricerca",
+        "expected": "I risultati corrispondono al nome inserito"
+      }
+    ],
+    "test_type": "Positivo",
+    "priority": "Alta",
+    "use_case_id": "UC3.2.1"
+  }
+]
