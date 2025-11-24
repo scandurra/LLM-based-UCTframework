@@ -82,11 +82,10 @@ ollama pull llama3.3:latest
 ## Project Structure
 
 ```
-TesiLLMTesting/
+Exploration Testing Module/
 ├── orchestrator.py                    # Main pipeline orchestrator
 ├── pyproject.toml                     # Poetry dependencies configuration
 ├── README.md                          # This file
-├── UseCases.docx                      # Original use cases description file
 │
 ├── Parsing/                           # Use case parsing module
 │   ├── DocxToTxt.py                  # DOCX to TXT converter
@@ -114,22 +113,19 @@ TesiLLMTesting/
 ├── Repair/                            # JSON repair module
 │   └── refiner.py                    # Repairs malformed JSON outputs
 │
+├── FinalOutput/                       # Final processed test cases
+│   └── UC*.json                      # Final test case outputs (UC1.json, UC2.json, etc.)
+│
 └── Evaluation/                        # Evaluation framework
     ├── Qualitative/                  # Qualitative evaluation
     │   ├── ExpertEvaluation/         # Expert assessments
-    │   └── Feasibility/              # Feasibility analysis
+    │   ├── Feasibility/              # Feasibility analysis
+    │   └── TestCaseCoverage/         # Coverage metrics
     │
     ├── Quantitative/                 # Automated metrics
-    │   ├── Confrontation metrics/    # Baseline vs Generated comparison
-    │   │   ├── Dataset/              # Baseline and generated test cases
-    │   │   │   ├── Baseline/         # Human-written test cases
-    │   │   │   ├── Baseline JSON/    # Baseline in JSON format
-    │   │   │   ├── Generated/        # LLM-generated outputs that will be used for BLEU, ROUGE and Cosine Similarity
-    │   │   │   └── Results/          # Excel reports and charts
-    │   │   └── Scripts/              # Evaluation scripts
-    │   │
     │   ├── Data Collected/           # Raw evaluation data
     │   ├── JSON Syntax/              # Syntax validation results
+    │   ├── Lexical Confrontation Metrics/ # BLEU, ROUGE, Cosine Similarity
     │   └── Summary/                  # Evaluation summaries
     │
     ├── Full Generation Analyzed/     # Complete generation outputs
@@ -142,6 +138,8 @@ TesiLLMTesting/
     │   ├── R3 Zero Shot/
     │   ├── R3 One Shot/
     │   └── R3 Few Shot/
+    │
+    ├── Templates/                     # Excel templates for data collection
     │
     └── Scripts/                       # Evaluation utilities
 ```
